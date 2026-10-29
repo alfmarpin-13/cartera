@@ -3339,18 +3339,19 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   body.hv2 .hm3-c{align-items:flex-start;text-align:left;padding:0 10px 0 14px}
   body.hv2 .hm3-c:first-of-type{padding-left:0}
   .hm3-k{font-size:10px;line-height:12px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--h-fg3)}
-  .hm3-v{margin-top:7px;font-size:20px;line-height:24px;font-weight:300;letter-spacing:-.015em}
-  .hm3-s{margin-top:3px;font-size:12px;line-height:16px;color:var(--h-fg2)}
+  .hm3-v{margin-top:6px;font-size:17px;line-height:20px;font-weight:300;letter-spacing:-.01em}
+  .hm3-s{margin-top:3px;font-size:11px;line-height:15px;color:var(--h-fg2)}
   .hm3-s b{font-weight:400;color:var(--h-fg)}
   .hm3 .pos{color:var(--h-pos)}.hm3 .neg{color:var(--h-neg)}
+  @media (max-width:350px){.hm3-s{font-size:10px}}
   .hm3-d{width:1px;background:var(--h-line);margin:2px 0}
   .hm3>.hm3-c:nth-of-type(2){grid-column:1}.hm3>.hm3-c:nth-of-type(3){grid-column:3}.hm3>.hm3-c:nth-of-type(4){grid-column:5}
   .hm3>.hm3-d:nth-of-type(1){grid-column:2}.hm3>.hm3-d:nth-of-type(2){grid-column:4}
   .hm3>.hm3-c,.hm3>.hm3-d{grid-row:2}
   /* la barra clara de arriba, como la del PC (variantes 1 y 2) */
   body:is(.hv1,.hv2)[data-view="resumen"] .mtop{display:flex}
-  #v-resumen>.mtop{order:-1}
-  .mtop{align-items:center;justify-content:space-between;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 6px) 4px 8px 16px;background:var(--canvas);position:relative;z-index:11;margin:0 -16px}
+  #v-resumen>.mtop{order:-1;margin-bottom:-16px}   /* sin el hueco entre bloques: la franja va pegada a la barra */
+  .mtop{align-items:center;justify-content:space-between;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 6px) 4px 4px 16px;background:var(--canvas);position:relative;z-index:11;margin:0 -16px}
   .mt-st{display:flex;align-items:center;gap:8px;font-size:12px;line-height:16px;color:var(--ink2);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .mt-st .dot{flex:none;box-shadow:none}
   .mt-ic{display:flex;gap:2px;flex:none}
@@ -3358,6 +3359,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   .mt-ic button:active{background:color-mix(in srgb,var(--ink) 8%,transparent)}
   .mt-ic svg{width:18px;height:18px}
   .mt-ic .eye-x{display:none}.priv .mt-ic .eye{display:none}.priv .mt-ic .eye-x{display:block}
+  .mt-ic .sun{display:none}.mt-ic .is-dark .sun{display:block}.mt-ic .is-dark .moon{display:none}
   body:is(.hv1,.hv2)[data-view="resumen"] #s-hero{padding-top:16px}
   body:is(.hv1,.hv2)[data-view="resumen"] #s-hero.hero3{padding-bottom:16px}
   /* con la barra clara arriba, la tira fija y el fondo de arriba van del color claro (la barra de la hora del iPhone, clara) */
@@ -3371,7 +3373,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   body.hv2 .hm3c>div{align-items:flex-start;padding-left:14px}
   body.hv2 .hm3c>div:first-child{padding-left:0}
   .hm3c .hm3-k{font-size:9px;line-height:11px}
-  .hm3c .hm3-v{margin-top:2px;font-size:15px;line-height:18px}
+  .hm3c .hm3-v{margin-top:2px;font-size:14px;line-height:17px}
   .hm3c .hm3-d{margin:1px 0;background:var(--h-line)}
   .hm3c .pos{color:var(--h-pos)}.hm3c .neg{color:var(--h-neg)}
   body.sheet-open .hm3c,html.sh-open .hm3c{display:none}
@@ -3386,6 +3388,10 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* v277 · Movimientos: la casilla elegida lleva debajo una barra oscura como la del menú de arriba (se ve que se puede elegir) */
 #mtabs.mvt a{position:relative}
 #mtabs.mvt a[aria-current="page"]::after{content:"";position:absolute;left:var(--ul,0px);bottom:var(--ub,0px);width:var(--uw,40px);height:2px;border-radius:1px;background:var(--h-fg);pointer-events:none}
+
+/* v278 · ficha › Compras: la línea llega siempre hasta hoy; desde la última compra, discontinua, y una marca en «hoy» */
+.fp-c .fq-gap{position:absolute;right:0;top:calc(var(--h,34px) - 22px);height:0;border-top:1px dashed var(--g4)}
+.fp-c .fq-hoy{position:absolute;right:0;top:calc(var(--h,34px) - 26px);width:1px;height:9px;background:var(--ink3)}
 </style>
 
 <div class="wrap">
@@ -4025,7 +4031,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v277";   // la versión publicada, en el pie
+const VER="v278";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4161,16 +4167,21 @@ function fichaPos(p){
   // compras: todas las de esta empresa (también las ya vendidas), en una mini línea de tiempo
   const buys=(p.buys||[]).filter(b=>b.d instanceof Date).sort((a,b)=>a.d-b.d);
   let tl="";
-  if(buys.length){ const t0=+buys[0].d, tz=+buys[buys.length-1].d, now=+new Date(), tight=buys.length>1&&tz-t0<0.15*(now-t0), t1=tight?Math.max(tz,t0+864e5):Math.max(now,t0+864e5), mx=Math.max(...buys.map(b=>b.a||0),1);
+  // tiempo desde un día hasta hoy: «hoy», «ayer», «10 días», «8 meses», «1 año y 2 meses»
+  const hace=d=>{ const a=new Date(new Date().toDateString()), b=new Date(d.toDateString()), dd=Math.round((a-b)/864e5); if(dd<=0) return "hoy"; if(dd===1) return "ayer"; if(dd<45) return `${dd} días`;
+    let m=(a.getFullYear()-b.getFullYear())*12+a.getMonth()-b.getMonth()-(a.getDate()<b.getDate()?1:0); const y=Math.floor(m/12); m%=12; return y?`${y} ${y>1?"años":"año"}${m?` y ${m} ${m>1?"meses":"mes"}`:""}`:`${m} ${m>1?"meses":"mes"}`; };
+  if(buys.length){ const t0=+buys[0].d, tz=+buys[buys.length-1].d, now=+new Date(), t1=Math.max(now,t0+864e5), mx=Math.max(...buys.map(b=>b.a||0),1);
     // compras muy juntas: se apilan hacia arriba en vez de taparse (calculado para la línea más estrecha, 200 px)
     const pl=[]; buys.forEach(b=>{ const r=Math.round(4+Math.sqrt((b.a||0)/mx)*5), x=((+b.d)-t0)/(t1-t0)*200; let y=0; while(pl.some(o=>Math.hypot(o.x-x,o.y-y)<o.r+r+1.5)) y--; pl.push({b,r,x,y}); });
     // el alto es siempre el mismo (el bloque de Dividendos no se mueve al pasar de empresa): si la pila no cabe, se aprieta hacia abajo
     const H=64, ax=H-22, k=Math.min(1,...pl.filter(q=>q.y<0).map(q=>(q.r-ax+2)/q.y)); pl.forEach(q=>q.y*=k);
-    tl=`<div class="fq-tl" style="--h:${H}px"><i class="fq-ax"></i>${pl.map(({b,r,y})=>{
+    // la raya llega hasta la última compra; de ahí a hoy, discontinua
+    const xz=(tz-t0)/(t1-t0)*100;
+    tl=`<div class="fq-tl" style="--h:${H}px"><i class="fq-ax" style="right:${(100-xz).toFixed(2)}%"></i><i class="fq-gap" style="left:${xz.toFixed(2)}%"></i><i class="fq-hoy"></i>${pl.map(({b,r,y})=>{
         // la etiqueta: fecha, acciones y precio; en los extremos se alinea hacia dentro para no salirse del panel
         const xp=((+b.d)-t0)/(t1-t0)*100, tip=`${flong(b.d)}${isNum(b.n)?` · ${shares(b.n)} ${b.n===1?"acción":"acciones"}${isNum(b.pr)?` a ${money(b.pr,p.cur)}`:""}`:""}${b.sold?" · vendida":""}`;
         return `<span class="fq-d${b.sold?" sold":""}${xp<25?" tip-l":xp>75?" tip-r":""}" style="left:${xp.toFixed(2)}%;top:${ax+y}px;width:${2*r}px;height:${2*r}px" tabindex="0" role="img" aria-label="${tip}" data-tip="${tip}"></span>`; }).join("")}
-      <span class="fq-l l">${fmy(buys[0].d)}</span><span class="fq-l r">${tight?fmy(buys[buys.length-1].d):"hoy"}</span></div>`; }
+      <span class="fq-l l">${fmy(buys[0].d)}</span><span class="fq-l r">hoy</span></div>`; }
   const nSold=buys.filter(b=>b.sold).length, fd=fmd;
   const facts=xs=>`<div class="fp-f" style="--n:${xs.length}">${xs.map(([l,v,sb])=>`<div><span>${l}</span><b class="num">${v===""?"&nbsp;":v}</b><small>${sb||""}</small></div>`).join("")}</div>`;
   // cabecera: la empresa y, en la misma fila, sus cifras clave
@@ -4188,7 +4199,7 @@ function fichaPos(p){
   const cPos=`<section class="fp-c"><div class="fp-ch"><h4>Tu posición</h4><span>${shares(p.shares)} ${p.shares===1?"acción":"acciones"}</span></div><div class="fp-v">${dec}</div>
     ${facts([["Invertido",eur(p.invested)],["Precio medio",money(p.avg,p.cur)],["Precio hoy",money(p.price,p.cur)]])}</section>`;
   const cBuy=`<section class="fp-c"><div class="fp-ch"><h4>Compras</h4><span>${buys.length?`${nf(0).format(buys.length)} ${buys.length===1?"compra":"compras"}${nSold?` · ${nSold} ${nSold>1?"vendidas":"vendida"}`:""}`:""}</span></div><div class="fp-v">${tl}</div>
-    ${facts([["Primera",buys.length?fd(buys[0].d):""],["Última",buys.length?fd(buys[buys.length-1].d):""]])}</section>`;
+    ${facts([["Primera",buys.length?fd(buys[0].d):""],["Última",buys.length?fd(buys[buys.length-1].d):""],["Desde la última",buys.length?hace(buys[buys.length-1].d):""]])}</section>`;
   // dividendos: por año desde que tienes la posición actual (lo cobrado cuadra con «Cobrado» de tu hoja) y lo apuntado
   const open1=buys.filter(b=>!b.sold).reduce((a,b)=>!a||b.d<a?b.d:a,null);
   const dvs=DATA.dv.filter(r=>r.ticker===p.ticker&&(!DATA.isPaid(r)||(open1&&r.d>=open1)));
@@ -5385,8 +5396,11 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   B.innerHTML=`<div class="hm3-st"><i class="dot" id="hm3-dot"></i><span id="hm3-t"></span></div>${col("Cartera",1)}<i class="hm3-d"></i>${col("Hoy",2)}<i class="hm3-d"></i>${col("Total",3)}`;
   $("hmob").after(B); B.addEventListener("click",()=>$("priv").click());
   const T=document.createElement("div"); T.className="mtop"; T.id="mtop";
-  T.innerHTML=`<span class="mt-st"><i class="dot" id="mt-dot"></i><span id="mt-t"></span></span><span class="mt-ic"><button type="button" id="mt-find" aria-label="Buscar">${SV}</button><button type="button" id="mt-priv" aria-label="Ocultar importes">${EY}</button></span>`;
+  T.innerHTML=`<span class="mt-st"><i class="dot" id="mt-dot"></i><span id="mt-t"></span></span><span class="mt-ic"><button type="button" id="mt-find" aria-label="Buscar">${SV}</button><button type="button" id="mt-priv" aria-label="Ocultar importes">${EY}</button><button type="button" id="mt-theme" aria-label="Modo oscuro">${$("theme").innerHTML}</button></span>`;
   hero.before(T); $("mt-find").addEventListener("click",()=>$("kbtn").click()); $("mt-priv").addEventListener("click",()=>$("priv").click());
+  // la luna (o el sol, de noche) hace lo mismo que la del PC y cambia con ella
+  const TH=$("theme"), MT=$("mt-theme"), th=()=>{ MT.classList.toggle("is-dark",TH.classList.contains("is-dark")); MT.setAttribute("aria-label",TH.getAttribute("aria-label")||""); };
+  MT.addEventListener("click",()=>TH.click()); new MutationObserver(th).observe(TH,{attributes:true,attributeFilter:["class","aria-label"]}); th();
   const C=document.createElement("div"); C.className="hm3c"; C.id="hm3c"; C.setAttribute("aria-hidden","true");
   C.innerHTML=`<div><span class="hm3-k">Cartera</span><span class="hm3-v num" id="hm3c-v1"></span></div><i class="hm3-d"></i><div><span class="hm3-k" id="hm3c-k2">Hoy</span><span class="hm3-v num" id="hm3c-v2"></span></div><i class="hm3-d"></i><div><span class="hm3-k">Total</span><span class="hm3-v num" id="hm3c-v3"></span></div>`;
   document.body.append(C); C.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
