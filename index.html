@@ -3208,7 +3208,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 .kx-cancel{display:none}
 @media (pointer:coarse){#kx .kx-in kbd,#kx .kx-f{display:none}#kx .kx-cancel{display:block;flex:none;border:0;background:none;font:inherit;font-size:15px;color:var(--ink2);padding:0 0 0 12px;cursor:pointer}}
 /* Movimientos en el móvil: una nota larga sigue desde el principio de la línea, sin sangría */
-@media (max-width:700px){#s-mov .rt td.mline{display:block}#s-mov .rt td.mline .mi{display:inline}#s-mov .rt td.mline .mi::before{position:static;margin:0 6px}#s-mov .rt td.mline .mi:first-child::before{content:none}}
+@media (max-width:700px){#s-mov .rt td.mline:has(.w){display:block}#s-mov .rt td.mline:has(.w) .mi{display:inline}#s-mov .rt td.mline:has(.w) .mi::before{position:static;margin:0 6px}#s-mov .rt td.mline .mi:first-child::before{content:none}}   /* v280: solo con nota; sin nota, la línea se parte sin empezar por «·» */
 /* v269 · móvil: menos aire entre la hora del iPhone y lo primero de cada pestaña (la primera letra, a 10 px; antes, 17–22) */
 @media (max-width:760px){:is(#s-aidx,#s-uni,#s-actb,#mtabs){padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px))}}
 @media (max-width:700px){#s-hero{padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px) + 1px)}}
@@ -3375,6 +3375,45 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* v278 · ficha › Compras: la línea llega siempre hasta hoy; desde la última compra, discontinua, y una marca en «hoy» */
 .fp-c .fq-gap{position:absolute;right:0;top:calc(var(--h,34px) - 22px);height:0;border-top:1px dashed var(--g4)}
 .fp-c .fq-hoy{position:absolute;right:0;top:calc(var(--h,34px) - 26px);width:1px;height:9px;background:var(--ink3)}
+
+/* v280 · MÓVIL: ninguna cifra ni título por encima de las cifras de la franja de Resumen (17 px), y las etiquetas a la altura de su cifra */
+@media (max-width:700px){
+  /* franjas de Análisis, Universo, Actualidad y Movimientos: cifras de 17 px como las de Resumen */
+  :is(#s-aidx,#s-uni,#s-actb) .bg .bv{font-size:17px;line-height:20px}
+  #mtabs.mvt .mvt-v{font-size:17px;line-height:20px}
+  /* la primera fila de esas franjas («Dividendos 2027 … 1.659 €»): etiqueta y cifra sobre la misma línea de base */
+  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c0.r1,.c0.r2){align-self:baseline}
+  #mtabs.mvt a.mvt-all,#mtabs.mvt a.mvt-all:hover,#mtabs.mvt a.mvt-all[aria-current="page"]{align-items:baseline}
+  /* cifras destacadas dentro de los bloques */
+  .dv-v{font-size:17px!important}   /* la regla general lleva !important */
+  .mvb .mk-v,.mk-v{font-size:17px}
+  .ts-v{font-size:17px;line-height:24px}
+  /* Actualidad: cabecera, apartados, titulares y días del calendario, sin pasar de 17 px */
+  .paper .mh-t{font-size:17px;line-height:22px}
+  .paper .asec{font-size:17px;line-height:22px}
+  .paper .rit-t{font-size:17px;line-height:22px}
+  .paper .cal-h b{font-size:17px}
+  /* Análisis › Lo que suma / Lo que resta: concepto, importe y porcentaje sobre la misma línea de base */
+  .anat-cols .ar{align-items:baseline}
+  .anat-cols .ar .sw{align-self:center}
+  /* el mismo aire en todas partes que en la franja de Resumen: 6 px de la etiqueta a la cifra y 3 px de la cifra a la línea de debajo */
+  :is(#s-aidx,#s-uni,#s-actb) .bg .bl,:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c1,.c2,.c3,.c4).r1{padding-bottom:4.5px}
+  #mtabs.mvt .mvt-v{margin-top:.5px}
+  .dv-v{margin-top:3.5px}.dv-s{margin-top:2.6px}
+  .ts-v{margin-top:1.5px}
+  .mvb .mk-v,.mk-v{margin-top:3.5px}.mvb .mk-x,.mk-x{margin-top:2.6px}
+}
+@container ficha (max-width:620px){
+  /* ficha: el valor y el nombre de la empresa, a 17 px; Valoración, igual */
+  #sheet .fx-band .fp-b:first-child>b{font-size:17px;line-height:22px}
+  #sheet .fp-t h3{font-size:17px}
+  #sheet .fp-vm .fp-b b,#sheet .fp-m.fp-vm>.fp-b.fp-b b,#sheet .fpu .fp-b:nth-child(-n+2) b{font-size:17px}
+  /* la franja de la ficha: sin la raya de arriba que se colaba en Tir, Peso y Dividendo (los bajaba 1 px respecto a Resultado) */
+  #sheet .fx-band .fp-b{border-top:0}
+  #sheet .fx-band .fp-b>small{margin-top:1px}
+  #sheet .fp-vm .fp-b b{margin-top:2px}
+  #sheet .fp-vm .fp-b small{margin-top:-.7px}
+}
 </style>
 
 <div class="wrap">
@@ -3610,7 +3649,7 @@ const flong = d => d ? day(d).toLocaleDateString("es-ES",{day:"numeric",month:"l
 const fmd = d => d ? fdate(d,{day:"numeric",month:"short",year:"numeric"}) : "";   // fecha corta con año: «17 jul 2025»
 const fdt = d => d ? fdate(d, day(d).getFullYear()===new Date().getFullYear()?{day:"numeric",month:"short"}:{day:"numeric",month:"short",year:"numeric"}) : "";
 // fecha en un eje: «jul. 2025»
-const fax = d => d instanceof Date ? MES[d.getMonth()].toLowerCase()+". "+d.getFullYear() : "";
+const fax = d => d instanceof Date ? MES[d.getMonth()].toLowerCase()+" "+d.getFullYear() : "";
 const fmy = d => fax(d).replace(". "," ");   // en la ficha: «jul 2025»
 const curSym = {EUR:"€",USD:"$",GBP:"£",CHF:"Fr",JPY:"¥",CAD:"C$"};
 const norm = s => typeof s==="string" ? s.replace(/\s+/g,"").toUpperCase() : "";
@@ -4014,7 +4053,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v279";   // la versión publicada, en el pie
+const VER="v280";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
