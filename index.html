@@ -3275,34 +3275,32 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   #mtabs.mvt+#s-mov{margin-top:0;border-radius:var(--rc)}
 }
 
-/* v273 · Resumen en el móvil: la franja de arriba como las demás pestañas — «Valor de cartera» y la cifra en una línea; una raya; debajo
-   Total | Hoy (o «Última sesión»), con su título encima. Sin la hora: si los datos no están al día, una línea al pie */
+/* v274 · Resumen en el móvil: la franja centrada — «Valor de cartera» y la cifra en el eje; la hora en la misma fila, a la izquierda (no baja
+   la cifra); debajo Total | Hoy (o «Última sesión»), cada uno centrado en su mitad con su título encima y una raya en el centro */
 @media (max-width:700px){
-  .hmob.hm3{display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);column-gap:16px;row-gap:0;color:var(--h-fg);font-variant-numeric:tabular-nums}
-  .hmob.hm3>*{min-width:0;white-space:nowrap}
-  .hmob.hm3 .hm-k{font-size:10px;line-height:12px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--h-fg3)}
-  .hmob.hm3 .hm-kv{grid-column:1/3;grid-row:1;align-self:baseline}
-  .hmob.hm3 #hm-val{grid-column:3;grid-row:1;justify-self:end;align-self:baseline;margin:0;font-size:24px;line-height:28px;font-weight:300;letter-spacing:-.015em}
-  .hmob.hm3 #hm-val .cents{font-size:14px;letter-spacing:0;color:var(--h-fg2)}
-  .hmob.hm3 #hm-val *{line-height:1}
-  .hmob.hm3 .hm-ln{grid-column:1/-1;grid-row:2;height:1px;background:var(--h-line);margin:7px 0 10px}
-  .hmob.hm3 .hm-kt{grid-column:1;grid-row:3}
-  .hmob.hm3 .hm-kd{grid-column:3;grid-row:3}
-  .hmob.hm3 #hm-tot,.hmob.hm3 #hm-day{grid-row:4;align-self:start;justify-self:start;margin:3px 0 0;display:flex;align-items:baseline;gap:7px;font-size:15px;line-height:18px;font-weight:400;letter-spacing:0;color:var(--h-fg)}
-  .hmob.hm3 #hm-tot{grid-column:1}
-  .hmob.hm3 #hm-day{grid-column:3}
-  .hmob.hm3 #hm-tot .pos,.hmob.hm3 #hm-day.pos{color:var(--h-pos)}
-  .hmob.hm3 #hm-tot .neg,.hmob.hm3 #hm-day.neg{color:var(--h-neg)}
-  .hmob.hm3 #hm-tot b{font-weight:400}
-  .hmob.hm3 #hm-tot .hm-pl,.hmob.hm3 #hm-day .hm-pl{margin:0;font-size:12px;line-height:16px;padding:0 5px;border-radius:4px;vertical-align:baseline;position:relative;top:-1.5px}
-  .hmob.hm3 .hm-dv{grid-column:2;grid-row:3/5;width:1px;background:var(--h-line)}
-  .hmob.hm3 #h-live{display:none}
-  .hmob.hm3 .hm-warn{grid-column:1/-1;grid-row:5;margin-top:10px;font-size:12px;line-height:16px;color:var(--h-neg)}
-  .hmob.hm3 .hm-warn[hidden]{display:none}
-  .priv .hmob.hm3 #hm-val::after{text-align:right}
+  .hmob.hm1{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:0;row-gap:0;color:var(--h-fg);font-variant-numeric:tabular-nums}
+  .hmob.hm1>*{min-width:0;white-space:nowrap}
+  .hmob.hm1 .hm-k{font-size:10px;line-height:12px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--h-fg3)}
+  .hmob.hm1 .hm-kv{grid-column:1/-1;grid-row:1;justify-self:center;align-self:baseline}
+  .hmob.hm1 #h-live{grid-column:1;grid-row:1;justify-self:start;align-self:baseline;display:block;font-size:11px;line-height:12px;font-weight:500;color:var(--h-fg3)}
+  .hmob.hm1 #hm-val{grid-column:1/-1;grid-row:2;justify-self:center;align-self:start;margin:2px 0 0;font-size:28px;line-height:30px;font-weight:300;letter-spacing:-.015em}
+  .hmob.hm1 #hm-val .cents{font-size:15px;letter-spacing:0;color:var(--h-fg2)}
+  .hmob.hm1 #hm-val *{line-height:1}
+  .hmob.hm1 .hm-kt,.hmob.hm1 .hm-kd{grid-row:3;justify-self:center;margin-top:7px}
+  .hmob.hm1 .hm-kt{grid-column:1}
+  .hmob.hm1 .hm-kd{grid-column:2}
+  .hmob.hm1 #hm-tot,.hmob.hm1 #hm-day{grid-row:4;align-self:start;justify-self:center;margin:3px 0 0;display:flex;align-items:baseline;gap:7px;font-size:15px;line-height:18px;font-weight:400;letter-spacing:0;color:var(--h-fg)}
+  .hmob.hm1 #hm-tot{grid-column:1}
+  .hmob.hm1 #hm-day{grid-column:2}
+  .hmob.hm1 #hm-tot .pos,.hmob.hm1 #hm-day.pos{color:var(--h-pos)}
+  .hmob.hm1 #hm-tot .neg,.hmob.hm1 #hm-day.neg{color:var(--h-neg)}
+  .hmob.hm1 #hm-tot b{font-weight:400}
+  .hmob.hm1 #hm-tot .hm-pl,.hmob.hm1 #hm-day .hm-pl{margin:0;font-size:12px;line-height:16px;padding:0 5px;border-radius:4px;vertical-align:baseline;position:relative;top:-1.5px}
+  .hmob.hm1 .hm-dv{grid-column:1/-1;grid-row:3/5;justify-self:center;width:1px;margin:9px 0 1px;background:var(--h-line)}
+  .priv .hmob.hm1 #hm-val::after{text-align:center}
   /* en modo privado, los puntos de Total y Hoy ocupan lo suyo (no el ancho de la cifra oculta): el porcentaje queda a su lado */
-  .priv .hmob.hm3 #hm-tot .pv,.priv .hmob.hm3 #hm-day .pv{font-size:0;line-height:0;letter-spacing:0}
-  .priv .hmob.hm3 #hm-tot .pv::after,.priv .hmob.hm3 #hm-day .pv::after{position:static;display:inline-block;font-size:15px;line-height:18px;transform:translateY(-.075em)}
+  .priv .hmob.hm1 #hm-tot .pv,.priv .hmob.hm1 #hm-day .pv{font-size:0;line-height:0;letter-spacing:0}
+  .priv .hmob.hm1 #hm-tot .pv::after,.priv .hmob.hm1 #hm-day .pv::after{position:static;display:inline-block;font-size:15px;line-height:18px;transform:translateY(-.075em)}
 }
 </style>
 
@@ -3335,10 +3333,9 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
       <div class="c3 r2 bv num" id="hk-tir"></div>
       <div class="c3 r3 bs num" id="hk-tir-s"></div>
     </div>
-    <div class="hmob hm3" id="hmob"><span class="hm-k hm-kv">Valor de cartera</span><span class="hm-t" id="h-live"><i class="dot"></i><span id="h-live-t"></span></span>
-      <span class="num" id="hm-val"><span class="skel">000.000 €</span></span><i class="hm-ln"></i>
-      <span class="hm-k hm-kt">Total</span><span class="hm-k hm-kd" id="hm-dk">Hoy</span><span class="hm-g num" id="hm-tot"></span><span class="hm-g num" id="hm-day"></span><i class="hm-dv"></i>
-      <span class="hm-warn" id="hm-warn" hidden></span></div>
+    <div class="hmob hm1" id="hmob"><span class="hm-k hm-kv">Valor de cartera</span><span class="hm-t" id="h-live"><i class="dot"></i><span id="h-live-t"></span></span>
+      <span class="num" id="hm-val"><span class="skel">000.000 €</span></span>
+      <span class="hm-k hm-kt">Total</span><span class="hm-k hm-kd" id="hm-dk">Hoy</span><span class="hm-g num" id="hm-tot"></span><span class="hm-g num" id="hm-day"></span><i class="hm-dv"></i></div>
   </section>
   <div class="hoja-al" id="hoja-al" role="status" hidden></div>
 
@@ -3944,7 +3941,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v273";   // la versión publicada, en el pie
+const VER="v274";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5474,7 +5471,6 @@ function lastSession(now=new Date()){ const d=new Date(now), wd=d.getDay(), back
 function setStatus(kind,text){ $("dot").className="dot "+kind; $("stat").textContent=text; $("refresh").classList.toggle("spin",kind==="busy");
   const hl=$("h-live"); if(!hl) return; const hm=(String(text).match(/\d{1,2}:\d{2}/g)||[]).pop()||"";   // móvil: el punto y la hora, debajo de lo de hoy
   hl.querySelector(".dot").className="dot "+kind;
-  { const w=$("hm-warn"); if(w){ w.hidden=kind!=="err"; w.textContent=kind==="err"?`${/sin actualizar/i.test(text)?"Sin actualizar":"Sin conexión"}${hm?` · datos de las ${hm}`:""}`:""; } }   // móvil: la hora ya no está en la franja; si los datos no están al día, una línea al pie
   $("h-live-t").textContent=kind==="busy"?"Actualizando":kind==="err"?(/sin actualizar/i.test(text)?"Sin actualizar":"Sin conexión"):/cerrado/i.test(text)?`Cerrado · ${hm}`:/copia/i.test(text)?`Copia · ${hm}`:(hm||text); }
 // el aviso: etiqueta, título y texto; el hueco del enlace y los botones van en su propia columna (debajo en el móvil)
 function notice(html,k){ const n=$("notice"); n.innerHTML = html ? `<div class="notice"><div class="nt-tx"><span class="nt-k">${k||"Aviso"}</span>${html}</div></div>` : ""; n.hidden=!html;
