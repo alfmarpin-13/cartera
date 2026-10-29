@@ -3209,6 +3209,10 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 @media (pointer:coarse){#kx .kx-in kbd,#kx .kx-f{display:none}#kx .kx-cancel{display:block;flex:none;border:0;background:none;font:inherit;font-size:15px;color:var(--ink2);padding:0 0 0 12px;cursor:pointer}}
 /* Movimientos en el móvil: una nota larga sigue desde el principio de la línea, sin sangría */
 @media (max-width:700px){#s-mov .rt td.mline{display:block}#s-mov .rt td.mline .mi{display:inline}#s-mov .rt td.mline .mi::before{position:static;margin:0 6px}#s-mov .rt td.mline .mi:first-child::before{content:none}}
+/* v269 · móvil: menos aire entre la hora del iPhone y lo primero de cada pestaña (la primera letra, a 10 px; antes, 17–22) */
+@media (max-width:760px){:is(#s-aidx,#s-uni,#s-actb,#mtabs){padding-top:calc(env(safe-area-inset-top,0px) + 10px)}}
+@media (max-width:700px){#s-hero{padding-top:calc(env(safe-area-inset-top,0px) + 11px)}}
+@media (max-width:700px){#s-uni.hero3.band2{padding-top:calc(env(safe-area-inset-top,0px) + 10px);padding-bottom:14px}}   /* Universo tenía su propio margen (22 arriba y abajo): igual que las demás */
 </style>
 
 <div class="wrap">
@@ -3848,7 +3852,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v268";   // la versión publicada, en el pie
+const VER="v269";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
