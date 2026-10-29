@@ -3005,6 +3005,16 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 #s-today .hy .tbig.hv1{margin:0;font-size:28px;line-height:32px;font-weight:300;letter-spacing:-.02em;gap:10px}
 #s-today .hy .tbig.hv1 .hp{font-size:14px;font-weight:400;letter-spacing:0}
 @media (max-width:700px){#s-today .hy .tbig.hv1{font-size:24px;line-height:28px}}
+/* v259 · iPhone con iOS 26: si arriba del todo hay una franja fija, opaca y de lado a lado, iOS pinta la zona del reloj de ese color liso
+   en vez de difuminar lo que pasa por debajo al bajar. La franja es la de siempre (body::before), con al menos 6 px y el color de lo que hay debajo */
+@media (pointer:coarse){
+  body::before{height:max(env(safe-area-inset-top,0px),6px)}
+  body:has(#sheet:not([hidden]))::before{background:var(--panel)}
+}
+@media (pointer:coarse) and (prefers-color-scheme:dark){:root:not([data-theme="light"]) body:has(#sheet:not([hidden]))::before{background:#191918}}   /* el fondo de la ficha en oscuro */
+@media (pointer:coarse){:root[data-theme="dark"] body:has(#sheet:not([hidden]))::before{background:#191918}}
+/* v259 · móvil: la fila de abajo del bloque oscuro es Hoy · Retorno · TIR; la columna estrecha pasa a ser la de la TIR */
+@media (max-width:700px){#s-hero .bg{grid-template-columns:minmax(0,1fr) minmax(0,1.22fr) minmax(0,.78fr)}}
 </style>
 
 <div class="wrap">
@@ -3027,15 +3037,15 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
       <div class="c0 r2 bv big num" id="h-val"><span class="skel">000.000 €</span></div>
       <div class="c0 r3 bs num" id="h-sub"></div>
       <i class="dv d1"></i><i class="dv d2"></i><i class="dv d3"></i>
-      <div class="c1 r1 bl"><span class="lg">Retorno total</span><span class="sh">Retorno</span></div>
-      <div class="c1 r2 bv num" id="hk-ret"></div>
-      <div class="c1 r3 bs num" id="hk-ret-s"></div>
-      <div class="c2 r1 bl">TIR</div>
-      <div class="c2 r2 bv num" id="hk-tir"></div>
-      <div class="c2 r3 bs num" id="hk-tir-s"></div>
-      <div class="c3 r1 bl" id="hk-ren-l">Dividendos</div>
-      <div class="c3 r2 bv num" id="hk-ren"></div>
-      <div class="c3 r3 bs num" id="hk-ren-s"></div>
+      <div class="c1 r1 bl" id="hk-ren-l">Hoy</div>
+      <div class="c1 r2 bv num" id="hk-ren"></div>
+      <div class="c1 r3 bs num" id="hk-ren-s"></div>
+      <div class="c2 r1 bl"><span class="lg">Retorno total</span><span class="sh">Retorno</span></div>
+      <div class="c2 r2 bv num" id="hk-ret"></div>
+      <div class="c2 r3 bs num" id="hk-ret-s"></div>
+      <div class="c3 r1 bl">TIR</div>
+      <div class="c3 r2 bv num" id="hk-tir"></div>
+      <div class="c3 r3 bs num" id="hk-tir-s"></div>
     </div>
   </section>
 
@@ -3641,7 +3651,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v258";   // la versión publicada, en el pie
+const VER="v259";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -3862,9 +3872,9 @@ function render(d){
   $("h-sub").innerHTML=`Aportado <b>${eur(k.aport)}</b><span class="hs-l"><span class="sep"></span>Liquidez <b>${eur(k.liquidez)}</b></span><span class="sep"></span><b>${nE}</b>&nbsp;empresas`; }
   { const a=(d.stats.find(x=>x.l==="Antigüedad media")||{}).v; const h=isNum(a)?`Antigüedad<span class="pa-m"> media</span> <b>${nf(1).format(a)} años</b>`:""; $("pos-age").innerHTML=h; $("pos-age-m").innerHTML=h; }
   const kp=(t,val,s,c="")=>`<div class="kpi"><div class="k">${t}</div><div class="v num ${c}">${val}</div><div class="s">${esc(s||"")}</div></div>`;
-  $("hk-ret").className="c1 r2 bv num "+cls(k.ret); $("hk-ret").textContent=seur(k.ret); $("hk-ret-s").innerHTML=k.retSub;
+  $("hk-ret").className="c2 r2 bv num "+cls(k.ret); $("hk-ret").textContent=seur(k.ret); $("hk-ret-s").innerHTML=k.retSub;
   $("hk-tir").textContent=pct(k.tir,1); $("hk-tir-s").innerHTML=isNum(k.tir)&&isNum(k.vsIdx)?`MSCI World <b>${pct(k.tir-k.vsIdx,1)}</b>`:"";
-  $("hk-ren-l").textContent=k.rentasLabel||"Dividendos próximo año"; $("hk-ren").textContent=eur(k.rentas); $("hk-ren-s").innerHTML=`previstos · <b>${eur(k.rentas/12)}</b> al mes`;
+  // la cuarta casilla es la del día (renderHoy); los dividendos del año siguen en la franja de Análisis
 
   renderHoy(); tmW=0; renderTreemap();
 
@@ -3995,7 +4005,11 @@ function hyHead(center){ const k=DATA.kpi, q=hq(), up=q.filter(x=>x.t>0).length,
   return `<div class="hy-a"><h2 class="st">${ss.closed?"Última sesión · "+ss.lbl:"Tu cartera hoy"}</h2>${center?"":`<div class="tbig num hv1 ${cls(k.today)}">${seur(k.today)}<span class="hp">${pct(k.todayPct,1,true)}</span></div>`}</div>`; }
 function renderHoy(){
   if(!DATA) return;
-  $("l1-side").innerHTML=hyHead();
+  $("l1-side").innerHTML=hyHead(true);   // el bloque del mapa, solo con su título: la cifra del día va arriba, en el bloque oscuro
+  const k=DATA.kpi, ss=lastSession(), c=cls(k.today);
+  $("hk-ren-l").innerHTML=ss.closed?`<span class="lg">Última sesión</span><span class="sh">Sesión</span>`:"Hoy";
+  $("hk-ren").className="c1 r2 bv num "+c; $("hk-ren").textContent=seur(k.today);
+  $("hk-ren-s").innerHTML=`<span class="${c}">${pct(k.todayPct,1,true)}</span> ${ss.closed?"· "+ss.lbl:"sobre el cierre anterior"}`;
 }
 document.addEventListener("click",e=>{ const b=e.target.closest(".hoy [data-t]"); if(b&&!b.closest("#tmap")) openSheet("pos",b.dataset.t,listOf(b)); });
 
