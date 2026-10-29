@@ -3091,6 +3091,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   :is(#s-aidx,#s-uni,#s-actb,#mtabs){padding-top:calc(max(env(safe-area-inset-top,0px),10px) + 12px)}
   body[data-view="resumen"]:not(.past-band) #topcap{background:var(--h-bg)}
   body[data-view]:not([data-view="resumen"]):not(.past-band) #topcap{background:var(--ar-bg)}
+  body[data-view="movimientos"]:not([data-view="resumen"]):not(.past-band) #topcap{background:var(--mv-top)}
   body[data-view]:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   #s-today .hy-a{flex-direction:row;justify-content:space-between;align-items:center}
   .t-more{display:inline-flex;align-items:center;justify-content:center;width:32px;height:14px;margin-right:-6px;padding:0;border:0;background:none;color:var(--ink3);overflow:visible;cursor:pointer}
@@ -3122,11 +3123,6 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 .priv #hm-val .pv::after{content:none}
 /* v264 · la versión, al pie del menú «···» */
 .mm-ver{margin:8px 12px 2px;font-size:11px;line-height:14px;color:var(--ink3)}
-/* v264 · iPhone: al tirar de la página hacia abajo, el hueco que asoma arriba es del color de la primera franja (negro en Resumen, arena en las demás), no del fondo */
-@media (max-width:760px){
-  :is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs){position:relative}
-  :is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs)::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:100vh;background:inherit;pointer-events:none}
-}
 
 /* v264 · Resumen (móvil): la hora sube a la fila de «HOY»; pastillas alineadas con su cifra; el menú, al pie («Ajustes») y como hoja desde abajo */
 .foot-m{display:none}
@@ -3143,6 +3139,19 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   #hm-day .hm-pl{margin-left:8px;vertical-align:2px}
 }
 @media (max-width:760px){.top .nav a[aria-current="page"]::before{display:none}}   /* la raya de la pestaña activa que sobresalía por encima de la barra, metida en el contenido (la de la v262 era otra) */
+/* Movimientos: en el móvil su franja asoma por arriba con el color de las rayas entre casillas, un poco más oscuro que el arena */
+:root{--mv-top:#D3CABA}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--mv-top:#3B3730}}
+:root[data-theme="dark"]{--mv-top:#3B3730}
+/* v265 · iPhone: al tirar hacia abajo, iOS enseña por encima del borde de arriba el fondo de la página (html), no lo que haya en la página.
+   Mientras estás arriba del todo, ese fondo toma el color de la primera franja (negro en Resumen, arena en las demás); al bajar, vuelve al de siempre.
+   El contenido lleva su propio fondo (body), así que no cambia nada más */
+@media (max-width:760px) and (pointer:coarse){
+  body{min-height:100vh;min-height:100dvh}
+  html:has(body[data-view="resumen"]:not(.past-band)){background:var(--h-bg)}
+  html:has(body[data-view]:not([data-view="resumen"]):not(.past-band)){background:var(--ar-bg)}
+  html:has(body[data-view="movimientos"]:not([data-view="resumen"]):not(.past-band)){background:var(--mv-top)}
+}
 </style>
 
 <div class="wrap">
@@ -3783,7 +3792,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v264";   // la versión publicada, en el pie
+const VER="v265";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
