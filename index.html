@@ -3414,6 +3414,41 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   #sheet .fp-vm .fp-b b{margin-top:2px}
   #sheet .fp-vm .fp-b small{margin-top:-.7px}
 }
+
+/* v281 · MÓVIL: la franja de Resumen también en Análisis, Movimientos, Universo y Actualidad. La barra clara de arriba en todas las
+   pestañas; debajo, la franja oscura con las cinco cifras centradas, tres arriba y dos abajo (mismos colores, letras y aire que Resumen) */
+.hm5{display:none}
+@media (max-width:700px){
+  body.hm3on .view>.mtop{display:flex;order:-1;margin-bottom:-16px}
+  html body.hm3on[data-view]:not(.__) #topcap{background:var(--canvas)}
+  html body.hm3on.bg-top[data-view]:not(.__){background-color:var(--canvas)}
+  /* los colores de la franja de Resumen (antes, arena) */
+  :root:not(.__) body.hm5on :is(#s-aidx,#s-uni,#s-actb){--h-bg:inherit;--h-card:inherit;--h-line:inherit;--h-fg:inherit;--h-fg2:inherit;--h-fg3:inherit;--h-pos:inherit;--h-neg:inherit}
+  body.hm5on :is(#s-aidx,#s-uni,#s-actb),body.hm5on :is(#s-aidx,#s-uni,#s-actb).hero3.band2{padding:16px}   /* como la de Resumen (Universo tenía otra regla más fuerte) */
+  body.hm5on :is(#s-aidx,#s-uni,#s-actb)>.bg,body.hm5on #mtabs.mvt{display:none}
+  body.hm5on .hm5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));color:var(--h-fg);font-variant-numeric:tabular-nums}
+  body.hm5on .hm5-mv{background:var(--h-bg);margin:0 -16px;padding:16px}
+  .hm5-c{position:relative;display:grid;grid-template-rows:subgrid;grid-row:span 3;justify-items:center;align-content:start;text-align:center;padding:0 4px;min-width:0;border:0;background:none;font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .hm5-k{align-self:end;font-size:10px;line-height:12px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--h-fg3);white-space:nowrap}
+  .hm5-v{margin-top:6px;font-size:17px;line-height:20px;font-weight:300;letter-spacing:-.01em;white-space:nowrap}
+  .hm5-s{margin-top:3px;font-size:11px;line-height:15px;color:var(--h-fg2);white-space:nowrap}
+  .hm5-s.w,.hm5-k.w{white-space:normal}
+  @media (max-width:370px){.hm5-s{font-size:10px}}   /* como la de Resumen en los móviles más estrechos */
+  .hm5-s:empty{display:none}
+  .hm5-s b{font-weight:400;color:var(--h-fg)}
+  .hm5 .pos{color:var(--h-pos)}.hm5 .neg{color:var(--h-neg)}
+  /* tres arriba (como Resumen) y dos abajo, con la misma raya entre casillas */
+  .hm5>:nth-child(-n+3){grid-column:span 2}
+  .hm5>:nth-child(n+4){grid-column:span 3;margin-top:14px;padding-top:14px;box-shadow:0 -1px 0 var(--h-line)}
+  .hm5>:is(:nth-child(2),:nth-child(3)){box-shadow:inset 1px 0 var(--h-line)}
+  .hm5>:nth-child(5){box-shadow:inset 1px 0 var(--h-line),0 -1px 0 var(--h-line)}
+  /* Movimientos: el apartado elegido, con su raya al pie (del ancho de la etiqueta), como en el menú; al elegir uno, los demás se apagan */
+  .hm5-mv .hm5-c.on .hm5-k{color:var(--h-fg)}
+  .hm5-mv .hm5-c.on::after{content:"";position:absolute;left:50%;bottom:-7px;width:var(--uw,40px);height:2px;border-radius:1px;background:var(--h-fg);transform:translateX(-50%)}
+  .hm5-mv>:nth-child(n+4).on::after{bottom:-9px}
+  .hm5-mv:has(.hm5-c.on:not(:first-child)) .hm5-c:not(.on)>*{opacity:.38}
+  .hm5-c>*{transition:opacity .15s}
+}
 </style>
 
 <div class="wrap">
@@ -4053,7 +4088,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v280";   // la versión publicada, en el pie
+const VER="v281";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5450,6 +5485,53 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
 { const M=$("mtabs"), fit=()=>M.querySelectorAll("a").forEach(a=>{ const n=a.querySelector(".mvt-n"); if(!n||!a.offsetWidth) return; const r=document.createRange(); r.selectNodeContents(n.firstChild); const L=r.getBoundingClientRect(), A=a.getBoundingClientRect();
     a.style.setProperty("--ul",(L.left-A.left)+"px"); a.style.setProperty("--uw",L.width+"px"); a.style.setProperty("--ub",innerWidth<=1000?"-6px":"0px"); });
   addEventListener("resize",fit); new ResizeObserver(fit).observe(M); setTimeout(fit,0); if(document.fonts) document.fonts.ready.then(fit); }
+
+// v281 · la franja de Resumen también en Análisis, Movimientos, Universo y Actualidad (móvil): la barra clara de arriba (estado,
+// buscar, ocultar importes y modo noche) y la franja oscura con las cinco cifras centradas, tres arriba y dos abajo. Las cifras salen
+// de las franjas del PC
+{ const T0=$("mtop"), tops=[];
+  ["v-analisis","v-movimientos","v-preseleccion","v-actualidad"].forEach(id=>{ const v=$(id); if(!v||!T0) return; const t=T0.cloneNode(true); t.removeAttribute("id"); t.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id")); v.prepend(t); tops.push(t);
+    const [f,p,m]=t.querySelectorAll(".mt-ic button"); f.addEventListener("click",()=>$("kbtn").click()); p.addEventListener("click",()=>$("priv").click()); m.addEventListener("click",()=>$("theme").click()); });
+  // el estado, el punto y la luna, iguales que en la barra de Resumen
+  const cp=()=>tops.forEach(t=>{ const a=T0.querySelector(".mt-st").innerHTML.replace(/ id="[^"]*"/g,""), s=t.querySelector(".mt-st"); if(s.innerHTML!==a) s.innerHTML=a;
+    const M=$("mt-theme"), m=t.querySelector(".mt-ic button:last-child"); if(m.className!==M.className) m.className=M.className; m.setAttribute("aria-label",M.getAttribute("aria-label")||""); });
+  new MutationObserver(cp).observe(T0,{subtree:true,childList:true,characterData:true,attributes:true}); cp();
+  const cell=tag=>`<${tag} class="hm5-c"${tag==="button"?' type="button" role="tab"':""}><span class="hm5-k"></span><span class="hm5-v num"></span><span class="hm5-s"></span></${tag}>`;
+  const tone=e=>e&&(e.classList.contains("neg")?" neg":e.classList.contains("pos")?" pos":"")||"";
+  // en una línea: si la etiqueta no cabe, su primera palabra; si la línea de debajo no cabe, su parte con cifras («138 € al mes»)
+  // o, si aun así no cabe, sin las primeras palabras («de tus 21 empresas»); la raya del apartado elegido, del ancho de su etiqueta
+  const fits=(e,c)=>e.getBoundingClientRect().width<=c.clientWidth-8+.5;   // hasta 4 px de la raya
+  // al acortar una etiqueta no puede quedar acabada en «de», «en», «lo»…: si no hay forma buena, va en dos líneas
+  const STOP=new Set(["a","al","con","de","del","el","en","la","las","lo","los","para","por","sin","sobre","y"]);
+  const fit=B=>{ if(!B.offsetWidth) return; if(document.fonts&&document.fonts.status!=="loaded"){ document.fonts.ready.then(()=>fit(B)); return; }   // se mide con la letra ya cargada
+    [...B.children].forEach(c=>{ const k=c.children[0], s=c.children[2], K=c.dataset.k||"", S=c.dataset.s||"";
+      if(k.textContent!==K) k.textContent=K; k.classList.remove("w");
+      if(!fits(k,c)){ const w=K.split(" "); let ok=false; while(w.length>1){ w.pop(); if(STOP.has(w[w.length-1].toLowerCase())) continue; k.textContent=w.join(" "); if(fits(k,c)){ ok=true; break; } }
+        if(!ok){ k.textContent=K; k.classList.add("w"); } }
+      if(s.innerHTML!==S) s.innerHTML=S; s.classList.remove("w");
+      if(S&&!fits(s,c)){ const seg=S.split(" · "), d=seg.find(x=>/\d/.test(x.replace(/<[^>]*>/g,"")))||seg[0]; s.innerHTML=d;
+        if(!fits(s,c)&&!/</.test(d)){ const w=d.split(" "); while(w.length>2&&!fits(s,c)){ w.shift(); s.textContent=w.join(" "); } }
+        if(!fits(s,c)) s.classList.add("w"); }
+      if(B.classList.contains("hm5-mv")){ const r=document.createRange(); r.selectNodeContents(k); c.style.setProperty("--uw",r.getBoundingClientRect().width.toFixed(1)+"px"); } }); };
+  const bands=[], watch=(B,sync,src)=>{ bands.push(B); let q=0; const later=()=>{ if(!q) q=requestAnimationFrame(()=>{ q=0; sync(); fit(B); }); };
+    new MutationObserver(later).observe(src,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["class","aria-current"]}); new ResizeObserver(()=>fit(B)).observe(B); sync(); fit(B); };
+  const set=(c,k,v,cls,s)=>{ c.dataset.k=k; c.dataset.s=s; const V=c.children[1]; if(V.innerHTML!==v) V.innerHTML=v; if(V.className!==cls) V.className=cls; };
+  // Análisis, Universo y Actualidad: de su franja del PC (.bg con las casillas c0…c4)
+  ["s-aidx","s-uni","s-actb"].forEach(sid=>{ const sec=$(sid); if(!sec) return; const B=document.createElement("div"); B.className="hm5"; B.innerHTML=Array.from({length:5},()=>cell("div")).join(""); sec.append(B);
+    watch(B,()=>{ const S=sec.querySelector(".bg"); if(!S) return; [...B.children].forEach((c,i)=>{ const k=S.querySelector(`.c${i}.r1`), v=S.querySelector(`.c${i}.r2`), s=S.querySelector(`.c${i}.r3`); if(!k||!v) return;
+        set(c,((k.querySelector(".sh")||k).textContent||"").trim(),v.innerHTML,"hm5-v num"+tone(v),s?s.innerHTML.replace(/\s*<span class="sep"><\/span>\s*/g," · ").trim():""); }); },sec); });
+  // Movimientos: las cinco casillas son los cinco apartados (al tocarlas, lo mismo que las del PC)
+  { const M=$("mtabs"); if(M){ const B=document.createElement("div"); B.className="hm5 hm5-mv"; B.setAttribute("role","tablist"); B.setAttribute("aria-label","Movimientos");
+      const A=[...M.querySelectorAll("a[data-t]")]; B.innerHTML=A.map(()=>cell("button")).join(""); M.before(B);   // delante: «#mtabs + #s-mov» del PC sigue valiendo
+      [...B.children].forEach((b,i)=>b.addEventListener("click",()=>A[i].click()));
+      watch(B,()=>A.forEach((a,i)=>{ const b=B.children[i], n=a.querySelector(".mvt-n"), v=a.querySelector(".mvt-v"), s=a.querySelector(".mvt-s");
+        set(b,(n.firstChild?n.firstChild.textContent:n.textContent).trim(),v.innerHTML,"hm5-v num"+tone(v),s?s.innerHTML.trim():"");
+        const on=a.getAttribute("aria-current")==="page"; if(b.getAttribute("aria-selected")!==String(on)) b.setAttribute("aria-selected",String(on)); b.classList.toggle("on",on); }),M); } }
+  if(document.fonts) document.fonts.ready.then(()=>bands.forEach(fit));
+  addEventListener("load",()=>bands.forEach(fit));
+  addEventListener("hashchange",()=>requestAnimationFrame(()=>bands.forEach(fit)));
+  new MutationObserver(()=>requestAnimationFrame(()=>bands.forEach(fit))).observe(document.body,{attributes:true,attributeFilter:["data-view"]});
+  document.body.classList.add("hm5on"); }
 /* ---------- F · búsqueda rápida (⌘K, Ctrl+K en Windows) ---------- */
 // empresas (las tuyas primero), sus últimos movimientos, las secciones y las acciones de la barra; sin tildes ni mayúsculas
 { const kx=$("kx"), q=$("kx-q"), R=$("kx-r"), mac=/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent); let act=0, run=[], prev=null;
