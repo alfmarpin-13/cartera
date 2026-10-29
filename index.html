@@ -3059,6 +3059,14 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 .priv canvas{filter:blur(6px)!important}
 .priv #h-val .pv::after{content:none}   /* el valor grande lleva un solo grupo de puntos (los céntimos también van dentro) */
 .priv #h-val::after{letter-spacing:0}
+/* v261 · Resumen: «Tu cartera hoy» y Evolución del mismo ancho; su separación cae en el centro, bajo la división Hoy | Retorno total */
+@media (min-width:901px){.duo{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* v261 · Movimientos › Transacciones: «239 compras · 47 ventas» en la línea de la cifra y las empresas en una línea; la franja baja de 131 a 117 px */
+#m-k .mk-v.mkcv .mk-u{font-size:14px;font-weight:400;letter-spacing:0;color:var(--ink2)}
+#m-k .mk-v.mkcv .mk-d{color:var(--ink3)}
+@media (min-width:1001px){#m-k{height:117px}}
+@media (max-width:700px){#m-k .mk-v.mkcv .mk-u:not(.mk-d){display:none}}   /* en el móvil, «239 · 47»: el título ya dice qué es cada cifra */
+.pos-age .pa-d{color:var(--ink3)}
 </style>
 
 <div class="wrap">
@@ -3696,7 +3704,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v260";   // la versión publicada, en el pie
+const VER="v261";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -3914,7 +3922,7 @@ function render(d){
   const v=k.value||0, ent=Math.trunc(v), dec=Math.round((v-ent)*100);
   $("h-val").innerHTML = `${nf(0).format(ent)}<span class="cents">,${String(dec).padStart(2,"0")} €</span>`;
   $("h-sub").innerHTML=`Aportado <b>${eur(k.aport)}</b>`;   // la liquidez está en el cuadre y las empresas, en Posiciones
-  { const a=(d.stats.find(x=>x.l==="Antigüedad media")||{}).v; const h=isNum(a)?`Antigüedad<span class="pa-m"> media</span> <b>${nf(1).format(a)} años</b>`:""; $("pos-age").innerHTML=h; $("pos-age-m").innerHTML=h; }
+  { const a=(d.stats.find(x=>x.l==="Antigüedad media")||{}).v; const np=d.pos.length, h=`<b>${nf(0).format(np)}</b> ${np===1?"posición":"posiciones"}${isNum(a)?`<span class="pa-d"> · </span>Antigüedad<span class="pa-m"> media</span> <b>${nf(1).format(a)} años</b>`:""}`; $("pos-age").innerHTML=h; $("pos-age-m").innerHTML=h; }   // cuántas hay (las filas de la tabla, opciones incluidas) y su antigüedad
   const kp=(t,val,s,c="")=>`<div class="kpi"><div class="k">${t}</div><div class="v num ${c}">${val}</div><div class="s">${esc(s||"")}</div></div>`;
   $("hk-ret").className="c2 r2 bv num "+cls(k.ret); $("hk-ret").textContent=seur(k.ret); $("hk-ret-s").innerHTML=k.retSub;
   $("hk-tir").textContent=pct(k.tir,1); $("hk-tir-s").innerHTML=isNum(k.tir)&&isNum(k.vsIdx)?`MSCI World <b>${pct(k.tir-k.vsIdx,1)}</b>`:"";
@@ -4012,7 +4020,7 @@ function tileHtml(p,x,y,w,h){
 const mapItems=()=>DATA.pos.filter(p=>p.value>0&&!p.isOption).sort((a,b)=>b.value-a.value);
 const lay=(ps,wt,x,y,w,h)=>{ const t=sum(ps,wt)||1; return squarify(ps.map(p=>({p,a:wt(p)/t*w*h})),x,y,w,h); };
 function renderTreemap(){
-  const el=$("tmap"); if(!DATA||!el) return; const W=el.clientWidth, mobH=W<640||innerWidth<=900;
+  const el=$("tmap"); if(!DATA||!el) return; const W=el.clientWidth, mobH=true;   // el mapa siempre en 4:3, también en pantallas anchas (con las dos columnas iguales, ya no se estira al alto de Evolución)
   if(mobH) el.style.height=Math.round(W*0.75)+"px"; else el.style.removeProperty("height");
   const H=Math.round(el.clientHeight)||260, key=W+"x"+H; if(!W||key===tmW) return; tmW=key;
   const items=mapItems(), tot=sum(items,p=>p.value), MIN=W<400?0.035:W<640?0.025:0.02;
@@ -4232,7 +4240,9 @@ const MOV = {
         und=t=>{ const m=String(t||"").match(/^(\S+)\s[CP]\d/); return m?(DATA.tx.find(r=>!/\s/.test(r.ticker)&&String(r.ticker).split(":").pop()===m[1])||{}).ticker||m[1]:t; },
         part=(n,l,a,b)=>{ const e=new Set(l.map(r=>und(r.ticker))).size; return `${nf(0).format(n)} ${n===1?a:b}<em><b class="dt"> · </b>${nf(0).format(e)} ${e===1?"empresa":"empresas"}</em>`; };
       return [{k:"Resultado realizado",v:seur(pl),c:cls(pl),sub:cl.length?`tras ${eur(fees)} de comisiones`:"sin ventas"},
-        {k:"Compras y ventas",v:nf(0).format(ops),lgcol:1,split:ops?[{v:ob.length,l:part(ob.length,bu,"compra","compras")},{v:os.length,l:part(os.length,cl,"venta","ventas")}]:null,sub:ops?"":"sin operaciones"},
+        // compras y ventas en la línea de la cifra, la barra con su proporción y las empresas en una sola línea: la casilla, del alto de las demás
+        {k:"Compras y ventas",c:"mkcv",v:ops?`${nf(0).format(ob.length)}<small class="mk-u"> ${ob.length===1?"compra":"compras"}</small><small class="mk-u mk-d"> · </small>${nf(0).format(os.length)}<small class="mk-u"> ${os.length===1?"venta":"ventas"}</small>`:"0",nolg:1,split:ops?[{v:ob.length},{v:os.length}]:null,
+          sub:ops?(()=>{ const eb=new Set(bu.map(r=>und(r.ticker))).size, es=new Set(cl.map(r=>und(r.ticker))).size; return es?`en ${nf(0).format(eb)} y ${nf(0).format(es)} empresas`:`en ${nf(0).format(eb)} ${eb===1?"empresa":"empresas"}`; })():"sin operaciones"},
         {k:"Tenencia media",v:isNum(hold)?`${nf(1).format(hold)} años`:"",sub:""},
         {k:"Ventas con ganancia",v:os.length?pct(win/os.length,1):"",gl:1,nolg:1,split:os.length?[{v:win},{v:os.length-win}]:null,sub:os.length?`${nf(0).format(win)} de ${nf(0).format(os.length)} ${os.length===1?"venta":"ventas"}`:"sin ventas"}]; } },
   dividendos:{ rows:()=>DATA?DATA.dv:[], date:r=>r.d, years:r=>[yr(r.d)], text:r=>[r.name,r.ticker,r.type].join(" "), sort:["d",-1],
