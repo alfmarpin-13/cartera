@@ -3449,6 +3449,27 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   .hm5-mv:has(.hm5-c.on:not(:first-child)) .hm5-c:not(.on)>*{opacity:.38}
   .hm5-c>*{transition:opacity .15s}
 }
+
+/* v282 · REVISIÓN DE DETALLE (móvil) */
+@media (max-width:700px){
+  /* franjas: la raya entre las dos casillas de abajo, del texto al texto (como las de arriba y las de Resumen), sin tocar la raya horizontal */
+  .hm5>:nth-child(5){box-shadow:0 -1px 0 var(--h-line)}
+  .hm5>:nth-child(5)::before{content:"";position:absolute;left:0;top:14px;bottom:0;width:1px;background:var(--h-line)}
+  /* Movimientos › cifras del año: la raya vertical de arriba empieza en el texto, no 15 px por encima */
+  #s-mov>#m-k{margin-top:0}
+  #s-mov>#m-k .mk:nth-child(-n+2){padding-top:0}
+  /* filas de alto entero: con medio píxel, unas rayas quedaban a 36 px y otras a 37 */
+  #sheet .fp-ml>span{line-height:20px}
+  #sheet .fp-ml>span.h{line-height:17px}
+  .tray-t tr.sp{height:28px}
+  /* Actualidad: el mismo margen interior que el resto de bloques */
+  #paper.paper{padding:22px 16px}
+}
+@media (max-width:600px){.pf-row{min-height:49px}}
+/* ficha: en la franja, la etiqueta solo reserva dos líneas si alguna se parte (si no, las rayas empezaban 14 px por encima del texto) */
+@container ficha (max-width:620px){
+  #sheet .fx-band:not(.k2) .fp-b:not(:first-child) .fp-k{min-height:0}
+}
 </style>
 
 <div class="wrap">
@@ -3673,8 +3694,8 @@ const $ = id => document.getElementById(id);
 /* ---------- formato ---------- */
 const nfc = {}; const nf = (d=0) => nfc[d] || (nfc[d] = new Intl.NumberFormat("es-ES",{minimumFractionDigits:d,maximumFractionDigits:d,useGrouping:"always"}));
 const eur = (v,d=0) => v==null||isNaN(v) ? "" : nf(d).format(v)+" €";
-const seur = (v,d=0) => v==null||isNaN(v) ? "" : (v>0?"+":v<0?"−":"")+nf(d).format(Math.abs(v))+" €";
-const pct = (v,d=1,sign=false) => v==null||isNaN(v) ? "" : (sign&&v>0?"+":v<0?"−":"")+nf(d).format(Math.abs(v*100))+"%";
+const seur = (v,d=0) => v==null||isNaN(v) ? "" : (Math.abs(v)<.5/10**d?"":v>0?"+":"−")+nf(d).format(Math.abs(v))+" €";
+const pct = (v,d=1,sign=false) => v==null||isNaN(v) ? "" : (Math.abs(v*100)<.5/10**d?"":sign&&v>0?"+":v<0?"−":"")+nf(d).format(Math.abs(v*100))+"%";
 const cls = v => v>0?"pos":v<0?"neg":"mute";
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const day = d => d instanceof Date ? new Date(d.getTime()+12*3600e3) : null;
@@ -4088,7 +4109,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v281";   // la versión publicada, en el pie
+const VER="v282";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5532,6 +5553,13 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   addEventListener("hashchange",()=>requestAnimationFrame(()=>bands.forEach(fit)));
   new MutationObserver(()=>requestAnimationFrame(()=>bands.forEach(fit))).observe(document.body,{attributes:true,attributeFilter:["data-view"]});
   document.body.classList.add("hm5on"); }
+
+// v282 · ficha: la franja reserva dos líneas para las etiquetas solo si alguna se parte («DIVIDENDO» en un móvil estrecho)
+{ const fit=()=>document.querySelectorAll("#sheet .fx-band").forEach(b=>{ if(!b.offsetWidth) return; b.classList.remove("k2");
+    const two=[...b.querySelectorAll(".fp-b:not(:first-child) .fp-k")].some(k=>{ const r=document.createRange(); r.selectNodeContents(k); return new Set([...r.getClientRects()].map(q=>Math.round(q.top))).size>1; });
+    b.classList.toggle("k2",two); });
+  const sh=$("sheet"); if(sh){ let q=0; new MutationObserver(()=>{ if(!q) q=requestAnimationFrame(()=>{ q=0; fit(); }); }).observe(sh,{subtree:true,childList:true}); new ResizeObserver(()=>fit()).observe(sh); }
+  if(document.fonts) document.fonts.ready.then(fit); }
 /* ---------- F · búsqueda rápida (⌘K, Ctrl+K en Windows) ---------- */
 // empresas (las tuyas primero), sus últimos movimientos, las secciones y las acciones de la barra; sin tildes ni mayúsculas
 { const kx=$("kx"), q=$("kx-q"), R=$("kx-r"), mac=/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent); let act=0, run=[], prev=null;
