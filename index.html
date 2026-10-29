@@ -2963,6 +2963,27 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
   #mtabs{grid-template-columns:repeat(5,minmax(0,1fr))}
 }
 @media (min-width:701px) and (max-width:1100px){:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .bs{font-size:11px}}
+/* v255 · avisos con el diseño de las franjas: arena de borde a borde (tarjeta en el móvil); etiqueta, título y texto a la izquierda, el enlace a la derecha */
+#notice{--nt-bg:#E9E3D7;--nt-line:#D3CABA;--nt-fg:#1A1A1A;--nt-fg2:#4A4843;--nt-fg3:#6F6A61}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #notice{--nt-bg:#272420;--nt-line:#3B3730;--nt-fg:#EDE9E2;--nt-fg2:#C6BFB4;--nt-fg3:#9D968B}}
+:root[data-theme="dark"] #notice{--nt-bg:#272420;--nt-line:#3B3730;--nt-fg:#EDE9E2;--nt-fg2:#C6BFB4;--nt-fg3:#9D968B}
+#notice .notice{background:var(--nt-bg);color:var(--nt-fg);border:0;border-radius:var(--rc);padding:26px 30px;display:grid;grid-template-columns:minmax(0,1fr);gap:22px 64px;align-items:center}
+#notice .notice:has(.nt-ac){grid-template-columns:minmax(0,1fr) minmax(0,440px)}
+#notice .nt-tx{display:flex;flex-direction:column;gap:8px;min-width:0}
+#notice .nt-k{font-size:11px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--nt-fg3);padding-bottom:4px}
+#notice h2{font-size:22px;line-height:28px;font-weight:400;letter-spacing:-.01em;margin:0;color:var(--nt-fg)}
+#notice p{margin:0;max-width:64ch;font-size:14px;line-height:21px;color:var(--nt-fg2)}
+#notice .nt-ac{display:flex;flex-direction:column;gap:12px;min-width:0}
+#notice .keyf{max-width:none;margin:0;gap:8px}
+#notice .keyf .inp{height:44px;font-size:14px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--nt-line)}
+#notice .keyf .inp:focus{box-shadow:inset 0 0 0 1px var(--nt-fg3)}
+#notice .keyf .btn,#notice .nt-ac>.btn{height:44px;padding:0 22px;font-size:13px;border-radius:var(--r-md);display:inline-flex;align-items:center;justify-content:center}
+#notice .nt-ac>.btn{align-self:flex-start}
+#notice .nt-ac>.btn.filelbl{background:var(--panel);border-color:var(--nt-line);color:var(--nt-fg)}
+#notice .nt-alt{font-size:12px;line-height:18px;color:var(--nt-fg3)}
+#notice .nt-alt label{color:var(--nt-fg);text-decoration:underline;text-decoration-color:var(--nt-fg3);text-underline-offset:3px;cursor:pointer}
+@media (min-width:701px){#notice .notice{border-radius:0;box-shadow:0 0 0 100vmax var(--nt-bg);clip-path:inset(0 -100vmax)}}
+@media (max-width:700px){#notice .notice,#notice .notice:has(.nt-ac){grid-template-columns:minmax(0,1fr);padding:22px 18px;gap:18px}#notice h2{font-size:20px;line-height:26px}#notice .keyf .inp{font-size:16px}}
 </style>
 
 <div class="wrap">
@@ -3599,7 +3620,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v254";   // la versión publicada, en el pie
+const VER="v255";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4966,7 +4987,9 @@ function go(token,push){
   if(changed) window.scrollTo({top:0});
 }
 document.addEventListener("click",e=>{ const a=e.target.closest("#nav a,#mtabs a,a[data-go]"); if(!a) return; e.preventDefault(); go(a.dataset.v||a.dataset.t||a.dataset.go,true); });
-addEventListener("hashchange",()=>go(location.hash.slice(1)));
+addEventListener("hashchange",()=>{ const c=remCfg(location.hash);
+  if(c&&!c.bad&&!(REM&&REM.d===c.d&&REM.k===c.k)){ try{ localStorage.setItem("cartera-d",c.d); localStorage.setItem("cartera-k",c.k); }catch{} location.reload(); return; }   // un enlace personal nuevo: se guarda y se vuelve a abrir
+  go(location.hash.slice(1)); });
 // modo privado: se recuerda en este dispositivo. Cada importe visible se envuelve en <span class="pv"> (también lo que se pinta
 // después, mientras está activo) y el CSS lo emborrona; al quitarlo, las envolturas se quedan pero ya no se nota nada
 { const R=document.documentElement, btn=$("priv"), AM=/[+−-]?\d[\d.]*(?:,\d+)?\s?(?:€|\$|£|Fr|¥|C\$)|\d[\d.]*\s(?:acciones|acción|contratos?)\b/g;
@@ -4998,12 +5021,15 @@ function lastSession(now=new Date()){ const d=new Date(now), wd=d.getDay(), back
   $("theme").addEventListener("click",()=>{ const t=dark()?"light":"dark"; R.dataset.theme=t; try{ localStorage.setItem("theme",t); }catch{} sync(); });
   mq.addEventListener?.("change",sync); sync(); }
 function setStatus(kind,text){ $("dot").className="dot "+kind; $("stat").textContent=text; $("refresh").classList.toggle("spin",kind==="busy"); }
-function notice(html){ $("notice").innerHTML = html ? `<div class="notice">${html}</div>` : ""; $("notice").hidden=!html;
+// el aviso: etiqueta, título y texto; el hueco del enlace y los botones van en su propia columna (debajo en el móvil)
+function notice(html,k){ const n=$("notice"); n.innerHTML = html ? `<div class="notice"><div class="nt-tx"><span class="nt-k">${k||"Aviso"}</span>${html}</div></div>` : ""; n.hidden=!html;
+  if(html){ const tx=n.querySelector(".nt-tx"), ac=[...tx.children].filter(e=>e.matches(".keyf,.btn,.nt-alt")); if(ac.length){ const a=document.createElement("div"); a.className="nt-ac"; a.append(...ac); tx.after(a); } }
   document.body.classList.toggle("nodata",!!html&&!DATA); }   // sin datos que esperar, los huecos de carga dejan de parpadear
 const fileBtn = `<label class="btn filelbl">Abrir un archivo .xlsx<input type="file" id="file" accept=".xlsx"></label>`;
+const fileAlt = `<p class="nt-alt">¿Sin el enlace a mano? <label class="filelbl" title="En tu hoja: Archivo → Descargar → Microsoft Excel">Abre una copia de tu hoja<input type="file" id="file" accept=".xlsx"></label> descargada en Excel</p>`;
 document.addEventListener("change",e=>{ if(e.target.id!=="file"||!e.target.files[0]) return; const fr=new FileReader();
   fr.onload=()=>{ try{ const wb=readWb(new Uint8Array(fr.result),"array"); render(model(parse(wb))); notice(""); setStatus("","Archivo local");
-    $("asof").textContent="Datos de "+e.target.files[0].name; }catch(err){ notice(`<h2>No he podido leer ese archivo</h2><p>${esc(err.message)}</p>${fileBtn}`); } };
+    $("asof").textContent="Datos de "+e.target.files[0].name; }catch(err){ notice(`<h2>No he podido leer ese archivo</h2><p>${esc(err.message)}</p>${fileBtn}`,"Archivo"); } };
   fr.readAsArrayBuffer(e.target.files[0]); });
 
 let mcp=null, busy=false, retried=false;
@@ -5012,11 +5038,14 @@ const GAS = typeof google!=="undefined" && google.script && google.script.run ? 
 // en tu web de GitHub: los datos los entrega tu script de Google, solo con tu clave. La dirección del script (d) y la clave (k)
 // llegan una vez en tu enlace personal (#d=…&k=…) y se guardan en este dispositivo; en Safari del iPhone el enlace se deja tal cual
 // para que «Añadir a pantalla de inicio» se lo lleve
-const remCfg = s => { try{ const h=new URLSearchParams(String(s||"").replace(/^[^#]*#/,"")); const d=h.get("d"), k=h.get("k"); return d&&k?{d,k}:null; }catch{ return null; } };
-const REM = (()=>{ let c=remCfg(location.hash);
-  try{ if(c){ localStorage.setItem("cartera-d",c.d); localStorage.setItem("cartera-k",c.k);
-      if(!(/iPhone|iPad|iPod/.test(navigator.userAgent)&&!navigator.standalone)) history.replaceState(null,"",location.pathname+location.search); }
-    else { const d=localStorage.getItem("cartera-d"), k=localStorage.getItem("cartera-k"); if(d&&k) c={d,k}; } }catch{}
+// el ID de tu script empieza por AKfy; si en el enlace va la dirección /exec entera, se saca el ID de ahí. Con la clave pero sin un ID que valga: {bad:true}
+const remId = s => (String(s||"").match(/AKfy[\w-]{20,}/)||[])[0]||null;
+const remCfg = s => { try{ const h=new URLSearchParams(String(s||"").replace(/^[^#]*#/,"")); const d=remId(h.get("d")), k=h.get("k"); return d&&k?{d,k}:k?{bad:true}:null; }catch{ return null; } };
+let remBad=false;   // el enlace (o lo guardado) trae la clave pero no un ID que valga
+const REM = (()=>{ let c=remCfg(location.hash); if(c&&!(/iPhone|iPad|iPod/.test(navigator.userAgent)&&!navigator.standalone)) history.replaceState(null,"",location.pathname+location.search);   // la clave no se queda en la barra de direcciones
+  if(c&&c.bad){ remBad=true; c=null; }
+  try{ if(c){ localStorage.setItem("cartera-d",c.d); localStorage.setItem("cartera-k",c.k); }
+    else { const d=localStorage.getItem("cartera-d"), k=localStorage.getItem("cartera-k"); if(remId(d)&&k){ c={d:remId(d),k}; remBad=false; } else if(d||k) remBad=true; } }catch{}   // un enlace sin ID no borra el que ya funciona
   return c; })();
 const canRead = () => !!(mcp||GAS||REM);
 const SHEETS=["Dashboard","Cartera","Preselección","Valoración","Transacciones","Dividendos","Aportaciones","Ajustes","Trayectoria","Valor Mensual","Referencias"];
@@ -5025,12 +5054,13 @@ const readSheet = ac => GAS
   ? new Promise((res,rej)=>GAS.withSuccessHandler(b64=>res({payload:{content:b64}})).withFailureHandler(e=>rej({code:"gas_error",message:(e&&e.message)||String(e)})).getXlsx())
   : mcp ? mcp.callTool(SERVER,"download_file_content",{fileId:FILE_ID,exportMimeType:XLSX_MIME},{cache:false,signal:ac?ac.signal:undefined})
   : fetch(`https://script.google.com/macros/s/${encodeURIComponent(REM.d)}/exec?k=${encodeURIComponent(REM.k)}`,{cache:"no-store",signal:ac?ac.signal:undefined})
-      .then(r=>r.ok?r.json():Promise.reject({code:"rem_error",message:"Tu script de Google ha respondido con el código "+r.status+"."}))
+      .then(r=>r.ok?r.json().catch(()=>Promise.reject({code:"rem_error",message:"Tu script de Google ha respondido, pero sin los datos de la hoja."})):Promise.reject({code:"rem_error",message:"Tu script de Google ha respondido con el código "+r.status+"."}),
+        e=>Promise.reject(e&&e.name==="AbortError"?e:{code:"rem_net",message:String((e&&e.message)||e)}))
       .then(j=>j&&j.ok?{payload:{content:j.xlsx}}:Promise.reject({code:j&&j.error==="clave"?"bad_key":"rem_error",message:(j&&j.error)||""}));
 // el hueco para pegar tu enlace personal, si falta o la clave no vale
-const keyForm = `<form class="keyf" id="keyf"><input class="inp" id="keyi" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Pega aquí tu enlace personal" aria-label="Tu enlace personal"><button class="btn primary" type="submit">Entrar</button></form>`;
+const keyForm = `<form class="keyf" id="keyf"><input class="inp" id="keyi" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Pega aquí tu enlace" aria-label="Tu enlace personal"><button class="btn primary" type="submit">Entrar</button></form>`;
 document.addEventListener("submit",e=>{ if(e.target.id!=="keyf") return; e.preventDefault(); const c=remCfg($("keyi").value.trim());
-  if(!c){ $("keyi").value=""; $("keyi").placeholder="Ese enlace no lleva la clave: pega el enlace completo"; return; }
+  if(!c||c.bad){ $("keyi").value=""; $("keyi").placeholder=c?"Falta el ID de tu script (empieza por AKfy…)":"Ese enlace no lleva la clave: pega el enlace completo"; return; }
   try{ localStorage.setItem("cartera-d",c.d); localStorage.setItem("cartera-k",c.k); }catch{} location.replace(location.pathname+location.search); });
 // copia de la última hoja leída en este navegador (IndexedDB; solo en este dispositivo): se pinta al abrir mientras llega la nueva
 const idb=()=>new Promise((res,rej)=>{ try{ const r=indexedDB.open("cartera",1); r.onupgradeneeded=()=>r.result.createObjectStore("hoja"); r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); }catch(e){ rej(e); } });
@@ -5063,6 +5093,7 @@ async function load(fresh){
     const sig=dd.pos.map(p=>p.ticker+":"+p.price+":"+p.today).join("|"), same=lastSig!==null&&sig===lastSig;
     if(!same){ lastSig=sig; sigAt=when; }
     if(dd!==DATA) render(dd); notice(""); retried=false; loadAct(false); cacheAt=null; if(pd0) cachePut({ver:VER,at:Date.now(),pd:pd0});   // la copia para la próxima vez
+    if(REM) try{ localStorage.setItem("cartera-ok",REM.d); }catch{}   // este ID ya ha funcionado en este dispositivo
     const ss=lastSession();
     if(ss.closed) setStatus("","Mercado cerrado · leído a las "+hhmm); else setStatus("live", same ? `Cotizaciones de las ${hm(sigAt)}` : "En vivo · "+when.toLocaleDateString("es-ES",{weekday:"long"})+" "+when.getDate()+" "+MES[when.getMonth()].toLowerCase()+" · "+hhmm);
     $("asof").textContent = "Datos de tu hoja «Inversiones» · "+when.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"});
@@ -5075,8 +5106,12 @@ async function load(fresh){
     if(c==="server_not_connected"||c==="selection_required") notice(`<h2>Falta conectar Google Drive</h2><p>Añade Google Drive en claude.ai → Ajustes → Conectores y vuelve a abrir esta página. Mientras tanto puedes abrir una copia descargada de la hoja.</p>${fileBtn}`);
     else if(c==="needs_reauth") notice(`<h2>Google Drive necesita que vuelvas a conectarlo</h2><p>Reconecta Google Drive en claude.ai → Ajustes → Conectores y pulsa Actualizar.</p>`);
     else if(c==="approval_required"||c==="not_in_manifest"||c==="consent_required") notice(`<h2>La página necesita tu permiso para leer la hoja</h2><p>Solo lee el archivo «Inversiones» de tu Google Drive. No escribe nada.</p><button class="btn primary" type="button" id="allow">Permitir y cargar</button>`);
-    else if(e instanceof Error&&!c) notice(`<h2>No he podido calcular la cartera</h2><p>${esc(e.message)}</p><p>Comprueba que las pestañas y cabeceras de la hoja no han cambiado de nombre.</p>`);
-    else if(c==="bad_key") notice(`<h2>Tu clave no es la de tu script</h2><p>Pega otra vez tu enlace personal, el que termina en #d=…&k=…</p>${keyForm}`);
+    else if(c==="rem_net"){ let ok=false; try{ ok=localStorage.getItem("cartera-ok")===REM.d; }catch{}
+      if(navigator.onLine===false) notice(`<h2>Sin conexión a internet</h2><p>${DATA?"Sigues viendo los últimos datos cargados. ":""}Cuando vuelva la conexión, pulsa Actualizar.</p>`);
+      else if(ok) notice(`<h2>Tu script de Google no responde ahora mismo</h2><p>${DATA?"Sigues viendo los últimos datos cargados. ":""}Pulsa Actualizar en unos segundos.</p>`);
+      else notice(`<h2>No llego a tu script de Google</h2><p>Lo más probable es que el ID de tu enlace no sea el de tu script. Pega aquí tu enlace personal completo, el que termina en #d=…&k=…</p><p>Si el ID es el bueno, revisa en Apps Script que la implementación sea una aplicación web con acceso para «Cualquier usuario».</p>${keyForm}`,"Tu enlace personal"); }
+    else if(e instanceof Error&&!c) notice(`<h2>No he podido calcular la cartera</h2><p>${esc(e.message)}</p><p>Comprueba que las pestañas y cabeceras de la hoja no han cambiado de nombre.</p>`,"Tu hoja");
+    else if(c==="bad_key") notice(`<h2>Tu clave no es la de tu script</h2><p>Pega otra vez tu enlace personal completo, el que termina en #d=…&k=…</p>${keyForm}`,"Tu enlace personal");
     else if(c==="rem_error") notice(`<h2>Tu script de Google no ha devuelto la hoja</h2><p>${esc(e.message||"")}</p><p>${DATA?"Sigues viendo los últimos datos cargados. ":""}Pulsa Actualizar en unos segundos.</p>`);
     else if(c==="gas_error") notice(`<h2>Tu Google no ha devuelto la hoja</h2><p>${esc(e.message||"")}</p><p>${DATA?"Sigues viendo los últimos datos cargados. ":""}Pulsa Actualizar en unos segundos.</p>`);
     else if(c==="tool_error") notice(`<h2>Google Drive no ha devuelto la hoja</h2><p>${esc(e.message||"")}</p><p>Comprueba que el archivo «Inversiones» sigue existiendo y pulsa Actualizar.</p>`);
@@ -5106,7 +5141,8 @@ document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==
   if(!window.XLSX){ setStatus("err","Sin conexión"); notice(`<h2>No se ha podido cargar el lector de hojas</h2><p>Recarga la página.</p>`); return; }
   if(!GAS){ try{ mcp = window.claude && await window.claude.use("mcp"); }catch{ mcp=null; } }
   if(!canRead()){ setStatus("err","Sin conexión"); $("asof").textContent="Sin acceso a tu hoja desde aquí";
-    notice(`<h2>Falta tu enlace personal</h2><p>Abre esta web desde tu enlace personal (el que termina en #d=…&k=…) o pégalo aquí. Solo hace falta una vez en cada dispositivo.</p>${keyForm}<p>También puedes abrir una copia descargada de la hoja (Archivo → Descargar → Microsoft Excel).</p>${fileBtn}`); return; }
+    notice(remBad?`<h2>A tu enlace le falta el ID de tu script</h2><p>El ID va entre #d= y &k= y empieza por AKfy. Lo tienes en Apps Script → Implementar → Gestionar implementaciones. Pega aquí tu enlace completo.</p>${keyForm}${fileAlt}`
+      :`<h2>Falta tu enlace personal</h2><p>Abre esta web desde tu enlace personal, el que termina en #d=…&k=…, o pégalo aquí. Solo hace falta una vez en cada dispositivo.</p>${keyForm}${fileAlt}`,"Tu enlace personal"); return; }
   load(false);
 })();
 })();
