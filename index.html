@@ -3322,6 +3322,70 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 .sheet .sh-tabs>:first-child{margin-left:auto}
 .sheet .sh-tabs>:last-child{margin-right:auto}
 @media (max-width:759px){.sheet .sh-tabw{--tabp:12px}}
+
+/* v277 · PRUEBA (temporal): Resumen en el móvil con tres cifras del mismo tamaño (Cartera, Hoy, Total; sin TIR), como la franja del PC
+   achicada, sin recuadros. Tres variantes que se eligen con el selector de abajo: 1) barra clara arriba como en el PC (estado, buscar y
+   ojo) y columnas centradas; 2) igual, con las columnas a la izquierda como en el PC; 3) sin barra: la hora en una línea dentro de la
+   franja. En las tres, al bajar, la franja se queda fija arriba, más estrecha y con números más pequeños */
+.hm3,.mtop,.hm3c,.hvsel{display:none}
+@media (max-width:700px){
+  body:is(.hv1,.hv2,.hv3) .hmob{display:none}
+  body:is(.hv1,.hv2,.hv3) .hm3{display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr) 1px minmax(0,1fr);column-gap:0;color:var(--h-fg);font-variant-numeric:tabular-nums;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .hm3>*{min-width:0}
+  .hm3-st{grid-column:1/-1;display:none;align-items:center;gap:6px;font-size:11px;line-height:14px;font-weight:500;color:var(--h-fg3);margin-bottom:10px}
+  .hm3-st .dot{width:5px;height:5px;box-shadow:none;flex:none}
+  body.hv3 .hm3-st{display:flex}
+  .hm3-c{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 6px;white-space:nowrap}
+  body.hv2 .hm3-c{align-items:flex-start;text-align:left;padding:0 10px 0 14px}
+  body.hv2 .hm3-c:first-of-type{padding-left:0}
+  .hm3-k{font-size:10px;line-height:12px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--h-fg3)}
+  .hm3-v{margin-top:7px;font-size:20px;line-height:24px;font-weight:300;letter-spacing:-.015em}
+  .hm3-s{margin-top:3px;font-size:12px;line-height:16px;color:var(--h-fg2)}
+  .hm3-s b{font-weight:400;color:var(--h-fg)}
+  .hm3 .pos{color:var(--h-pos)}.hm3 .neg{color:var(--h-neg)}
+  .hm3-d{width:1px;background:var(--h-line);margin:2px 0}
+  .hm3>.hm3-c:nth-of-type(2){grid-column:1}.hm3>.hm3-c:nth-of-type(3){grid-column:3}.hm3>.hm3-c:nth-of-type(4){grid-column:5}
+  .hm3>.hm3-d:nth-of-type(1){grid-column:2}.hm3>.hm3-d:nth-of-type(2){grid-column:4}
+  .hm3>.hm3-c,.hm3>.hm3-d{grid-row:2}
+  /* la barra clara de arriba, como la del PC (variantes 1 y 2) */
+  body:is(.hv1,.hv2)[data-view="resumen"] .mtop{display:flex}
+  #v-resumen>.mtop{order:-1}
+  .mtop{align-items:center;justify-content:space-between;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 6px) 4px 8px 16px;background:var(--canvas);position:relative;z-index:11;margin:0 -16px}
+  .mt-st{display:flex;align-items:center;gap:8px;font-size:12px;line-height:16px;color:var(--ink2);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mt-st .dot{flex:none;box-shadow:none}
+  .mt-ic{display:flex;gap:2px;flex:none}
+  .mt-ic button{width:40px;height:36px;display:grid;place-items:center;border:0;background:none;color:var(--ink2);padding:0;border-radius:10px;-webkit-tap-highlight-color:transparent}
+  .mt-ic button:active{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+  .mt-ic svg{width:18px;height:18px}
+  .mt-ic .eye-x{display:none}.priv .mt-ic .eye{display:none}.priv .mt-ic .eye-x{display:block}
+  body:is(.hv1,.hv2)[data-view="resumen"] #s-hero{padding-top:16px}
+  body:is(.hv1,.hv2)[data-view="resumen"] #s-hero.hero3{padding-bottom:16px}
+  /* con la barra clara arriba, la tira fija y el fondo de arriba van del color claro (la barra de la hora del iPhone, clara) */
+  html body:is(.hv1,.hv2)[data-view="resumen"] #topcap{background:var(--canvas)}
+  html body:is(.hv1,.hv2)[data-view="resumen"].bg-top{background-color:var(--canvas)}
+  /* la franja fija al bajar: más estrecha y con números más pequeños */
+  body:is(.hv1,.hv2,.hv3)[data-view="resumen"] .hm3c{display:grid}
+  .hm3c{position:fixed;top:0;left:0;right:0;z-index:12;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr) 1px minmax(0,1fr);padding:calc(env(safe-area-inset-top,0px) + 6px) 16px 8px;background:var(--h-bg);color:var(--h-fg);font-variant-numeric:tabular-nums;transform:translateY(-100%);transition:transform .2s ease;pointer-events:none}
+  .hm3c.on{transform:none;pointer-events:auto}
+  .hm3c>div{display:flex;flex-direction:column;align-items:center;min-width:0;white-space:nowrap}
+  body.hv2 .hm3c>div{align-items:flex-start;padding-left:14px}
+  body.hv2 .hm3c>div:first-child{padding-left:0}
+  .hm3c .hm3-k{font-size:9px;line-height:11px}
+  .hm3c .hm3-v{margin-top:2px;font-size:15px;line-height:18px}
+  .hm3c .hm3-d{margin:1px 0;background:var(--h-line)}
+  .hm3c .pos{color:var(--h-pos)}.hm3c .neg{color:var(--h-neg)}
+  body.sheet-open .hm3c,html.sh-open .hm3c{display:none}
+  /* el selector de la prueba */
+  body:is(.hv1,.hv2,.hv3)[data-view="resumen"] .hvsel{display:flex}
+  .hvsel{position:fixed;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 64px);z-index:25;align-items:center;gap:2px;padding:3px;border-radius:12px;background:var(--ink);color:var(--canvas);box-shadow:0 6px 20px rgba(0,0,0,.25);font-size:12px}
+  .hvsel span{padding:0 6px 0 8px;opacity:.7}
+  .hvsel button{width:30px;height:28px;border:0;border-radius:9px;background:none;color:inherit;font:inherit;font-weight:600}
+  .hvsel button[aria-pressed="true"]{background:var(--canvas);color:var(--ink)}
+}
+
+/* v277 · Movimientos: la casilla elegida lleva debajo una barra oscura como la del menú de arriba (se ve que se puede elegir) */
+#mtabs.mvt a{position:relative}
+#mtabs.mvt a[aria-current="page"]::after{content:"";position:absolute;left:var(--ul,0px);bottom:var(--ub,0px);width:var(--uw,40px);height:2px;border-radius:1px;background:var(--h-fg);pointer-events:none}
 </style>
 
 <div class="wrap">
@@ -3961,7 +4025,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v276";   // la versión publicada, en el pie
+const VER="v277";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5311,6 +5375,50 @@ addEventListener("keydown",e=>{ if(view!=="actualidad"||!ACT||sheet||e.metaKey||
 
 // Movimientos: tocar otra vez el tipo elegido vuelve a todos los movimientos
 $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); if(!a||a.dataset.t==="todo"||a.getAttribute("aria-current")!=="page") return; e.preventDefault(); e.stopPropagation(); go("todo",true); },true);
+
+// v277 · PRUEBA (temporal): la franja de Resumen del móvil con tres cifras iguales (Cartera, Hoy, Total), en tres variantes a elegir con
+// el selector de abajo, y la franja fija y estrecha al bajar. Las cifras salen de la franja del PC (las mismas, con sus colores y el modo privado)
+{ const hero=$("s-hero"), SV='<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.75" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+  const EY=($("priv").innerHTML.match(/<svg[\s\S]*<\/svg>/)||[""])[0];
+  const col=(k,i)=>`<div class="hm3-c"><span class="hm3-k"${i===2?' id="hm3-k2"':""}>${k}</span><span class="hm3-v num" id="hm3-v${i}"></span><span class="hm3-s num" id="hm3-s${i}"></span></div>`;
+  const B=document.createElement("div"); B.className="hm3"; B.id="hm3";
+  B.innerHTML=`<div class="hm3-st"><i class="dot" id="hm3-dot"></i><span id="hm3-t"></span></div>${col("Cartera",1)}<i class="hm3-d"></i>${col("Hoy",2)}<i class="hm3-d"></i>${col("Total",3)}`;
+  $("hmob").after(B); B.addEventListener("click",()=>$("priv").click());
+  const T=document.createElement("div"); T.className="mtop"; T.id="mtop";
+  T.innerHTML=`<span class="mt-st"><i class="dot" id="mt-dot"></i><span id="mt-t"></span></span><span class="mt-ic"><button type="button" id="mt-find" aria-label="Buscar">${SV}</button><button type="button" id="mt-priv" aria-label="Ocultar importes">${EY}</button></span>`;
+  hero.before(T); $("mt-find").addEventListener("click",()=>$("kbtn").click()); $("mt-priv").addEventListener("click",()=>$("priv").click());
+  const C=document.createElement("div"); C.className="hm3c"; C.id="hm3c"; C.setAttribute("aria-hidden","true");
+  C.innerHTML=`<div><span class="hm3-k">Cartera</span><span class="hm3-v num" id="hm3c-v1"></span></div><i class="hm3-d"></i><div><span class="hm3-k" id="hm3c-k2">Hoy</span><span class="hm3-v num" id="hm3c-v2"></span></div><i class="hm3-d"></i><div><span class="hm3-k">Total</span><span class="hm3-v num" id="hm3c-v3"></span></div>`;
+  document.body.append(C); C.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
+  const put=(id,html,cls)=>{ const e=$(id); if(!e) return; if(e.innerHTML!==html) e.innerHTML=html; if(cls!=null&&e.className!==cls) e.className=cls; };
+  const cls=e=>e.classList.contains("neg")?"neg":e.classList.contains("pos")?"pos":"";
+  const sync=()=>{ const hv=$("h-val"); if(!hv) return;
+    const v=hv.textContent.replace(/,\d{2}(?=\s*€)/,"").trim(), V=v?`<span class="pv">${v}</span>`:"";
+    const ren=$("hk-ren"), ret=$("hk-ret"), rs=$("hk-ren-s").querySelector("span"), ts=$("hk-ret-s").querySelector("span");
+    put("hm3-v1",V,"hm3-v num"); put("hm3-s1",$("h-sub").innerHTML);
+    put("hm3-k2",$("hk-ren-l").textContent); put("hm3-v2",ren.innerHTML,"hm3-v num "+cls(ren)); put("hm3-s2",rs?rs.outerHTML:"");
+    put("hm3-v3",ret.innerHTML,"hm3-v num "+cls(ret)); put("hm3-s3",ts?ts.outerHTML:"");
+    put("hm3c-v1",V,"hm3-v num"); put("hm3c-k2",$("hk-ren-l").textContent); put("hm3c-v2",ren.innerHTML,"hm3-v num "+cls(ren)); put("hm3c-v3",ret.innerHTML,"hm3-v num "+cls(ret));
+    const t=$("h-live-t").textContent; put("mt-t",$("stat").textContent); put("hm3-t",t);
+    const dc="dot "+($("dot").className.replace(/\bdot\b/,"").trim()); ["mt-dot","hm3-dot"].forEach(i=>{ const d=$(i); if(d.className!==dc) d.className=dc; }); };
+  let q=0; const later=()=>{ if(!q) q=requestAnimationFrame(()=>{ q=0; sync(); }); };
+  new MutationObserver(later).observe(hero,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["class"]});
+  new MutationObserver(later).observe($("stat"),{subtree:true,childList:true,characterData:true}); new MutationObserver(later).observe($("dot"),{attributes:true});
+  sync();
+  // la franja estrecha aparece cuando la grande ha salido por arriba
+  const io=new IntersectionObserver(es=>es.forEach(e=>C.classList.toggle("on",!e.isIntersecting&&e.boundingClientRect.top<0)),{threshold:0});
+  io.observe(B);
+  // el selector de la prueba (se recuerda la elegida)
+  let hv="1"; try{ hv=localStorage.getItem("cartera-hv")||"1"; }catch{}
+  const S=document.createElement("div"); S.className="hvsel"; S.innerHTML=`<span>Prueba</span>${[1,2,3].map(n=>`<button type="button" data-hv="${n}">${n}</button>`).join("")}`;
+  document.body.append(S);
+  const set=n=>{ hv=String(n); document.body.classList.remove("hv1","hv2","hv3"); document.body.classList.add("hv"+hv); S.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.hv===hv?"true":"false")); try{ localStorage.setItem("cartera-hv",hv); }catch{} };
+  S.addEventListener("click",e=>{ const b=e.target.closest("[data-hv]"); if(b) set(b.dataset.hv); }); set(hv); }
+
+// v277 · Movimientos: la barra oscura bajo la casilla elegida va debajo de su título, del mismo ancho, y al pie de la casilla (como en el menú)
+{ const M=$("mtabs"), fit=()=>M.querySelectorAll("a").forEach(a=>{ const n=a.querySelector(".mvt-n"); if(!n||!a.offsetWidth) return; const r=document.createRange(); r.selectNodeContents(n.firstChild); const L=r.getBoundingClientRect(), A=a.getBoundingClientRect();
+    a.style.setProperty("--ul",(L.left-A.left)+"px"); a.style.setProperty("--uw",L.width+"px"); a.style.setProperty("--ub",innerWidth<=1000?"-6px":"0px"); });
+  addEventListener("resize",fit); new ResizeObserver(fit).observe(M); setTimeout(fit,0); if(document.fonts) document.fonts.ready.then(fit); }
 /* ---------- F · búsqueda rápida (⌘K, Ctrl+K en Windows) ---------- */
 // empresas (las tuyas primero), sus últimos movimientos, las secciones y las acciones de la barra; sin tildes ni mayúsculas
 { const kx=$("kx"), q=$("kx-q"), R=$("kx-r"), mac=/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent); let act=0, run=[], prev=null;
