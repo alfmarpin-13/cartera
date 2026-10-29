@@ -3000,6 +3000,11 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 .ptr.run{opacity:1}
 .ptr.run svg{animation:rot .9s linear infinite}
 @media (pointer:coarse){html{overscroll-behavior-y:contain}}   /* sin la recarga de página del navegador: tira la web */
+/* v258 · Tu cartera hoy: la cifra del día debajo del título, como en las franjas (grande y fina, el porcentaje al lado del mismo color) */
+#s-today .hy-a{flex-direction:column;align-items:flex-start;gap:10px}
+#s-today .hy .tbig.hv1{margin:0;font-size:28px;line-height:32px;font-weight:300;letter-spacing:-.02em;gap:10px}
+#s-today .hy .tbig.hv1 .hp{font-size:14px;font-weight:400;letter-spacing:0}
+@media (max-width:700px){#s-today .hy .tbig.hv1{font-size:24px;line-height:28px}}
 </style>
 
 <div class="wrap">
@@ -3636,7 +3641,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v257";   // la versión publicada, en el pie
+const VER="v258";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -3987,7 +3992,7 @@ function hyHead(center){ const k=DATA.kpi, q=hq(), up=q.filter(x=>x.t>0).length,
   // «suben / bajan» va debajo del mapa, como la leyenda de Evolución; la cifra del día, en la fila del título
   const lg=$("hy-leg"); if(lg) lg.innerHTML=`<span><i class="up"></i><b>${up}</b> ${up===1?"sube":"suben"}</span><span><i class="dn"></i><b>${dn}</b> ${dn===1?"baja":"bajan"}</span>`
     +`${flat?`<span><i class="fl"></i><b>${flat}</b> sin cambios</span>`:""}${wait?`<span><i class="wt"></i><b>${wait}</b> sin cotizar</span>`:""}`;
-  return `<div class="hy-a"><h2 class="st">${ss.closed?"Última sesión · "+ss.lbl:"Tu cartera hoy"}</h2>${center?"":`<div class="tbig num ${cls(k.today)}">${seur(k.today)}<span class="chip ${cls(k.today)}">(${pct(k.todayPct,1,true)})</span></div>`}</div>`; }
+  return `<div class="hy-a"><h2 class="st">${ss.closed?"Última sesión · "+ss.lbl:"Tu cartera hoy"}</h2>${center?"":`<div class="tbig num hv1 ${cls(k.today)}">${seur(k.today)}<span class="hp">${pct(k.todayPct,1,true)}</span></div>`}</div>`; }
 function renderHoy(){
   if(!DATA) return;
   $("l1-side").innerHTML=hyHead();
