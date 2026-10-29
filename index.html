@@ -3210,9 +3210,13 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* Movimientos en el móvil: una nota larga sigue desde el principio de la línea, sin sangría */
 @media (max-width:700px){#s-mov .rt td.mline{display:block}#s-mov .rt td.mline .mi{display:inline}#s-mov .rt td.mline .mi::before{position:static;margin:0 6px}#s-mov .rt td.mline .mi:first-child::before{content:none}}
 /* v269 · móvil: menos aire entre la hora del iPhone y lo primero de cada pestaña (la primera letra, a 10 px; antes, 17–22) */
-@media (max-width:760px){:is(#s-aidx,#s-uni,#s-actb,#mtabs){padding-top:calc(env(safe-area-inset-top,0px) + 10px)}}
-@media (max-width:700px){#s-hero{padding-top:calc(env(safe-area-inset-top,0px) + 11px)}}
-@media (max-width:700px){#s-uni.hero3.band2{padding-top:calc(env(safe-area-inset-top,0px) + 10px);padding-bottom:14px}}   /* Universo tenía su propio margen (22 arriba y abajo): igual que las demás */
+@media (max-width:760px){:is(#s-aidx,#s-uni,#s-actb,#mtabs){padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px))}}
+@media (max-width:700px){#s-hero{padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px) + 1px)}}
+@media (max-width:700px){#s-uni.hero3.band2{padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px));padding-bottom:14px}}   /* Universo tenía su propio margen (22 arriba y abajo): igual que las demás */
+
+/* v270 · la tira fija de arriba (la que da el color a la barra de la hora) queda por debajo de la primera franja de cada pestaña: ya no tapa
+   las letras, que van pegadas a la barra. El iPhone sigue tomando el color de la tira (solo mira los elementos fijos) */
+@media (max-width:760px){:is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs){position:relative;z-index:11}}
 </style>
 
 <div class="wrap">
@@ -3852,7 +3856,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v269";   // la versión publicada, en el pie
+const VER="v270";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4193,17 +4197,17 @@ function squarifyMin(items,x,y,w,h){
   return out;
 }
 function renderTreemap(){
-  const el=$("tmap"); if(!DATA||!el) return; const W=el.clientWidth;   // el mapa en 4:3 (con las dos columnas iguales, ya no se estira al alto de Evolución); si no caben todas, algo más alto
-  const H0=Math.round(W*.75), key=W+"x"+H0; if(!W||key===tmW) return; tmW=key; el.style.height=H0+"px"; let H=H0;
+  const el=$("tmap"); if(!DATA||!el) return; const W=el.clientWidth;   // el mapa siempre en 4:3: nunca crece (con las dos columnas iguales, ya no se estira al alto de Evolución)
+  const H=Math.round(W*.75), key=W+"x"+H; if(!W||key===tmW) return; tmW=key; el.style.height=H+"px";
   const items=mapItems(), tot=sum(items,p=>p.value), MIN=W<400?0.035:W<640?0.025:0.02;
-  // lo que necesita un recuadro para que el logo y la cifra quepan holgados (margen, logo, 10 px —6 en el móvil, con logos más pequeños—,
-  // cifra y margen; de lado, con su margen), medido con la letra de los recuadros pequeños y con la empresa que más pide
+  // lo que necesita cada recuadro para que su logo y su cifra quepan holgados (margen, logo, 10 px —6 en el móvil, con logos más pequeños—,
+  // cifra y margen; de lado, con su margen), medido con la letra de los recuadros pequeños: cada empresa con lo suyo, no con lo de la que más pide
   const GAP=W<480?6:10;
   el.innerHTML=items.map(p=>tileHtml(p,0,0,60,50)).join("");
-  let nw=0, nh=0; [...el.children].forEach(b=>{ const tl=b.querySelector(".tl"), th=b.querySelector(".th"), tp=b.querySelector(".tp"), cs=getComputedStyle(b), px=k=>parseFloat(cs[k]); const rg=document.createRange(); rg.selectNodeContents(tp);
-    nw=Math.max(nw,px("paddingLeft")+Math.max(tl.getBoundingClientRect().width,rg.getBoundingClientRect().width)+px("paddingRight")+2);
-    nh=Math.max(nh,px("paddingTop")+th.offsetHeight+(tp.textContent?GAP+Math.max(tp.offsetHeight,rg.getBoundingClientRect().height):0)+px("paddingBottom")+1); });
-  // pinta un reparto y dice si en todos los recuadros caben el logo y la cifra, sin achicar la letra ni quitar margen
+  const NW=[], NH=[]; [...el.children].forEach(b=>{ const tl=b.querySelector(".tl"), th=b.querySelector(".th"), tp=b.querySelector(".tp"), cs=getComputedStyle(b), px=k=>parseFloat(cs[k]); const rg=document.createRange(); rg.selectNodeContents(tp);
+    NW.push(px("paddingLeft")+Math.max(tl.getBoundingClientRect().width,rg.getBoundingClientRect().width)+px("paddingRight")+2);
+    NH.push(px("paddingTop")+th.offsetHeight+(tp.textContent?GAP+Math.max(tp.offsetHeight,rg.getBoundingClientRect().height):0)+px("paddingBottom")+1); });
+  // pinta un reparto y dice cuánto se sale (0: en todos los recuadros caben el logo y la cifra, sin achicar la letra ni quitar margen)
   const pinta=tiles=>{ el.innerHTML=tiles.map(t=>tileHtml(t.p,t.x,t.y,t.w,t.h)).join("");
     // la cifra cabe siempre entera: si no cabe, primero baja un poco la letra (hasta un 10 %); si aún no, se estrecha el margen del recuadro y, en último caso, baja más
     el.querySelectorAll(".tile").forEach(b=>{ const tp=b.querySelector(".tp"); if(!tp) return; const cs=getComputedStyle(b), base=parseFloat(getComputedStyle(tp).fontSize);
@@ -4211,24 +4215,28 @@ function renderTreemap(){
       const room=()=>b.clientWidth-parseFloat(b.style.paddingLeft||cs.paddingLeft)-parseFloat(b.style.paddingRight||cs.paddingRight), wide=()=>rg.getBoundingClientRect().width+1;
       let fs=base; while(wide()>room()&&fs>Math.max(8,base*.9)){ fs-=.5; tp.style.fontSize=fs+"px"; }
       if(wide()>room()){ b.style.paddingLeft=b.style.paddingRight="3px"; while(wide()>room()&&fs<base){ fs+=.5; tp.style.fontSize=fs+"px"; } while(wide()>room()&&fs>8){ fs-=.5; tp.style.fontSize=fs+"px"; } } tp.dataset.k=base/fs; });
-    let cabe=true;
+    let sale=0;
     el.querySelectorAll(".tile").forEach(b=>{ const tl=b.querySelector(".tl"), th=b.querySelector(".th"), tp=b.querySelector(".tp"), cs=getComputedStyle(b), px=k=>parseFloat(b.style[k]||cs[k]);
       const rg=document.createRange(); rg.selectNodeContents(tp);
       const h=px("paddingTop")+th.offsetHeight+(tp.textContent?GAP+Math.max(tp.offsetHeight,rg.getBoundingClientRect().height):0)+px("paddingBottom"), w=(b.style.paddingLeft?16:px("paddingLeft")+px("paddingRight"))+Math.max(tl.getBoundingClientRect().width,rg.getBoundingClientRect().width*(+tp.dataset.k||1))+2;
-      if(h>b.clientHeight+.5||w>b.clientWidth+.5) cabe=false; });
-    return cabe; };
-  // ninguna por debajo de ese mínimo; las que pasan de él, en su proporción. La que más vale sigue siendo la más grande y el orden no cambia
-  // (la más pequeña, abajo a la derecha). Con el reparto de siempre: si alguna no cabe, el mínimo sube un poco; cuando ya no quedaría sitio,
-  // se prueba un reparto que mira lo que necesita cada recuadro y, si tampoco, el mapa crece hacia abajo
-  let minA=nw*nh*1.05;
-  for(let vuelta=0;vuelta<16;vuelta++){
-    H=Math.max(H0,Math.ceil(items.length*minA/(.85*W))); el.style.height=H+"px";
-    let lo=0, hi=W*H/(items[items.length-1].value/tot); const A=l=>sum(items,p=>Math.max(minA,p.value/tot*l));   // λ: lo que mide cada euro, para que todo llene el mapa
+      sale+=Math.max(0,h-b.clientHeight-.5)+Math.max(0,w-b.clientWidth-.5); });
+    return sale; };
+  // ninguna por debajo de lo que necesita; las que pasan de ello, en su proporción. La que más vale sigue siendo la más grande y el orden no cambia
+  // (la más pequeña, abajo a la derecha): cada una tiene al menos el mínimo de las que van detrás. Se preparan, sin pintarlos, repartos con los
+  // mínimos cada vez un poco más altos, con el reparto de siempre y con el que mira lo que necesita cada recuadro; se pinta el primero en el que
+  // todo cabe: el más proporcional (con los mínimos más bajos) y, a igualdad, el de siempre. El mapa no crece nunca: si en ninguno cabe todo, se queda el que menos se sale
+  const need=items.reduce((s,p,i)=>s+NW[i]*NH[i],0), falta=ts=>ts.reduce((s,t)=>s+Math.max(0,t.nw-t.w)+Math.max(0,t.nh-t.h),0), C=[];
+  for(let f=Math.min(1.02,.9*W*H/need);;f*=1.03){
+    const fl=items.map((p,i)=>NW[i]*NH[i]*f); for(let i=fl.length-2;i>=0;i--) fl[i]=Math.max(fl[i],fl[i+1]);
+    if(C.length&&sum(fl,a=>a)>.985*W*H) break;
+    let lo=0, hi=W*H/(items[items.length-1].value/tot); const A=l=>items.reduce((s,p,i)=>s+Math.max(fl[i],p.value/tot*l),0);   // λ: lo que mide cada euro, para que todo llene el mapa
     for(let j=0;j<50;j++){ const m=(lo+hi)/2; if(A(m)>W*H) hi=m; else lo=m; }
-    const it=items.map(p=>({p,a:Math.max(minA,p.value/tot*lo)*W*H/A(lo),nw,nh}));
-    if(pinta(squarify(it,0,0,W,H))) break;
-    if(items.length*minA*1.06>.85*W*H0&&pinta(squarifyMin(it,0,0,W,H))) break;   // el reparto que mira lo que necesita cada uno, solo antes de que el mapa tenga que crecer
-    minA*=1.06; }
+    const it=items.map((p,i)=>({p,a:Math.max(fl[i],p.value/tot*lo)*W*H/A(lo),nw:NW[i],nh:NH[i]}));
+    [squarify,squarifyMin].forEach((sq,k)=>{ const ts=sq(it,0,0,W,H); C.push({ts,d:falta(ts),o:C.length}); }); }
+  const ok=C.filter(c=>c.d<.5).sort((a,b)=>a.o-b.o).slice(0,10), resto=C.filter(c=>c.d>=.5).sort((a,b)=>a.d-b.d).slice(0,4);
+  let best=null;
+  for(const c of ok.concat(resto)){ const s=pinta(c.ts); if(!s) return; if(!best||s<best.s) best={s,ts:c.ts}; }
+  pinta(best.ts);
 }
 let _mc; const textW=(t,font)=>{ _mc=_mc||document.createElement("canvas").getContext("2d"); _mc.font=font; return _mc.measureText(String(t)).width; };
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ tmW=0; renderTreemap(); });
@@ -5478,7 +5486,8 @@ $("refresh").addEventListener("click",()=>{ load(true); loadAct(true); });
 // móvil: tirar hacia abajo desde arriba del todo lee la hoja de nuevo, igual que el botón Actualizar (en la app de la pantalla de inicio no hay otro gesto)
 if(matchMedia("(pointer:coarse)").matches){ let C=document.createElement("div"); C.id="topcap"; C.setAttribute("aria-hidden","true"); document.body.prepend(C);
   let raf=0; const past=()=>{ raf=0; const b=document.querySelector(".view:not([hidden]) > :is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs)");
-    document.body.classList.toggle("past-band",!b||scrollY>b.offsetTop+b.offsetHeight-C.offsetHeight);
+    // en el móvil la franja va por encima de la tira: la barra cambia cuando la franja ha salido del todo (si no, quedaría una raya de su color bajo la barra)
+    document.body.classList.toggle("past-band",!b||scrollY>=b.offsetTop+b.offsetHeight-(+getComputedStyle(b).zIndex>10?0:C.offsetHeight));
     // el fondo de la página (lo que asoma al tirar hacia abajo) cambia cuando el desplazamiento se para: repintarlo en mitad del gesto daba tirones
     clearTimeout(tb); tb=setTimeout(()=>document.body.classList.toggle("bg-top",!document.body.classList.contains("past-band")),140); };
   let tb=0;
