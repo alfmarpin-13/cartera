@@ -3233,6 +3233,47 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 
 /* v271 · modo privado: los puntos, centrados en la altura de las cifras (no abajo, como unos puntos suspensivos), vayan solos o detrás de un texto */
 .priv .pv::after,.priv #h-val::after,.priv #hm-val::after{top:50%;bottom:auto;line-height:1;transform:translateY(calc(-50% - .075em))}
+
+/* v272 · Movimientos: la franja de arriba igual que la de Análisis y Universo, sin «carpetas» (ni tarjeta clara colgando de la barra).
+   Con «Movimientos» elegido se ve como las demás; al elegir un tipo, los otros se apagan */
+:root{--mv-top:#E9E3D7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--mv-top:#272420}}
+:root[data-theme="dark"]{--mv-top:#272420}
+#mtabs.mvt a,#mtabs.mvt a:hover,#mtabs.mvt a[aria-current="page"],#mtabs.mvt a[aria-current="page"]:hover{background:transparent;box-shadow:none;transition:opacity .15s}
+#mtabs.mvt a .mvt-n,#mtabs.mvt a[aria-current="page"] .mvt-n{color:var(--h-fg3)}
+#mtabs.mvt a:not(.mvt-all)[aria-current="page"] .mvt-n{color:var(--h-fg)}
+#mtabs.mvt a>*{transition:opacity .15s}
+#mtabs.mvt:has(a:not(.mvt-all)[aria-current="page"]) a:not([aria-current="page"])>*{opacity:.38}
+@media (hover:hover){#mtabs.mvt a:hover .mvt-n{color:var(--h-fg)}#mtabs.mvt:has(a:not(.mvt-all)[aria-current="page"]) a:not([aria-current="page"]):hover>*{opacity:.7}}
+/* en el PC: la raya entre casillas siempre (antes se quitaba junto a la elegida) y el bloque de debajo separado, como en Análisis */
+@media (min-width:1001px){
+  #mtabs.mvt a[aria-current="page"]::before,#mtabs.mvt a[aria-current="page"]+a::before{display:block}
+  #mtabs.mvt+#s-mov{margin-top:0;border-radius:var(--rc)}
+}
+@media (max-width:1000px){
+  #mtabs.mvt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;background:var(--h-bg);padding-left:16px;padding-right:16px;padding-bottom:14px;border-radius:0}
+  #mtabs.mvt a,#mtabs.mvt a:hover,#mtabs.mvt a[aria-current="page"]{display:flex;flex-direction:column;gap:4px;padding:0;border:0;border-radius:0;min-height:0}
+  #mtabs.mvt .mvt-s{display:none}
+  #mtabs.mvt a.mvt-all,#mtabs.mvt a.mvt-all:hover,#mtabs.mvt a.mvt-all[aria-current="page"]{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center;gap:12px}
+  #mtabs.mvt:has(a:not(.mvt-all)[aria-current="page"]) a.mvt-all>*{opacity:1}
+  #mtabs.mvt a:not(.mvt-all){margin-top:12px;padding-top:12px;border-top:1px solid var(--h-line)}
+  #mtabs.mvt a:nth-child(2),#mtabs.mvt a:nth-child(4){padding-right:12px}
+  #mtabs.mvt a:nth-child(3),#mtabs.mvt a:nth-child(5){padding-left:16px}
+  #mtabs.mvt a::before,#mtabs.mvt a+a::before{display:none}
+  #mtabs.mvt a:nth-child(3)::before,#mtabs.mvt a:nth-child(5)::before{display:block;content:"";position:absolute;left:0;top:12px;bottom:0;width:1px;background:var(--h-line)}
+  #mtabs.mvt .mvt-v{margin:0;padding:0;font-size:20px;line-height:24px}
+}
+@media (min-width:761px) and (max-width:1000px){
+  #mtabs.mvt{padding:20px 30px 20px}
+  #mtabs.mvt .mvt-s{display:block;font-size:12px;line-height:16.8px;margin:2px 0 0}
+  #mtabs.mvt a.mvt-all .mvt-s{margin:0 0 0 -4px}
+  #mtabs.mvt a.mvt-all .mvt-n{margin-right:auto}
+  #mtabs.mvt .mvt-v{font-size:24px;line-height:28px}
+  #mtabs.mvt a:nth-child(3),#mtabs.mvt a:nth-child(5){padding-left:24px}
+  #mtabs.mvt a:not(.mvt-all){margin-top:16px;padding-top:16px}
+  #mtabs.mvt a:nth-child(3)::before,#mtabs.mvt a:nth-child(5)::before{top:16px}
+  #mtabs.mvt+#s-mov{margin-top:0;border-radius:var(--rc)}
+}
 </style>
 
 <div class="wrap">
@@ -3360,7 +3401,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   <!-- Movimientos -->
   <div class="view" id="v-movimientos" hidden>
   <nav class="mvt" id="mtabs" aria-label="Movimientos">
-    <a href="#todo" data-t="todo" class="mvt-all"><span class="mvt-n">Todo<em></em></span><b class="mvt-v num" id="mt-all"></b><span class="mvt-s">movimientos</span></a>
+    <a href="#todo" data-t="todo" class="mvt-all"><span class="mvt-n">Movimientos<em></em></span><b class="mvt-v num" id="mt-all"></b><span class="mvt-s">en total</span></a>
     <a href="#transacciones" data-t="transacciones"><span class="mvt-n">Transacciones<em></em></span><b class="mvt-v num" id="mt-tx"></b><span class="mvt-s">resultado</span></a>
     <a href="#dividendos" data-t="dividendos"><span class="mvt-n">Dividendos<em></em></span><b class="mvt-v num" id="mt-dv"></b><span class="mvt-s">brutos</span></a>
     <a href="#aportaciones" data-t="aportaciones"><span class="mvt-n">Aportaciones<em></em></span><b class="mvt-v num" id="mt-ap"></b><span class="mvt-s">netas</span></a>
@@ -3872,7 +3913,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v271";   // la versión publicada, en el pie
+const VER="v272";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5218,6 +5259,9 @@ addEventListener("keydown",e=>{ if(view!=="actualidad"||!ACT||sheet||e.metaKey||
   sb.addEventListener("pointermove",e=>{ if(!drag) return; const {tr,h,m}=geo(); sh.scrollTop=drag.s+(e.clientY-drag.y)*m/Math.max(1,tr-h); });
   const fin=()=>{ if(!drag) return; drag=null; sb.classList.remove("drag"); pon(true); }; sb.addEventListener("pointerup",fin); sb.addEventListener("pointercancel",fin);
   new MutationObserver(()=>pon(false)).observe(sh,{attributes:true,attributeFilter:["hidden"]}); addEventListener("resize",()=>pon(false)); }
+
+// Movimientos: tocar otra vez el tipo elegido vuelve a todos los movimientos
+$("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); if(!a||a.dataset.t==="todo"||a.getAttribute("aria-current")!=="page") return; e.preventDefault(); e.stopPropagation(); go("todo",true); },true);
 /* ---------- F · búsqueda rápida (⌘K, Ctrl+K en Windows) ---------- */
 // empresas (las tuyas primero), sus últimos movimientos, las secciones y las acciones de la barra; sin tildes ni mayúsculas
 { const kx=$("kx"), q=$("kx-q"), R=$("kx-r"), mac=/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent); let act=0, run=[], prev=null;
