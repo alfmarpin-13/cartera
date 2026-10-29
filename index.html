@@ -3306,6 +3306,22 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* v275 · el bloque oscuro de Resumen, en modo noche, gris oscuro (algo más claro que el fondo) en vez de verde */
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--h-bg:#2B2B29;--h-card:#353533;--h-line:#41403D;--h-fg2:#B6B5AF;--h-fg3:#9C9B95}}
 :root[data-theme="dark"]{--h-bg:#2B2B29;--h-card:#353533;--h-line:#41403D;--h-fg2:#B6B5AF;--h-fg3:#9C9B95}
+
+/* v276 · la casilla del porcentaje (Total y Hoy) mide exactamente lo que los números de su cifra y está a su misma altura: ni sobresale por
+   arriba ni por abajo. Con la letra Inter (ascendente 0,96875 em; números 0,7275 em), en una línea de 18 px con cifra de 15 px la línea
+   de base queda a 13,54 px (medido en el navegador) y la parte alta de los números a 2,63 px: la casilla empieza ahí y mide 10,91 px. Su texto, centrado */
+@media (max-width:700px){
+  .hmob.hm1 #hm-tot,.hmob.hm1 #hm-day{align-items:flex-start}
+  .hmob.hm1 #hm-tot>*,.hmob.hm1 #hm-day>*{line-height:18px}
+  .hmob.hm1 #hm-tot .hm-pl,.hmob.hm1 #hm-day .hm-pl{display:block;position:static;top:auto;margin:2.63px 0 0;box-sizing:border-box;height:10.91px;padding:1.5px 4px 0;font-size:10.5px;line-height:9.41px;border-radius:3px}
+}
+
+/* v276 · las pestañas de la ficha (Posición, Movimientos, Cotización, Valoración), centradas en la ficha también en el PC; el mismo margen
+   a los dos lados. Con márgenes automáticos: si en una pantalla muy estrecha no caben, empiezan en el borde en vez de cortarse */
+.sheet .sh-tabw{padding-right:var(--tabp,24px);padding-left:var(--tabp,24px)}
+.sheet .sh-tabs>:first-child{margin-left:auto}
+.sheet .sh-tabs>:last-child{margin-right:auto}
+@media (max-width:759px){.sheet .sh-tabw{--tabp:12px}}
 </style>
 
 <div class="wrap">
@@ -3462,7 +3478,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   </section>
 
   <section class="panel" id="s-plan">
-    <button type="button" class="pl-bar" id="pl-bar" aria-expanded="false" aria-controls="pl-full"><span class="st">Plan de aportación</span><span class="pl-tg"><span id="pl-tg">Ver</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+    <button type="button" class="pl-bar" id="pl-bar" aria-expanded="false" aria-controls="pl-full"><span class="st">Calculadora de operaciones</span><span class="pl-tg"><span id="pl-tg">Ver</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
     <div class="pl-full" id="pl-full">
     <div class="mvb pl-mvb"><label class="mk pl-ak"><span class="mk-k">Aportación</span><span class="pl-in"><input class="inp" id="pl-ap" type="number" min="0" max="9999999" step="any" inputmode="decimal" placeholder="0"><i>€</i></span></label><div class="pl-kk" id="pl-k"></div></div>
     <div class="tablewrap"><table id="t-plan" class="rt"><thead id="pl-head"></thead><tbody id="pl-body"></tbody></table></div>
@@ -3945,7 +3961,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v275";   // la versión publicada, en el pie
+const VER="v276";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5310,7 +5326,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
     ["Anatomía del retorno","Análisis","analisis","s-ret"],["Dividendos","Análisis","analisis","s-divs"],["Mayores pagadores al año","Análisis · Dividendos","analisis","b-payers"],["Próximos cobros","Análisis · Dividendos","analisis","pays"],
     ["Historial por año","Análisis · Dividendos","analisis","c-year"],["Trayectoria","Análisis","analisis","s-tray"],
     ["Movimientos","Pestaña","movimientos"],["Todos los movimientos","Movimientos","todo"],["Transacciones","Movimientos","transacciones"],["Dividendos cobrados","Movimientos","dividendos"],["Aportaciones","Movimientos","aportaciones"],["Ajustes","Movimientos","ajustes"],
-    ["Universo","Pestaña","preseleccion"],["Plan de aportación","Universo","preseleccion","s-plan"],["Radar","Universo","preseleccion","s-radar"],["Rendimiento","Universo","preseleccion","s-perf"],["Todas las empresas","Universo","preseleccion","s-plist"],
+    ["Universo","Pestaña","preseleccion"],["Calculadora de operaciones","Universo","preseleccion","s-plan"],["Radar","Universo","preseleccion","s-radar"],["Rendimiento","Universo","preseleccion","s-perf"],["Todas las empresas","Universo","preseleccion","s-plist"],
     ["Actualidad","Pestaña","actualidad"],["Resultados de la semana","Actualidad","actualidad","a-res"],["Noticias de la semana","Actualidad","actualidad","a-idx"],["Próximos resultados","Actualidad","actualidad","a-prox"]];
   const ACTS=[["priv","Modo privado",["privado","importes","ocultar","mostrar"]],["theme","Apariencia",["oscuro","claro","tema","apariencia","noche"]],["refresh","Volver a leer tu hoja",["actualizar","recargar","leer","hoja"]]];
   const icA=id=>id==="theme"&&/claro/i.test($(id).getAttribute("aria-label"))?IC.sun:IC[id];
