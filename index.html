@@ -3067,6 +3067,13 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 @media (min-width:1001px){#m-k{height:117px}}
 @media (max-width:700px){#m-k .mk-v.mkcv .mk-u:not(.mk-d){display:none}}   /* en el móvil, «239 · 47»: el título ya dice qué es cada cifra */
 .pos-age .pa-d{color:var(--ink3)}
+/* v262 · móvil: sin título grande; la cabecera en una línea: el estado a la izquierda, el ojo y «···» a la derecha */
+@media (max-width:760px){
+  .mtitle{display:none}
+  .top{grid-template-areas:"s x";padding-block:12px 8px}
+  .top .status{font-size:12px;color:var(--ink2)}
+}
+@media (max-width:760px){.top .nav a[aria-current="page"]::after{display:none}}   /* la raya de la pestaña activa se metía en el contenido: en el móvil la marca el color */
 </style>
 
 <div class="wrap">
@@ -3704,7 +3711,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v261";   // la versión publicada, en el pie
+const VER="v262";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
