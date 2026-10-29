@@ -3217,6 +3217,22 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* v270 · la tira fija de arriba (la que da el color a la barra de la hora) queda por debajo de la primera franja de cada pestaña: ya no tapa
    las letras, que van pegadas a la barra. El iPhone sigue tomando el color de la tira (solo mira los elementos fijos) */
 @media (max-width:760px){:is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs){position:relative;z-index:11}}
+
+/* v271 · la ficha en el PC no reserva hueco para su barra de desplazamiento: la barra es fina y flotante (aparece al desplazar o al pasar
+   el ratón, se puede arrastrar y no ocupa sitio). Así la franja de cifras llega al borde y los márgenes son iguales a los dos lados */
+@media (min-width:760px){
+  .sheet{scrollbar-gutter:auto;scrollbar-width:none}
+  .sheet::-webkit-scrollbar{display:none}
+  .sh-sb{position:fixed;z-index:7;width:6px;border-radius:3px;background:rgba(20,20,18,.30);opacity:0;transition:opacity .25s,width .12s;cursor:default;touch-action:none}
+  .sh-sb.on{opacity:1;transition:opacity .08s,width .12s}
+  .sh-sb:hover,.sh-sb.drag{width:8px;background:rgba(20,20,18,.45)}
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sh-sb{background:rgba(255,255,255,.30)}:root:not([data-theme="light"]) .sh-sb:hover,:root:not([data-theme="light"]) .sh-sb.drag{background:rgba(255,255,255,.45)}}
+:root[data-theme="dark"] .sh-sb{background:rgba(255,255,255,.30)}
+:root[data-theme="dark"] .sh-sb:hover,:root[data-theme="dark"] .sh-sb.drag{background:rgba(255,255,255,.45)}
+
+/* v271 · modo privado: los puntos, centrados en la altura de las cifras (no abajo, como unos puntos suspensivos), vayan solos o detrás de un texto */
+.priv .pv::after,.priv #h-val::after,.priv #hm-val::after{top:50%;bottom:auto;line-height:1;transform:translateY(calc(-50% - .075em))}
 </style>
 
 <div class="wrap">
@@ -3856,7 +3872,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v270";   // la versión publicada, en el pie
+const VER="v271";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5189,6 +5205,19 @@ function aSwitch(t){ if(!aCur||aTab===t) return; const b=document.querySelector(
 // en el PC, ← y → pasan a la empresa anterior o a la siguiente
 addEventListener("keydown",e=>{ if(view!=="actualidad"||!ACT||sheet||e.metaKey||e.ctrlKey||e.altKey||!$("kx").hidden||e.target.closest("input,textarea,select")||(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")) return;
   const L=aNav(), i=aCur?L.findIndex(x=>x.id===aCur):-1, n=e.key==="ArrowRight"?(i<0?L[0]:L[i+1]):(i>0?L[i-1]:i===0?{id:""}:null); if(!n) return; e.preventDefault(); aOpen(n.id); });
+
+// la barra de desplazamiento de la ficha en el PC: fina, flotante y arrastrable (la del navegador ocupaba un hueco a la derecha)
+{ const sh=$("sheet"), sb=document.createElement("div"); sb.className="sh-sb"; sb.hidden=true; sb.setAttribute("aria-hidden","true"); document.body.append(sb);
+  let t=0, drag=null; const geo=()=>{ const r=sh.getBoundingClientRect(), tr=r.height-8, h=Math.max(36,tr*sh.clientHeight/sh.scrollHeight), m=sh.scrollHeight-sh.clientHeight; return {r,tr,h,m}; };
+  const pon=on=>{ if(sh.hidden||innerWidth<760||sh.scrollHeight<=sh.clientHeight+1){ sb.hidden=true; return; } const {r,tr,h,m}=geo();
+    sb.hidden=false; sb.style.height=h+"px"; sb.style.top=(r.top+4+(tr-h)*(m?sh.scrollTop/m:0))+"px"; sb.style.left=(r.right-sb.offsetWidth-3)+"px";
+    if(on){ sb.classList.add("on"); clearTimeout(t); t=setTimeout(()=>{ if(!drag&&!sb.matches(":hover")) sb.classList.remove("on"); },900); } };
+  sh.addEventListener("scroll",()=>pon(true),{passive:true}); sh.addEventListener("pointerenter",e=>{ if(e.pointerType==="mouse") pon(true); }); sh.addEventListener("pointermove",e=>{ if(e.pointerType==="mouse"&&!sb.classList.contains("on")) pon(true); },{passive:true});
+  sb.addEventListener("pointerleave",()=>{ if(!drag) pon(true); });
+  sb.addEventListener("pointerdown",e=>{ e.preventDefault(); sb.setPointerCapture(e.pointerId); drag={y:e.clientY,s:sh.scrollTop}; sb.classList.add("drag","on"); });
+  sb.addEventListener("pointermove",e=>{ if(!drag) return; const {tr,h,m}=geo(); sh.scrollTop=drag.s+(e.clientY-drag.y)*m/Math.max(1,tr-h); });
+  const fin=()=>{ if(!drag) return; drag=null; sb.classList.remove("drag"); pon(true); }; sb.addEventListener("pointerup",fin); sb.addEventListener("pointercancel",fin);
+  new MutationObserver(()=>pon(false)).observe(sh,{attributes:true,attributeFilter:["hidden"]}); addEventListener("resize",()=>pon(false)); }
 /* ---------- F · búsqueda rápida (⌘K, Ctrl+K en Windows) ---------- */
 // empresas (las tuyas primero), sus últimos movimientos, las secciones y las acciones de la barra; sin tildes ni mayúsculas
 { const kx=$("kx"), q=$("kx-q"), R=$("kx-r"), mac=/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent); let act=0, run=[], prev=null;
