@@ -13,6 +13,7 @@
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Cartera</title>
+<script>try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3143,15 +3144,18 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 :root{--mv-top:#D3CABA}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--mv-top:#3B3730}}
 :root[data-theme="dark"]{--mv-top:#3B3730}
-/* v265 · iPhone: al tirar hacia abajo, iOS enseña por encima del borde de arriba el fondo de la página (html), no lo que haya en la página.
-   Mientras estás arriba del todo, ese fondo toma el color de la primera franja (negro en Resumen, arena en las demás); al bajar, vuelve al de siempre.
-   El contenido lleva su propio fondo (body), así que no cambia nada más */
+/* v266 · iPhone: al tirar hacia abajo, el hueco de arriba se pinta con el color de fondo del body (WebKit lo coge del body, no del html).
+   Mientras estás arriba del todo, ese color es el de la primera franja; encima va una imagen lisa del color del lienzo, así que en la
+   página no cambia nada. Al bajar, vuelve al de siempre */
 @media (max-width:760px) and (pointer:coarse){
-  body{min-height:100vh;min-height:100dvh}
-  html:has(body[data-view="resumen"]:not(.past-band)){background:var(--h-bg)}
-  html:has(body[data-view]:not([data-view="resumen"]):not(.past-band)){background:var(--ar-bg)}
-  html:has(body[data-view="movimientos"]:not([data-view="resumen"]):not(.past-band)){background:var(--mv-top)}
+  body{min-height:100vh;min-height:100dvh;background-image:linear-gradient(var(--canvas),var(--canvas))}
+  body[data-view="resumen"]:not(.past-band){background-color:var(--h-bg)}
+  body[data-view]:not([data-view="resumen"]):not(.past-band){background-color:var(--ar-bg)}
+  body[data-view="movimientos"]:not([data-view="resumen"]):not(.past-band){background-color:var(--mv-top)}
 }
+/* v266 · móvil: la ficha se desliza hacia la derecha para cerrarla (sigue al dedo); mientras, una sombra la separa de la página */
+.sheet.sh-drag,.sheet.sh-anim{box-shadow:-12px 0 32px rgba(0,0,0,.16)}
+.sheet.sh-anim{transition:transform .22s cubic-bezier(.2,.7,.2,1)}
 </style>
 
 <div class="wrap">
@@ -3792,7 +3796,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v265";   // la versión publicada, en el pie
+const VER="v266";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4115,14 +4119,24 @@ function renderTreemap(){
   if(mobH) el.style.height=Math.round(W*0.75)+"px"; else el.style.removeProperty("height");
   const H=Math.round(el.clientHeight)||260, key=W+"x"+H; if(!W||key===tmW) return; tmW=key;
   const items=mapItems(), tot=sum(items,p=>p.value), MIN=W<400?0.035:W<640?0.025:0.02;
-  const tiles=lay(items,p=>Math.max(p.value/tot,MIN),0,0,W,H);
+  // cada empresa con su peso; si el logo y la cifra no caben holgados en su recuadro (margen, logo, 6 px, cifra y margen, y de lado con su margen), ese recuadro crece
+  // y los demás ceden un poco: el mapa deja de ser exactamente proporcional, pero nada toca el borde
+  const wt=new Map(items.map(p=>[p,Math.max(p.value/tot,MIN)]));
+  for(let vuelta=0;vuelta<14;vuelta++){
+  const tiles=lay(items.slice().sort((a,b)=>wt.get(b)-wt.get(a)),p=>wt.get(p),0,0,W,H);   // de mayor a menor, como necesita el reparto
   el.innerHTML=tiles.map(t=>tileHtml(t.p,t.x,t.y,t.w,t.h)).join("");
   // la cifra cabe siempre entera: si no cabe, primero baja un poco la letra (hasta un 10 %); si aún no, se estrecha el margen del recuadro y, en último caso, baja más
   el.querySelectorAll(".tile").forEach(b=>{ const tp=b.querySelector(".tp"); if(!tp) return; const cs=getComputedStyle(b), base=parseFloat(getComputedStyle(tp).fontSize);
     const rg=document.createRange(); rg.selectNodeContents(tp);
     const room=()=>b.clientWidth-parseFloat(b.style.paddingLeft||cs.paddingLeft)-parseFloat(b.style.paddingRight||cs.paddingRight), wide=()=>rg.getBoundingClientRect().width+1;
     let fs=base; while(wide()>room()&&fs>Math.max(8,base*.9)){ fs-=.5; tp.style.fontSize=fs+"px"; }
-    if(wide()>room()){ b.style.paddingLeft=b.style.paddingRight="3px"; while(wide()>room()&&fs<base){ fs+=.5; tp.style.fontSize=fs+"px"; } while(wide()>room()&&fs>8){ fs-=.5; tp.style.fontSize=fs+"px"; } } });
+    if(wide()>room()){ b.style.paddingLeft=b.style.paddingRight="3px"; while(wide()>room()&&fs<base){ fs+=.5; tp.style.fontSize=fs+"px"; } while(wide()>room()&&fs>8){ fs-=.5; tp.style.fontSize=fs+"px"; } } tp.dataset.k=base/fs; });
+  let crece=false;
+  el.querySelectorAll(".tile").forEach((b,i)=>{ const th=b.querySelector(".th"), tp=b.querySelector(".tp"), cs=getComputedStyle(b), px=k=>parseFloat(b.style[k]||cs[k]);
+    const rg=document.createRange(); rg.selectNodeContents(tp);
+    const nh=px("paddingTop")+th.offsetHeight+(tp.textContent?6+tp.offsetHeight:0)+px("paddingBottom"), nw=(b.style.paddingLeft?16:px("paddingLeft")+px("paddingRight"))+Math.max(th.scrollWidth,rg.getBoundingClientRect().width*(+tp.dataset.k||1));   // si la cifra solo cabía quitando margen o letra, también crece
+    const f=Math.max(nh/b.clientHeight,nw/b.clientWidth); if(f>1.001){ const p=tiles[i].p; wt.set(p,wt.get(p)*Math.min(1.8,f*1.08)); crece=true; } });
+  if(!crece) break; }
 }
 let _mc; const textW=(t,font)=>{ _mc=_mc||document.createElement("canvas").getContext("2d"); _mc.font=font; return _mc.measureText(String(t)).width; };
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ tmW=0; renderTreemap(); });
@@ -5136,9 +5150,32 @@ $("sheet").addEventListener("click",e=>{ const b=e.target.closest("[data-shtab]"
   sh.scrollTop=d; });
 // al bajar por la ficha, su nombre se queda en la barra de arriba
 $("sheet").addEventListener("scroll",()=>$("sheet").classList.toggle("scrolled",$("sheet").scrollTop>70),{passive:true});
-$("sheet-x").addEventListener("click",closeSheet);
-$("sheet-bg").addEventListener("click",closeSheet);   // pulsar fuera de la ficha la cierra
-addEventListener("keydown",e=>{ if(!sheet) return; if(e.key==="Escape") closeSheet();
+// la ficha tiene su propia entrada en el historial: «atrás» (el del navegador, el de Android o el gesto del iPhone) la cierra
+// y no saca de la página; cerrarla con ✕ quita esa entrada
+const closeUI=()=>{ if(history.state&&history.state.sh) history.back(); else closeSheet(); };
+try{ if(history.state&&history.state.sh) history.replaceState({...history.state,sh:0},""); }catch{}
+addEventListener("popstate",()=>{ if(sheet&&!(history.state&&history.state.sh)) closeSheet(); });
+new MutationObserver(()=>{ const S=$("sheet");
+  if(!S.hidden){ if(!(history.state&&history.state.sh)) try{ history.pushState({...history.state,sh:1},""); }catch{} }
+  else { S.style.transform=""; S.classList.remove("sh-drag","sh-anim"); } }).observe($("sheet"),{attributes:true,attributeFilter:["hidden"]});
+// móvil: deslizar la ficha hacia la derecha la cierra, como «atrás» en el iPhone; la ficha sigue al dedo y, si no llega, vuelve a su sitio.
+// Desde el borde izquierdo vale siempre; desde dentro, salvo sobre un gráfico o una tabla que se mueve de lado
+if(matchMedia("(pointer:coarse)").matches){ const S=$("sheet"); let g=null;
+  const lado=el=>{ for(let e=el;e&&e!==S;e=e.parentElement){ if(e.matches("canvas,input,select,textarea")||(e.matches("svg")&&e.getBoundingClientRect().width>=120)) return true;
+    if(e.scrollWidth>e.clientWidth+1&&e.scrollLeft>0&&/auto|scroll/.test(getComputedStyle(e).overflowX)) return true; } return false; };
+  S.addEventListener("touchstart",e=>{ if(!sheet||e.touches.length!==1||S.classList.contains("sh-anim")){ g=null; return; } const t=e.touches[0], x=t.clientX-S.getBoundingClientRect().left;
+    g={x:t.clientX,y:t.clientY,dx:0,ok:x>24&&lado(e.target)?false:null,s:[[t.clientX,e.timeStamp]]}; },{passive:true});
+  S.addEventListener("touchmove",e=>{ if(!g||g.ok===false) return; const t=e.touches[0], dx=t.clientX-g.x, dy=t.clientY-g.y;
+    if(g.ok===null){ if(Math.abs(dx)<8&&Math.abs(dy)<8) return; if(dx>0&&Math.abs(dx)>Math.abs(dy)*1.3&&e.cancelable){ g.ok=true; S.classList.add("sh-drag"); } else { g.ok=false; return; } }
+    e.preventDefault(); g.dx=Math.max(0,dx); g.s.push([t.clientX,e.timeStamp]); if(g.s.length>4) g.s.shift(); S.style.transform=`translateX(${g.dx}px)`; },{passive:false});
+  const fin=e=>{ if(!g) return; const G=g; g=null; if(!G.ok) return; S.classList.remove("sh-drag");
+    const a=G.s[0], b=G.s[G.s.length-1], v=b[1]>a[1]?(b[0]-a[0])/(b[1]-a[1]):0, w=S.offsetWidth, out=e.type==="touchend"&&(G.dx>w*.33||(v>.3&&G.dx>30));
+    S.classList.add("sh-anim"); S.style.transform=out?`translateX(${w}px)`:"";
+    setTimeout(()=>{ S.classList.remove("sh-anim"); if(!out) return; closeUI(); setTimeout(()=>{ if(sheet) closeSheet(); },400); },230); };
+  S.addEventListener("touchend",fin,{passive:true}); S.addEventListener("touchcancel",fin,{passive:true}); }
+$("sheet-x").addEventListener("click",closeUI);
+$("sheet-bg").addEventListener("click",closeUI);   // pulsar fuera de la ficha la cierra
+addEventListener("keydown",e=>{ if(!sheet) return; if(e.key==="Escape") closeUI();
   else if((e.key==="ArrowLeft"||e.key==="ArrowRight")&&!e.target.closest("input,select,textarea")){ e.preventDefault(); stepSheet(e.key==="ArrowLeft"?-1:1); } });
 /* Plan plegado en una línea: «Abrir» / «Plegar» siempre en el mismo sitio; se recuerda en este dispositivo */
 let plOpen=false; try{ plOpen=localStorage.getItem("plOpen")==="1"; }catch{}
@@ -5336,9 +5373,23 @@ document.addEventListener("click",e=>{ const b=e.target.closest(".info"), pop=$(
 
 $("refresh").addEventListener("click",()=>{ load(true); loadAct(true); });
 // móvil: tirar hacia abajo desde arriba del todo lee la hoja de nuevo, igual que el botón Actualizar (en la app de la pantalla de inicio no hay otro gesto)
-if(matchMedia("(pointer:coarse)").matches){ const C=document.createElement("div"); C.id="topcap"; C.setAttribute("aria-hidden","true"); document.body.prepend(C);
+if(matchMedia("(pointer:coarse)").matches){ let C=document.createElement("div"); C.id="topcap"; C.setAttribute("aria-hidden","true"); document.body.prepend(C);
   let raf=0; const past=()=>{ raf=0; const b=document.querySelector(".view:not([hidden]) > :is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs)");
-    document.body.classList.toggle("past-band",!b||scrollY>b.offsetTop+b.offsetHeight-C.offsetHeight); };
+    document.body.classList.toggle("past-band",!b||scrollY>b.offsetTop+b.offsetHeight-C.offsetHeight); bar(); };
+  // el iPhone pinta la barra de la hora con el color de lo que hay arriba, pero no siempre lo vuelve a mirar cuando cambia (al pasar a
+  // modo oscuro, por ejemplo): cada vez que la tapa cambia de color (otra pestaña, al bajar, la ficha, claro u oscuro) se pone una
+  // tapa nueva, y el color de la ventana (theme-color) la acompaña
+  let last="", rq=0, f=false;
+  const pinta=()=>{ rq=0; const c=getComputedStyle(C).backgroundColor; if(c===last&&!f) return; last=c; f=false;
+    const nC=C.cloneNode(); C.replaceWith(nC); C=nC;
+    let M=[...document.querySelectorAll('meta[name="theme-color"]')]; if(!M.length){ const m=document.createElement("meta"); m.name="theme-color"; document.head.append(m); M=[m]; }
+    M.forEach(m=>{ m.removeAttribute("media"); m.content=c; }); };
+  const bar=()=>{ if(!rq) rq=requestAnimationFrame(pinta); }, otra=()=>{ f=true; bar(); };   // otra: al volver a la app, tapa nueva aunque no cambie
+  new MutationObserver(bar).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+  new MutationObserver(bar).observe(document.body,{attributes:true,attributeFilter:["data-view","class"]});
+  new MutationObserver(bar).observe($("sheet"),{attributes:true,attributeFilter:["hidden"]});
+  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",otra); addEventListener("pageshow",otra);
+  document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") otra(); });
   addEventListener("scroll",()=>{ if(!raf) raf=requestAnimationFrame(past); },{passive:true}); addEventListener("hashchange",()=>setTimeout(past,50)); document.addEventListener("click",()=>setTimeout(past,50)); past(); }
 $("hmob").addEventListener("click",()=>$("priv").click());   // móvil: tocar el bloque oscuro oculta o enseña los importes
 $("mm-ver").textContent="Versión "+VER.slice(1);
