@@ -3302,6 +3302,10 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   .priv .hmob.hm1 #hm-tot .pv,.priv .hmob.hm1 #hm-day .pv{font-size:0;line-height:0;letter-spacing:0}
   .priv .hmob.hm1 #hm-tot .pv::after,.priv .hmob.hm1 #hm-day .pv::after{position:static;display:inline-block;font-size:15px;line-height:18px;transform:translateY(-.075em)}
 }
+
+/* v275 · el bloque oscuro de Resumen, en modo noche, gris oscuro (algo más claro que el fondo) en vez de verde */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--h-bg:#2B2B29;--h-card:#353533;--h-line:#41403D;--h-fg2:#B6B5AF;--h-fg3:#9C9B95}}
+:root[data-theme="dark"]{--h-bg:#2B2B29;--h-card:#353533;--h-line:#41403D;--h-fg2:#B6B5AF;--h-fg3:#9C9B95}
 </style>
 
 <div class="wrap">
@@ -3941,7 +3945,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v274";   // la versión publicada, en el pie
+const VER="v275";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4080,7 +4084,8 @@ function fichaPos(p){
   if(buys.length){ const t0=+buys[0].d, tz=+buys[buys.length-1].d, now=+new Date(), tight=buys.length>1&&tz-t0<0.15*(now-t0), t1=tight?Math.max(tz,t0+864e5):Math.max(now,t0+864e5), mx=Math.max(...buys.map(b=>b.a||0),1);
     // compras muy juntas: se apilan hacia arriba en vez de taparse (calculado para la línea más estrecha, 200 px)
     const pl=[]; buys.forEach(b=>{ const r=Math.round(4+Math.sqrt((b.a||0)/mx)*5), x=((+b.d)-t0)/(t1-t0)*200; let y=0; while(pl.some(o=>Math.hypot(o.x-x,o.y-y)<o.r+r+1.5)) y--; pl.push({b,r,x,y}); });
-    const o=Math.max(0,...pl.map(q=>q.r-q.y-12)), H=Math.max(64,34+o), ax=H-22;
+    // el alto es siempre el mismo (el bloque de Dividendos no se mueve al pasar de empresa): si la pila no cabe, se aprieta hacia abajo
+    const H=64, ax=H-22, k=Math.min(1,...pl.filter(q=>q.y<0).map(q=>(q.r-ax+2)/q.y)); pl.forEach(q=>q.y*=k);
     tl=`<div class="fq-tl" style="--h:${H}px"><i class="fq-ax"></i>${pl.map(({b,r,y})=>{
         // la etiqueta: fecha, acciones y precio; en los extremos se alinea hacia dentro para no salirse del panel
         const xp=((+b.d)-t0)/(t1-t0)*100, tip=`${flong(b.d)}${isNum(b.n)?` · ${shares(b.n)} ${b.n===1?"acción":"acciones"}${isNum(b.pr)?` a ${money(b.pr,p.cur)}`:""}`:""}${b.sold?" · vendida":""}`;
