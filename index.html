@@ -2984,6 +2984,14 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 #notice .nt-alt label{color:var(--nt-fg);text-decoration:underline;text-decoration-color:var(--nt-fg3);text-underline-offset:3px;cursor:pointer}
 @media (min-width:701px){#notice .notice{border-radius:0;box-shadow:0 0 0 100vmax var(--nt-bg);clip-path:inset(0 -100vmax)}}
 @media (max-width:700px){#notice .notice,#notice .notice:has(.nt-ac){grid-template-columns:minmax(0,1fr);padding:22px 18px;gap:18px}#notice h2{font-size:20px;line-height:26px}#notice .keyf .inp{font-size:16px}}
+/* v256 · el acceso en dos casillas: ID de tu script y clave, cada una con su nombre encima */
+#notice .keyf{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 8px;align-items:end}
+#notice .kf-l{display:flex;flex-direction:column;gap:6px;min-width:0}
+#notice .kf-l.kf-d{grid-column:1/-1}
+#notice .kf-l>span{font-size:11px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--nt-fg3)}
+#notice .keyf .inp{width:100%;flex:none}   /* la regla antigua del hueco (flex:1) las aplastaba */
+#notice .kf-m{grid-column:1/-1;margin:-4px 0 0;font-size:13px;line-height:18px;color:var(--neg)}
+#notice .kf-m:empty{display:none}
 </style>
 
 <div class="wrap">
@@ -3620,7 +3628,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v255";   // la versión publicada, en el pie
+const VER="v256";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5026,7 +5034,7 @@ function notice(html,k){ const n=$("notice"); n.innerHTML = html ? `<div class="
   if(html){ const tx=n.querySelector(".nt-tx"), ac=[...tx.children].filter(e=>e.matches(".keyf,.btn,.nt-alt")); if(ac.length){ const a=document.createElement("div"); a.className="nt-ac"; a.append(...ac); tx.after(a); } }
   document.body.classList.toggle("nodata",!!html&&!DATA); }   // sin datos que esperar, los huecos de carga dejan de parpadear
 const fileBtn = `<label class="btn filelbl">Abrir un archivo .xlsx<input type="file" id="file" accept=".xlsx"></label>`;
-const fileAlt = `<p class="nt-alt">¿Sin el enlace a mano? <label class="filelbl" title="En tu hoja: Archivo → Descargar → Microsoft Excel">Abre una copia de tu hoja<input type="file" id="file" accept=".xlsx"></label> descargada en Excel</p>`;
+const fileAlt = `<p class="nt-alt">¿Sin la clave a mano? <label class="filelbl" title="En tu hoja: Archivo → Descargar → Microsoft Excel">Abre una copia de tu hoja<input type="file" id="file" accept=".xlsx"></label> descargada en Excel</p>`;
 document.addEventListener("change",e=>{ if(e.target.id!=="file"||!e.target.files[0]) return; const fr=new FileReader();
   fr.onload=()=>{ try{ const wb=readWb(new Uint8Array(fr.result),"array"); render(model(parse(wb))); notice(""); setStatus("","Archivo local");
     $("asof").textContent="Datos de "+e.target.files[0].name; }catch(err){ notice(`<h2>No he podido leer ese archivo</h2><p>${esc(err.message)}</p>${fileBtn}`,"Archivo"); } };
@@ -5058,10 +5066,14 @@ const readSheet = ac => GAS
         e=>Promise.reject(e&&e.name==="AbortError"?e:{code:"rem_net",message:String((e&&e.message)||e)}))
       .then(j=>j&&j.ok?{payload:{content:j.xlsx}}:Promise.reject({code:j&&j.error==="clave"?"bad_key":"rem_error",message:(j&&j.error)||""}));
 // el hueco para pegar tu enlace personal, si falta o la clave no vale
-const keyForm = `<form class="keyf" id="keyf"><input class="inp" id="keyi" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Pega aquí tu enlace" aria-label="Tu enlace personal"><button class="btn primary" type="submit">Entrar</button></form>`;
-document.addEventListener("submit",e=>{ if(e.target.id!=="keyf") return; e.preventDefault(); const c=remCfg($("keyi").value.trim());
-  if(!c||c.bad){ $("keyi").value=""; $("keyi").placeholder=c?"Falta el ID de tu script (empieza por AKfy…)":"Ese enlace no lleva la clave: pega el enlace completo"; return; }
-  try{ localStorage.setItem("cartera-d",c.d); localStorage.setItem("cartera-k",c.k); }catch{} location.replace(location.pathname+location.search); });
+const keyForm = `<form class="keyf" id="keyf" novalidate><label class="kf-l kf-d"><span>ID de implementación</span><input class="inp" id="keyd" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Empieza por AKfy…"></label><label class="kf-l"><span>Tu clave</span><input class="inp" id="keyk" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="La de tu Code.gs"></label><button class="btn primary" type="submit">Entrar</button><p class="kf-m" id="keym" aria-live="polite"></p></form>`;
+const keyHelp = `<p>Los dos salen del script que guarda tu clave en su Code.gs (no del que sirve la web desde tu Google). El ID de implementación está en Implementar → Gestionar implementaciones y empieza por AKfy (no es el HOJA_ID); también vale la dirección que acaba en /exec.</p>`;
+document.addEventListener("submit",e=>{ if(e.target.id!=="keyf") return; e.preventDefault();
+  const dv=$("keyd").value.trim(), kv=$("keyk").value.trim(), m=$("keym"), all=[remCfg(dv),remCfg(kv)].find(c=>c&&!c.bad);   // el enlace personal entero, en cualquiera de las dos
+  const kl=kv.match(/clave\s*=\s*["'`]([^"'`]+)["'`]/i), d=all?all.d:remId(dv)||remId(kv), k=all?all.k:kl?kl[1]:kv.replace(/^["'`]+|["'`;]+$/g,"");
+  if(!d){ m.textContent=!dv?"Pega el ID de implementación de tu script":/^[\w-]{30,}$/.test(dv)||/docs\.google\.com\/spreadsheets/.test(dv)?"Eso es el ID de tu hoja (HOJA_ID). Aquí va el ID de implementación, el que empieza por AKfy":"Eso no es el ID de implementación: empieza por AKfy"; $("keyd").focus(); return; }
+  if(!k||remId(k)){ m.textContent="Pega tu clave en la segunda casilla"; $("keyk").focus(); return; }
+  try{ localStorage.setItem("cartera-d",d); localStorage.setItem("cartera-k",k); }catch{} location.replace(location.pathname+location.search); });
 // copia de la última hoja leída en este navegador (IndexedDB; solo en este dispositivo): se pinta al abrir mientras llega la nueva
 const idb=()=>new Promise((res,rej)=>{ try{ const r=indexedDB.open("cartera",1); r.onupgradeneeded=()=>r.result.createObjectStore("hoja"); r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); }catch(e){ rej(e); } });
 const cacheGet=()=>Promise.race([idb().then(db=>new Promise((res,rej)=>{ const q=db.transaction("hoja").objectStore("hoja").get("ultima"); q.onsuccess=()=>res(q.result||null); q.onerror=()=>rej(q.error); })),new Promise(r=>setTimeout(()=>r(null),1500))]).catch(()=>null);
@@ -5109,9 +5121,9 @@ async function load(fresh){
     else if(c==="rem_net"){ let ok=false; try{ ok=localStorage.getItem("cartera-ok")===REM.d; }catch{}
       if(navigator.onLine===false) notice(`<h2>Sin conexión a internet</h2><p>${DATA?"Sigues viendo los últimos datos cargados. ":""}Cuando vuelva la conexión, pulsa Actualizar.</p>`);
       else if(ok) notice(`<h2>Tu script de Google no responde ahora mismo</h2><p>${DATA?"Sigues viendo los últimos datos cargados. ":""}Pulsa Actualizar en unos segundos.</p>`);
-      else notice(`<h2>No llego a tu script de Google</h2><p>Lo más probable es que el ID de tu enlace no sea el de tu script. Pega aquí tu enlace personal completo, el que termina en #d=…&k=…</p><p>Si el ID es el bueno, revisa en Apps Script que la implementación sea una aplicación web con acceso para «Cualquier usuario».</p>${keyForm}`,"Tu enlace personal"); }
+      else notice(`<h2>No llego a tu script de Google</h2><p>Lo más probable es que el ID no sea el del script que tiene tu clave. Pega aquí el ID y tu clave.</p>${keyHelp}<p>Si el ID es el bueno, revisa en Apps Script que la implementación sea una aplicación web con acceso para «Cualquier usuario».</p>${keyForm}`,"Acceso a tu hoja"); }
     else if(e instanceof Error&&!c) notice(`<h2>No he podido calcular la cartera</h2><p>${esc(e.message)}</p><p>Comprueba que las pestañas y cabeceras de la hoja no han cambiado de nombre.</p>`,"Tu hoja");
-    else if(c==="bad_key") notice(`<h2>Tu clave no es la de tu script</h2><p>Pega otra vez tu enlace personal completo, el que termina en #d=…&k=…</p>${keyForm}`,"Tu enlace personal");
+    else if(c==="bad_key"){ notice(`<h2>Tu clave no es la de tu script</h2><p>El ID es el bueno; pega tu clave tal cual está en tu Code.gs.</p>${keyForm}`,"Acceso a tu hoja"); $("keyd").value=REM.d; }
     else if(c==="rem_error") notice(`<h2>Tu script de Google no ha devuelto la hoja</h2><p>${esc(e.message||"")}</p><p>${DATA?"Sigues viendo los últimos datos cargados. ":""}Pulsa Actualizar en unos segundos.</p>`);
     else if(c==="gas_error") notice(`<h2>Tu Google no ha devuelto la hoja</h2><p>${esc(e.message||"")}</p><p>${DATA?"Sigues viendo los últimos datos cargados. ":""}Pulsa Actualizar en unos segundos.</p>`);
     else if(c==="tool_error") notice(`<h2>Google Drive no ha devuelto la hoja</h2><p>${esc(e.message||"")}</p><p>Comprueba que el archivo «Inversiones» sigue existiendo y pulsa Actualizar.</p>`);
@@ -5141,8 +5153,7 @@ document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==
   if(!window.XLSX){ setStatus("err","Sin conexión"); notice(`<h2>No se ha podido cargar el lector de hojas</h2><p>Recarga la página.</p>`); return; }
   if(!GAS){ try{ mcp = window.claude && await window.claude.use("mcp"); }catch{ mcp=null; } }
   if(!canRead()){ setStatus("err","Sin conexión"); $("asof").textContent="Sin acceso a tu hoja desde aquí";
-    notice(remBad?`<h2>A tu enlace le falta el ID de tu script</h2><p>El ID va entre #d= y &k= y empieza por AKfy. Lo tienes en Apps Script → Implementar → Gestionar implementaciones. Pega aquí tu enlace completo.</p>${keyForm}${fileAlt}`
-      :`<h2>Falta tu enlace personal</h2><p>Abre esta web desde tu enlace personal, el que termina en #d=…&k=…, o pégalo aquí. Solo hace falta una vez en cada dispositivo.</p>${keyForm}${fileAlt}`,"Tu enlace personal"); return; }
+    notice(`<h2>${remBad?"Falta el ID de tu script":"Conecta esta web con tu hoja"}</h2><p>Pega el ID de tu script y tu clave. Solo hace falta una vez en cada dispositivo.</p>${keyHelp}${keyForm}${fileAlt}`,"Acceso a tu hoja"); return; }
   load(false);
 })();
 })();
