@@ -1151,7 +1151,7 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
   #t-pos .m-var{display:inline-block;padding:1px 0}
   .rt#t-pos tbody tr.pr{grid-template-columns:48px minmax(0,1fr) minmax(86px,auto)}.rt#t-pos td.r-sub{min-height:20px}
   #t-pos .m-sh .x{display:none}
-  .duo{display:contents}#v-resumen>*{order:2}#v-resumen>:is(#chk-alert,#px-alert,#s-hero,#s-pos),#s-today{order:0}#s-evo{order:1}}
+  .duo{display:contents}#v-resumen>*{order:2}#v-resumen>:is(#s-hero,#hoja-al,#s-pos),#s-today{order:0}#s-evo{order:1}}
 @media (max-width:380px){.rt#t-pos tbody tr.pr{grid-template-columns:44px minmax(0,1fr) minmax(80px,auto)}#t-pos .m-var{font-size:11px}#t-pos .m-sh .w{display:none}#t-pos .m-sh .x{display:inline}}
 @media (max-width:440px){#m-k .mk-yr em i{display:none}#m-k .mk-yr em::after{content:attr(data-s)}
   #m-k .mk-sl.col{gap:4px}#m-k .mk-sl.col span{flex-wrap:wrap;row-gap:0}#m-k .mk-sl.col em{flex-basis:100%;margin-left:0;padding-left:14px}#m-k .mk-sl.col b.dt{display:none}}
@@ -3156,6 +3156,26 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* v266 · móvil: la ficha se desliza hacia la derecha para cerrarla (sigue al dedo); mientras, una sombra la separa de la página */
 .sheet.sh-drag,.sheet.sh-anim{box-shadow:-12px 0 32px rgba(0,0,0,.16)}
 .sheet.sh-anim{transition:transform .22s cubic-bezier(.2,.7,.2,1)}
+/* v267 · tu hoja: lo que no tiene cotización y lo que no cuadra, en un solo aviso. Una franja arena pegada debajo del bloque oscuro,
+   con el diseño de los avisos (etiqueta pequeña y texto); en el móvil, de lado a lado como las franjas */
+.hoja-al{--nt-bg:#E9E3D7;--nt-line:#D3CABA;--nt-fg:#1A1A1A;--nt-fg2:#4A4843;--nt-fg3:#6F6A61;margin-top:calc(-1 * var(--gap))}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hoja-al{--nt-bg:#272420;--nt-line:#3B3730;--nt-fg:#EDE9E2;--nt-fg2:#C6BFB4;--nt-fg3:#9D968B}}
+:root[data-theme="dark"] .hoja-al{--nt-bg:#272420;--nt-line:#3B3730;--nt-fg:#EDE9E2;--nt-fg2:#C6BFB4;--nt-fg3:#9D968B}
+.hoja-al .hal{background:var(--nt-bg);color:var(--nt-fg2);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 40px;align-items:center;padding:18px 30px}
+.hoja-al .hal-tx{display:flex;flex-direction:column;gap:6px;min-width:0}
+.hoja-al .nt-k{font-size:11px;font-weight:600;line-height:14px;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--nt-fg3)}
+.hoja-al p{margin:0;max-width:96ch;font-size:14px;line-height:21px}
+.hoja-al b{font-weight:500;color:var(--nt-fg)}
+#hoja-al .hal .btn{height:auto;min-height:0;padding:0;margin:0;border:0;border-radius:0;background:none;box-shadow:none;font-size:14px;line-height:21px;font-weight:500;color:var(--nt-fg);white-space:nowrap;text-decoration:underline;text-decoration-color:var(--nt-fg3);text-underline-offset:4px}   /* «Ver el cuadre», como enlace: alineado con el texto */
+@media (min-width:701px){.hoja-al .hal{box-shadow:0 0 0 100vmax var(--nt-bg);clip-path:inset(0 -100vmax)}}
+@media (max-width:700px){.hoja-al{margin-left:-16px;margin-right:-16px}.hoja-al .hal{grid-template-columns:minmax(0,1fr);padding:16px 16px 18px;gap:12px}#hoja-al .hal .btn{justify-self:start}}
+/* v267 · Rendimiento: la cotización de cada empresa (en el PC, en su columna antes de la barra; en el móvil, debajo de la cifra) y la columna
+   de la cifra tan ancha como haga falta (un +1.234 % ya no se sale) */
+.pf-row .pf-px{font-size:13px;color:var(--ink3);text-align:right;white-space:nowrap}
+.pf-row .c{white-space:nowrap}
+.pf-row{grid-template-columns:minmax(0,1fr) max-content minmax(60px,26%) minmax(66px,max-content)}
+@media (min-width:601px){#perf-up,#perf-dn{grid-template-columns:minmax(max-content,1fr) max-content minmax(0,26%) minmax(66px,max-content)}}
+@media (max-width:600px){.pf-row{grid-template-columns:minmax(0,1fr) max-content;column-gap:12px;row-gap:1px}.pf-row .co{grid-row:1/span 2}.pf-row .c{grid-column:2;grid-row:1;align-self:end}.pf-row .pf-px{grid-column:2;grid-row:2;align-self:start;font-size:12px;line-height:16px}}
 </style>
 
 <div class="wrap">
@@ -3169,8 +3189,6 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   <div id="notice" hidden></div>
 
   <div class="view" id="v-resumen">
-  <div class="alert" id="chk-alert" hidden></div>
-  <div class="alert" id="px-alert" hidden></div>
 
   <!-- Resumen -->
   <section class="panel hero3 band2" id="s-hero">
@@ -3193,6 +3211,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
       <span class="hm-l num" id="hm-val"><span class="skel">000.000 €</span></span><span class="hm-r num" id="hm-day"></span>
       <span class="hm-s hm-l num" id="hm-tot"></span></div>
   </section>
+  <div class="hoja-al" id="hoja-al" role="status" hidden></div>
 
   <div class="duo">
   <!-- Tu cartera hoy -->
@@ -3796,7 +3815,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v266";   // la versión publicada, en el pie
+const VER="v267";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4052,17 +4071,21 @@ function render(d){
   renderAnatomy();
 
 
-  // posiciones sin cotización en tu hoja: se valoran a precio de compra
-  { const n=d.noPx||[], el=$("px-alert"); el.hidden=!n.length;
-    if(n.length) el.innerHTML=`<span><b>Sin cotización en tu hoja:</b> ${n.map(p=>esc(p.name)).join(", ")}. ${n.length>1?"Se valoran":"Se valora"} a precio de compra.</span>`; }
-
   // cuadre
   const bad=d.check.filter(c=>c.ok===false);
   $("chk-tag").className="tag "+(bad.length?"warn":""); $("chk-tag").textContent=bad.length?`${bad.length} ${bad.length>1?"diferencias":"diferencia"}`:"✓ Todo cuadra";
-  const al=$("chk-alert"); al.hidden=!bad.length; $("s-check").hidden=!bad.length&&!chkShow;
+  $("s-check").hidden=!bad.length&&!chkShow;
   $("foot").innerHTML=`<button type="button" class="foot-b${bad.length?" warn-t":""}" id="chk-show">${bad.length?`${bad.length} ${bad.length>1?"diferencias":"diferencia"} con tu hoja`:"✓ Cuadra con tu hoja"}</button><button type="button" class="foot-b foot-m" id="f-more" aria-haspopup="menu">Ajustes</button>`; $("chk-show").title=`Versión ${VER}`;
-  const bc=bad.filter(c=>!c.data), bd=bad.filter(c=>c.data), ls=xs=>xs.map(c=>esc(c.l.toLowerCase())).join(", ");
-  if(bad.length) al.innerHTML=`<span>${bc.length?`<b>La web no cuadra con tu hoja de Inversiones</b> en ${ls(bc)}.`:""}${bd.length?`${bc.length?" ":""}<b>Revisa en tu hoja:</b> ${ls(bd)}.`:""}</span><button type="button" class="btn" id="chk-go">Ver el cuadre</button>`;
+  // tu hoja: lo que no tiene cotización (se valora a precio de compra) y lo que no cuadra, en un solo aviso, en una franja debajo del bloque oscuro
+  { const n=d.noPx||[], bc=bad.filter(c=>!c.data), bd=bad.filter(c=>c.data), el=$("hoja-al");
+    const yL=L=>L.length>1?L.slice(0,-1).join(", ")+" y "+L[L.length-1]:L[0]||"";
+    const lw=t=>/^.[a-záéíóúñ]/.test(t)?t[0].toLowerCase()+t.slice(1):t, ls=xs=>yL(xs.map(c=>esc(lw(c.l))));   // «frente al MSCI World» y «TIR anualizada», con sus mayúsculas
+    const t=[];
+    if(n.length) t.push(`<b>${yL(n.map(p=>esc(p.name)))}</b> ${n.length>1?"no tienen":"no tiene"} cotización en tu hoja: la web ${n.length>1?"las":"la"} valora a precio de compra.`);
+    if(bc.length) t.push(`${n.length?"Mientras tanto, la web":"La web"} no cuadra con tu hoja en ${ls(bc)}.`);
+    if(bd.length) t.push(`Revisa en tu hoja: ${ls(bd)}.`);
+    el.hidden=!t.length;
+    el.innerHTML=t.length?`<div class="hal"><div class="hal-tx"><span class="nt-k">Tu hoja</span><p>${t.join(" ")}</p></div>${bad.length?`<button type="button" class="btn" id="chk-go">Ver el cuadre</button>`:""}</div>`:""; }
   const cf=(c,v)=>!isNum(v)?"":c.kind==="pct"?pct(v,2):c.kind==="pp"?pp(v):c.kind==="n"?nf(0).format(v):eur(v,2);
   const cdiff=c=>c.kind==="pct"||c.kind==="pp"?pp(c.a-c.b):c.kind==="n"?nf(0).format(c.b-c.a)+" no":seur(c.a-c.b,2);
   $("chk").innerHTML = `<div class="ck h"><span></span><span>Web</span><span>Hoja</span><span></span></div>` + d.check.map(c=>`<div class="ck"><span>${esc(c.l)}${c.note?`<small>${esc(c.note)}</small>`:""}</span><span class="num">${cf(c,c.a)}</span><span class="num mute">${cf(c,c.b)}</span><span class="num ${c.ok?"":c.ok===false?"warn-t":"mute"}">${c.ok?"✓ Cuadra":c.ok===false?"Δ "+cdiff(c):""}</span></div>`).join("");
@@ -4114,29 +4137,59 @@ function tileHtml(p,x,y,w,h){
 }
 const mapItems=()=>DATA.pos.filter(p=>p.value>0&&!p.isOption).sort((a,b)=>b.value-a.value);
 const lay=(ps,wt,x,y,w,h)=>{ const t=sum(ps,wt)||1; return squarify(ps.map(p=>({p,a:wt(p)/t*w*h})),x,y,w,h); };
+// como squarify, pero cada recuadro sabe lo que necesita (nw × nh): antes de cerrar cada fila se prueban varias (de 1 a 7 recuadros),
+// se completa el resto del mapa y se queda la que deja menos recuadros sin sitio y menos alargados; así no salen tiras bajas al final
+function squarifyMin(items,x,y,w,h){
+  const place=(row,x,y,w,h)=>{ const vert=w>=h, side=vert?h:w, thick=sum(row,r=>r.a)/side; let off=0;
+    const out=row.map(it=>{ const len=it.a/thick, t=vert?{...it,x,y:y+off,w:thick,h:len}:{...it,x:x+off,y,w:len,h:thick}; off+=len; return t; });
+    return {out,rect:vert?[x+thick,y,w-thick,h]:[x,y+thick,w,h-thick]}; };
+  const greedy=(rest,x,y,w,h)=>{ const out=[]; while(rest.length){ const side=Math.min(w,h), worst=row=>{ const s=sum(row,r=>r.a), mx=Math.max(...row.map(r=>r.a)), mn=Math.min(...row.map(r=>r.a)); return Math.max(side*side*mx/(s*s),s*s/(side*side*mn)); };
+      let row=[rest[0]], best=worst(row), i=1; while(i<rest.length){ const nr=row.concat(rest[i]), nw=worst(nr); if(nw<=best){ row=nr; best=nw; i++; } else break; }
+      const p=place(row,x,y,w,h); out.push(...p.out); [x,y,w,h]=p.rect; rest=rest.slice(row.length); } return out; };
+  const avg=sum(items,r=>r.a)/items.length, cost=ts=>ts.reduce((c,t)=>c+(t.w<t.nw?10+100*(t.nw/t.w-1):0)+(t.h<t.nh?10+100*(t.nh/t.h-1):0)+.5*(Math.max(t.w/t.h,t.h/t.w)-1)*t.a/avg,0);   // lo alargado pesa más cuanto más grande es el recuadro
+  const out=[]; let rest=items.slice(), R=[x,y,w,h];
+  while(rest.length){ let best=null;
+    for(let k=1;k<=Math.min(rest.length,7);k++){ const p=place(rest.slice(0,k),...R), c=cost(p.out.concat(greedy(rest.slice(k),...p.rect))); if(!best||c<best.c) best={c,k,p}; }
+    out.push(...best.p.out); R=best.p.rect; rest=rest.slice(best.k); }
+  return out;
+}
 function renderTreemap(){
-  const el=$("tmap"); if(!DATA||!el) return; const W=el.clientWidth, mobH=true;   // el mapa siempre en 4:3, también en pantallas anchas (con las dos columnas iguales, ya no se estira al alto de Evolución)
-  if(mobH) el.style.height=Math.round(W*0.75)+"px"; else el.style.removeProperty("height");
-  const H=Math.round(el.clientHeight)||260, key=W+"x"+H; if(!W||key===tmW) return; tmW=key;
+  const el=$("tmap"); if(!DATA||!el) return; const W=el.clientWidth;   // el mapa en 4:3 (con las dos columnas iguales, ya no se estira al alto de Evolución); si no caben todas, algo más alto
+  const H0=Math.round(W*.75), key=W+"x"+H0; if(!W||key===tmW) return; tmW=key; el.style.height=H0+"px"; let H=H0;
   const items=mapItems(), tot=sum(items,p=>p.value), MIN=W<400?0.035:W<640?0.025:0.02;
-  // cada empresa con su peso; si el logo y la cifra no caben holgados en su recuadro (margen, logo, 6 px, cifra y margen, y de lado con su margen), ese recuadro crece
-  // y los demás ceden un poco: el mapa deja de ser exactamente proporcional, pero nada toca el borde
-  const wt=new Map(items.map(p=>[p,Math.max(p.value/tot,MIN)]));
-  for(let vuelta=0;vuelta<14;vuelta++){
-  const tiles=lay(items.slice().sort((a,b)=>wt.get(b)-wt.get(a)),p=>wt.get(p),0,0,W,H);   // de mayor a menor, como necesita el reparto
-  el.innerHTML=tiles.map(t=>tileHtml(t.p,t.x,t.y,t.w,t.h)).join("");
-  // la cifra cabe siempre entera: si no cabe, primero baja un poco la letra (hasta un 10 %); si aún no, se estrecha el margen del recuadro y, en último caso, baja más
-  el.querySelectorAll(".tile").forEach(b=>{ const tp=b.querySelector(".tp"); if(!tp) return; const cs=getComputedStyle(b), base=parseFloat(getComputedStyle(tp).fontSize);
-    const rg=document.createRange(); rg.selectNodeContents(tp);
-    const room=()=>b.clientWidth-parseFloat(b.style.paddingLeft||cs.paddingLeft)-parseFloat(b.style.paddingRight||cs.paddingRight), wide=()=>rg.getBoundingClientRect().width+1;
-    let fs=base; while(wide()>room()&&fs>Math.max(8,base*.9)){ fs-=.5; tp.style.fontSize=fs+"px"; }
-    if(wide()>room()){ b.style.paddingLeft=b.style.paddingRight="3px"; while(wide()>room()&&fs<base){ fs+=.5; tp.style.fontSize=fs+"px"; } while(wide()>room()&&fs>8){ fs-=.5; tp.style.fontSize=fs+"px"; } } tp.dataset.k=base/fs; });
-  let crece=false;
-  el.querySelectorAll(".tile").forEach((b,i)=>{ const th=b.querySelector(".th"), tp=b.querySelector(".tp"), cs=getComputedStyle(b), px=k=>parseFloat(b.style[k]||cs[k]);
-    const rg=document.createRange(); rg.selectNodeContents(tp);
-    const nh=px("paddingTop")+th.offsetHeight+(tp.textContent?6+tp.offsetHeight:0)+px("paddingBottom"), nw=(b.style.paddingLeft?16:px("paddingLeft")+px("paddingRight"))+Math.max(th.scrollWidth,rg.getBoundingClientRect().width*(+tp.dataset.k||1));   // si la cifra solo cabía quitando margen o letra, también crece
-    const f=Math.max(nh/b.clientHeight,nw/b.clientWidth); if(f>1.001){ const p=tiles[i].p; wt.set(p,wt.get(p)*Math.min(1.8,f*1.08)); crece=true; } });
-  if(!crece) break; }
+  // lo que necesita un recuadro para que el logo y la cifra quepan holgados (margen, logo, 10 px —6 en el móvil, con logos más pequeños—,
+  // cifra y margen; de lado, con su margen), medido con la letra de los recuadros pequeños y con la empresa que más pide
+  const GAP=W<480?6:10;
+  el.innerHTML=items.map(p=>tileHtml(p,0,0,60,50)).join("");
+  let nw=0, nh=0; [...el.children].forEach(b=>{ const tl=b.querySelector(".tl"), th=b.querySelector(".th"), tp=b.querySelector(".tp"), cs=getComputedStyle(b), px=k=>parseFloat(cs[k]); const rg=document.createRange(); rg.selectNodeContents(tp);
+    nw=Math.max(nw,px("paddingLeft")+Math.max(tl.getBoundingClientRect().width,rg.getBoundingClientRect().width)+px("paddingRight")+2);
+    nh=Math.max(nh,px("paddingTop")+th.offsetHeight+(tp.textContent?GAP+Math.max(tp.offsetHeight,rg.getBoundingClientRect().height):0)+px("paddingBottom")+1); });
+  // pinta un reparto y dice si en todos los recuadros caben el logo y la cifra, sin achicar la letra ni quitar margen
+  const pinta=tiles=>{ el.innerHTML=tiles.map(t=>tileHtml(t.p,t.x,t.y,t.w,t.h)).join("");
+    // la cifra cabe siempre entera: si no cabe, primero baja un poco la letra (hasta un 10 %); si aún no, se estrecha el margen del recuadro y, en último caso, baja más
+    el.querySelectorAll(".tile").forEach(b=>{ const tp=b.querySelector(".tp"); if(!tp) return; const cs=getComputedStyle(b), base=parseFloat(getComputedStyle(tp).fontSize);
+      const rg=document.createRange(); rg.selectNodeContents(tp);
+      const room=()=>b.clientWidth-parseFloat(b.style.paddingLeft||cs.paddingLeft)-parseFloat(b.style.paddingRight||cs.paddingRight), wide=()=>rg.getBoundingClientRect().width+1;
+      let fs=base; while(wide()>room()&&fs>Math.max(8,base*.9)){ fs-=.5; tp.style.fontSize=fs+"px"; }
+      if(wide()>room()){ b.style.paddingLeft=b.style.paddingRight="3px"; while(wide()>room()&&fs<base){ fs+=.5; tp.style.fontSize=fs+"px"; } while(wide()>room()&&fs>8){ fs-=.5; tp.style.fontSize=fs+"px"; } } tp.dataset.k=base/fs; });
+    let cabe=true;
+    el.querySelectorAll(".tile").forEach(b=>{ const tl=b.querySelector(".tl"), th=b.querySelector(".th"), tp=b.querySelector(".tp"), cs=getComputedStyle(b), px=k=>parseFloat(b.style[k]||cs[k]);
+      const rg=document.createRange(); rg.selectNodeContents(tp);
+      const h=px("paddingTop")+th.offsetHeight+(tp.textContent?GAP+Math.max(tp.offsetHeight,rg.getBoundingClientRect().height):0)+px("paddingBottom"), w=(b.style.paddingLeft?16:px("paddingLeft")+px("paddingRight"))+Math.max(tl.getBoundingClientRect().width,rg.getBoundingClientRect().width*(+tp.dataset.k||1))+2;
+      if(h>b.clientHeight+.5||w>b.clientWidth+.5) cabe=false; });
+    return cabe; };
+  // ninguna por debajo de ese mínimo; las que pasan de él, en su proporción. La que más vale sigue siendo la más grande y el orden no cambia
+  // (la más pequeña, abajo a la derecha). Con el reparto de siempre: si alguna no cabe, el mínimo sube un poco; cuando ya no quedaría sitio,
+  // se prueba un reparto que mira lo que necesita cada recuadro y, si tampoco, el mapa crece hacia abajo
+  let minA=nw*nh*1.05;
+  for(let vuelta=0;vuelta<16;vuelta++){
+    H=Math.max(H0,Math.ceil(items.length*minA/(.85*W))); el.style.height=H+"px";
+    let lo=0, hi=W*H/(items[items.length-1].value/tot); const A=l=>sum(items,p=>Math.max(minA,p.value/tot*l));   // λ: lo que mide cada euro, para que todo llene el mapa
+    for(let j=0;j<50;j++){ const m=(lo+hi)/2; if(A(m)>W*H) hi=m; else lo=m; }
+    const it=items.map(p=>({p,a:Math.max(minA,p.value/tot*lo)*W*H/A(lo),nw,nh}));
+    if(pinta(squarify(it,0,0,W,H))) break;
+    if(items.length*minA*1.06>.85*W*H0&&pinta(squarifyMin(it,0,0,W,H))) break;   // el reparto que mira lo que necesita cada uno, solo antes de que el mapa tenga que crecer
+    minA*=1.06; }
 }
 let _mc; const textW=(t,font)=>{ _mc=_mc||document.createElement("canvas").getContext("2d"); _mc.font=font; return _mc.measureText(String(t)).width; };
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ tmW=0; renderTreemap(); });
@@ -4486,17 +4539,21 @@ function fillIndustries(){ opts($("p-ind"),[...new Set(DATA.pre.map(r=>r.ind).fi
 
 /* rendimiento: mejores y peores del periodo */
 let perfK="y1";
+// cada fila: la empresa, su cotización, la barra y lo que ha subido o bajado (a partir del 1.000 %, sin decimales)
 function pfRow(r,max){ const v=r[perfK], w=Math.min(Math.abs(v)/max,1)*100;
-  return `<button type="button" class="pf-row ri-go${r.inPf?" inpf":""}" data-t="${esc(r.ticker)}">${coCell(r.name,r.ticker)}
-    <span class="pf-bar"><span style="width:${w.toFixed(1)}%;background:var(${v>=0?"--pos":"--neg"})"></span></span><span class="c ${cls(v)}">${pct(v,1,true)}</span></button>`; }
+  return `<button type="button" class="pf-row ri-go${r.inPf?" inpf":""}" data-t="${esc(r.ticker)}">${coCell(r.name,r.ticker)}<span class="pf-px num">${money(r.price,r.cur)}</span>
+    <span class="pf-bar"><span style="width:${w.toFixed(1)}%;background:var(${v>=0?"--pos":"--neg"})"></span></span><span class="c ${cls(v)}">${pct(v,Math.abs(v)>=10?0:1,true)}</span></button>`; }
 function renderPerf(){
   // «Hoy» = lo que ya ha cotizado hoy; «Última sesión» = la sesión más reciente de cada empresa (por la mañana, EE. UU. es la de ayer).
   // Con todo cerrado son la misma: «Hoy» se apaga
   const closed=lastSession().closed; $("perf-k").querySelector('[data-k="today"]').disabled=closed;
   if(closed&&perfK==="today") return setPerf("last");
   const rs=DATA.pre.filter(r=>isNum(r[perfK])).sort((a,b)=>b[perfK]-a[perfK]);
-  const up=rs.slice(0,10), dn=rs.slice(-10).reverse(), max=Math.max(...up.concat(dn).map(r=>Math.abs(r[perfK])),0.0001);
-  $("perf-up").innerHTML=rs.length?up.map(r=>pfRow(r,max)).join(""):`<p class="sub pf-none">${!DATA.pre.length?"Sin empresas en tu hoja":perfK==="today"?"Ningún mercado abierto todavía":"Sin datos para este periodo"}</p>`; $("perf-dn").innerHTML=dn.map(r=>pfRow(r,max)).join("");
+  // las barras: en «Hoy» y «Última sesión», con la misma escala las que suben y las que bajan; en los plazos largos, cada lista con la
+  // suya (si no, a un año las que bajan saldrían enanas al lado de las que suben)
+  const up=rs.slice(0,10), dn=rs.slice(-10).reverse(), mx=xs=>Math.max(...xs.map(r=>Math.abs(r[perfK])),0.0001), sep=perfK!=="today"&&perfK!=="last";
+  const max=sep?mx(up):mx(up.concat(dn)), maxD=sep?mx(dn):max;
+  $("perf-up").innerHTML=rs.length?up.map(r=>pfRow(r,max)).join(""):`<p class="sub pf-none">${!DATA.pre.length?"Sin empresas en tu hoja":perfK==="today"?"Ningún mercado abierto todavía":"Sin datos para este periodo"}</p>`; $("perf-dn").innerHTML=dn.map(r=>pfRow(r,maxD)).join("");
   // por industria: media simple de sus empresas, como tu hoja Radar; color por tercios del mejor y del peor, igual que allí
   const g={}; DATA.pre.forEach(r=>{ if(!r.ind) return; (g[r.ind]=g[r.ind]||[]); if(isNum(r[perfK])) g[r.ind].push(r[perfK]); });
   const L=Object.entries(g).map(([k,v])=>({k,v:v.length?sum(v,x=>x)/v.length:null})).sort((a,b)=>(b.v??-1e9)-(a.v??-1e9));
@@ -5363,7 +5420,7 @@ async function load(fresh){
   }finally{ busy=false; $("refresh").disabled=!canRead(); if(pending){ pending=false; load(true); } }
 }
 document.addEventListener("click",e=>{ if(e.target.id==="allow"){ notice(""); load(true); } if(e.target.id==="chk-go"){ $("chk-d").open=true; $("s-check").scrollIntoView({behavior:"smooth",block:"start"}); }
-  if(e.target.closest("#chk-show")){ if(chkShow&&$("chk-alert").hidden&&view==="resumen"){ chkShow=false; $("s-check").hidden=true; return; } chkShow=true; $("s-check").hidden=false; $("chk-d").open=true; if(view!=="resumen") go("resumen",true); requestAnimationFrame(()=>$("s-check").scrollIntoView({behavior:"smooth",block:"start"})); } });
+  if(e.target.closest("#chk-show")){ if(chkShow&&!$("chk-go")&&view==="resumen"){ chkShow=false; $("s-check").hidden=true; return; } chkShow=true; $("s-check").hidden=false; $("chk-d").open=true; if(view!=="resumen") go("resumen",true); requestAnimationFrame(()=>$("s-check").scrollIntoView({behavior:"smooth",block:"start"})); } });
 document.addEventListener("click",e=>{ const b=e.target.closest(".info"), pop=$("pop");
   if(!b){ if(!e.target.closest("#pop")) pop.hidden=true; return; }
   e.preventDefault(); if(!pop.hidden&&pop.dataset.for===b.dataset.k){ pop.hidden=true; return; }
