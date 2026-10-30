@@ -4204,7 +4204,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v288";   // la versión publicada, en el pie
+const VER="v289";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5778,8 +5778,10 @@ $("sheet").addEventListener("click",e=>{ const b=e.target.closest("[data-shtab]"
   sh.scrollTop=d; });
 // al bajar por la ficha, su nombre se queda en la barra de arriba
 $("sheet").addEventListener("scroll",()=>$("sheet").classList.toggle("scrolled",$("sheet").scrollTop>70),{passive:true});
-// la ficha tiene su propia entrada en el historial: «atrás» (el del navegador, el de Android o el gesto del iPhone) la cierra
-// y no saca de la página; cerrarla con ✕ quita esa entrada
+// la ficha tiene su propia entrada en el historial: «atrás» (el del navegador o el de Android) la cierra y no saca de la página;
+// cerrarla con ✕ quita esa entrada. En el iPhone no: su gesto de atrás arrastraría la página entera y enseñaría detrás una foto de la
+// anterior; allí la ficha se cierra con su propio arrastre desde el borde (más abajo), que deja quieta la página de debajo
+const SH_HIST=!(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1));
 let shBack=false;   // el «atrás» que da la propia web para quitar su entrada: no hay que hacer nada más
 const closeUI=quick=>{ const S=$("sheet");
   if(quick!==true&&sheet&&matchMedia("(max-width:759px) and (prefers-reduced-motion:no-preference)").matches){   // móvil: sale por la derecha, como «atrás» en el iPhone
@@ -5788,7 +5790,7 @@ const closeUI=quick=>{ const S=$("sheet");
 try{ if(history.state&&history.state.sh) history.replaceState({...history.state,sh:0},""); }catch{}
 addEventListener("popstate",()=>{ if(shBack){ shBack=false; return; } if(sheet&&!(history.state&&history.state.sh)) closeSheet(); });
 new MutationObserver(()=>{ const S=$("sheet");
-  if(!S.hidden){ if(!(history.state&&history.state.sh)) try{ history.pushState({...history.state,sh:1},""); }catch{} }
+  if(!S.hidden){ if(SH_HIST&&!(history.state&&history.state.sh)) try{ history.pushState({...history.state,sh:1},""); }catch{} }
   else { S.style.transform=""; S.classList.remove("sh-drag","sh-anim"); } }).observe($("sheet"),{attributes:true,attributeFilter:["hidden"]});
 // móvil: deslizar la ficha hacia la derecha la cierra, como «atrás» en el iPhone; la ficha sigue al dedo y, si no llega, vuelve a su sitio.
 // Desde el borde izquierdo vale siempre; desde dentro, salvo sobre un gráfico o una tabla que se mueve de lado
