@@ -4204,7 +4204,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v287";   // la versión publicada, en el pie
+const VER="v288";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4936,7 +4936,7 @@ const pr1 = v => isNum(v) ? pct(v,1) : "";                   // tipos: 8,0%, 12,
 const tirLv = v => !isNum(v) ? "" : v>0.2?"rp5":v>0.15?"rp4":v>0.125?"rp3":v>0.1?"rp2":v>0.08?"rp1":v>=0?"t0":v>=-0.05?"rn2":v>=-0.1?"rn3":v>=-0.15?"rn4":"rn5";
 const tirP = (v,d=1) => isNum(v) ? `<span class="rlv ${tirLv(v)}">${pct(v,d)}</span>` : "";
 const PCOLS=[
-  {k:"name",l:"Empresa",r:"main",left:1,f:r=>`<div class="co">${logoBare(r.name,r.ticker)}<b title="${esc(r.ticker)}">${esc(r.name||r.ticker)}${r.thesis==="Sí"?` <span class="tag show-s">Con tesis</span>`:""}</b></div>`},
+  {k:"name",l:"Empresa",r:"main",left:1,f:r=>`<div class="co">${logoBare(r.name,r.ticker)}<b title="${esc(r.ticker)}">${esc(r.name||r.ticker)}</b></div>`},
   {k:"country",l:"País",ctr:1,f:r=>r.country?`<span title="${esc(ctryN(r.country))}">${flagHtml(r.country)}</span>`:""},
   {k:"ind",l:"Industria",left:1,f:r=>`<span class="show-s">${r.country?flagHtml(r.country):""}</span>${esc(r.ind||"")}`},
   {k:"price",l:"Precio",r:"sub",g:"real",f:r=>money(r.price,r.cur)},
