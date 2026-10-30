@@ -1767,7 +1767,7 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
 @media (max-width:700px){#t-rd{table-layout:auto}#t-rd colgroup{display:none}#t-rd tbody tr{height:70px;box-sizing:border-box;align-content:center}}
 #t-rd th{cursor:default}
 #t-rd td.rd-px{display:none}
-@media (max-width:700px){#t-rd td.rd-px{display:block;grid-column:2;grid-row:2;padding:0;border:0;font-size:12.5px;color:var(--ink3);white-space:nowrap;font-variant-numeric:tabular-nums}#t-rd .co>b{grid-row:1}}
+@media (max-width:700px){#t-rd td.rd-px{display:block;grid-column:2;grid-row:2;padding:0;border:0;font-size:12.5px;color:var(--ink3);white-space:nowrap;font-variant-numeric:tabular-nums}#t-rd .co>b{grid-row:1}#t-rd .rd-dd{display:block}#t-rd td.rd-px{line-height:18px}#t-rd td.r-sub{align-self:start}#t-rd tbody tr.rd-x{height:81px}}
 .rd-h{display:flex;justify-content:space-between;gap:8px;padding:0 8px}
 .rd-c{padding-left:18px;padding-right:18px}
 .rd-b{position:relative;display:block;height:6px;border-radius:var(--r-bar);background:var(--line)}
@@ -4271,7 +4271,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v294";   // la versión publicada, en el pie
+const VER="v295";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5233,18 +5233,19 @@ function renderRadar(){
   mb.textContent=left>0?(left>RD_N?`Ver ${RD_N} más · quedan ${nf(0).format(left)}`:`Ver ${left} más`):rdShow>RD_N?"Ver menos":""; mb.style.visibility=left>0||rdShow>RD_N?"":"hidden"; mb.classList.toggle("less",left<=0);
   const mx=Math.max(...L.map(r=>Math.abs(r.margin||0)),0.0001);
   const M={l:"Margen",f:r=>`<span class="${clsM(r.margin)}">${pp(r.margin)}</span>`}, E={l:"Exigida",f:r=>r.req>0?pct(r.req):""};
-  const C=[ {l:"Cotización",f:r=>money(r.price,r.cur)}, rdK==="pf"?{l:"Peso",f:r=>pct(r.weight)}:{l:"",f:()=>""},
+  const C=[ {l:"Cotización",f:r=>money(r.price,r.cur)}, {l:"Desde máximo",f:r=>ddf(r.dd)}, rdK==="pf"?{l:"Peso",f:r=>pct(r.weight)}:{l:"",f:()=>""},
     {l:`<span class="rd-h"><span>Por debajo</span><span>Por encima</span></span>`,f:r=>rdBar(r.margin,mx)}, M, {l:"TIR esperada",f:r=>tirP(r.irrExp)}, E ];
-  // anchos fijos; entre 701 y 1000 px, sin la segunda ni la última columna para que el nombre quepa
-  const wide=innerWidth>1000, W=wide?[108,76,180,96,112,84]:[104,0,150,96,112,0], use=W.map(w=>w>0); rdWide=wide;
-  const K=["num hide-s","num hide-s","rd-c hide-s","num r-amt","num r-sub","num hide-s"].filter((_,i)=>use[i]); C.splice(0,C.length,...C.filter((_,i)=>use[i]));
+  // anchos fijos; entre 901 y 1100 px, sin el peso ni la exigida, y entre 701 y 900, tampoco la barra, para que el nombre quepa
+  const tier=rdTier(), W={w:[108,96,76,180,96,112,84],m:[104,96,0,150,96,112,0],n:[104,96,0,0,96,112,0]}[tier], use=W.map(w=>w>0); rdWide=tier;
+  const K=["num hide-s","num hide-s","num hide-s","rd-c hide-s","num r-amt","num r-sub","num hide-s"].filter((_,i)=>use[i]); C.splice(0,C.length,...C.filter((_,i)=>use[i]));
   $("rd-cg").innerHTML=`<col>`+W.filter(w=>w>0).map(w=>`<col style="width:${w}px">`).join("");
   $("rd-head").innerHTML=`<tr><th class="l">Empresa</th>${C.map((x,i)=>`<th class="${K[i].includes("hide-s")?"hide-s":""}">${x.l}</th>`).join("")}</tr>`;
-  const row=r=>`<tr class="pr ri-go${r.inPf&&!(rdK==="pf")?" inpf":""}" data-t="${esc(r.ticker)}" tabindex="0"><td class="r-main" data-l="Empresa">${coCell(r.name,r.ticker)}</td>${C.map((x,i)=>`<td class="${K[i]}" data-l="${x.l.replace(/<[^>]*>/g,"")}">${x.f(r)}</td>`).join("")}<td class="rd-px">${money(r.price,r.cur)}${rdK==="pf"&&isNum(r.weight)?` · ${pct(r.weight)} de tu cartera`:""}</td></tr>`;
+  const row=r=>`<tr class="pr ri-go${r.inPf&&!(rdK==="pf")?" inpf":""}" data-t="${esc(r.ticker)}" tabindex="0"><td class="r-main" data-l="Empresa">${coCell(r.name,r.ticker)}</td>${C.map((x,i)=>`<td class="${K[i]}" data-l="${x.l.replace(/<[^>]*>/g,"")}">${x.f(r)}</td>`).join("")}<td class="rd-px">${money(r.price,r.cur)}${rdK==="pf"&&isNum(r.weight)?` · ${pct(r.weight)} de tu cartera`:""}${isNum(r.dd)?`<span class="rd-dd">${ddf(r.dd)} desde máximo</span>`:""}</td></tr>`;
   const blank=`<tr class="rd-x" aria-hidden="true"><td class="r-main">&nbsp;</td>${K.map(k=>`<td class="${k}"></td>`).join("")}</tr>`;
   $("rd-body").innerHTML=full.length?L.map(row).join("")+blank.repeat(Math.max(0,RD_N-L.length)):`<tr><td colspan="${K.length+1}" class="empty">Sin empresas valoradas en tu hoja</td></tr>`;
   markRows(); }
-addEventListener("resize",()=>{ if(DATA&&rdWide!==null&&(innerWidth>1000)!==rdWide) renderRadar(); });
+const rdTier=()=>innerWidth>1100?"w":innerWidth>900?"m":"n";
+addEventListener("resize",()=>{ if(DATA&&rdWide!==null&&rdTier()!==rdWide) renderRadar(); });
 $("rd-more").addEventListener("click",()=>{ rdShow=$("rd-more").textContent==="Ver menos"?RD_N:rdShow+RD_N; renderRadar(); });
 $("rd-k").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; rdK=b.dataset.k; rdShow=RD_N; $("rd-k").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b)); renderRadar(); });
 $("rd-body").addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.matches("tr.pr")){ e.preventDefault(); e.target.click(); } });
