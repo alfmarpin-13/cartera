@@ -3626,6 +3626,10 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 .paper .hj-e .tb td.new{background:var(--hj-ve)!important}
 .paper .hj .tb td.same{color:var(--hj-hd)}
 .paper .hj .tb tr.hjw td{padding-top:6px;font-size:13px;line-height:1.5;font-style:normal;color:var(--hj-lb);text-align:left}
+
+/* v294 · modo privado: donde la cifra va centrada por la maquetación (barras de dividendos por meses, calendario de cobros, franja fija
+   del móvil, cifras sobre las barras por año), los puntos también van centrados */
+.priv :is(.ca,.mc-v,.hm3-v,.y>.v) .pv::after{text-align:center}
 </style>
 
 <div class="wrap">
@@ -4267,7 +4271,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v293";   // la versión publicada, en el pie
+const VER="v294";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5962,7 +5966,13 @@ addEventListener("hashchange",()=>{ const c=remCfg(location.hash);
   const mask=()=>{ if(!R.classList.contains("priv")) return; const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT), list=[]; let n;
     while(n=w.nextNode()){ const e=n.parentElement; if(!e||e.closest(".pv,svg,script,style,option,select,textarea,#nav,.tools,.seg,th")) continue; AM.lastIndex=0; if(AM.test(n.textContent)) list.push(n); }
     list.forEach(n=>{ const t=n.textContent, f=document.createDocumentFragment(); let last=0; AM.lastIndex=0; t.replace(AM,(m,off)=>{ if(off>last) f.append(t.slice(last,off)); const sp=document.createElement("span"); sp.className="pv"; sp.textContent=m; f.append(sp); last=off+m.length; return m; }); if(last<t.length) f.append(t.slice(last)); n.replaceWith(f); }); };
-  let mt=0; const mo=new MutationObserver(()=>{ clearTimeout(mt); mt=setTimeout(mask,40); });
+  // lo nuevo se oculta al momento: el observador corre antes de que la pantalla se pinte, y solo mira lo que ha cambiado
+  const skip=e=>!e||!!e.closest(".pv,svg,script,style,option,select,textarea,#nav,.tools,.seg,th");
+  const wrap=n=>{ const t=n.textContent; AM.lastIndex=0; if(!AM.test(t)) return; const f=document.createDocumentFragment(); let last=0; AM.lastIndex=0;
+    t.replace(AM,(m,off)=>{ if(off>last) f.append(t.slice(last,off)); const sp=document.createElement("span"); sp.className="pv"; sp.textContent=m; f.append(sp); last=off+m.length; return m; }); if(last<t.length) f.append(t.slice(last)); n.replaceWith(f); };
+  const maskIn=r=>{ if(r.nodeType===3){ if(r.parentNode&&!skip(r.parentElement)) wrap(r); return; } if(r.nodeType!==1||!r.isConnected||skip(r)) return;
+    const w=document.createTreeWalker(r,NodeFilter.SHOW_TEXT), L=[]; let n; while(n=w.nextNode()){ if(skip(n.parentElement)) continue; AM.lastIndex=0; if(AM.test(n.textContent)) L.push(n); } L.forEach(wrap); };
+  const mo=new MutationObserver(R2=>{ if(!R.classList.contains("priv")) return; for(const x of R2){ if(x.type==="characterData") maskIn(x.target); else x.addedNodes.forEach(maskIn); } });
   const set=on=>{ R.classList.toggle("priv",on); btn.setAttribute("aria-pressed",on); const l=on?"Mostrar importes":"Ocultar importes"; btn.setAttribute("aria-label",l); btn.title=l;
     if(on){ mask(); mo.observe(document.body,{childList:true,subtree:true,characterData:true}); } else mo.disconnect(); };
   let on0=false; try{ on0=localStorage.getItem("priv")==="1"; }catch{} set(on0);
