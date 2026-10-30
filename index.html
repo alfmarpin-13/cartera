@@ -1767,7 +1767,7 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
 @media (max-width:700px){#t-rd{table-layout:auto}#t-rd colgroup{display:none}#t-rd tbody tr{height:70px;box-sizing:border-box;align-content:center}}
 #t-rd th{cursor:default}
 #t-rd td.rd-px{display:none}
-@media (max-width:700px){#t-rd td.rd-px{display:block;grid-column:2;grid-row:2;padding:0;border:0;font-size:12.5px;color:var(--ink3);white-space:nowrap;font-variant-numeric:tabular-nums}#t-rd .co>b{grid-row:1}#t-rd .rd-dd{display:block}#t-rd td.rd-px{line-height:18px}#t-rd td.r-sub{align-self:start}#t-rd tbody tr.rd-x{height:81px}}
+@media (max-width:700px){#t-rd td.rd-px{display:block;grid-column:2;grid-row:2;padding:0;border:0;font-size:12.5px;color:var(--ink3);white-space:nowrap;font-variant-numeric:tabular-nums}#t-rd .co>b{grid-row:1}}
 .rd-h{display:flex;justify-content:space-between;gap:8px;padding:0 8px}
 .rd-c{padding-left:18px;padding-right:18px}
 .rd-b{position:relative;display:block;height:6px;border-radius:var(--r-bar);background:var(--line)}
@@ -2571,6 +2571,7 @@ body:has(#sheet:not([hidden])) .sheet-bg{display:block}
 /* Revisión · 8: el selector de periodo con palabras en el ordenador y con la forma corta en pantallas estrechas */
 /* Revisión · 36: el periodo en palabras; «Hoy» y «Última sesión», aparte. En el móvil, cada grupo en su fila */
 #perf-k{display:flex;align-items:center;gap:10px}#perf-k .cy{font-style:normal}
+@media (min-width:701px){#perf-k{flex-wrap:wrap}}
 @media (max-width:700px){#perf-k{flex-direction:column;align-items:stretch;gap:8px;width:100%}
   #perf-k .seg{display:flex;margin-block:0}
   #perf-k .seg button{flex:1 1 auto;height:34px;padding:0 2px;min-width:0;white-space:nowrap}
@@ -3627,6 +3628,307 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 .paper .hj .tb td.same{color:var(--hj-hd)}
 .paper .hj .tb tr.hjw td{padding-top:6px;font-size:13px;line-height:1.5;font-style:normal;color:var(--hj-lb);text-align:left}
 
+/* ======================= v296 · ACTUALIDAD, una revista sobre el chasis de la app =======================
+   Todo lo que no es lectura es la web (tarjetas, colores, rayas, esquinas de 12 px, títulos de sección, filas de Posiciones, pestañas,
+   tablas, etiquetas, cifras en su letra y nunca más de 17 px en el móvil). Lo que se lee va con serifa y aire */
+/* los logos, en negro como en las listas de la web (con el mismo interruptor) */
+html.lmono #paper.rvp .lgb:not(.gr) img{filter:brightness(0) opacity(.82)}
+html.lmono #paper.rvp .lgb.gr img{filter:grayscale(1) brightness(.8)}
+@media (prefers-color-scheme:dark){
+  html.lmono:not([data-theme="light"]) #paper.rvp .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
+  html.lmono:not([data-theme="light"]) #paper.rvp .lgb.fino img{filter:brightness(0) invert(1)}
+  html.lmono:not([data-theme="light"]) #paper.rvp .lgb.gr img{filter:grayscale(1) brightness(1.15)}
+  html.lmono:not([data-theme="light"]) #paper.rvp .lgb.kv img{display:block}
+  html.lmono:not([data-theme="light"]) #paper.rvp .lgb.kv img.kd{display:none}}
+html.lmono[data-theme="dark"] #paper.rvp .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
+html.lmono[data-theme="dark"] #paper.rvp .lgb.fino img{filter:brightness(0) invert(1)}
+html.lmono[data-theme="dark"] #paper.rvp .lgb.gr img{filter:grayscale(1) brightness(1.15)}
+html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img{display:block}
+html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
+#paper.rvp{display:block;margin:0;padding:0;background:none;border:0;border-radius:0;box-shadow:none;max-width:none;min-height:0}
+.rv{--rv-serif:"Newsreader",Georgia,"Times New Roman",serif;--rv-sand:#F1ECE2;--rv-pill:#ECE9E2;--rv-zebra:rgba(26,26,26,.035);
+  --rv-az:#E3E7EF;--rv-ve:#D4EADF;--rv-hbg:#F7F6F3;--rv-hln:#E4E2DC;--rv-hlb:#6B6B66;--rv-hhd:#8A8A85;
+  display:flex;flex-direction:column;gap:16px;min-width:0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rv{--rv-sand:#2A2621;--rv-pill:#2B2B28;--rv-zebra:rgba(255,255,255,.04);--rv-az:#2C333E;--rv-ve:#25382E;--rv-hbg:#1F1F1D;--rv-hln:#363532;--rv-hlb:#A9A8A3;--rv-hhd:#8F8E89}}
+:root[data-theme="dark"] .rv{--rv-sand:#2A2621;--rv-pill:#2B2B28;--rv-zebra:rgba(255,255,255,.04);--rv-az:#2C333E;--rv-ve:#25382E;--rv-hbg:#1F1F1D;--rv-hln:#363532;--rv-hlb:#A9A8A3;--rv-hhd:#8F8E89}
+.rv :where(button){font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.rv p{margin:0}
+.rv .pos{color:var(--pos)}.rv .neg{color:var(--neg)}
+.rv .num{font-variant-numeric:tabular-nums}
+.rv .ai{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+/* los títulos de las tarjetas, los de la web, con su dato a la derecha */
+.rv .rv-st,.rv .asec{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0;font-family:inherit;font-size:11px;line-height:14px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink)}
+.rv .rv-st small,.rv .asec small{font-size:12px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--ink3);text-align:right}
+
+/* la fila de una empresa, la de Posiciones: 65 px, logo de 48×28, nombre a 13 px, debajo una línea a 12 px y a la derecha la semana */
+.rv-row{display:grid;grid-template-columns:48px minmax(0,1fr) auto;column-gap:12px;row-gap:4px;align-items:center;width:100%;padding:11px 0 12px;border-top:1px solid var(--line)}
+.rv-row>.lgb{grid-row:1/3;width:48px;height:28px}
+.rv-row>b{grid-column:2;display:block;min-width:0;font-size:13px;line-height:20px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rv-rd{display:inline-block;margin-left:4px;vertical-align:-2px;color:var(--ink3)}
+.rv-rd .ai{width:14px;height:14px}
+.rv-rs{grid-column:2;min-width:0;font-size:12px;line-height:18px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rv-row>.rv-v,.rv-row>.rv-out{grid-column:3;grid-row:1/3}
+.rv-row>.rv-v{font-size:13px;line-height:20px;font-weight:500}
+.rv-out{font-size:12px;line-height:18px;color:var(--ink3)}
+.rv-row.rd>b{color:var(--ink3)}
+.rv-nl{display:grid;margin-top:6px}
+.rv-nl>.rv-row:first-child{border-top:0}
+.rv-nl>.rv-row:last-child{padding-bottom:0}
+
+/* resultados de la portada: la fila de la empresa (con lo que publicó debajo), el titular con serifa y su resumen */
+.rv-rl{display:grid;margin-top:6px}
+.rv-ri{display:flex;flex-direction:column;align-items:stretch;width:100%;padding:0 0 18px;border-top:1px solid var(--line)}
+.rv-ri:first-child{border-top:0}
+.rv-ri:last-child{padding-bottom:0}
+.rv-ri>.rv-row{border-top:0;padding:12px 0 10px}
+.rv-h{font-family:var(--rv-serif);font-size:19px;line-height:24px;font-weight:500;color:var(--ink);text-wrap:balance}
+.rv-s{margin-top:6px;font-family:var(--rv-serif);font-size:15.5px;line-height:23px;color:var(--ink2);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.rv-ri.rd .rv-h,.rv-ri:has(.rv-row.rd) .rv-h{color:var(--ink3)}
+
+/* el calendario de próximos resultados, con los colores de la web */
+.rv .acg{display:grid;grid-template-columns:repeat(var(--c,5),minmax(0,1fr));margin-top:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+.rv .acg-w{padding:9px 14px 8px;background:var(--rv-pill);border-bottom:1px solid var(--line);border-left:1px solid var(--line);font-size:11px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink3)}
+.rv .acg-w:first-child{border-left:0}
+.rv .acg-d{display:flex;flex-direction:column;gap:12px;min-width:0;min-height:120px;padding:10px 14px 14px;border-left:1px solid var(--line)}
+.rv .acg-d.c1{border-left:0}
+.rv .acg-d.f2{border-top:1px solid var(--line)}
+.rv .acg-d.pas{background:color-mix(in srgb,var(--rv-pill) 55%,var(--card))}
+.rv .acg-n{display:flex;align-items:center;gap:6px;height:24px;margin:0}
+.rv .acg-n b{font-size:15px;line-height:24px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.rv .acg-n span{font-size:11px;font-weight:500;color:var(--ink3)}
+.rv .acg-d.pas .acg-n b{color:var(--ink3)}
+.rv .acg-d.hoy .acg-n b{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 5px;border-radius:12px;background:var(--ink);color:var(--card);font-size:13px}
+.rv .acg-n i{font-style:normal;font-size:11px;font-weight:600;color:var(--ink)}
+.rv .acg-e{display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:8px;align-items:center}
+.rv .acg-e>.lgb{grid-row:1/span 4;align-self:start;width:32px;height:18px;margin-top:1px}
+.rv .acg-e>:not(.lgb){grid-column:2}
+.rv .acg-e b{font-size:13px;line-height:20px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rv .acg-x{font-size:12px;line-height:16px;color:var(--ink3)}
+.rv .acg-q{font-size:12px;line-height:16px;color:var(--warn)}
+.rv .acg-t,.rv .acg-fm{display:none}
+.rv .acg-f{margin-top:10px;font-size:12px;line-height:17px;color:var(--ink3)}
+@media (max-width:1000px){
+  .rv .acg-w{padding:7px 0 6px;text-align:center}
+  .rv .acg-d{align-items:center;gap:8px;min-height:72px;padding:6px 2px 10px}
+  .rv .acg-n{flex-direction:column;justify-content:center;gap:0;height:auto;min-height:24px}
+  .rv .acg-n b{font-size:15px}
+  .rv .acg-n span{font-size:10px;line-height:12px}
+  .rv .acg-n i{display:none}
+  .rv .acg-e{display:flex;flex-direction:column;align-items:center;gap:3px;width:100%}
+  .rv .acg-e>.lgb{width:34px;height:20px;margin:0}
+  .rv .acg-e b,.rv .acg-x,.rv .acg-q{display:none}
+  .rv .acg-t{display:block;max-width:100%;font-size:11px;line-height:14px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rv .acg-e.q .acg-t{color:var(--warn)}
+  .rv .acg-fm{display:inline}
+}
+.rv-colo{padding:2px 0 8px;text-align:center;font-size:12px;line-height:16px;color:var(--ink3);text-wrap:balance}
+.rv-msg p{font-size:15px;line-height:22px;color:var(--ink2);text-align:center}
+.rv-msgb{margin-top:14px!important;text-align:center}
+.rv-new{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rv-new p{font-size:14px;line-height:20px;color:var(--ink)}
+
+/* ---------- la página de una empresa ---------- */
+.rv-a{display:flex;flex-direction:column;gap:12px;min-width:0}
+.rv-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rv-top button{display:inline-flex;align-items:center;gap:2px;height:32px;font-size:14px;color:var(--ink2)}
+.rv-top .ai{width:16px;height:16px}
+.rv-top button:disabled{opacity:.35;cursor:default}
+.rv-back{margin-left:-4px}
+.rv-top .pa-pn{display:flex;gap:14px}
+.rv-art{min-width:0}
+.rv-ah{display:flex;align-items:center;gap:12px}
+.rv-ah>.lgb{flex:none;width:48px;height:28px}
+.rv-ah>div{min-width:0}
+.rv-an{margin:0;font-size:17px;line-height:22px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rv-as{margin-top:1px!important;font-size:13px;line-height:18px;color:var(--ink3)}
+.rv-as b{font-weight:500}
+.rv-kick{margin-top:22px!important;font-size:12px;line-height:16px;font-weight:500;color:var(--ink3)}
+.rv-hl{margin:6px 0 0;font-family:var(--rv-serif);font-size:24px;line-height:30px;font-weight:500;letter-spacing:-.005em;color:var(--ink);text-wrap:balance}
+.rv-ld{margin-top:10px!important;font-family:var(--rv-serif);font-size:17px;line-height:26px;color:var(--ink2);text-wrap:pretty}
+/* por qué se ha movido: una nota en el arena de la web; la causa y, si hay más, se abre */
+.rv-why{display:block;margin-top:18px;padding:12px 14px;border-radius:12px;background:var(--rv-sand)}
+.rv-why>summary{list-style:none;cursor:pointer}
+.rv-why>summary::-webkit-details-marker{display:none}
+.rv-wh{display:flex;align-items:center;gap:6px;font-size:13px;line-height:18px;font-weight:600;color:var(--ink)}
+.rv-wh .ai{flex:none;width:15px;height:15px;color:var(--ink2)}
+.rv-w1{display:block;margin-top:4px;font-family:var(--rv-serif);font-size:16px;line-height:24px;color:var(--ink)}
+.rv-wm{display:inline-block;margin-top:6px;font-size:13px;line-height:18px;font-weight:500;color:var(--ink2);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+.rv-why[open] .rv-w1,.rv-why[open] .rv-wm{display:none}
+.rv-wx{margin-top:4px}
+.rv-wx p{font-family:var(--rv-serif);font-size:16px;line-height:24px;color:var(--ink)}
+.rv-wx p+p{margin-top:8px!important}
+/* las pestañas de la ficha; se quedan arriba al bajar */
+.rv-tabs-a{display:block;height:20px}
+.rv-tabs{position:sticky;top:max(env(safe-area-inset-top,0px),10px);z-index:6;display:flex;justify-content:center;gap:24px;margin:0 -16px;padding:0 16px;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 -10px 0 var(--panel)}
+.rv-tabs button{position:relative;display:inline-flex;align-items:center;gap:6px;height:46px;font-size:14px;font-weight:500;color:var(--ink3)}
+.rv-tabs button[aria-selected="true"]{color:var(--ink)}
+.rv-tabs button[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:1px;background:var(--ink)}
+.rv-tabs span{font-size:12px;color:var(--ink3)}
+.rv-body{min-width:0}
+/* cada apartado: el título de la web y su contenido */
+.rv-sec{margin-top:30px}
+.rv-body>.rv-sec:first-child,.rv-body>.rv-n:first-child,.rv-body>.rv-note:first-child,.rv-body>.rv-sh0:first-child{margin-top:24px!important}
+.rv-sh{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 12px;font-size:11px;line-height:14px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink)}
+.rv-sh small{font-size:12px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--ink3)}
+.rv-tx p{font-family:var(--rv-serif);font-size:17px;line-height:27px;color:var(--ink);text-wrap:pretty}
+.rv-tx p+p{margin-top:14px!important}
+.rv-tx b,.rv-ld b,.rv-wx b,.rv-imp b,.rv-ts dd b,.rv-qa b,.rv-ul b{font-weight:600}
+.rv-note{margin:0 0 12px!important;font-size:13px;line-height:19px;color:var(--ink3)}
+/* índice de los temas: número y título; lleva a cada uno */
+.rv-ix{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.rv-ix li{border-bottom:1px solid var(--line)}
+.rv-ix button{display:flex;align-items:flex-start;gap:12px;width:100%;padding:11px 0;font-size:14px;line-height:20px;color:var(--ink)}
+.rv-no{flex:none;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:11px;background:var(--rv-sand);font-family:var(--f-sans,inherit);font-size:12px;line-height:22px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.rv-ix button .rv-no{margin-top:-1px}
+/* cifras clave: una sola franja por empresa (la primera cifra de cada tema), como la de cinco cifras de la web */
+.rv-kf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.rv-kf>div{display:flex;flex-direction:column;gap:3px;min-width:0;padding:12px 10px 12px 0}
+.rv-kf>div+div{padding-left:10px;border-left:1px solid var(--line)}
+.rv-kf>div:nth-child(3n+1){padding-left:0;border-left:0}
+.rv-kf>div:nth-child(n+4){border-top:1px solid var(--line)}
+.rv-kf b{font-size:17px;line-height:22px;font-weight:300;color:var(--ink);white-space:nowrap}
+.rv-kf span{font-size:12px;line-height:16px;color:var(--ink3)}
+/* los temas, numerados; sus otras cifras, en una línea bajo el título */
+.rv-tm{scroll-margin-top:calc(max(env(safe-area-inset-top,0px),10px) + 64px)}
+.rv-tm+.rv-tm{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+.rv-tm h4{display:flex;align-items:flex-start;gap:12px;margin:0 0 10px;font-family:var(--rv-serif);font-size:20px;line-height:26px;font-weight:500;color:var(--ink)}
+.rv-tm h4 .rv-no{margin-top:2px}
+.rv-dl{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0 0 12px 34px!important;font-size:13px;line-height:19px;color:var(--ink2)}
+.rv-dl b{font-weight:600;color:var(--ink)}
+/* preguntas de los analistas: la pregunta y, al tocarla, la respuesta */
+.rv-qa details{border-top:1px solid var(--line)}
+.rv-qa details:last-child{border-bottom:1px solid var(--line)}
+.rv-qa summary{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:12px 0;list-style:none;cursor:pointer;font-family:var(--rv-serif);font-size:17px;line-height:24px;font-weight:500;color:var(--ink)}
+.rv-qa summary::-webkit-details-marker{display:none}
+.rv-qa summary .ai{flex:none;width:16px;height:16px;margin-top:4px;color:var(--ink3);transition:transform .15s}
+.rv-qa details[open] summary .ai{transform:rotate(90deg)}
+.rv-qa details p{padding:0 0 14px;font-family:var(--rv-serif);font-size:16px;line-height:25px;color:var(--ink2)}
+.rv-ul{margin:0;padding:0 0 0 18px}
+.rv-ul li{font-family:var(--rv-serif);font-size:17px;line-height:27px;color:var(--ink)}
+.rv-ul li+li{margin-top:8px}
+.rv-ul li::marker{color:var(--ink3)}
+/* tablas de cifras: las de la web, con filas alternas */
+.rv-tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.rv-tw+.rv-tw{margin-top:14px}
+.rv-tb{width:100%;border-collapse:collapse;font-size:13px;line-height:18px}
+.rv-tb th{padding:9px 10px;font-size:11px;line-height:14px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink3);text-align:left;background:var(--rv-pill);border-bottom:1px solid var(--line);white-space:nowrap}
+.rv-tb td{padding:9px 10px;color:var(--ink);vertical-align:top}
+.rv-tb tbody tr:nth-child(even) td{background:var(--rv-zebra)}
+.rv-tb :is(th,td):first-child{padding-left:12px}.rv-tb :is(th,td):last-child{padding-right:12px}
+.rv-tb .n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.rv-tb .rv-tot td{font-weight:600;border-top:1px solid var(--line)}
+@media (max-width:700px){ .rv-tb .rv-hm{display:none} .rv-tb th{letter-spacing:.03em} }
+/* qué se ha publicado y fuentes */
+.rv-act+.rv-act{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.rv-at{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px!important;font-size:14px;line-height:20px}
+.rv-at b{font-weight:600;color:var(--ink)}
+.rv-at span{flex:none;font-size:12px;color:var(--ink3)}
+.rv-ad{font-family:var(--rv-serif);font-size:16px;line-height:24px;color:var(--ink2)}
+.rv-lk{display:inline-block;margin-top:6px;font-size:13px;line-height:18px;font-weight:500;color:var(--ink);text-decoration:none}
+.rv-lk .ai{display:inline-block;width:14px;height:14px;margin-left:1px;vertical-align:-3px;color:var(--ink3)}
+.rv-lk:hover{text-decoration:underline;text-underline-offset:3px}
+.rv-src{margin:0;padding:0;list-style:none}
+.rv-src li{padding:5px 0}
+.rv-src .rv-lk{margin-top:0;font-weight:400;color:var(--ink2)}
+/* tu tesis: cada punto con su etiqueta (los colores de la web) */
+.rv-tsum{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 18px!important}
+.rv-pill{display:inline-block;padding:0 8px;border-radius:999px;font-size:11px;line-height:20px;font-weight:600;background:var(--rv-pill);color:var(--ink2)}
+.rv-pill.refuerza{background:var(--pos-bg);color:var(--pos)}
+.rv-pill.debilita,.rv-pill.contradice{background:var(--neg-bg);color:var(--neg)}
+.rv-pill.matiza{background:var(--warn-bg);color:var(--ink)}
+.rv-ts+.rv-ts{margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.rv-ts h4{margin:8px 0 6px;font-family:var(--rv-serif);font-size:19px;line-height:25px;font-weight:500;color:var(--ink)}
+.rv-ts dl{margin:0}
+.rv-ts dt{margin-top:10px;font-size:12px;line-height:16px;font-weight:500;color:var(--ink3)}
+.rv-ts dd{margin:2px 0 0;font-family:var(--rv-serif);font-size:16px;line-height:25px;color:var(--ink)}
+/* tu hoja, como tu hoja de cálculo: su fondo, cabeceras grises centradas, el nombre de la casilla en gris y la casilla en azul (datos)
+   o en verde (estimaciones), con los mismos colores; lo nuevo, en negrita y con su color; lo que no cambia, en gris */
+.rv-hj{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--rv-hbg)}
+.rv-hj+.rv-hj{margin-top:14px}
+.rv-hc{padding:11px 12px;border-bottom:1px solid var(--rv-hln);font-size:13px;line-height:18px;color:var(--rv-hlb)}
+.rv-hc b{font-weight:600;color:var(--ink)}
+.rv-hc b::before{content:"";display:inline-block;width:10px;height:10px;margin-right:8px;border-radius:2px;background:var(--rv-az);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--rv-hlb) 25%,transparent)}
+.rv-hj.ve .rv-hc b::before{background:var(--rv-ve)}
+.rv-hc span{display:block;color:var(--rv-hhd)}
+.rv-hj table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;line-height:18px}
+.rv-hj th{padding:8px 10px;font-size:11.5px;font-weight:500;color:var(--rv-hhd);text-align:center;border-bottom:1px solid var(--rv-hln)}
+.rv-hj th:first-child{text-align:left;padding-left:12px}
+.rv-hj th:nth-child(2),.rv-hj th:nth-child(3){width:30%}
+.rv-hj td{padding:9px 10px;text-align:center;color:var(--ink)}
+.rv-hj td:first-child{text-align:left;padding-left:12px;color:var(--rv-hlb)}
+.rv-hj tbody+tbody tr:first-child td{border-top:1px solid var(--rv-hln)}
+.rv-hj td.in{background:var(--rv-az)}
+.rv-hj.ve td.in{background:var(--rv-ve)}
+.rv-hj td.new{font-weight:600;background:var(--rv-az);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--ink) 55%,transparent)}
+.rv-hj.ve td.new{background:var(--rv-ve)}
+.rv-hj td.same{color:var(--rv-hhd)}
+.rv-hj tr.w td{padding:0 12px 10px;font-size:12.5px;line-height:18px;text-align:left;color:var(--rv-hlb)}
+/* noticias: de quién y cuándo, el titular con serifa, lo que pasó, por qué te importa y dónde leerla */
+.rv-n{scroll-margin-top:calc(max(env(safe-area-inset-top,0px),10px) + 64px)}
+.rv-n+.rv-n{margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
+.rv-nm{font-size:12px;line-height:16px;font-weight:500;color:var(--ink3)}
+.rv-n h4{margin:6px 0 10px;font-family:var(--rv-serif);font-size:20px;line-height:26px;font-weight:500;color:var(--ink);text-wrap:balance}
+.rv-imp{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--rv-sand)}
+.rv-imp>b{display:block;margin-bottom:4px;font-size:12px;line-height:16px;font-weight:600;color:var(--ink)}
+.rv-imp p{font-family:var(--rv-serif);font-size:16px;line-height:24px;color:var(--ink2)}
+.rv-imp p+p{margin-top:8px!important}
+.rv-n .rv-lk{margin-top:12px}
+.rv-load{margin-top:24px!important;font-size:14px;color:var(--ink3)}
+/* el pie: marcar como leída y la anterior y la siguiente */
+.rv-foot{display:flex;flex-direction:column;gap:16px;margin-top:32px;padding-top:16px;border-top:1px solid var(--line)}
+.rv-rdb{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;height:32px;padding:0 12px!important;border-radius:16px!important;background:var(--rv-pill)!important;font-size:13px;font-weight:500;color:var(--ink)}
+.rv-rdb .ai{width:15px;height:15px}
+.rv-rdb[aria-pressed="true"]{background:var(--pos-bg)!important;color:var(--pos)}
+.rv-fn{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rv-nb{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0;max-width:100%}
+.rv-nb.n{align-items:flex-end;justify-self:end;text-align:right}
+.rv-nb small{display:inline-flex;align-items:center;gap:2px;font-size:12px;line-height:16px;color:var(--ink3)}
+.rv-nb .ai{width:14px;height:14px}
+.rv-nb.p .ai{margin-left:-3px}.rv-nb.n .ai{margin-right:-3px}
+.rv-nb b{max-width:100%;font-size:15px;line-height:21px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ---------- ordenador ---------- */
+@media (min-width:701px){
+  .rv-top,.rv-art{width:100%;max-width:780px;margin-left:auto;margin-right:auto}
+  .rv-ah>.lgb{width:52px;height:30px}
+  .rv-an{font-size:20px;line-height:26px}
+  .rv-as{font-size:14px;line-height:20px}
+  .rv-kick{margin-top:28px!important;font-size:13px;line-height:18px}
+  .rv-hl{margin-top:8px;font-size:34px;line-height:41px;letter-spacing:-.01em}
+  .rv-ld{margin-top:14px!important;font-size:20px;line-height:31px}
+  .rv-why{padding:14px 18px}
+  .rv-w1,.rv-wx p{font-size:17px;line-height:27px}
+  .rv-tabs{margin:0 -30px;padding:0 30px;top:var(--tbh,0px);box-shadow:none}
+  .rv-tm,.rv-n{scroll-margin-top:calc(var(--tbh,0px) + 64px)}
+  .rv-tx p,.rv-ul li{font-size:19px;line-height:31px}
+  .rv-tm h4,.rv-n h4{font-size:23px;line-height:30px}
+  .rv-ts h4{font-size:21px;line-height:28px}
+  .rv-qa summary{font-size:18px;line-height:26px}
+  .rv-qa details p,.rv-ts dd,.rv-imp p,.rv-ad{font-size:17px;line-height:27px}
+  .rv-kf{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+  .rv-kf>div:nth-child(n){padding:14px 12px;border-left:1px solid var(--line);border-top:0}
+  .rv-kf>div:first-child{padding-left:0;border-left:0}
+  .rv-kf b{font-size:20px;line-height:26px}
+  .rv-fn{grid-template-columns:1fr 1fr}
+  .rv-foot{flex-direction:row;align-items:center;justify-content:space-between}
+  .rv-foot .rv-fn{flex:1;max-width:520px}
+}
+@media (min-width:1000px){
+  .rv-rl{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px}
+  .rv-rl>.rv-ri:nth-child(2){border-top:0}
+  .rv-rl>.rv-ri:nth-last-child(2):nth-child(odd){padding-bottom:0}
+  .rv-h{font-size:22px;line-height:28px}
+  .rv-s{font-size:16.5px;line-height:25px}
+  .rv-nl{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:40px;margin-bottom:-12px}
+  .rv-nl>.rv-row:last-child{padding-bottom:12px}
+  .rv-nl>.rv-row:nth-child(-n+3){border-top:0}
+}
+@media (min-width:701px) and (max-width:999px){
+  .rv-nl{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px;margin-bottom:-12px}
+  .rv-nl>.rv-row:last-child{padding-bottom:12px}
+  .rv-nl>.rv-row:nth-child(-n+2){border-top:0}
+}
+
 /* v294 · modo privado: donde la cifra va centrada por la maquetación (barras de dividendos por meses, calendario de cobros, franja fija
    del móvil, cifras sobre las barras por año), los puntos también van centrados */
 .priv :is(.ca,.mc-v,.hm3-v,.y>.v) .pv::after{text-align:center}
@@ -3804,8 +4106,8 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 
   <section class="panel" id="s-perf">
     <div class="chart-head"><div><h2 class="st">Rendimiento</h2></div>
-      <div class="perf-k" id="perf-k"><div class="seg" role="group" aria-label="Sesión"><button type="button" data-k="today" aria-pressed="false">Hoy</button><button type="button" data-k="last" aria-pressed="false">Última sesión</button></div><div class="seg" role="group" aria-label="Periodo"><button type="button" data-k="w1" aria-pressed="false">1 semana</button><button type="button" data-k="m1" aria-pressed="false">1 mes</button><button type="button" data-k="m3" aria-pressed="false">3 meses</button><button type="button" data-k="m6" aria-pressed="false">6 meses</button><button type="button" data-k="ytd" aria-pressed="false"><span class="wl">En </span><i class="cy"></i></button><button type="button" data-k="y1" aria-pressed="true">1 año</button><button type="button" data-k="y3" aria-pressed="false">3 años</button></div></div></div>
-    <div class="pf-cols"><div><div class="dv-h"><span>Mejores</span></div><div id="perf-up"></div></div><div><div class="dv-h"><span>Peores</span></div><div id="perf-dn"></div></div></div>
+      <div class="perf-k" id="perf-k"><div class="seg" role="group" aria-label="Sesión"><button type="button" data-k="today" aria-pressed="false">Hoy</button><button type="button" data-k="last" aria-pressed="false">Última sesión</button><button type="button" data-k="dd" aria-pressed="false">Desde máximo</button></div><div class="seg" role="group" aria-label="Periodo"><button type="button" data-k="w1" aria-pressed="false">1 semana</button><button type="button" data-k="m1" aria-pressed="false">1 mes</button><button type="button" data-k="m3" aria-pressed="false">3 meses</button><button type="button" data-k="m6" aria-pressed="false">6 meses</button><button type="button" data-k="ytd" aria-pressed="false"><span class="wl">En </span><i class="cy"></i></button><button type="button" data-k="y1" aria-pressed="true">1 año</button><button type="button" data-k="y3" aria-pressed="false">3 años</button></div></div></div>
+    <div class="pf-cols"><div><div class="dv-h"><span id="perf-uh">Mejores</span></div><div id="perf-up"></div></div><div><div class="dv-h"><span id="perf-dh">Peores</span></div><div id="perf-dn"></div></div></div>
     <div class="ind-w"><div class="dv-h"><span>Por industria</span></div><div class="ind-g" id="perf-ind"></div></div>
   </section>
 
@@ -4271,7 +4573,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v295";   // la versión publicada, en el pie
+const VER="v296";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5022,18 +5324,19 @@ function fillIndustries(){ opts($("p-ind"),[...new Set(DATA.pre.map(r=>r.ind).fi
 /* rendimiento: mejores y peores del periodo */
 let perfK="y1";
 // cada fila: la empresa, su cotización, la barra y lo que ha subido o bajado (a partir del 1.000 %, sin decimales)
-function pfRow(r,max){ const v=r[perfK], w=Math.min(Math.abs(v)/max,1)*100;
+function pfRow(r,max){ const v=perfK==="dd"&&Math.abs(r.dd)<0.0005?0:r[perfK], w=Math.min(Math.abs(v)/max,1)*100;
   return `<button type="button" class="pf-row ri-go${r.inPf?" inpf":""}" data-t="${esc(r.ticker)}">${coCell(r.name,r.ticker)}<span class="pf-px num">${money(r.price,r.cur)}</span>
     <span class="pf-bar"><span style="width:${w.toFixed(1)}%;background:var(${v>=0?"--pos":"--neg"})"></span></span><span class="c ${cls(v)}">${pct(v,Math.abs(v)>=10?0:1,true)}</span></button>`; }
 function renderPerf(){
   // «Hoy» = lo que ya ha cotizado hoy; «Última sesión» = la sesión más reciente de cada empresa (por la mañana, EE. UU. es la de ayer).
   // Con todo cerrado son la misma: «Hoy» se apaga
+  const dd=perfK==="dd"; $("perf-uh").textContent=dd?"Más cerca del máximo":"Mejores"; $("perf-dh").textContent=dd?"Más lejos del máximo":"Peores";
   const closed=lastSession().closed; $("perf-k").querySelector('[data-k="today"]').disabled=closed;
   if(closed&&perfK==="today") return setPerf("last");
   const rs=DATA.pre.filter(r=>isNum(r[perfK])).sort((a,b)=>b[perfK]-a[perfK]);
   // las barras: en «Hoy» y «Última sesión», con la misma escala las que suben y las que bajan; en los plazos largos, cada lista con la
   // suya (si no, a un año las que bajan saldrían enanas al lado de las que suben)
-  const up=rs.slice(0,10), dn=rs.slice(-10).reverse(), mx=xs=>Math.max(...xs.map(r=>Math.abs(r[perfK])),0.0001), sep=perfK!=="today"&&perfK!=="last";
+  const up=rs.slice(0,10), dn=rs.slice(-10).reverse(), mx=xs=>Math.max(...xs.map(r=>Math.abs(r[perfK])),0.0001), sep=perfK!=="today"&&perfK!=="last"&&perfK!=="dd";
   const max=sep?mx(up):mx(up.concat(dn)), maxD=sep?mx(dn):max;
   $("perf-up").innerHTML=rs.length?up.map(r=>pfRow(r,max)).join(""):`<p class="sub pf-none">${!DATA.pre.length?"Sin empresas en tu hoja":perfK==="today"?"Ningún mercado abierto todavía":"Sin datos para este periodo"}</p>`; $("perf-dn").innerHTML=dn.map(r=>pfRow(r,maxD)).join("");
   // por industria: media simple de sus empresas, como tu hoja Radar; color por tercios del mejor y del peor, igual que allí
@@ -5233,19 +5536,18 @@ function renderRadar(){
   mb.textContent=left>0?(left>RD_N?`Ver ${RD_N} más · quedan ${nf(0).format(left)}`:`Ver ${left} más`):rdShow>RD_N?"Ver menos":""; mb.style.visibility=left>0||rdShow>RD_N?"":"hidden"; mb.classList.toggle("less",left<=0);
   const mx=Math.max(...L.map(r=>Math.abs(r.margin||0)),0.0001);
   const M={l:"Margen",f:r=>`<span class="${clsM(r.margin)}">${pp(r.margin)}</span>`}, E={l:"Exigida",f:r=>r.req>0?pct(r.req):""};
-  const C=[ {l:"Cotización",f:r=>money(r.price,r.cur)}, {l:"Desde máximo",f:r=>ddf(r.dd)}, rdK==="pf"?{l:"Peso",f:r=>pct(r.weight)}:{l:"",f:()=>""},
+  const C=[ {l:"Cotización",f:r=>money(r.price,r.cur)}, rdK==="pf"?{l:"Peso",f:r=>pct(r.weight)}:{l:"",f:()=>""},
     {l:`<span class="rd-h"><span>Por debajo</span><span>Por encima</span></span>`,f:r=>rdBar(r.margin,mx)}, M, {l:"TIR esperada",f:r=>tirP(r.irrExp)}, E ];
-  // anchos fijos; entre 901 y 1100 px, sin el peso ni la exigida, y entre 701 y 900, tampoco la barra, para que el nombre quepa
-  const tier=rdTier(), W={w:[108,96,76,180,96,112,84],m:[104,96,0,150,96,112,0],n:[104,96,0,0,96,112,0]}[tier], use=W.map(w=>w>0); rdWide=tier;
-  const K=["num hide-s","num hide-s","num hide-s","rd-c hide-s","num r-amt","num r-sub","num hide-s"].filter((_,i)=>use[i]); C.splice(0,C.length,...C.filter((_,i)=>use[i]));
+  // anchos fijos; entre 701 y 1000 px, sin la segunda ni la última columna para que el nombre quepa
+  const wide=innerWidth>1000, W=wide?[108,76,180,96,112,84]:[104,0,150,96,112,0], use=W.map(w=>w>0); rdWide=wide;
+  const K=["num hide-s","num hide-s","rd-c hide-s","num r-amt","num r-sub","num hide-s"].filter((_,i)=>use[i]); C.splice(0,C.length,...C.filter((_,i)=>use[i]));
   $("rd-cg").innerHTML=`<col>`+W.filter(w=>w>0).map(w=>`<col style="width:${w}px">`).join("");
   $("rd-head").innerHTML=`<tr><th class="l">Empresa</th>${C.map((x,i)=>`<th class="${K[i].includes("hide-s")?"hide-s":""}">${x.l}</th>`).join("")}</tr>`;
-  const row=r=>`<tr class="pr ri-go${r.inPf&&!(rdK==="pf")?" inpf":""}" data-t="${esc(r.ticker)}" tabindex="0"><td class="r-main" data-l="Empresa">${coCell(r.name,r.ticker)}</td>${C.map((x,i)=>`<td class="${K[i]}" data-l="${x.l.replace(/<[^>]*>/g,"")}">${x.f(r)}</td>`).join("")}<td class="rd-px">${money(r.price,r.cur)}${rdK==="pf"&&isNum(r.weight)?` · ${pct(r.weight)} de tu cartera`:""}${isNum(r.dd)?`<span class="rd-dd">${ddf(r.dd)} desde máximo</span>`:""}</td></tr>`;
+  const row=r=>`<tr class="pr ri-go${r.inPf&&!(rdK==="pf")?" inpf":""}" data-t="${esc(r.ticker)}" tabindex="0"><td class="r-main" data-l="Empresa">${coCell(r.name,r.ticker)}</td>${C.map((x,i)=>`<td class="${K[i]}" data-l="${x.l.replace(/<[^>]*>/g,"")}">${x.f(r)}</td>`).join("")}<td class="rd-px">${money(r.price,r.cur)}${rdK==="pf"&&isNum(r.weight)?` · ${pct(r.weight)} de tu cartera`:""}</td></tr>`;
   const blank=`<tr class="rd-x" aria-hidden="true"><td class="r-main">&nbsp;</td>${K.map(k=>`<td class="${k}"></td>`).join("")}</tr>`;
   $("rd-body").innerHTML=full.length?L.map(row).join("")+blank.repeat(Math.max(0,RD_N-L.length)):`<tr><td colspan="${K.length+1}" class="empty">Sin empresas valoradas en tu hoja</td></tr>`;
   markRows(); }
-const rdTier=()=>innerWidth>1100?"w":innerWidth>900?"m":"n";
-addEventListener("resize",()=>{ if(DATA&&rdWide!==null&&rdTier()!==rdWide) renderRadar(); });
+addEventListener("resize",()=>{ if(DATA&&rdWide!==null&&(innerWidth>1000)!==rdWide) renderRadar(); });
 $("rd-more").addEventListener("click",()=>{ rdShow=$("rd-more").textContent==="Ver menos"?RD_N:rdShow+RD_N; renderRadar(); });
 $("rd-k").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; rdK=b.dataset.k; rdShow=RD_N; $("rd-k").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b)); renderRadar(); });
 $("rd-body").addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.matches("tr.pr")){ e.preventDefault(); e.target.click(); } });
@@ -5780,6 +6082,11 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   if(document.fonts) document.fonts.ready.then(later); later(); }
 
 
+// v296 · lo de arriba (Anterior/Siguiente, pestañas) no mueve la pantalla aunque lo nuevo sea más corto: si la página ya no llega a donde
+// estabas, se alarga por abajo lo justo (hasta el siguiente cambio) en vez de dejar que el navegador la suba
+const acFree=()=>{ const m=$("pa-main"); if(m) m.style.minHeight=""; };
+const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.documentElement.scrollHeight-innerHeight;
+  if(max<y0) m.style.minHeight=(m.offsetHeight+Math.ceil(y0-max))+"px"; if(Math.abs(scrollY-y0)>0.5) scrollTo({top:y0,behavior:"instant"}); };
 // v292 · Actualidad: la de la v289 (la que funciona), con lo pedido después:
 //  - Próximos resultados como un calendario: dos semanas como mínimo (lo que no tiene a nadie, vacío), cabecera con los días, una casilla
 //    por día con su número y quién presenta; hoy, con el número en un círculo; no se pulsa (es solo para mirar)
@@ -5804,25 +6111,135 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
       return `<div class="acg-e${q?" q":""}">${logoBare(n,e&&e.ticker)}<b>${esc(n)}</b><span class="acg-t">${esc(up(corto(m?m[1]:h)))}</span><span class="acg-x">${esc(up(m?m[1]:h))}</span>${m&&m[2]?`<span class="acg-x">${esc(up(m[2]))}</span>`:""}${q?`<span class="acg-q">${esc(q)}</span>`:""}</div>`; };
     const sq=ix.agenda.some(d=>(d.eventos||[]).some(x=>x.fiabilidad&&x.fiabilidad!=="IR"));
     const WD=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
-    return `<h2 class="asec" id="a-prox">Próximos resultados${ix.periodo_proximos?`<small>${esc(ix.periodo_proximos)} · horario de España</small>`:""}</h2>`
+    const m3=w=>w.slice(0,3).toLowerCase(), per=pm?(pm[2]?`${pm[1]} ${m3(pm[2])} – ${pm[3]} ${m3(pm[4])}`:`${pm[1]}–${pm[3]} ${m3(pm[4])}`):esc(ix.periodo_proximos||"");
+    return `<h2 class="asec" id="a-prox">Próximos resultados${per?`<small>${per}</small>`:""}</h2>`
       +`<div class="acg" style="--c:${nC}">${WD.slice(0,nC).map(w=>`<span class="acg-w">${w}</span>`).join("")}`
       +D.map((d,i)=>{ const k=iso(d), E=ev.get(k)||[], nm=i===0||(i>0&&D[i-1].getMonth()!==d.getMonth());
         return `<div class="acg-d${k===hoy?" hoy":k<hoy?" pas":""}${i%nC===0?" c1":""}${i>=nC?" f2":""}"><p class="acg-n"><b>${d.getDate()}</b>${nm?`<span>${MES[d.getMonth()].slice(0,3)}</span>`:""}${k===hoy?`<i>Hoy</i>`:""}</p>${E.map(one).join("")}</div>`; }).join("")
-      +`</div><p class="acg-f"><span class="acg-fm">Apertura: antes de que abra su bolsa; cierre: después de que cierre. </span>${sq?"En naranja, lo que no ha confirmado la empresa.":""}</p>`; };
+      +`</div><p class="acg-f">Horas de España.<span class="acg-fm"> Apertura: antes de que abra su bolsa; cierre: después de que cierre.</span>${sq?" En naranja, lo que no ha confirmado la empresa.":""}</p>`; };
   // v293 · Anterior y Siguiente de arriba no mueven la pantalla NUNCA (antes, con la página algo bajada, te devolvían al principio de la
   // empresa). Al entrar en una empresa, o con los del pie, sí se sube al principio, y en el iPhone dejando la barra de la hora por encima
   const acSat=()=>{ let p=acSat.p; if(!p){ p=acSat.p=document.createElement("div"); p.style.cssText="position:fixed;top:0;left:0;width:0;height:env(safe-area-inset-top,0px);visibility:hidden;pointer-events:none"; document.body.append(p); } return p.offsetHeight; };
   const acOff=()=>innerWidth>700?84:12+acSat();
   let acArriba=false; document.addEventListener("click",e=>{ acArriba=!!(e.target.closest&&e.target.closest("#pa-main .pa-pn")); },true);
-  aOpen=function(id,push=true,nw=null,tab){ const was=aCur, keep=acArriba&&!!was; acArriba=false; aCur=id||null; if(tab) aTab=tab; aShow();
+  aOpen=function(id,push=true,nw=null,tab){ const was=aCur, keep=acArriba&&!!was, y0=scrollY; acArriba=false; acFree(); aCur=id||null; if(tab) aTab=tab; aShow();
     if(push){ try{ history.pushState(null,"","#"+aPath()); }catch{} }
     if(!aCur) return;
     const P=$("paper"), t=nw!=null&&$(`a-${aCur}-n${nw}`), off=acOff(), y=P.getBoundingClientRect().top+scrollY-off;
-    if(t) aGoTo(t,off+8); else if(keep) return; else if(!(was&&scrollY<=y+1)) aGoTo(P,off); };
+    if(t) aGoTo(t,off+8); else if(keep){ acHold(y0); return; } else if(!(was&&scrollY<=y+1)) aGoTo(P,off); };
   // cambiar de pestaña: igual que antes, pero en el iPhone sin meter las pestañas bajo la barra de la hora
   aSwitch=function(t){ if(!aCur||aTab===t) return; const b=document.querySelector("#pa-main .atabs"), y0=b?b.getBoundingClientRect().top:0;
     aTab=t; aShow(); try{ history.replaceState(null,"","#"+aPath()); }catch{}
     const nb=document.querySelector("#pa-main .atabs"), top=acOff(); if(nb&&y0<top) aGoTo(nb,top); };
+}
+
+// v296 · ACTUALIDAD, UNA REVISTA SOBRE EL CHASIS DE LA APP. La misma estructura de siempre (portada: Resultados, Noticias y Próximos
+// resultados; cada empresa: cabecera, por qué se movió, pestañas Resultados y Noticias, sus apartados y el pie), pero:
+//  - todo lo que no es lectura es exactamente la web: sus tarjetas, colores, rayas y esquinas, sus títulos de sección, la fila de empresa
+//    de Posiciones, las pestañas de la ficha, las tablas con filas alternas y las cifras en su letra (nunca más de 17 px en el móvil)
+//  - lo que se lee (titulares, entradilla y texto) va con serifa y aire, y para no ser un muro de texto: un índice de los temas al
+//    empezar, las cifras clave en una franja (la primera de cada tema) y los temas numerados, con el resto de sus cifras en una línea
+//  - el porqué del movimiento, en una nota corta (la primera frase) que se abre entera, después del titular y antes de las pestañas
+{ const NVt={empresa:"De la empresa",sector:"Del sector","segundo grado":"De segundo grado",segundo_grado:"De segundo grado"};
+  const up=s=>s?s[0].toUpperCase()+s.slice(1):"";
+  const ES={refuerza:["Refuerza","refuerzan"],matiza:["Matiza","matizan"],debilita:["Debilita","debilitan"],contradice:["Contradice","contradicen"],neutro:["Sin efecto","sin efecto"]};
+  const pars=x=>Array.isArray(x)?x:String(x||"").split(/\n\s*\n/);
+  // lo publicado, en corto: «tercer trimestre de 2026» → «3T 2026», «nueve primeros meses» → «9M», «22 de octubre» → «22 oct»
+  const rvQ=s=>String(s||"").replace(/\b(primer|segundo|tercer|cuarto) trimestre\b/gi,(_,o)=>({primer:1,segundo:2,tercer:3,cuarto:4})[o.toLowerCase()]+"T")
+    .replace(/\b(primer|segundo) semestre\b/gi,(_,o)=>(o.toLowerCase()==="primer"?1:2)+"S").replace(/\b(tres|seis|nueve) (?:primeros )?meses\b/gi,(_,o)=>({tres:3,seis:6,nueve:9})[o.toLowerCase()]+"M")
+    .replace(/\b(\d[TSM]) de (\d{4})\b/g,"$1 $2").replace(/\b(\d{1,2}) de ([a-záéíóú]{3})[a-záéíóú]*\b/gi,"$1 $2");
+  // la fila de una empresa, la de Posiciones: logo, nombre y, debajo, una línea; a la derecha, la semana (o «Fuera de tu cartera»)
+  const rvRow=(e,n,tk,sub,tag="div",attr="")=>{ const v=e?aV(e):null, rd=!!(e&&aIsRd(e.id));
+    const r=e&&!aIn(e)?`<span class="rv-out">Fuera de tu cartera</span>`:v==null?"":`<span class="rv-v num ${cls(v)}">${pct(v,1,true)}</span>`;
+    return `<${tag} class="rv-row${rd?" rd":""}"${attr}>${logoBare(n,tk)}<b>${esc(n)}${rd?`<i class="rv-rd" title="Leída">${IC.chk}</i>`:""}</b><span class="rv-rs">${sub}</span>${r}</${tag}>`; };
+
+  /* ---------- la portada ---------- */
+  aPortada=function(){ const ix=ACT.ix, E=aOrd(), R=E.filter(e=>aKind(e)), rN=R.filter(e=>aKind(e)==="res").length, A=aTodas();
+    let h="";
+    if(R.length) h+=`<section class="panel rv-p" id="a-res"><h2 class="st rv-st"><span>${rN===R.length?"Resultados":rN?"Resultados y noticias a fondo":"Noticias a fondo"}</span><small>${R.length} ${R.length===1?"empresa":"empresas"}</small></h2><div class="rv-rl">`
+      +R.map(e=>{ const p=aPub(e), hl=atx(e.titular_portada||""), sm=e.titular?aFirst(e.titular):"", meta=[hl?p.que:"",p.cuando].filter(Boolean).map(rvQ).join(" · ");
+        return `<button type="button" class="rv-ri" data-art="${esc(e.id)}" data-tab="res">${rvRow(e,aShort(e),e.ticker,esc(meta),"span")}<span class="rv-h">${esc(hl||p.que||"Resultados")}</span>${sm?`<span class="rv-s">${esc(sm)}</span>`:""}</button>`; }).join("")+`</div></section>`;
+    h+=`<section class="panel rv-p" id="a-idx"><h2 class="st rv-st"><span>Noticias</span><small>${A.length} ${A.length===1?"empresa":"empresas"}</small></h2><div class="rv-nl">`
+      +A.map(({e,n,tk})=>{ const c=e?aNiv(e):null, tot=c?Object.values(c).reduce((a,b)=>a+b,0):e?(e.num_noticias||0):0, sub=tot?(tot===1?"1 noticia":`${tot} noticias`):"Sin noticias";
+        return e&&aHas(e)?rvRow(e,n,tk,sub,"button",` type="button" data-art="${esc(e.id)}" data-tab="${aHasN(e)?"nws":"res"}"`):rvRow(e,n,tk,sub); }).join("")+`</div></section>`;
+    const cal=aAgenda(ix); if(cal) h+=`<section class="panel rv-p rv-cal">${cal}</section>`;
+    const g=ix.generado?new Date(ix.generado):null;
+    return h+(g&&!isNaN(g)?`<p class="rv-colo">Preparado el ${g.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}).replace(",","")} a las ${g.getHours()}:${String(g.getMinutes()).padStart(2,"0")}</p>`:""); };
+
+  /* ---------- la página de cada empresa ---------- */
+  const rvSec=(id,t,body,r="")=>body?`<section class="rv-sec" id="${id}"><h3 class="rv-sh"><span>${t}</span>${r?`<small>${r}</small>`:""}</h3>${body}</section>`:"";
+  const rvTx=xs=>xs&&xs.length?`<div class="rv-tx">${aPs(xs)}</div>`:"";
+  const rvTable=tb=>{ const hc=tb.ocultar_columna_en_movil, m=i=>hc&&i+1===hc?" rv-hm":"";
+    const td=(c,i)=>{ const s=atx(c), k=i>0&&/^[+−-]\d/.test(s)?(s[0]==="+"?" pos":" neg"):""; return `<td class="${(i?"n":"")+m(i)+k}">${esc(s)}</td>`; };
+    return `<div class="rv-tw"><table class="rv-tb"><thead><tr>${tb.cabeceras.map((c,i)=>`<th class="${(i?"n":"")+m(i)}">${esc(atx(c))}</th>`).join("")}</tr></thead><tbody>${tb.filas.map(r=>`<tr${r.destacada?' class="rv-tot"':""}>${r.celdas.map(td).join("")}</tr>`).join("")}</tbody></table></div>`; };
+  const rvTes=(e,f,x)=>{ let s=""; const T=f.tesis||[];
+    if(T.length){ const c={}; T.forEach(t=>c[t.estado]=(c[t.estado]||0)+1);
+      s+=rvSec(x+"-tes","Frente a tu tesis",`<p class="rv-tsum">${Object.keys(ES).filter(k=>c[k]).map(k=>`<span class="rv-pill ${k}">${c[k]} ${c[k]===1?ES[k][0].toLowerCase():ES[k][1]}</span>`).join("")}</p>`
+        +T.map(t=>`<div class="rv-ts"><span class="rv-pill ${esc(t.estado)}">${(ES[t.estado]||[esc(up(t.estado||""))])[0]}</span><h4>${aRt(t.titulo)}</h4><dl><dt>Tu tesis dice</dt><dd>${aRt(t.dice)}</dd><dt>Lo que se ha visto</dt><dd>${aRt(t.visto)}</dd><dt>Qué cambia</dt><dd>${aRt(t.cambia)}</dd></dl></div>`).join("")); }
+    if(f.hoja){ const hb=(t,sub,o,nn,k1,k2,cl)=>o&&(o.filas||[]).length?`<div class="rv-hj ${cl}"><p class="rv-hc"><b>${t}</b> · ${sub}${aCl(o.nota)?`<span>${aRt(aCl(o.nota))}</span>`:""}</p><table><thead><tr><th>Casilla</th><th>En tu hoja</th><th>${nn}</th></tr></thead>`
+        +o.filas.map(r=>`<tbody><tr><td>${aRt(r.casilla)}</td><td class="in num">${esc(atx(r.en_hoja))}</td><td class="num ${r.sin_cambio?"same":"new"}">${esc(atx(r[k1]))}</td></tr>${r[k2]?`<tr class="w"><td colspan="3">${aRt(r[k2])}</td></tr>`:""}</tbody>`).join("")+`</table></div>`:"";
+      s+=rvSec(x+"-hoj","Tu hoja",hb("Casillas de datos","las azules de tu hoja",f.hoja.datos,"Nuevo","nuevo","calculo","az")+hb("Casillas de estimaciones","las verdes de tu hoja",f.hoja.estimaciones,"Propuesta","propuesta","motivo","ve")); }
+    return s; };
+  const rvRes=(e,f,x)=>{ const an=f.analisis||{}, T=an.temas||[], q=an.analistas, qn=q&&aCl(q.nota), AC=aActs(f);
+    const C=T.map(t=>(t.cifras||[]).filter(c=>/\d/.test(atx(c.valor)))), key=C.map(c=>c[0]).filter(Boolean).slice(0,6);
+    let s="";
+    if(T.length>1) s+=rvSec(x+"-idx","En este análisis",`<ol class="rv-ix">${T.map((t,i)=>`<li><button type="button" data-goto="${x}-t${i}"><span class="rv-no">${i+1}</span><span>${aRt(t.titulo)}</span></button></li>`).join("")}</ol>`);
+    if(key.length) s+=rvSec(x+"-kp","Cifras clave",`<div class="rv-kf">${key.map(c=>`<div><b class="num">${esc(atx(c.valor))}</b><span>${aRt(c.etiqueta)}</span></div>`).join("")}</div>`);
+    s+=rvSec(x+"-pasado","Lo que ha pasado",rvTx(f.pasado));
+    if(T.length) s+=rvSec(x+"-temas","Los temas",T.map((t,i)=>{ const rest=C[i].slice(1);
+      return `<div class="rv-tm" id="${x}-t${i}"><h4><span class="rv-no">${i+1}</span><span>${aRt(t.titulo)}</span></h4>${rest.length?`<p class="rv-dl">${rest.map(c=>`<span><b class="num">${esc(atx(c.valor))}</b> ${aRt(c.etiqueta)}</span>`).join("")}</p>`:""}${rvTx(t.texto)}</div>`; }).join(""));
+    s+=rvSec(x+"-msg","El mensaje de la dirección",rvTx(an.mensaje));
+    if(q&&((q.preguntas||[]).length||qn)) s+=rvSec(x+"-qa",aRt(q.titulo||"Lo que preguntaron los analistas"),(qn?`<p class="rv-note">${aRt(qn)}</p>`:"")+`<div class="rv-qa">${(q.preguntas||[]).map(p=>`<details><summary><span>${aRt(p.pregunta)}</span>${IC.nx}</summary><p>${aRt(p.respuesta)}</p></details>`).join("")}</div>`);
+    s+=rvSec(x+"-per","Perspectivas",rvTx(an.perspectivas));
+    if((an.detalles||[]).length) s+=rvSec(x+"-det","Detalles",`<ul class="rv-ul">${an.detalles.map(d=>`<li>${aRt(d)}</li>`).join("")}</ul>`);
+    if((an.cifras||[]).length) s+=rvSec(x+"-cif","Cifras",an.cifras.map(rvTable).join(""));
+    s+=rvTes(e,f,x);
+    if(AC.length) s+=rvSec(x+"-actos","Qué se ha publicado",`<div class="rv-acts">${AC.map(a=>`<div class="rv-act"><p class="rv-at"><b>${aRt(a.tipo)}</b><span>${esc(atx(a.fecha))}</span></p>${aCl(a.detalle)?`<p class="rv-ad">${aRt(aCl(a.detalle))}</p>`:""}${a.url?`<a class="rv-lk" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">${esc(aLb(atx(a.enlace_texto))||"Abrir")}${IC.nx}</a>`:""}</div>`).join("")}</div>`);
+    if((f.fuentes||[]).length) s+=rvSec(x+"-src","Fuentes",`<ul class="rv-src">${f.fuentes.map(z=>`<li><a class="rv-lk" href="${esc(z.url)}" target="_blank" rel="noopener noreferrer">${esc(aLb(atx(z.texto)))}${IC.nx}</a></li>`).join("")}</ul>`);
+    return s; };
+  const rvNws=(e,f,x)=>{ const N=f.noticias||[], nt=aCl(f.noticias_nota);
+    return (nt?`<p class="rv-note">${aRt(nt)}</p>`:"")+N.map((n,i)=>`<article class="rv-n" id="${x}-n${i}"><p class="rv-nm">${esc([NVt[n.nivel]||"",atx(n.fecha)].filter(Boolean).join(" · "))}</p><h4>${aRt(n.titular)}</h4>${n.que?`<div class="rv-tx">${aPs(pars(n.que))}</div>`:""}`
+      +(n.por_que_te_importa?`<div class="rv-imp"><b>Por qué te importa</b>${aPs(pars(n.por_que_te_importa))}</div>`:"")+(n.url?`<a class="rv-lk" href="${esc(n.url)}" target="_blank" rel="noopener noreferrer">Leer en ${esc(atx(n.fuente)||"la fuente")}${IC.nx}</a>`:"")+`</article>`).join(""); };
+  const rvRdb=(id,rd)=>`<button type="button" class="rv-rdb" data-ard="${esc(id)}" aria-pressed="${rd}">${rd?`${IC.chk}Leída`:`${IC.cir}Marcar como leída`}</button>`;
+  aArt=function(e){ const f=ACT.emp[e.id], k=aKind(e), L=aNav(), i=L.indexOf(e), pv=L[i-1], nx=L[i+1], v=aV(e), x=`a-${esc(e.id)}`, p=aPub(e), rd=aIsRd(e.id);
+    const nN=f?(f.noticias||[]).length:(e.num_noticias||0), T=k?[["res",k==="res"?"Resultados":"La noticia, a fondo"]].concat(nN?[["nws","Noticias",nN]]:[]):[];
+    const tab=T.some(z=>z[0]===aTab)?aTab:T.length?T[0][0]:"nws";
+    const tp=(o,l,d)=>`<button type="button"${o?` data-art="${esc(o.id)}"`:" disabled"} aria-label="${l}">${d<0?IC.pv:""}<span>${l}</span>${d>0?IC.nx:""}</button>`;
+    let h=`<nav class="rv-top" aria-label="Actualidad"><button type="button" class="rv-back" data-art="">${IC.pv}<span>Actualidad</span></button><span class="pa-pn">${tp(pv,"Anterior",-1)}${tp(nx,"Siguiente",1)}</span></nav>`
+      +`<div class="panel rv-art"><header class="rv-ah">${logoBare(aNm(e),e.ticker)}<div><h1 class="rv-an">${esc(aNm(e))}</h1><p class="rv-as">${aIn(e)?(v==null?"Sin cotización fiable esta semana":`<b class="num ${cls(v)}">${pct(v,1,true)}</b> en la semana`):"Fuera de tu cartera"}</p></div></header>`;
+    if(k) h+=`${p.que?`<p class="rv-kick">${esc(p.que)}${p.cuando?` · ${esc(p.cuando)}`:""}</p>`:""}${e.titular_portada?`<h2 class="rv-hl">${esc(atx(e.titular_portada))}</h2>`:""}${(f&&f.titular)||e.titular?`<p class="rv-ld">${aRt((f&&f.titular)||e.titular)}</p>`:""}`;
+    // por qué se ha movido: la causa (la primera frase) y, si hay más, «Seguir leyendo» lo abre entero
+    if(f&&aIn(e)&&(f.por_que_se_movio||[]).length){ const P=f.por_que_se_movio, one=aFirst(P[0]), all=P.map(z=>atx(z).replace(/<[^>]+>/g,"")).join(" ").trim(), more=all.length>one.length+12;
+      const tt=`<span class="rv-wh">${IC.alr}${v==null?"Por qué se ha movido":`Por qué ha ${v<0?"caído":"subido"} un ${pct(Math.abs(v),1)}`} esta semana</span>`;
+      h+=more?`<details class="rv-why" id="${x}-mov"><summary>${tt}<span class="rv-w1">${esc(one)}</span><span class="rv-wm">Seguir leyendo</span></summary><div class="rv-wx">${aPs(P)}</div></details>`:`<div class="rv-why" id="${x}-mov">${tt}<div class="rv-wx">${aPs(P)}</div></div>`; }
+    if(!f) return h+`<p class="rv-load">${aTry[e.id]&&!aPend[e.id]&&mcp?"No he podido leer esta empresa. Pulsa Actualizar en unos segundos.":"Leyendo…"}</p></div>`;
+    if(T.length>1) h+=`<i class="rv-tabs-a"></i><nav class="atabs rv-tabs" role="tablist" aria-label="Qué leer">${T.map(([t,l,c])=>`<button type="button" role="tab" data-tab="${t}" aria-selected="${t===tab}">${l}${c?`<span class="num">${c}</span>`:""}</button>`).join("")}</nav>`;
+    h+=`<div class="rv-body">`+(k&&tab==="res"?rvRes(e,f,x):(T.length>1?"":`<h3 class="rv-sh rv-sh0"><span>Noticias de la semana</span></h3>`)+rvNws(e,f,x))+`</div>`;
+    const nb=(o,l,d)=>o?`<button type="button" class="rv-nb ${d<0?"p":"n"}" data-art="${esc(o.id)}"><small>${d<0?IC.pv:""}${l}${d>0?IC.nx:""}</small><b>${esc(aShort(o))}</b></button>`:"<span></span>";
+    return h+`<footer class="rv-foot">${rvRdb(e.id,rd)}<nav class="rv-fn" aria-label="Otras empresas">${nb(pv,"Anterior",-1)}${nb(nx,"Siguiente",1)}</nav></footer></div>`; };
+  aMark=function(id){ const rd=aIsRd(id); document.querySelectorAll(`#pa-main [data-ard="${id}"]`).forEach(b=>{ b.setAttribute("aria-pressed",rd); b.innerHTML=rd?`${IC.chk}Leída`:`${IC.cir}Marcar como leída`; }); };
+
+  /* ---------- lo que se ve ---------- */
+  renderAct=function(){ const P=$("paper"); if(!P) return; if(P.className!=="rvp") P.className="rvp";
+    if(!ACT){ aSig=""; const M={cargando:"Leyendo el informe de esta semana…",vacío:"Todavía no ha llegado ningún informe a tu carpeta Informes.",
+        error:"No he podido leer tu carpeta Informes ahora mismo. Pulsa Actualizar en unos segundos.",
+        permiso:`La página necesita tu permiso para leer tu carpeta Informes. Solo lee; no escribe nada.</p><p class="rv-msgb"><button class="btn primary" type="button" id="act-allow">Permitir y cargar</button>`,
+        script:"Tu script de Google todavía no entrega los informes: añade el trozo nuevo y vuelve a implementarlo.",fuera:"Los informes se ven en tu web de Claude y en la de GitHub."};
+      P.innerHTML=`<div class="rv"><section class="panel rv-p rv-msg"><p>${M[actSt]||M.cargando}</p></section></div>`; return; }
+    const sig=ACT.ix.semana+"|"+ACT.ix.generado; if(sig!==aSig||!$("pa-main")){ aSig=sig; P.innerHTML=`<div class="rv" id="pa-main"></div>`; }
+    if(aCur&&!ACT.ix.empresas.some(e=>e.id===aCur&&aHas(e))) aCur=null;
+    aShow(); };
+  aShow=function(force){ const m=$("pa-main"); if(!m) return;
+    const e=aCur&&ACT.ix.empresas.find(x=>x.id===aCur), back=aWas&&!aCur;
+    const k=[new Date().toDateString(),aSig,aCur||"",aTab||"",aNew?1:0,aCur?(ACT.emp[aCur]?1:0):(aWk()!=null?1:0),Object.keys(ACT.emp).length].join("|"); if(!force&&m.dataset.k===k) return; m.dataset.k=k;
+    m.innerHTML=(aNew?`<section class="panel rv-p rv-new"><p>${aNew.ix.semana===ACT.ix.semana?"Tu tarea ha rehecho esta edición.":`Ha llegado la edición de la ${esc(aNew.ix.titulo.toLowerCase())}.`}</p><button type="button" class="btn" data-anew>${aNew.ix.semana===ACT.ix.semana?"Ver la nueva":"Leerla"}</button></section>`:"")
+      +(e?`<article class="rv-a" id="a-${esc(e.id)}">${aArt(e)}</article>`:aPortada());
+    aWas=aCur; aBand(); if(back) requestAnimationFrame(aTop); };
+  // otra pestaña: si estaban fijas arriba, siguen ahí y lo nuevo empieza justo debajo; si no, nada se mueve
+  aSwitch=function(t){ if(!aCur||aTab===t) return; const st=()=>{ const b=document.querySelector("#pa-main .rv-tabs"); return b?parseFloat(getComputedStyle(b).top)||0:0; };
+    const a=document.querySelector("#pa-main .rv-tabs-a"), stuck=!!a&&a.getBoundingClientRect().bottom<st()-0.5;
+    const y0=scrollY; acFree(); aTab=t; aShow(); try{ history.replaceState(null,"","#"+aPath()); }catch{}
+    const a2=document.querySelector("#pa-main .rv-tabs-a"); acHold(a2&&stuck?scrollY+a2.getBoundingClientRect().bottom-st():y0); };
 }
 /* ---------- F · búsqueda rápida (⌘K, Ctrl+K en Windows) ---------- */
 // empresas (las tuyas primero), sus últimos movimientos, las secciones y las acciones de la barra; sin tildes ni mayúsculas
