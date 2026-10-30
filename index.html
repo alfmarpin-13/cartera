@@ -3480,6 +3480,72 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   /* escondida, la franja estrecha deja de verse del todo al acabar de subir (antes solo se desplazaba hacia arriba) */
   .hm3c{visibility:hidden;transition:transform .2s ease,visibility 0s linear .2s}
   .hm3c.on{visibility:visible;transition:transform .2s ease,visibility 0s} }
+
+/* v285 · MÓVIL: la franja de la ficha como las de las pestañas: cinco cifras centradas, tres arriba y dos abajo, con las mismas letras,
+   tamaños y rayas (antes, «Valor» sola arriba y cuatro columnas estrechas debajo, donde «Vencimiento» o «2026 · en 21 días» no cabían).
+   :not(#_) solo sube la especificidad por encima de las reglas anteriores de la franja */
+@container ficha (max-width:620px){
+  #sheet .fx-band:not(#_){display:grid;grid-template-columns:repeat(6,minmax(0,1fr));row-gap:0;margin:0 -16px;padding:16px;font-variant-numeric:tabular-nums}
+  #sheet .fx-band:not(#_) .fp-b{position:relative;display:grid;grid-template-rows:subgrid;grid-row:span 3;justify-items:center;align-content:start;align-items:start;text-align:center;padding:0 4px;border:0;min-width:0;grid-column:span 2;margin:0;box-shadow:none}
+  #sheet .fx-band:not(#_) .fp-b>*{grid-area:auto;justify-self:center;align-self:auto;text-align:center;max-width:100%}   /* una regla vieja colocaba la cifra a la derecha de la etiqueta desde la tercera casilla */
+  #sheet .fx-band:not(#_) .fp-b .fp-k{display:block;align-self:end;min-height:0;margin:0;font-size:10px;line-height:12px;font-weight:600;letter-spacing:var(--ls-up);color:var(--fx3);white-space:normal;text-wrap:balance}
+  #sheet .fx-band:not(#_) .fp-b>b{margin-top:6px;font-size:17px;line-height:20px;font-weight:300;letter-spacing:-.01em;white-space:nowrap}
+  #sheet .fx-band:not(#_) .fp-b>small{margin-top:3px;font-size:11px;line-height:15px;color:var(--fx2,#4A4843);white-space:normal;text-wrap:balance}
+  #sheet .fx-band:not(#_) .fp-b>small:empty{display:none}
+  #sheet .fx-band:not(#_) .fp-b:nth-child(n+4){grid-column:span 3;margin-top:14px;padding-top:14px;box-shadow:0 -1px 0 var(--fxl)}
+  #sheet .fx-band:not(#_) .fp-b:is(:nth-child(2),:nth-child(3))::before,
+  #sheet .fx-band:not(#_) .fp-b:nth-child(5)::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--fxl)}
+  #sheet .fx-band:not(#_) .fp-b:nth-child(5)::before{top:14px}
+}
+@container ficha (max-width:370px){ #sheet .fx-band:not(#_) .fp-b>small{font-size:10px} }
+.sheet{--fx2:#4A4843}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet{--fx2:#C6BFB4}}
+:root[data-theme="dark"] .sheet{--fx2:#C6BFB4}
+/* la línea de una opción bajo su nombre: fecha larga en el PC y corta en el móvil */
+.fp-in .os-s{display:none}
+@container ficha (max-width:620px){ .fp-in .os-l{display:none} .fp-in .os-s{display:inline} }
+
+/* v285 · MÓVIL: la calculadora de operaciones, compacta. Las casillas donde se escribe siguen en 16 px (con menos, el iPhone acerca
+   la página al tocarlas); lo demás, a la escala del resto del móvil */
+.pl-sw{display:none}
+@media (max-width:700px){
+  .pl-lw{display:none}.pl-sw{display:inline}
+  /* aportación: la etiqueta y su casilla en la misma fila */
+  .pl-mvb>.pl-ak{flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
+  .pl-ak .mk-k{font-size:13px;line-height:18px}
+  .pl-ak .pl-in{align-self:center}
+  #pl-ap{width:128px;height:36px;font-size:16px}
+  .pl-ak .pl-in i{font-size:14px}
+  /* el resumen: las cuatro casillas más bajas */
+  #pl-k .mk{min-height:0;padding-top:10px;padding-bottom:10px}
+  #pl-k .mk-k{font-size:12px;line-height:16px}
+  #pl-k .mk-v{font-size:15px;line-height:20px;margin-top:2px}
+  #pl-k .mk-s,#pl-k .mk-sl{font-size:11px;line-height:15px}
+  #pl-k .mk-sl{gap:1px}
+  /* cada operación: empresa, importe y quitar en una fila; debajo, los seis datos en tres columnas (la etiqueta encima de la cifra) */
+  #t-plan tbody tr{grid-template-columns:repeat(3,minmax(0,1fr)) 20px;column-gap:8px;row-gap:6px;padding:10px 0}
+  #t-plan tbody tr.pl-sell{padding-left:10px;padding-right:4px}
+  #t-plan td.r-main{grid-column:1/3;grid-row:1}
+  #t-plan td.r-amt{grid-column:3;grid-row:1;margin:0;align-self:center}
+  #t-plan td.pl-x{grid-column:4;grid-row:1;align-self:center;justify-self:center}
+  #t-plan .inp{height:36px}
+  #t-plan .pl-co{padding-right:26px}
+  #t-plan .pl-lg{width:30px}
+  #t-plan .pl-in{display:flex}
+  #t-plan .pl-amt{width:100%;padding-left:8px}
+  #t-plan td.r-meta,#t-plan td.r-sub{margin:0;font-size:12px;line-height:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #t-plan td.r-meta::before,#t-plan td.r-sub::before{content:attr(data-l);display:block;font-size:11px;line-height:14px}
+  #t-plan td.r-meta:empty::after,#t-plan td.r-sub:empty::after{content:"—";color:var(--ink3)}
+  #t-plan td[data-c="px"]{grid-area:2/1}#t-plan td[data-c="sh"]{grid-area:2/2}#t-plan td[data-c="cost"]{grid-area:2/3}
+  #t-plan td[data-c="fee"]{grid-area:3/1}#t-plan td[data-c="w0"]{grid-area:3/2}#t-plan td[data-c="w1"]{grid-area:3/3}
+  /* los botones de abajo, a la izquierda, y «Borrar datos» a la derecha, en la misma fila */
+  .pl-acts{grid-template-columns:auto 1fr;margin-top:12px}
+  .pl-adds{grid-column:1;gap:8px}
+  .pl-clr{grid-column:2}
+}
+/* v285 · ficha: la TIR de las listas («En 2030»…) acaba donde las demás cifras. Su margen de −8 px era para la pastilla, que en la
+   ficha ya no lleva fondo ni relleno, y la sacaba 8 px por la derecha */
+#sheet .fp-kl>b>.rlv{margin-right:0}
 </style>
 
 <div class="wrap">
@@ -3640,7 +3706,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
     <div class="pl-full" id="pl-full">
     <div class="mvb pl-mvb"><label class="mk pl-ak"><span class="mk-k">Aportación</span><span class="pl-in"><input class="inp" id="pl-ap" type="number" min="0" max="9999999" step="any" inputmode="decimal" placeholder="0"><i>€</i></span></label><div class="pl-kk" id="pl-k"></div></div>
     <div class="tablewrap"><table id="t-plan" class="rt"><thead id="pl-head"></thead><tbody id="pl-body"></tbody></table></div>
-    <div class="pl-acts"><span class="pl-adds"><button type="button" class="btn" id="pl-add">Añadir compra</button><button type="button" class="btn" id="pl-sell">Añadir venta</button></span><button type="button" class="pl-clr" id="pl-clr" hidden>Borrar datos</button></div>
+    <div class="pl-acts"><span class="pl-adds"><button type="button" class="btn" id="pl-add"><span class="pl-lw">Añadir compra</span><span class="pl-sw">Compra</span></button><button type="button" class="btn" id="pl-sell"><span class="pl-lw">Añadir venta</span><span class="pl-sw">Venta</span></button></span><button type="button" class="pl-clr" id="pl-clr" hidden>Borrar datos</button></div>
     </div>
   </section>
 
@@ -4119,7 +4185,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v284";   // la versión publicada, en el pie
+const VER="v285";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4241,6 +4307,8 @@ function bars(el,list,cls="",head=1){ const max=Math.max(...list.map(x=>Math.abs
     : `<span class="sub">Sin datos en la hoja</span>`; }
 
 const kv=(l,v,c="")=>`<div class="kv"><span>${l}</span><b class="${c}">${v}</b></div>`;
+// la misma línea con la fecha corta para el móvil (la ficha estrecha enseña una u otra)
+const optSubH=t=>{ const k=String(t).match(/\s([CP])\d/), e=optExpiry(t); return [k?(k[1]==="C"?"De compra":"De venta"):"", e?`vence el <span class="os-l">${esc(flong(e))}</span><span class="os-s">${esc(fdate(e,{day:"numeric",month:"short",year:"numeric"}).replace(/\./g,""))}</span>`:""].filter(Boolean).join(" · "); };
 const optSub=t=>{ const k=String(t).match(/\s([CP])\d/), e=optExpiry(t); return [k?(k[1]==="C"?"De compra":"De venta"):"", e?`vence el ${flong(e)}`:""].filter(Boolean).join(" · "); };
 const optExpiry=t=>{ const m=String(t).match(/(\d{1,2})([A-Z]{3})(\d{2})$/); if(!m) return null; const mm=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"].indexOf(m[2]); return mm<0?null:new Date(2000+ +m[3],mm,+m[1]); };
 function fichaPos(p){
@@ -5173,7 +5241,7 @@ function renderSheet(){ const el=$("sheet"), t=sheet&&DATA?sheet.t:null, p=t&&DA
     const P=p?fichaPos(p):null, R=r?fichaPre(r):null, co=p||r, m=p?p.meta:{}, ctry=(r&&r.country)||m.country, ind=(r&&r.ind)||(p&&!p.isOption&&m.ind)||(p&&p.isOption?optSub(p.ticker):"");
     const place=`${ctry?flagHtml(ctry):""}<span>${esc(t)}</span>${ctry?`<span class="mute">·</span><span class="mute">${esc(ctryN(ctry))}</span>`:""}`;
     const tags=(p&&p.isOption?'<span class="tag">Opción</span>':"")+(r&&r.thesis==="Sí"?'<span class="tag">Con tesis</span>':"");
-    const idb=`<div class="fp-id">${logoBare(co.name,t,"xl")}<div class="fp-t"><h3>${esc(co.name)}${tags}</h3><div class="sub">${place}</div>${ind?`<div class="fp-in">${esc(ind)}</div>`:""}</div></div>`;
+    const idb=`<div class="fp-id">${logoBare(co.name,t,"xl")}<div class="fp-t"><h3>${esc(co.name)}${tags}</h3><div class="sub">${place}</div>${ind?`<div class="fp-in">${p&&p.isOption?optSubH(p.ticker):esc(ind)}</div>`:""}</div></div>`;
     // debajo del nombre, igual en todas las pestañas: la franja con cinco cifras (las de tu posición o, si no la tienes, las de su valoración)
     const band=P?P.band:R?R.band:"", tb=tabs.length?`<div class="sh-tabw"><div class="sh-tabs" role="tablist">${tabs.map(([k,l])=>`<button type="button" role="tab" data-shtab="${k}" aria-selected="${k===sheet.tab}" aria-pressed="${k===sheet.tab}">${l}</button>`).join("")}</div></div>`:"";
     const body=sheet.tab==="pos"?P.body:sheet.tab==="pre"?R.body:sheet.tab==="mkt"?R.mkt:fichaMov(t);
