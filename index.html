@@ -4267,7 +4267,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v292";   // la versión publicada, en el pie
+const VER="v293";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5804,11 +5804,20 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
       +D.map((d,i)=>{ const k=iso(d), E=ev.get(k)||[], nm=i===0||(i>0&&D[i-1].getMonth()!==d.getMonth());
         return `<div class="acg-d${k===hoy?" hoy":k<hoy?" pas":""}${i%nC===0?" c1":""}${i>=nC?" f2":""}"><p class="acg-n"><b>${d.getDate()}</b>${nm?`<span>${MES[d.getMonth()].slice(0,3)}</span>`:""}${k===hoy?`<i>Hoy</i>`:""}</p>${E.map(one).join("")}</div>`; }).join("")
       +`</div><p class="acg-f"><span class="acg-fm">Apertura: antes de que abra su bolsa; cierre: después de que cierre. </span>${sq?"En naranja, lo que no ha confirmado la empresa.":""}</p>`; };
-  aOpen=function(id,push=true,nw=null,tab){ const was=aCur; aCur=id||null; if(tab) aTab=tab; aShow();
+  // v293 · Anterior y Siguiente de arriba no mueven la pantalla NUNCA (antes, con la página algo bajada, te devolvían al principio de la
+  // empresa). Al entrar en una empresa, o con los del pie, sí se sube al principio, y en el iPhone dejando la barra de la hora por encima
+  const acSat=()=>{ let p=acSat.p; if(!p){ p=acSat.p=document.createElement("div"); p.style.cssText="position:fixed;top:0;left:0;width:0;height:env(safe-area-inset-top,0px);visibility:hidden;pointer-events:none"; document.body.append(p); } return p.offsetHeight; };
+  const acOff=()=>innerWidth>700?84:12+acSat();
+  let acArriba=false; document.addEventListener("click",e=>{ acArriba=!!(e.target.closest&&e.target.closest("#pa-main .pa-pn")); },true);
+  aOpen=function(id,push=true,nw=null,tab){ const was=aCur, keep=acArriba&&!!was; acArriba=false; aCur=id||null; if(tab) aTab=tab; aShow();
     if(push){ try{ history.pushState(null,"","#"+aPath()); }catch{} }
     if(!aCur) return;
-    const P=$("paper"), t=nw!=null&&$(`a-${aCur}-n${nw}`), off=innerWidth>700?84:12, y=P.getBoundingClientRect().top+scrollY-off;
-    if(t) aGoTo(t,off+8); else if(!(was&&scrollY<=y+1)) aGoTo(P,off); };
+    const P=$("paper"), t=nw!=null&&$(`a-${aCur}-n${nw}`), off=acOff(), y=P.getBoundingClientRect().top+scrollY-off;
+    if(t) aGoTo(t,off+8); else if(keep) return; else if(!(was&&scrollY<=y+1)) aGoTo(P,off); };
+  // cambiar de pestaña: igual que antes, pero en el iPhone sin meter las pestañas bajo la barra de la hora
+  aSwitch=function(t){ if(!aCur||aTab===t) return; const b=document.querySelector("#pa-main .atabs"), y0=b?b.getBoundingClientRect().top:0;
+    aTab=t; aShow(); try{ history.replaceState(null,"","#"+aPath()); }catch{}
+    const nb=document.querySelector("#pa-main .atabs"), top=acOff(); if(nb&&y0<top) aGoTo(nb,top); };
 }
 /* ---------- F · búsqueda rápida (⌘K, Ctrl+K en Windows) ---------- */
 // empresas (las tuyas primero), sus últimos movimientos, las secciones y las acciones de la barra; sin tildes ni mayúsculas
