@@ -3686,7 +3686,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 .rv-ri.rd .rv-h,.rv-ri:has(.rv-row.rd) .rv-h{color:var(--ink3)}
 
 /* el calendario de próximos resultados, con los colores de la web */
-.rv .acg{display:grid;grid-template-columns:repeat(var(--c,5),minmax(0,1fr));margin-top:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+.rv .acg{display:grid;grid-template-columns:repeat(var(--c,5),minmax(0,1fr));margin-top:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:transparent}
 .rv .acg-w{padding:9px 14px 8px;background:var(--rv-pill);border-bottom:1px solid var(--line);border-left:1px solid var(--line);font-size:11px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink3)}
 .rv .acg-w:first-child{border-left:0}
 .rv .acg-d{display:flex;flex-direction:column;gap:12px;min-width:0;min-height:120px;padding:10px 14px 14px;border-left:1px solid var(--line)}
@@ -3781,13 +3781,6 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 .rv-no{flex:none;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:11px;background:var(--rv-sand);font-family:var(--f-sans,inherit);font-size:12px;line-height:22px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
 .rv-ix button .rv-no{margin-top:-1px}
 /* cifras clave: una sola franja por empresa (la primera cifra de cada tema), como la de cinco cifras de la web */
-.rv-kf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.rv-kf>div{display:flex;flex-direction:column;gap:3px;min-width:0;padding:12px 10px 12px 0}
-.rv-kf>div+div{padding-left:10px;border-left:1px solid var(--line)}
-.rv-kf>div:nth-child(3n+1){padding-left:0;border-left:0}
-.rv-kf>div:nth-child(n+4){border-top:1px solid var(--line)}
-.rv-kf b{font-size:17px;line-height:22px;font-weight:300;color:var(--ink);white-space:nowrap}
-.rv-kf span{font-size:12px;line-height:16px;color:var(--ink3)}
 /* los temas, numerados; sus otras cifras, en una línea bajo el título */
 .rv-tm{scroll-margin-top:calc(max(env(safe-area-inset-top,0px),10px) + 64px)}
 .rv-tm+.rv-tm{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
@@ -3796,17 +3789,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 .rv-dl{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0 0 12px 34px!important;font-size:13px;line-height:19px;color:var(--ink2)}
 .rv-dl b{font-weight:600;color:var(--ink)}
 /* preguntas de los analistas: la pregunta y, al tocarla, la respuesta */
-.rv-qa details{border-top:1px solid var(--line)}
-.rv-qa details:last-child{border-bottom:1px solid var(--line)}
-.rv-qa summary{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:12px 0;list-style:none;cursor:pointer;font-family:var(--rv-serif);font-size:17px;line-height:24px;font-weight:500;color:var(--ink)}
-.rv-qa summary::-webkit-details-marker{display:none}
-.rv-qa summary .ai{flex:none;width:16px;height:16px;margin-top:4px;color:var(--ink3);transition:transform .15s}
-.rv-qa details[open] summary .ai{transform:rotate(90deg)}
-.rv-qa details p{padding:0 0 14px;font-family:var(--rv-serif);font-size:16px;line-height:25px;color:var(--ink2)}
-.rv-ul{margin:0;padding:0 0 0 18px}
 .rv-ul li{font-family:var(--rv-serif);font-size:17px;line-height:27px;color:var(--ink)}
-.rv-ul li+li{margin-top:8px}
-.rv-ul li::marker{color:var(--ink3)}
 /* tablas de cifras: las de la web, con filas alternas */
 .rv-tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .rv-tw+.rv-tw{margin-top:14px}
@@ -3875,17 +3858,10 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 .rv-n .rv-lk{margin-top:12px}
 .rv-load{margin-top:24px!important;font-size:14px;color:var(--ink3)}
 /* el pie: marcar como leída y la anterior y la siguiente */
-.rv-foot{display:flex;flex-direction:column;gap:16px;margin-top:32px;padding-top:16px;border-top:1px solid var(--line)}
+.rv-foot{display:flex;justify-content:center;margin-top:32px;padding-top:20px;border-top:1px solid var(--line)}
 .rv-rdb{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;height:32px;padding:0 12px!important;border-radius:16px!important;background:var(--rv-pill)!important;font-size:13px;font-weight:500;color:var(--ink)}
 .rv-rdb .ai{width:15px;height:15px}
 .rv-rdb[aria-pressed="true"]{background:var(--pos-bg)!important;color:var(--pos)}
-.rv-fn{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.rv-nb{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0;max-width:100%}
-.rv-nb.n{align-items:flex-end;justify-self:end;text-align:right}
-.rv-nb small{display:inline-flex;align-items:center;gap:2px;font-size:12px;line-height:16px;color:var(--ink3)}
-.rv-nb .ai{width:14px;height:14px}
-.rv-nb.p .ai{margin-left:-3px}.rv-nb.n .ai{margin-right:-3px}
-.rv-nb b{max-width:100%;font-size:15px;line-height:21px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* ---------- ordenador ---------- */
 @media (min-width:701px){
@@ -3903,15 +3879,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
   .rv-tx p,.rv-ul li{font-size:19px;line-height:31px}
   .rv-tm h4,.rv-n h4{font-size:23px;line-height:30px}
   .rv-ts h4{font-size:21px;line-height:28px}
-  .rv-qa summary{font-size:18px;line-height:26px}
-  .rv-qa details p,.rv-ts dd,.rv-imp p,.rv-ad{font-size:17px;line-height:27px}
-  .rv-kf{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
-  .rv-kf>div:nth-child(n){padding:14px 12px;border-left:1px solid var(--line);border-top:0}
-  .rv-kf>div:first-child{padding-left:0;border-left:0}
-  .rv-kf b{font-size:20px;line-height:26px}
-  .rv-fn{grid-template-columns:1fr 1fr}
-  .rv-foot{flex-direction:row;align-items:center;justify-content:space-between}
-  .rv-foot .rv-fn{flex:1;max-width:520px}
+  .rv-ts dd,.rv-imp p,.rv-ad{font-size:17px;line-height:27px}
 }
 @media (min-width:1000px){
   .rv-rl{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px}
@@ -3932,6 +3900,78 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 /* v294 · modo privado: donde la cifra va centrada por la maquetación (barras de dividendos por meses, calendario de cobros, franja fija
    del móvil, cifras sobre las barras por año), los puntos también van centrados */
 .priv :is(.ca,.mc-v,.hm3-v,.y>.v) .pv::after{text-align:center}
+
+/* v297 · Resumen › posiciones: la pastilla de Rentab. con sitio para tres cifras enteras (+276,9%): 6,6 px a la izquierda y 7 a la derecha
+   (antes, 68 px desde 1201 y 66 px entre 701 y 860: al texto le quedaban 2,6 y 0,6 px a la derecha; entre 861 y 1200 ya mide 76) */
+@media (min-width:701px) and (max-width:860px),(min-width:1201px){ #t-pos td[data-l="Rentab."] :is(.tpill,.rlv){width:72px;min-width:72px} }
+
+/* ======================= v297 · Resultados para leer sin perderse =======================
+   Cada parte con su forma: icono en cada sección, cifras clave en casillas (nunca una fila coja), temas numerados con su recorrido,
+   el mensaje de la dirección como cita, preguntas y respuestas a la vista (P y R), perspectivas en recuadro y detalles en filas.
+   Dentro del texto, las cifras subrayadas con rotulador y los arranques en negrita («El matiz.») como etiqueta */
+.rv{--rv-mk:#EFDDA9}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rv{--rv-mk:#5A4A24}}
+:root[data-theme="dark"] .rv{--rv-mk:#5A4A24}
+.rv-sh{align-items:center}
+.rv-sh>span{display:inline-flex;align-items:center;gap:10px}
+.rv-si{display:inline-flex;align-items:center;justify-content:center;flex:none;width:26px;height:26px;border-radius:8px;background:var(--rv-pill);color:var(--ink)}
+.rv-si .ai{width:15px;height:15px}
+.rv-f{padding:0 .06em;background:linear-gradient(transparent 60%,var(--rv-mk) 60%);white-space:nowrap}
+.rv-lbl{display:block;width:fit-content;margin:0 0 6px;padding:2px 9px;border-radius:6px;background:var(--rv-pill);font-family:var(--f-sans);font-size:12px;line-height:18px;font-weight:600;color:var(--ink)}
+.rv-rh>.rv-kick:first-child{margin-top:22px!important}
+/* cifras clave: casillas iguales; en el móvil de dos en dos y, si son impares, la última a lo ancho; en el PC, todas en una fila (6: dos de 3) */
+.rv-kf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.rv-kf.odd>div:last-child{grid-column:1/-1}
+.rv-kf>div{display:flex;flex-direction:column;gap:4px;min-width:0;padding:12px 14px;border-radius:12px;background:var(--rv-pill)}
+.rv-kf b{font-size:17px;line-height:22px;font-weight:400;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.rv-kf span{font-size:12px;line-height:16px;color:var(--ink2)}
+/* los temas: número en negro y sus cifras en pastillas */
+.rv-tm h4 .rv-no{width:26px;height:26px;margin-top:0;border-radius:13px;background:var(--ink);color:var(--panel);font-size:12.5px;line-height:26px}
+.rv-dl{gap:6px;margin:0 0 14px!important}
+.rv-dl>span{display:inline-flex;align-items:baseline;gap:5px;padding:4px 10px;border-radius:999px;background:var(--rv-pill);font-size:13px;line-height:18px;color:var(--ink2)}
+/* el mensaje de la dirección, como cita; las perspectivas, en recuadro */
+.rv-quote{padding:14px 16px 14px 18px;border-left:3px solid var(--ink);border-radius:0 12px 12px 0;background:var(--rv-sand)}
+.rv-box{padding:14px 16px;border:1px solid var(--line);border-radius:12px}
+/* preguntas de los analistas: P y la pregunta (y debajo, quién la hizo); R y la respuesta en su globo. Todo a la vista */
+.rv-qa{display:flex;flex-direction:column}
+.rv-q{display:flex;flex-direction:column;gap:10px}
+.rv-q+.rv-q{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.rv-qq,.rv-qr{display:grid;grid-template-columns:26px minmax(0,1fr);column-gap:12px;align-items:start}
+.rv-qk{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:13px;font-family:var(--f-sans);font-size:12px;line-height:26px;font-weight:700}
+.rv-qq .rv-qk{background:var(--ink);color:var(--panel)}
+.rv-qr .rv-qk{background:var(--rv-pill);color:var(--ink)}
+.rv-qq p{padding-top:2px;font-size:15px;line-height:22px;font-weight:600;color:var(--ink)}
+.rv-qw{display:block;width:fit-content;margin:6px 0 0;padding:0 8px;border:1px solid var(--line);border-radius:999px;font-size:11.5px;line-height:18px;font-weight:500;color:var(--ink2);white-space:nowrap}
+.rv-qr>div{min-width:0;padding:10px 14px;border-radius:4px 12px 12px 12px;background:var(--rv-pill)}
+.rv-qr p{font-family:var(--rv-serif);font-size:16px;line-height:25px;color:var(--ink)}
+.rv-qr p+p{margin-top:8px!important}
+/* detalles: una fila cada uno, con su marca */
+.rv-ul{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.rv-ul li{position:relative;padding:12px 0 12px 22px;border-bottom:1px solid var(--line)}
+.rv-ul li::before{content:"";position:absolute;left:3px;top:22px;width:7px;height:7px;border-radius:2px;background:var(--ink3)}
+/* el pie: «Marcar como leída» sola y centrada; debajo, Anterior y Siguiente como arriba */
+.rv-rdb{align-self:center}
+.rv-bot{margin-top:14px}
+.rv-top .rv-pn{display:flex;gap:14px}
+@media (min-width:701px){
+  .rv-kf{grid-template-columns:repeat(var(--c),minmax(0,1fr));gap:10px}
+  .rv-kf.odd>div:last-child{grid-column:auto}
+  .rv-kf>div{padding:14px 16px}
+  .rv-kf b{font-size:20px;line-height:26px}
+  /* temas como recorrido: el número a la izquierda y una línea que lo une con el siguiente */
+  .rv-tm{position:relative;padding-left:42px}
+  .rv-tm h4{margin-left:-42px;gap:16px}
+  .rv-tm h4 .rv-no{margin-top:2px}
+  .rv-tm::before{content:"";position:absolute;left:12px;top:38px;bottom:-34px;width:2px;border-radius:1px;background:var(--line)}
+  .rv-tm:last-child::before{display:none}
+  .rv-tm+.rv-tm{margin-top:34px;padding-top:0;border-top:0}
+  .rv-quote{padding:16px 20px 16px 22px}
+  .rv-box{padding:16px 20px}
+  .rv-qq p{font-size:16px;line-height:24px;padding-top:1px}
+  .rv-qr>div{padding:12px 16px}
+  .rv-qr p{font-size:17px;line-height:27px}
+  .rv-ul li::before{top:24px}
+}
 </style>
 
 <div class="wrap">
@@ -4573,7 +4613,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v296";   // la versión publicada, en el pie
+const VER="v297";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -6144,6 +6184,13 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
   const up=s=>s?s[0].toUpperCase()+s.slice(1):"";
   const ES={refuerza:["Refuerza","refuerzan"],matiza:["Matiza","matizan"],debilita:["Debilita","debilitan"],contradice:["Contradice","contradicen"],neutro:["Sin efecto","sin efecto"]};
   const pars=x=>Array.isArray(x)?x:String(x||"").split(/\n\s*\n/);
+  // v297 · para leer sin perderse: las cifras del texto resaltadas (con su unidad: %, pp, M USD, € ...; no los años ni «3T» ni «9M»)
+  // y el arranque en negrita de un párrafo («<b>El matiz.</b> ...») convertido en una etiqueta encima del párrafo
+  const rvSp="(?:[\\s\\u00a0]|&nbsp;)", rvCu="(?:USD|EUR|CHF|GBP|JPY|DKK|SEK|€|\\$|£|dólares|euros|francos|libras)";
+  const rvFR=new RegExp(`(?<![\\p{L}\\d.,&#])([+−-]?\\d{1,3}(?:\\.\\d{3})*(?:,\\d+)?(?:[–-]\\d{1,3}(?:\\.\\d{3})*(?:,\\d+)?)?)(%|${rvSp}(?:pp|pb|p\\.${rvSp}?b\\.|puntos básicos|puntos porcentuales|veces|mil millones|millones|M|bn)(?:${rvSp}(?:de${rvSp})?${rvCu})?(?![\\p{L}])|${rvSp}${rvCu}(?![\\p{L}])|x(?![\\p{L}]))?`,"gu");
+  const rvF=h=>String(h).split(/(<[^>]+>)/).map(z=>z[0]==="<"?z:z.replace(rvFR,(m,n,u)=>u||/,\d/.test(n)?`<span class="rv-f">${m}</span>`:m)).join("");
+  const rvLb=h=>String(h).replace(/<p><b>([^<]{2,60}?)[.:]<\/b>\s*/g,'<p><span class="rv-lbl">$1</span>');
+  const rvP=xs=>rvF(rvLb(aPs(xs)));
   // lo publicado, en corto: «tercer trimestre de 2026» → «3T 2026», «nueve primeros meses» → «9M», «22 de octubre» → «22 oct»
   const rvQ=s=>String(s||"").replace(/\b(primer|segundo|tercer|cuarto) trimestre\b/gi,(_,o)=>({primer:1,segundo:2,tercer:3,cuarto:4})[o.toLowerCase()]+"T")
     .replace(/\b(primer|segundo) semestre\b/gi,(_,o)=>(o.toLowerCase()==="primer"?1:2)+"S").replace(/\b(tres|seis|nueve) (?:primeros )?meses\b/gi,(_,o)=>({tres:3,seis:6,nueve:9})[o.toLowerCase()]+"M")
@@ -6167,8 +6214,10 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
     return h+(g&&!isNaN(g)?`<p class="rv-colo">Preparado el ${g.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}).replace(",","")} a las ${g.getHours()}:${String(g.getMinutes()).padStart(2,"0")}</p>`:""); };
 
   /* ---------- la página de cada empresa ---------- */
-  const rvSec=(id,t,body,r="")=>body?`<section class="rv-sec" id="${id}"><h3 class="rv-sh"><span>${t}</span>${r?`<small>${r}</small>`:""}</h3>${body}</section>`:"";
-  const rvTx=xs=>xs&&xs.length?`<div class="rv-tx">${aPs(xs)}</div>`:"";
+  const RVI={idx:IC.idx,kp:IC.res,pasado:IC.book,temas:IC.lay,msg:IC.msg,qa:IC.qa,per:IC.per,det:IC.lst,cif:IC.tab,tes:IC.tes,hoj:IC.hoj,actos:IC.nws,src:IC.lnk};
+  const rvSec=(id,t,body,r="")=>{ if(!body) return ""; const k=id.slice(id.lastIndexOf("-")+1), ic=RVI[k];
+    return `<section class="rv-sec rv-s-${k}" id="${id}"><h3 class="rv-sh"><span>${ic?`<i class="rv-si">${ic}</i>`:""}${t}</span>${r?`<small>${r}</small>`:""}</h3>${body}</section>`; };
+  const rvTx=xs=>xs&&xs.length?`<div class="rv-tx">${rvP(xs)}</div>`:"";
   const rvTable=tb=>{ const hc=tb.ocultar_columna_en_movil, m=i=>hc&&i+1===hc?" rv-hm":"";
     const td=(c,i)=>{ const s=atx(c), k=i>0&&/^[+−-]\d/.test(s)?(s[0]==="+"?" pos":" neg"):""; return `<td class="${(i?"n":"")+m(i)+k}">${esc(s)}</td>`; };
     return `<div class="rv-tw"><table class="rv-tb"><thead><tr>${tb.cabeceras.map((c,i)=>`<th class="${(i?"n":"")+m(i)}">${esc(atx(c))}</th>`).join("")}</tr></thead><tbody>${tb.filas.map(r=>`<tr${r.destacada?' class="rv-tot"':""}>${r.celdas.map(td).join("")}</tr>`).join("")}</tbody></table></div>`; };
@@ -6180,43 +6229,47 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
         +o.filas.map(r=>`<tbody><tr><td>${aRt(r.casilla)}</td><td class="in num">${esc(atx(r.en_hoja))}</td><td class="num ${r.sin_cambio?"same":"new"}">${esc(atx(r[k1]))}</td></tr>${r[k2]?`<tr class="w"><td colspan="3">${aRt(r[k2])}</td></tr>`:""}</tbody>`).join("")+`</table></div>`:"";
       s+=rvSec(x+"-hoj","Tu hoja",hb("Casillas de datos","las azules de tu hoja",f.hoja.datos,"Nuevo","nuevo","calculo","az")+hb("Casillas de estimaciones","las verdes de tu hoja",f.hoja.estimaciones,"Propuesta","propuesta","motivo","ve")); }
     return s; };
+  const rvQA=p=>{ let q=aRt(p.pregunta), w=""; const m=q.match(/\s*\(([^()]{2,40})\)\s*$/); if(m){ w=m[1]; q=q.slice(0,m.index); }
+    return `<div class="rv-q"><div class="rv-qq"><span class="rv-qk">P</span><p>${q}${w?`<span class="rv-qw">${w}</span>`:""}</p></div>`
+      +(p.respuesta?`<div class="rv-qr"><span class="rv-qk">R</span><div>${rvP(pars(p.respuesta))}</div></div>`:"")+`</div>`; };
   const rvRes=(e,f,x)=>{ const an=f.analisis||{}, T=an.temas||[], q=an.analistas, qn=q&&aCl(q.nota), AC=aActs(f);
     const C=T.map(t=>(t.cifras||[]).filter(c=>/\d/.test(atx(c.valor)))), key=C.map(c=>c[0]).filter(Boolean).slice(0,6);
     let s="";
     if(T.length>1) s+=rvSec(x+"-idx","En este análisis",`<ol class="rv-ix">${T.map((t,i)=>`<li><button type="button" data-goto="${x}-t${i}"><span class="rv-no">${i+1}</span><span>${aRt(t.titulo)}</span></button></li>`).join("")}</ol>`);
-    if(key.length) s+=rvSec(x+"-kp","Cifras clave",`<div class="rv-kf">${key.map(c=>`<div><b class="num">${esc(atx(c.valor))}</b><span>${aRt(c.etiqueta)}</span></div>`).join("")}</div>`);
+    if(key.length) s+=rvSec(x+"-kp","Cifras clave",`<div class="rv-kf${key.length%2?" odd":""}" style="--c:${key.length===6?3:key.length}">${key.map(c=>`<div><b class="num">${esc(atx(c.valor))}</b><span>${aRt(c.etiqueta)}</span></div>`).join("")}</div>`);
     s+=rvSec(x+"-pasado","Lo que ha pasado",rvTx(f.pasado));
     if(T.length) s+=rvSec(x+"-temas","Los temas",T.map((t,i)=>{ const rest=C[i].slice(1);
       return `<div class="rv-tm" id="${x}-t${i}"><h4><span class="rv-no">${i+1}</span><span>${aRt(t.titulo)}</span></h4>${rest.length?`<p class="rv-dl">${rest.map(c=>`<span><b class="num">${esc(atx(c.valor))}</b> ${aRt(c.etiqueta)}</span>`).join("")}</p>`:""}${rvTx(t.texto)}</div>`; }).join(""));
-    s+=rvSec(x+"-msg","El mensaje de la dirección",rvTx(an.mensaje));
-    if(q&&((q.preguntas||[]).length||qn)) s+=rvSec(x+"-qa",aRt(q.titulo||"Lo que preguntaron los analistas"),(qn?`<p class="rv-note">${aRt(qn)}</p>`:"")+`<div class="rv-qa">${(q.preguntas||[]).map(p=>`<details><summary><span>${aRt(p.pregunta)}</span>${IC.nx}</summary><p>${aRt(p.respuesta)}</p></details>`).join("")}</div>`);
-    s+=rvSec(x+"-per","Perspectivas",rvTx(an.perspectivas));
-    if((an.detalles||[]).length) s+=rvSec(x+"-det","Detalles",`<ul class="rv-ul">${an.detalles.map(d=>`<li>${aRt(d)}</li>`).join("")}</ul>`);
+    const ms=rvTx(an.mensaje); s+=rvSec(x+"-msg","El mensaje de la dirección",ms&&`<div class="rv-quote">${ms}</div>`);
+    if(q&&((q.preguntas||[]).length||qn)) s+=rvSec(x+"-qa",aRt(q.titulo||"Lo que preguntaron los analistas"),(qn?`<p class="rv-note">${aRt(qn)}</p>`:"")+`<div class="rv-qa">${(q.preguntas||[]).map(rvQA).join("")}</div>`);
+    const ps=rvTx(an.perspectivas); s+=rvSec(x+"-per","Perspectivas",ps&&`<div class="rv-box">${ps}</div>`);
+    if((an.detalles||[]).length) s+=rvSec(x+"-det","Detalles",`<ul class="rv-ul">${an.detalles.map(d=>`<li>${rvF(aRt(d))}</li>`).join("")}</ul>`);
     if((an.cifras||[]).length) s+=rvSec(x+"-cif","Cifras",an.cifras.map(rvTable).join(""));
     s+=rvTes(e,f,x);
     if(AC.length) s+=rvSec(x+"-actos","Qué se ha publicado",`<div class="rv-acts">${AC.map(a=>`<div class="rv-act"><p class="rv-at"><b>${aRt(a.tipo)}</b><span>${esc(atx(a.fecha))}</span></p>${aCl(a.detalle)?`<p class="rv-ad">${aRt(aCl(a.detalle))}</p>`:""}${a.url?`<a class="rv-lk" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">${esc(aLb(atx(a.enlace_texto))||"Abrir")}${IC.nx}</a>`:""}</div>`).join("")}</div>`);
     if((f.fuentes||[]).length) s+=rvSec(x+"-src","Fuentes",`<ul class="rv-src">${f.fuentes.map(z=>`<li><a class="rv-lk" href="${esc(z.url)}" target="_blank" rel="noopener noreferrer">${esc(aLb(atx(z.texto)))}${IC.nx}</a></li>`).join("")}</ul>`);
     return s; };
   const rvNws=(e,f,x)=>{ const N=f.noticias||[], nt=aCl(f.noticias_nota);
-    return (nt?`<p class="rv-note">${aRt(nt)}</p>`:"")+N.map((n,i)=>`<article class="rv-n" id="${x}-n${i}"><p class="rv-nm">${esc([NVt[n.nivel]||"",atx(n.fecha)].filter(Boolean).join(" · "))}</p><h4>${aRt(n.titular)}</h4>${n.que?`<div class="rv-tx">${aPs(pars(n.que))}</div>`:""}`
-      +(n.por_que_te_importa?`<div class="rv-imp"><b>Por qué te importa</b>${aPs(pars(n.por_que_te_importa))}</div>`:"")+(n.url?`<a class="rv-lk" href="${esc(n.url)}" target="_blank" rel="noopener noreferrer">Leer en ${esc(atx(n.fuente)||"la fuente")}${IC.nx}</a>`:"")+`</article>`).join(""); };
+    return (nt?`<p class="rv-note">${aRt(nt)}</p>`:"")+N.map((n,i)=>`<article class="rv-n" id="${x}-n${i}"><p class="rv-nm">${esc([NVt[n.nivel]||"",atx(n.fecha)].filter(Boolean).join(" · "))}</p><h4>${aRt(n.titular)}</h4>${n.que?`<div class="rv-tx">${rvP(pars(n.que))}</div>`:""}`
+      +(n.por_que_te_importa?`<div class="rv-imp"><b>Por qué te importa</b>${rvP(pars(n.por_que_te_importa))}</div>`:"")+(n.url?`<a class="rv-lk" href="${esc(n.url)}" target="_blank" rel="noopener noreferrer">Leer en ${esc(atx(n.fuente)||"la fuente")}${IC.nx}</a>`:"")+`</article>`).join(""); };
   const rvRdb=(id,rd)=>`<button type="button" class="rv-rdb" data-ard="${esc(id)}" aria-pressed="${rd}">${rd?`${IC.chk}Leída`:`${IC.cir}Marcar como leída`}</button>`;
   aArt=function(e){ const f=ACT.emp[e.id], k=aKind(e), L=aNav(), i=L.indexOf(e), pv=L[i-1], nx=L[i+1], v=aV(e), x=`a-${esc(e.id)}`, p=aPub(e), rd=aIsRd(e.id);
-    const nN=f?(f.noticias||[]).length:(e.num_noticias||0), T=k?[["res",k==="res"?"Resultados":"La noticia, a fondo"]].concat(nN?[["nws","Noticias",nN]]:[]):[];
+    const nN=f?(f.noticias||[]).length:(e.num_noticias||0), T=(k?[["res",k==="res"?"Resultados":"La noticia, a fondo"]]:[]).concat(nN?[["nws","Noticias",nN]]:[]);
     const tab=T.some(z=>z[0]===aTab)?aTab:T.length?T[0][0]:"nws";
     const tp=(o,l,d)=>`<button type="button"${o?` data-art="${esc(o.id)}"`:" disabled"} aria-label="${l}">${d<0?IC.pv:""}<span>${l}</span>${d>0?IC.nx:""}</button>`;
     let h=`<nav class="rv-top" aria-label="Actualidad"><button type="button" class="rv-back" data-art="">${IC.pv}<span>Actualidad</span></button><span class="pa-pn">${tp(pv,"Anterior",-1)}${tp(nx,"Siguiente",1)}</span></nav>`
       +`<div class="panel rv-art"><header class="rv-ah">${logoBare(aNm(e),e.ticker)}<div><h1 class="rv-an">${esc(aNm(e))}</h1><p class="rv-as">${aIn(e)?(v==null?"Sin cotización fiable esta semana":`<b class="num ${cls(v)}">${pct(v,1,true)}</b> en la semana`):"Fuera de tu cartera"}</p></div></header>`;
-    if(k) h+=`${p.que?`<p class="rv-kick">${esc(p.que)}${p.cuando?` · ${esc(p.cuando)}`:""}</p>`:""}${e.titular_portada?`<h2 class="rv-hl">${esc(atx(e.titular_portada))}</h2>`:""}${(f&&f.titular)||e.titular?`<p class="rv-ld">${aRt((f&&f.titular)||e.titular)}</p>`:""}`;
+    // el titular de los resultados va dentro de su pestaña: encima de las noticias no pinta nada
+    const hd=!k?"":`${p.que?`<p class="rv-kick">${esc(p.que)}${p.cuando?` · ${esc(p.cuando)}`:""}</p>`:""}${e.titular_portada?`<h2 class="rv-hl">${esc(atx(e.titular_portada))}</h2>`:""}${(f&&f.titular)||e.titular?`<p class="rv-ld">${aRt((f&&f.titular)||e.titular)}</p>`:""}`;
     // por qué se ha movido: la causa (la primera frase) y, si hay más, «Seguir leyendo» lo abre entero
     if(f&&aIn(e)&&(f.por_que_se_movio||[]).length){ const P=f.por_que_se_movio, one=aFirst(P[0]), all=P.map(z=>atx(z).replace(/<[^>]+>/g,"")).join(" ").trim(), more=all.length>one.length+12;
       const tt=`<span class="rv-wh">${IC.alr}${v==null?"Por qué se ha movido":`Por qué ha ${v<0?"caído":"subido"} un ${pct(Math.abs(v),1)}`} esta semana</span>`;
       h+=more?`<details class="rv-why" id="${x}-mov"><summary>${tt}<span class="rv-w1">${esc(one)}</span><span class="rv-wm">Seguir leyendo</span></summary><div class="rv-wx">${aPs(P)}</div></details>`:`<div class="rv-why" id="${x}-mov">${tt}<div class="rv-wx">${aPs(P)}</div></div>`; }
     if(!f) return h+`<p class="rv-load">${aTry[e.id]&&!aPend[e.id]&&mcp?"No he podido leer esta empresa. Pulsa Actualizar en unos segundos.":"Leyendo…"}</p></div>`;
-    if(T.length>1) h+=`<i class="rv-tabs-a"></i><nav class="atabs rv-tabs" role="tablist" aria-label="Qué leer">${T.map(([t,l,c])=>`<button type="button" role="tab" data-tab="${t}" aria-selected="${t===tab}">${l}${c?`<span class="num">${c}</span>`:""}</button>`).join("")}</nav>`;
-    h+=`<div class="rv-body">`+(k&&tab==="res"?rvRes(e,f,x):(T.length>1?"":`<h3 class="rv-sh rv-sh0"><span>Noticias de la semana</span></h3>`)+rvNws(e,f,x))+`</div>`;
-    const nb=(o,l,d)=>o?`<button type="button" class="rv-nb ${d<0?"p":"n"}" data-art="${esc(o.id)}"><small>${d<0?IC.pv:""}${l}${d>0?IC.nx:""}</small><b>${esc(aShort(o))}</b></button>`:"<span></span>";
-    return h+`<footer class="rv-foot">${rvRdb(e.id,rd)}<nav class="rv-fn" aria-label="Otras empresas">${nb(pv,"Anterior",-1)}${nb(nx,"Siguiente",1)}</nav></footer></div>`; };
+    if(T.length) h+=`<i class="rv-tabs-a"></i><nav class="atabs rv-tabs" role="tablist" aria-label="Qué leer">${T.map(([t,l,c])=>`<button type="button" role="tab" data-tab="${t}" aria-selected="${t===tab}">${l}${c?`<span class="num">${c}</span>`:""}</button>`).join("")}</nav>`;
+    h+=`<div class="rv-body">`+(k&&tab==="res"?(hd?`<div class="rv-rh">${hd}</div>`:"")+rvRes(e,f,x):rvNws(e,f,x))+`</div>`;
+    return h+`<footer class="rv-foot">${rvRdb(e.id,rd)}</footer></div>`
+      +`<nav class="rv-top rv-bot" aria-label="Otras empresas"><button type="button" class="rv-back" data-art="">${IC.pv}<span>Actualidad</span></button><span class="rv-pn">${tp(pv,"Anterior",-1)}${tp(nx,"Siguiente",1)}</span></nav>`; };
   aMark=function(id){ const rd=aIsRd(id); document.querySelectorAll(`#pa-main [data-ard="${id}"]`).forEach(b=>{ b.setAttribute("aria-pressed",rd); b.innerHTML=rd?`${IC.chk}Leída`:`${IC.cir}Marcar como leída`; }); };
 
   /* ---------- lo que se ve ---------- */
