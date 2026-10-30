@@ -3972,6 +3972,27 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
   .rv-qr p{font-size:17px;line-height:27px}
   .rv-ul li::before{top:24px}
 }
+
+/* ======================= v298 · revisión: FL-02, FL-03, PR-01 ======================= */
+/* al abrir, el esqueleto ocupa lo mismo que lo que llega: el mapa ya en 4:3 y las líneas de la franja con su alto (sin saltos) */
+#tmap{aspect-ratio:4/3}
+#s-hero :is(.bs,.bv):empty::before,#hm3 :is(.hm3-v,.hm3-s):empty::before{content:"\00a0"}
+.hy-leg:empty{display:flex;visibility:hidden}.hy-leg:empty::before{content:"\00a0"}
+#s-pos:has(#pos-body .skel){min-height:70vh}
+/* Universo en el móvil: el navegador no maqueta las filas que no se ven */
+@media (max-width:700px){ #p-body tr.pr{content-visibility:auto;contain-intrinsic-size:auto 66px} }
+/* las acciones de Movimientos, con puntos como el resto de lo tapado (antes, emborronadas) */
+.priv #s-mov td[data-k="shares"]{filter:none}
+/* FI-01 · «Tu valoración» en el móvil: cinco casillas en tres arriba y dos abajo (como la franja), sin la última sola en su fila */
+@container ficha (max-width:620px){
+ .fp-vc .fp-m.fp-vm:has(>.fp-b:nth-child(5):last-child){grid-template-columns:repeat(6,minmax(0,1fr))}
+ .fp-vc .fp-m.fp-vm:has(>.fp-b:nth-child(5):last-child)>.fp-b.fp-b{grid-column:span 2;border-left:1px solid var(--line);padding-left:16px}
+ .fp-vc .fp-m.fp-vm:has(>.fp-b:nth-child(5):last-child)>.fp-b.fp-b:nth-child(n+4){grid-column:span 3}
+ .fp-vc .fp-m.fp-vm:has(>.fp-b:nth-child(5):last-child)>.fp-b.fp-b:is(:nth-child(1),:nth-child(4)){border-left:0;padding-left:0}
+}
+/* PR-01 · las acciones y los contratos tapados ocupan justo lo que sus puntos (un «25» es más estrecho que «••••» y los puntos pisaban «acciones»);
+   en la línea «•••• acciones a ••••» del móvil, también el precio medio, para que la línea no salte a dos */
+.priv .pvn,.priv .m-sh .pv{display:inline-block;width:2.5em;white-space:nowrap}
 </style>
 
 <div class="wrap">
@@ -4012,7 +4033,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
   <div class="duo">
   <!-- Tu cartera hoy -->
   <section class="panel hoy" id="s-today">
-    <div class="hy" id="l1-side"></div>
+    <div class="hy" id="l1-side"><div class="hy-a"><h2 class="st">Tu cartera hoy</h2></div></div>
     <div class="tmap" id="tmap"></div>
     <div class="legend hy-leg" id="hy-leg"></div>
   </section>
@@ -4238,6 +4259,7 @@ const MES = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","
 
 /* ---------- lectura de hojas ---------- */
 function grid(wb,name){
+  if(wb.G) return wb.G[name]||[];   // leída en segundo plano: ya llega en tablas
   const ws = wb.Sheets[name]; if(!ws) return [];
   return XLSX.utils.sheet_to_json(ws,{header:1,raw:true,defval:null,blankrows:true});
 }
@@ -4613,7 +4635,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v297";   // la versión publicada, en el pie
+const VER="v298";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4746,8 +4768,8 @@ function fichaPos(p){
     // días hasta el vencimiento y valor intrínseco: lo que vale ejercerla hoy con el subyacente a su precio (sin la prima)
     const km=String(p.ticker).match(/\s([CP])(\d+(?:[.,]\d+)?)\s/), K=km?+km[2].replace(",","."):null, call=!km||km[1]==="C", S=m.price, rate=DATA.fx[m.cur||p.cur];
     const dl=exp?Math.round((exp-new Date(new Date().toDateString()))/864e5):null, iv=isNum(S)&&isNum(K)&&rate?Math.max(0,call?S-K:K-S)*(p.shares||0)*rate:null;
-    return {q:"",band:`${mb("Valor",eur(p.value),"a coste")}${mb("Contratos",nf(0).format(nc),`${shares(p.shares)} acciones`)}${mb("Vencimiento",exp?fdate(exp):"",exp?[day(exp).getFullYear(),dl==null?"":dl>1?`en ${dl} días`:dl===1?"mañana":dl===0?"hoy":"vencida"].filter(x=>x!=="").join(" · "):"")}${mb("Subyacente",money(S,m.cur),esc(m.name||""))}${mb("Valor intrínseco",isNum(iv)?eur(iv):"",isNum(K)?`ejercicio ${money(K,m.cur||p.cur)}`:"")}`,
-      body:`<section class="fp-c"><div class="fp-ch"><h4>Tu opción</h4><span>${nf(0).format(nc)} ${nc===1?"contrato":"contratos"}</span></div><div class="fp-kl"><span>Prima pagada</span><b class="num">${money(p.avg,p.cur)}</b><span>Invertido</span><b class="num">${eur(p.invested)}</b>${isNum(K)?`<span>Ejercicio</span><b class="num">${money(K,m.cur||p.cur)}</b>`:""}</div></section>`}; }
+    return {q:"",band:`${mb("Valor",eur(p.value),"a coste")}${mb("Contratos",`<span class="pv pvn">${nf(0).format(nc)}</span>`,`${shares(p.shares)} acciones`)}${mb("Vencimiento",exp?fdate(exp):"",exp?[day(exp).getFullYear(),dl==null?"":dl>1?`en ${dl} días`:dl===1?"mañana":dl===0?"hoy":"vencida"].filter(x=>x!=="").join(" · "):"")}${mb("Subyacente",pxm(S,m.cur),esc(m.name||""))}${mb("Valor intrínseco",isNum(iv)?eur(iv):"",isNum(K)?`ejercicio ${pxm(K,m.cur||p.cur)}`:"")}`,
+      body:`<section class="fp-c"><div class="fp-ch"><h4>Tu opción</h4><span>${nf(0).format(nc)} ${nc===1?"contrato":"contratos"}</span></div><div class="fp-kl"><span>Prima pagada</span><b class="num">${money(p.avg,p.cur)}</b><span>Invertido</span><b class="num">${eur(p.invested)}</b>${isNum(K)?`<span>Ejercicio</span><b class="num">${pxm(K,m.cur||p.cur)}</b>`:""}</div></section>`}; }
   // compras: todas las de esta empresa (también las ya vendidas), en una mini línea de tiempo
   const buys=(p.buys||[]).filter(b=>b.d instanceof Date).sort((a,b)=>a.d-b.d);
   let tl="";
@@ -4781,7 +4803,7 @@ function fichaPos(p){
       return `<span class="l">${l}</span><span class="tr">${w>0.05?`<i class="${k||(v<0?"neg":"pos")}" style="${v<0?"right":"left"}:50%;width:${w.toFixed(1)}%"></i>`:""}</span><span class="v num ${k?(isNum(v)&&Math.abs(v)>=0.0005?k:"mute"):cls(isNum(v)&&Math.abs(v)>=0.0005?v:0)}">${isNum(v)?(Math.abs(v)<0.0005?"0,0%":pct(v,1,true)):""}</span>`; }).join("")}
 <span class="l t">Total</span><span class="tr t">${barT(p.totalPct)}</span><span class="v t num ${cls(p.totalPct)}">${pct(p.totalPct,1,true)}</span>${parts.length<3?`<span class="l ph" aria-hidden="true">&nbsp;</span><span class="tr ph" aria-hidden="true"></span><span class="v ph" aria-hidden="true">&nbsp;</span>`:""}</div>`;
   const cPos=`<section class="fp-c"><div class="fp-ch"><h4>Tu posición</h4><span>${shares(p.shares)} ${p.shares===1?"acción":"acciones"}</span></div><div class="fp-v">${dec}</div>
-    ${facts([["Invertido",eur(p.invested)],["Precio medio",money(p.avg,p.cur)],["Precio hoy",money(p.price,p.cur)]])}</section>`;
+    ${facts([["Invertido",eur(p.invested)],["Precio medio",money(p.avg,p.cur)],["Precio hoy",pxm(p.price,p.cur)]])}</section>`;
   const cBuy=`<section class="fp-c"><div class="fp-ch"><h4>Compras</h4><span>${buys.length?`${nf(0).format(buys.length)} ${buys.length===1?"compra":"compras"}${nSold?` · ${nSold} ${nSold>1?"vendidas":"vendida"}`:""}`:""}</span></div><div class="fp-v">${tl}</div>
     ${facts([["Primera",buys.length?fd(buys[0].d):""],["Última",buys.length?fd(buys[buys.length-1].d):""],["Desde la última",buys.length?hace(buys[buys.length-1].d):""]])}</section>`;
   // dividendos: por año desde que tienes la posición actual (lo cobrado cuadra con «Cobrado» de tu hoja) y lo apuntado
@@ -4817,12 +4839,12 @@ function renderPositions(){
   const rowOf=p=>{ const open=!!sheet&&sheet.k==="pos"&&sheet.t===p.ticker;
     return `<tr class="pr${open?" open":""}" data-t="${esc(p.ticker)}" tabindex="0" aria-expanded="${open}">
       <td class="r-main" data-l="Empresa"><div class="co">${logoBare(p.name,p.ticker)}<b title="${esc(p.ticker)}">${esc(p.name)}</b></div></td>
-      <td class="num hide-s hide-t" data-l="Precio">${p.isOption?"":p.atCost?"":money(p.price,p.cur)}</td>
+      <td class="num hide-s hide-t" data-l="Precio">${p.isOption?"":p.atCost?"":pxm(p.price,p.cur)}</td>
       <td class="num hide-s hide-m" data-l="Pr. medio">${p.isOption?"":p.atCost?"":money(p.avg,p.cur)}</td>
-      <td class="num hide-s hide-m" data-l="Acciones">${p.isOption||!p.shares?"":nf(0).format(p.shares)}</td>
-      <td class="num r-meta" data-l="Hoy">${p.isOption?"":`<span class="tpill ${p.today?cls(p.today):""}">${p.atCost?"":isNum(p.today)?pct(p.today,1,true):""}</span>`}<span class="m-sh">${p.isOption?`${nf(0).format((p.shares||0)/100)}<span class="w"> ${(p.shares||0)/100===1?"contrato":"contratos"} a</span>`:`${shares(p.shares)}<span class="w"> ${p.shares===1?"acción":"acciones"} a</span>`}<span class="x"> ×</span> ${money(p.avg,p.cur)}</span></td>
+      <td class="num hide-s hide-m" data-l="Acciones">${p.isOption||!p.shares?"":`<span class="pv pvn">${nf(0).format(p.shares)}</span>`}</td>
+      <td class="num r-meta" data-l="Hoy">${p.isOption?"":`<span class="tpill ${p.today?cls(p.today):""}">${p.atCost?"":isNum(p.today)?pct(p.today,1,true):""}</span>`}<span class="m-sh">${p.isOption?`<span class="pv pvn">${nf(0).format((p.shares||0)/100)}</span><span class="w"> ${(p.shares||0)/100===1?"contrato":"contratos"} a</span>`:`<span class="pv pvn">${shares(p.shares)}</span><span class="w"> ${p.shares===1?"acción":"acciones"} a</span>`}<span class="x"> ×</span> ${money(p.avg,p.cur)}</span></td>
       <td class="num hide-s hide-m ${p.todayEur?"":"mute"}" data-l="Hoy €">${p.isOption?"":isNum(p.todayEur)?seur(p.todayEur):""}</td>
-      <td class="num r-amt" data-l="Valor"><span class="m-tot">${eur(p.value)}</span><span class="m-hoy">${p.isOption||p.atCost?`<span class="mute">a coste</span>`:money(p.price,p.cur)}</span></td>
+      <td class="num r-amt" data-l="Valor"><span class="m-tot">${eur(p.value)}</span><span class="m-hoy">${p.isOption||p.atCost?`<span class="mute">a coste</span>`:pxm(p.price,p.cur)}</span></td>
       <td class="num hide-s" data-l="Peso"><span class="wb2"><span>${pct(p.weight)}</span><i><b style="width:${((p.weight||0)/maxW*100).toFixed(1)}%"></b></i></span></td>
       <td class="num r-sub" data-l="Rentab."><span class="m-tot">${p.isOption?"":p.atCost||!isNum(p.totalPct)?"":`<span class="rlv ${retLevel(p.totalPct)}">${pct(p.totalPct,1,true)}</span>`}</span><span class="m-hoy">${p.isOption||p.atCost||!isNum(p.today)?"":`<span class="m-var ${Math.abs(p.today)<0.0005?"mute":cls(p.today)}">${seur(p.todayEur)} (${pct(p.today,1,true)})</span>`}</span></td>
       <td class="num hide-s hide-n" data-l="Resultado">${p.isOption?"":p.atCost?"":seur(p.totalEur)}</td>
@@ -5030,11 +5052,11 @@ function grpStat(xs){ const live=xs.filter(x=>isNum(x.t)&&!x.wait), e=sum(live,x
   return {live:live.length>0,e,r:base?e/base:0,v:sum(xs,x=>x.p.value)}; }
 function groups(keyOf){ const g={}; hq().forEach(x=>{ const k=keyOf(x.p); (g[k]=g[k]||[]).push(x); });
   return Object.entries(g).map(([k,xs])=>({k,xs,...grpStat(xs)})).sort((a,b)=>b.v-a.v); }
-function hyHead(center){ const k=DATA.kpi, q=hq(), up=q.filter(x=>x.t>0).length, dn=q.filter(x=>x.t<0).length, wait=q.filter(x=>x.wait).length, flat=q.length-up-dn-wait;
+function hyHead(center){ const k=DATA.kpi, q=hq(), up=q.filter(x=>x.t>=0.0005).length, dn=q.filter(x=>x.t<=-0.0005).length, cero=q.filter(x=>isNum(x.t)&&!x.wait&&Math.abs(x.t)<0.0005).length, wait=q.filter(x=>x.wait).length, flat=q.length-up-dn-wait;
   const ss=lastSession(); $("t-pos").querySelector('th[data-k="today"]').textContent=ss.closed?"Sesión":"Hoy"; $("t-pos").querySelector('th[data-k="todayEur"]').textContent=ss.closed?"Sesión €":"Hoy €";
   // «suben / bajan» va debajo del mapa, como la leyenda de Evolución; la cifra del día, en la fila del título
-  const lg=$("hy-leg"); if(lg) lg.innerHTML=`<span><i class="up"></i><b>${up}</b> ${up===1?"sube":"suben"}</span><span><i class="dn"></i><b>${dn}</b> ${dn===1?"baja":"bajan"}</span>`
-    +`${flat?`<span><i class="fl"></i><b>${flat}</b> sin cambios</span>`:""}${wait?`<span><i class="wt"></i><b>${wait}</b> sin cotizar</span>`:""}`;
+  const lg=$("hy-leg"); if(lg) lg.innerHTML=`<span><i class="up"></i><b>${up}</b> ${up===1?"sube":"suben"}</span><span><i class="dn"></i><b>${dn}</b> ${dn===1?"baja":"bajan"}</span>${cero?`<span><i class="fl"></i><b>${cero}</b> sin cambios</span>`:""}`
+    +`${wait?`<span><i class="wt"></i><b>${wait}</b> sin cotizar</span>`:""}`;
   return `<div class="hy-a"><h2 class="st">${ss.closed?"Última sesión · "+ss.lbl:"Tu cartera hoy"}</h2>${center?"":`<div class="tbig num hv1 ${cls(k.today)}">${seur(k.today)}<span class="hp">${pct(k.todayPct,1,true)}</span></div>`}</div>`; }
 function renderHoy(){
   if(!DATA) return;
@@ -5169,6 +5191,8 @@ function mkBlocks(list){ return list.map(b=>{ let x="";
 let cnC=null; const cname=(t,n)=>{ if(!DATA||!t) return n; if(!cnC||cnC.d!==DATA){ const m=new Map(); DATA.pre.forEach(r=>m.set(r.ticker,r.name)); DATA.pos.forEach(p=>m.set(p.ticker,p.name)); cnC={d:DATA,m}; } return cnC.m.get(t)||n; };
 const coCell=(name,tk,extra="")=>{ name=cname(tk,name); const b=`<b title="${esc(tk||"")}">${esc(name||tk)}</b>`; return `<div class="co">${logoBare(name,tk)}${extra?`<span class="cn">${b}${extra}</span>`:b}</div>`; };
 const shares=v=>isNum(v)?nf(v%1?2:0).format(v):"";
+// precio de mercado (o tu valor razonable por acción): no dice cuánto tienes, así que el modo privado no lo tapa
+const pxm=(v,cur)=>{ const s=money(v,cur); return s?`<span class="npv">${s}</span>`:""; };
 const infoBtn=(note,k)=>note?`<button type="button" class="info" data-note="${esc(note)}" data-k="${esc(k)}" aria-label="Ver comentario">i</button>`:"";
 // «Todo»: compras, ventas (una por orden, aunque cierre varias compras), dividendos ya cobrados, aportaciones y ajustes, por fecha
 const MESL=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
@@ -5208,7 +5232,7 @@ const MOV = {
         {k:`Dividendos en ${y}`,v:eur(sum(dv,r=>r.v)),sub:`brutos · ${n(dv.length)} ${dv.length===1?"cobro":"cobros"}`}]; } },
   transacciones:{ rows:()=>DATA?DATA.tx:[], date:r=>r.sd||r.bd, years:r=>[yr(r.bd),yr(r.sd)], text:r=>[r.name,r.ticker,r.note].join(" "), sort:["bd",-1], states:[["","Estado"],["open","Abiertas"],["closed","Cerradas"]], stateFn:(r,s)=>s==="open"?!r.sd:!!r.sd,
     cols:[ {k:"bd",l:"Fecha",r:"sub",f:r=>sdate(r.bd)}, {k:"name",l:"Empresa",r:"main",left:1,f:r=>coCell(r.name,r.ticker,infoBtn(r.note,"tx"+r.ticker+(+r.bd)))},
-      {k:"broker",l:"Bróker",left:1,hs:1,sec:1,f:r=>esc(r.broker||"")}, {k:"shares",l:"Acciones",sec:1,f:r=>shares(r.shares),mf:r=>!isNum(r.shares)?"":/\s[CP]\d/.test(String(r.ticker||""))?`${nf(0).format(r.shares/100)} ${r.shares===100?"contrato":"contratos"}`:`${shares(r.shares)} ${r.shares===1?"acción":"acciones"}`},
+      {k:"broker",l:"Bróker",left:1,hs:1,sec:1,f:r=>esc(r.broker||"")}, {k:"shares",l:"Acciones",sec:1,f:r=>{ const s=shares(r.shares); return s?`<span class="pv pvn">${s}</span>`:""; },mf:r=>!isNum(r.shares)?"":/\s[CP]\d/.test(String(r.ticker||""))?`${nf(0).format(r.shares/100)} ${r.shares===100?"contrato":"contratos"}`:`${shares(r.shares)} ${r.shares===1?"acción":"acciones"}`},
       {k:"bp",l:"Precio compra",hs:1,sec:1,f:r=>money(r.bp,r.cur)}, {k:"bt",l:"Importe",r:"amt",f:r=>eur(r.bt,2)},
       {k:"st",l:"Estado",nl:1,sv:r=>r.sd?1:0,f:r=>r.sd?`<span class="tag cl">Cerrada</span>`:`<span class="tag">Abierta</span>`},
       {k:"sd",l:"Fecha venta",sec:1,sv:r=>r.sd?r.sd.getTime():null,f:r=>r.sd?sdate(r.sd):""},
@@ -5234,7 +5258,7 @@ const MOV = {
     cols:[ {k:"d",l:"Fecha",r:"sub",f:r=>sdate(r.d)}, {k:"name",l:"Empresa",r:"main",left:1,f:r=>coCell(r.name,r.ticker,r.type&&r.type!=="Dividendo"?`<span class="tag acc">${esc(r.type)}</span>`:"")},
       {k:"broker",l:"Bróker",left:1,hs:1,sec:1,f:r=>esc(r.broker||"")},
       {k:"st",l:"Estado",nl:1,sv:r=>DATA.isPaid(r)?0:1,f:r=>DATA.isPaid(r)?`<span class="tag acc">Cobrado</span>`:`<span class="tag">Apuntado</span>`},
-      {k:"shares",l:"Acciones",hs:1,sec:1,f:r=>shares(r.shares)},
+      {k:"shares",l:"Acciones",hs:1,sec:1,f:r=>{ const s=shares(r.shares); return s?`<span class="pv pvn">${s}</span>`:""; }},
       {k:"dps",l:"Por acción",hs:1,sec:1,f:r=>dpsF(r.dps,r.cur)},
       {k:"ret",l:"Retención",hs:1,sv:r=>(r.gross||0)-(r.net||0),f:r=>{const x=(r.gross||0)-(r.net||0); return x>0.005?`<span class="neg">−${nf(2).format(x)} €</span>`:"";}},
       {k:"net",l:"En bróker",hs:1,sec:1,f:r=>eur(r.net,2)},   // solo para cuadrar lo que queda en el bróker: los dividendos se cuentan siempre en bruto
@@ -5348,11 +5372,11 @@ const PCOLS=[
   {k:"name",l:"Empresa",r:"main",left:1,f:r=>`<div class="co">${logoBare(r.name,r.ticker)}<b title="${esc(r.ticker)}">${esc(r.name||r.ticker)}</b></div>`},
   {k:"country",l:"País",ctr:1,f:r=>r.country?`<span title="${esc(ctryN(r.country))}">${flagHtml(r.country)}</span>`:""},
   {k:"ind",l:"Industria",left:1,f:r=>`<span class="show-s">${r.country?flagHtml(r.country):""}</span>${esc(r.ind||"")}`},
-  {k:"price",l:"Precio",r:"sub",g:"real",f:r=>money(r.price,r.cur)},
+  {k:"price",l:"Precio",r:"sub",g:"real",f:r=>pxm(r.price,r.cur)},
   {k:"today",l:()=>lastSession().closed?"Sesión":"Hoy",g:"real",mx:1,f:r=>sp(r.today)},
   {k:"dd",l:"Desde máximo",g:"real",mx:1,f:r=>ddf(r.dd)},
   {k:"thesis",l:"Tesis",ctr:1,g:"est",sep:1,mx:1,nil:r=>r.thesis!=="Sí",f:r=>r.thesis==="Sí"?"Sí":""},
-  {k:"fv",l:"Valor razonable",hs:1,g:"est",f:r=>money(r.fv,r.cur)},
+  {k:"fv",l:"Valor razonable",hs:1,g:"est",f:r=>pxm(r.fv,r.cur)},
   {k:"irrExp",l:"TIR esperada",g:"est",mx:1,f:r=>tirP(r.irrExp)},
   {k:"req",l:"Exigida",hs:1,g:"est",f:r=>r.req>0?pct(r.req):""},
   {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>`<span class="${clsM(r.margin)}">${pp(r.margin)}</span>`} ];
@@ -5365,7 +5389,7 @@ function fillIndustries(){ opts($("p-ind"),[...new Set(DATA.pre.map(r=>r.ind).fi
 let perfK="y1";
 // cada fila: la empresa, su cotización, la barra y lo que ha subido o bajado (a partir del 1.000 %, sin decimales)
 function pfRow(r,max){ const v=perfK==="dd"&&Math.abs(r.dd)<0.0005?0:r[perfK], w=Math.min(Math.abs(v)/max,1)*100;
-  return `<button type="button" class="pf-row ri-go${r.inPf?" inpf":""}" data-t="${esc(r.ticker)}">${coCell(r.name,r.ticker)}<span class="pf-px num">${money(r.price,r.cur)}</span>
+  return `<button type="button" class="pf-row ri-go${r.inPf?" inpf":""}" data-t="${esc(r.ticker)}">${coCell(r.name,r.ticker)}<span class="pf-px num">${pxm(r.price,r.cur)}</span>
     <span class="pf-bar"><span style="width:${w.toFixed(1)}%;background:var(${v>=0?"--pos":"--neg"})"></span></span><span class="c ${cls(v)}">${pct(v,Math.abs(v)>=10?0:1,true)}</span></button>`; }
 function renderPerf(){
   // «Hoy» = lo que ya ha cotizado hoy; «Última sesión» = la sesión más reciente de cada empresa (por la mañana, EE. UU. es la de ayer).
@@ -5397,19 +5421,19 @@ $("perf-k").addEventListener("click",e=>{ const b=e.target.closest("button"); if
 function cotRule(lad,cur){ const it=lad.filter(x=>isNum(x[1])); if(it.length<2) return ""; const lo=Math.min(...it.map(x=>x[1])), hi=Math.max(...it.map(x=>x[1])); if(hi-lo<1e-9) return "";
   const a=lo-(hi-lo)*.03, z=hi+(hi-lo)*.03, L=v=>(v-a)/(z-a)*100, SH={"Máximo de un año":"Máx. 1 año","Media 200 sesiones":"Media 200"};
   const at=l=>l<10?`left:${l.toFixed(1)}%`:l>90?`right:${(100-l).toFixed(1)}%`:`left:${l.toFixed(1)}%;transform:translateX(-50%)`;   // en los extremos, la etiqueta se alinea hacia dentro
-  return `<div class="cot-r" aria-hidden="true"><i class="ln"></i>${it.filter(x=>!x[2]).sort((p,q)=>p[1]-q[1]).map((x,i)=>`<span class="mk" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb r${i%2}" style="${at(L(x[1]))}">${SH[x[0]]||x[0]}</span>`).join("")}${it.filter(x=>x[2]).map(x=>`<span class="mk me" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb me" style="${at(L(x[1]))}">Cotización ${money(x[1],cur)}</span>`).join("")}</div>`; }
+  return `<div class="cot-r" aria-hidden="true"><i class="ln"></i>${it.filter(x=>!x[2]).sort((p,q)=>p[1]-q[1]).map((x,i)=>`<span class="mk" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb r${i%2}" style="${at(L(x[1]))}">${SH[x[0]]||x[0]}</span>`).join("")}${it.filter(x=>x[2]).map(x=>`<span class="mk me" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb me" style="${at(L(x[1]))}">Cotización ${pxm(x[1],cur)}</span>`).join("")}</div>`; }
 function fichaPre(r){
   const v=r.val||{}, cur=r.cur, mult=isNum(v.mult)?v.mult:r.mult, req=isNum(r.req)?r.req:v.req, vd=r.fvDate instanceof Date?r.fvDate:v.date;
   const mb=(k,x,sub,c="",cl="")=>`<div class="fp-b${cl}"><span class="fp-k">${k}</span><b class="num ${c}">${x===""?"&nbsp;":x}</b><small>${sub||""}</small></div>`;
   const d=r.dist, ds=isNum(d)?(Math.abs(d)<0.0005?"en tu valor razonable":`cotiza ${pct(d,1,true)}`):"";
   // tu valoración: sus cifras clave arriba del bloque
-  const sl=lastSession().closed?"sesión":"hoy", sesT=isNum(r.today)?`${sp(r.today)} ${sl}`:isNum(r.last)?`${sp(r.last)} última sesión`:"sin cotizar", vcells=`${mb("Cotización",money(r.price,cur),sesT)}${mb("Valor razonable",money(r.fv,cur),ds)}${mb("TIR esperada",tirP(r.irrExp),req>0?`exigida ${pr1(req)}`:"")}${mb("Margen",pp(r.margin),"",clsM(r.margin)," ns")}${mb("Múltiplo",xf(mult),isNum(v.multNow)?`actual ${xf(v.multNow)}`:"")}`, vsum=`<div class="fp-m fp-vm">${vcells}</div>`;
+  const sl=lastSession().closed?"sesión":"hoy", sesT=isNum(r.today)?`${sp(r.today)} ${sl}`:isNum(r.last)?`${sp(r.last)} última sesión`:"sin cotizar", vcells=`${mb("Cotización",pxm(r.price,cur),sesT)}${mb("Valor razonable",pxm(r.fv,cur),ds)}${mb("TIR esperada",tirP(r.irrExp),req>0?`exigida ${pr1(req)}`:"")}${mb("Margen",pp(r.margin),"",clsM(r.margin)," ns")}${mb("Múltiplo",xf(mult),isNum(v.multNow)?`actual ${xf(v.multNow)}`:"")}`, vsum=`<div class="fp-m fp-vm">${vcells}</div>`;
   const card=(h,right,body,cl="")=>`<section class="fp-c${cl}"><div class="fp-ch"><h4>${h}</h4>${right?`<span>${right}</span>`:""}</div>${body}</section>`;
   const kl=xs=>`<div class="fp-kl">${xs.map(([l,x])=>`<span>${l}</span><b class="num">${x===""?"&nbsp;":x}</b>`).join("")}</div>`;
   const vdS=vd instanceof Date?fmd(vd):"";
   // valoración: el año final, la matriz y la deuda (o la caja)
   const y=v.y2, F=v.fv, near=(a,b)=>isNum(a)&&isNum(b)&&Math.abs(a-b)<1e-6;
-  const cY=y&&[y.price,y.irr,y.irrDiv].some(isNum)?card(`En ${esc(y.year??"")}`,"",kl([["Precio",money(y.price,cur)],["Dividendos",money(y.divs,cur)],["TIR sin dividendos",tirP(y.irr)],["TIR con dividendos",tirP(y.irrDiv)]])):"";
+  const cY=y&&[y.price,y.irr,y.irrDiv].some(isNum)?card(`En ${esc(y.year??"")}`,"",kl([["Precio",pxm(y.price,cur)],["Dividendos",money(y.divs,cur)],["TIR sin dividendos",tirP(y.irr)],["TIR con dividendos",tirP(y.irrDiv)]])):"";
   let cF=""; if(F){ const all=F.rows.flatMap(o=>o.v).filter(isNum), dd=all.length&&Math.max(...all.map(Math.abs))>=1000?0:2, mo=x=>isNum(x)?money(x,cur,dd):"";
     // cada celda: el valor razonable y cuánto cotiza por encima (rojo) o por debajo (verde), con la escala de tu hoja (±30%)
     const heat=x=>{ if(!isNum(x)||!x||!isNum(r.price)) return {bg:"",p:""}; const g=r.price/x-1, k=Math.min(Math.abs(g)/0.3,1)*100;
@@ -5437,7 +5461,7 @@ function fichaPre(r){
     ["Tu precio medio",own&&isNum(own.avg)&&own.avg>0?own.avg:null], ["Media 200 sesiones",isNum(r.mm200)&&r.mm200>-1&&isNum(P0)?P0/(1+r.mm200):null] ];
   const rv=x=>isNum(x[1])?x[1]:-Infinity, lad=[...refs.filter(x=>isNum(x[1])),["Cotización",P0,1]].sort((a,b)=>rv(b)-rv(a)), na=refs.filter(x=>!isNum(x[1]));
   const cPrice=`<section class="fp-c fp-cot"><div class="fp-ch"><h4>Precio</h4><span>${sesT}</span></div>
-    ${cotRule(lad,cur)}<ol class="cot-l">${lad.map(([l,v,me])=>`<li class="${me?"me":""}"><span>${l}</span><b class="num">${money(v,cur)}</b><em class="num">${me||!isNum(P0)?"":pct(P0/v-1,1,true)}</em></li>`).join("")}</ol>
+    ${cotRule(lad,cur)}<ol class="cot-l">${lad.map(([l,v,me])=>`<li class="${me?"me":""}"><span>${l}</span><b class="num">${l==="Tu precio medio"?money(v,cur):pxm(v,cur)}</b><em class="num">${me||!isNum(P0)?"":pct(P0/v-1,1,true)}</em></li>`).join("")}</ol>
     ${na.length?`<ul class="cot-l cot-na">${na.map(([l])=>`<li><span>${l}</span><b>N/A</b><em></em></li>`).join("")}</ul>`:""}
     <div class="cot-f"><span>Desde máximo</span><b class="num">${pct(r.dd,1,true)}</b><span>Volatilidad</span><b class="num">${pct(r.vol,1)}</b></div></section>`;
   // rendimiento de cada periodo en barras; la marca, la media simple de su industria en ese periodo
@@ -5576,14 +5600,14 @@ function renderRadar(){
   mb.textContent=left>0?(left>RD_N?`Ver ${RD_N} más · quedan ${nf(0).format(left)}`:`Ver ${left} más`):rdShow>RD_N?"Ver menos":""; mb.style.visibility=left>0||rdShow>RD_N?"":"hidden"; mb.classList.toggle("less",left<=0);
   const mx=Math.max(...L.map(r=>Math.abs(r.margin||0)),0.0001);
   const M={l:"Margen",f:r=>`<span class="${clsM(r.margin)}">${pp(r.margin)}</span>`}, E={l:"Exigida",f:r=>r.req>0?pct(r.req):""};
-  const C=[ {l:"Cotización",f:r=>money(r.price,r.cur)}, rdK==="pf"?{l:"Peso",f:r=>pct(r.weight)}:{l:"",f:()=>""},
+  const C=[ {l:"Cotización",f:r=>pxm(r.price,r.cur)}, rdK==="pf"?{l:"Peso",f:r=>pct(r.weight)}:{l:"",f:()=>""},
     {l:`<span class="rd-h"><span>Por debajo</span><span>Por encima</span></span>`,f:r=>rdBar(r.margin,mx)}, M, {l:"TIR esperada",f:r=>tirP(r.irrExp)}, E ];
   // anchos fijos; entre 701 y 1000 px, sin la segunda ni la última columna para que el nombre quepa
   const wide=innerWidth>1000, W=wide?[108,76,180,96,112,84]:[104,0,150,96,112,0], use=W.map(w=>w>0); rdWide=wide;
   const K=["num hide-s","num hide-s","rd-c hide-s","num r-amt","num r-sub","num hide-s"].filter((_,i)=>use[i]); C.splice(0,C.length,...C.filter((_,i)=>use[i]));
   $("rd-cg").innerHTML=`<col>`+W.filter(w=>w>0).map(w=>`<col style="width:${w}px">`).join("");
   $("rd-head").innerHTML=`<tr><th class="l">Empresa</th>${C.map((x,i)=>`<th class="${K[i].includes("hide-s")?"hide-s":""}">${x.l}</th>`).join("")}</tr>`;
-  const row=r=>`<tr class="pr ri-go${r.inPf&&!(rdK==="pf")?" inpf":""}" data-t="${esc(r.ticker)}" tabindex="0"><td class="r-main" data-l="Empresa">${coCell(r.name,r.ticker)}</td>${C.map((x,i)=>`<td class="${K[i]}" data-l="${x.l.replace(/<[^>]*>/g,"")}">${x.f(r)}</td>`).join("")}<td class="rd-px">${money(r.price,r.cur)}${rdK==="pf"&&isNum(r.weight)?` · ${pct(r.weight)} de tu cartera`:""}</td></tr>`;
+  const row=r=>`<tr class="pr ri-go${r.inPf&&!(rdK==="pf")?" inpf":""}" data-t="${esc(r.ticker)}" tabindex="0"><td class="r-main" data-l="Empresa">${coCell(r.name,r.ticker)}</td>${C.map((x,i)=>`<td class="${K[i]}" data-l="${x.l.replace(/<[^>]*>/g,"")}">${x.f(r)}</td>`).join("")}<td class="rd-px">${pxm(r.price,r.cur)}${rdK==="pf"&&isNum(r.weight)?` · ${pct(r.weight)} de tu cartera`:""}</td></tr>`;
   const blank=`<tr class="rd-x" aria-hidden="true"><td class="r-main">&nbsp;</td>${K.map(k=>`<td class="${k}"></td>`).join("")}</tr>`;
   $("rd-body").innerHTML=full.length?L.map(row).join("")+blank.repeat(Math.max(0,RD_N-L.length)):`<tr><td colspan="${K.length+1}" class="empty">Sin empresas valoradas en tu hoja</td></tr>`;
   markRows(); }
@@ -5668,7 +5692,7 @@ function fichaMov(t){
   const nS=tx.filter(r=>r.sd).length, paid=dv.filter(DATA.isPaid);
   const cT=tx.length?`<section class="fp-c fp-mv"><div class="fp-ch"><h4>Compras y ventas</h4><span>${nf(0).format(tx.length)} ${tx.length===1?"compra":"compras"}${nS?` · ${nS} ${nS>1?"vendidas":"vendida"}`:""}</span></div>
     <div class="fp-ml tx${nS?"":" ns"}"><span class="h c0">Fecha</span><span class="h r">Acciones</span><span class="h r pr">Precio</span><span class="h r">Importe</span>${nS?`<span class="h r">Resultado</span>`:""}
-    ${tx.map(r=>`<span class="c0">${sdate(r.bd)}</span><span class="r num">${shares(r.shares)}</span><span class="r num pr">${money(r.bp,r.cur)}</span><span class="r num">${eur(r.bt,2)}</span>${nS?`<span class="r num">${r.sd?`<span class="${cls(r.pnl)}">${seur(r.pnl,2)}</span>`:""}</span>`:""}`).join("")}</div>${open("transacciones")}</section>`:"";
+    ${tx.map(r=>`<span class="c0">${sdate(r.bd)}</span><span class="r num"><span class="pv pvn">${shares(r.shares)}</span></span><span class="r num pr">${money(r.bp,r.cur)}</span><span class="r num">${eur(r.bt,2)}</span>${nS?`<span class="r num">${r.sd?`<span class="${cls(r.pnl)}">${seur(r.pnl,2)}</span>`:""}</span>`:""}`).join("")}</div>${open("transacciones")}</section>`:"";
   const cD=dv.length?`<section class="fp-c fp-mv"><div class="fp-ch"><h4>Dividendos</h4><span>Cobrado ${eur(sum(paid,r=>r.gross||0))}</span></div>
     <div class="fp-ml dv"><span class="h c0">Fecha</span><span class="h"></span><span class="h r">Bruto</span>
     ${dv.map(r=>`<span class="c0">${sdate(r.d)}</span><span>${DATA.isPaid(r)?"":`<span class="tag">Apuntado</span>`}</span><span class="r num">${eur(r.gross,2)}</span>`).join("")}</div>${open("dividendos")}</section>`:"";
@@ -5676,7 +5700,7 @@ function fichaMov(t){
 function renderSheet(){ const el=$("sheet"), t=sheet&&DATA?sheet.t:null, p=t&&DATA.pos.find(x=>x.ticker===t), r=t&&DATA.pre.find(x=>x.ticker===t);
   if(!p&&!r) sheet=null;
   else {
-    const hasM=DATA.tx.some(x=>x.ticker===t)||DATA.dv.some(x=>x.ticker===t), tabs=[p&&["pos","Posición"],hasM&&["mov","Movimientos"],...(p?[r&&["mkt","Cotización"],r&&["pre","Valoración"]]:[r&&["pre","Valoración"],r&&["mkt","Cotización"]])].filter(Boolean);   // una candidata empieza por su valoración
+    const hasM=DATA.tx.some(x=>x.ticker===t)||DATA.dv.some(x=>x.ticker===t), tabs=[p&&["pos","Posición"],hasM&&["mov","Movimientos"],r&&["mkt","Cotización"],r&&["pre","Valoración"]].filter(Boolean);
     if(!tabs.some(x=>x[0]===sheet.tab)) sheet.tab=tabs[0][0];
     const P=p?fichaPos(p):null, R=r?fichaPre(r):null, co=p||r, m=p?p.meta:{}, ctry=(r&&r.country)||m.country, ind=(r&&r.ind)||(p&&!p.isOption&&m.ind)||(p&&p.isOption?optSub(p.ticker):"");
     const place=`${ctry?flagHtml(ctry):""}<span>${esc(t)}</span>${ctry?`<span class="mute">·</span><span class="mute">${esc(ctryN(ctry))}</span>`:""}`;
@@ -6052,16 +6076,17 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   const STOP=new Set(["a","al","con","de","del","el","en","la","las","lo","los","para","por","sin","sobre","y"]);
   const fit=B=>{ if(!B.offsetWidth) return; if(document.fonts&&document.fonts.status!=="loaded"){ document.fonts.ready.then(()=>fit(B)); return; }   // se mide con la letra ya cargada
     [...B.children].forEach(c=>{ const k=c.children[0], s=c.children[2], K=c.dataset.k||"", S=c.dataset.s||"";
-      if(k.textContent!==K) k.textContent=K; k.classList.remove("w");
+      if(k.textContent!==K) k.textContent=K; if(k.classList.contains("w")) k.classList.remove("w");
       if(!fits(k,c)){ const w=K.split(" "); let ok=false; while(w.length>1){ w.pop(); if(STOP.has(w[w.length-1].toLowerCase())) continue; k.textContent=w.join(" "); if(fits(k,c)){ ok=true; break; } }
         if(!ok){ k.textContent=K; k.classList.add("w"); } }
-      if(s.innerHTML!==S) s.innerHTML=S; s.classList.remove("w");
+      if(s.innerHTML!==S) s.innerHTML=S; if(s.classList.contains("w")) s.classList.remove("w");
       if(S&&!fits(s,c)){ const seg=S.split(" · "), d=seg.find(x=>/\d/.test(x.replace(/<[^>]*>/g,"")))||seg[0]; s.innerHTML=d;
         if(!fits(s,c)&&!/</.test(d)){ const w=d.split(" "); while(w.length>2&&!fits(s,c)){ w.shift(); s.textContent=w.join(" "); } }
         if(!fits(s,c)) s.classList.add("w"); }
       if(B.classList.contains("hm5-mv")){ const r=document.createRange(); r.selectNodeContents(k); c.style.setProperty("--uw",r.getBoundingClientRect().width.toFixed(1)+"px"); } }); };
+  // la franja va dentro de la sección que se vigila: sus propios cambios no cuentan (si contaran, se rehace sin parar, cientos de veces por segundo)
   const bands=[], watch=(B,sync,src)=>{ bands.push(B); let q=0; const later=()=>{ if(!q) q=requestAnimationFrame(()=>{ q=0; sync(); fit(B); }); };
-    new MutationObserver(later).observe(src,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["class","aria-current"]}); new ResizeObserver(()=>fit(B)).observe(B); sync(); fit(B); };
+    new MutationObserver(ms=>{ if(ms.some(m=>!B.contains(m.target))) later(); }).observe(src,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["class","aria-current"]}); new ResizeObserver(()=>fit(B)).observe(B); sync(); fit(B); };
   const set=(c,k,v,cls,s)=>{ c.dataset.k=k; c.dataset.s=s; const V=c.children[1]; if(V.innerHTML!==v) V.innerHTML=v; if(V.className!==cls) V.className=cls; };
   // Análisis, Universo y Actualidad: de su franja del PC (.bg con las casillas c0…c4)
   ["s-aidx","s-uni","s-actb"].forEach(sid=>{ const sec=$(sid); if(!sec) return; const B=document.createElement("div"); B.className="hm5"; B.innerHTML=Array.from({length:5},()=>cell("div")).join(""); sec.append(B);
@@ -6435,10 +6460,10 @@ addEventListener("hashchange",()=>{ const c=remCfg(location.hash);
 // después, mientras está activo) y el CSS lo emborrona; al quitarlo, las envolturas se quedan pero ya no se nota nada
 { const R=document.documentElement, btn=$("priv"), AM=/[+−-]?\d[\d.]*(?:,\d+)?\s?(?:€|\$|£|Fr|¥|C\$)|\d[\d.]*\s(?:acciones|acción|contratos?)\b/g;
   const mask=()=>{ if(!R.classList.contains("priv")) return; const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT), list=[]; let n;
-    while(n=w.nextNode()){ const e=n.parentElement; if(!e||e.closest(".pv,svg,script,style,option,select,textarea,#nav,.tools,.seg,th")) continue; AM.lastIndex=0; if(AM.test(n.textContent)) list.push(n); }
+    while(n=w.nextNode()){ const e=n.parentElement; if(!e||e.closest(".pv,.npv,.co>b,.cn>b,.fp-t h3,.kx-t>b,#paper,svg,script,style,option,select,textarea,#nav,.tools,.seg,th")) continue; AM.lastIndex=0; if(AM.test(n.textContent)) list.push(n); }
     list.forEach(n=>{ const t=n.textContent, f=document.createDocumentFragment(); let last=0; AM.lastIndex=0; t.replace(AM,(m,off)=>{ if(off>last) f.append(t.slice(last,off)); const sp=document.createElement("span"); sp.className="pv"; sp.textContent=m; f.append(sp); last=off+m.length; return m; }); if(last<t.length) f.append(t.slice(last)); n.replaceWith(f); }); };
   // lo nuevo se oculta al momento: el observador corre antes de que la pantalla se pinte, y solo mira lo que ha cambiado
-  const skip=e=>!e||!!e.closest(".pv,svg,script,style,option,select,textarea,#nav,.tools,.seg,th");
+  const skip=e=>!e||!!e.closest(".pv,.npv,.co>b,.cn>b,.fp-t h3,.kx-t>b,#paper,svg,script,style,option,select,textarea,#nav,.tools,.seg,th");
   const wrap=n=>{ const t=n.textContent; AM.lastIndex=0; if(!AM.test(t)) return; const f=document.createDocumentFragment(); let last=0; AM.lastIndex=0;
     t.replace(AM,(m,off)=>{ if(off>last) f.append(t.slice(last,off)); const sp=document.createElement("span"); sp.className="pv"; sp.textContent=m; f.append(sp); last=off+m.length; return m; }); if(last<t.length) f.append(t.slice(last)); n.replaceWith(f); };
   const maskIn=r=>{ if(r.nodeType===3){ if(r.parentNode&&!skip(r.parentElement)) wrap(r); return; } if(r.nodeType!==1||!r.isConnected||skip(r)) return;
@@ -6512,7 +6537,18 @@ const REM = (()=>{ let c=remCfg(location.hash); if(c&&!(/iPhone|iPad|iPod/.test(
   return c; })();
 const canRead = () => !!(mcp||GAS||REM);
 const SHEETS=["Dashboard","Cartera","Preselección","Valoración","Transacciones","Dividendos","Aportaciones","Ajustes","Trayectoria","Valor Mensual","Referencias"];
-const readWb=(data,type)=>XLSX.read(data,{type,cellDates:true,sheets:SHEETS,dense:true,cellText:false,cellHTML:false});
+const readWb=(data,type)=>XLSX.read(data,{type,cellDates:true,cellFormula:false,sheets:SHEETS,dense:true,cellText:false,cellHTML:false});
+// la hoja nueva se lee en segundo plano (un worker con la misma librería) y llega ya en tablas: mientras tanto la página sigue respondiendo.
+// Si el navegador no lo permite o algo falla, se lee aquí mismo, como antes
+let wbW;   // sin probar · false: no se puede
+const readWbBg=(data,type)=>{
+  if(wbW===undefined){ const src=([...document.scripts].find(s=>/xlsx[^/]*\.js/.test(s.src))||{}).src;
+    try{ wbW=src&&window.Worker&&window.Blob&&window.URL?new Worker(URL.createObjectURL(new Blob([`importScripts(${JSON.stringify(src)});onmessage=e=>{ try{ const {data,type,sheets}=e.data, wb=XLSX.read(data,{type,cellDates:true,cellFormula:false,sheets,dense:true,cellText:false,cellHTML:false}), G={}; sheets.forEach(n=>{ const ws=wb.Sheets[n]; G[n]=ws?XLSX.utils.sheet_to_json(ws,{header:1,raw:true,defval:null,blankrows:true}):[]; }); postMessage({G}); }catch(err){ postMessage({err:String((err&&err.message)||err)}); } };`],{type:"text/javascript"}))):false; }catch{ wbW=false; } }
+  if(!wbW) return Promise.resolve(readWb(data,type));
+  return new Promise(res=>{ const w=wbW, fin=r=>{ clearTimeout(t); w.onmessage=w.onerror=null; res(r); };
+    const aqui=()=>{ wbW=false; try{ w.terminate(); }catch{} fin(readWb(data,type)); }, t=setTimeout(aqui,30000);
+    w.onmessage=e=>e.data&&e.data.G?fin({G:e.data.G}):aqui(); w.onerror=e=>{ if(e&&e.preventDefault) e.preventDefault(); aqui(); };
+    w.postMessage({data,type,sheets:SHEETS}); }); };
 const readSheet = ac => GAS
   ? new Promise((res,rej)=>GAS.withSuccessHandler(b64=>res({payload:{content:b64}})).withFailureHandler(e=>rej({code:"gas_error",message:(e&&e.message)||String(e)})).getXlsx())
   : mcp ? mcp.callTool(SERVER,"download_file_content",{fileId:FILE_ID,exportMimeType:XLSX_MIME},{cache:false,signal:ac?ac.signal:undefined})
@@ -6553,7 +6589,7 @@ async function load(fresh){
     let p=res.payload; if(typeof p==="string"){ try{p=JSON.parse(p);}catch{} }
     const b64 = p&&p.content ? p.content : (typeof p==="string"?p:null);
     if(!b64) throw {code:"tool_error",message:"La respuesta de Google Drive no trae el archivo."};
-    const wb = readWb(b64,"base64"), pd=parse(wb), fp=JSON.stringify(pd); lastLoadAt=Date.now(); let pd0=null; try{ pd0=structuredClone(pd); }catch{}   // la hoja tal cual, antes de calcular la cartera (para la copia)
+    const wb = await readWbBg(b64,"base64"), pd=parse(wb), fp=JSON.stringify(pd); lastLoadAt=Date.now(); let pd0=null; try{ pd0=structuredClone(pd); }catch{}   // la hoja tal cual, antes de calcular la cartera (para la copia)
     // si la hoja no ha cambiado desde la última lectura, no se vuelve a calcular ni a pintar
     const day0=new Date().toDateString(), dd=DATA&&fp===lastFp&&modelDay===day0?DATA:model(pd); lastFp=fp; modelDay=day0;
     const when = res.cache?.storedAt ? new Date(res.cache.storedAt) : new Date(), hm=t=>t.toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"}), hhmm=hm(when);
