@@ -3422,8 +3422,6 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   body.hm3on .view>.mtop{display:flex;order:-1;margin-bottom:-16px}
   html body.hm3on[data-view]:not(.__) #topcap{background:var(--canvas)}
   html body.hm3on.bg-top[data-view]:not(.__){background-color:var(--canvas)}
-  /* los colores de la franja de Resumen (antes, arena) */
-  :root:not(.__) body.hm5on :is(#s-aidx,#s-uni,#s-actb){--h-bg:inherit;--h-card:inherit;--h-line:inherit;--h-fg:inherit;--h-fg2:inherit;--h-fg3:inherit;--h-pos:inherit;--h-neg:inherit}
   body.hm5on :is(#s-aidx,#s-uni,#s-actb),body.hm5on :is(#s-aidx,#s-uni,#s-actb).hero3.band2{padding:16px}   /* como la de Resumen (Universo tenía otra regla más fuerte) */
   body.hm5on :is(#s-aidx,#s-uni,#s-actb)>.bg,body.hm5on #mtabs.mvt{display:none}
   body.hm5on .hm5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));color:var(--h-fg);font-variant-numeric:tabular-nums}
@@ -3470,6 +3468,11 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 @container ficha (max-width:620px){
   #sheet .fx-band:not(.k2) .fp-b:not(:first-child) .fp-k{min-height:0}
 }
+
+/* v283 · móvil: las franjas de Análisis, Movimientos, Universo y Actualidad, en arena como en el PC (Resumen, la portada, en oscuro) */
+.hm5-mv{--h-bg:#E9E3D7;--h-card:#E1DACC;--h-line:#D3CABA;--h-fg:#1A1A1A;--h-fg2:#4A4843;--h-fg3:#6F6A61;--h-pos:var(--pos);--h-neg:var(--neg)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hm5-mv{--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:#C6BFB4;--h-fg3:#9D968B}}
+:root[data-theme="dark"] .hm5-mv{--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:#C6BFB4;--h-fg3:#9D968B}
 </style>
 
 <div class="wrap">
@@ -4109,7 +4112,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v282";   // la versión publicada, en el pie
+const VER="v283";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4566,11 +4569,12 @@ let trayOut=null;
 function renderAidx(){ const d=DATA, el=$("a-k"); if(!d||!el) return;
   const ps=d.pos.filter(p=>!p.isOption&&p.value>0).sort((a,b)=>b.value-a.value), tot=sum(ps,p=>p.value)||1, eu=(d.divisa.find(x=>x.name==="EUR")||{val:0}).val, dm=d.dvm;
   const ti=(d.ind||[]).filter(x=>isNum(x.val)).sort((a,b)=>b.val-a.val)[0];   // la industria que más pesa
+  const tc=(d.pais||[]).filter(x=>isNum(x.val)).sort((a,b)=>b.val-a.val)[0];   // y el país
   const col=(i,k,l,v,sub)=>`<div class="c${i} r1 bl">${l}</div><div class="c${i} r2 bv num">${v}</div><div class="c${i} r3 bs">${sub}</div>`;
   el.innerHTML=col(0,"dvs",`Dividendos ${dm.curY+1}`,eur(d.kpi&&d.kpi.rentas),`previstos · <b>${eur(((d.kpi&&d.kpi.rentas)||0)/12)}</b> al mes`)
     +col(1,"div","Fuera del euro",pct(1-eu,1),d.divisa.filter(x=>x.name!=="EUR").slice(0,2).map(x=>`${CURN[x.name]||x.name} <b>${pct(x.val,1)}</b>`).join('<span class="sep"></span>'))
     +col(2,"conc","Concentración",pct(sum(ps.slice(0,5),p=>p.value)/tot,1),"en las 5 mayores")
-    +col(3,"ren","Renta pasiva",'<span id="ai-ren"></span>','<span id="ai-ren-s"></span>')
+    +(tc?col(3,"pais","Mayor país",pct(tc.val,1),esc(ctryN(tc.name))):col(3,"pais","Mayor país","—",""))
     +(ti?col(4,"ind","Mayor industria",pct(ti.val,1),esc(ti.name)):col(4,"ind","Mayor industria","—",""))
     +'<i class="dv d1"></i><i class="dv d2"></i><i class="dv d3"></i><i class="dv d4"></i>';
   aidxRen(); }
@@ -5484,14 +5488,15 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   document.body.append(C); C.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
   const put=(id,html,cls)=>{ const e=$(id); if(!e) return; if(e.innerHTML!==html) e.innerHTML=html; if(cls!=null&&e.className!==cls) e.className=cls; };
   const cls=e=>e.classList.contains("neg")?"neg":e.classList.contains("pos")?"pos":"";
+  // «Hoy» o, con el mercado cerrado, «Última sesión» (en el PC lleva también la forma corta «Sesión»: solo una)
+  const kHoy=()=>{ const l=$("hk-ren-l"); return ((l.querySelector(".lg")||l).textContent||"").trim(); };
   const sync=()=>{ const hv=$("h-val"); if(!hv) return;
     const v=hv.textContent.replace(/,\d{2}(?=\s*€)/,"").trim(), V=v?`<span class="pv">${v}</span>`:"";
     const ren=$("hk-ren"), ret=$("hk-ret"), rs=$("hk-ren-s").querySelector("span"), ts=$("hk-ret-s").querySelector("span");
     put("hm3-v1",V,"hm3-v num"); put("hm3-s1",$("h-sub").innerHTML);
-    put("hm3-k2",$("hk-ren-l").textContent); put("hm3-v2",ren.innerHTML,"hm3-v num "+cls(ren)); put("hm3-s2",rs?rs.outerHTML:"");
+    put("hm3-k2",kHoy()); put("hm3-v2",ren.innerHTML,"hm3-v num "+cls(ren)); put("hm3-s2",rs?rs.outerHTML:"");
     put("hm3-v3",ret.innerHTML,"hm3-v num "+cls(ret)); put("hm3-s3",ts?ts.outerHTML:"");
-    put("hm3c-v1",V,"hm3-v num"); put("hm3c-k2",$("hk-ren-l").textContent); put("hm3c-v2",ren.innerHTML,"hm3-v num "+cls(ren)); put("hm3c-v3",ret.innerHTML,"hm3-v num "+cls(ret));
-    put("mt-t",$("stat").textContent);
+    put("hm3c-v1",V,"hm3-v num"); put("hm3c-k2",kHoy()); put("hm3c-v2",ren.innerHTML,"hm3-v num "+cls(ren)); put("hm3c-v3",ret.innerHTML,"hm3-v num "+cls(ret));
     const dc="dot "+($("dot").className.replace(/\bdot\b/,"").trim()), d=$("mt-dot"); if(d.className!==dc) d.className=dc; };
   let q=0; const later=()=>{ if(!q) q=requestAnimationFrame(()=>{ q=0; sync(); }); };
   new MutationObserver(later).observe(hero,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["class"]});
@@ -5514,7 +5519,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   ["v-analisis","v-movimientos","v-preseleccion","v-actualidad"].forEach(id=>{ const v=$(id); if(!v||!T0) return; const t=T0.cloneNode(true); t.removeAttribute("id"); t.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id")); v.prepend(t); tops.push(t);
     const [f,p,m]=t.querySelectorAll(".mt-ic button"); f.addEventListener("click",()=>$("kbtn").click()); p.addEventListener("click",()=>$("priv").click()); m.addEventListener("click",()=>$("theme").click()); });
   // el estado, el punto y la luna, iguales que en la barra de Resumen
-  const cp=()=>tops.forEach(t=>{ const a=T0.querySelector(".mt-st").innerHTML.replace(/ id="[^"]*"/g,""), s=t.querySelector(".mt-st"); if(s.innerHTML!==a) s.innerHTML=a;
+  const cp=()=>tops.forEach(t=>{ const d0=T0.querySelector(".dot"), d=t.querySelector(".dot"); if(d&&d0&&d.className!==d0.className) d.className=d0.className;
     const M=$("mt-theme"), m=t.querySelector(".mt-ic button:last-child"); if(m.className!==M.className) m.className=M.className; m.setAttribute("aria-label",M.getAttribute("aria-label")||""); });
   new MutationObserver(cp).observe(T0,{subtree:true,childList:true,characterData:true,attributes:true}); cp();
   const cell=tag=>`<${tag} class="hm5-c"${tag==="button"?' type="button" role="tab"':""}><span class="hm5-k"></span><span class="hm5-v num"></span><span class="hm5-s"></span></${tag}>`;
@@ -5560,6 +5565,22 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
     b.classList.toggle("k2",two); });
   const sh=$("sheet"); if(sh){ let q=0; new MutationObserver(()=>{ if(!q) q=requestAnimationFrame(()=>{ q=0; fit(); }); }).observe(sh,{subtree:true,childList:true}); new ResizeObserver(()=>fit()).observe(sh); }
   if(document.fonts) document.fonts.ready.then(fit); }
+
+// v283 · la línea de estado de la barra clara, siempre en una línea: si no cabe entera («Copia del jueves 29 oct · 23:14 · actualizando
+// · 12 s»), se acorta por pasos: el día de la semana abreviado, sin los segundos, sin el día de la semana y, al final, lo esencial primero
+{ const WD={lunes:"lun",martes:"mar","miércoles":"mié",jueves:"jue",viernes:"vie","sábado":"sáb",domingo:"dom"};
+  const steps=t=>{ const a=[t], s=t.replace(/\b(lunes|martes|miércoles|jueves|viernes|sábado|domingo)\b/g,m=>WD[m]); a.push(s);
+    const ns=s.replace(/ · \d+ s$/,""); a.push(ns); const nw=ns.replace(/\b(lun|mar|mié|jue|vie|sáb|dom) (?=\d)/,""); a.push(nw);
+    const m=nw.match(/^Copia (?:del|de las) (.+?) · (actualizando|sin actualizar)$/); if(m){ const k=m[2][0].toUpperCase()+m[2].slice(1); a.push(k+" · "+m[1]); a.push(k); }
+    const l=nw.match(/^(En vivo|Mercado cerrado) · .*?(\d\d:\d\d)$/); if(l) a.push(l[1]+" · "+l[2]);
+    return a; };
+  const fitAll=()=>{ const full=(($("stat")||{}).textContent||"").trim(); document.querySelectorAll(".mtop .mt-st").forEach(st=>{ const sp=st.lastElementChild; if(!sp) return;
+      if(!st.offsetWidth){ if(sp.textContent!==full) sp.textContent=full; return; }
+      for(const c of steps(full)){ if(sp.textContent!==c) sp.textContent=c; if(st.scrollWidth<=st.clientWidth+.5) break; } }); };
+  let q=0; const later=()=>{ if(!q) q=requestAnimationFrame(()=>{ q=0; fitAll(); }); };
+  if($("stat")) new MutationObserver(later).observe($("stat"),{childList:true,characterData:true,subtree:true});
+  new MutationObserver(later).observe(document.body,{attributes:true,attributeFilter:["data-view"]});
+  addEventListener("resize",later); if(document.fonts) document.fonts.ready.then(later); fitAll(); }
 /* ---------- F · búsqueda rápida (⌘K, Ctrl+K en Windows) ---------- */
 // empresas (las tuyas primero), sus últimos movimientos, las secciones y las acciones de la barra; sin tildes ni mayúsculas
 { const kx=$("kx"), q=$("kx-q"), R=$("kx-r"), mac=/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent); let act=0, run=[], prev=null;
