@@ -3546,6 +3546,23 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* v285 · ficha: la TIR de las listas («En 2030»…) acaba donde las demás cifras. Su margen de −8 px era para la pastilla, que en la
    ficha ya no lleva fondo ni relleno, y la sacaba 8 px por la derecha */
 #sheet .fp-kl>b>.rlv{margin-right:0}
+
+/* v287 · mapa de «Tu cartera hoy»: la cifra, mayor en las posiciones de más del 6 % de la cartera (15 px en el PC y 13 en el móvil) */
+.tmap .tile.big.big .tp{font-size:15px}
+@media (max-width:700px){ .tmap .tile.big.big .tp{font-size:13px} }
+
+/* v287 · PC: Actualizar junto a la hora (vuelve a leer lo que la hora dice cuándo se leyó); mientras lee, la flecha gira */
+.top .status #refresh{display:inline-grid;place-items:center;flex:none;width:28px;height:28px;margin:0 0 0 -7px;padding:0;border:0;border-radius:8px;background:none;color:var(--ink3);cursor:pointer}
+.top .status #refresh span{display:none}
+.top .status #refresh svg{width:14px;height:14px}
+.top .status #refresh:hover:not(:disabled){background:color-mix(in srgb,var(--ink) 7%,transparent);color:var(--ink)}
+.top .status #refresh:disabled{opacity:.4;cursor:default}
+.top .status:has(#dot.busy) #refresh svg{animation:rf-gira 1s linear infinite}
+@keyframes rf-gira{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){ .top .status:has(#dot.busy) #refresh svg{animation:none} }
+/* PC estrecho: la hora en una sola línea; si no cabe, se pinta su forma corta (el texto de #stat no cambia: otras partes lo leen) */
+.top .status #stat[data-s]{font-size:0}
+.top .status #stat[data-s]::after{content:attr(data-s);font-size:12px}
 </style>
 
 <div class="wrap">
@@ -3802,6 +3819,8 @@ const LOGO_AR=new Map(), LOGO_DK=new Set(), LOGO_KV=new Map(); Object.keys(LOGOS
 // el ancho de su hueco no crecen, para no pisar el nombre. Se calcula una vez sobre los logos de la hoja de logos.
 const LOGO_F=new Map(Object.entries({"EPA:BN":1.2,"BME:EBRO":0.88,"NYSE:HSY":0.86,"EBR:LOTB":0.74,"AMS:MICC":0.81,"NASDAQ:MDLZ":0.87,"SWX:NESN":1.2,"NASDAQ:PEP":0.91,"ETR:HEN3":0.9,"NYSE:PG":0.86,"BIT:BC":1.2,"LON:BRBY":0.91,"NASDAQ:COST":0.93,"BME:LOG":1.2,"NASDAQ:POOL":0.72,"LON:WOSG":0.94,"ETR:ADS":0.73,"EPA:EL":0.72,"BME:ITX":0.72,"NYSE:ONON":1.2,"NASDAQ:SBUX":1.08,"VIE:NTO":0.92,"NYSE:SPOT":1.15,"NASDAQ:NFLX":0.96,"NASDAQ:MELI":0.92,"BME:AMS":0.88,"NASDAQ:MSFT":0.9,"NYSE:AXP":0.8,"NYSE:MA":0.72,"NASDAQ:CME":1.07,"NASDAQ:IBKR":1.2,"TSE:FFH":1.11,"HEL:SAMPO":0.76,"BME:AENA":1.2,"TSE:CP":0.74,"BME:FER":1.2,"NYSE:UNP":0.95,"ELI:COR":1.2,"BME:VIS":1.2,"BME:ENG":1.2,"BME:RED":0.75,"EPA:ERF":1.2,"NYSE:MTD":0.72,"NYSE:STVN":1.2,"NYSE:TMO":1.2,"NYSE:OTIS":0.91,"EPA:SU":1.12,"NASDAQ:TSLA":1.2,"EPA:AIR":0.86,"NYSE:BA":1.2,"NYSE:HEI":0.72,"LON:RR":1.07,"EPA:SAF":1.2,"NASDAQ:SPCX":0.81,"BIT:CPR":0.74,"EPA:RI":0.96,"NYSE:PM":1.2,"BIT:RACE":1.2,"WSE:DNP":0.92,"NASDAQ:BKNG":0.72,"NASDAQ:GOOGL":1.19,"NASDAQ:AAPL":0.83,"NASDAQ:META":0.91,"NASDAQ:ADBE":0.88,"NASDAQ:ADP":0.88,"TSE:CSU":0.72,"NYSE:MCO":0.72,"NYSE:SPGI":0.77,"NYSE:MKL":0.9,"NYSE:BN":1.04,"NYSE:BAM":1.04,"BME:VID":1.2,"BME:IBE":1.16,"NYSE:DHR":1.14,"NYSE:MMM":0.72,"HEL:KNEBV":0.75,"NASDAQ:NVDA":0.95,"NYSE:LMT":1.2,"NYSE:DE":0.82,"NASDAQ:ABNB":1.2,"NYSE:MCD":1.2,"NYSE:MO":0.85,"ETR:BAS":0.72,"NYSE:BMY":1.2,"NASDAQ:CELH":0.9,"BME:FAE":0.94,"OTCMKTS:NSRGY":1.2,"NYSE:PBR":0.95,"NYSE:VZ":0.95,"BME:GCO":1.17,"NYSE:GEO":0.88,"NYSE:KVUE":0.72,"NASDAQ:KHC":0.85,"NYSE:PBR.A":0.95,"NYSE:CVS":0.78,"NYSE:IIPR":1.15,"NASDAQ:TROW":1.04,"LON:PSN":1.05,"HKG:0144":1.2,"HKG:0257":1.11,"HKG:0288":0.82,"HKG:2678":1.16,"HKG:1052":0.89,"NYSE:MBGL":0.94}).map(([k,f])=>[LOGOS["T:"+k],f]).filter(([s])=>s));
 const logoF = t => LOGO_F.get(logoSrc(t))||1;
+// cuánto trazo tiene cada logo dentro de su caja (de 0 a 1), medido una vez sobre la hoja de logos: el mapa lo usa para igualar su peso
+const LOGO_A=new Map(Object.entries({"NYSE:KO":0.345,"EPA:BN":0.421,"BME:EBRO":0.553,"NYSE:HSY":0.5,"EBR:LOTB":0.738,"AMS:MICC":0.42,"NASDAQ:MDLZ":0.375,"SWX:NESN":0.23,"NASDAQ:PEP":0.599,"ETR:HEN3":0.783,"NYSE:PG":0.786,"NYSE:EL":0.274,"EPA:OR":0.261,"BME:PUIG":0.291,"LON:DGE":0.437,"LON:BATS":0.26,"BIT:BC":0.192,"LON:BRBY":0.329,"EPA:KER":0.112,"EPA:MC":0.258,"NASDAQ:COST":0.717,"BME:LOG":0.282,"NASDAQ:POOL":0.7,"LON:WOSG":0.284,"ETR:ADS":0.441,"EPA:EL":0.696,"BME:ITX":0.475,"NYSE:NKE":0.255,"NYSE:ONON":0.467,"NASDAQ:SBUX":0.446,"NYSE:UBER":0.381,"VIE:NTO":0.449,"NYSE:SPOT":0.637,"NASDAQ:NFLX":0.867,"NASDAQ:MELI":0.796,"BME:AMS":0.609,"NASDAQ:MSFT":0.9,"AMS:WKL":0.784,"NYSE:AXP":1,"NYSE:MA":0.84,"NYSE:V":0.521,"NASDAQ:CME":0.63,"ETR:DB1":0.156,"LON:LSEG":0.402,"NASDAQ:IBKR":0.457,"ETR:ALV":0.427,"TSE:FFH":0.232,"ETR:MUV2":0.509,"HEL:SAMPO":0.511,"BME:AENA":0.262,"TSE:CNR":0.443,"TSE:CP":0.637,"BME:FER":0.434,"NYSE:UNP":0.778,"ELI:COR":0.256,"BME:VIS":0.345,"BME:ENG":0.23,"BME:RED":0.461,"EPA:AI":0.568,"NASDAQ:LIN":0.253,"EPA:ERF":0.387,"NASDAQ:ISRG":0.162,"NYSE:MTD":0.605,"NYSE:STVN":0.274,"NYSE:TMO":0.439,"NYSE:ITW":0.324,"NYSE:OTIS":0.611,"EPA:SU":0.479,"AMS:ASML":0.536,"NYSE:TSM":0.614,"NASDAQ:TSLA":0.252,"EPA:AIR":0.449,"NYSE:BA":0.164,"NYSE:GE":0.786,"NYSE:HEI":0.708,"LON:RR":0.412,"EPA:SAF":0.356,"NASDAQ:SPCX":0.328,"AMS:UNA":0.41,"BIT:CPR":0.535,"EPA:RI":0.438,"NYSE:PM":0.248,"BIT:RACE":0.316,"EPA:RMS":0.201,"WSE:DNP":0.573,"NASDAQ:BKNG":0.976,"NASDAQ:AMZN":0.339,"NASDAQ:GOOGL":0.516,"NASDAQ:AAPL":0.637,"NASDAQ:META":0.452,"NASDAQ:ADBE":0.533,"NASDAQ:ADP":0.473,"TSE:CSU":0.904,"NYSE:MCO":0.684,"NYSE:MSCI":0.423,"NYSE:SPGI":0.426,"BME:BBVA":0.381,"NYSE:MKL":0.733,"NYSE:BN":0.683,"NYSE:BAM":0.683,"BME:VID":0.481,"BME:IBE":0.498,"NYSE:DHR":0.447,"NYSE:JNJ":0.37,"NYSE:MMM":0.737,"HEL:KNEBV":0.902,"NASDAQ:NVDA":0.582,"NASDAQ:TXN":0.449,"NASDAQ:ASTS":0.535,"NYSE:LMT":0.113,"NYSE:TDG":0.409,"NYSE:DE":0.87,"NASDAQ:ABNB":0.263,"NYSE:MCD":0.363,"NYSE:MO":1,"NYSE:ZTS":0.449,"ETR:BAS":0.59,"NYSE:BMY":0.35,"NASDAQ:CELH":0.434,"BME:FAE":0.532,"OTCMKTS:NSRGY":0.23,"NYSE:PBR":0.998,"NYSE:VZ":0.51,"BME:GCO":0.323,"NYSE:GEO":0.511,"NYSE:KVUE":0.775,"NASDAQ:KHC":0.478,"NYSE:PBR.A":0.998,"NYSE:CVS":0.595,"NYSE:IIPR":0.327,"NASDAQ:TROW":1,"LON:PSN":0.548,"HKG:0144":0.408,"HKG:0257":0.678,"HKG:0288":0.736,"HKG:2678":0.494,"HKG:1052":0.573,"NYSE:MBGL":0.478}).map(([k,a])=>[LOGOS["T:"+k],a]).filter(([s])=>s));
 const logoSrc = t => { if(!t) return null; if(LOGOS["T:"+t]) return LOGOS["T:"+t]; const u=String(t).split(/\s+/)[0]; const k=Object.keys(LOGOS).find(k=>k.startsWith("T:")&&k.split(":").pop()===u); return k?LOGOS[k]:null; };
 const logoHtml = (name,t,c="") => { const src=logoSrc(t); return `<span class="logo ${c}">${src?`<img src="${src}" alt="" loading="lazy">`:esc(String(name||t||"").replace(/[^A-Za-zÀ-ÿ0-9 ]/g,"").split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase())}</span>`; };
 const ctryN = c => c==="USA"?"EE. UU.":c;   // el país como se escribe en español (la hoja dice «USA»)
@@ -4185,7 +4204,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v286";   // la versión publicada, en el pie
+const VER="v287";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4502,7 +4521,7 @@ function squarify(items,x,y,w,h){
   }
   return out;
 }
-const tmLevel=t=>{ const a=isNum(t)?Math.round(Math.abs(t)*1000)/10:0; if(!a) return "lv0"; const n=a<1?2:a<2.5?3:a<4?4:5; return (t>0?"lp":"ln")+n; };   // hasta el 1 %, el 2,5 %, el 4 % y más
+const tmLevel=t=>{ const a=isNum(t)?Math.round(Math.abs(t)*1000)/10:0; if(!a) return "lv0"; const n=a<.5?1:a<1?2:a<2.5?3:a<4?4:5; return (t>0?"lp":"ln")+n; };   // hasta el 0,5 %, el 1 %, el 2,5 %, el 4 % y más
 let tmW=0;
 function tileHtml(p,x,y,w,h){
   const size=w>=150&&h>=110?"lg":w>=92&&h>=66?"md":w>=46&&h>=42?"sm":"xs";
@@ -4513,7 +4532,7 @@ function tileHtml(p,x,y,w,h){
   const tl=`<span class="tl" style="height:${lh}px">${src?`<i class="tsil" style="width:${Math.round(lh*ar)}px;-webkit-mask-image:url('${src}');mask-image:url('${src}')"></i>`:esc(short.slice(0,4))}</span>`;
   // la cifra cabe siempre entera: en los recuadros estrechos, letra algo menor
   const inner=`<span class="th">${tl}</span><span class="tp num">${chg}</span>`;
-  return `<button type="button" class="tile ${lvl} ${size}" data-t="${esc(p.ticker)}" style="left:${x.toFixed(1)}px;top:${y.toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px" title="${esc(p.name)} · ${chg} · ${pct(p.weight)} de la cartera" aria-label="${esc(p.name)}: ${chg} hoy">${inner}</button>`;
+  return `<button type="button" class="tile ${lvl} ${size}${p.weight>=.06?" big":""}" data-t="${esc(p.ticker)}" style="left:${x.toFixed(1)}px;top:${y.toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px" title="${esc(p.name)} · ${chg} · ${pct(p.weight)} de la cartera" aria-label="${esc(p.name)}: ${chg} hoy">${inner}</button>`;
 }
 const mapItems=()=>DATA.pos.filter(p=>p.value>0&&!p.isOption).sort((a,b)=>b.value-a.value);
 const lay=(ps,wt,x,y,w,h)=>{ const t=sum(ps,wt)||1; return squarify(ps.map(p=>({p,a:wt(p)/t*w*h})),x,y,w,h); };
@@ -4572,8 +4591,19 @@ function renderTreemap(){
     [squarify,squarifyMin].forEach((sq,k)=>{ const ts=sq(it,0,0,W,H); C.push({ts,d:falta(ts),o:C.length}); }); }
   const ok=C.filter(c=>c.d<.5).sort((a,b)=>a.o-b.o).slice(0,10), resto=C.filter(c=>c.d>=.5).sort((a,b)=>a.d-b.d).slice(0,4);
   let best=null;
-  for(const c of ok.concat(resto)){ const s=pinta(c.ts); if(!s) return; if(!best||s<best.s) best={s,ts:c.ts}; }
-  pinta(best.ts);
+  for(const c of ok.concat(resto)){ const s=pinta(c.ts); if(!s){ tmLogos(); return; } if(!best||s<best.s) best={s,ts:c.ts}; }
+  pinta(best.ts); tmLogos();
+}
+// el mismo peso para todos los logos del mapa: cada uno, a la escala que iguala su tinta (su caja por lo que tiene de trazo) a la mediana del
+// mapa, sin encoger más de un 20 % ni crecer más de un 60 %, y sin salirse de su recuadro. Va después de repartir el mapa: el reparto no cambia
+function tmLogos(){
+  const L=[...$("tmap").querySelectorAll(".tile")].map(b=>{ const tl=b.querySelector(".tl"), s=b.querySelector(".tsil"), src=logoSrc(b.dataset.t), a=src&&LOGO_A.get(src); if(!s||!a) return null;
+    const ar=LOGO_AR.get(src)||1, ew=Math.min(s.offsetWidth,tl.offsetHeight*ar), eh=ew/ar; return ew&&eh?{b,tl,s,ew,eh,ink:a*ew*eh}:null; }).filter(Boolean);
+  if(L.length<3) return; const v=L.map(o=>o.ink).sort((x,y)=>x-y), T=(v[(v.length-1)>>1]+v[v.length>>1])/2;
+  L.forEach(o=>{ const cs=getComputedStyle(o.b), tp=o.b.querySelector(".tp"), px=k=>parseFloat(cs[k])||0;
+    const room=o.b.clientWidth-px("paddingLeft")-px("paddingRight")-2, roomH=o.b.clientHeight-px("paddingTop")-px("paddingBottom")-(tp&&tp.textContent?tp.offsetHeight+6:0);
+    let k=Math.min(1.6,Math.max(.8,Math.sqrt(T/o.ink))); if(k>1) k=Math.max(1,Math.min(k,room/o.ew,roomH/o.eh));
+    o.tl.style.height=(o.eh*k).toFixed(1)+"px"; o.s.style.width=(o.ew*k).toFixed(1)+"px"; o.s.style.maxWidth="none"; });
 }
 let _mc; const textW=(t,font)=>{ _mc=_mc||document.createElement("canvas").getContext("2d"); _mc.font=font; return _mc.measureText(String(t)).width; };
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ tmW=0; renderTreemap(); });
@@ -5664,6 +5694,24 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   if($("stat")) new MutationObserver(later).observe($("stat"),{childList:true,characterData:true,subtree:true});
   new MutationObserver(later).observe(document.body,{attributes:true,attributeFilter:["data-view"]});
   addEventListener("resize",later); if(document.fonts) document.fonts.ready.then(later); fitAll(); }
+
+// v287 · PC: Actualizar, junto a la hora (en el móvil la barra de arriba es otra y se sigue actualizando al tirar hacia abajo)
+{ const r=$("refresh"), st=document.querySelector(".top .status"); if(r&&st) st.append(r); }
+// en un PC estrecho la hora no se parte en varias líneas: si no cabe, el día abreviado («vie») y, si aún no, sin el día de la semana
+{ const st=$("stat"), WD={lunes:"lun",martes:"mar","miércoles":"mié",jueves:"jue",viernes:"vie","sábado":"sáb",domingo:"dom"};
+  const steps=t=>{ const a=[], s=t.replace(/\b(lunes|martes|miércoles|jueves|viernes|sábado|domingo)\b/g,m=>WD[m]); a.push(s);
+    const ns=s.replace(/ · \d+ s$/,""); a.push(ns); const nw=ns.replace(/\b(lun|mar|mié|jue|vie|sáb|dom) (?=\d)/,""); a.push(nw);
+    // como en el móvil: «Actualizando · 29 oct · 23:14» o «En vivo · 09:51»
+    const m=nw.match(/^Copia (?:del|de las) (.+?) · (actualizando|sin actualizar)$/); if(m){ const k=m[2][0].toUpperCase()+m[2].slice(1); a.push(k+" · "+m[1]); a.push(k); }
+    const l=nw.match(/^(En vivo|Mercado cerrado) · .*?(\d\d:\d\d)$/); if(l){ a.push(l[1]+" · "+l[2]); a.push(l[2]); }   // al final, solo la hora (el punto dice si está en vivo)
+    return a.filter((x,i)=>x!==t&&a.indexOf(x)===i); };
+  const one=()=>{ const lh=parseFloat(getComputedStyle(st).lineHeight)||17; return st.getBoundingClientRect().height<lh*1.5; };
+  const fit=()=>{ if(!st.offsetWidth) return; st.removeAttribute("data-s"); st.removeAttribute("title"); if(one()) return;
+    const full=st.textContent.trim(); st.title=full;   // al pasar el ratón, el texto entero
+    for(const c of steps(full)){ st.dataset.s=c; if(one()) return; } };
+  let q=0; const later=()=>{ if(!q) q=requestAnimationFrame(()=>{ q=0; fit(); }); };
+  new MutationObserver(later).observe(st,{childList:true,characterData:true,subtree:true}); addEventListener("resize",later);
+  if(document.fonts) document.fonts.ready.then(later); later(); }
 /* ---------- F · búsqueda rápida (⌘K, Ctrl+K en Windows) ---------- */
 // empresas (las tuyas primero), sus últimos movimientos, las secciones y las acciones de la barra; sin tildes ni mayúsculas
 { const kx=$("kx"), q=$("kx-q"), R=$("kx-r"), mac=/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent); let act=0, run=[], prev=null;
