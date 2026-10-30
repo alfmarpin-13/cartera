@@ -4185,7 +4185,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v285";   // la versión publicada, en el pie
+const VER="v286";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5240,7 +5240,7 @@ function renderSheet(){ const el=$("sheet"), t=sheet&&DATA?sheet.t:null, p=t&&DA
     if(!tabs.some(x=>x[0]===sheet.tab)) sheet.tab=tabs[0][0];
     const P=p?fichaPos(p):null, R=r?fichaPre(r):null, co=p||r, m=p?p.meta:{}, ctry=(r&&r.country)||m.country, ind=(r&&r.ind)||(p&&!p.isOption&&m.ind)||(p&&p.isOption?optSub(p.ticker):"");
     const place=`${ctry?flagHtml(ctry):""}<span>${esc(t)}</span>${ctry?`<span class="mute">·</span><span class="mute">${esc(ctryN(ctry))}</span>`:""}`;
-    const tags=(p&&p.isOption?'<span class="tag">Opción</span>':"")+(r&&r.thesis==="Sí"?'<span class="tag">Con tesis</span>':"");
+    const tags=(p&&p.isOption?'<span class="tag">Opción</span>':"")+"";
     const idb=`<div class="fp-id">${logoBare(co.name,t,"xl")}<div class="fp-t"><h3>${esc(co.name)}${tags}</h3><div class="sub">${place}</div>${ind?`<div class="fp-in">${p&&p.isOption?optSubH(p.ticker):esc(ind)}</div>`:""}</div></div>`;
     // debajo del nombre, igual en todas las pestañas: la franja con cinco cifras (las de tu posición o, si no la tienes, las de su valoración)
     const band=P?P.band:R?R.band:"", tb=tabs.length?`<div class="sh-tabw"><div class="sh-tabs" role="tablist">${tabs.map(([k,l])=>`<button type="button" role="tab" data-shtab="${k}" aria-selected="${k===sheet.tab}" aria-pressed="${k===sheet.tab}">${l}</button>`).join("")}</div></div>`:"";
