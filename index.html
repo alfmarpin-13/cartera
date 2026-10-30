@@ -3473,6 +3473,13 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 .hm5-mv{--h-bg:#E9E3D7;--h-card:#E1DACC;--h-line:#D3CABA;--h-fg:#1A1A1A;--h-fg2:#4A4843;--h-fg3:#6F6A61;--h-pos:var(--pos);--h-neg:var(--neg)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hm5-mv{--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:#C6BFB4;--h-fg3:#9D968B}}
 :root[data-theme="dark"] .hm5-mv{--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:#C6BFB4;--h-fg3:#9D968B}
+
+/* v284 · iPhone: desde que la franja oscura de Resumen llega arriba, la tapa de la hora es de su color (antes, clara hasta que
+   aparecía la franja estrecha, y la hora parpadeaba en claro). La ficha abierta sigue mandando (su regla es más fuerte) */
+@media (max-width:700px){ html body.hm3on.cap-dark[data-view="resumen"]:not(.__) #topcap{background:var(--h-bg)}
+  /* escondida, la franja estrecha deja de verse del todo al acabar de subir (antes solo se desplazaba hacia arriba) */
+  .hm3c{visibility:hidden;transition:transform .2s ease,visibility 0s linear .2s}
+  .hm3c.on{visibility:visible;transition:transform .2s ease,visibility 0s} }
 </style>
 
 <div class="wrap">
@@ -4112,7 +4119,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v283";   // la versión publicada, en el pie
+const VER="v284";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5502,9 +5509,17 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   new MutationObserver(later).observe(hero,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["class"]});
   new MutationObserver(later).observe($("stat"),{subtree:true,childList:true,characterData:true}); new MutationObserver(later).observe($("dot"),{attributes:true});
   sync();
-  // la franja estrecha aparece cuando la grande ha salido por arriba
-  const io=new IntersectionObserver(es=>es.forEach(e=>C.classList.toggle("on",!e.isIntersecting&&e.boundingClientRect.top<0)),{threshold:0});
-  io.observe(B);
+  // v284 · la zona de la hora del iPhone no se pone clara al bajar: la franja estrecha aparece justo cuando a la grande le queda su
+  // alto (antes, cuando ya había salido, y entre medias asomaba arriba la tapa clara) y, desde que la franja oscura llega arriba,
+  // la tapa es de su color (al cambiar, se pone una tapa nueva y el theme-color la sigue: lo hace el código de la tapa). Escondida, la
+  // franja estrecha deja de verse del todo (si no, el iPhone seguía cogiendo su color oscuro al volver arriba)
+  let fq=0;
+  const fija=()=>{ fq=0; const on=document.body.dataset.view==="resumen"&&hero.offsetWidth>0, r=hero.getBoundingClientRect();
+    const fx=on&&r.bottom<=C.offsetHeight; C.classList.toggle("on",fx);
+    document.body.classList.toggle("cap-dark",fx||on&&r.top<=0); };   // la tapa cambia justo cuando la franja toca arriba (o sale la estrecha)
+  const pide=()=>{ if(!fq) fq=requestAnimationFrame(fija); };
+  addEventListener("scroll",pide,{passive:true}); addEventListener("resize",pide); new ResizeObserver(pide).observe(hero);
+  new MutationObserver(pide).observe(document.body,{attributes:true,attributeFilter:["data-view"]}); pide();
   document.body.classList.add("hm3on"); try{ localStorage.removeItem("cartera-hv"); }catch{} }
 
 // v277 · Movimientos: la barra oscura bajo la casilla elegida va debajo de su título, del mismo ancho, y al pie de la casilla (como en el menú)
@@ -5893,7 +5908,7 @@ if(matchMedia("(pointer:coarse)").matches){ let C=document.createElement("div");
     M.forEach(m=>{ m.removeAttribute("media"); m.content=c; }); };
   const bar=()=>{ if(!rq) rq=requestAnimationFrame(pinta); }, otra=()=>{ f=true; bar(); };   // otra: al volver a la app, tapa nueva aunque no cambie
   new MutationObserver(bar).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
-  new MutationObserver(bar).observe(document.body,{attributes:true,attributeFilter:["data-view"]});   // al bajar no: la tapa cambia de color sola y no hace falta ponerla nueva
+  new MutationObserver(bar).observe(document.body,{attributes:true,attributeFilter:["data-view","class"]});   // v284: también al desplazarse (el iPhone no siempre vuelve a mirar el color de arriba y la hora se quedaba oscura al subir)
   new MutationObserver(bar).observe($("sheet"),{attributes:true,attributeFilter:["hidden"]});
   matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",otra); addEventListener("pageshow",otra);
   document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") otra(); });
