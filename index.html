@@ -854,7 +854,7 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 @media (min-width:701px){#s-plist .toolbar .search{flex:0 1 300px;min-width:180px}}
 @media (min-width:701px) and (max-width:1200px){#t-p [data-k="price"]{display:none}}
 @media (min-width:701px) and (max-width:1060px){#t-p [data-k="today"]{display:none}}
-@media (min-width:701px) and (max-width:1000px){#t-p [data-k="thesis"]{display:none}}
+
 @media (min-width:701px) and (max-width:940px){#t-p [data-k="req"]{display:none}}
 @media (min-width:701px) and (max-width:880px){#t-p [data-k="fv"]{display:none}}
 @media (min-width:701px) and (max-width:810px){#t-p [data-k="country"]{display:none}}
@@ -3081,6 +3081,8 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 @media (min-width:1001px) and (max-width:1239px){ :is(#s-aidx,#s-uni,#s-actb)>.hm5{margin-inline:30px} }
 /* RE-02 · móvil: «Otros instrumentos · opciones», al ras del título de Posiciones */
 @media (max-width:700px){ .rt#t-pos tbody tr.grp-row{padding-left:0} }
+/* UN-04 · Radar: hasta 370 px, «8,0% de tu cartera» baja a su propia línea (a 360 px pisaba la pastilla de TIR; a 375 aún sobran 11 px) */
+@media (max-width:370px){ #t-rd td.rd-px .rd-w{display:block} #t-rd td.rd-px .rd-sep{display:none} }
 </style>
 
 <div class="wrap">
@@ -3265,9 +3267,9 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
     <div class="toolbar">
       <label class="search"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.75" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><input class="inp" type="search" id="p-q" placeholder="Buscar empresa o ticker" aria-label="Buscar empresa"></label>
       <button type="button" class="inp ftg" id="p-ftg" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4.5h12M4.5 8h7M7 11.5h2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Filtros</span><b class="ftn num" id="p-ftn"></b></button>
-      <div class="seg pf-seg" role="group" aria-label="Grupo" id="p-f"><button type="button" data-f="" aria-pressed="true">Todas</button><button type="button" data-f="pf" aria-pressed="false">En cartera</button><button type="button" data-f="out" aria-pressed="false">Candidatas</button><button type="button" data-f="mar" aria-pressed="false">Sobre lo exigido</button><button type="button" data-f="thesis" aria-pressed="false">Con tesis</button><button type="button" data-f="rev" aria-pressed="false">Por revisar</button></div>
+      <div class="seg pf-seg" role="group" aria-label="Grupo" id="p-f"><button type="button" data-f="" aria-pressed="true">Todas</button><button type="button" data-f="pf" aria-pressed="false">En cartera</button><button type="button" data-f="out" aria-pressed="false">Candidatas</button><button type="button" data-f="mar" aria-pressed="false">Sobre lo exigido</button><button type="button" data-f="rev" aria-pressed="false">Por revisar</button></div>
       <select class="inp" id="p-ind" aria-label="Industria"></select>
-      <select class="inp show-s" id="p-sort" aria-label="Ordenar empresas"><option value="ind">Ordenar por industria</option><option value="name">Por nombre</option><option value="country">Por país</option><option value="margin">Por margen</option><option value="irrExp">Por TIR esperada</option><option value="today">Por variación de hoy</option><option value="dd">Por caída desde máximo</option><option value="thesis">Por tesis</option></select>
+      <select class="inp show-s" id="p-sort" aria-label="Ordenar empresas"><option value="ind">Ordenar por industria</option><option value="name">Por nombre</option><option value="country">Por país</option><option value="margin">Por margen</option><option value="irrExp">Por TIR esperada</option><option value="today">Por variación de hoy</option><option value="dd">Por caída desde máximo</option></select>
       <button type="button" class="btn m-rst" id="p-rst" title="Quitar todos los filtros" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.5-3.6M3 2.5v2.5h2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Restablecer</span></button>
     </div>
     <div class="mleg" aria-hidden="true">Margen · Precio</div>
@@ -3730,7 +3732,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v303";   // la versión publicada, en el pie
+const VER="v304";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4483,8 +4485,7 @@ const PCOLS=[
   {k:"price",l:"Cotización",r:"sub",g:"real",f:r=>pxm(r.price,r.cur)},
   {k:"today",l:()=>lastSession().closed?"Sesión":"Hoy",g:"real",mx:1,f:r=>sp(r.today)},
   {k:"dd",l:"Desde máximo",g:"real",mx:1,f:r=>ddf(r.dd)},
-  {k:"thesis",l:"Tesis",ctr:1,g:"est",sep:1,mx:1,nil:r=>r.thesis!=="Sí",f:r=>r.thesis==="Sí"?"Sí":""},
-  {k:"fv",l:"Valor razonable",hs:1,g:"est",f:r=>pxm(r.fv,r.cur)},
+  {k:"fv",l:"Valor razonable",hs:1,g:"est",sep:1,f:r=>pxm(r.fv,r.cur)},
   {k:"irrExp",l:"TIR esperada",g:"est",mx:1,f:r=>tirP(r.irrExp)},
   {k:"req",l:"Exigida",hs:1,g:"est",f:r=>r.req>0?pct(r.req):""},
   {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>`<span class="${clsM(r.margin)}">${pp(r.margin)}</span>`} ];
@@ -4715,7 +4716,7 @@ function renderRadar(){
   const K=["num hide-s","num hide-s","rd-c hide-s","num r-amt","num r-sub","num hide-s"].filter((_,i)=>use[i]); C.splice(0,C.length,...C.filter((_,i)=>use[i]));
   $("rd-cg").innerHTML=`<col>`+W.filter(w=>w>0).map(w=>`<col style="width:${w}px">`).join("");
   $("rd-head").innerHTML=`<tr><th class="l">Empresa</th>${C.map((x,i)=>`<th class="${K[i].includes("hide-s")?"hide-s":""}">${x.l}</th>`).join("")}</tr>`;
-  const row=r=>`<tr class="pr ri-go${r.inPf&&!(rdK==="pf")?" inpf":""}" data-t="${esc(r.ticker)}" tabindex="0"><td class="r-main" data-l="Empresa">${coCell(r.name,r.ticker)}</td>${C.map((x,i)=>`<td class="${K[i]}" data-l="${x.l.replace(/<[^>]*>/g,"")}">${x.f(r)}</td>`).join("")}<td class="rd-px">${pxm(r.price,r.cur)}${rdK==="pf"&&isNum(r.weight)?` · ${pct(r.weight)} de tu cartera`:""}</td></tr>`;
+  const row=r=>`<tr class="pr ri-go${r.inPf&&!(rdK==="pf")?" inpf":""}" data-t="${esc(r.ticker)}" tabindex="0"><td class="r-main" data-l="Empresa">${coCell(r.name,r.ticker)}</td>${C.map((x,i)=>`<td class="${K[i]}" data-l="${x.l.replace(/<[^>]*>/g,"")}">${x.f(r)}</td>`).join("")}<td class="rd-px">${pxm(r.price,r.cur)}${rdK==="pf"&&isNum(r.weight)?`<span class="rd-w"><span class="rd-sep"> · </span>${pct(r.weight)} de tu cartera</span>`:""}</td></tr>`;
   const blank=`<tr class="rd-x" aria-hidden="true"><td class="r-main">&nbsp;</td>${K.map(k=>`<td class="${k}"></td>`).join("")}</tr>`;
   $("rd-body").innerHTML=full.length?L.map(row).join("")+blank.repeat(Math.max(0,RD_N-L.length)):`<tr><td colspan="${K.length+1}" class="empty">Sin empresas valoradas en tu hoja</td></tr>`;
   markRows(); }
@@ -4727,7 +4728,7 @@ $("rd-body").addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&
 function renderPreTable(){
   if(!DATA) return; const all=DATA.pre;
   const q=fold($("p-q").value.trim()), ind=$("p-ind").value;
-  const rs=all.filter(r=>(!ind||r.ind===ind)&&(!q||fold(r.name+" "+r.ticker).includes(q))&&(!pf||(pf==="pf"?r.inPf:pf==="out"?!r.inPf:pf==="mar"?r.margin>0:pf==="rev"?stale(r):r.thesis==="Sí")));
+  const rs=all.filter(r=>(!ind||r.ind===ind)&&(!q||fold(r.name+" "+r.ticker).includes(q))&&(!pf||(pf==="pf"?r.inPf:pf==="out"?!r.inPf:pf==="mar"?r.margin>0:pf==="rev"?stale(r):true)));
   const [k,d]=psort, col=PCOLS.find(c=>c.k===k)||PCOLS[0], sv=col.sv||(r=>r[k]);
   const byName=(a,b)=>String(a.name??"").localeCompare(String(b.name??""),"es");   // a igualdad, por nombre
   rs.sort((a,b)=>{ const x=sv(a),y=sv(b); const c=typeof x==="string"||typeof y==="string" ? d*String(x??"").localeCompare(String(y??""),"es") : d*((x??-1e18)-(y??-1e18)); return c||byName(a,b); });
