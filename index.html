@@ -3079,6 +3079,8 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 }
 /* desde 1001 px la sección no tiene margen interior (la franja del PC lleva el suyo): la de tres y dos, con los 30 px que tiene a 1000 px */
 @media (min-width:1001px) and (max-width:1239px){ :is(#s-aidx,#s-uni,#s-actb)>.hm5{margin-inline:30px} }
+/* RE-02 · móvil: «Otros instrumentos · opciones», al ras del título de Posiciones */
+@media (max-width:700px){ .rt#t-pos tbody tr.grp-row{padding-left:0} }
 </style>
 
 <div class="wrap">
@@ -3127,7 +3129,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
   <section class="panel" id="s-evo">
     <div class="chart-head"><h2 class="st">Evolución</h2><div class="seg" role="group" aria-label="Periodo" id="range"><button type="button" data-n="12" aria-pressed="false">1 año</button><button type="button" data-n="36" aria-pressed="false">3 años</button><button type="button" data-n="0" aria-pressed="true">Todo</button></div></div>
     <div class="chartbox evo-c evo-one"><canvas id="c-evo" aria-label="Evolución del valor de la cartera"></canvas></div>
-    <div class="legend evo-leg"><span style="--c:var(--pos-deep)"><i></i><span class="lg">Valor de cartera</span><span class="sh">Cartera</span></span><span style="--c:var(--g3)"><i class="dash"></i>Aportado</span><span style="--c:var(--evo-msci)"><i class="dash2"></i>MSCI World</span><span><i class="area"></i>Ganancia</span></div>
+    <div class="legend evo-leg"><span style="--c:var(--pos-deep)"><i></i>Valor de cartera</span><span style="--c:var(--g3)"><i class="dash"></i>Aportado</span><span style="--c:var(--evo-msci)"><i class="dash2"></i>MSCI World</span><span><i class="area"></i>Ganancia</span></div>
   </section>
   </div>
 
@@ -3140,7 +3142,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
         <thead><tr>
           <th data-k="name">Empresa</th><th data-k="price" class="hide-s hide-t">Cotización</th><th data-k="avg" class="hide-s hide-m">Precio medio</th><th data-k="shares" class="hide-s hide-m">Acciones</th><th data-k="today">Hoy</th><th data-k="todayEur" class="hide-s hide-m">Hoy €</th>
           <th data-k="value">Valor</th><th data-k="weight" class="hide-s">Peso</th><th data-k="totalPct">Rentabilidad</th>
-          <th data-k="totalEur" class="hide-s hide-n">Resultado</th><th data-k="irr" class="hide-s">TIR</th><th data-k="years" class="hide-s hide-t" title="Antigüedad media de la posición, ponderada por lo invertido en cada compra">Años</th><th data-k="yov" class="hide-s" title="Dividendo anual sobre el valor de hoy">Dividendo</th>
+          <th data-k="totalEur" class="hide-s hide-n">Resultado</th><th data-k="irr" class="hide-s">TIR</th><th data-k="years" class="hide-s hide-t" title="Antigüedad media de la posición, ponderada por lo invertido en cada compra">Años</th><th data-k="yov" class="hide-s" title="Dividendo anual sobre el valor de hoy">Rent. div.</th>
         </tr></thead>
         <tbody id="pos-body"><tr><td colspan="13"><span class="skel">Cargando posiciones de la hoja</span></td></tr></tbody>
       </table>
@@ -3691,6 +3693,7 @@ function drawEvo(){
   o.scales.y.ticks.maxTicksLimit=4; o.scales.x.border={display:false}; o.scales.x.ticks.padding=8;
   o.layout={padding:{top:6}};
   o.scales.x.ticks.maxTicksLimit=8;
+  if(innerWidth<=700){ const jan=rows.map(r=>r.d instanceof Date&&r.d.getMonth()===0); if(jan.filter(Boolean).length>=2){ o.scales.x.ticks.autoSkip=false; o.scales.x.ticks.callback=(v,i)=>jan[i]?String(rows[i].d.getFullYear()):null; } }   // móvil: 2024 · 2025 · 2026
   o.plugins.tooltip.callbacks = { label:c=>" "+c.dataset.label+": "+eur(c.parsed.y), afterBody:i=>{ const r=rows[i[0].dataIndex]; return ["", "Resultado: "+seur(r.v-r.a)]; } };
   o.plugins.tooltip.itemSort=(a,b)=>a.datasetIndex-b.datasetIndex;
   const last=rows.map((_,i)=>i===rows.length-1?3.5:0);
@@ -3727,7 +3730,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v302";   // la versión publicada, en el pie
+const VER="v303";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -3935,17 +3938,17 @@ function renderPositions(){
     return `<tr class="pr${open?" open":""}" data-t="${esc(p.ticker)}" tabindex="0" aria-expanded="${open}">
       <td class="r-main" data-l="Empresa"><div class="co">${logoBare(p.name,p.ticker)}<b title="${esc(p.ticker)}">${esc(p.name)}</b></div></td>
       <td class="num hide-s hide-t" data-l="Cotización">${p.isOption?"":p.atCost?"":pxm(p.price,p.cur)}</td>
-      <td class="num hide-s hide-m" data-l="Pr. medio">${p.isOption?"":p.atCost?"":money(p.avg,p.cur)}</td>
-      <td class="num hide-s hide-m" data-l="Acciones">${p.isOption||!p.shares?"":`<span class="pv pvn">${nf(0).format(p.shares)}</span>`}</td>
-      <td class="num r-meta" data-l="Hoy">${p.isOption?"":`<span class="tpill ${p.today?cls(p.today):""}">${p.atCost?"":isNum(p.today)?pct(p.today,1,true):""}</span>`}<span class="m-sh">${p.isOption?`<span class="pv pvn">${nf(0).format((p.shares||0)/100)}</span><span class="w"> ${(p.shares||0)/100===1?"contrato":"contratos"} a</span>`:`<span class="pv pvn">${shares(p.shares)}</span><span class="w"> ${p.shares===1?"acción":"acciones"} a</span>`}<span class="x"> ×</span> ${money(p.avg,p.cur)}</span></td>
+      <td class="num hide-s hide-m" data-l="Pr. medio">${p.isOption?money(p.avg,p.cur):p.atCost?"":money(p.avg,p.cur)}</td>
+      <td class="num hide-s hide-m" data-l="Acciones">${!p.shares?"":`<span class="pv pvn">${nf(0).format(p.shares)}</span>`}</td>
+      <td class="num r-meta" data-l="Hoy">${p.isOption?"":`<span class="tpill ${p.today?cls(p.today):""}">${p.atCost?"":isNum(p.today)?pct(p.today,1,true):""}</span>`}<span class="m-sh">${`<span class="pv pvn">${shares(p.shares)}</span><span class="w"> ${p.shares===1?"acción":"acciones"} a</span>`}<span class="x"> ×</span> ${money(p.avg,p.cur)}</span></td>
       <td class="num hide-s hide-m ${p.todayEur?"":"mute"}" data-l="Hoy €">${p.isOption?"":isNum(p.todayEur)?seur(p.todayEur):""}</td>
       <td class="num r-amt" data-l="Valor"><span class="m-tot">${eur(p.value)}</span><span class="m-hoy">${p.isOption||p.atCost?`<span class="mute">a coste</span>`:pxm(p.price,p.cur)}</span></td>
       <td class="num hide-s" data-l="Peso"><span class="wb2"><span>${pct(p.weight)}</span><i><b style="width:${((p.weight||0)/maxW*100).toFixed(1)}%"></b></i></span></td>
       <td class="num r-sub" data-l="Rentab."><span class="m-tot">${p.isOption?"":p.atCost||!isNum(p.totalPct)?"":`<span class="rlv ${retLevel(p.totalPct)}">${pct(p.totalPct,1,true)}</span>`}</span><span class="m-hoy">${p.isOption||p.atCost||!isNum(p.today)?"":`<span class="m-var ${Math.abs(p.today)<0.0005?"mute":cls(p.today)}">${seur(p.todayEur)} (${pct(p.today,1,true)})</span>`}</span></td>
       <td class="num hide-s hide-n" data-l="Resultado">${p.isOption?"":p.atCost?"":seur(p.totalEur)}</td>
-      <td class="num hide-s" data-l="TIR" title="${p.years<0.5?"Menos de 6 meses en cartera: no se anualiza":"TIR anualizada de la posición"}">${p.isOption?"":p.isOption||!isNum(p.irr)?"":pct(p.irr,1,true)}</td>
+      <td class="num hide-s" data-l="TIR" title="${p.years<0.5?"Menos de 6 meses en cartera: no se anualiza":"TIR anualizada de la posición"}">${p.isOption?"":!isNum(p.irr)?`<span class="mute">—</span>`:pct(p.irr,1,true)}</td>
       <td class="num hide-s hide-t" data-l="Años">${p.isOption?"":!isNum(p.years)?"":nf(1).format(Math.max(0.1,Math.floor(p.years*10)/10))}</td>
-      <td class="num hide-s" data-l="YoV">${p.isOption?"":p.yov?pct(p.yov,2):p.paid>0?"":""}</td></tr>`; };
+      <td class="num hide-s" data-l="Rent. div.">${p.isOption?"":p.yov?pct(p.yov,2):`<span class="mute">—</span>`}</td></tr>`; };
   const st=ps.filter(p=>!p.isOption), ot=ps.filter(p=>p.isOption);
   $("pos-body").innerHTML = st.map(rowOf).join("") + (ot.length?`<tr class="grp-row"><td colspan="13">Otros instrumentos · opciones</td></tr>`+ot.map(rowOf).join(""):"");
 }
@@ -4305,7 +4308,7 @@ const mtK=r=>r.ty==="Compra"?"buy":r.ty==="Venta"?"sell":r.dv?"div":"cash";   //
 let movAllC=null;
 function movAll(){ const d=DATA; if(!d) return []; if(movAllC&&movAllC.d===d) return movAllC.rows;
   const out=[], sells=new Map(), opt=t=>/\s[CP]\d/.test(String(t||"")),
-    qty=(n,t)=>opt(t)?`${nf(0).format(n/100)} ${n/100===1?"contrato":"contratos"}`:`${shares(n)} ${n===1?"acción":"acciones"}`;
+    qty=(n,t)=>`${shares(n)} ${n===1?"acción":"acciones"}`;
   d.tx.forEach(r=>{ if(r.bd instanceof Date) out.push({d:r.bd,ty:"Compra",ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,note:r.note,det:`${qty(r.shares,r.ticker)} a ${money(r.bp,r.cur)}`,amt:eur(r.bt,2),v:r.bt});
     if(r.sd instanceof Date){ const k=[r.ticker,+r.sd,r.sp,r.broker].join("|"), o=sells.get(k)||{d:r.sd,ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,cur:r.cur,sp:r.sp,n:0,st:0,pnl:0};
       o.n+=r.shares||0; o.st+=+r.st||0; o.pnl+=+r.pnl||0; sells.set(k,o); } });
@@ -4336,7 +4339,7 @@ const MOV = {
         {k:`Dividendos en ${y}`,v:eur(sum(dv,r=>r.v)),sub:`brutos · ${n(dv.length)} ${dv.length===1?"cobro":"cobros"}`}]; } },
   transacciones:{ rows:()=>DATA?DATA.tx:[], date:r=>r.sd||r.bd, years:r=>[yr(r.bd),yr(r.sd)], text:r=>[r.name,r.ticker,r.note].join(" "), sort:["bd",-1], states:[["","Estado"],["open","Abiertas"],["closed","Cerradas"]], stateFn:(r,s)=>s==="open"?!r.sd:!!r.sd,
     cols:[ {k:"bd",l:"Fecha",r:"sub",f:r=>sdate(r.bd)}, {k:"name",l:"Empresa",r:"main",left:1,f:r=>coCell(r.name,r.ticker,infoBtn(r.note,"tx"+r.ticker+(+r.bd)))},
-      {k:"broker",l:"Bróker",left:1,hs:1,sec:1,f:r=>esc(r.broker||"")}, {k:"shares",l:"Acciones",sec:1,f:r=>{ const s=shares(r.shares); return s?`<span class="pv pvn">${s}</span>`:""; },mf:r=>!isNum(r.shares)?"":/\s[CP]\d/.test(String(r.ticker||""))?`${nf(0).format(r.shares/100)} ${r.shares===100?"contrato":"contratos"}`:`${shares(r.shares)} ${r.shares===1?"acción":"acciones"}`},
+      {k:"broker",l:"Bróker",left:1,hs:1,sec:1,f:r=>esc(r.broker||"")}, {k:"shares",l:"Acciones",sec:1,f:r=>{ const s=shares(r.shares); return s?`<span class="pv pvn">${s}</span>`:""; },mf:r=>!isNum(r.shares)?"":`${shares(r.shares)} ${r.shares===1?"acción":"acciones"}`},
       {k:"bp",l:"Precio de compra",hs:1,sec:1,f:r=>money(r.bp,r.cur)}, {k:"bt",l:"Importe",r:"amt",f:r=>eur(r.bt,2)},
       {k:"st",l:"Estado",nl:1,sv:r=>r.sd?1:0,f:r=>r.sd?`<span class="tag cl">Cerrada</span>`:`<span class="tag">Abierta</span>`},
       {k:"sd",l:"Fecha de venta",sec:1,sv:r=>r.sd?r.sd.getTime():null,f:r=>r.sd?sdate(r.sd):""},
