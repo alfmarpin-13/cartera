@@ -3053,6 +3053,11 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 /* PR-01 · las acciones y los contratos tapados ocupan justo lo que sus puntos (un «25» es más estrecho que «••••» y los puntos pisaban «acciones»);
    en la línea «•••• acciones a ••••» del móvil, también el precio medio, para que la línea no salte a dos */
 .priv .pvn,.priv .m-sh .pv{display:inline-block;width:2.5em;white-space:nowrap}
+/* PR-03 · los puntos ocupan su ancho y no el de la cifra tapada cuando detrás sigue el texto: «Año 2026 · •••• cobrados de ••••»,
+   «•••• /mes», el detalle de Movimientos («•••• a ••••») y las líneas de sus tarjetas («•••• aportado», «•••• de comisiones») */
+.priv :is(.dv-v,#tsv-out,.r-meta,.mline .mi,.mk-s,.mk-s .nw)>.pv{display:inline-block;width:2.5em;white-space:nowrap}
+/* en las barritas «€ por año» de Movimientos la cifra no se tapa con borrón (se montaba sobre las barras): se oculta y su sitio se queda */
+.priv .mk-yr small{visibility:hidden}
 </style>
 
 <div class="wrap">
@@ -3699,7 +3704,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v299";   // la versión publicada, en el pie
+const VER="v300";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
