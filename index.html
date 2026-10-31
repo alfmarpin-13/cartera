@@ -3058,6 +3058,27 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 .priv :is(.dv-v,#tsv-out,.r-meta,.mline .mi,.mk-s,.mk-s .nw)>.pv{display:inline-block;width:2.5em;white-space:nowrap}
 /* en las barritas «€ por año» de Movimientos la cifra no se tapa con borrón (se montaba sobre las barras): se oculta y su sitio se queda */
 .priv .mk-yr small{visibility:hidden}
+/* TA-01 · tableta y PC estrecho (701–1239 px): la franja de Análisis, Universo y Actualidad en tres arriba y dos abajo, como en el móvil y
+   con su forma de acortar; con las cinco en fila se partían etiquetas y subtítulos («SOBRE LO / EXIGIDO», «21 en cartera · 95 / candidatas»).
+   Letra de tableta (cifras de 28 px, como Resumen a ese ancho); desde 1240 px las cinco caben en fila */
+@media (min-width:701px) and (max-width:1239px){
+  body.hm5on :is(#s-aidx,#s-uni,#s-actb)>.bg{display:none}
+  body.hm5on :is(#s-aidx,#s-uni,#s-actb)>.hm5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));color:var(--h-fg);font-variant-numeric:tabular-nums}
+  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-c{position:relative;display:grid;grid-template-rows:subgrid;grid-row:span 3;justify-items:center;align-content:start;text-align:center;padding:0 10px;min-width:0}
+  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-k{align-self:end;font-size:11px;line-height:14px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--h-fg3);white-space:nowrap}
+  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-v{margin-top:8px;font-size:28px;line-height:32px;font-weight:300;letter-spacing:-.01em;white-space:nowrap}
+  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-s{margin-top:4px;font-size:11px;line-height:15px;color:var(--h-fg2);white-space:nowrap}
+  :is(#s-aidx,#s-uni,#s-actb)>.hm5 :is(.hm5-s.w,.hm5-k.w){white-space:normal}
+  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-s:empty{display:none}
+  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-s b{font-weight:400;color:var(--h-fg)}
+  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .pos{color:var(--h-pos)} :is(#s-aidx,#s-uni,#s-actb)>.hm5 .neg{color:var(--h-neg)}
+  :is(#s-aidx,#s-uni,#s-actb)>.hm5>:nth-child(-n+3){grid-column:span 2}
+  :is(#s-aidx,#s-uni,#s-actb)>.hm5>:nth-child(n+4){grid-column:span 3;margin-top:18px;padding-top:18px;box-shadow:0 -1px 0 var(--h-line)}
+  :is(#s-aidx,#s-uni,#s-actb)>.hm5>:is(:nth-child(2),:nth-child(3)){box-shadow:inset 1px 0 var(--h-line)}
+  :is(#s-aidx,#s-uni,#s-actb)>.hm5>:nth-child(5)::before{content:"";position:absolute;left:0;top:18px;bottom:0;width:1px;background:var(--h-line)}
+}
+/* desde 1001 px la sección no tiene margen interior (la franja del PC lleva el suyo): la de tres y dos, con los 30 px que tiene a 1000 px */
+@media (min-width:1001px) and (max-width:1239px){ :is(#s-aidx,#s-uni,#s-actb)>.hm5{margin-inline:30px} }
 </style>
 
 <div class="wrap">
@@ -3706,7 +3727,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v301";   // la versión publicada, en el pie
+const VER="v302";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
