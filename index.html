@@ -13,7 +13,7 @@
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Cartera</title>
-<script>try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
+<script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3117,7 +3117,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
     <div class="tablewrap">
       <table id="t-pos" class="rt">
         <thead><tr>
-          <th data-k="name">Empresa</th><th data-k="price" class="hide-s hide-t">Precio</th><th data-k="avg" class="hide-s hide-m">Precio medio</th><th data-k="shares" class="hide-s hide-m">Acciones</th><th data-k="today">Hoy</th><th data-k="todayEur" class="hide-s hide-m">Hoy €</th>
+          <th data-k="name">Empresa</th><th data-k="price" class="hide-s hide-t">Cotización</th><th data-k="avg" class="hide-s hide-m">Precio medio</th><th data-k="shares" class="hide-s hide-m">Acciones</th><th data-k="today">Hoy</th><th data-k="todayEur" class="hide-s hide-m">Hoy €</th>
           <th data-k="value">Valor</th><th data-k="weight" class="hide-s">Peso</th><th data-k="totalPct">Rentabilidad</th>
           <th data-k="totalEur" class="hide-s hide-n">Resultado</th><th data-k="irr" class="hide-s">TIR</th><th data-k="years" class="hide-s hide-t" title="Antigüedad media de la posición, ponderada por lo invertido en cada compra">Años</th><th data-k="yov" class="hide-s" title="Dividendo anual sobre el valor de hoy">Dividendo</th>
         </tr></thead>
@@ -3224,7 +3224,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 
   <section class="panel" id="s-radar">
     <div class="chart-head"><div><h2 class="st">Radar</h2></div>
-      <div class="seg" role="group" aria-label="Lista" id="rd-k"><button type="button" data-k="pf" aria-pressed="true">Tu cartera</button><button type="button" data-k="inc" aria-pressed="false">Incorporar</button></div></div>
+      <div class="seg" role="group" aria-label="Lista" id="rd-k"><button type="button" data-k="pf" aria-pressed="true">Tu cartera</button><button type="button" data-k="inc" aria-pressed="false">Candidatas</button></div></div>
     <div class="mleg" aria-hidden="true">Margen · TIR esperada</div>
     <div class="tablewrap"><table id="t-rd" class="rt"><colgroup id="rd-cg"></colgroup><thead id="rd-head"></thead><tbody id="rd-body"></tbody></table></div>
     <div class="rd-more"><button type="button" class="btn" id="rd-more"></button></div>
@@ -3244,7 +3244,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
       <button type="button" class="inp ftg" id="p-ftg" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4.5h12M4.5 8h7M7 11.5h2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Filtros</span><b class="ftn num" id="p-ftn"></b></button>
       <div class="seg pf-seg" role="group" aria-label="Grupo" id="p-f"><button type="button" data-f="" aria-pressed="true">Todas</button><button type="button" data-f="pf" aria-pressed="false">En cartera</button><button type="button" data-f="out" aria-pressed="false">Candidatas</button><button type="button" data-f="mar" aria-pressed="false">Sobre lo exigido</button><button type="button" data-f="thesis" aria-pressed="false">Con tesis</button><button type="button" data-f="rev" aria-pressed="false">Por revisar</button></div>
       <select class="inp" id="p-ind" aria-label="Industria"></select>
-      <select class="inp show-s" id="p-sort" aria-label="Ordenar empresas"><option value="ind">Ordenar por industria</option><option value="name">Por nombre</option><option value="country">Por país</option><option value="margin">Por margen</option><option value="irrExp">Por TIR esperada</option><option value="today">Por variación de hoy</option><option value="dd">Por drawdown</option><option value="thesis">Por tesis</option></select>
+      <select class="inp show-s" id="p-sort" aria-label="Ordenar empresas"><option value="ind">Ordenar por industria</option><option value="name">Por nombre</option><option value="country">Por país</option><option value="margin">Por margen</option><option value="irrExp">Por TIR esperada</option><option value="today">Por variación de hoy</option><option value="dd">Por caída desde máximo</option><option value="thesis">Por tesis</option></select>
       <button type="button" class="btn m-rst" id="p-rst" title="Quitar todos los filtros" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.5-3.6M3 2.5v2.5h2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Restablecer</span></button>
     </div>
     <div class="mleg" aria-hidden="true">Margen · Precio</div>
@@ -3281,7 +3281,9 @@ const $ = id => document.getElementById(id);
 
 /* ---------- formato ---------- */
 const nfc = {}; const nf = (d=0) => nfc[d] || (nfc[d] = new Intl.NumberFormat("es-ES",{minimumFractionDigits:d,maximumFractionDigits:d,useGrouping:"always"}));
-const eur = (v,d=0) => v==null||isNaN(v) ? "" : nf(d).format(v)+" €";
+// cifra sin signo y, si es negativa, con el signo menos tipográfico (nunca «−0»)
+const nfm = (v,d) => { const t=nf(d).format(Math.abs(v)); return (v<0&&/[1-9]/.test(t)?"−":"")+t; };
+const eur = (v,d=0) => v==null||isNaN(v) ? "" : nfm(v,d)+" €";
 const seur = (v,d=0) => v==null||isNaN(v) ? "" : (Math.abs(v)<.5/10**d?"":v>0?"+":"−")+nf(d).format(Math.abs(v))+" €";
 const pct = (v,d=1,sign=false) => v==null||isNaN(v) ? "" : (Math.abs(v*100)<.5/10**d?"":sign&&v>0?"+":v<0?"−":"")+nf(d).format(Math.abs(v*100))+"%";
 const cls = v => v>0?"pos":v<0?"neg":"mute";
@@ -3298,7 +3300,7 @@ const fmy = d => fax(d).replace(". "," ");   // en la ficha: «jul 2025»
 const curSym = {EUR:"€",USD:"$",GBP:"£",CHF:"Fr",JPY:"¥",CAD:"C$"};
 const norm = s => typeof s==="string" ? s.replace(/\s+/g,"").toUpperCase() : "";
 const isNum = v => typeof v==="number" && isFinite(v);
-const money = (v,cur,d=2) => isNum(v) ? nf(d).format(v)+" "+(curSym[cur]||cur||"") : "";
+const money = (v,cur,d=2) => isNum(v) ? nfm(v,d)+" "+(curSym[cur]||cur||"") : "";
 // importe por acción: dos decimales, y hasta cuatro solo si hacen falta (1,88 €, 0,2243 £, 44,00 ¥)
 const nf24 = new Intl.NumberFormat("es-ES",{minimumFractionDigits:2,maximumFractionDigits:4,useGrouping:"always"});
 // (los decimales que sobran pasan a espacios del ancho de una cifra, para que las comas queden en columna)
@@ -3624,10 +3626,10 @@ function model(d){
     {l:"Liquidez",a:liq,b:sk.liquidez}, {l:"Aportaciones",a:aport,b:sk.aport},
     {l:"Retorno total",a:retQ,b:sk.ret,note:optNote}, {l:"TIR anualizada",a:tirQ,b:sk.tir,kind:"pct",note:optNote},
     {l:"Frente al MSCI World",a:isNum(tirQ)&&isNum(idxTir)?tirQ-idxTir:null,b:isNum(sk.vsIdx)?sk.vsIdx/100:null,kind:"pp"},
-    {l:"Revalorización latente",a:comps[0].v,b:sw["Revalorización latente"]}, {l:"Posiciones cerradas",a:comps[1].v,b:sw["Posiciones cerradas"]},
+    {l:"Revalorización",a:comps[0].v,b:sw["Revalorización latente"]}, {l:"Posiciones cerradas",a:comps[1].v,b:sw["Posiciones cerradas"]},
     {l:"Dividendos cobrados",a:comps[2].v,b:sw["Dividendos brutos"]}, {l:"Retenciones",a:comps[3].v,b:sw["Retenciones"]},
-    {l:"Comisiones de compra",a:comps[4].v,b:sw["Comisiones de compra"]}, {l:"Ajustes",a:comps[5].v,b:sw["Ajustes"]},
-    {l:`Previsto ${curY+1}`,a:nextY,b:sk.rentas},
+    {l:"Comisiones en cartera",a:comps[4].v,b:sw["Comisiones de compra"]}, {l:"Ajustes",a:comps[5].v,b:sw["Ajustes"]},
+    {l:`Apuntado ${curY+1}`,a:nextY,b:sk.rentas},
     (()=>{ const ps=pos.filter(p=>p.sheet&&!p.atCost), ok=ps.filter(p=>isNum(p.sheet.value)&&Math.abs(p.value-p.sheet.value)<1&&(!isNum(p.sheet.totalEur)||Math.abs(p.totalEur-p.sheet.totalEur)<1));
       return {l:"Posiciones (valor y resultado)",a:ok.length,b:ps.length,kind:"n",ok:ps.length?ok.length===ps.length:null,note:ps.length&&ok.length<ps.length?`No cuadran: ${ps.filter(p=>!ok.includes(p)).map(p=>p.name).join(", ")}`:""}; })(),
     // los datos que metes a mano: cuántos están bien de cuántos hay
@@ -3668,7 +3670,7 @@ function drawEvo(){
   o.scales.y.ticks.maxTicksLimit=4; o.scales.x.border={display:false}; o.scales.x.ticks.padding=8;
   o.layout={padding:{top:6}};
   o.scales.x.ticks.maxTicksLimit=8;
-  o.plugins.tooltip.callbacks = { label:c=>" "+c.dataset.label+": "+eur(c.parsed.y), afterBody:i=>{ const r=rows[i[0].dataIndex]; return ["", "Ganancia: "+seur(r.v-r.a)]; } };
+  o.plugins.tooltip.callbacks = { label:c=>" "+c.dataset.label+": "+eur(c.parsed.y), afterBody:i=>{ const r=rows[i[0].dataIndex]; return ["", "Resultado: "+seur(r.v-r.a)]; } };
   o.plugins.tooltip.itemSort=(a,b)=>a.datasetIndex-b.datasetIndex;
   const last=rows.map((_,i)=>i===rows.length-1?3.5:0);
   make("c-evo",{type:"line",data:{labels:rows.map(r=>r.d instanceof Date?fax(r.d):""),datasets:[
@@ -3704,7 +3706,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v300";   // la versión publicada, en el pie
+const VER="v301";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -3737,7 +3739,7 @@ function drawTray(live){
   if(!box.querySelector("#c-tray")) box.innerHTML=`<div class="chartbox"><canvas id="c-tray" aria-label="Patrimonio y TIR de cada año"></canvas></div>`;
   const bx=box.querySelector(".chartbox"), ic=t.findIndex(r=>r.y===cur);
   const hex=n=>{ const v=tok(n); return /^#[0-9a-f]{6}$/i.test(v)?v:"#888888"; }, a=(c,y)=>fut(y)?c+(isDk()?"A6":"66"):c;
-  const tips=(hz,T=t)=>({ title:i=>{const r=T[i[0].dataIndex]; if(!r||r.sp) return ""; return r.y+(r.age?" · "+r.age+" años":"")+(fut(r.y)?" · proyección":"")+(r.re===false?" · sin reinvertir":"");},
+  const tips=(hz,T=t)=>({ title:i=>{const r=T[i[0].dataIndex]; if(!r||r.sp) return ""; return r.y+(r.age?" · a los "+r.age:"")+(fut(r.y)?" · proyección":"")+(r.re===false?" · sin reinvertir":"");},
     label:c=>" "+c.dataset.label+": "+eur(hz?c.parsed.x:c.parsed.y), footer:i=>{const r=T[i[0].dataIndex]; if(!r||r.sp) return ""; return "Patrimonio: "+eur(r.val)+(isNum(r.tir)?"\nTIR del año: "+pct(r.tir,1,true)+(r.y===cur?" (en curso)":""):fut(r.y)&&isNum(r.ti)?"\nTIR del año: "+pct(r.ti,1):"")+(isNum(ms[r.y])&&!fut(r.y)?"\nMSCI del año: "+pct(ms[r.y],1,true):"")+(isNum(r.divs)&&r.divs>0?"\nDividendos: "+eur(r.divs)+" al año":"")+(r.net?"\nRenta neta: "+eur(r.net)+"/mes"+(r.re===false?" (la cobras)":""):"");} });
   const sets=(hz,T=t)=>[{label:"Aportado acumulado",data:T.map(r=>r.sp?null:Math.min(r.acc,r.val)),backgroundColor:T.map(r=>r.sp?"transparent":a(hex("--g3"),r.y)),maxBarThickness:22,minBarLength:3},
     {label:"Crecimiento",data:T.map(r=>r.sp||r.val-r.acc<=0?null:r.val-r.acc),minBarLength:3,backgroundColor:T.map(r=>r.sp?"transparent":a(hex("--pos-mid"),r.y)),borderRadius:hz?{topRight:4,bottomRight:4}:{topLeft:4,topRight:4},maxBarThickness:22}];
@@ -3875,7 +3877,7 @@ function fichaPos(p){
       return `<span class="l">${l}</span><span class="tr">${w>0.05?`<i class="${k||(v<0?"neg":"pos")}" style="${v<0?"right":"left"}:50%;width:${w.toFixed(1)}%"></i>`:""}</span><span class="v num ${k?(isNum(v)&&Math.abs(v)>=0.0005?k:"mute"):cls(isNum(v)&&Math.abs(v)>=0.0005?v:0)}">${isNum(v)?(Math.abs(v)<0.0005?"0,0%":pct(v,1,true)):""}</span>`; }).join("")}
 <span class="l t">Total</span><span class="tr t">${barT(p.totalPct)}</span><span class="v t num ${cls(p.totalPct)}">${pct(p.totalPct,1,true)}</span>${parts.length<3?`<span class="l ph" aria-hidden="true">&nbsp;</span><span class="tr ph" aria-hidden="true"></span><span class="v ph" aria-hidden="true">&nbsp;</span>`:""}</div>`;
   const cPos=`<section class="fp-c"><div class="fp-ch"><h4>Tu posición</h4><span>${shares(p.shares)} ${p.shares===1?"acción":"acciones"}</span></div><div class="fp-v">${dec}</div>
-    ${facts([["Invertido",eur(p.invested)],["Precio medio",money(p.avg,p.cur)],["Precio hoy",pxm(p.price,p.cur)]])}</section>`;
+    ${facts([["Invertido",eur(p.invested)],["Precio medio",money(p.avg,p.cur)],["Cotización",pxm(p.price,p.cur)]])}</section>`;
   const cBuy=`<section class="fp-c"><div class="fp-ch"><h4>Compras</h4><span>${buys.length?`${nf(0).format(buys.length)} ${buys.length===1?"compra":"compras"}${nSold?` · ${nSold} ${nSold>1?"vendidas":"vendida"}`:""}`:""}</span></div><div class="fp-v">${tl}</div>
     ${facts([["Primera",buys.length?fd(buys[0].d):""],["Última",buys.length?fd(buys[buys.length-1].d):""],["Desde la última",buys.length?hace(buys[buys.length-1].d):""]])}</section>`;
   // dividendos: por año desde que tienes la posición actual (lo cobrado cuadra con «Cobrado» de tu hoja) y lo apuntado
@@ -3911,7 +3913,7 @@ function renderPositions(){
   const rowOf=p=>{ const open=!!sheet&&sheet.k==="pos"&&sheet.t===p.ticker;
     return `<tr class="pr${open?" open":""}" data-t="${esc(p.ticker)}" tabindex="0" aria-expanded="${open}">
       <td class="r-main" data-l="Empresa"><div class="co">${logoBare(p.name,p.ticker)}<b title="${esc(p.ticker)}">${esc(p.name)}</b></div></td>
-      <td class="num hide-s hide-t" data-l="Precio">${p.isOption?"":p.atCost?"":pxm(p.price,p.cur)}</td>
+      <td class="num hide-s hide-t" data-l="Cotización">${p.isOption?"":p.atCost?"":pxm(p.price,p.cur)}</td>
       <td class="num hide-s hide-m" data-l="Pr. medio">${p.isOption?"":p.atCost?"":money(p.avg,p.cur)}</td>
       <td class="num hide-s hide-m" data-l="Acciones">${p.isOption||!p.shares?"":`<span class="pv pvn">${nf(0).format(p.shares)}</span>`}</td>
       <td class="num r-meta" data-l="Hoy">${p.isOption?"":`<span class="tpill ${p.today?cls(p.today):""}">${p.atCost?"":isNum(p.today)?pct(p.today,1,true):""}</span>`}<span class="m-sh">${p.isOption?`<span class="pv pvn">${nf(0).format((p.shares||0)/100)}</span><span class="w"> ${(p.shares||0)/100===1?"contrato":"contratos"} a</span>`:`<span class="pv pvn">${shares(p.shares)}</span><span class="w"> ${p.shares===1?"acción":"acciones"} a</span>`}<span class="x"> ×</span> ${money(p.avg,p.cur)}</span></td>
@@ -3975,22 +3977,22 @@ function render(d){
   const bad=d.check.filter(c=>c.ok===false);
   $("chk-tag").className="tag "+(bad.length?"warn":""); $("chk-tag").textContent=bad.length?`${bad.length} ${bad.length>1?"diferencias":"diferencia"}`:"✓ Todo cuadra";
   $("s-check").hidden=!bad.length&&!chkShow;
-  $("foot").innerHTML=`<button type="button" class="foot-b${bad.length?" warn-t":""}" id="chk-show">${bad.length?`${bad.length} ${bad.length>1?"diferencias":"diferencia"} con tu hoja`:"✓ Cuadra con tu hoja"}</button><button type="button" class="foot-b foot-m" id="f-more" aria-haspopup="menu">Ajustes</button>`; $("chk-show").title=`Versión ${VER}`;
+  $("foot").innerHTML=`<button type="button" class="foot-b${bad.length?" warn-t":""}" id="chk-show">${bad.length?`${bad.length} ${bad.length>1?"diferencias":"diferencia"} con tu hoja`:"✓ Cuadra con tu hoja"}</button><button type="button" class="foot-b foot-m" id="f-more" aria-haspopup="menu">Opciones</button>`; $("chk-show").title=`Versión ${VER}`;
   // tu hoja: lo que no tiene cotización (se valora a precio de compra) y lo que no cuadra, en un solo aviso, en una franja debajo del bloque oscuro
   { const n=d.noPx||[], bc=bad.filter(c=>!c.data), bd=bad.filter(c=>c.data), el=$("hoja-al");
     const yL=L=>L.length>1?L.slice(0,-1).join(", ")+" y "+L[L.length-1]:L[0]||"";
     const lw=t=>/^.[a-záéíóúñ]/.test(t)?t[0].toLowerCase()+t.slice(1):t, ls=xs=>yL(xs.map(c=>esc(lw(c.l))));   // «frente al MSCI World» y «TIR anualizada», con sus mayúsculas
     const t=[];
     if(n.length) t.push(`<b>${yL(n.map(p=>esc(p.name)))}</b> ${n.length>1?"no tienen":"no tiene"} cotización en tu hoja: la web ${n.length>1?"las":"la"} valora a precio de compra.`);
-    if(bc.length) t.push(`${n.length?"Mientras tanto, la web":"La web"} no cuadra con tu hoja en ${ls(bc)}.`);
+    if(bc.length) t.push(`${n.length?"Además, la web no cuadra":"No cuadra"} con tu hoja: ${yL(bc.map(c=>esc(c.l)))}.`);
     if(bd.length) t.push(`Revisa en tu hoja: ${ls(bd)}.`);
     const sig=t.join(" "); let off=""; try{ off=localStorage.getItem("hoja-al")||""; }catch{}
     el.hidden=!t.length||off===sig;   // cerrado con ✕: no vuelve mientras diga lo mismo
     el.innerHTML=t.length?`<div class="hal"><div class="hal-tx"><span class="nt-k">Tu hoja</span><p>${sig}</p></div>${bad.length?`<button type="button" class="btn" id="chk-go">Ver el cuadre</button>`:""}<button type="button" class="hal-x" aria-label="Cerrar el aviso"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>`:"";
     const x=el.querySelector(".hal-x"); if(x) x.onclick=()=>{ el.hidden=true; try{ localStorage.setItem("hoja-al",sig); }catch{} }; }
   const cf=(c,v)=>!isNum(v)?"":c.kind==="pct"?pct(v,2):c.kind==="pp"?pp(v):c.kind==="n"?nf(0).format(v):eur(v,2);
-  const cdiff=c=>c.kind==="pct"||c.kind==="pp"?pp(c.a-c.b):c.kind==="n"?nf(0).format(c.b-c.a)+" no":seur(c.a-c.b,2);
-  $("chk").innerHTML = `<div class="ck h"><span></span><span>Web</span><span>Hoja</span><span></span></div>` + d.check.map(c=>`<div class="ck"><span>${esc(c.l)}${c.note?`<small>${esc(c.note)}</small>`:""}</span><span class="num">${cf(c,c.a)}</span><span class="num mute">${cf(c,c.b)}</span><span class="num ${c.ok?"":c.ok===false?"warn-t":"mute"}">${c.ok?"✓ Cuadra":c.ok===false?"Δ "+cdiff(c):""}</span></div>`).join("");
+  const cdiff=c=>c.kind==="pct"||c.kind==="pp"?pp(c.a-c.b):c.kind==="n"?nfm(c.b-c.a,0)+" fallan":seur(c.a-c.b,2);
+  $("chk").innerHTML = `<div class="ck h"><span></span><span>Web</span><span>Hoja</span><span></span></div>` + d.check.map(c=>`<div class="ck"><span>${esc(c.l)}${c.note?`<small>${esc(c.note)}</small>`:""}</span><span class="num">${cf(c,c.a)}</span><span class="num mute">${cf(c,c.b)}</span><span class="num ${c.ok?"":c.ok===false?"warn-t":"mute"}">${c.ok?"✓ Cuadra":c.ok===false?(c.kind==="n"?"":"Δ ")+cdiff(c):""}</span></div>`).join("");
 
   // trayectoria (si la hoja no la tiene, la sección no sale)
   $("s-tray").hidden=!d.tray.length;
@@ -4188,7 +4190,7 @@ function renderAidx(){ const d=DATA, el=$("a-k"); if(!d||!el) return;
   const ti=(d.ind||[]).filter(x=>isNum(x.val)).sort((a,b)=>b.val-a.val)[0];   // la industria que más pesa
   const tc=(d.pais||[]).filter(x=>isNum(x.val)).sort((a,b)=>b.val-a.val)[0];   // y el país
   const col=(i,k,l,v,sub)=>`<div class="c${i} r1 bl">${l}</div><div class="c${i} r2 bv num">${v}</div><div class="c${i} r3 bs">${sub}</div>`;
-  el.innerHTML=col(0,"dvs",`Dividendos ${dm.curY+1}`,eur(d.kpi&&d.kpi.rentas),`previstos · <b>${eur(((d.kpi&&d.kpi.rentas)||0)/12)}</b> al mes`)
+  el.innerHTML=col(0,"dvs",`Dividendos ${dm.curY+1}`,eur(d.kpi&&d.kpi.rentas),`apuntados · <b>${eur(((d.kpi&&d.kpi.rentas)||0)/12)}</b> al mes`)
     +col(1,"div","Fuera del euro",pct(1-eu,1),d.divisa.filter(x=>x.name!=="EUR").slice(0,2).map(x=>`${CURN[x.name]||x.name} <b>${pct(x.val,1)}</b>`).join('<span class="sep"></span>'))
     +col(2,"conc","Concentración",pct(sum(ps.slice(0,5),p=>p.value)/tot,1),"en las 5 mayores")
     +(tc?col(3,"pais","Mayor país",pct(tc.val,1),esc(ctryN(tc.name))):col(3,"pais","Mayor país","—",""))
@@ -4314,10 +4316,10 @@ const MOV = {
   transacciones:{ rows:()=>DATA?DATA.tx:[], date:r=>r.sd||r.bd, years:r=>[yr(r.bd),yr(r.sd)], text:r=>[r.name,r.ticker,r.note].join(" "), sort:["bd",-1], states:[["","Estado"],["open","Abiertas"],["closed","Cerradas"]], stateFn:(r,s)=>s==="open"?!r.sd:!!r.sd,
     cols:[ {k:"bd",l:"Fecha",r:"sub",f:r=>sdate(r.bd)}, {k:"name",l:"Empresa",r:"main",left:1,f:r=>coCell(r.name,r.ticker,infoBtn(r.note,"tx"+r.ticker+(+r.bd)))},
       {k:"broker",l:"Bróker",left:1,hs:1,sec:1,f:r=>esc(r.broker||"")}, {k:"shares",l:"Acciones",sec:1,f:r=>{ const s=shares(r.shares); return s?`<span class="pv pvn">${s}</span>`:""; },mf:r=>!isNum(r.shares)?"":/\s[CP]\d/.test(String(r.ticker||""))?`${nf(0).format(r.shares/100)} ${r.shares===100?"contrato":"contratos"}`:`${shares(r.shares)} ${r.shares===1?"acción":"acciones"}`},
-      {k:"bp",l:"Precio compra",hs:1,sec:1,f:r=>money(r.bp,r.cur)}, {k:"bt",l:"Importe",r:"amt",f:r=>eur(r.bt,2)},
+      {k:"bp",l:"Precio de compra",hs:1,sec:1,f:r=>money(r.bp,r.cur)}, {k:"bt",l:"Importe",r:"amt",f:r=>eur(r.bt,2)},
       {k:"st",l:"Estado",nl:1,sv:r=>r.sd?1:0,f:r=>r.sd?`<span class="tag cl">Cerrada</span>`:`<span class="tag">Abierta</span>`},
-      {k:"sd",l:"Fecha venta",sec:1,sv:r=>r.sd?r.sd.getTime():null,f:r=>r.sd?sdate(r.sd):""},
-      {k:"sp",l:"Precio venta",hs:1,sec:1,f:r=>r.sd?money(r.sp,r.cur):""},
+      {k:"sd",l:"Fecha de venta",sec:1,sv:r=>r.sd?r.sd.getTime():null,f:r=>r.sd?sdate(r.sd):""},
+      {k:"sp",l:"Precio de venta",hs:1,sec:1,f:r=>r.sd?money(r.sp,r.cur):""},
       {k:"pnl",l:"Resultado",sv:r=>r.sd?r.pnl:null,f:r=>r.sd?`<span class="${cls(r.pnl)}">${seur(r.pnl,2)}</span>`:""} ],
     // cómo te ha ido vendiendo: lo ganado (ya sin las comisiones de compra y venta), cuánto operas y en cuántas empresas,
     // cuánto aguantas y cuántas ventas salen bien (todo, o del año elegido). Se cuentan órdenes, no filas: una venta que
@@ -4331,7 +4333,7 @@ const MOV = {
       return [{k:"Resultado realizado",v:seur(pl),c:cls(pl),sub:cl.length?`tras ${eur(fees)} de comisiones`:"sin ventas"},
         // compras y ventas en la línea de la cifra, la barra con su proporción y las empresas en una sola línea: la casilla, del alto de las demás
         {k:"Compras y ventas",c:"mkcv",v:ops?`${nf(0).format(ob.length)}<small class="mk-u"> ${ob.length===1?"compra":"compras"}</small><small class="mk-u mk-d"> · </small>${nf(0).format(os.length)}<small class="mk-u"> ${os.length===1?"venta":"ventas"}</small>`:"0",nolg:1,split:ops?[{v:ob.length},{v:os.length}]:null,
-          sub:ops?(()=>{ const eb=new Set(bu.map(r=>und(r.ticker))).size, es=new Set(cl.map(r=>und(r.ticker))).size; return es?`en ${nf(0).format(eb)} y ${nf(0).format(es)} empresas`:`en ${nf(0).format(eb)} ${eb===1?"empresa":"empresas"}`; })():"sin operaciones"},
+          sub:ops?(()=>{ const eb=new Set(bu.map(r=>und(r.ticker))).size, es=new Set(cl.map(r=>und(r.ticker))).size; return es?`en ${nf(0).format(eb)} ${eb===1?"empresa":"empresas"} · en ${nf(0).format(es)}`:`en ${nf(0).format(eb)} ${eb===1?"empresa":"empresas"}`; })():"sin operaciones"},
         {k:"Tenencia media",v:isNum(hold)?`${nf(1).format(hold)} años`:"",sub:""},
         {k:"Ventas con ganancia",v:os.length?pct(win/os.length,1):"",gl:1,nolg:1,split:os.length?[{v:win},{v:os.length-win}]:null,sub:os.length?`${nf(0).format(win)} de ${nf(0).format(os.length)} ${os.length===1?"venta":"ventas"}`:"sin ventas"}]; } },
   dividendos:{ rows:()=>DATA?DATA.dv:[], date:r=>r.d, years:r=>[yr(r.d)], text:r=>[r.name,r.ticker,r.type].join(" "), sort:["d",-1],
@@ -4361,8 +4363,8 @@ const MOV = {
     kpis:(all,ys)=>{ const cy=new Date().getFullYear(), y=ys||cy, now=new Date(), t=sum(all,r=>r.amt), up=sum(all.filter(r=>r.amt>0),r=>r.amt), dn=sum(all.filter(r=>r.amt<0),r=>r.amt),
         ry=all.filter(r=>yr(r.d)===y), ty=sum(ry,r=>r.amt), months=y<cy?12:now.getMonth()+1, save=DATA.horizon&&DATA.horizon.saving,
         yrs=movYears();
-      return [{k:"Neto aportado",v:eur(t),sub:dn<0?`<span class="nw">${eur(up)}&nbsp;aportado</span><span class="sep2"> · </span><span class="nw">${eur(-dn)}&nbsp;retirado</span>`:`${nf(0).format(all.length)} movimientos`},
-        {k:`Año ${y}`,v:eur(ty),sub:save>0?`${pct(ty/save,1)} de tus ${eur(save)}&nbsp;al&nbsp;año`:`${nf(0).format(ry.length)} movimientos`},
+      return [{k:"Neto aportado",v:eur(t),sub:dn<0?`<span class="nw">${eur(up)}&nbsp;aportado</span><span class="sep2"> · </span><span class="nw">${eur(-dn)}&nbsp;retirado</span>`:`${nf(0).format(all.length)} ${all.length===1?"movimiento":"movimientos"}`},
+        {k:`Año ${y}`,v:eur(ty),sub:save>0?`${pct(ty/save,1)} de tus ${eur(save)}&nbsp;al&nbsp;año`:`${nf(0).format(ry.length)} ${ry.length===1?"movimiento":"movimientos"}`},
         {k:"Media al mes",v:eur(ty/months),sub:`en ${y}`},
         {k:"€ por año",v:"",years:yrs.map(x=>({y:x,v:sum(all.filter(r=>yr(r.d)===x),r=>r.amt),cur:x===y,ghost:x>cy&&!all.some(r=>yr(r.d)===x)}))}]; } },
   ajustes:{ rows:()=>DATA?DATA.aj:[], rc:()=>"mv mv-adj", date:r=>r.d, years:r=>[yr(r.d)], text:r=>[r.note,r.broker].join(" "), sort:["d",-1],
@@ -4394,7 +4396,7 @@ function renderMov(refill){
     opts($("m-broker"),[...new Set(all.map(r=>r.broker).filter(Boolean))].sort(),"Bróker",true);
     const st=$("m-state"), v=st.value; st.hidden=!c.states;
     st.innerHTML=(c.states||[]).map(([k,l])=>`<option value="${k}">${l}</option>`).join(""); st.value=mstate[mtab]??""; if(mshowTab!==mtab){ mshow=MSTEP; mshowTab=mtab; }
-    const ml=x=>({Compra:"fecha de compra",Venta:"fecha de venta",Fecha:"fecha","Por acción":"dividendo por acción"})[x.l]||x.l.toLowerCase(), d0=c.cols.find(x=>x.k===c.sort[0])||c.cols[0];
+    const ml=x=>(mtab==="transacciones"&&x.k==="bd"?"fecha de compra":({net:"importe neto",gross:"importe bruto"})[x.k])||({Compra:"fecha de compra",Venta:"fecha de venta",Fecha:"fecha","Por acción":"dividendo por acción"})[x.l]||x.l.toLowerCase(), d0=c.cols.find(x=>x.k===c.sort[0])||c.cols[0];
     $("m-sort").innerHTML=[d0,...c.cols.filter(x=>x!==d0)].map((x,i)=>`<option value="${x.k}">${i?"Por":"Ordenar por"} ${ml(x)}</option>`).join(""); }
   const rs=movRows(), [sk,sd]=msort[mtab]||c.sort, col=c.cols.find(x=>x.k===sk)||c.cols[0], sv=col.sv||(r=>r[sk]);
   rs.sort((a,b)=>{ let x=sv(a),y=sv(b); if(x instanceof Date) x=x.getTime(); if(y instanceof Date) y=y.getTime();
@@ -4454,7 +4456,7 @@ const PCOLS=[
   {k:"name",l:"Empresa",r:"main",left:1,f:r=>`<div class="co">${logoBare(r.name,r.ticker)}<b title="${esc(r.ticker)}">${esc(r.name||r.ticker)}</b></div>`},
   {k:"country",l:"País",ctr:1,f:r=>r.country?`<span title="${esc(ctryN(r.country))}">${flagHtml(r.country)}</span>`:""},
   {k:"ind",l:"Industria",left:1,f:r=>`<span class="show-s">${r.country?flagHtml(r.country):""}</span>${esc(r.ind||"")}`},
-  {k:"price",l:"Precio",r:"sub",g:"real",f:r=>pxm(r.price,r.cur)},
+  {k:"price",l:"Cotización",r:"sub",g:"real",f:r=>pxm(r.price,r.cur)},
   {k:"today",l:()=>lastSession().closed?"Sesión":"Hoy",g:"real",mx:1,f:r=>sp(r.today)},
   {k:"dd",l:"Desde máximo",g:"real",mx:1,f:r=>ddf(r.dd)},
   {k:"thesis",l:"Tesis",ctr:1,g:"est",sep:1,mx:1,nil:r=>r.thesis!=="Sí",f:r=>r.thesis==="Sí"?"Sí":""},
@@ -4520,7 +4522,7 @@ function fichaPre(r){
     // cada celda: el valor razonable y cuánto cotiza por encima (rojo) o por debajo (verde), con la escala de tu hoja (±30%)
     const heat=x=>{ if(!isNum(x)||!x||!isNum(r.price)) return {bg:"",p:""}; const g=r.price/x-1, k=Math.min(Math.abs(g)/0.3,1)*100;
       return {bg:`background:color-mix(in srgb,var(${g<0?"--hm-g":"--hm-r"}) ${k.toFixed(0)}%,var(--hm-0))`,p:pct(g,1,true)}; };
-    cF=card("Valor razonable","",`<div class="fp-hm" style="--n:${F.rates.length}"><span class="k tl">Múltiplo</span><span class="cap tr">Retorno exigido</span>${F.rates.map(x=>`<span class="h${near(x,req)?" sel":""}">${pr1(x)}</span>`).join("")}${F.rows.map((o,j)=>`<span class="m${near(o.m,mult)?" sel":""}${j===F.rows.length-1?" bl":""}">${xf(o.m)}</span>${o.v.map((x,i)=>{ const h=heat(x); const t=mo(x), sp=t.lastIndexOf(" "); return `<span class="c${near(o.m,mult)&&near(F.rates[i],req)?" on":""}${j===F.rows.length-1&&i===o.v.length-1?" br":""}" style="${h.bg}"><b class="num">${sp>0?`${t.slice(0,sp)}<i class="cu">${t.slice(sp)}</i>`:t}</b><small class="num">${h.p}</small></span>`; }).join("")}`).join("")}</div>`," mx"); }
+    cF=card("Valor razonable","",`<div class="fp-hm" style="--n:${F.rates.length}"><span class="k tl">Múltiplo</span><span class="cap tr">TIR exigida</span>${F.rates.map(x=>`<span class="h${near(x,req)?" sel":""}">${pr1(x)}</span>`).join("")}${F.rows.map((o,j)=>`<span class="m${near(o.m,mult)?" sel":""}${j===F.rows.length-1?" bl":""}">${xf(o.m)}</span>${o.v.map((x,i)=>{ const h=heat(x); const t=mo(x), sp=t.lastIndexOf(" "); return `<span class="c${near(o.m,mult)&&near(F.rates[i],req)?" on":""}${j===F.rows.length-1&&i===o.v.length-1?" br":""}" style="${h.bg}"><b class="num">${sp>0?`${t.slice(0,sp)}<i class="cu">${t.slice(sp)}</i>`:t}</b><small class="num">${h.p}</small></span>`; }).join("")}`).join("")}</div>`," mx"); }
   // con caja neta tu hoja da la deuda en negativo: aquí se muestra la caja en positivo
   const ndL=!v.ndfcfL||/^free cash flow$/i.test(v.ndfcfL)?"FCF":v.ndfcfL;
   // sin cifras (o todas a cero, como en un banco), el bloque no sale
@@ -4563,7 +4565,7 @@ function fichaPre(r){
   // a favor y en contra: una tarjeta con dos columnas; cada punto lleva un punto de color, sin rayas
   const pcs=[v.pro&&["A favor",ul(v.pro,"pro"),items(v.pro).length], v.con&&["En contra",ul(v.con,"con"),items(v.con).length]].filter(Boolean);
   const pc=pcs.length?`<section class="fp-c fp-pc${pcs.length<2?" one":""}">${pcs.map(([h,u,n])=>`<div class="pc-col"><h4>${h}<span>${n}</span></h4>${u}</div>`).join("")}</section>`:"";
-  const mr=pair([v.multTxt?card("Múltiplo",xf(mult),ps(v.multTxt)):"", v.retTxt?card("Retorno",pr1(req),ps(v.retTxt)):""]);
+  const mr=pair([v.multTxt?card("Múltiplo",xf(mult),ps(v.multTxt)):"", v.retTxt?card("TIR exigida",pr1(req),ps(v.retTxt)):""]);
   // debajo, todo es tu valoración: primero sus cifras clave y su fecha
   // si no la tienes, sus cifras ya van en la franja de arriba: aquí solo el título y la fecha
   const vcard=card(`Tu valoración${stale(r)?`<span class="tag warn vrv">Por revisar</span>`:""}`,vdS?`valorada el ${vdS}`:"",own?vsum:""," fp-vc"+(own?"":" fp-c1"));
@@ -4580,21 +4582,21 @@ let plan=(()=>{ try{ const o=JSON.parse(localStorage.getItem(PLAN_K)||"null"); i
 const plHas=()=>isNum(plan.aport)||plan.rows.length>1||plan.rows.some(o=>o.t||isNum(o.amt)||isNum(o.n)||o.sell);
 const planSave=()=>{ try{ localStorage.setItem(PLAN_K,JSON.stringify(plan)); }catch{} };
 function planOpts(sel,sell){ const by=(a,b)=>a.name.localeCompare(b.name,"es"), o=r=>`<option value="${esc(r.ticker)}"${r.ticker===sel?" selected":""}>${esc(r.name)}</option>`;
-  if(sell) return `<option value="">Elige qué vendes</option>${DATA.pre.filter(r=>r.inPf&&DATA.pos.some(p=>p.ticker===r.ticker&&!p.isOption&&p.shares>0)).sort(by).map(o).join("")}`;   // solo lo que tienes
-  return `<option value="">Elige empresa</option><optgroup label="En cartera">${DATA.pre.filter(r=>r.inPf).sort(by).map(o).join("")}</optgroup><optgroup label="Candidatas">${DATA.pre.filter(r=>!r.inPf).sort(by).map(o).join("")}</optgroup>`; }
+  if(sell) return `<option value="">Qué vendes</option>${DATA.pre.filter(r=>r.inPf&&DATA.pos.some(p=>p.ticker===r.ticker&&!p.isOption&&p.shares>0)).sort(by).map(o).join("")}`;   // solo lo que tienes
+  return `<option value="">Qué compras</option><optgroup label="En cartera">${DATA.pre.filter(r=>r.inPf).sort(by).map(o).join("")}</optgroup><optgroup label="Candidatas">${DATA.pre.filter(r=>!r.inPf).sort(by).map(o).join("")}</optgroup>`; }
 const plShares=t=>{ const p=DATA.pos.find(x=>x.ticker===t&&!x.isOption); return p&&p.shares>0?p.shares:0; };
 function renderPlan(){
   if(!DATA) return;
   // mientras escribes no se rehace la tabla (si llega una recarga de datos, solo se recalcula)
   if(!$("pl-full").contains(document.activeElement)){
     $("pl-ap").value=isNum(plan.aport)?plan.aport:"";
-    $("pl-head").innerHTML=`<tr><th class="l">Empresa</th><th>Importe</th><th>Cotización</th><th>Acciones</th><th>Coste</th><th>Comisión</th><th>Peso actual</th><th>Peso tras</th><th></th></tr>`;
+    $("pl-head").innerHTML=`<tr><th class="l">Empresa</th><th>Importe</th><th>Cotización</th><th>Acciones</th><th>Coste</th><th>Comisión</th><th>Peso actual</th><th>Peso final</th><th></th></tr>`;
     // una venta: etiqueta «Venta», solo empresas de tu cartera y, en vez de euros, cuántas acciones (como mucho, las que tienes)
     $("pl-body").innerHTML=plan.rows.map((o,i)=>`<tr data-i="${i}"${o.sell?' class="pl-sell" title="Venta"':""}><td class="l r-main" data-l="Empresa"><div class="co"><span class="pl-lg"></span><select class="inp pl-co" data-i="${i}" aria-label="${o.sell?"Empresa que vendes":"Empresa"}">${planOpts(o.t,o.sell)}</select></div></td>`
       +(o.sell?`<td class="num r-amt" data-l="Vendes"><span class="pl-in pl-n"><input class="inp pl-amt" data-i="${i}" type="number" min="0" max="${plShares(o.t)||9999999}" step="1" inputmode="numeric" placeholder="${plShares(o.t)?`máx. ${nf(0).format(plShares(o.t))}`:"0"}" aria-label="Acciones que vendes" value="${isNum(o.n)?o.n:""}"><i>acc.</i></span></td>`
         :`<td class="num r-amt" data-l="Importe"><span class="pl-in"><input class="inp pl-amt" data-i="${i}" type="number" min="0" max="9999999" step="any" inputmode="decimal" placeholder="0" aria-label="Importe" value="${isNum(o.amt)?o.amt:""}"><i>€</i></span></td>`)
       +`<td class="num r-meta sec" data-l="Cotización" data-c="px"></td><td class="num r-meta" data-l="Acciones" data-c="sh"></td><td class="num r-meta" data-l="${o.sell?"Ingreso":"Coste"}" data-c="cost"></td>`
-      +`<td class="num r-meta sec" data-l="Comisión" data-c="fee"></td><td class="num r-meta sec" data-l="Peso actual" data-c="w0"></td><td class="num r-sub" data-l="Peso tras" data-c="w1"></td>`
+      +`<td class="num r-meta sec" data-l="Comisión" data-c="fee"></td><td class="num r-meta sec" data-l="Peso actual" data-c="w0"></td><td class="num r-sub" data-l="Peso final" data-c="w1"></td>`
       +`<td class="c pl-x"><button type="button" class="pl-del" data-i="${i}" aria-label="Quitar">×</button></td></tr>`).join("");
   }
   planCalc();
@@ -4971,7 +4973,7 @@ function aBand(){ const s=$("s-actb"), b=$("actb"); if(!s||!b) return; if(!ACT||
   const c=(i,l,v,t,k="")=>`<div class="c${i} r1 bl">${l}</div><div class="c${i} r2 bv num ${k}">${v}</div><div class="c${i} r3 bs">${t}</div>`;
   b.innerHTML=c(0,"Semana",sem,`Actualidad de tus ${DATA?DATA.pos.filter(p=>!p.isOption&&p.value>0).length:ix.empresas.length} empresas`)+`<i class="dv d1"></i><i class="dv d2"></i><i class="dv d3"></i>`
     +c(1,"Tu cartera",wk==null?"—":pct(wk,1,true),"esta semana",wk==null?"":cls(wk))
-    +c(2,"A fondo",String(R.length),rN===R.length?(rN===1?"resultado explicado":"resultados explicados"):`${rN} de resultados · ${R.length-rN} de noticias`)
+    +c(2,"A fondo",String(R.length),rN===R.length?(rN===1?"resultado explicado":"resultados explicados"):`${rN} ${rN===1?"resultado":"resultados"} · ${R.length-rN} ${R.length-rN===1?"noticia":"noticias"}`)
     +c(3,"Noticias",String(tN),`de ${eN} ${eN===1?"empresa":"empresas"}`)
     +(nP==null?c(4,"Próximos resultados","—",""):c(4,`<span class="lg">Próximos resultados</span><span class="sh">Próximos</span>`,String(nP),ix.periodo_proximos?esc(per(ix.periodo_proximos)):"esta semana"))+`<i class="dv d4"></i>`;
   s.hidden=false; }
@@ -5434,9 +5436,9 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
       movAll().filter(e=>e.ticker&&ts.has(e.ticker)).slice(0,3).forEach(e=>add("Movimientos",`${logoBare(e.name,e.ticker)}<span class="kx-t"><b>${esc(e.ty)} · ${esc(e.name)}</b><small>${sdate(e.d)} · ${esc(e.det)}</small></span><span class="kx-m">${e.amt}</span>`,
         ()=>{ go("todo",true); $("m-q").value=e.name; mshow=MSTEP; renderMov(false); }));
       GO.filter(g=>hit(g[0],Q)).slice(0,4).forEach(g=>add("Ir a",`${IC.go}<span class="kx-t"><b>${g[0]}</b><small>${g[1]}</small></span><span class="kx-m"></span>`,()=>goTo(g)));
-      ACTS.filter(a=>!$(a[0]).disabled&&(hit($(a[0]).getAttribute("aria-label"),Q)||a[2].some(w=>w.startsWith(Q)))).forEach(a=>add("Acciones",`${icA(a[0])}<span class="kx-t"><b>${esc($(a[0]).getAttribute("aria-label"))}</b><small>${a[1]}</small></span><span class="kx-m"></span>`,()=>$(a[0]).click()));
+      ACTS.filter(a=>!$(a[0]).disabled&&(hit($(a[0]).getAttribute("aria-label"),Q)||a[2].some(w=>w.startsWith(Q)))).forEach(a=>add("Opciones",`${icA(a[0])}<span class="kx-t"><b>${esc($(a[0]).getAttribute("aria-label"))}</b><small>${a[1]}</small></span><span class="kx-m"></span>`,()=>$(a[0]).click()));
     } else { GO.filter(g=>g[1]==="Pestaña").forEach(g=>add("Ir a",`${IC.go}<span class="kx-t"><b>${g[0]}</b><small>${g[1]}</small></span><span class="kx-m"></span>`,()=>goTo(g)));
-      ACTS.filter(a=>!$(a[0]).disabled).forEach(a=>add("Acciones",`${icA(a[0])}<span class="kx-t"><b>${esc($(a[0]).getAttribute("aria-label"))}</b><small>${a[1]}</small></span><span class="kx-m"></span>`,()=>$(a[0]).click())); }
+      ACTS.filter(a=>!$(a[0]).disabled).forEach(a=>add("Opciones",`${icA(a[0])}<span class="kx-t"><b>${esc($(a[0]).getAttribute("aria-label"))}</b><small>${a[1]}</small></span><span class="kx-m"></span>`,()=>$(a[0]).click())); }
     run=it; act=0; R.innerHTML=h||`<div class="kx-e">Nada coincide con «${esc(q.value.trim())}»</div>`; kxMark(); }
   function kxMark(){ R.querySelectorAll(".kx-i").forEach(x=>{ const on=+x.dataset.i===act; x.classList.toggle("on",on); x.setAttribute("aria-selected",on); });
     const o=$("kx-o"+act); q.setAttribute("aria-activedescendant",o?o.id:""); if(o) o.scrollIntoView({block:"nearest"}); }
