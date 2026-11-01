@@ -3814,7 +3814,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v324";   // la versión publicada, en el pie
+const VER="v325";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4952,7 +4952,7 @@ async function loadAct(force){
         (await aLs(`parentId = '${w.id}'`)).filter(f=>/\.json$/i.test(f.title)).sort((a,b)=>String(a.createdTime).localeCompare(String(b.createdTime))).forEach(f=>ids[f.title]=f.id);   // con nombres repetidos, el más reciente
         if(!ids["indice.json"]) continue;
         got={ix:await aGet(ids["indice.json"]),emp:{}}; aIds=ids; break; } }
-    else { const r=await fetch(`https://script.google.com/macros/s/${encodeURIComponent(REM.d)}/exec?k=${encodeURIComponent(REM.k)}&q=informe`,{cache:"no-store"}), j=r.ok?await r.json():null;
+    else { const r=await remPide("informe"), j=r.ok?await r.json():null;
       if(!j||!j.ok) throw {code:"rem_error"};
       if(!("ix" in j)){ ACT=null; actSt="script"; return; }   // tu script todavía no entrega los informes
       got=j.ix?{ix:j.ix,emp:j.emp||{}}:null; }
@@ -5592,6 +5592,8 @@ const GAS = typeof google!=="undefined" && google.script && google.script.run ? 
 const remId = s => (String(s||"").match(/AKfy[\w-]{20,}/)||[])[0]||null;
 const remCfg = s => { try{ const h=new URLSearchParams(String(s||"").replace(/^[^#]*#/,"")); const d=remId(h.get("d")), k=h.get("k"); return d&&k?{d,k}:k?{bad:true}:null; }catch{ return null; } };
 let remBad=false;   // el enlace (o lo guardado) trae la clave pero no un ID que valga
+// CO-13 · cada petición a tu script lleva la clave dentro (no en la dirección); el script la recibe en doPost
+function remPide(q,signal){ return fetch(`https://script.google.com/macros/s/${encodeURIComponent(REM.d)}/exec`,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(q?{k:REM.k,q}:{k:REM.k}),cache:"no-store",signal}); }
 const REM = (()=>{ let c=remCfg(location.hash); if(c&&!(/iPhone|iPad|iPod/.test(navigator.userAgent)&&!navigator.standalone)) history.replaceState(null,"",location.pathname+location.search);   // la clave no se queda en la barra de direcciones
   if(c&&c.bad){ remBad=true; c=null; }
   try{ if(c){ localStorage.setItem("cartera-d",c.d); localStorage.setItem("cartera-k",c.k); }
@@ -5621,7 +5623,7 @@ const readWbBg=async(data,type)=>{
 const readSheet = ac => GAS
   ? new Promise((res,rej)=>GAS.withSuccessHandler(b64=>res({payload:{content:b64}})).withFailureHandler(e=>rej({code:"gas_error",message:(e&&e.message)||String(e)})).getXlsx())
   : mcp ? mcp.callTool(SERVER,"download_file_content",{fileId:FILE_ID,exportMimeType:XLSX_MIME},{cache:false,signal:ac?ac.signal:undefined})
-  : fetch(`https://script.google.com/macros/s/${encodeURIComponent(REM.d)}/exec?k=${encodeURIComponent(REM.k)}`,{cache:"no-store",signal:ac?ac.signal:undefined})
+  : remPide(null,ac?ac.signal:undefined)
       .then(r=>r.ok?r.json().catch(()=>Promise.reject({code:"rem_error",message:"Tu script de Google ha respondido, pero sin los datos de la hoja."})):Promise.reject({code:"rem_error",message:"Tu script de Google ha respondido con el código "+r.status+"."}),
         e=>Promise.reject(e&&e.name==="AbortError"?e:{code:"rem_net",message:String((e&&e.message)||e)}))
       .then(j=>j&&j.ok?{payload:{content:j.xlsx}}:Promise.reject({code:j&&j.error==="clave"?"bad_key":"rem_error",message:(j&&j.error)||""}));
