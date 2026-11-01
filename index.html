@@ -3111,6 +3111,21 @@ img{-webkit-user-drag:none}
 :root[data-theme="dark"]{--warn-tx:var(--warn)}
 /* CO-15 · foco visible (solo con teclado) en los puntos de Compras, los cobros del calendario y los meses de dividendos */
 .mc-l[data-tip]:focus-visible,.fq-d[data-tip]:focus-visible,.cm.cm2:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
+
+/* CG-04 · los dos calendarios, con el mismo lenguaje */
+/* cabecera de días: tres letras en versalitas, como las etiquetas de la web (el sangrado compensa el espaciado y la deja centrada) */
+.mc-w{font-weight:600;letter-spacing:var(--ls-up);text-indent:var(--ls-up);text-transform:uppercase;color:var(--lbl)}
+/* el número y el mes al lado, pequeño y en gris */
+.mc-n b{font-weight:inherit}
+.mc-m{margin-left:3px;font-size:10px;font-weight:500;color:var(--ink3)}
+/* hoy: el número en un círculo de tinta (el subrayado de antes, fuera); ocupa el mismo alto que la línea */
+.mc-d.today .mc-n{border-bottom:0;font-weight:400}
+.mc-d.today .mc-n b{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:20px;height:20px;margin:-2px 0;padding:0 4px;border-radius:10px;background:var(--ink);color:var(--card);font-weight:600}
+/* Actualidad en el móvil y la tableta: el mes al lado del número, como en el PC y en el de cobros (antes, debajo) */
+@media (max-width:1000px){
+  .rv .acg-n{flex-direction:row;align-items:center;justify-content:center;gap:4px;height:24px;min-height:0}
+  .rv .acg-w{text-indent:var(--ls-up)}
+}
 </style>
 
 <div class="wrap">
@@ -3757,7 +3772,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v315";   // la versión publicada, en el pie
+const VER="v316";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4234,9 +4249,9 @@ function miniCal(el,pays){ if(!el) return; const k=t=>`${t.getFullYear()}-${t.ge
   const st=new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7),12), by=new Map();
   pays.forEach(x=>{ const t=day(x.d); if(!t) return; const g=by.get(k(t))||[]; g.push(x); by.set(k(t),g); });
   const days=[...Array(35)].map((_,i)=>new Date(st.getFullYear(),st.getMonth(),st.getDate()+i,12));
-  el.innerHTML=`<div class="mc">${["L","M","X","J","V","S","D"].map((x,i)=>`<span class="mc-w${i>4?" we":""}">${x}</span>`).join("")}${days.map((t,i)=>{ const g=by.get(k(t))||[], v=sum(g,x=>x.v), past=t<now&&k(t)!==today;
+  el.innerHTML=`<div class="mc">${["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"].map((x,i)=>`<span class="mc-w${i>4?" we":""}">${x}</span>`).join("")}${days.map((t,i)=>{ const g=by.get(k(t))||[], v=sum(g,x=>x.v), past=t<now&&k(t)!==today;
     return `<div class="mc-d${t.getDay()%6===0?" we":""}${past?" past":""}${k(t)===today?" today":""}${g.length?" on":""}">`
-      +`<span class="mc-n">${t.getDate()===1?`${t.getDate()} ${MES[t.getMonth()].toLowerCase()}`:t.getDate()}</span>`
+      +`<span class="mc-n"><b>${t.getDate()}</b>${i===0||t.getDate()===1?`<span class="mc-m">${MES[t.getMonth()].toLowerCase()}</span>`:""}</span>`
       +(g.length?`<span class="mc-l" tabindex="0" data-tip="${esc(g.length>1?g.map(x=>`${x.name} · ${eur(x.v,2)}`).join("\n"):eur(g[0].v,2))}">${logoBare(g[0].name,g[0].t,"cs")}${g.length>1?`<em>+${g.length-1}</em>`:""}</span><span class="mc-v num">${eur(v)}</span>`:"")+`</div>`; }).join("")}</div>`;
   const cw=el.querySelector(".mc-d")?.clientWidth||0, ff=getComputedStyle(document.body).fontFamily;
   el.classList.toggle("na",[...by.entries()].some(([key,g])=>textW(eur(sum(g,x=>x.v)),`400 10.5px ${ff}`)>cw-2)); }
@@ -5197,7 +5212,7 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
     return `<h2 class="asec" id="a-prox">Calendario de resultados<small>${rango}</small></h2>`
       +`<div class="acg" style="--c:${nC}">${WD.slice(0,nC).map(w=>`<span class="acg-w">${w}</span>`).join("")}`
       +D.map((d,i)=>{ const k=iso(d), E=ev.get(k)||[], nm=i===0||(i>0&&D[i-1].getMonth()!==d.getMonth());
-        return `<div class="acg-d${k===hoy?" hoy":k<hoy?" pas":""}${i%nC===0?" c1":""}${i>=nC?" f2":""}"><p class="acg-n"><b>${d.getDate()}</b>${nm?`<span>${MES[d.getMonth()].slice(0,3)}</span>`:""}${k===hoy?`<i>Hoy</i>`:""}</p>${E.map(one).join("")}</div>`; }).join("")
+        return `<div class="acg-d${k===hoy?" hoy":k<hoy?" pas":""}${i%nC===0?" c1":""}${i>=nC?" f2":""}"><p class="acg-n"><b>${d.getDate()}</b>${nm?`<span>${MES[d.getMonth()].slice(0,3)}</span>`:""}</p>${E.map(one).join("")}</div>`; }).join("")
       +`</div><p class="acg-f">Horas de España.<span class="acg-fm"> Apertura: antes de que abra su bolsa; cierre: después de que cierre.</span>${sq?" En ocre, lo que no ha confirmado la empresa.":""}</p>`; };
   // v293 · Anterior y Siguiente de arriba no mueven la pantalla NUNCA (antes, con la página algo bajada, te devolvían al principio de la
   // empresa). Al entrar en una empresa, o con los del pie, sí se sube al principio, y en el iPhone dejando la barra de la hora por encima
