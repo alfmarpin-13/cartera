@@ -3148,15 +3148,16 @@ img{-webkit-user-drag:none}
   .rv .rv-tm h4,.rv .rv-ts h4,.rv .rv-n h4{font-size:17px;line-height:22px;--lhp:22px}
 }
 
-/* FL-04 · el PC también tiene «Opciones» al pie, como el móvil. El menú sale encima del botón y solo trae lo que el PC no tiene arriba:
+/* FL-04 · en el PC, «···» junto a la luna (en la cabecera). El menú sale encima del botón y solo trae lo que el PC no tiene arriba:
    la apariencia (automática, clara u oscura) y quitar el ID y la clave de este dispositivo (en GitHub), con la versión al final */
 @media (min-width:761px){
-  .foot{display:flex;justify-content:center;align-items:center;gap:18px}
-  .foot-m{display:inline}
+  #more{display:inline-flex}
   .more-m:not([hidden]){display:flex;flex-direction:column;position:fixed;left:var(--mm-x,50%);top:var(--mm-y,50%);z-index:30;box-sizing:border-box;width:280px;padding:6px;background:var(--card);border-radius:14px;box-shadow:0 0 0 1px var(--line),0 16px 40px -10px rgba(0,0,0,.28)}
   #mm-find,#mm-ref,#mm-priv{display:none}
   .more-m>button{display:flex;align-items:center;gap:12px;height:40px;padding:0 12px;border:0;background:none;border-radius:10px;font:inherit;font-size:13px;color:var(--ink);text-align:left;cursor:pointer}
   .more-m>button[hidden]{display:none}
+  .more-m>button svg{width:18px;height:18px;color:var(--ink2);flex:none}
+  #mm-key svg{color:var(--neg)}
   .more-m>button:hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}
   .mm-th{display:flex;flex-direction:column;gap:8px;padding:10px 10px 8px}
   .mm-th>span{font-size:11px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--lbl)}
@@ -3812,7 +3813,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v319";   // la versión publicada, en el pie
+const VER="v320";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4018,7 +4019,7 @@ let chkShow=false;   // el cuadre, si todo cuadra, solo se abre desde el pie
 function render(d){
   DATA=d; dataV++; const k=d.kpi;
   const v=k.value||0;
-  $("h-val").innerHTML = `${nf(0).format(Math.round(v))}<span class="cents"> €</span>`;
+  $("h-val").innerHTML = `${nf(0).format(Math.round(v))} €`;
   $("h-sub").innerHTML=`Aportado <b>${eur(k.aport)}</b>`;   // la liquidez está en el cuadre y las empresas, en Posiciones
   { const a=(d.stats.find(x=>x.l==="Antigüedad media")||{}).v; const np=d.pos.length, h=`<b>${nf(0).format(np)}</b> ${np===1?"posición":"posiciones"}${isNum(a)?`<span class="pa-d"> · </span>antigüedad<span class="pa-m"> media</span> <b>${nf(1).format(a)} años</b>`:""}`; $("pos-age").innerHTML=h; $("pos-age-m").innerHTML=h; }   // cuántas hay (las filas de la tabla, opciones incluidas) y su antigüedad
   $("hk-ret").className="c2 r2 bv num "+cls(k.ret); $("hk-ret").textContent=seur(k.ret); $("hk-ret-s").innerHTML=k.retSub;
@@ -5730,10 +5731,10 @@ if(/\.github\.io$/.test(location.hostname)){ let vAt=0;
     try{ const t=await (await fetch(location.pathname+"?nv="+Date.now(),{cache:"no-store"})).text(), m=t.match(/VER="(v\d+)"/);
       if(m&&m[1]!==VER) location.replace(location.pathname+"?v="+m[1].slice(1)+location.hash); }catch{} };
   setTimeout(vChk,3000); document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") vChk(); }); }
-document.addEventListener("click",e=>{ const fb=e.target.closest("#f-more"); if(!fb) return; e.stopPropagation(); $("more").click();
-  // FL-04 · en el PC el menú sale encima del botón «Opciones» (centrado en él y sin salirse de la ventana); si arriba no cabe, debajo
-  const M=$("more-m"); if(M.hidden||innerWidth<=760) return; const r=fb.getBoundingClientRect(), w=M.offsetWidth, h=M.offsetHeight;
-  M.style.setProperty("--mm-x",Math.round(Math.min(Math.max(8,r.left+r.width/2-w/2),innerWidth-w-8))+"px"); M.style.setProperty("--mm-y",Math.round(r.top-h-8>=8?r.top-h-8:r.bottom+8)+"px"); });
+document.addEventListener("click",e=>{ if(!e.target.closest("#f-more")) return; e.stopPropagation(); $("more").click(); });   // móvil: «Opciones», al pie
+// FL-04 · en el PC, «···» está junto a la luna y el menú sale justo debajo, alineado con su borde derecho (sin salirse de la ventana)
+$("more").addEventListener("click",()=>{ const M=$("more-m"), b=$("more"); if(M.hidden||innerWidth<=760) return; const r=b.getBoundingClientRect(), w=M.offsetWidth;
+  M.style.setProperty("--mm-x",Math.round(Math.min(Math.max(8,r.right-w),innerWidth-w-8))+"px"); M.style.setProperty("--mm-y",Math.round(r.bottom+8)+"px"); });
 // en el PC, el menú se cierra al desplazarse o al cambiar el tamaño de la ventana (se quedaría lejos de su botón)
 ["scroll","resize"].forEach(ev=>addEventListener(ev,()=>{ const M=$("more-m"); if(M&&!M.hidden&&innerWidth>760) $("more").click(); },{passive:true}));   // móvil: «Ajustes», al pie de la página   // iPhone: la zona del reloj, de color liso y sin difuminar
 if(matchMedia("(pointer:coarse)").matches){ const P=document.createElement("div"); P.className="ptr"; P.setAttribute("aria-hidden","true"); P.innerHTML=$("refresh").querySelector("svg").outerHTML; document.body.append(P);
