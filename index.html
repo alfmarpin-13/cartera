@@ -3072,6 +3072,16 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 :root{--fs-hero:56px;--fs-xl:32px;--fs-l:20px;--fs-m:16px;--fs-b:14px;--fs-s:13px;--fs-xs:11px;--gap:16px;--acc-pd:#AEB9CF;--f-sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--f-mono:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--canvas:#F3F1EC;--panel:#FBFAF7;--card:#FFFFFF;--row:#F5F4F0;--line:#E5E2DB;--r:12px;--rc:12px;--r-md:8px;--r-sm:4px;--r-bar:2px;--lbl:#5F5A51}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--lbl:#9D968B}}
 :root[data-theme="dark"]{--ar-bg:#272420;--mv-top:#272420;--lbl:#9D968B}
+/* v309 · calendario de cobros: el cartel, centrado sobre el logo (--tx lo mueve lo justo si no cabe en el panel) */
+.mc-l[data-tip]::after{left:calc(50% + var(--tx,0px))}
+/* v309 · Movimientos (móvil): cuatro casillas del mismo alto en todas las pestañas; la raya vertical, sin tocar las horizontales */
+@media (max-width:700px){
+  #s-mov>#m-k{row-gap:0;padding-bottom:0}
+  #m-k .mk.mk.mk{position:relative;border-left:0;min-height:96px;padding-bottom:16px}
+  #m-k .mk.mk.mk:nth-child(n+3){min-height:113px;padding-top:16px}
+  #m-k .mk:nth-child(even)::before{content:"";position:absolute;left:0;top:0;bottom:16px;width:1px;background:var(--line)}
+  #m-k .mk:nth-child(n+3):nth-child(even)::before{top:16px}
+}
 </style>
 
 <div class="wrap">
@@ -3717,7 +3727,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v308";   // la versión publicada, en el pie
+const VER="v309";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4197,9 +4207,17 @@ function miniCal(el,pays){ if(!el) return; const k=t=>`${t.getFullYear()}-${t.ge
   el.innerHTML=`<div class="mc">${["L","M","X","J","V","S","D"].map((x,i)=>`<span class="mc-w${i>4?" we":""}">${x}</span>`).join("")}${days.map((t,i)=>{ const g=by.get(k(t))||[], v=sum(g,x=>x.v), past=t<now&&k(t)!==today;
     return `<div class="mc-d${t.getDay()%6===0?" we":""}${past?" past":""}${k(t)===today?" today":""}${g.length?" on":""}">`
       +`<span class="mc-n">${t.getDate()===1?`${t.getDate()} ${MES[t.getMonth()].toLowerCase()}`:t.getDate()}</span>`
-      +(g.length?`<span class="mc-l${i%7<2?" tip-l":i%7>4?" tip-r":""}" tabindex="0" data-tip="${esc(g.length>1?g.map(x=>`${x.name} · ${eur(x.v,2)}`).join("\n"):eur(g[0].v,2))}">${logoBare(g[0].name,g[0].t,"cs")}${g.length>1?`<em>+${g.length-1}</em>`:""}</span><span class="mc-v num">${eur(v)}</span>`:"")+`</div>`; }).join("")}</div>`;
+      +(g.length?`<span class="mc-l" tabindex="0" data-tip="${esc(g.length>1?g.map(x=>`${x.name} · ${eur(x.v,2)}`).join("\n"):eur(g[0].v,2))}">${logoBare(g[0].name,g[0].t,"cs")}${g.length>1?`<em>+${g.length-1}</em>`:""}</span><span class="mc-v num">${eur(v)}</span>`:"")+`</div>`; }).join("")}</div>`;
   const cw=el.querySelector(".mc-d")?.clientWidth||0, ff=getComputedStyle(document.body).fontFamily;
   el.classList.toggle("na",[...by.entries()].some(([key,g])=>textW(eur(sum(g,x=>x.v)),`400 10.5px ${ff}`)>cw-2)); }
+
+// el cartel de una casilla del calendario de cobros: centrado sobre el logo; si se saldría del panel, se desplaza lo justo hacia dentro
+const mcTip=el=>{ if(!el) return; const t=el.dataset.tip||"", ff=getComputedStyle(document.body).fontFamily;
+  const w=Math.max(...t.split("\n").map(l=>textW(l,`400 12px ${ff}`)))+16+2, r=el.getBoundingClientRect(), lg=(el.querySelector(".lgb")||el).getBoundingClientRect();
+  const P=(el.closest(".panel")||document.body).getBoundingClientRect(), lo=Math.max(P.left,0)+8, hi=Math.min(P.right,innerWidth)-8;
+  let x=lg.left+lg.width/2-w/2; if(x+w>hi) x=hi-w; if(x<lo) x=lo;
+  el.style.setProperty("--tx",(x+w/2-(r.left+r.width/2)).toFixed(1)+"px"); };
+["pointerover","focusin","touchstart"].forEach(ev=>document.addEventListener(ev,e=>{ const el=e.target.closest&&e.target.closest(".mc-l[data-tip]"); if(el) mcTip(el); },{passive:true}));
 
 /* ---------- anatomía del retorno ---------- */
 function anFit(){ const el=$("anat"); if(!el||!el.clientWidth) return;
