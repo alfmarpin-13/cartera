@@ -3082,6 +3082,8 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
   #m-k .mk:nth-child(even)::before{content:"";position:absolute;left:0;top:0;bottom:16px;width:1px;background:var(--line)}
   #m-k .mk:nth-child(n+3):nth-child(even)::before{top:16px}
 }
+/* v310 · las imágenes (logos y banderas) no se arrastran: el navegador sacaba una copia sin filtros y estirada a su caja */
+img{-webkit-user-drag:none}
 </style>
 
 <div class="wrap">
@@ -3627,7 +3629,7 @@ function model(d){
   const inYM=(y,m)=>r=>{ const t=day(r.d); return t.getFullYear()===y&&t.getMonth()===m; }, off=sched.some(inYM(curY,curM))?0:1;
   const months=[...Array(12)].map((_,i)=>{ const y=curY+Math.floor((curM+off+i)/12), m=(curM+off+i)%12, inM=inYM(y,m);
     const rs=sched.filter(inM), byTk=new Map(); rs.forEach(r=>byTk.set(r.ticker,(byTk.get(r.ticker)||0)+(r.gross||0)));
-    return {l:MES[m], y, m, now:i===0, paid:0, sched:sum(rs,r=>r.gross), tks:[...byTk].sort((a,b)=>b[1]-a[1]).map(x=>x[0])}; });
+    return {l:MES[m].toLowerCase(), y, m, now:i===0, paid:0, sched:sum(rs,r=>r.gross), tks:[...byTk].sort((a,b)=>b[1]-a[1]).map(x=>x[0])}; });
   const ys=[...new Set(d.dv.map(r=>yr(r.d)))].sort();
   const nameOf=t=>(pos.find(p=>p.ticker===t)||{}).name||(meta[t]||{}).name||(d.dv.find(r=>r.ticker===t)||{}).name||t;
   d.dvm={ paidY:sum(paid.filter(r=>yr(r.d)===curY),r=>r.gross),
@@ -3727,7 +3729,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v309";   // la versión publicada, en el pie
+const VER="v310";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4218,6 +4220,9 @@ const mcTip=el=>{ if(!el) return; const t=el.dataset.tip||"", ff=getComputedStyl
   let x=lg.left+lg.width/2-w/2; if(x+w>hi) x=hi-w; if(x<lo) x=lo;
   el.style.setProperty("--tx",(x+w/2-(r.left+r.width/2)).toFixed(1)+"px"); };
 ["pointerover","focusin","touchstart"].forEach(ev=>document.addEventListener(ev,e=>{ const el=e.target.closest&&e.target.closest(".mc-l[data-tip]"); if(el) mcTip(el); },{passive:true}));
+
+// ninguna imagen se arrastra (logos y banderas): pinchar, pulsar y abrir la ficha siguen igual
+document.addEventListener("dragstart",e=>{ if(e.target instanceof HTMLImageElement) e.preventDefault(); });
 
 /* ---------- anatomía del retorno ---------- */
 function anFit(){ const el=$("anat"); if(!el||!el.clientWidth) return;
