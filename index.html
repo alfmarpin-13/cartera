@@ -3126,6 +3126,27 @@ img{-webkit-user-drag:none}
   .rv .acg-n{flex-direction:row;align-items:center;justify-content:center;gap:4px;height:24px;min-height:0}
   .rv .acg-w{text-indent:var(--ls-up)}
 }
+
+/* AC-03 · en las piezas de Resultados de la portada, el subtítulo (fecha · qué) puede ir en dos líneas: ya no se corta */
+.rv-ri .rv-rs{white-space:normal;overflow:visible;text-overflow:clip;text-wrap:pretty}
+/* AC-06 · cabecera de la portada de Actualidad: la semana y, debajo, tu cartera y cuándo se preparó; alineada con el texto de las tarjetas */
+.rv-sem{padding:8px clamp(16px,3vw,30px) 2px}
+.rv-semt{margin:0;font-family:var(--rv-serif);font-size:20px;line-height:26px;--lhp:26px;font-weight:600;color:var(--ink)}
+.rv-sems{margin:4px 0 0;font-size:13px;line-height:18px;--lhp:18px;color:var(--ink3)}
+.rv-sems b{font-weight:500}
+.rv-semp:not(.uno)::before{content:" · "}
+@media (max-width:700px){
+  .rv-sem{padding:4px 16px 0}
+  .rv-semt{font-size:17px;line-height:22px;--lhp:22px}
+  .rv-sems>span{display:block}
+  .rv-semp:not(.uno)::before{content:none}
+}
+/* AC-05 · en el móvil, ningún titular de Actualidad pasa de 17 px (tu norma); el de cada empresa conserva su jerarquía con el peso */
+@media (max-width:700px){
+  .rv .rv-hl{font-size:17px;line-height:22px;--lhp:22px;font-weight:600}
+  .rv .rv-h{font-size:17px;line-height:22px;--lhp:22px}
+  .rv .rv-tm h4,.rv .rv-ts h4,.rv .rv-n h4{font-size:17px;line-height:22px;--lhp:22px}
+}
 </style>
 
 <div class="wrap">
@@ -3322,7 +3343,7 @@ img{-webkit-user-drag:none}
 
   <!-- Actualidad: el periódico de la semana -->
   <div class="view" id="v-actualidad" hidden>
-  <section class="panel hero3 band2" id="s-actb" aria-label="La semana en Actualidad" hidden><div class="bg ag bg5" id="actb"></div></section>
+  
   <article class="rvp" id="paper" aria-label="Actualidad"></article>
   </div>
 
@@ -3772,7 +3793,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v317";   // la versión publicada, en el pie
+const VER="v318";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4991,22 +5012,6 @@ function aTodas(){ const E=ACT.ix.empresas, out=new Map();
   E.forEach(e=>out.set(e.ticker,{e,n:aShort(e),tk:e.ticker}));
   if(DATA) DATA.pos.filter(p=>!p.isOption&&!out.has(p.ticker)).forEach(p=>out.set(p.ticker,{e:null,n:cname(p.ticker,p.name),tk:p.ticker}));
   return [...out.values()].sort((a,b)=>(aIn(b.e)-aIn(a.e))||a.n.localeCompare(b.n,"es")); }   // las que no tienes en cartera, al final
-// la franja de Actualidad, como las de las otras pestañas: la semana, cómo ha ido tu cartera, lo que se cuenta a fondo y las noticias
-function aBand(){ const s=$("s-actb"), b=$("actb"); if(!s||!b) return; if(!ACT||!ACT.ix){ s.hidden=true; return; }
-  const ix=ACT.ix, wk=aWk(), R=aOrd().filter(e=>aKind(e)), rN=R.filter(e=>aKind(e)==="res").length;
-  const nN=ix.empresas.map(e=>{ const c=aNiv(e); return c?Object.values(c).reduce((a,x)=>a+x,0):(e.num_noticias||0); }), tN=sum(nN,x=>x), eN=nN.filter(x=>x>0).length;
-  const m=String(ix.titulo||"").match(/del (\d+)(?: de (\w+))? al (\d+) de (\w+)/i), m3=w=>w.slice(0,3).toLowerCase();
-  const sem=m?(m[2]?`${m[1]} ${m3(m[2])} – ${m[3]} ${m3(m[4])}`:`${m[1]}–${m[3]} ${m3(m[4])}`):esc(ix.titulo||"");
-  // próximos resultados: las empresas que presentan de hoy en adelante, según la agenda de la semana; su periodo, corto como la semana
-  const per=s=>{ const x=String(s).match(/del (\d+)(?: de (\w+))? al (\d+) de (\w+)/i); return x?(x[2]?`${x[1]} ${x[2].slice(0,3).toLowerCase()} – ${x[3]} ${x[4].slice(0,3).toLowerCase()}`:`${x[1]}–${x[3]} ${x[4].slice(0,3).toLowerCase()}`):s; };
-  const hoyI=(d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`)(new Date()), nP=Array.isArray(ix.agenda)?ix.agenda.filter(d=>d.fecha_iso>=hoyI).reduce((a,d)=>a+(d.eventos||[]).length,0):null, nPub=Array.isArray(ix.agenda)?ix.agenda.filter(d=>d.fecha_iso<hoyI).reduce((a,d)=>a+(d.eventos||[]).length,0):0;
-  const c=(i,l,v,t,k="")=>`<div class="c${i} r1 bl">${l}</div><div class="c${i} r2 bv num ${k}">${v}</div><div class="c${i} r3 bs">${t}</div>`;
-  b.innerHTML=c(0,"Semana",sem,`Actualidad de tus ${DATA?DATA.pos.filter(p=>!p.isOption&&p.value>0).length:ix.empresas.length} empresas`)+`<i class="dv d1"></i><i class="dv d2"></i><i class="dv d3"></i>`
-    +c(1,"Tu cartera",wk==null?"—":pct(wk,1,true),"esta semana",wk==null?"":cls(wk))
-    +c(2,"A fondo",String(R.length),rN===R.length?(rN===1?"resultado explicado":"resultados explicados"):`${rN} ${rN===1?"resultado":"resultados"} · ${R.length-rN} ${R.length-rN===1?"noticia":"noticias"}`)
-    +c(3,"Noticias",String(tN),`de ${eN} ${eN===1?"empresa":"empresas"}`)
-    +(nP==null?c(4,"Próximos resultados","—",""):c(4,`<span class="lg">Próximos resultados</span><span class="sh">Próximos</span>`,String(nP),nPub?`${nPub} ${nPub===1?"ya publicado":"ya publicados"}`:ix.periodo_proximos?esc(per(ix.periodo_proximos)):"esta semana"))+`<i class="dv d4"></i>`;
-  s.hidden=false; }
 
 // cuando llega la ficha de una empresa: su página, si está abierta; y la portada, una sola vez, cuando ya están todas (sus noticias salen de ahí)
 function aFill(e){ if(!ACT) return; if(aCur===e.id) aShow(true); else if(!aCur&&ACT.ix.empresas.every(x=>!x.archivo||ACT.emp[x.id]||(aTry[x.id]&&!aPend[x.id]))) aShow(true); }   // las que no tienen ficha no se esperan
@@ -5255,16 +5260,17 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
 
   /* ---------- la portada ---------- */
   aPortada=function(){ const ix=ACT.ix, E=aOrd(), R=E.filter(e=>aKind(e)), rN=R.filter(e=>aKind(e)==="res").length, A=aTodas();
-    let h="";
+    // AC-06 · la cabecera de la semana (en lugar de la franja de cinco cifras) y, con ella, cuándo se preparó (AC-04: antes, un pie suelto al final)
+    const g=ix.generado?new Date(ix.generado):null, wk=aWk(), gOk=g&&!isNaN(g);
+    let h=`<header class="rv-sem"><h2 class="rv-semt">${esc(ix.titulo||"")}</h2><p class="rv-sems">${wk==null?"":`<span>Tu cartera <b class="num ${cls(wk)}">${pct(wk,1,true)}</b> esta semana</span>`}${gOk?`<span class="rv-semp${wk==null?" uno":""}">Preparado el ${g.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}).replace(",","")} a las ${g.getHours()}:${String(g.getMinutes()).padStart(2,"0")}</span>`:""}</p></header>`;
     if(R.length) h+=`<section class="panel rv-p" id="a-res"><h2 class="st rv-st"><span>${rN===R.length?"Resultados":rN?"Resultados y noticias a fondo":"Noticias a fondo"}</span><small>${R.length} ${R.length===1?"empresa":"empresas"}</small></h2><div class="rv-rl">`
-      +R.map(e=>{ const p=aPub(e), hl=atx(e.titular_portada||""), sm=e.titular?aFirst(e.titular):"", meta=[hl?p.que:"",p.cuando].filter(Boolean).map(rvQ).join(" · ");
+      +R.map(e=>{ const p=aPub(e), hl=atx(e.titular_portada||""), sm=e.titular?aFirst(e.titular):"", meta=[p.cuando,hl?p.que:""].filter(Boolean).map(rvQ).join(" · ");
         return `<button type="button" class="rv-ri" data-art="${esc(e.id)}" data-tab="res">${rvRow(e,aShort(e),e.ticker,esc(meta),"span")}<span class="rv-h">${esc(hl||p.que||"Resultados")}</span>${sm?`<span class="rv-s">${esc(sm)}</span>`:""}</button>`; }).join("")+`</div></section>`;
     h+=`<section class="panel rv-p" id="a-idx"><h2 class="st rv-st"><span>Noticias</span><small>${A.length} ${A.length===1?"empresa":"empresas"}</small></h2><div class="rv-nl">`
       +A.map(({e,n,tk})=>{ const c=e?aNiv(e):null, tot=c?Object.values(c).reduce((a,b)=>a+b,0):e?(e.num_noticias||0):0, sub=tot?(tot===1?"1 noticia":`${tot} noticias`):"Sin noticias";
         return e&&aHas(e)?rvRow(e,n,tk,sub,"button",` type="button" data-art="${esc(e.id)}" data-tab="${aHasN(e)?"nws":"res"}"`):rvRow(e,n,tk,sub); }).join("")+`</div></section>`;
     const cal=aAgenda(ix); if(cal) h+=`<section class="panel rv-p rv-cal">${cal}</section>`;
-    const g=ix.generado?new Date(ix.generado):null;
-    return h+(g&&!isNaN(g)?`<p class="rv-colo">Preparado el ${g.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}).replace(",","")} a las ${g.getHours()}:${String(g.getMinutes()).padStart(2,"0")}</p>`:""); };
+    return h; };
 
   /* ---------- la página de cada empresa ---------- */
   const RVI={idx:IC.idx,kp:IC.res,pasado:IC.book,temas:IC.lay,msg:IC.msg,qa:IC.qa,per:IC.per,det:IC.lst,cif:IC.tab,tes:IC.tes,hoj:IC.hoj,actos:IC.nws,src:IC.lnk};
@@ -5340,7 +5346,7 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
     const k=[new Date().toDateString(),aSig,aCur||"",aTab||"",aNew?1:0,aCur?(ACT.emp[aCur]?1:0):(aWk()!=null?1:0),Object.keys(ACT.emp).length].join("|"); if(!force&&m.dataset.k===k) return; m.dataset.k=k;
     m.innerHTML=(aNew?`<section class="panel rv-p rv-new"><p>${aNew.ix.semana===ACT.ix.semana?"Tu tarea ha rehecho esta edición.":`Ha llegado la edición de la ${esc(aNew.ix.titulo.toLowerCase())}.`}</p><button type="button" class="btn" data-anew>${aNew.ix.semana===ACT.ix.semana?"Ver la nueva":"Leerla"}</button></section>`:"")
       +(e?`<article class="rv-a" id="a-${esc(e.id)}">${aArt(e)}</article>`:aPortada());
-    aWas=aCur; aBand(); if(back) requestAnimationFrame(aTop); };
+    aWas=aCur; if(back) requestAnimationFrame(aTop); };
   // otra pestaña: si estaban fijas arriba, siguen ahí y lo nuevo empieza justo debajo; si no, nada se mueve
   aSwitch=function(t){ if(!aCur||aTab===t) return; const st=()=>{ const b=document.querySelector("#pa-main .rv-tabs"); return b?parseFloat(getComputedStyle(b).top)||0:0; };
     const a=document.querySelector("#pa-main .rv-tabs-a"), stuck=!!a&&a.getBoundingClientRect().bottom<st()-0.5;
