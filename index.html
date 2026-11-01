@@ -501,7 +501,7 @@ tr.grp-row td{padding:40px 10px 10px;border-bottom:1px solid var(--line);cursor:
 .fq-ax{position:absolute;left:0;right:0;top:calc(var(--h,34px) - 22px);height:1px;background:var(--g4);opacity:.5}
 .fq-d{position:absolute;top:12px;transform:translate(-50%,-50%);border-radius:50%;background:var(--ink-soft)}
 .fq-d.sold{background:var(--panel);box-shadow:inset 0 0 0 1.5px var(--g4)}
-.fq-l{position:absolute;top:calc(var(--h,34px) - 12px);font-size:11px;color:var(--ink3)}.fq-l.l{left:-8px}.fq-l.r{right:0}
+.fq-l{position:absolute;top:calc(var(--h,34px) - 12px);font-size:11px;color:var(--ink3)}.fq-l.l{left:0}.fq-l.r{right:0}
 /* ===== Paso 2: año a año y concentración ===== */
 .evo-leg{justify-content:center;margin-top:12px}
 .evo-one{height:380px;min-height:380px}
@@ -3756,7 +3756,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v312";   // la versión publicada, en el pie
+const VER="v313";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4543,7 +4543,23 @@ $("perf-k").addEventListener("click",e=>{ const b=e.target.closest("button"); if
 function cotRule(lad,cur){ const it=lad.filter(x=>isNum(x[1])); if(it.length<2) return ""; const lo=Math.min(...it.map(x=>x[1])), hi=Math.max(...it.map(x=>x[1])); if(hi-lo<1e-9) return "";
   const a=lo-(hi-lo)*.03, z=hi+(hi-lo)*.03, L=v=>(v-a)/(z-a)*100;
   const at=l=>l<10?`left:${l.toFixed(1)}%`:l>90?`right:${(100-l).toFixed(1)}%`:`left:${l.toFixed(1)}%;transform:translateX(-50%)`;   // en los extremos, la etiqueta se alinea hacia dentro
-  return `<div class="cot-r" aria-hidden="true"><i class="ln"></i>${it.filter(x=>!x[2]).sort((p,q)=>p[1]-q[1]).map((x,i)=>`<span class="mk" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb r${i%2}" style="${at(L(x[1]))}">${x[0]}</span>`).join("")}${it.filter(x=>x[2]).map(x=>`<span class="mk me" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb me" style="${at(L(x[1]))}">Cotización ${pxm(x[1],cur)}</span>`).join("")}</div>`; }
+  return `<div class="cot-r" aria-hidden="true"><i class="ln"></i>${it.filter(x=>!x[2]).sort((p,q)=>p[1]-q[1]).map((x,i)=>`<span class="mk" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb r${i%2}" style="${at(L(x[1]))}" data-x="${L(x[1]).toFixed(2)}">${x[0]}</span>`).join("")}${it.filter(x=>x[2]).map(x=>`<span class="mk me" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb me" style="${at(L(x[1]))}" data-x="${L(x[1]).toFixed(2)}">Cotización ${pxm(x[1],cur)}</span>`).join("")}</div>`; }
+// regla de precios, ya pintada: cada etiqueta, centrada en su marca y dentro de la regla; si dos chocan, una pasa a la otra fila
+// o se apartan lo justo (las que se tocan se mueven juntas, 8 px entre ellas). Sin choques, quedan como siempre: una arriba y otra abajo
+function cotFit(box){ const W=box.clientWidth; if(!W) return; const G=8;
+  const put=(o,x)=>{ o.e.style.left=x.toFixed(1)+"px"; o.e.style.right="auto"; o.e.style.transform="none"; };
+  const lab=[...box.querySelectorAll(".lb[data-x]")].map(e=>({e,w:e.getBoundingClientRect().width,c:+e.dataset.x/100*W}));
+  lab.filter(o=>o.e.classList.contains("me")).forEach(o=>put(o,Math.min(Math.max(o.c-o.w/2,0),Math.max(0,W-o.w))));
+  const it=lab.filter(o=>!o.e.classList.contains("me")).sort((p,q)=>p.c-q.c);
+  const row=xs=>{ const S=[], fix=g=>{ g.x=Math.min(Math.max(g.sum/g.n,0),Math.max(0,W-g.w)); return g; };
+    for(const o of xs){ let g=fix({m:[o],w:o.w,sum:o.c-o.w/2,n:1});
+      while(S.length&&S[S.length-1].x+S[S.length-1].w+G>g.x){ const p=S.pop(); g=fix({m:[...p.m,...g.m],w:p.w+G+g.w,sum:p.sum+g.sum-(p.w+G)*g.n,n:p.n+g.n}); }
+      S.push(g); }
+    let cost=0; const pos=[]; S.forEach(g=>{ let x=g.x; if(g.w>W) cost+=1e9; g.m.forEach(o=>{ pos.push([o,x]); cost+=(x-(o.c-o.w/2))**2; x+=o.w+G; }); }); return {pos,cost}; };
+  let best=null; for(let k=0;k<1<<it.length;k++){ const A=[row(it.filter((o,i)=>!(k>>i&1))),row(it.filter((o,i)=>k>>i&1))]; const cost=A[0].cost+A[1].cost+it.filter((o,i)=>(k>>i&1)!==i%2).length*.5; if(!best||cost<best.cost) best={cost,A}; }
+  if(best) best.A.forEach((r,j)=>r.pos.forEach(([o,x])=>{ o.e.classList.toggle("r0",!j); o.e.classList.toggle("r1",!!j); put(o,x); })); }
+const cotRO=window.ResizeObserver?new ResizeObserver(es=>es.forEach(e=>cotFit(e.target))):null;
+if(document.fonts&&document.fonts.addEventListener) document.fonts.addEventListener("loadingdone",()=>document.querySelectorAll(".cot-r").forEach(cotFit));
 function fichaPre(r){
   const v=r.val||{}, cur=r.cur, mult=isNum(v.mult)?v.mult:r.mult, req=isNum(r.req)?r.req:v.req, vd=r.fvDate instanceof Date?r.fvDate:v.date;
   const mb=(k,x,sub,c="",cl="")=>`<div class="fp-b${cl}"><span class="fp-k">${k}</span><b class="num ${c}">${x===""?"&nbsp;":x}</b><small>${sub||""}</small></div>`;
@@ -4833,6 +4849,7 @@ function renderSheet(){ const el=$("sheet"), t=sheet&&DATA?sheet.t:null, p=t&&DA
     const body=sheet.tab==="pos"?P.body:sheet.tab==="pre"?R.body:sheet.tab==="mkt"?R.mkt:fichaMov(t);
     $("sheet-b").innerHTML=`<div class="ficha fpx ${sheet.tab==="pos"&&!p.isOption?"fpp":sheet.tab==="pre"||sheet.tab==="mkt"?"fpu":"fpm"}"><div class="fp-h">${idb}</div>${band?`<div class="fx-band">${band}</div>`:""}${tb}<div class="sh-pane" id="sh-pane" role="tabpanel"${tabs.length?` aria-labelledby="sht-${sheet.tab}"`:""}>${body}</div></div>`;
     $("sh-tt").innerHTML=`${logoBare(co.name,t)}<b>${esc(co.name)}</b>`; el.setAttribute("aria-label",co.name);
+    if(cotRO) cotRO.disconnect(); $("sheet-b").querySelectorAll(".cot-r").forEach(b=>{ cotFit(b); if(cotRO) cotRO.observe(b); });   // regla de precios: colocar etiquetas (y al cambiar de ancho)
     const i=(sheet.list||[]).indexOf(t); $("sh-prev").disabled=i<=0; $("sh-next").disabled=i<0||i>=sheet.list.length-1;
   }
   el.hidden=!sheet; document.documentElement.classList.toggle("sh-open",!!sheet); markRows(); }
