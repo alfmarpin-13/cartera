@@ -13,7 +13,8 @@
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Cartera</title>
-<script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
+<script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}
+try{ if((navigator.standalone||matchMedia("(display-mode: standalone)").matches)&&matchMedia("(pointer:coarse)").matches) document.documentElement.classList.add("fijo"); }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2234,7 +2235,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 @media (max-width:760px) and (prefers-color-scheme:dark){:root:not([data-theme="light"]) body[data-view]:has(#sheet:not([hidden])) #topcap{background:#191918}}
 @media (max-width:760px){:root[data-theme="dark"] body[data-view]:has(#sheet:not([hidden])) #topcap{background:#191918}}
 @media (max-width:700px){
-  #s-hero{padding:calc(max(env(safe-area-inset-top,0px),10px) + 8px) 16px 12px}
+  #s-hero{padding:calc(var(--sat10) + 8px) 16px 12px}
   #s-hero .bg{display:none}
   .hmob{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:14px;color:var(--h-fg);font-variant-numeric:tabular-nums;cursor:pointer;-webkit-tap-highlight-color:transparent}
   .hmob>*{min-width:0;white-space:nowrap}
@@ -2340,9 +2341,9 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* Movimientos en el móvil: una nota larga sigue desde el principio de la línea, sin sangría */
 @media (max-width:700px){#s-mov .rt td.mline:has(.w){display:block}#s-mov .rt td.mline:has(.w) .mi{display:inline}#s-mov .rt td.mline:has(.w) .mi::before{position:static;margin:0 6px}#s-mov .rt td.mline .mi:first-child::before{content:none}}   /* v280: solo con nota; sin nota, la línea se parte sin empezar por «·» */
 /* v269 · móvil: menos aire entre la hora del iPhone y lo primero de cada pestaña (la primera letra, a 10 px; antes, 17–22) */
-@media (max-width:760px){:is(#s-aidx,#s-uni,#s-actb,#mtabs){padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px))}}
-@media (max-width:700px){#s-hero{padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px) + 1px)}}
-@media (max-width:700px){#s-uni.hero3.band2{padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px));padding-bottom:14px}}   /* Universo tenía su propio margen (22 arriba y abajo): igual que las demás */
+@media (max-width:760px){:is(#s-aidx,#s-uni,#s-actb,#mtabs){padding-top:calc(var(--sat) + var(--pt0,2px))}}
+@media (max-width:700px){#s-hero{padding-top:calc(var(--sat) + var(--pt0,2px) + 1px)}}
+@media (max-width:700px){#s-uni.hero3.band2{padding-top:calc(var(--sat) + var(--pt0,2px));padding-bottom:14px}}   /* Universo tenía su propio margen (22 arriba y abajo): igual que las demás */
 /* v270 · la tira fija de arriba (la que da el color a la barra de la hora) queda por debajo de la primera franja de cada pestaña: ya no tapa
    las letras, que van pegadas a la barra. El iPhone sigue tomando el color de la tira (solo mira los elementos fijos) */
 @media (max-width:760px){:is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs){position:relative;z-index:11}}
@@ -2463,7 +2464,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   /* la barra clara de arriba, como la del PC */
   body.hm3on[data-view="resumen"] .mtop{display:flex}
   #v-resumen>.mtop{order:-1;margin-bottom:-16px}   /* sin el hueco entre bloques: la franja va pegada a la barra */
-  .mtop{align-items:center;justify-content:space-between;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 6px) 4px 4px 16px;background:var(--canvas);position:relative;z-index:11;margin:0 -16px}
+  .mtop{align-items:center;justify-content:space-between;gap:12px;padding:calc(var(--sat) + 6px) 4px 4px 16px;background:var(--canvas);position:relative;z-index:11;margin:0 -16px}
   .mt-st{display:flex;align-items:center;gap:8px;font-size:12px;line-height:16px;--lhp:16px;color:var(--ink2);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .mt-st .dot{flex:none;box-shadow:none}
   .mt-ic{display:flex;gap:2px;flex:none}
@@ -2801,7 +2802,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 .rv-wx p+p{margin-top:8px!important}
 /* las pestañas de la ficha; se quedan arriba al bajar */
 .rv-tabs-a{display:block;height:20px}
-.rv-tabs{position:sticky;top:max(env(safe-area-inset-top,0px),10px);z-index:6;display:flex;justify-content:center;gap:24px;margin:0 -16px;padding:0 16px;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 -10px 0 var(--panel)}
+.rv-tabs{position:sticky;top:var(--sat10);z-index:6;display:flex;justify-content:center;gap:24px;margin:0 -16px;padding:0 16px;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 -10px 0 var(--panel)}
 .rv-tabs button{position:relative;display:inline-flex;align-items:center;gap:6px;height:46px;font-size:13px;font-weight:500;color:var(--ink3)}
 .rv-tabs button[aria-selected="true"]{color:var(--ink)}
 .rv-tabs button[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:1px;background:var(--ink)}
@@ -2824,7 +2825,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 .rv-ix button .rv-no{margin-top:-1px}
 /* cifras clave: una sola franja por empresa (la primera cifra de cada tema), como la de cinco cifras de la web */
 /* los temas, numerados; sus otras cifras, en una línea bajo el título */
-.rv-tm{scroll-margin-top:calc(max(env(safe-area-inset-top,0px),10px) + 64px)}
+.rv-tm{scroll-margin-top:calc(var(--sat10) + 64px)}
 .rv-tm+.rv-tm{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
 .rv-tm h4{display:flex;align-items:flex-start;gap:12px;margin:0 0 10px;font-family:var(--rv-serif);font-size:19px;line-height:25px;--lhp:25px;font-weight:500;color:var(--ink)}
 
@@ -2889,7 +2890,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 .rv-hj td.same{color:var(--rv-hhd)}
 .rv-hj tr.w td{padding:0 12px 10px;font-size:12px;line-height:18px;--lhp:18px;text-align:left;color:var(--rv-hlb)}
 /* noticias: de quién y cuándo, el titular con serifa, lo que pasó, por qué te importa y dónde leerla */
-.rv-n{scroll-margin-top:calc(max(env(safe-area-inset-top,0px),10px) + 64px)}
+.rv-n{scroll-margin-top:calc(var(--sat10) + 64px)}
 .rv-n+.rv-n{margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
 .rv-nm{font-size:12px;line-height:16px;--lhp:16px;font-weight:500;color:var(--ink3)}
 .rv-n h4{margin:6px 0 10px;font-family:var(--rv-serif);font-size:19px;line-height:25px;--lhp:25px;font-weight:500;color:var(--ink);text-wrap:balance}
@@ -3167,6 +3168,17 @@ img{-webkit-user-drag:none}
   #mm-key{margin-top:4px;border-top:1px solid var(--line);border-radius:0 0 10px 10px;color:var(--neg)}
   .mm-ver{margin:8px 10px 2px}
 }
+
+/* v322 · iPhone (app de la pantalla de inicio): la página no se desplaza nunca y el iPhone no tiene nada que difuminar en la zona del reloj.
+   Se desplaza el cuerpo, que empieza debajo del reloj; la tapa de color sigue ocupando la zona del reloj. --sat y --sat10 son el hueco
+   del reloj que deja lo que va dentro del cuerpo: aquí ya no hace falta (el cuerpo empieza debajo), así que todo queda en el mismo sitio */
+:root{--sat:env(safe-area-inset-top,0px);--sat10:max(env(safe-area-inset-top,0px),10px)}
+@media (max-width:760px){
+  html.fijo{height:100%;overflow:hidden;overscroll-behavior:none}
+  html.fijo body{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;bottom:0;min-height:0;margin:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:contain;
+    --sat:0px;--sat10:max(calc(10px - env(safe-area-inset-top,0px)),0px)}
+  html.fijo.sh-open body{overflow:hidden}
+}
 </style>
 
 <div class="wrap">
@@ -3383,9 +3395,36 @@ img{-webkit-user-drag:none}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha384-vtjasyidUo0kW94K5MXDXntzOJpQgBKXmE7e2Ga4LG0skTTLeBi97eFAXsqewJjw" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js" integrity="sha384-dug+JxfBvklEQdJ4AYuBBAIScUz0bVN73xpy273gcAwHjb3qI0fXmuYNaNfdyYJG" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+// v322 · iPhone (app de la pantalla de inicio): la página no se desplaza; se desplaza el cuerpo, que empieza debajo del reloj (el iPhone
+// difumina la zona del reloj siempre que la página está desplazada, y desde la web no se puede evitar de otra forma). Para el resto
+// del código no cambia nada: scrollY, scrollTo, scrollBy y el evento «scroll» siguen funcionando igual, pero sobre el cuerpo.
+// Si algo falla, se quita la marca y todo queda como antes.
+(()=>{ const H=document.documentElement; if(!H.classList.contains("fijo")) return;
+  try{ const B=document.body, mq=matchMedia("(max-width:760px)"), on=()=>mq.matches;
+    const dY=Object.getOwnPropertyDescriptor(window,"scrollY"); if(!dY||!dY.get||!dY.configurable) throw 0;
+    const yN=()=>dY.get.call(window), to=window.scrollTo, by=window.scrollBy;
+    const y={configurable:true,enumerable:true,get:()=>on()?B.scrollTop:yN()};
+    Object.defineProperty(window,"scrollY",y); Object.defineProperty(window,"pageYOffset",y);
+    const arg=(a,b)=>a&&typeof a==="object"?a:{left:+a||0,top:+b||0};
+    window.scrollTo=window.scroll=function(a,b){ return on()?B.scrollTo(arg(a,b)):to.apply(window,arguments); };
+    window.scrollBy=function(a,b){ return on()?B.scrollBy(arg(a,b)):by.apply(window,arguments); };
+    B.addEventListener("scroll",()=>{ if(on()) dispatchEvent(new Event("scroll")); },{passive:true});
+    // al ir atrás o adelante, el navegador devuelve cada entrada del historial a donde estaba la página (antes de avisar del cambio
+    // de #); con el cuerpo desplazándose, eso se hace aquí: cada dirección recuerda dónde estaba al dejarla
+    const pos=new Map(), ps=history.pushState, rs=history.replaceState; let url=location.href;
+    history.pushState=function(){ if(on()) pos.set(url,B.scrollTop); const r=ps.apply(history,arguments); url=location.href; return r; };
+    history.replaceState=function(){ const r=rs.apply(history,arguments); url=location.href; return r; };
+    addEventListener("popstate",()=>{ const nu=location.href, v=pos.get(nu); if(on()&&nu!==url) pos.set(url,B.scrollTop); url=nu; if(on()&&v!=null) B.scrollTop=v; });
+    addEventListener("hashchange",()=>{ url=location.href; });
+    window.__fijo=on;
+  }catch{ H.classList.remove("fijo"); } })();
+</script>
+<script>
 (() => {
 const FILE_ID = "1JpGSj7S3lq3R9KeCmotDuLmeWj9C5aGmyme0_ArYWi8";
 const SERVER = "Google Drive";
+// v322 · el alto del contenido y de lo que se ve, de quien se desplaza: la página o, en la app del iPhone, el cuerpo
+const fijo=()=>!!(window.__fijo&&window.__fijo()), altoDoc=()=>fijo()?document.body.scrollHeight:document.documentElement.scrollHeight, altoVista=()=>fijo()?document.body.clientHeight:innerHeight;
 const XLSX_MIME = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 const $ = id => document.getElementById(id);
 
@@ -3814,7 +3853,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v321";   // la versión publicada, en el pie
+const VER="v322";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4986,7 +5025,7 @@ const aTabOf=e=>aBoth(e)?(aTab==="nws"?"nws":"res"):aKind(e)?"res":"nws";
 const aPath=()=>{ const e=aCur&&ACT&&ACT.ix.empresas.find(x=>x.id===aCur); return "actualidad"+(e?"/"+e.id+(aBoth(e)&&aTabOf(e)==="nws"?"/noticias":""):""); };
 // ir arriba de algo: si la web está dentro de un marco que se estira con ella (la de Claude en el ordenador), la página no se desplaza; entonces lo hace el marco
 const aGoTo=(el,off,blk="start")=>{ const y=Math.max(0,el.getBoundingClientRect().top+scrollY-off); scrollTo({top:y});
-  if(document.documentElement.scrollHeight<=innerHeight+2) try{ el.scrollIntoView({block:blk}); }catch{} };
+  if(altoDoc()<=altoVista()+2) try{ el.scrollIntoView({block:blk}); }catch{} };
 // leídas: se recuerda en este dispositivo, por semana
 let aRd={}; try{ aRd=JSON.parse(localStorage.getItem("actLeidas")||"{}")||{}; }catch{}
 const aIsRd=id=>!!ACT&&(aRd[ACT.ix.semana]||[]).includes(id);
@@ -5017,7 +5056,7 @@ function aWk(){ if(DATA){ const ps=aOrd().map(e=>[e,DATA.pos.find(p=>p.ticker===
 // Actualidad: estas funciones se definen una sola vez, más abajo, en su bloque (junto a lo que usan)
 let renderAct, aShow, aOpen, aPortada, aAgenda, aArt, aMark, aSwitch;
 let aWas=null;
-const aTop=()=>{ scrollTo(0,0); if(document.documentElement.scrollHeight<=innerHeight+2) try{ document.body.scrollIntoView({block:"start"}); }catch{} };
+const aTop=()=>{ scrollTo(0,0); if(altoDoc()<=altoVista()+2) try{ document.body.scrollIntoView({block:"start"}); }catch{} };
 
 /* ---------- la portada ---------- */
 // qué hay en cada empresa: un informe de resultados (o una noticia a fondo), sus noticias y, si se movió más de un 5%, por qué
@@ -5209,7 +5248,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
 // v296 · lo de arriba (Anterior/Siguiente, pestañas) no mueve la pantalla aunque lo nuevo sea más corto: si la página ya no llega a donde
 // estabas, se alarga por abajo lo justo (hasta el siguiente cambio) en vez de dejar que el navegador la suba
 const acFree=()=>{ const m=$("pa-main"); if(m) m.style.minHeight=""; };
-const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.documentElement.scrollHeight-innerHeight;
+const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=altoDoc()-altoVista();
   if(max<y0) m.style.minHeight=(m.offsetHeight+Math.ceil(y0-max))+"px"; if(Math.abs(scrollY-y0)>0.5) scrollTo({top:y0,behavior:"instant"}); };
 // v292 · Actualidad: la de la v289 (la que funciona), con lo pedido después:
 //  - Próximos resultados como un calendario: dos semanas como mínimo (lo que no tiene a nadie, vacío), cabecera con los días, una casilla
@@ -5698,7 +5737,7 @@ document.addEventListener("click",e=>{ const b=e.target.closest(".info"), pop=$(
   e.preventDefault(); if(!pop.hidden&&pop.dataset.for===b.dataset.k){ pop.hidden=true; return; }
   pop.textContent=b.dataset.note; pop.dataset.for=b.dataset.k; pop.hidden=false;
   const r=b.getBoundingClientRect(), W=document.documentElement.clientWidth;
-  pop.style.left=Math.max(12,Math.min(r.left+scrollX-12,W-pop.offsetWidth-12))+"px"; pop.style.top=(r.bottom+scrollY+8)+"px"; });
+  pop.style.left=Math.max(12,Math.min(r.left+scrollX-12,W-pop.offsetWidth-12))+"px"; pop.style.top=(r.bottom+scrollY+8-(fijo()?document.body.getBoundingClientRect().top:0))+"px"; });
 
 $("refresh").addEventListener("click",()=>{ load(true); loadAct(true); });
 // móvil: tirar hacia abajo desde arriba del todo lee la hoja de nuevo, igual que el botón Actualizar (en la app de la pantalla de inicio no hay otro gesto)
@@ -5706,7 +5745,7 @@ if(matchMedia("(pointer:coarse)").matches){ let C=document.createElement("div");
   const sat=()=>C.classList.toggle("sat",C.offsetHeight>10); sat(); addEventListener("resize",sat);   // v321 · zona del reloj: la tapa, por encima
   let raf=0; const past=()=>{ raf=0; const b=document.querySelector(".view:not([hidden]) > :is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs)");
     // en el móvil la franja va por encima de la tira: la barra cambia cuando la franja ha salido del todo (si no, quedaría una raya de su color bajo la barra)
-    document.body.classList.toggle("past-band",!b||scrollY>=b.offsetTop+b.offsetHeight-(+getComputedStyle(b).zIndex>+getComputedStyle(C).zIndex?0:C.offsetHeight));
+    document.body.classList.toggle("past-band",!b||b.getBoundingClientRect().bottom<=(+getComputedStyle(b).zIndex>+getComputedStyle(C).zIndex?0:C.offsetHeight));
     // el fondo de la página (lo que asoma al tirar hacia abajo) cambia cuando el desplazamiento se para: repintarlo en mitad del gesto daba tirones
     clearTimeout(tb); tb=setTimeout(()=>{ document.body.classList.toggle("bg-top",!document.body.classList.contains("past-band")); if(scrollY<=0&&enMarcha) otra(); },140); };
   let tb=0, enMarcha=false; addEventListener("scroll",()=>{ enMarcha=true; },{passive:true,once:true});
