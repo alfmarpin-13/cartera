@@ -187,7 +187,7 @@ input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-sea
 .search .inp{width:100%;padding-left:36px}
 .show-s{display:none}
 .tag{display:inline-block;font-size:11px;letter-spacing:0;line-height:1.6;line-height:round(nearest,calc(1.6*1em - .01px),1px);--lhx:1.6;--lhp:initial;padding:0 8px;border-radius:999px;background:var(--tag-bg);color:var(--ink2);white-space:nowrap;font-weight:500}
-.tag.on{background:var(--pos-bg);color:var(--pos)} .tag.acc{background:var(--accent-bg);color:var(--accent)} .tag.warn{background:var(--warn-bg);color:var(--warn)} .tag.neg{background:var(--neg-bg);color:var(--neg)}
+.tag.on{background:var(--pos-bg);color:var(--pos)} .tag.acc{background:var(--accent-bg);color:var(--accent)} .tag.warn{background:var(--warn-bg);color:var(--warn-tx)} .tag.neg{background:var(--neg-bg);color:var(--neg)}
 td.l,th.l{text-align:left}
 td.wrapc{white-space:normal;min-width:220px;text-align:left;color:var(--ink2);font-size:13px}
 .kpis.mk{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin:0 0 20px;padding:0;border:0}
@@ -227,7 +227,7 @@ td.wrapc{white-space:normal;min-width:220px;text-align:left;color:var(--ink2);fo
 .ck>span:nth-child(n+2){text-align:right}
 .ck.h{font-size:11px;color:var(--ink3);padding-top:0}
 .ck small{display:block;color:var(--ink3);font-size:12px}
-.warn-t{color:var(--warn)}
+.warn-t{color:var(--warn-tx)}
 @media (max-width:700px){.ck{grid-template-columns:minmax(0,1fr) auto auto}.ck>span:nth-child(3){display:none}}
 /* Tablas en móvil: cada fila es una tarjeta */
 @media (max-width:700px){
@@ -501,7 +501,7 @@ tr.grp-row td{padding:40px 10px 10px;border-bottom:1px solid var(--line);cursor:
 .fq-ax{position:absolute;left:0;right:0;top:calc(var(--h,34px) - 22px);height:1px;background:var(--g4);opacity:.5}
 .fq-d{position:absolute;top:12px;transform:translate(-50%,-50%);border-radius:50%;background:var(--ink-soft)}
 .fq-d.sold{background:var(--panel);box-shadow:inset 0 0 0 1.5px var(--g4)}
-.fq-l{position:absolute;top:calc(var(--h,34px) - 12px);font-size:11px;color:var(--ink3)}.fq-l.l{left:-8px}.fq-l.r{right:-8px}
+.fq-l{position:absolute;top:calc(var(--h,34px) - 12px);font-size:11px;color:var(--ink3)}.fq-l.l{left:-8px}.fq-l.r{right:0}
 /* ===== Paso 2: año a año y concentración ===== */
 .evo-leg{justify-content:center;margin-top:12px}
 .evo-one{height:380px;min-height:380px}
@@ -857,7 +857,7 @@ tr.grp-row td{padding:40px 10px 10px;border-bottom:1px solid var(--line);cursor:
 @media (min-width:701px) and (max-width:810px){#t-p [data-k="country"]{display:none}}
 @media (min-width:701px) and (max-width:750px){#t-p [data-k="dd"]{display:none}}
 /* TIR por niveles en Universo */
-.rlv.t0{background:none;color:var(--ink2)}
+.rlv.t0{color:var(--ink2)}   /* UN-03 · entre 0 y 8 %, pastilla gris (la de base) */
 #t-p td[data-l="TIR esperada"] .rlv{min-width:58px}
 /* Universo: industria en la tabla */
 #t-p th[data-k="ind"],#t-p td[data-l="Industria"]{white-space:nowrap}
@@ -992,7 +992,7 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
 /* separador «·» entre datos; el del primero de cada renglón queda fuera y no se ve */
 .mi::before{content:"·";position:absolute;left:-8px;color:var(--ink3)}
 .mi:has(.w){white-space:normal;flex:1 1 0;min-width:0}
-.mline .rlv.t0{padding:0}
+
 @media (max-width:700px){
   .rt td.mline{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;row-gap:1px;overflow:hidden;font-size:12px;color:var(--ink2);line-height:1.5;line-height:round(nearest,calc(1.5*1em - .01px),1px);--lhx:1.5;--lhp:initial}
   .rt td.mline:empty{display:none}
@@ -1078,7 +1078,7 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
 /* 5 · cuadre en el pie */
 .foot-b{background:none;border:0;padding:4px 0;font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;color:inherit;cursor:pointer}
 .foot-b:hover{color:var(--ink)}
-.foot-b.warn-t{color:var(--warn)}
+.foot-b.warn-t{color:var(--warn-tx)}
 /* ===== Revisión extrema ===== */
 /* 2 · Universo: «–» siempre en el mismo gris */
 #t-p td.dash,#t-p td.dash *{color:var(--ink3)}
@@ -1367,8 +1367,8 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
 .sh-tabs{display:flex;gap:30px}
 .sh-tabs button{position:relative;padding:12px 0 13px;border:0;background:none;font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;font-size:13px;font-weight:500;color:var(--ink2);cursor:pointer}
 .sh-tabs button:hover{color:var(--ink)}
-.sh-tabs button[aria-pressed="true"]{color:var(--ink)}
-.sh-tabs button[aria-pressed="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:var(--r-bar);background:var(--ink)}
+.sh-tabs button[aria-selected="true"]{color:var(--ink)}
+.sh-tabs button[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:var(--r-bar);background:var(--ink)}
 /* tarjeta de cifras de la posición (y de la opción) */
 .sh-pane{display:flex;flex-direction:column;gap:16px}
 /* opción: sus seis cifras en dos filas de tres */
@@ -1641,7 +1641,7 @@ kbd{font:500 11px/1 var(--f-sans);line-height:1;line-height:round(nearest,calc(1
 .view .panel,.view .dv3>div{scroll-margin-top:84px}
 @media (max-width:700px){.view .panel,.view .dv3>div{scroll-margin-top:16px}}
 /* v189 · repaso */
-.fp-b .rlv.t0,.fpx .rlv.t0,.kx-m .rlv.t0{padding:0;min-width:0;color:inherit}   /* sin pastilla, la cifra se alinea con su rótulo */
+.fp-b .rlv.t0,.fpx .rlv.t0{padding:0;min-width:0;color:inherit}   /* sin pastilla, la cifra se alinea con su rótulo */
 @media (min-width:701px){.rt.rt thead th{box-shadow:inset 0 -1px 0 var(--line)}}   /* la cabecera fija con su raya: lo que pasa por debajo no asoma */
 @media (min-width:1280px){@media (prefers-color-scheme:dark){:root:not([data-theme="light"]).md .sheet{--canvas:#0F0F0E;--panel:#1E1E1C;--card:#262624;box-shadow:none}}
   :root[data-theme="dark"].md .sheet{--canvas:#0F0F0E;--panel:#1E1E1C;--card:#262624;box-shadow:none}}   /* la ficha junto a la lista, plana también en oscuro */
@@ -2746,7 +2746,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 .rv .acg-e>:not(.lgb){grid-column:2}
 .rv .acg-e b{font-size:13px;line-height:20px;--lhp:20px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rv .acg-x{font-size:12px;line-height:16px;--lhp:16px;color:var(--ink3)}
-.rv .acg-q{font-size:12px;line-height:16px;--lhp:16px;color:var(--warn)}
+.rv .acg-q{font-size:12px;line-height:16px;--lhp:16px;color:var(--warn-tx)}
 .rv .acg-t,.rv .acg-fm{display:none}
 .rv .acg-f{margin-top:10px;font-size:12px;line-height:17px;--lhp:17px;color:var(--ink3)}
 @media (max-width:1000px){
@@ -2760,7 +2760,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
   .rv .acg-e>.lgb{width:34px;height:20px;margin:0}
   .rv .acg-e b,.rv .acg-x,.rv .acg-q{display:none}
   .rv .acg-t{display:block;max-width:100%;font-size:11px;line-height:14px;--lhp:14px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .rv .acg-e.q .acg-t{color:var(--warn)}
+  .rv .acg-e.q .acg-t{color:var(--warn-tx)}
   .rv .acg-fm{display:inline}
 }
 .rv-colo{padding:2px 0 8px;text-align:center;font-size:12px;line-height:16px;--lhp:16px;color:var(--ink3);text-wrap:balance}
@@ -3105,12 +3105,18 @@ img{-webkit-user-drag:none}
 .mk-yr.yneg .yz b.ng{background:var(--neg);border-radius:0 0 var(--r-bar) var(--r-bar)}
 /* MO-02 · en los móviles estrechos, las cifras a 10 px: «−186» ya no se sale de su columna */
 @media (max-width:370px){ #m-k .mk-yr small{font-size:10px} }
+/* CO-14 · color de texto de aviso: legible sobre claro (el ocre de puntos y rayas sigue igual) */
+:root{--warn-tx:#6B4F14}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--warn-tx:var(--warn)}}
+:root[data-theme="dark"]{--warn-tx:var(--warn)}
+/* CO-15 · foco visible (solo con teclado) en los puntos de Compras, los cobros del calendario y los meses de dividendos */
+.mc-l[data-tip]:focus-visible,.fq-d[data-tip]:focus-visible,.cm.cm2:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
 </style>
 
 <div class="wrap">
   <header class="top">
     <div class="mtitle" id="mtitle" aria-hidden="true">Resumen</div>
-    <div class="status"><i class="dot busy" id="dot"></i><span id="stat">Conectando</span><span id="asof" hidden></span></div>
+    <div class="status"><i class="dot busy" id="dot"></i><span id="stat" role="status">Conectando</span><span id="asof" hidden></span></div>
     <nav class="nav" id="nav" aria-label="Secciones"><a href="#resumen" data-v="resumen"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 3v7h7"/></svg><span>Resumen</span></a><a href="#analisis" data-v="analisis"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16.5V10M10 16.5V3.5M16 16.5V7.5"/></svg><span>Análisis</span></a><a href="#movimientos" data-v="movimientos"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 7.5h12.5l-3-3M16.5 12.5H4l3 3"/></svg><span>Movimientos</span></a><a href="#universo" data-v="preseleccion"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M3 10h14M10 3c2.4 2.2 2.4 11.8 0 14M10 3c-2.4 2.2-2.4 11.8 0 14"/></svg><span>Universo</span></a><a href="#actualidad" data-v="actualidad"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 5A1.5 1.5 0 0 1 5 3.5h8A1.5 1.5 0 0 1 14.5 5v10.5H5A1.5 1.5 0 0 1 3.5 15zM14.5 8h2v6.5a1 1 0 0 1-2 0M6.5 7.5h5M6.5 10.5h5M6.5 13.5h3"/></svg><span>Actualidad</span></a></nav>
     <div class="tools"><button class="btn kbar" id="kbtn" type="button" aria-label="Buscar" aria-haspopup="dialog" aria-keyshortcuts="Meta+K Control+K"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.75" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="kb-l">Buscar</span><kbd id="kb-k">⌘K</kbd></button><button class="btn ic sq" id="priv" type="button" aria-pressed="false" aria-label="Ocultar importes" title="Ocultar importes"><svg class="eye" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M1.5 8s2.4-4.5 6.5-4.5S14.5 8 14.5 8 12.1 12.5 8 12.5 1.5 8 1.5 8z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8" cy="8" r="2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg><svg class="eye-x" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.6 5.6C1.9 6.6 1.5 8 1.5 8s2.4 4.5 6.5 4.5c1 0 1.9-.3 2.7-.7M6 3.8c.6-.2 1.3-.3 2-.3 4.1 0 6.5 4.5 6.5 4.5s-.5 1-1.4 2M2.5 2.5l11 11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="btn ic sq" id="theme" type="button" aria-label="Modo oscuro"><svg class="moon" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M13.2 9.6A5.6 5.6 0 0 1 6.4 2.8a5.6 5.6 0 1 0 6.8 6.8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><svg class="sun" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><button class="btn ic" id="refresh" type="button" disabled aria-label="Actualizar" title="Actualizar"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 2.2v3h-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Actualizar</span></button><button class="btn ic" id="more" type="button" aria-label="Más opciones" aria-haspopup="menu" aria-expanded="false" aria-controls="more-m"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="3.5" cy="8" r="1.35" fill="currentColor"/><circle cx="8" cy="8" r="1.35" fill="currentColor"/><circle cx="12.5" cy="8" r="1.35" fill="currentColor"/></svg></button><div class="more-m" id="more-m" role="menu" hidden><button type="button" id="mm-find" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 2.25a4.75 4.75 0 1 0 0 9.5a4.75 4.75 0 1 0 0-9.5M10.5 10.5 13.75 13.75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Buscar</button><button type="button" id="mm-ref" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 2.2v3h-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Volver a leer la hoja</button><button type="button" id="mm-priv" role="menuitem"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M1.5 8s2.4-4.5 6.5-4.5S14.5 8 14.5 8 12.1 12.5 8 12.5 1.5 8 1.5 8z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8" cy="8" r="2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg><span>Ocultar importes</span></button><div class="mm-th" role="group" aria-label="Apariencia"><span>Apariencia</span><div class="seg"><button type="button" data-th="auto">Automática</button><button type="button" data-th="light">Clara</button><button type="button" data-th="dark">Oscura</button></div></div><button type="button" id="mm-key" role="menuitem" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 2.5a3.5 3.5 0 1 1-3.1 5.1L2.5 12v1.5H4l.6-.6v-1.1h1.1l.9-.9v-1.1h1.1L8.9 8.6A3.5 3.5 0 0 1 10 2.5M11 5h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Quitar el ID y la clave guardados</button><p class="mm-ver" id="mm-ver"></p></div></div>
   </header>
@@ -3696,7 +3702,7 @@ function baseOpts(){
 const fold = t => String(t??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9: ]+/g,"");
 const mfmt = v => { const a=Math.abs(v); return a>=1e6 ? nf(a%1e6?1:0).format(v/1e6)+(a===1e6?" millón":" millones") : a>=1000 ? nf(a<10000&&a%1000?1:0).format(v/1000)+" mil" : nf(0).format(v); };   // ejes
 const kfmt = v => Math.abs(v)>=1e6 ? nf(v%1e6?1:0).format(v/1e6)+"M" : Math.abs(v)>=1000 ? nf(Math.abs(v)<10000&&v%1000?1:0).format(v/1000)+"k" : nf(0).format(v);
-function make(id,cfg){ if(charts[id]) charts[id].destroy(); if(!window.Chart) return; charts[id]=new Chart($(id),cfg); }
+function make(id,cfg){ if(charts[id]) charts[id].destroy(); if(!window.Chart) return; if(matchMedia("(prefers-reduced-motion: reduce)").matches) cfg.options={...(cfg.options||{}),animation:false}; charts[id]=new Chart($(id),cfg); }
 
 let DATA=null, evoN=0;
 const crosshair={id:"xh",afterDatasetsDraw(c){ const a=c.tooltip&&c.tooltip.getActiveElements?c.tooltip.getActiveElements():[]; if(!a.length) return;
@@ -3750,7 +3756,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v311";   // la versión publicada, en el pie
+const VER="v312";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4535,9 +4541,9 @@ $("perf-k").addEventListener("click",e=>{ const b=e.target.closest("button"); if
 /* ficha: tu hoja Valoración + mercado */
 // cotización: una regla con el precio y sus referencias (máximo del año, media de 200 sesiones, valor razonable y tu precio medio)
 function cotRule(lad,cur){ const it=lad.filter(x=>isNum(x[1])); if(it.length<2) return ""; const lo=Math.min(...it.map(x=>x[1])), hi=Math.max(...it.map(x=>x[1])); if(hi-lo<1e-9) return "";
-  const a=lo-(hi-lo)*.03, z=hi+(hi-lo)*.03, L=v=>(v-a)/(z-a)*100, SH={"Máximo de un año":"Máx. 1 año","Media 200 sesiones":"Media 200"};
+  const a=lo-(hi-lo)*.03, z=hi+(hi-lo)*.03, L=v=>(v-a)/(z-a)*100;
   const at=l=>l<10?`left:${l.toFixed(1)}%`:l>90?`right:${(100-l).toFixed(1)}%`:`left:${l.toFixed(1)}%;transform:translateX(-50%)`;   // en los extremos, la etiqueta se alinea hacia dentro
-  return `<div class="cot-r" aria-hidden="true"><i class="ln"></i>${it.filter(x=>!x[2]).sort((p,q)=>p[1]-q[1]).map((x,i)=>`<span class="mk" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb r${i%2}" style="${at(L(x[1]))}">${SH[x[0]]||x[0]}</span>`).join("")}${it.filter(x=>x[2]).map(x=>`<span class="mk me" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb me" style="${at(L(x[1]))}">Cotización ${pxm(x[1],cur)}</span>`).join("")}</div>`; }
+  return `<div class="cot-r" aria-hidden="true"><i class="ln"></i>${it.filter(x=>!x[2]).sort((p,q)=>p[1]-q[1]).map((x,i)=>`<span class="mk" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb r${i%2}" style="${at(L(x[1]))}">${x[0]}</span>`).join("")}${it.filter(x=>x[2]).map(x=>`<span class="mk me" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb me" style="${at(L(x[1]))}">Cotización ${pxm(x[1],cur)}</span>`).join("")}</div>`; }
 function fichaPre(r){
   const v=r.val||{}, cur=r.cur, mult=isNum(v.mult)?v.mult:r.mult, req=isNum(r.req)?r.req:v.req, vd=r.fvDate instanceof Date?r.fvDate:v.date;
   const mb=(k,x,sub,c="",cl="")=>`<div class="fp-b${cl}"><span class="fp-k">${k}</span><b class="num ${c}">${x===""?"&nbsp;":x}</b><small>${sub||""}</small></div>`;
@@ -4573,8 +4579,8 @@ function fichaPre(r){
   // pestaña «Cotización»: el precio frente a sus referencias (de mayor a menor, con la distancia a cada una, como en tu hoja: precio / referencia − 1)
   const P0=r.price, own=DATA.pos.find(x=>x.ticker===r.ticker&&!x.isOption);
   // las cuatro referencias están siempre: las que no tienen dato van al final con «N/A», para que el bloque mida lo mismo en todas las empresas
-  const refs=[ ["Máximo de un año",isNum(r.hi52)&&r.hi52>-1&&isNum(P0)?P0/(1+r.hi52):null], ["Valor razonable",isNum(r.fv)&&r.fv>0?r.fv:null],
-    ["Tu precio medio",own&&isNum(own.avg)&&own.avg>0?own.avg:null], ["Media 200 sesiones",isNum(r.mm200)&&r.mm200>-1&&isNum(P0)?P0/(1+r.mm200):null] ];
+  const refs=[ ["Máximo 1 año",isNum(r.hi52)&&r.hi52>-1&&isNum(P0)?P0/(1+r.hi52):null], ["Valor razonable",isNum(r.fv)&&r.fv>0?r.fv:null],
+    ["Tu precio medio",own&&isNum(own.avg)&&own.avg>0?own.avg:null], ["Media 200",isNum(r.mm200)&&r.mm200>-1&&isNum(P0)?P0/(1+r.mm200):null] ];
   const rv=x=>isNum(x[1])?x[1]:-Infinity, lad=[...refs.filter(x=>isNum(x[1])),["Cotización",P0,1]].sort((a,b)=>rv(b)-rv(a)), na=refs.filter(x=>!isNum(x[1]));
   const cPrice=`<section class="fp-c fp-cot"><div class="fp-ch"><h4>Precio</h4><span>${sesT}</span></div>
     ${cotRule(lad,cur)}<ol class="cot-l">${lad.map(([l,v,me])=>`<li class="${me?"me":""}"><span>${l}</span><b class="num">${l==="Tu precio medio"?money(v,cur):pxm(v,cur)}</b><em class="num">${me||!isNum(P0)?"":pct(P0/v-1,1,true)}</em></li>`).join("")}</ol>
@@ -4804,7 +4810,7 @@ function markRows(){ document.querySelectorAll("#pos-body tr.pr,#p-body tr.pr,#r
 // movimientos de la empresa, dentro de la ficha
 function fichaMov(t){
   const tx=DATA.tx.filter(r=>r.ticker===t).sort((a,b)=>(a.bd||0)-(b.bd||0)), dv=DATA.dv.filter(r=>r.ticker===t).sort((a,b)=>(a.d||0)-(b.d||0));   // de más antiguo a más reciente
-  const open=go=>`<button type="button" class="fh-go fp-go" data-gomov="${esc(t)}" data-tab="${go}">${go==="dividendos"?"Todos los dividendos":"Todas las compras"}<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5L8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
+  const open=go=>`<button type="button" class="fh-go fp-go" data-gomov="${esc(t)}" data-tab="${go}">${go==="dividendos"?"Todos los dividendos":"Todas las compras y ventas"}<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5L8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
   const nS=tx.filter(r=>r.sd).length, paid=dv.filter(DATA.isPaid);
   const cT=tx.length?`<section class="fp-c fp-mv"><div class="fp-ch"><h4>Compras y ventas</h4><span>${nf(0).format(tx.length)} ${tx.length===1?"compra":"compras"}${nS?` · ${nS} ${nS>1?"vendidas":"vendida"}`:""}</span></div>
     <div class="fp-ml tx${nS?"":" ns"}"><span class="h c0">Fecha</span><span class="h r">Acciones</span><span class="h r pr">Precio</span><span class="h r">Importe</span>${nS?`<span class="h r">Resultado</span>`:""}
@@ -4823,9 +4829,9 @@ function renderSheet(){ const el=$("sheet"), t=sheet&&DATA?sheet.t:null, p=t&&DA
     const tags=(p&&p.isOption?'<span class="tag">Opción</span>':"")+"";
     const idb=`<div class="fp-id">${logoBare(co.name,t,"xl")}<div class="fp-t"><h3>${esc(co.name)}${tags}</h3><div class="sub">${place}</div>${ind?`<div class="fp-in">${p&&p.isOption?optSubH(p.ticker):esc(ind)}</div>`:""}</div></div>`;
     // debajo del nombre, igual en todas las pestañas: la franja con cinco cifras (las de tu posición o, si no la tienes, las de su valoración)
-    const band=P?P.band:R?R.band:"", tb=tabs.length?`<div class="sh-tabw"><div class="sh-tabs" role="tablist">${tabs.map(([k,l])=>`<button type="button" role="tab" data-shtab="${k}" aria-selected="${k===sheet.tab}" aria-pressed="${k===sheet.tab}">${l}</button>`).join("")}</div></div>`:"";
+    const band=P?P.band:R?R.band:"", tb=tabs.length?`<div class="sh-tabw"><div class="sh-tabs" role="tablist">${tabs.map(([k,l])=>`<button type="button" role="tab" id="sht-${k}" aria-controls="sh-pane" data-shtab="${k}" aria-selected="${k===sheet.tab}" tabindex="${k===sheet.tab?0:-1}">${l}</button>`).join("")}</div></div>`:"";
     const body=sheet.tab==="pos"?P.body:sheet.tab==="pre"?R.body:sheet.tab==="mkt"?R.mkt:fichaMov(t);
-    $("sheet-b").innerHTML=`<div class="ficha fpx ${sheet.tab==="pos"&&!p.isOption?"fpp":sheet.tab==="pre"||sheet.tab==="mkt"?"fpu":"fpm"}"><div class="fp-h">${idb}</div>${band?`<div class="fx-band">${band}</div>`:""}${tb}<div class="sh-pane">${body}</div></div>`;
+    $("sheet-b").innerHTML=`<div class="ficha fpx ${sheet.tab==="pos"&&!p.isOption?"fpp":sheet.tab==="pre"||sheet.tab==="mkt"?"fpu":"fpm"}"><div class="fp-h">${idb}</div>${band?`<div class="fx-band">${band}</div>`:""}${tb}<div class="sh-pane" id="sh-pane" role="tabpanel"${tabs.length?` aria-labelledby="sht-${sheet.tab}"`:""}>${body}</div></div>`;
     $("sh-tt").innerHTML=`${logoBare(co.name,t)}<b>${esc(co.name)}</b>`; el.setAttribute("aria-label",co.name);
     const i=(sheet.list||[]).indexOf(t); $("sh-prev").disabled=i<=0; $("sh-next").disabled=i<0||i>=sheet.list.length-1;
   }
@@ -5406,7 +5412,10 @@ if(matchMedia("(pointer:coarse)").matches){ const S=$("sheet"); let g=null;
 $("sheet-x").addEventListener("click",()=>closeUI());
 $("sheet-bg").addEventListener("click",()=>closeUI());   // pulsar fuera de la ficha la cierra
 addEventListener("keydown",e=>{ if(!sheet) return; if(e.key==="Escape") closeUI();
-  else if((e.key==="ArrowLeft"||e.key==="ArrowRight")&&!e.target.closest("input,select,textarea")){ e.preventDefault(); stepSheet(e.key==="ArrowLeft"?-1:1); } });
+  else if((e.key==="ArrowLeft"||e.key==="ArrowRight")&&!e.target.closest("input,select,textarea")){ e.preventDefault();
+    const tab=e.target.closest(".sh-tabs [role=tab]");   // con el foco en una pestaña, las flechas pasan de pestaña; si no, de empresa
+    if(tab){ const T=[...tab.parentElement.querySelectorAll("[role=tab]")], n=T[(T.indexOf(tab)+(e.key==="ArrowLeft"?-1:1)+T.length)%T.length]; n.click(); requestAnimationFrame(()=>{ const m=document.querySelector(`.sh-tabs [data-shtab="${n.dataset.shtab}"]`); m&&m.focus(); }); }
+    else stepSheet(e.key==="ArrowLeft"?-1:1); } });
 /* Plan plegado en una línea: «Abrir» / «Plegar» siempre en el mismo sitio; se recuerda en este dispositivo */
 let plOpen=false; try{ plOpen=localStorage.getItem("plOpen")==="1"; }catch{}
 function plMode(){ $("s-plan").classList.toggle("open",plOpen); $("pl-bar").setAttribute("aria-expanded",plOpen); $("pl-tg").textContent=plOpen?"Plegar":"Ver"; }
@@ -5459,7 +5468,7 @@ addEventListener("hashchange",()=>{ const c=remCfg(location.hash);
   const maskIn=r=>{ if(r.nodeType===3){ if(r.parentNode&&!skip(r.parentElement)) wrap(r); return; } if(r.nodeType!==1||!r.isConnected||skip(r)) return;
     const w=document.createTreeWalker(r,NodeFilter.SHOW_TEXT), L=[]; let n; while(n=w.nextNode()){ if(skip(n.parentElement)) continue; AM.lastIndex=0; if(AM.test(n.textContent)) L.push(n); } L.forEach(wrap); };
   const mo=new MutationObserver(R2=>{ if(!R.classList.contains("priv")) return; for(const x of R2){ if(x.type==="characterData") maskIn(x.target); else x.addedNodes.forEach(maskIn); } });
-  const set=on=>{ R.classList.toggle("priv",on); btn.setAttribute("aria-pressed",on); const l=on?"Mostrar importes":"Ocultar importes"; btn.setAttribute("aria-label",l); btn.title=l;
+  const set=on=>{ R.classList.toggle("priv",on); btn.setAttribute("aria-pressed",on); btn.title=on?"Mostrar importes":"Ocultar importes";
     if(on){ mask(); mo.observe(document.body,{childList:true,subtree:true,characterData:true}); } else mo.disconnect(); };
   let on0=false; try{ on0=localStorage.getItem("priv")==="1"; }catch{} set(on0);
   btn.addEventListener("click",()=>{ const on=!R.classList.contains("priv"); try{ localStorage.setItem("priv",on?"1":"0"); }catch{} set(on); }); }
