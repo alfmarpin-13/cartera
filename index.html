@@ -2146,6 +2146,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 /* v260 · iPhone con iOS 26: Safari pinta la zona del reloj del color del elemento fijo que encuentra a 4 px del borde de arriba, sin difuminar.
    Tiene que ser un elemento de verdad (los pseudoelementos cuentan como el body), opaco, de lado a lado y sin backdrop-filter */
 #topcap{position:fixed;top:0;left:0;right:0;height:max(env(safe-area-inset-top,0px),10px);z-index:10;background:var(--canvas)}
+#topcap.sat{z-index:13}   /* v321 · con zona de reloj: por encima de las franjas (11) y de la franja estrecha (12), por debajo de la ficha, el buscador y los menús */
 body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body:has(#sheet:not([hidden])) #topcap{background:#191918}}
 :root[data-theme="dark"] body:has(#sheet:not([hidden])) #topcap{background:#191918}
@@ -3813,7 +3814,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v320";   // la versión publicada, en el pie
+const VER="v321";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5103,7 +5104,8 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   let fq=0;
   const fija=()=>{ fq=0; const on=document.body.dataset.view==="resumen"&&hero.offsetWidth>0, r=hero.getBoundingClientRect();
     const fx=on&&r.bottom<=C.offsetHeight; if(!fx&&C.classList.contains("on")) setTimeout(()=>document.dispatchEvent(new Event("tapa")),260); C.classList.toggle("on",fx);
-    document.body.classList.toggle("cap-dark",fx||on&&r.top<=0); };   // la tapa cambia justo cuando la franja toca arriba (o sale la estrecha)
+    const tc=document.getElementById("topcap"), capH=tc&&tc.classList.contains("sat")?tc.offsetHeight:0;
+    document.body.classList.toggle("cap-dark",fx||on&&r.top<=capH); };   // la tapa cambia justo cuando la franja toca arriba (o sale la estrecha)
   const pide=()=>{ if(!fq) fq=requestAnimationFrame(fija); };
   addEventListener("scroll",pide,{passive:true}); addEventListener("resize",pide); if(window.ResizeObserver) new ResizeObserver(pide).observe(hero);
   new MutationObserver(pide).observe(document.body,{attributes:true,attributeFilter:["data-view"]}); pide();
@@ -5701,9 +5703,10 @@ document.addEventListener("click",e=>{ const b=e.target.closest(".info"), pop=$(
 $("refresh").addEventListener("click",()=>{ load(true); loadAct(true); });
 // móvil: tirar hacia abajo desde arriba del todo lee la hoja de nuevo, igual que el botón Actualizar (en la app de la pantalla de inicio no hay otro gesto)
 if(matchMedia("(pointer:coarse)").matches){ let C=document.createElement("div"); C.id="topcap"; C.setAttribute("aria-hidden","true"); document.body.prepend(C);
+  const sat=()=>C.classList.toggle("sat",C.offsetHeight>10); sat(); addEventListener("resize",sat);   // v321 · zona del reloj: la tapa, por encima
   let raf=0; const past=()=>{ raf=0; const b=document.querySelector(".view:not([hidden]) > :is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs)");
     // en el móvil la franja va por encima de la tira: la barra cambia cuando la franja ha salido del todo (si no, quedaría una raya de su color bajo la barra)
-    document.body.classList.toggle("past-band",!b||scrollY>=b.offsetTop+b.offsetHeight-(+getComputedStyle(b).zIndex>10?0:C.offsetHeight));
+    document.body.classList.toggle("past-band",!b||scrollY>=b.offsetTop+b.offsetHeight-(+getComputedStyle(b).zIndex>+getComputedStyle(C).zIndex?0:C.offsetHeight));
     // el fondo de la página (lo que asoma al tirar hacia abajo) cambia cuando el desplazamiento se para: repintarlo en mitad del gesto daba tirones
     clearTimeout(tb); tb=setTimeout(()=>{ document.body.classList.toggle("bg-top",!document.body.classList.contains("past-band")); if(scrollY<=0&&enMarcha) otra(); },140); };
   let tb=0, enMarcha=false; addEventListener("scroll",()=>{ enMarcha=true; },{passive:true,once:true});
