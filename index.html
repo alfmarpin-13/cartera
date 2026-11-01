@@ -22,7 +22,7 @@
 
 /* Layout: una sola columna de lectura (máx. 1180px) con lienzo cálido; los bloques son paneles separados por lienzo, como en la hoja. */
 :root{
-  --canvas:#E4E2DC; --panel:#F0EEE8; --card:#FFFFFF; --row:#F7F6F3; --line:#DCDAD4; --hi:#E7E1D3;
+       --hi:#E7E1D3;
   --ink:#1A1A1A; --ink-soft:#3A3A37; --ink2:#50504B; --ink3:#656560; --ink4:#656560; --g3:#84847E; --g4:#8C8C86;
   --pos:#346F57; --pos-bg:#D4EADF; --pos-deep:#1F513C; --pos-mid:#7FB79F;
   --neg:#9C4848; --neg-bg:#EFD4D4; --neg-mid:#D99A9A;
@@ -33,13 +33,13 @@
   --ln1:#F4DAD7; --ln1t:#7A3A35; --ln2:#F0C6C2; --ln2t:#6E2C27; --ln3:#E39A94; --ln3t:#5A1F1B; --ln4:#CB6860; --ln4t:#3A0E0B; --ln5:#A13D36; --ln5t:#FFFFFF;
   --seg-on:var(--card); --seg-sh:0 1px 2px rgba(0,0,0,.08); --row-open:var(--card);
   --pf-bg:color-mix(in srgb,var(--warn) 8%,transparent); --pf-bg-h:color-mix(in srgb,var(--warn) 14%,transparent); --pf-bar:var(--warn); --we-bg:color-mix(in srgb,var(--ink) 4%,transparent);
-  --tag-bg:var(--row); --acc-pd:color-mix(in srgb,var(--accent) 30%,var(--panel)); --ps-bg:var(--acc-pd); --ps-op:1; --pd-op:.25; --pd-op-now:.3; --pd-op-acc:.35;
+  --tag-bg:var(--row);  --ps-bg:var(--acc-pd); --ps-op:1; --pd-op:.25; --pd-op-now:.3; --pd-op-acc:.35;
   --evo-msci:#3A3A37; --ret-net:var(--pos-deep); --ret-tot:var(--g4); --flag-ol:color-mix(in srgb,var(--ink) 10%,transparent);
   --rg1:.62; --rg2:.36; --rg3:.18; --rg4:.1;
   --est-bg:#EEF0F5; --hm-g:#BFDECF; --hm-r:#EFD4D4;
-  --f-sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
-  --ls-up:.1em; --r:12px; --r-bar:4px; --r-sm:8px; --r-md:12px;
+
+  
+  --ls-up:.1em;    
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --canvas:#0F0F0E; --panel:#1E1E1C; --card:#262624; --row:#2B2B28; --line:#2E2D2A; --hi:#2E2B24;
@@ -74,17 +74,17 @@
   --est-bg:#23262E; --hm-g:#2B4C3B; --hm-r:#593130;
 }
 *{box-sizing:border-box}
-html{-webkit-tap-highlight-color:transparent}   /* sin el recuadro gris que pone el iPhone al tocar un enlace o un botón */
+   /* sin el recuadro gris que pone el iPhone al tocar un enlace o un botón */
 body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--f-sans);font-size:14px;line-height:1.5;line-height:round(nearest,calc(1.5*1em - .01px),1px);--lhx:1.5;--lhp:initial;-webkit-font-smoothing:antialiased;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--canvas)}
-.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.wrap{margin:0 auto;display:flex;flex-direction:column;gap:14px}
 .num{font-variant-numeric:tabular-nums}
 .pos{color:var(--pos)} .neg{color:var(--neg)} .mute{color:var(--ink3)}
 button{font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 /* Barra superior */
-.top{position:relative;background:var(--canvas);display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:16px 12px;flex-wrap:wrap}
+.top{position:relative;background:var(--canvas);justify-content:space-between;padding-block:16px 12px;flex-wrap:wrap}
 .status{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink2)}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--g3);flex:none}
 .dot.live{background:var(--pos);box-shadow:0 0 0 3px var(--pos-bg)}
@@ -96,12 +96,12 @@ button{font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em 
 .btn:hover{background:var(--panel)}
 .btn.primary{background:var(--ink);color:var(--canvas);border-color:var(--ink)}
 .btn[disabled]{opacity:.5;cursor:default}
-@media (min-width:760px){.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5}}
+@media (min-width:761px){.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5}}
 /* Paneles */
-.panel{background:var(--panel);border-radius:var(--r);padding:22px clamp(16px,3vw,28px)}
-.label{font-size:11px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink3);margin:0 0 16px}
+.panel{background:var(--panel);}
+.label{font-size:11px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;margin:0 0 16px}
 .sub{font-size:12px;color:var(--ink2)}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
 @media (max-width:860px){.grid3{grid-template-columns:minmax(0,1fr)}}
 /* Hero */
 .big{font-size:clamp(40px,6vw,62px);font-weight:300;letter-spacing:-.025em;line-height:1;line-height:round(nearest,calc(1*1em - .01px),1px);--lhx:1;--lhp:initial;margin:6px 0 12px}
@@ -112,7 +112,7 @@ button{font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em 
 .kpi .s{font-size:12px;color:var(--ink3);margin-top:1px}
 .chartbox{position:relative;min-height:300px}
 .chartbox.sm{min-height:220px}
-.chart-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.chart-head{display:flex;justify-content:space-between;flex-wrap:wrap;}
 .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink2)}
 .legend i{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:6px;background:var(--c,currentColor)}
 .legend i.dash{background:repeating-linear-gradient(90deg,var(--c,currentColor) 0 4px,transparent 4px 7px)}
@@ -141,8 +141,8 @@ td{padding:11px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid
 tbody tr.pr{cursor:pointer;transition:background .12s}
 tbody tr.pr:hover{background:var(--row)}
 tbody tr.pr.open{background:var(--row-open)}
-.co{display:flex;align-items:center;gap:10px}
-.logo{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;background:var(--card);color:var(--ink2);border:1px solid var(--line);flex:none}
+
+
 .co b{font-weight:500;display:block}
 .co .cn{display:flex;align-items:center;gap:10px;min-width:0}
 /* móviles estrechos: la línea de «Aportado · Liquidez · empresas» y las pestañas de Movimientos caben enteras */
@@ -154,7 +154,7 @@ tbody tr.pr.open{background:var(--row-open)}
 @media (max-width:700px){.hide-s{display:none}}
 /* Barras horizontales */
 .bars{display:flex;flex-direction:column;gap:9px}
-.bar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;font-size:13px}
+.bar{display:grid;gap:4px 12px;font-size:13px}
 .bar .track{grid-column:1/-1;height:5px;background:var(--line);border-radius:var(--r-bar);overflow:hidden}
 .bar .fill{height:100%;background:var(--ink-soft);border-radius:var(--r-bar)}
 .bar .fill.pos{background:var(--pos)} .bar .fill.neg{background:var(--neg)} .bar .fill.acc{background:var(--accent)}
@@ -198,13 +198,13 @@ td.wrapc{white-space:normal;min-width:220px;text-align:left;color:var(--ink2);fo
 @keyframes rot{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.btn.ic.spin svg{animation:none}}
 /* Tu cartera hoy */
-.tbig{font-size:32px;font-weight:300;letter-spacing:-.02em;line-height:1.1;line-height:round(nearest,calc(1.1*1em - .01px),1px);--lhx:1.1;--lhp:initial;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.tbig{font-weight:300;letter-spacing:-.02em;line-height:1.1;line-height:round(nearest,calc(1.1*1em - .01px),1px);--lhx:1.1;--lhp:initial;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .tmap{position:relative;width:100%;min-height:200px}
-.tile{position:absolute;margin:0;border:0;padding:10px 12px;text-align:left;display:flex;flex-direction:column;gap:2px;overflow:hidden;cursor:pointer;border-radius:var(--r-sm);font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;box-shadow:inset 0 0 0 1.5px var(--panel);transition:filter .15s}
+.tile{position:absolute;margin:0;border:0;text-align:left;display:flex;flex-direction:column;overflow:hidden;cursor:pointer;border-radius:var(--r-sm);font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;box-shadow:inset 0 0 0 1.5px var(--panel);transition:filter .15s}
 .tile:hover{filter:saturate(1.15) brightness(.97)}
-.tile .tp{margin-top:auto;font-size:20px;font-weight:400;letter-spacing:-.01em;line-height:1.1;line-height:round(nearest,calc(1.1*1em - .01px),1px);--lhx:1.1;--lhp:initial}
-.tile.sm{padding:7px 9px}.tile.sm .tp{font-size:14px}
-.tile.xs{padding:3px;align-items:center;justify-content:center;text-align:center;gap:0}
+.tile .tp{font-size:20px;font-weight:400;letter-spacing:-.01em;line-height:1.1;line-height:round(nearest,calc(1.1*1em - .01px),1px);--lhx:1.1;--lhp:initial}
+
+.tile.xs{text-align:center;gap:0}
 .tile.xs .tp{margin-top:0;font-size:11px}
 .lv0{background:var(--lv0);color:var(--ink2)}
 .lp1{background:var(--lp1);color:var(--lp1t)}.lp2{background:var(--lp2);color:var(--lp2t)}.lp3{background:var(--lp3);color:var(--lp3t)}.lp4{background:var(--lp4);color:var(--lp4t)}.lp5{background:var(--lp5);color:var(--lp5t)}
@@ -247,7 +247,7 @@ td.wrapc{white-space:normal;min-width:220px;text-align:left;color:var(--ink2);fo
   .inp{font-size:16px;height:42px}
   .toolbar{display:flex;flex-wrap:wrap}
   .toolbar .search{flex:1 1 100%}
-  .toolbar select.inp{flex:1 1 0;min-width:0}
+  .toolbar select.inp{min-width:0}
   .btn.ic span{display:none}.btn.ic{width:36px;padding:0;justify-content:center}
   .big{font-size:44px}
 }
@@ -259,12 +259,12 @@ td.wrapc{white-space:normal;min-width:220px;text-align:left;color:var(--ink2);fo
 .co>div{min-width:0}
 .flag{width:15px;height:15px;border-radius:50%;object-fit:cover;vertical-align:-3px;margin-right:8px;outline:1px solid var(--flag-ol);outline-offset:-1px}
 .bar>span:first-child{display:flex;align-items:center;min-width:0}
-.tile .tl{width:22px;height:22px;border-radius:var(--r-sm);background:#FFFFFF;display:grid;place-items:center;margin-bottom:6px;flex:none}
-.tile .tl img{width:76%;height:76%;object-fit:contain}
+
+
 /* Preselección: mercado frente a tus estimaciones */
 .rt th.g{font-size:11px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;text-align:center;cursor:default;padding-bottom:4px;border-bottom:0}
 .rt th.est{background:var(--est-bg);color:var(--accent)}
-.rt td.est{background:var(--est-bg);color:var(--accent);font-style:italic}
+.rt td.est{background:var(--est-bg);font-style:italic}
 .rt tr.pr:hover td.est{background:var(--est-bg)}
 @media (max-width:700px){.rt td.est{background:none}.rt td.r-amt.est{color:var(--accent)}}
 /* Evolución */
@@ -274,13 +274,13 @@ td.wrapc{white-space:normal;min-width:220px;text-align:left;color:var(--ink2);fo
 .legend i.area{height:9px;border-radius:var(--r-bar);background:var(--pos);opacity:.3}
 /* Tu cartera hoy (v2) */
 .tile{padding:10px 11px;gap:4px}
-.tile .th{display:flex;align-items:center;gap:7px;min-width:0}
-.tile .tl{width:22px;height:22px;border-radius:var(--r-sm);background:#FFFFFF;display:grid;place-items:center;flex:none;margin:0;font-size:11px;font-weight:600;color:var(--ink3);box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+
+.tile .tl{margin-bottom:6px;width:22px;height:22px;border-radius:var(--r-sm);background:#FFFFFF;display:grid;place-items:center;flex:none;margin:0;font-size:11px;font-weight:600;color:var(--ink3);box-shadow:0 0 0 1px rgba(0,0,0,.06)}
 .tile .tl img{width:78%;height:78%;object-fit:contain}
-.tile.lg .tp{font-size:20px}
-.tile.md{padding:8px 9px}.tile.md .tl{width:20px;height:20px}.tile.md .tp{font-size:16px}
-.tile.sm{padding:4px;align-items:center;justify-content:center;text-align:center;gap:3px}.tile.sm .tl{width:20px;height:20px}.tile.sm .tp{margin-top:0;font-size:12px;font-weight:500}
-.tile.xs{padding:2px;align-items:center;justify-content:center}.tile.xs .tl{width:16px;height:16px;border-radius:var(--r-bar)}
+
+.tile.md .tl{width:20px;height:20px}
+.tile.sm{align-items:center;justify-content:center;text-align:center;gap:3px}.tile.sm .tl{width:20px;height:20px}
+.tile.xs{align-items:center;justify-content:center}
 /* Mapa: una sola composición para todos los tamaños */
 .tile,.tile.md,.tile.sm,.tile.xs{align-items:stretch;justify-content:flex-start;text-align:left;gap:4px}
 .tile.md{padding:9px 10px} .tile.sm{padding:7px 8px} .tile.xs{padding:5px 6px}
@@ -303,11 +303,11 @@ td.wrapc{white-space:normal;min-width:220px;text-align:left;color:var(--ink2);fo
 .bar .flag{margin-right:0;width:18px;height:18px;flex:none}
 /* Dividendos (v2) */
 .dv-top{display:grid;grid-template-columns:minmax(0,1.7fr) repeat(3,minmax(0,1fr));gap:12px;margin-bottom:12px}
-.dv-card{background:var(--card);border-radius:var(--r-md);padding:18px 20px;min-width:0}
-.dv-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:14px;font-size:13px;font-weight:500;color:var(--ink2)}
-.dv-k{font-size:12px;color:var(--ink2)}
-.dv-v{font-size:24px;font-weight:300;letter-spacing:-.015em;line-height:1.2;line-height:round(nearest,calc(1.2*1em - .01px),1px);--lhx:1.2;--lhp:initial;margin:4px 0 2px}
-.dv-s{font-size:12px;color:var(--ink3)}
+.dv-card{min-width:0}
+.dv-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
+
+.dv-v{line-height:1.2;line-height:round(nearest,calc(1.2*1em - .01px),1px);}
+
 .prog{display:flex;height:8px;border-radius:var(--r-bar);background:var(--row);overflow:hidden;margin:12px 0 8px}
 .prog span{height:100%}
 .prog .pa{background:var(--pos)} .prog .ps{background:var(--pos-mid);opacity:.55}
@@ -351,40 +351,36 @@ details.chk[open]>summary{margin-bottom:14px}
 /* Cabecera v2 */
 .top{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:12px}
 .top .status{justify-self:start}
-.top .tools{justify-self:end;display:flex;align-items:center;gap:8px}
-@media (max-width:760px){.top{grid-template-columns:minmax(0,1fr) auto}.top .nav{grid-column:1/-1;grid-row:2;width:100%}}
+.top .tools{justify-self:end;display:flex;align-items:center;}
 /* Tarjetas blancas reutilizables */
 /* Fichas */
 .ficha{padding:20px}
 .logo.xl{width:56px;height:56px;border-radius:var(--r-md);font-size:16px;border:1px solid var(--line)}
 .logo.xl img{width:72%;height:72%}
 @container ficha (max-width:520px){.ficha{padding:14px}}
-tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink3);border-bottom:1px solid var(--line);cursor:default;background:none}
+tr.grp-row td{padding:40px 10px 10px;border-bottom:1px solid var(--line);cursor:default;background:none}
 @media (max-width:700px){.rt tbody tr.grp-row{display:block;padding:18px 2px 6px}.rt tbody tr.grp-row td{display:block;padding:0;border:0}}
 /* Rendimiento en preselección */
 /* Preselección sin azules: la valoración se separa por posición, no por color */
 .rt th.est,.rt td.est{background:none!important;color:inherit;font-style:normal}
-.rt th.gsep,.rt td.gsep{border-left:1px solid var(--line);padding-left:18px}
+.rt th.gsep,.rt td.gsep{padding-left:18px}
 .rt td.est{font-size:13px;color:var(--ink2)}
 .rt td.est.r-amt{font-size:13px;color:inherit}
 /* Bloque principal v3 */
-.hero3{display:flex;flex-direction:column;gap:0}
-.hero3 .chartbox{min-height:340px}
-.hero3 .legend{margin-top:10px}
-@media (max-width:700px){.hero3 .chartbox{min-height:250px}}
+
+
+
 /* Bloque principal oscuro */
-.hero3{background:var(--h-bg);color:var(--h-fg)}
+.hero3{display:flex;flex-direction:column;gap:0;background:var(--h-bg);color:var(--h-fg)}
 .hero3 .label{color:var(--h-fg3)}
 .hero3 .big .cents{color:var(--h-fg3)}
 .hero3 .pos{color:var(--h-pos)} .hero3 .neg{color:var(--h-neg)}
 .hero3 .seg{background:var(--h-card)} .hero3 .seg button{color:var(--h-fg2)}
 .hero3 .seg button[aria-pressed="true"]{background:var(--h-fg);color:var(--h-bg);box-shadow:none}
-.hero3 .legend{color:var(--h-fg2)}
+.hero3 .legend{margin-top:10px;color:var(--h-fg2)}
 .hero3 .chartbox{min-height:230px;height:230px}
 .hero3 .skel{background:linear-gradient(90deg,var(--h-card) 0,var(--h-line) 50%,var(--h-card) 100%);background-size:200% 100%}
 @media (max-width:700px){.hero3 .chartbox{height:200px;min-height:200px}}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--h-bg:#22332A;--h-card:#2C4136;--h-line:#375044;--h-fg3:#97A29A}}
-:root[data-theme="dark"]{--h-bg:#22332A;--h-card:#2C4136;--h-line:#375044;--h-fg3:#97A29A}
 /* Franja principal */
 .evo-c{height:220px;min-height:220px}
 @media (max-width:700px){.evo-c{height:190px;min-height:190px}}
@@ -404,7 +400,7 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 .bg .bs{font-size:12px;color:var(--h-fg3);padding-top:12px;line-height:1.4;line-height:round(nearest,calc(1.4*1em - .01px),1px);--lhx:1.4;--lhp:initial}
 .bg .bs b{color:var(--h-fg2);font-weight:500}
 .bg .bs .pos{color:var(--h-pos)} .bg .bs .neg{color:var(--h-neg)} .bg .bs .mute{color:var(--h-fg3)}
-.bg .bs .sep{display:inline-block;width:1px;height:10px;background:var(--h-line);margin:0 12px;vertical-align:-1px}
+.bg .bs .sep{display:inline-block;}
 /* Hoy: centrado óptico sobre una altura común */
 @media (max-width:900px){
   .bg{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -429,11 +425,11 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 /* Rendimiento: mejores y peores */
 .pf-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
 @media (max-width:760px){.pf-cols{grid-template-columns:minmax(0,1fr)}}
-.pf-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(60px,34%) 66px;gap:12px;align-items:center;width:100%;background:none;border:0;border-bottom:1px solid var(--line);padding:9px 0;font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;color:inherit;text-align:left;cursor:pointer}
+.pf-row{display:grid;gap:12px;align-items:center;width:100%;background:none;border:0;border-bottom:1px solid var(--line);font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;color:inherit;text-align:left;cursor:pointer}
 .pf-row:hover{background:var(--row)}
-.pf-bar{height:6px;border-radius:var(--r-bar);background:var(--line);overflow:hidden}
+.pf-bar{border-radius:var(--r-bar);background:var(--line);overflow:hidden}
 .pf-bar span{display:block;height:100%;border-radius:var(--r-bar)}
-.pf-row .c{text-align:right;font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
+.pf-row .c{text-align:right;font-size:13px;font-variant-numeric:tabular-nums}
 .pf-row .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--pos);margin-left:6px;vertical-align:2px}
 /* ===== Evolución + Tu cartera hoy en una fila ===== */
 .duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:var(--gap);align-items:stretch}
@@ -460,14 +456,14 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 .rg-l b{margin-left:auto;font-weight:400;white-space:nowrap}
 .pg4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px 8px}
 .pg4>div{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0}
-.pg4 .flag{width:26px;height:26px;margin:0 0 2px}.pg4 b{font-size:16px;font-weight:400;white-space:nowrap}
+.pg4 b{font-size:16px;font-weight:400;white-space:nowrap}
 .pg4 span{font-size:12px;color:var(--ink3);white-space:nowrap}.pg4.nn span{display:none}
 .pg4 .flag.world{border-radius:0;object-fit:contain;outline:0}
 @media (min-width:861px) and (max-width:1180px){.rg{width:104px;height:104px}.rgx{gap:14px}}
 #b-ind .fill{background:color-mix(in srgb,var(--ink-soft) 62%,var(--panel))}#b-ind .fill.rest{background:color-mix(in srgb,var(--ink-soft) 32%,var(--panel))}
 .ccx{flex:1 1 auto;display:flex;flex-direction:column}
 .cv-box{position:relative;flex:1 1 auto;min-height:230px}.cv{position:absolute;inset:0;width:100%;height:100%;display:block}
-.cv-g{stroke:var(--line);stroke-dasharray:2 3}.cv-t{font-size:11px;fill:var(--g3);font-family:"IBM Plex Sans",system-ui,sans-serif}
+.cv-g{stroke:var(--line);stroke-dasharray:2 3}.cv-t{font-size:11px;fill:var(--g3);}
 .cv-eq{stroke:var(--g4);stroke-dasharray:3 3;opacity:.7}
 .cv-a{fill:var(--ink-soft);opacity:.08}.cv-l{fill:none;stroke:var(--ink-soft);stroke-width:2;stroke-linejoin:round}
 .cv-m{stroke:var(--g4);stroke-dasharray:2 2}.cv-d{fill:var(--ink-soft)}.cv-v{font-size:11px;fill:var(--ink)}
@@ -487,7 +483,7 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 .amp .a-wt{background:var(--lv0)}
 /* ===== Mapa: misma tipografía en todos los bloques ===== */
 .tmap .tile,.tmap .tile.lg,.tmap .tile.md,.tmap .tile.sm,.tmap .tile.xs{padding:8px 9px;align-items:stretch;justify-content:flex-start;text-align:left;gap:3px}
-.tmap .tile .th{display:flex;align-items:center;gap:7px;min-width:0}
+.tmap .tile .th{display:flex;align-items:center;gap:7px;}
 .tmap .tile .tl,.tmap .tile.md .tl,.tmap .tile.sm .tl,.tmap .tile.xs .tl{display:flex;align-items:center;width:auto;max-width:62px;height:22px;border-radius:0;margin:0;background:none;box-shadow:none;overflow:visible}
 .tmap .tile .tl img{height:100%;width:auto;max-width:62px;object-fit:contain;object-position:left center}
 .tmap .tile .th{min-height:24px}
@@ -518,12 +514,12 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 .yb.i>.p{left:50%}.yb.i>.n{right:50%}.yb.i>span{box-shadow:inset 0 0 0 1px var(--accent)}
 /* ===== Niveles de rentabilidad de la hoja ===== */
 .rlv{display:inline-block;min-width:66px;text-align:right;padding:2px 7px;border-radius:var(--r-sm);font-weight:400;background:var(--row);color:var(--ink2)}
-.rlv.rp5{background:#1F513C;color:#FFFFFF}.rlv.rp4{background:#7FB79F;color:#173F2F}.rlv.rp3{background:#BFDECF;color:#3B5449}.rlv.rp2{background:#E2EDCD;color:#4A5232}.rlv.rp1{background:#F6EFD4;color:#6B5420}
-.rlv.rn5{background:#7E3535;color:#FFFFFF}.rlv.rn4{background:#D99A9A;color:#5E2424}.rlv.rn3{background:#E5B5B5;color:#6B3A3A}.rlv.rn2{background:#F0CDB6;color:#7A4A2E}.rlv.rn1{background:#F5E0CC;color:#6B4A2A}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rlv.rp5{background:#367F5B;color:#fff}:root:not([data-theme="light"]) .rlv.rp4{background:#2E6A4E;color:#EAF6EF}:root:not([data-theme="light"]) .rlv.rp3{background:#25453A;color:#CDE9DB}:root:not([data-theme="light"]) .rlv.rp2{background:#323C21;color:#DCE8C0}:root:not([data-theme="light"]) .rlv.rp1{background:#3A3322;color:#E9DDB8}
-  :root:not([data-theme="light"]) .rlv.rn5{background:#A9473F;color:#fff}:root:not([data-theme="light"]) .rlv.rn4{background:#80403A;color:#FBE3E0}:root:not([data-theme="light"]) .rlv.rn3{background:#5A2F2C;color:#F3CFCB}:root:not([data-theme="light"]) .rlv.rn2{background:#4B3123;color:#F4D2BA}:root:not([data-theme="light"]) .rlv.rn1{background:#3D3023;color:#F2D8BF}}
-:root[data-theme="dark"] .rlv.rp5{background:#367F5B;color:#fff}:root[data-theme="dark"] .rlv.rp4{background:#2E6A4E;color:#EAF6EF}:root[data-theme="dark"] .rlv.rp3{background:#25453A;color:#CDE9DB}:root[data-theme="dark"] .rlv.rp2{background:#323C21;color:#DCE8C0}:root[data-theme="dark"] .rlv.rp1{background:#3A3322;color:#E9DDB8}
-:root[data-theme="dark"] .rlv.rn5{background:#A9473F;color:#fff}:root[data-theme="dark"] .rlv.rn4{background:#80403A;color:#FBE3E0}:root[data-theme="dark"] .rlv.rn3{background:#5A2F2C;color:#F3CFCB}:root[data-theme="dark"] .rlv.rn2{background:#4B3123;color:#F4D2BA}:root[data-theme="dark"] .rlv.rn1{background:#3D3023;color:#F2D8BF}
+.rlv.rp5{background:#1F513C;color:#FFFFFF}.rlv.rp4{background:#7FB79F;color:#173F2F}.rlv.rp3{background:#BFDECF;color:#3B5449}
+.rlv.rn5{background:#7E3535;color:#FFFFFF}.rlv.rn4{background:#D99A9A;color:#5E2424}.rlv.rn3{background:#E5B5B5;color:#6B3A3A}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rlv.rp4{background:#2E6A4E;color:#EAF6EF}:root:not([data-theme="light"]) .rlv.rp3{background:#25453A;color:#CDE9DB}
+  :root:not([data-theme="light"]) .rlv.rn5{background:#A9473F;color:#fff}:root:not([data-theme="light"]) .rlv.rn4{background:#80403A;color:#FBE3E0}:root:not([data-theme="light"]) .rlv.rn3{background:#5A2F2C;color:#F3CFCB}}
+:root[data-theme="dark"] .rlv.rp4{background:#2E6A4E;color:#EAF6EF}:root[data-theme="dark"] .rlv.rp3{background:#25453A;color:#CDE9DB}
+:root[data-theme="dark"] .rlv.rn5{background:#A9473F;color:#fff}:root[data-theme="dark"] .rlv.rn4{background:#80403A;color:#FBE3E0}:root[data-theme="dark"] .rlv.rn3{background:#5A2F2C;color:#F3CFCB}
 @media (max-width:700px){ .rlv,#t-pos .rlv,#t-pos .tpill{width:auto;min-width:0;padding:1px 6px} #t-pos td[data-l="Hoy"],#t-pos td[data-l="Rentab."]{text-align:inherit} #t-pos td.r-sub{text-align:right} }
 /* ficha en oscuro: su propia superficie, un punto más clara que la página, con tarjetas más claras aún y borde suave */
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet{--canvas:#191918;--panel:#242422;--card:#2C2C29;box-shadow:-28px 0 56px -16px rgba(0,0,0,.7)}:root:not([data-theme="light"]) .fp-c,:root:not([data-theme="light"]) .fp-calc{border-color:#2A2A27}}
@@ -561,7 +557,7 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 #t-pos .co b{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #t-pos .logo.sm{width:24px;height:24px}
 /* con la columna de acciones (más de 1200 px), las pastillas y la barra del peso, algo más estrechas, para que todo quepa */
-@media (min-width:1201px){#t-pos .tpill,#t-pos .rlv{width:68px;min-width:68px}#t-pos .wb2{grid-template-columns:40px 30px;gap:6px}#t-pos th,#t-pos td{padding-left:8px;padding-right:8px}}
+@media (min-width:1201px){#t-pos .tpill,#t-pos .rlv{width:68px;min-width:68px}#t-pos th,#t-pos td{padding-left:8px;padding-right:8px}}
 .tpill{display:inline-block;min-width:62px;text-align:right;padding:2px 7px;border-radius:var(--r-sm);font-weight:400}
 .tpill.pos{background:var(--pos-bg);color:var(--pos)}.tpill.neg{background:var(--neg-bg);color:var(--neg)}
 #t-pos .show-s{display:none}
@@ -571,8 +567,8 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
   .rt#t-pos tbody tr{padding:10px 2px;row-gap:2px}
   .rt#t-pos td{padding:0}
   .rt#t-pos td.r-main{grid-row:1}
-  .rt#t-pos td.r-amt{font-size:14px}
-  .rt#t-pos td.r-meta{grid-column:1;grid-row:2;margin:0 0 0 48px;font-size:12px}
+
+  .rt#t-pos td.r-meta{font-size:12px}
   .rt#t-pos td.r-meta::before{content:none}
   .rt#t-pos td.r-sub{font-size:12px}
   #t-pos .show-s{display:inline}
@@ -580,7 +576,7 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
   #t-pos .tpill:not(.pos):not(.neg){padding-left:0}
 }
 /* ===== Sistema visual ===== */
-:root{--fs-hero:56px;--fs-xl:32px;--fs-l:20px;--fs-m:16px;--fs-b:14px;--fs-s:13px;--fs-xs:11px;--gap:16px;--rc:12px}
+
 .wrap,.view{gap:var(--gap)}
 .grid3{gap:var(--gap)}
 .grid3>.stack{display:flex;flex-direction:column;gap:var(--gap);min-width:0}
@@ -624,22 +620,22 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 #s-divs .dv-top>.dv-card{background:none;border-radius:0;padding:0 24px;border-left:1px solid var(--line)}
 #s-divs .dv-top>.dv-card:first-child{padding-left:0;border-left:0}
 .dv-cal{margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
-#b-payers .fill{background:color-mix(in srgb,var(--ink-soft) 62%,var(--panel))}
+
 .lgb.cs{width:28px;height:16px}.lgb-t.cs{font-size:11px}
 @media (max-width:1000px){#s-divs .dv-top>.dv-card{padding:16px 0 0;border-left:0}#s-divs .dv-top>.dv-card:nth-child(n+2){border-top:1px solid var(--line);margin-top:16px}#s-divs .dv-top>.dv-card:nth-child(3){padding-left:20px;border-left:1px solid var(--line)}#s-divs .dv-top>.dv-card:first-child{padding-top:0}}
-.mc{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px 3px}
+.mc{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));}
 .mc-w{font-size:11px;color:var(--ink3);text-align:center;padding:4px 0 6px}
-.mc-d{display:flex;flex-direction:column;align-items:center;gap:3px;min-height:58px;padding:5px 0 4px;border-top:1px solid var(--line);min-width:0}
+.mc-d{display:flex;flex-direction:column;align-items:center;border-top:1px solid var(--line);min-width:0}
 .mc-n{font-size:12px;color:var(--ink3);white-space:nowrap;line-height:1.3;line-height:round(nearest,calc(1.3*1em - .01px),1px);--lhx:1.3;--lhp:initial}
 .mc-d.on .mc-n{color:var(--ink)}
 .mc-d.past .mc-n{opacity:.45}
 .mc-d.today .mc-n{color:var(--ink);font-weight:600;border-bottom:2px solid var(--accent)}
-.mc-l{display:flex;flex-direction:column;align-items:center;gap:2px}
+.mc-l{display:flex;align-items:center;}
 .mc-l em{font-style:normal;font-size:11px;color:var(--ink3)}
 .mc-v{font-size:11px;color:var(--ink2);white-space:nowrap}
 .mcal.na .mc-v{display:none}
 /* ===== Anatomía del retorno, mismo estilo que Dividendos ===== */
-#s-ret .op{align-self:center;font-size:20px;color:var(--ink3)}
+#s-ret .op{font-size:20px;color:var(--ink3)}
 #anat{margin-top:4px}
 #s-ret .al{font-size:var(--fs-s);font-weight:400;letter-spacing:0;text-transform:none;color:var(--ink2)}
 #s-ret .abar,#s-ret .abar.net{height:12px;border-radius:var(--r-bar)}
@@ -675,7 +671,7 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 #theme .sun{display:none}#theme.is-dark .sun{display:block}#theme.is-dark .moon{display:none}
 .evo-leg .sh{display:none}
 @media (max-width:600px){.evo-leg{gap:6px 12px;font-size:12px;flex-wrap:nowrap;white-space:nowrap}.evo-leg i{width:11px!important;margin-right:5px!important}.evo-leg .lg{display:none}.evo-leg .sh{display:inline}
-  #h-sub{white-space:nowrap;font-size:12px}#h-sub .sep{margin:0 8px}}
+  #h-sub{white-space:nowrap;font-size:12px}}
 @media (max-width:380px){#h-sub{font-size:11px}#h-sub .sep{margin:0 6px}.bg .bv{font-size:18px}.bg .c1,.bg .c2,.bg .c3{padding-left:9px}.bg .c1{padding-left:0}}
 /* mini calendario: todas las filas del mismo alto, una sola raya por fila de lado a lado y el fin de semana como una banda */
 .mc{gap:0}
@@ -772,16 +768,16 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 @media (max-width:340px){#m-k .mk-yr b{width:12px}#m-k .mk-yr small{font-size:11px;letter-spacing:-.02em}}
 @media (max-width:700px){.mk-v{font-size:20px}}
 /* ===== Movimientos (rediseño) ===== */
-.mvt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.mvt{display:grid;gap:14px}
 .mvt a{display:flex;flex-direction:column;gap:4px;padding:18px 22px 16px;border-radius:var(--rc);background:var(--panel);color:var(--ink);text-decoration:none;border:1px solid transparent;transition:background .15s,box-shadow .15s}
 .mvt a:hover{border-color:var(--line)}
-.mvt a[aria-current="page"]{background:var(--card);border-color:var(--line)}
+
 .mvt-n{font-size:13px;color:var(--ink2);display:flex;justify-content:space-between;gap:8px}
 .mvt-n em{font-style:normal;color:var(--ink3);font-size:12px}
-.mvt a[aria-current="page"] .mvt-n{color:var(--ink);font-weight:600}
-.mvt-v{font-size:24px;font-weight:300;letter-spacing:-.015em;white-space:nowrap;margin-top:2px}
+.mvt a[aria-current="page"] .mvt-n{font-weight:600}
+.mvt-v{font-weight:300;letter-spacing:-.015em;white-space:nowrap;}
 .mvt-v.pos{color:var(--pos)}.mvt-v.neg{color:var(--neg)}
-.mvt-s{font-size:12px;color:var(--ink3)}
+.mvt-s{color:var(--ink3)}
 /* banda de cifras: misma altura en todas las pestañas */
 .mvb{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));height:116px;margin:4px 0 22px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
 .mvb .mk{display:flex;flex-direction:column;padding:0 22px;border-left:1px solid var(--line);min-width:0}
@@ -796,8 +792,7 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 @media (min-width:701px){#s-mov .rt{table-layout:fixed;width:100%}#s-mov .rt th:nth-child(1){width:96px}#s-mov .rt th:nth-child(2){width:300px}#s-mov .rt td{overflow:hidden}}
 /* «Interactive Brokers» cabe entero: su columna toma el ancho de Acciones y Estado, que les sobraba */
 @media (min-width:701px){#s-mov .rt th[data-k="broker"]:not(:nth-child(2)){width:132px}#s-mov .rt th[data-k="shares"]{width:72px}#s-mov .rt th[data-k="st"]{width:80px}}
-@media (max-width:1000px){.mvt{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:700px){.mvt{gap:10px}.mvt a{padding:14px 16px 12px}.mvt-v{font-size:20px}
+@media (max-width:700px){.mvt{gap:10px}.mvt a{padding:14px 16px 12px}
   .mvb{grid-template-columns:repeat(2,minmax(0,1fr));height:auto;padding:0;border-bottom:1px solid var(--line)}
   .mvb .mk{height:104px;padding:14px 0 0 16px;border-left:1px solid var(--line)}
   .mvb .mk:nth-child(odd){padding-left:0;border-left:0}.mvb .mk:nth-child(n+3){border-top:1px solid var(--line)}
@@ -818,20 +813,20 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 #s-uni .mvb{margin-bottom:0}
 /* rendimiento */
 /* en el móvil no caben en una fila: el mismo segmentado en dos (sesión y máximo arriba; los plazos debajo) */
-.pf-row{height:39px;padding:0;grid-template-columns:minmax(0,1fr) minmax(60px,30%) 66px}
+.pf-row{height:39px;padding:0;}
 /* la columna del nombre mide lo que el nombre más largo de la lista; la barra se queda con lo que sobra, hasta un 30 %, y todas empiezan a la misma altura */
-@media (min-width:601px){#perf-up,#perf-dn{display:grid;grid-template-columns:minmax(max-content,1fr) minmax(0,30%) 66px;column-gap:12px}#perf-up>*,#perf-dn>*{grid-column:1/-1}#perf-up>.pf-row,#perf-dn>.pf-row{grid-template-columns:subgrid}}
+@media (min-width:601px){#perf-up,#perf-dn{display:grid;column-gap:12px}#perf-up>*,#perf-dn>*{grid-column:1/-1}#perf-up>.pf-row,#perf-dn>.pf-row{grid-template-columns:subgrid}}
 .pf-row .co .tag{margin-left:2px}
-@media (max-width:600px){.pf-row{grid-template-columns:minmax(0,1fr) 66px;height:auto;min-height:39px;padding:6px 0}.pf-row .pf-bar{display:none}.pf-row .co{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;row-gap:2px;align-items:center}.pf-row .co>.lgb{grid-row:1/span 2}.pf-row .co>b{white-space:normal}.pf-row .co>.tag{grid-column:2;justify-self:start;margin-left:0}.pf-row .co:not(:has(.tag))>b{grid-row:1/span 2}}
+@media (max-width:600px){.pf-row{height:auto;padding:6px 0}.pf-row .pf-bar{display:none}.pf-row .co{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;row-gap:2px;align-items:center}.pf-row .co>.lgb{grid-row:1/span 2}.pf-row .co>b{white-space:normal}.pf-row .co>.tag{grid-column:2;justify-self:start;margin-left:0}.pf-row .co:not(:has(.tag))>b{grid-row:1/span 2}}
 /* todas las empresas */
-@media (min-width:701px){#s-plist .toolbar{flex-wrap:nowrap}#s-plist .toolbar .search{flex:0 0 300px}#s-plist .toolbar select.inp{flex:0 0 auto;min-width:118px}}
+@media (min-width:701px){#s-plist .toolbar{flex-wrap:nowrap}#s-plist .toolbar select.inp{flex:0 0 auto;min-width:118px}}
 @media (max-width:700px){#s-plist .toolbar select.inp{flex:1 1 100%}}
 #t-p td.est{font-size:13px;color:var(--ink)}
 #t-p td[data-l="Precio"],#t-p td[data-l="Exigida"]{color:var(--ink2)}
 #t-p td[data-l="Exigida"]{font-size:13px}
 @media (max-width:700px){
   #t-p .co{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;row-gap:3px;align-items:center}
-  #t-p .co>.lgb{grid-row:1/span 3}
+
   #t-p .co>b{white-space:normal}
   #t-p .co>.tag{grid-column:2;justify-self:start;margin-left:0}
 }
@@ -845,7 +840,7 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
   #pl-k .mk-s,#m-k .mk-s{white-space:normal}}
 /* Movimientos: la franja de cifras mide lo mismo en las cuatro pestañas y sus rayas verticales llegan siempre de arriba abajo
    (las celdas no dependen de si llevan barra o gráfico) */
-@media (min-width:1001px){#m-k{height:131px;padding:16px 0;grid-template-rows:minmax(0,1fr)}#m-k>.mk{grid-row:1}}
+@media (min-width:1001px){#m-k{padding:16px 0;grid-template-rows:minmax(0,1fr)}#m-k>.mk{grid-row:1}}
 @media (min-width:901px) and (max-width:1000px){#m-k{grid-template-columns:repeat(2,minmax(0,1fr));height:auto;padding:0;border-bottom:1px solid var(--line)}
   #m-k .mk{height:auto;min-height:116px;padding:14px 0 14px 16px;border-left:1px solid var(--line)}#m-k .mk:nth-child(odd){padding-left:0;padding-right:16px;border-left:0}#m-k .mk:nth-child(n+3){border-top:1px solid var(--line)}#m-k .mk-s{white-space:normal}}
 @media (max-width:900px){#m-k .mk{min-height:116px}}
@@ -853,7 +848,7 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 /* la primera fila deja sitio al reparto de Operaciones (compras y ventas), igual en las cuatro pestañas */
 @media (max-width:1000px){#m-k .mk:nth-child(-n+2){min-height:125px}}
 @media (max-width:440px){#m-k .mk:nth-child(-n+2){min-height:154px}}
-@media (min-width:701px){#s-plist .toolbar .search{flex:0 1 300px;min-width:180px}}
+@media (min-width:701px){#s-plist .toolbar .search{min-width:180px}}
 @media (min-width:701px) and (max-width:1200px){#t-p [data-k="price"]{display:none}}
 @media (min-width:701px) and (max-width:1060px){#t-p [data-k="today"]{display:none}}
 
@@ -874,7 +869,7 @@ tr.grp-row td{padding:40px 10px 10px;font-size:11px;font-weight:600;letter-spaci
 #t-p td[data-l="Tesis"]{font-size:13px;color:var(--ink)}
 #t-p .show-s{display:none}
 #t-p tbody tr.pr.inpf>td:first-child{box-shadow:inset 3px 0 0 var(--pf-bar)}
-.pf-row{padding-left:10px}
+
 .pf-row.inpf{box-shadow:inset 3px 0 0 var(--pf-bar)}
 @media (max-width:700px){
   #t-p td[data-l="País"]{display:none}
@@ -925,10 +920,10 @@ input[type=number].inp::-webkit-inner-spin-button,input[type=number].inp::-webki
 .ind-w{margin-top:28px}
 .ind-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:4px}
 .ih{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:3px;min-height:54px;padding:6px 8px;border:0;border-radius:var(--r-sm);font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;text-align:left;cursor:pointer;background:var(--row);color:var(--ink2)}
-.ih span{font-size:11px;line-height:1.2;line-height:round(nearest,calc(1.2*1em - .01px),1px);--lhx:1.2;--lhp:initial}.ih b{font-weight:400;font-size:13px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ih span{line-height:1.2;line-height:round(nearest,calc(1.2*1em - .01px),1px);--lhx:1.2;--lhp:initial}.ih b{font-weight:400;font-size:13px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .ih:hover{box-shadow:inset 0 0 0 1px var(--g3)}
-.ih.ih3{background:#7FB79F;color:#173F2F}.ih.ih2{background:#BFDECF;color:#3B5449}.ih.ih1{background:#E2EDCD;color:#4A5232}
-.ih.il3{background:#D99A9A;color:#5C2A2A}.ih.il2{background:#EFD4D4;color:#7A3B3B}.ih.il1{background:#F6E8E8;color:#7A3B3B}
+.ih.ih3{background:#7FB79F;color:#173F2F}.ih.ih2{background:#BFDECF;color:#3B5449}
+.ih.il3{background:#D99A9A;}.ih.il2{background:#EFD4D4;color:#7A3B3B}.ih.il1{background:#F6E8E8;color:#7A3B3B}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ih.ih3{background:#306B4D;color:#fff}:root:not([data-theme="light"]) .ih.ih2{background:#2B5640;color:#D3EEDF}:root:not([data-theme="light"]) .ih.ih1{background:#274334;color:#D3EEDF}:root:not([data-theme="light"]) .ih.il3{background:#9C453E;color:#fff}:root:not([data-theme="light"]) .ih.il2{background:#7B3B35;color:#F7D6D2}:root:not([data-theme="light"]) .ih.il1{background:#5D322D;color:#F7D6D2}}
 :root[data-theme="dark"] .ih.ih3{background:#306B4D;color:#fff}:root[data-theme="dark"] .ih.ih2{background:#2B5640;color:#D3EEDF}:root[data-theme="dark"] .ih.ih1{background:#274334;color:#D3EEDF}:root[data-theme="dark"] .ih.il3{background:#9C453E;color:#fff}:root[data-theme="dark"] .ih.il2{background:#7B3B35;color:#F7D6D2}:root[data-theme="dark"] .ih.il1{background:#5D322D;color:#F7D6D2}
 .pf-none{margin:12px 0 0}
@@ -1004,8 +999,8 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
   #t-p td.mx,#s-mov .rt td.r-meta{display:none}
   #t-p tbody tr.pr,#s-mov .rt tbody tr{row-gap:2px}
   #t-p td.r-main,#s-mov .rt td.r-main{grid-row:1}
-  #t-p td[data-l="Industria"]{grid-column:1;grid-row:2;margin:0 0 0 48px;font-size:12px}
-  #t-p td.r-sub{grid-row:2;font-size:12px}
+  #t-p td[data-l="Industria"]{font-size:12px}
+  #t-p td.r-sub{font-size:12px}
   #s-mov .rt td.mline{grid-column:1/-1;grid-row:2}
   #s-mov .rt tr:has(.lgb) td.mline{margin-left:48px}
   #s-mov .rt td.r-sub{display:none}
@@ -1035,7 +1030,7 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
   #t-pos td.r-main,#t-pos td.r-main>.co,#t-rd td.r-main,#t-rd td.r-main>.co,#s-mov .rt tr:has(.lgb) td.r-main,#s-mov .rt tr:has(.lgb) td.r-main>.co{display:contents}
   #t-pos .co>.lgb,#t-rd .co>.lgb,#s-mov .rt .co>.lgb{grid-column:1;grid-row:1/span 2;align-self:center;width:48px;height:28px}
   #t-pos .co>b,#t-rd .co>b,#s-mov .rt tr:has(.lgb) .co>b,#s-mov .rt tr:has(.lgb) .co>.cn{grid-column:2;grid-row:1;white-space:normal;overflow:visible;min-width:0}
-  #t-rd .co>b{grid-row:1/span 2;align-self:center}
+  #t-rd .co>b{align-self:center}
   .rt#t-pos td.r-meta{grid-column:2;grid-row:2;margin:0}#s-mov .rt tr:has(.lgb) td.mline{grid-column:2/-1;grid-row:2;margin:0}
   #t-pos td.r-amt,#t-rd td.r-amt,#s-mov .rt tr:has(.lgb) td.r-amt{grid-column:3;grid-row:1}
   #t-pos td.r-sub,#t-rd td.r-sub{grid-column:3;grid-row:2}
@@ -1090,9 +1085,9 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
 /* 4 · tableta: títulos cortos en la franja de Universo */
 @media (max-width:1100px){.bg.ug .bl .lg{display:none}.bg.ug .bl .sh{display:inline}}
 /* 7 · mapa de hoy: logos en silueta */
-.tmap .tile .tl{color:inherit}
+
 /* un logo muy alargado (L'Oréal) no se sale de un recuadro estrecho: encoge con él */
-.tmap .tile .th{max-width:100%;min-width:0}.tmap .tile .tl{flex:0 1 auto;min-width:0;max-width:100%}
+.tmap .tile .th{max-width:100%;min-width:0}.tmap .tile .tl{color:inherit;flex:0 1 auto;min-width:0;max-width:100%}
 .tmap .tile .tsil{display:block;height:100%;max-width:min(62px,100%);background:currentColor;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:left center;mask-position:left center}
 @media (max-width:700px){.tmap .tile .tsil{max-width:min(44px,100%)}}
 /* 8 · móvil: «Por industria» en 3 columnas */
@@ -1122,18 +1117,18 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
   .top .nav a{position:relative;padding:8px 0;border-radius:0;background:none;box-shadow:none;font-size:14px;font-weight:500;color:var(--ink2)}
   .top .nav a:hover{color:var(--ink)}
   .top .nav a[aria-current="page"]{background:none;box-shadow:none;color:var(--ink)}
-  .top .nav a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:var(--r-bar);background:var(--ink)}
+  .top .nav a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;height:2px;background:var(--ink)}
 }
 /* móvil: barra fija abajo, al alcance del pulgar */
 @media (max-width:760px){
   .top .nav{position:fixed;left:0;right:0;bottom:0;z-index:20;grid-column:auto;grid-row:auto;order:0;width:auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:0;
-    padding:4px 8px calc(4px + env(safe-area-inset-bottom,0px));border-radius:0;border-top:1px solid var(--line);
+    border-radius:0;border-top:1px solid var(--line);
     background:var(--canvas)}
-  .top .nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:52px;padding:4px 0;border-radius:0;background:none;box-shadow:none;font-size:11px;font-weight:500;letter-spacing:.01em;color:var(--ink2)}
-  .top .nav a[aria-current="page"]{background:none;box-shadow:none;color:var(--ink)}
-  .nav-i{display:block;box-sizing:border-box;width:48px;height:28px;padding:3px 13px;border-radius:999px;transition:background .15s}
-  .top .nav a[aria-current="page"] .nav-i{stroke-width:1.8;background:color-mix(in srgb,var(--ink) 9%,transparent)}
-  .wrap{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+  .top .nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:0;background:none;box-shadow:none;font-weight:500;}
+  .top .nav a[aria-current="page"]{background:none;box-shadow:none;}
+  .nav-i{display:block;box-sizing:border-box;transition:background .15s}
+  .top .nav a[aria-current="page"] .nav-i{stroke-width:1.8;}
+
 }
 /* ===== Ficha de la posición (Resumen) ===== */
 .ficha.fpx{padding:18px 22px 20px;display:flex;flex-direction:column;gap:16px}
@@ -1155,16 +1150,16 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
 .fp-b.main b{font-size:24px}
 .fp-b small{font-size:12px;color:var(--ink3);white-space:nowrap}
 .fp-b small:empty{visibility:hidden}
-.fp-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:stretch}
+.fp-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
 .fp-c{display:flex;flex-direction:column;background:var(--panel);border:0;border-radius:var(--r-md);padding:16px;min-width:0}
 .fp-v{flex:1 0 auto;display:flex;flex-direction:column;justify-content:center}
 .fp-ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 10px;margin-bottom:12px}
-.fp-ch h4{white-space:nowrap}
-.fp-ch h4{margin:0;font-size:13px;font-weight:600;color:var(--ink)}
+
+.fp-ch h4{white-space:nowrap;margin:0;font-size:13px;font-weight:600;color:var(--ink)}
 .fp-ch>span{font-size:12px;color:var(--ink2);text-align:right}
 /* tu posición: de dónde sale el resultado */
-.fp-dec{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px 12px;font-size:13px}
-.fp-dec>.t{margin-top:4px;font-size:13px;font-weight:600;color:var(--ink)}
+.fp-dec{display:grid;align-items:center;gap:8px 12px;font-size:13px}
+.fp-dec>.t{font-size:13px;font-weight:600;color:var(--ink)}
 .fp-dec .tr i.t.neg{background:var(--neg)}.fp-dec .tr i.t.pos{background:var(--pos)}
 .fp-dec .v.t.pos{color:var(--pos)}.fp-dec .v.t.neg{color:var(--neg)}
 /* datos de cada tarjeta: un bloque sombreado, sin líneas */
@@ -1196,7 +1191,7 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
 .fp-lg{display:flex;justify-content:center;gap:14px;font-size:11px;color:var(--ink3);margin:0}
 .fp-lg i{display:inline-block;width:14px;height:9px;border-radius:var(--r-bar);margin-right:6px;vertical-align:-1px}
 .fp-lg i.c{background:var(--accent)}.fp-lg i.a{background:var(--acc-pd)}
-@container ficha (max-width:1004px){.fp-h{grid-template-columns:minmax(0,1fr)}.fp-id{padding-right:0}.fp-b:first-child{border-left:0}.fp-cards{grid-template-columns:minmax(0,1fr)}.fpp .fp-cards{grid-auto-rows:1fr}.fpp .fp-c{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,34%);grid-template-rows:auto 1fr;column-gap:28px}.fpp .fp-ch{grid-column:1/-1}.fpp .fp-v{grid-column:1;grid-row:2}.fpp .fp-c:not(:has(.fp-f)) .fp-v{grid-column:1/-1}.fpp .fp-f{grid-column:2;grid-row:2;align-self:center;margin:0;padding:0 0 0 22px;border-top:0;border-left:1px solid var(--line)}.fpp .fp-f{grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:7px}.fpp .fp-f>div{grid-row:auto;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:10px;row-gap:1px;align-items:baseline;justify-items:stretch;text-align:left}.fpp .fp-f span{grid-column:1;grid-row:1}.fpp .fp-f b{grid-column:2;grid-row:1;justify-self:end;align-self:baseline}.fpp .fp-f small{grid-column:2;grid-row:2;text-align:right}.fpp .fp-f small:empty{display:none}}
+@container ficha (max-width:1004px){.fp-h{grid-template-columns:minmax(0,1fr)}.fp-id{padding-right:0}.fp-b:first-child{border-left:0}.fp-cards{grid-template-columns:minmax(0,1fr)}.fpp .fp-c{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,34%);grid-template-rows:auto 1fr;column-gap:28px}.fpp .fp-ch{grid-column:1/-1}.fpp .fp-v{grid-column:1;grid-row:2}.fpp .fp-c:not(:has(.fp-f)) .fp-v{grid-column:1/-1}.fpp .fp-f{grid-column:2;grid-row:2;align-self:center;margin:0;padding:0 0 0 22px;border-top:0;border-left:1px solid var(--line);grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:7px}.fpp .fp-f>div{grid-row:auto;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:10px;row-gap:1px;align-items:baseline;justify-items:stretch;text-align:left}.fpp .fp-f span{grid-column:1;grid-row:1}.fpp .fp-f b{grid-column:2;grid-row:1;justify-self:end;align-self:baseline}.fpp .fp-f small{grid-column:2;grid-row:2;text-align:right}.fpp .fp-f small:empty{display:none}}
 @container ficha (max-width:620px){.ficha.fpx{padding:14px 16px 16px}.fp-m{grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;row-gap:0}.fp-id{gap:12px}.fp-id .lgb.xl{width:48px;height:28px}.fp-t h3{font-size:18px}.fp-b{grid-row:auto;display:flex;flex-direction:column;align-items:flex-start;justify-items:start;text-align:left;gap:3px;padding:0 0 12px}.fp-b b{align-self:auto;font-size:20px}.fp-b:nth-child(2){border-left:1px solid var(--line);padding-left:12px}.fp-b:nth-child(n+3){grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:10px;row-gap:1px;align-items:baseline;padding:9px 0;border-left:0;border-top:1px solid var(--line)}.fp-b:nth-child(n+3) .fp-k{grid-column:1;grid-row:1}.fp-b:nth-child(n+3) b{grid-column:2;grid-row:1;justify-self:end;font-size:16px;font-weight:400}.fp-b:nth-child(n+3) small{grid-column:1/-1;grid-row:2}.fp-b:nth-child(n+3) small:empty{display:none}.fpp .fp-c{display:flex}.fpp .fp-f{margin:14px 0 0;align-self:stretch;padding:12px 0 0;border-left:0;border-top:1px solid var(--line)}}
 /* ===== Ficha de empresa (Universo): el mismo sistema que la de posición ===== */
 .fp-in{margin-top:3px;font-size:13px;color:var(--ink3)}
@@ -1302,8 +1297,8 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
 .rd-more{display:flex;justify-content:center;margin-top:16px}
 #t-rd tbody tr.pr.inpf{background:var(--pf-bg)}
 /* Movimientos y Universo: «Restablecer» al final de los filtros; apagado si no hay nada que quitar */
-.toolbar .m-rst{flex:none;height:38px;padding:0 16px;border-radius:var(--r-md);font-size:13px;font-weight:400;margin-left:auto}
-.toolbar .m-rst{display:inline-flex;align-items:center;gap:7px}.toolbar .m-rst svg{width:14px;height:14px;flex:none}
+
+.toolbar .m-rst{flex:none;height:38px;padding:0 16px;border-radius:var(--r-md);font-size:13px;font-weight:400;margin-left:auto;display:inline-flex;align-items:center;gap:7px}.toolbar .m-rst svg{width:14px;height:14px;flex:none}
 /* buscador de ancho fijo en cada tramo (no cambia al pasar de pestaña); entre 701 y 1000, «Restablecer» solo con el icono */
 @media (min-width:701px) and (max-width:1000px){.toolbar .m-rst{width:38px;padding:0;justify-content:center}.toolbar .m-rst span{display:none}}
 @media (min-width:701px) and (max-width:860px){#s-mov .toolbar .search,#s-plist .toolbar .search{flex:0 0 150px}}
@@ -1329,22 +1324,16 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
 .pl-kk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));min-width:0}
 .pl-kk>.mk:first-child{padding-left:22px;border-left:1px solid var(--line)}
 .pl-ak{display:flex;flex-direction:column;gap:6px}
-.pl-ak .pl-in{align-self:flex-start}
+
 /* la aportación: recuadro como los demás campos, del ancho de una cantidad real y con la cifra grande */
 #pl-ap{width:132px;height:40px;padding-right:30px;font-size:18px;letter-spacing:-.01em}
 .pl-ak .pl-in i{right:12px;font-size:16px}
-.pl-ak .pl-in{max-width:100%}
+.pl-ak .pl-in{align-self:flex-start;max-width:100%}
 /* la leyenda de «Disponible» siempre en dos líneas y el bloque con alto fijo: escribir la aportación no mueve nada */
 .pl-mvb{height:158px}
 .pl-kk .mk-sl{flex-direction:column;flex-wrap:nowrap;gap:3px}
 .pl-kk .mk-v{line-height:28px;--lhp:28px}   /* si la cifra se encoge para caber, la fila no cambia de alto */
-@media (max-width:700px){.pl-mvb{grid-template-columns:minmax(0,1fr)}.pl-mvb>.pl-ak{height:auto;padding:14px 0 16px}.pl-kk{grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}.pl-kk>.mk:first-child{padding-left:0;border-left:0}.pl-kk>.mk:nth-child(n+3){border-top:1px solid var(--line)}.pl-mvb{height:auto}}
-/* cabecera de la ficha en el panel: la empresa a la izquierda; su valor (o su cotización) enfrente, a la derecha, y el resto debajo */
-.fp-q{display:flex;flex-direction:column;align-items:flex-end;gap:2px;padding:2px 0 0;text-align:right;white-space:nowrap}
-.fp-q b{font-size:32px;font-weight:300;letter-spacing:-.015em;line-height:1.15;line-height:round(nearest,calc(1.15*1em - .01px),1px);--lhx:1.15;--lhp:initial;color:var(--ink)}
-.fp-qr{display:inline-flex;align-items:center;gap:8px;font-size:14px}
-.fp-qr .mute{font-size:12px}
-@container ficha (max-width:620px){.fp-q{align-items:flex-start;padding:0;text-align:left}.fp-q .fp-k{display:none}.fp-q b{font-size:24px}}
+@media (max-width:700px){.pl-mvb{grid-template-columns:minmax(0,1fr)}.pl-mvb>.pl-ak{height:auto;}.pl-kk{grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}.pl-kk>.mk:first-child{padding-left:0;border-left:0}.pl-kk>.mk:nth-child(n+3){border-top:1px solid var(--line)}.pl-mvb{height:auto}}
 /* el cálculo de la valoración, plegado */
 .fp-calc{border:1px solid var(--line);border-radius:var(--r-md);background:var(--panel)}
 .fp-calc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px}
@@ -1356,14 +1345,11 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
 .fp-calc[open]{background:none;border-color:transparent}
 .fp-calc[open]>summary{padding:16px 16px 12px}
 .fp-cb{display:flex;flex-direction:column;gap:16px}
-/* cabecera de la ficha de la misma altura en todas las empresas: las pestañas no saltan al pasar de una a otra */
-.fp-qr{min-height:24px}
-.fp-q0{visibility:hidden}
 /* ===== Ficha en panel lateral: no empuja la tabla; en móvil ocupa la pantalla ===== */
-.sheet{position:fixed;top:var(--tbh,0px);right:0;bottom:0;z-index:6;width:min(760px,calc(100vw - 64px));background:var(--canvas);border-left:1px solid var(--line);box-shadow:-24px 0 48px -24px rgba(0,0,0,.22);overflow-y:auto;overscroll-behavior:contain;font-size:13px;text-align:left;outline:0;animation:sh-in .18s ease-out}
+.sheet{position:fixed;top:var(--tbh,0px);right:0;bottom:0;z-index:6;width:min(760px,calc(100vw - 64px));border-left:1px solid var(--line);box-shadow:-24px 0 48px -24px rgba(0,0,0,.22);overflow-y:auto;overscroll-behavior:contain;font-size:13px;text-align:left;outline:0;animation:sh-in .18s ease-out}
 .sh-b{container:ficha / inline-size}
 /* barra de arriba: ‹ › para pasar de empresa, su nombre al bajar y cerrar */
-.sh-top{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:6px;height:52px;padding:0 14px;background:var(--canvas);border-bottom:1px solid transparent;transition:border-color .15s}
+.sh-top{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:6px;height:52px;background:var(--canvas);border-bottom:1px solid transparent;transition:border-color .15s}
 .sheet.scrolled .sh-top{border-bottom-color:var(--line)}
 .sh-b2{width:32px;height:32px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink2);display:grid;place-items:center;cursor:pointer;padding:0}
 .sh-b2:hover:not(:disabled){color:var(--ink)}
@@ -1417,10 +1403,10 @@ tr.grp-row td{font-size:var(--fs-s);font-weight:500;letter-spacing:0;text-transf
 @container ficha (max-width:330px){.sh-tabw{padding:0 10px}.sh-tabs{gap:8px}.sh-tabs button{font-size:13px}.fp-ml>span{padding-left:7px}.fp-ml>.h{font-size:11px}}
 @keyframes sh-in{from{transform:translateX(32px);opacity:0}}
 @keyframes sh-up{from{transform:translateY(32px);opacity:0}}
-@media (max-width:759px){.sheet{top:0;width:100%;border-left:0;box-shadow:none;z-index:30;animation-name:sh-up}html.sh-open{overflow:hidden}}
+@media (max-width:760px){.sheet{top:0;width:100%;border-left:0;box-shadow:none;z-index:30;animation-name:sh-up}html.sh-open{overflow:hidden}}
 @media (prefers-reduced-motion:reduce){.sheet{animation:none}}
 /* el hueco de la barra de desplazamiento siempre reservado: aunque la página sea corta (p. ej. Ajustes), nada se desplaza */
-html{scrollbar-gutter:stable;background:var(--canvas)}
+html{-webkit-tap-highlight-color:transparent;scrollbar-gutter:stable;background:var(--canvas)}
 /* lo mismo dentro de la ficha: al desplegar «Cálculo de la valoración» (o cambiar de pestaña), las cajas no cambian de ancho */
 .sheet{scrollbar-gutter:stable}
 /* Valoración empieza, como Posición y Movimientos, con una tarjeta: rendimiento y técnico como fila de cifras, sin casillas dentro */
@@ -1465,8 +1451,8 @@ html{scrollbar-gutter:stable;background:var(--canvas)}
 .ts-rst{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 10px;margin:-9px -10px -9px 0;font-size:13px;font-weight:400}
 .ts-rst svg{width:14px;height:14px;flex:none}
 .ts-rst:disabled{visibility:hidden}
-.ts-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:6px 0 28px;padding-bottom:26px;border-bottom:1px solid var(--line)}
-.ts-g{column-gap:44px}
+.ts-g{display:grid;margin:6px 0 28px;padding-bottom:26px;border-bottom:1px solid var(--line)}
+
 .tsc{position:relative;display:flex;flex-direction:column;min-width:0}
 .tsc+.tsc::before{content:"";position:absolute;left:-22px;top:0;bottom:0;width:1px;background:var(--line)}
 .ts-k{font-size:var(--fs-s);color:var(--ink2);white-space:nowrap}
@@ -1478,18 +1464,18 @@ html{scrollbar-gutter:stable;background:var(--canvas)}
 .tsc input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:var(--r-bar);background:linear-gradient(to right,var(--ink2) var(--p,0%),color-mix(in srgb,var(--ink) 12%,transparent) var(--p,0%))}
 .tsc input[type=range]::-moz-range-track{height:4px;border-radius:var(--r-bar);background:color-mix(in srgb,var(--ink) 12%,transparent)}
 .tsc input[type=range]::-moz-range-progress{height:4px;border-radius:var(--r-bar);background:var(--ink2)}
-.tsc input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;margin-top:-6px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px var(--panel)}
-.tsc input[type=range]::-moz-range-thumb{width:16px;height:16px;border:0;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px var(--panel)}
+.tsc input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;border-radius:50%;}
+.tsc input[type=range]::-moz-range-thumb{border-radius:50%;}
 .tsc input[type=range]:focus{outline:none}
-.tsc input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px var(--panel),0 0 0 6px var(--hi)}
-.tsc input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 3px var(--panel),0 0 0 6px var(--hi)}
-.ts-g{grid-template-columns:repeat(5,minmax(0,1fr))}
+
+
+.ts-g{column-gap:44px;grid-template-columns:repeat(5,minmax(0,1fr))}
 .ts-out .ts-v{color:var(--accent)}
 .ts-o{margin-top:12px;height:20px;font-size:var(--fs-xs);line-height:20px;--lhp:20px;color:var(--ink3);white-space:nowrap}
 @media (min-width:901px) and (max-width:1180px){.ts-g{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:22px}.tsc.ts-out{grid-column:1/-1;padding:20px 0 0;border-top:1px solid var(--line)}.tsc.ts-out::before{display:none}}
 @media (max-width:900px){.ts-g{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:24px}.tsc:nth-child(3)::before{display:none}
   .tsc.ts-out{grid-column:1/-1;padding:20px 0 0;border-top:1px solid var(--line)}.tsc.ts-out::before{display:none}}
-@media (max-width:700px){.ts-g{column-gap:28px}.tsc+.tsc::before{left:-14px}.ts-v{font-size:20px}.ts-s{font-size:12px}}
+@media (max-width:700px){.ts-g{column-gap:28px}.tsc+.tsc::before{left:-14px}.ts-s{font-size:12px}}
 /* A favor / En contra: una tarjeta, dos columnas; un punto de color en cada punto y sin rayas */
 .fp-c.fp-pc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:36px;padding:16px}
 .fp-pc.one{grid-template-columns:minmax(0,1fr)}
@@ -1522,7 +1508,7 @@ html{scrollbar-gutter:stable;background:var(--canvas)}
 .cot-f b{font-size:13px;font-weight:500;color:var(--ink);text-align:right}
 .fp-rd .fp-ch>span{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink3)}
 .rd-k{display:inline-block;width:2px;height:11px;border-radius:var(--r-bar);background:var(--ink2)}
-.rd-g{display:grid;grid-template-columns:34px minmax(0,1fr) minmax(64px,max-content);column-gap:12px;align-items:center}
+.rd-g{display:grid;column-gap:12px;align-items:center}
 .rd-l{font-size:13px;color:var(--ink2);line-height:32px;--lhp:32px}
 .rd-t{position:relative;height:8px;margin-right:8px}
 .rd-t::before{content:"";position:absolute;left:var(--z,50%);top:-6px;bottom:-6px;width:1px;background:var(--line)}
@@ -1532,12 +1518,11 @@ html{scrollbar-gutter:stable;background:var(--canvas)}
 .rd-g>b{font-size:13px;font-weight:400;text-align:right;white-space:nowrap}
 @container ficha (max-width:360px){.cot-l li{grid-template-columns:minmax(0,1fr) auto 50px;gap:8px;font-size:13px}.cot-l li em{font-size:12px}}
 /* 25 · un solo espaciado para las etiquetas en mayúsculas, el mismo en toda la pantalla; más ceñido donde no cabe */
-@media (max-width:700px){#s-hero .bg{grid-template-columns:minmax(0,1.12fr) minmax(0,.76fr) minmax(0,1.12fr)}}
 @media (max-width:440px){:root{--ls-up:.1em}}
 @media (max-width:380px){:root{--ls-up:.04em}}
 /* 30 · ficha: pestañas, ‹ y × en la misma línea que el logo, la cifra y el contenido de las tarjetas */
 .sh-top{padding:0 27px 0 25px}
-@media (max-width:759px){.sh-top{padding:0 17px 0 15px}}
+@media (max-width:760px){.sh-top{padding:0 17px 0 15px}}
 @container ficha (max-width:620px){.sh-tabw{padding-left:29px}}
 @container ficha (max-width:400px){.sh-tabw{padding-left:29px}}
 @container ficha (max-width:350px){.sh-tabw{padding-left:24px}}
@@ -1558,7 +1543,7 @@ html{scrollbar-gutter:stable;background:var(--canvas)}
 /* 35 · Movimientos en el móvil: pestañas a su tamaño, cifras más juntas y el buscador justo encima de la lista */
 @media (max-width:700px){
   #mtabs,#s-uni{min-height:0}
-  #mtabs .mvt-v{margin-top:6px;padding-top:0}
+  #mtabs .mvt-v{padding-top:0}
   #s-mov{display:flex;flex-direction:column}
   #s-mov>#m-k{order:1;margin:-14px 0 16px;border-top:0}
   #s-mov>.toolbar{order:2}
@@ -1592,7 +1577,7 @@ html{scrollbar-gutter:stable;background:var(--canvas)}
 /* modo privado: los importes (en euros, en divisa y las acciones) se emborronan; los porcentajes y los colores se siguen viendo */
 #priv .eye-x{display:none}.priv #priv .eye{display:none}.priv #priv .eye-x{display:block}
 .priv .pv,.priv #h-val,.priv .mk-yr small,.priv #s-mov td[data-k="shares"],.priv #t-plan input,.priv #pl-ap{filter:blur(max(6px,.42em))}
-.priv canvas{filter:blur(8px)}
+
 .pv{transition:filter .2s}
 @media (prefers-reduced-motion:reduce){.pv{transition:none}}
 /* v188 · Análisis: índice oscuro como el de las otras pestañas, con una cifra de cada bloque; al pulsarla, lleva a él */
@@ -1619,20 +1604,18 @@ html{scrollbar-gutter:stable;background:var(--canvas)}
   .mvt a.mvt-all{grid-column:1/-1;flex-direction:row;align-items:baseline;gap:8px;padding-top:13px;padding-bottom:13px}
   .mvt-all .mvt-n{margin-right:auto}.mvt a.mvt-all .mvt-v{font-size:20px;margin-top:0}}
 .lgb.mvg svg{width:22px;height:22px;fill:none;stroke:var(--ink2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-@media (min-width:701px){#s-mov .rt tr.grp-row td{padding:30px 6px 10px}#s-mov .rt tbody tr.grp-row:first-child td{padding-top:8px}}
 @media (min-width:701px){#s-mov[data-t="todo"] .rt td.wrapc{white-space:normal}}
 @media (min-width:701px) and (max-width:1240px){#s-mov[data-t="todo"] .pa{display:none}}
 @media (min-width:701px) and (max-width:1100px){#s-mov[data-t="todo"] [data-k="broker"]{display:none}
   #s-mov[data-t="todo"] .rt th:nth-child(2){width:206px}#s-mov[data-t="todo"] th[data-k="ty"]{width:92px!important}#s-mov[data-t="todo"] th[data-k="amt"]{width:112px!important}#s-mov[data-t="todo"] th[data-k="pnl"]{width:104px!important}}
 @media (min-width:701px) and (max-width:960px){#s-mov[data-t="todo"] [data-k="det"]{display:none}}
-@media (max-width:700px){#s-mov .rt tbody tr.grp-row{padding:22px 2px 6px}#s-mov .rt tbody tr.grp-row:first-child{padding-top:4px}}
 /* v188 · F: búsqueda rápida (⌘K, Ctrl+K en Windows): empresas, movimientos, secciones y acciones; solo en pantallas con teclado */
 .top .tools .kbar{display:inline-flex;align-items:center;gap:8px;height:34px;min-width:172px;padding:0 6px 0 11px;margin-right:4px;border-radius:var(--r-md);border:1px solid var(--line);background:var(--card);color:var(--ink3);font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;font-size:13px;cursor:pointer}
 .top .tools .kbar.kbar:hover:not(:disabled){background:var(--card);color:var(--ink2);border-color:color-mix(in srgb,var(--ink) 24%,transparent)}
-@media (max-width:1179px){.top .tools .kbar.kbar:hover:not(:disabled){background:color-mix(in srgb,var(--ink) 7%,transparent);color:var(--ink);border-color:transparent}}
+@media (max-width:1180px){.top .tools .kbar.kbar:hover:not(:disabled){background:color-mix(in srgb,var(--ink) 7%,transparent);color:var(--ink);border-color:transparent}}
 .top .kbar svg{width:14px;height:14px;flex:none}.top .kbar kbd{margin-left:auto}
 kbd{font:500 11px/1 var(--f-sans);line-height:1;line-height:round(nearest,calc(1*1em - .01px),1px);--lhx:1;--lhp:initial;color:var(--ink3);background:var(--row);border:1px solid var(--line);border-radius:5px;padding:3px 6px;min-width:20px;text-align:center;display:inline-block}
-@media (max-width:1179px){.top .tools .kbar{min-width:0;width:36px;height:36px;padding:0;margin-right:0;justify-content:center;border-color:transparent;background:none;color:var(--ink2)}.top .kbar svg{width:15px;height:15px}.top .kbar .kb-l,.top .kbar kbd{display:none}}
+@media (max-width:1180px){.top .tools .kbar{min-width:0;width:36px;height:36px;padding:0;margin-right:0;justify-content:center;border-color:transparent;background:none;color:var(--ink2)}.top .kbar svg{width:15px;height:15px}.top .kbar .kb-l,.top .kbar kbd{display:none}}
 @media (max-width:700px){.top .tools .kbar{display:none}}
 .kx{position:fixed;inset:0;z-index:60;background:color-mix(in srgb,var(--canvas) 55%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;justify-content:center;align-items:flex-start;padding:12vh 16px 16px}
 .kx[hidden]{display:none}
@@ -1738,10 +1721,10 @@ kbd{font:500 11px/1 var(--f-sans);line-height:1;line-height:round(nearest,calc(1
 .sheet-bg{display:none;position:fixed;inset:var(--tbh,0px) 0 0 0;z-index:5;background:rgba(20,20,18,.16);animation:sb-in .18s ease-out}
 body:has(#sheet:not([hidden])) .sheet-bg{display:block}
 @keyframes sb-in{from{opacity:0}to{opacity:1}}
-@media (max-width:759px){body:has(#sheet:not([hidden])) .sheet-bg{display:none}}
+@media (max-width:760px){body:has(#sheet:not([hidden])) .sheet-bg{display:none}}
 @media (prefers-reduced-motion:reduce){.sheet-bg{animation:none}}
 /* Revisión · 22: lo apuntado, en el tono suave del azul de los dividendos en los dos temas (en claro era gris; en oscuro ya era azul) */
-:root{--acc-pd:#AEB9CF}
+
 /* Revisión · 27: Trayectoria, tiradores blancos con un borde fino */
 .tsc input[type=range]::-webkit-slider-thumb{box-sizing:border-box;width:18px;height:18px;margin-top:-7px;background:#FFFFFF;border:1px solid color-mix(in srgb,var(--ink) 28%,transparent);box-shadow:0 1px 2px rgba(20,20,18,.16)}
 .tsc input[type=range]::-moz-range-thumb{box-sizing:border-box;width:18px;height:18px;background:#FFFFFF;border:1px solid color-mix(in srgb,var(--ink) 28%,transparent);box-shadow:0 1px 2px rgba(20,20,18,.16)}
@@ -1750,13 +1733,11 @@ body:has(#sheet:not([hidden])) .sheet-bg{display:block}
 /* Revisión · 28: Movimientos, las cinco pestañas del mismo ancho; el recuento va debajo de la cifra */
 #mtabs .mvt-n em{display:none}
 @media (min-width:1001px){.mvt{grid-template-columns:repeat(5,minmax(0,1fr))}}
-/* Revisión · 41: en la cabecera de la ficha, el porcentaje en su color, sin pastilla */
-#sheet .fp-qr .rlv{min-width:0;padding:0;border-radius:0;background:none;color:inherit}
-@media (min-width:1001px) and (max-width:1099px){.mvt a{padding-left:18px;padding-right:18px}}
+@media (min-width:1001px) and (max-width:1100px){.mvt a{padding-left:18px;padding-right:18px}}
 /* Revisión · 48: Movimientos en el móvil, cada fila de la franja mide lo que su contenido (sin huecos debajo) */
 @media (max-width:1000px){#m-k .mk.mk.mk{min-height:0}}
 /* Movimientos en PC: el nombre, la cifra y el texto de debajo de cada pestaña a la misma altura que en el bloque de Análisis y Universo */
-@media (min-width:1001px){#mtabs a{padding-top:22px}#mtabs .mvt-v{margin-top:8px;padding-top:0;line-height:1;line-height:round(nearest,calc(1*1em - .01px),1px);--lhx:1;--lhp:initial}#mtabs .mvt-s{font-size:12px;margin-top:7px}}
+@media (min-width:1001px){#mtabs .mvt-v{padding-top:0;--lhx:1;}#mtabs .mvt-s{font-size:12px;}}
 /* Revisión · 8: el selector de periodo con palabras en el ordenador y con la forma corta en pantallas estrechas */
 /* Revisión · 36: el periodo en palabras; «Hoy» y «Última sesión», aparte. En el móvil, cada grupo en su fila */
 #perf-k{display:flex;align-items:center;gap:10px}#perf-k .cy{font-style:normal}
@@ -1773,8 +1754,6 @@ body:has(#sheet:not([hidden])) .sheet-bg{display:block}
 @media (max-width:370px){.ih span{font-size:11px}}   /* en los móviles más estrechos, «Semiconductores» no cabe a 12 */
 .ih.ih3,.ih.ih2,.ih.ih1{color:#173F2F}.ih.il3{color:#4A1F1F}.ih.il2,.ih.il1{color:#5C2A2A}
 /* Revisión · 52: en oscuro, el bloque de arriba en gris carbón (no en verde) */
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--h-bg:#2B2B29;--h-card:#353533;--h-line:#41403D;--h-fg2:#B6B5AF;--h-fg3:#9C9B95}}
-:root[data-theme="dark"]{--h-bg:#2B2B29;--h-card:#353533;--h-line:#41403D;--h-fg2:#B6B5AF;--h-fg3:#9C9B95}
 /* ficha › Rendimiento: los periodos con palabras («3 meses», «En 2026») en una sola línea */
 .rd-g{grid-template-columns:max-content minmax(0,1fr) minmax(64px,max-content)}.rd-l{white-space:nowrap}
 /* Tu posición: la columna de las cifras con ancho fijo (las barras no cambian de una empresa a otra) y la fila de reserva invisible */
@@ -1792,7 +1771,7 @@ body:has(#sheet:not([hidden])) .sheet-bg{display:block}
 /* Revisión · 38: la leyenda de la TIR esperada bajo el título */
 /* Revisión · 21: Próximos 12 meses: barras sin cápsula con su cifra encima y, al pasar por un mes, sus cobros */
 .cm.cm2{position:relative;outline:none}
-.cm.cm2 .cb{height:122px;max-width:none;width:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;background:none;border-radius:0;overflow:visible;box-shadow:inset 0 -1px 0 var(--line)}
+.cm.cm2 .cb{height:122px;max-width:none;width:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;background:none;border-radius:0;overflow:visible;}
 .cm.cm2 .cb .ca{display:block;width:auto;height:auto;margin-bottom:4px;line-height:14px;--lhp:14px}
 .cm.cm2 .cbar{display:flex;flex-direction:column;width:100%;max-width:38px;border-radius:4px 4px 0 0;overflow:hidden}
 .cm.cm2 .cbar span{display:block;width:100%;min-height:2px}
@@ -1820,9 +1799,9 @@ body:has(#sheet:not([hidden])) .sheet-bg{display:block}
 @media (max-width:700px){#t-p tbody tr.pgr{display:block;padding:0;border-bottom:1px solid var(--line)}#t-p tbody tr.pgr>td{display:block;height:auto;padding:0;border:0}
   }   /* en el móvil, «Todas las empresas» no enseña la TIR esperada */
 /* Movimientos: los nombres de las pestañas como los títulos de Análisis y Universo (mayúsculas espaciadas) */
-#mtabs .mvt-n,#mtabs a[aria-current="page"] .mvt-n{font-size:11px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink2)}
-#mtabs a[aria-current="page"] .mvt-n{color:var(--h-fg3)}
-@media (min-width:1001px){#mtabs a{padding-top:25px}}   /* con el nombre a 11 px, la cifra y el texto siguen a la altura de Análisis */
+#mtabs .mvt-n,#mtabs a[aria-current="page"] .mvt-n{font-size:11px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;}
+
+/* con el nombre a 11 px, la cifra y el texto siguen a la altura de Análisis */
 /* «Próximos 12 meses»: el año con el alto de su letra (con 12 px se salía por abajo, y eso sacaba una barrita de desplazamiento) */
 .cm.cm2 .cy{height:auto;line-height:14px;--lhp:14px}
 /* «Próximos 12 meses»: la línea de base seguida, sin cortes entre meses; la barra, por encima de ella */
@@ -1863,16 +1842,16 @@ body:has(#sheet:not([hidden])) .sheet-bg{display:block}
 /* Posiciones en el PC (más de 1200 px): anchos fijos y redondos, iguales en las columnas parecidas y los mismos todos los días;
    «Hoy» y «Hoy €», de 62; lo que sobra, para el peso (125 px con la tabla entera; si la pantalla es algo más estrecha, encoge el peso y no el nombre) */
 @media (min-width:1201px){
-  #t-pos{table-layout:fixed}
+
   #t-pos th{box-sizing:border-box}
-  #t-pos th[data-k="price"],#t-pos th[data-k="avg"]{width:87px}
-  #t-pos th[data-k="shares"]{width:65px}
-  #t-pos th[data-k="today"],#t-pos th[data-k="todayEur"]{width:62px}
-  #t-pos th[data-k="value"],#t-pos th[data-k="totalEur"],#t-pos th[data-k="irr"]{width:75px}
-  #t-pos th[data-k="name"]{width:211px}
-  #t-pos th[data-k="totalPct"]{width:89px}
-  #t-pos th[data-k="years"]{width:50px}
-  #t-pos th[data-k="yov"]{width:69px}
+
+  
+
+  
+
+  
+
+  
   #t-pos td[data-l="Hoy"] .tpill{width:auto;min-width:0;padding-left:0}
   #t-pos .wb2{display:grid;grid-template-columns:40px minmax(0,1fr);gap:8px}}
 /* Radar: la última columna («Exigida») con el mismo margen derecho en la cabecera y en las cifras (6 px, como el resto de tablas) */
@@ -1888,7 +1867,7 @@ body:has(#sheet:not([hidden])) .sheet-bg{display:block}
 /* Posiciones: al ensanchar la columna, el espacio que sobra se reparte entre todas las columnas (Peso se lleva la mayor parte y la barra crece)
    --ex = lo que la tabla mide de más sobre los 1.132 px de antes: de 0 (pantalla de 1.212 px) a 260 px (columna completa de 1.440) */
 @media (min-width:1201px){
-  #t-pos{--ex:clamp(0px,100vw - 1212px,260px)}
+  #t-pos{table-layout:fixed;--ex:clamp(0px,100vw - 1212px,260px)}
   #t-pos th[data-k="price"],#t-pos th[data-k="avg"]{width:calc(87px + var(--ex)*.046)}
   #t-pos th[data-k="shares"]{width:calc(65px + var(--ex)*.046)}
   #t-pos th[data-k="today"],#t-pos th[data-k="todayEur"]{width:calc(62px + var(--ex)*.046)}
@@ -1899,7 +1878,7 @@ body:has(#sheet:not([hidden])) .sheet-bg{display:block}
   #t-pos th[data-k="yov"]{width:calc(69px + var(--ex)*.046)}
 }
 /* ===== Letra: Inter en toda la web (texto, cifras, tablas y gráficos), en lugar de IBM Plex. La «a» de un solo trazo (cv11) y cifras de ancho fijo donde se alinean ===== */
-:root{--f-sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--f-mono:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif}
+
 body{font-feature-settings:"cv11"}
 .cv-t{font-family:var(--f-sans)}
 /* Inter es algo más ancha que Plex: la columna Bróker de Movimientos gana 12 px para que «Interactive Brokers» quepa entero */
@@ -1914,7 +1893,7 @@ body{font-feature-settings:"cv11"}
 }
 @media (max-width:760px){
   .top .nav a{position:relative}
-  .top .nav a[aria-current="page"] .nav-i{background:none}
+
   .top .nav a[aria-current="page"]::before{content:"";position:absolute;top:-5px;left:28%;right:28%;height:2px;background:var(--ink)}
 }
 /* ===== Logos de un solo color en las listas (Posiciones, Movimientos, Dividendos y su tarjeta de «Próximos 12 meses», Radar, Rendimiento, Todas las empresas, Plan y buscador).
@@ -1937,7 +1916,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img.kd{display:none}
 /* ===== Paleta «marfil» (modo claro): el mismo tono cálido de la hoja, con más luz. Lienzo más claro y bloques casi blancos, rayas más suaves.
    El modo oscuro no cambia. Para volver a la paleta anterior (lienzo #E4E2DC, bloques #F0EEE8), basta con borrar este bloque ===== */
-:root{--canvas:#F3F1EC;--panel:#FBFAF7;--card:#FFFFFF;--row:#F5F4F0;--line:#E5E2DB}
+
 /* ===== Franjas oscuras iguales en las cinco pestañas (Resumen, Análisis, Movimientos, Universo y Actualidad):
    misma altura, mismas cifras (de 30 a 40 px según el ancho) y, con cuatro cifras, las mismas columnas. Resumen ya no tiene una cifra mayor que las demás ===== */
 @media (min-width:901px){
@@ -1948,7 +1927,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
   #h-sub{white-space:nowrap}
 }
 /* en Resumen, la línea de debajo del valor cabe en su columna: por debajo de 1.400 px de ancho se queda sin la liquidez */
-@media (min-width:901px) and (max-width:1099px){#h-sub{font-size:11px}}
+@media (min-width:901px) and (max-width:1100px){#h-sub{font-size:11px}}
 /* Movimientos: sus cinco cifras forman la franja; la elegida, subrayada (como el menú). Antes eran cinco tarjetas y la elegida en negro */
 #mtabs{gap:0;background:var(--h-bg);border-radius:var(--rc);padding:0;border:0}
 #mtabs a,#mtabs a:hover,#mtabs a[aria-current="page"]{position:relative;background:transparent;border:0;border-radius:0;box-shadow:none;color:var(--h-fg)}
@@ -1961,11 +1940,11 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 @media (min-width:701px){#mtabs{border-radius:0;box-shadow:0 0 0 100vmax var(--h-bg);clip-path:inset(0 -100vmax)}}
 @media (min-width:1001px){
   #mtabs a{padding:26px clamp(16px,3vw,30px) 26px}
-  #mtabs a+a::before{content:"";position:absolute;left:0;top:26px;bottom:26px;width:1px;background:var(--h-line)}
+  #mtabs a+a::before{content:"";position:absolute;left:0;width:1px;background:var(--h-line)}
   #mtabs a{gap:0}
   #mtabs .mvt-n{line-height:16px;--lhp:16px}
-  #mtabs .mvt-v{font-size:clamp(26px,2.6vw,40px);line-height:clamp(30px,2.8vw,40px);line-height:round(nearest,clamp(30px,2.8vw,40px),1px);--lhp:round(nearest,clamp(30px,2.8vw,40px),1px);margin-top:12px}
-  #mtabs .mvt-s{line-height:17px;--lhp:17px;margin-top:12px}
+
+  #mtabs .mvt-s{line-height:17px;--lhp:17px;}
 }
 /* en pantallas medianas y en el móvil, las casillas se separan con una raya fina */
 @media (max-width:1000px){
@@ -1976,10 +1955,8 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 /* Actualidad: su franja con la semana, cómo ha ido tu cartera, lo que se cuenta a fondo y las noticias; la cabecera del periódico se queda solo con su nombre */
 @media (min-width:701px){#s-actb{border-radius:0;box-shadow:0 0 0 100vmax var(--h-bg);clip-path:inset(0 -100vmax)}}
 /* en oscuro, la franja conserva su verde casi negro (antes pasaba a gris grafito, más claro que el fondo) */
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--h-bg:#16201A;--h-card:#1F2B24;--h-line:#2B3832;--h-fg2:#B9C2BC;--h-fg3:#97A29A}}
-:root[data-theme="dark"]{--h-bg:#16201A;--h-card:#1F2B24;--h-line:#2B3832;--h-fg2:#B9C2BC;--h-fg3:#97A29A}
 /* ===== Esquinas: redondo fuera y casi recto dentro. Bloques 12 px; controles 8; casillas del mapa, píldoras y etiquetas 4; barras 2 ===== */
-:root{--r:12px;--rc:12px;--r-md:8px;--r-sm:4px;--r-bar:2px}
+
 /* ===== Escala de color de las píldoras (Rentabilidad, TIR) y del mapa por industria: solo verde y rojo, más o menos intensos.
    Los tramos no cambian; desaparecen el crema, el verde amarillento, el melocotón y el naranja ===== */
 .rlv.rp1{background:#EAF2EC;color:#35594A} .rlv.rp2{background:#D6E9DD;color:#2B5242}
@@ -1992,7 +1969,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 :root[data-theme="dark"] .rlv.rn1{background:#2E201E;color:#F2D3CE} :root[data-theme="dark"] .rlv.rn2{background:#422827;color:#F4D2D0}
 /* ===== Tu cartera hoy: la cifra en la fila del título, como los botones de Evolución; el mapa empieza a la altura del gráfico ===== */
 #s-today .hy{display:block;margin-bottom:20px}
-#s-today .hy-a{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:12px 16px}
+#s-today .hy-a{display:flex;justify-content:space-between;flex-wrap:wrap;}
 #s-today .hy .tbig{margin:-10px 0 -4px;font-size:22px;font-weight:400;letter-spacing:-.01em;line-height:24px;--lhp:24px;gap:8px;align-items:baseline;white-space:nowrap}
 /* «suben / bajan» debajo del mapa, con los colores del mapa: la misma leyenda que Evolución */
 .hy-leg{justify-content:center;margin-top:12px}
@@ -2000,7 +1977,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 .hy-leg i{width:10px;height:10px;margin:0;border-radius:var(--r-bar);background:var(--lv0)}
 .hy-leg i.up{background:var(--lp3)}.hy-leg i.dn{background:var(--ln3)}
 .hy-leg b{font-weight:500;color:var(--ink)}
-.hy-leg:empty{display:none}
+
 /* ===== Jerarquía de franjas: Resumen es la portada (verde casi negro); Análisis, Movimientos, Universo y Actualidad llevan la misma franja en arena, más compacta ===== */
 :is(#s-aidx,#s-uni,#s-actb,#mtabs){--h-bg:#E9E3D7;--h-card:#E1DACC;--h-line:#D3CABA;--h-fg:#1A1A1A;--h-fg2:#4A4843;--h-fg3:#5F5A51;--h-pos:var(--pos);--h-neg:var(--neg)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) :is(#s-aidx,#s-uni,#s-actb,#mtabs){--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:#C6BFB4;--h-fg3:#9D968B}}
@@ -2033,7 +2010,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 /* móvil: las franjas de las secciones, compactas (sin el texto pequeño de debajo de cada cifra) */
 @media (max-width:700px){
   :is(#s-aidx,#s-uni,#s-actb){padding-top:14px;padding-bottom:14px}
-  :is(#s-aidx,#s-uni,#s-actb) .bg .bv{font-size:20px;line-height:24px;--lhp:24px;padding-bottom:12px}
+  :is(#s-aidx,#s-uni,#s-actb) .bg .bv{padding-bottom:12px}
   :is(#s-aidx,#s-uni,#s-actb) .bg .bl{padding-bottom:4px;padding-top:12px}
   :is(#s-aidx,#s-uni,#s-actb) .bg .bs{display:none}
   #mtabs .mvt-v{font-size:20px;line-height:24px;--lhp:24px;margin-top:4px}
@@ -2043,7 +2020,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 /* ===== Ficha: arriba, la franja con cinco cifras (igual en todas las pestañas); debajo, un solo fondo y cada bloque separado por una raya fina ===== */
 .sheet{--fxb:#E9E3D7;--fxl:#D3CABA;--fx3:#5F5A51;--fxs:var(--panel);background:var(--fxs)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet{--fxb:#272420;--fxl:#3B3730;--fx3:#9D968B;--fxs:var(--canvas)}}
-:root[data-theme="dark"] .sheet{--fxb:#272420;--fxl:#3B3730;--fx3:#9D968B;--fxs:var(--canvas)}
+
 .sheet .sh-top,.sheet .sh-tabw{background:var(--fxs)}
 .fx-band{display:flex;background:var(--fxb);margin:0 -22px;padding:18px 22px}
 #sheet .fx-band .fp-b{display:block;flex:1 1 auto;min-width:0;padding:0 14px;border-left:1px solid var(--fxl);text-align:left;grid-row:auto}
@@ -2059,8 +2036,8 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
   #sheet .fx-band .fp-b:nth-child(2){padding-left:0;border-left:0}
   #sheet .fx-band .fp-k{margin-bottom:5px;white-space:normal}
   #sheet .fx-band .fp-b:not(:first-child) .fp-k{min-height:28px;display:flex;align-items:flex-end}
-  #sheet .fx-band .fp-b>b{font-size:17px;line-height:22px;--lhp:22px}#sheet .fx-band .fp-b:first-child>b{font-size:26px;line-height:30px;--lhp:30px}
-  #sheet .fx-band .fp-b>small{font-size:11px;margin-top:3px;white-space:normal}
+  #sheet .fx-band .fp-b>b{font-size:17px;line-height:22px;--lhp:22px}
+  #sheet .fx-band .fp-b>small{font-size:11px;white-space:normal}
 }
 .sheet .sh-pane{gap:0}
 .sheet .fp-cards,.sheet .fp-mvs{display:block}
@@ -2133,7 +2110,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 #notice h2{font-size:22px;line-height:28px;--lhp:28px;font-weight:400;letter-spacing:-.01em;margin:0;color:var(--nt-fg)}
 #notice p{margin:0;max-width:64ch;font-size:14px;line-height:21px;--lhp:21px;color:var(--nt-fg2)}
 #notice .nt-ac{display:flex;flex-direction:column;gap:12px;min-width:0}
-#notice .keyf{max-width:none;margin:0;gap:8px}
+#notice .keyf{max-width:none;margin:0;}
 #notice .keyf .inp{height:44px;font-size:14px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--nt-line)}
 #notice .keyf .inp:focus{box-shadow:inset 0 0 0 1px var(--nt-fg3)}
 #notice .keyf .btn,#notice .nt-ac>.btn{height:44px;padding:0 22px;font-size:13px;border-radius:var(--r-md);display:inline-flex;align-items:center;justify-content:center}
@@ -2158,7 +2135,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 .ptr.go,.ptr.run{color:var(--ink)}
 .ptr.run{opacity:1}
 .ptr.run svg{animation:rot .9s linear infinite}
-@media (pointer:coarse){html{overscroll-behavior-y:contain}}   /* sin la recarga de página del navegador: tira la web */
+/* sin la recarga de página del navegador: tira la web */
 /* v258 · Tu cartera hoy: la cifra del día debajo del título, como en las franjas (grande y fina, el porcentaje al lado del mismo color) */
 #s-today .hy-a{flex-direction:column;align-items:flex-start;gap:10px}
 #s-today .hy .tbig.hv1{margin:0;font-size:28px;line-height:32px;--lhp:32px;font-weight:300;letter-spacing:-.02em;gap:10px}
@@ -2176,16 +2153,16 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 .mtitle,#more{display:none}
 .more-m{display:none}
 @media (max-width:760px){
-  .top{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"t x" "s x";row-gap:3px;column-gap:8px;padding-block:14px 10px}
-  .mtitle{display:block;grid-area:t;min-width:0;font-size:28px;line-height:34px;--lhp:34px;font-weight:500;letter-spacing:-.02em;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .top .status{grid-area:s;min-width:0;gap:7px;font-size:12px;color:var(--ink3)}
+  .top{grid-template-columns:minmax(0,1fr) auto;row-gap:3px;column-gap:8px;}
+  .mtitle{grid-area:t;min-width:0;font-size:28px;line-height:34px;--lhp:34px;font-weight:500;letter-spacing:-.02em;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .top .status{grid-area:s;min-width:0;gap:7px;}
   .top .status #stat{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .top .tools{grid-area:x;align-self:center;position:relative}
   #theme,#refresh{display:none}
   #more{display:inline-flex}
   .top .btn.ic{width:40px;height:40px}
   .top .btn.ic svg{width:18px;height:18px}
-  .more-m:not([hidden]){display:flex;flex-direction:column;position:absolute;top:calc(100% + 6px);right:6px;z-index:30;width:min(272px,calc(100vw - 32px));padding:6px;background:var(--card);border-radius:14px;box-shadow:0 0 0 1px var(--line),0 16px 40px -10px rgba(0,0,0,.28)}
+  .more-m:not([hidden]){display:flex;flex-direction:column;z-index:30;padding:6px;background:var(--card);border-radius:14px;box-shadow:0 0 0 1px var(--line),0 16px 40px -10px rgba(0,0,0,.28)}
   .more-m>button{display:flex;align-items:center;gap:12px;height:46px;padding:0 12px;border:0;background:none;border-radius:10px;font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;font-size:15px;color:var(--ink);text-align:left;cursor:pointer}
   .more-m>button[hidden]{display:none}
   .more-m>button:disabled{opacity:.45}
@@ -2210,11 +2187,11 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* v260 · modo privado: los importes se cambian por puntos (como en las apps de bancos); lo demás, con un difuminado más suave */
 .priv .pv,.priv #h-val{filter:none!important;position:relative;visibility:hidden}
 .priv .pv::after,.priv #h-val::after{content:"••••";visibility:visible;position:absolute;inset:0;text-align:inherit;white-space:nowrap;letter-spacing:.06em;font-size:inherit;color:inherit}
-.priv #h-val::after{text-align:left}
+
 .priv .mk-yr small,.priv #s-mov td[data-k="shares"],.priv #t-plan input,.priv #pl-ap{filter:blur(5px)!important}
 .priv canvas{filter:blur(6px)!important}
 .priv #h-val .pv::after{content:none}   /* el valor grande lleva un solo grupo de puntos (los céntimos también van dentro) */
-.priv #h-val::after{letter-spacing:0}
+.priv #h-val::after{text-align:left;letter-spacing:0}
 /* v261 · Resumen: «Tu cartera hoy» y Evolución del mismo ancho; su separación cae en el centro, bajo la división Hoy | Retorno total */
 @media (min-width:901px){.duo{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* v261 · Movimientos › Transacciones: «239 compras · 47 ventas» en la línea de la cifra y las empresas en una línea; la franja baja de 131 a 117 px */
@@ -2226,8 +2203,8 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* v262 · móvil: sin título grande; la cabecera en una línea: el estado a la izquierda, el ojo y «···» a la derecha */
 @media (max-width:760px){
   .mtitle{display:none}
-  .top{grid-template-areas:"s x";padding-block:12px 8px}
-  .top .status{font-size:12px;color:var(--ink2)}
+
+  
 }
 @media (max-width:760px){.top .nav a[aria-current="page"]::after{display:none}}   /* la raya de la pestaña activa se metía en el contenido: en el móvil la marca el color */
 /* v263 · móvil como una app: sin barra de herramientas arriba; cada pestaña empieza con su franja, de lado a lado.
@@ -2235,16 +2212,16 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
    alineado con los bordes de la tarjeta de abajo. «···», en el hueco a la derecha de «Tu cartera hoy» */
 :root{--ar-bg:#E9E3D7}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ar-bg:#272420}}
-:root[data-theme="dark"]{--ar-bg:#272420}
+
 .hmob,.t-more{display:none}
 @media (max-width:760px){
-  .top{display:block;height:0;min-height:0;padding:0;margin:0 0 calc(-1*var(--gap))}
-  .top .status{display:none}
+  .top{grid-template-areas:"s x";padding-block:12px 8px;display:block;height:0;min-height:0;padding:0;margin:0 0 calc(-1*var(--gap))}
+  .top .status{font-size:12px;color:var(--ink2);display:none}
   .top .tools{display:block;height:0;margin:0}
   .top .tools>:not(.more-m),.top .tools :is(#more,#priv,#kbtn){display:none}
-  .more-m:not([hidden]){position:fixed;top:calc(max(env(safe-area-inset-top,0px),10px) + 40px);right:16px}
+  .more-m:not([hidden]){position:fixed;}
   :is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs){border-radius:0;margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px;box-shadow:none}
-  :is(#s-aidx,#s-uni,#s-actb,#mtabs){padding-top:calc(max(env(safe-area-inset-top,0px),10px) + 12px)}
+
   body[data-view="resumen"]:not(.past-band) #topcap{background:var(--h-bg)}
   body[data-view]:not([data-view="resumen"]):not(.past-band) #topcap{background:var(--ar-bg)}
   body[data-view="movimientos"]:not([data-view="resumen"]):not(.past-band) #topcap{background:var(--mv-top)}
@@ -2269,8 +2246,8 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   .hm-s{grid-row:3;align-self:baseline;margin-top:3px;font-size:12px;line-height:16px;--lhp:16px;color:var(--h-fg3)}
   #hm-tot b{font-weight:400}
   .hmob .pos{color:var(--h-pos)}.hmob .neg{color:var(--h-neg)}
-  .hm-pl{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:5px;font-size:11px;line-height:16px;--lhp:16px;vertical-align:1px;letter-spacing:0}
-  #hm-day .hm-pl{margin-left:8px;font-size:12px}
+  .hm-pl{display:inline-block;letter-spacing:0}
+  #hm-day .hm-pl{font-size:12px}
   .hmob .neg .hm-pl,.hm-pl.neg{background:rgba(242,160,151,.15)}.hmob .pos .hm-pl,.hm-pl.pos{background:rgba(134,211,170,.14)}
   #h-live{display:inline}
   #h-live .dot{display:inline-block;width:5px;height:5px;margin-right:6px;vertical-align:2px;box-shadow:none}
@@ -2295,9 +2272,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 }
 @media (max-width:760px){.top .nav a[aria-current="page"]::before{display:none}}   /* la raya de la pestaña activa que sobresalía por encima de la barra, metida en el contenido (la de la v262 era otra) */
 /* Movimientos: en el móvil su franja asoma por arriba con el color de las rayas entre casillas, un poco más oscuro que el arena */
-:root{--mv-top:#D3CABA}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--mv-top:#3B3730}}
-:root[data-theme="dark"]{--mv-top:#3B3730}
+
 /* v266 · iPhone: al tirar hacia abajo, el hueco de arriba se pinta con el color de fondo del body (WebKit lo coge del body, no del html).
    Mientras estás arriba del todo, ese color es el de la primera franja; encima va una imagen lisa del color del lienzo, así que en la
    página no cambia nada. Al bajar, vuelve al de siempre */
@@ -2331,7 +2306,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 @media (min-width:601px){#perf-up,#perf-dn{grid-template-columns:minmax(max-content,1fr) max-content minmax(0,26%) minmax(66px,max-content)}}
 @media (max-width:600px){.pf-row{grid-template-columns:minmax(0,1fr) max-content;column-gap:12px;row-gap:1px}.pf-row .co{grid-row:1/span 2}.pf-row .c{grid-column:2;grid-row:1;align-self:end}.pf-row .pf-px{grid-column:2;grid-row:2;align-self:start;font-size:12px;line-height:16px;--lhp:16px}}
 /* v268 · la ficha en el móvil solo se desplaza en vertical: el gesto de cerrarla (de lado) no frena el desplazamiento */
-@media (max-width:759px) and (pointer:coarse){.sheet{touch-action:pan-y}}
+@media (max-width:760px) and (pointer:coarse){.sheet{touch-action:pan-y}}
 /* v268 · el aviso de tu hoja se cierra con ✕ (arriba a la derecha) */
 .hoja-al .hal{position:relative;padding-right:56px}
 .hoja-al .hal-x{position:absolute;top:10px;right:12px;width:36px;height:36px;display:grid;place-items:center;border:0;border-radius:var(--r-md);background:none;color:var(--nt-fg3);cursor:pointer}
@@ -2351,13 +2326,13 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 }
 /* tocar y mantener no selecciona texto ni saca el menú del iPhone en lo que se pulsa; sin zoom por doble toque */
 @media (pointer:coarse){
-  html{touch-action:manipulation}
+  html{overscroll-behavior-y:contain;touch-action:manipulation}
   button,a,.tile,tr.pr,.pf-row,.nav a,#mtabs a,.seg,.ih,.hmob{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 }
 /* la ficha entra por la derecha y sale por la derecha (como pasar a una pantalla y volver en el iPhone) */
 @keyframes sh-push{from{transform:translateX(100%);box-shadow:-12px 0 32px rgba(0,0,0,.16)}}
-@media (max-width:759px) and (prefers-reduced-motion:no-preference){.sheet{animation:sh-push .3s cubic-bezier(.2,.8,.2,1)}}
-@media (max-width:759px) and (prefers-reduced-motion:reduce){.sheet{animation:none}}
+@media (max-width:760px) and (prefers-reduced-motion:no-preference){.sheet{animation:sh-push .3s cubic-bezier(.2,.8,.2,1)}}
+@media (max-width:760px) and (prefers-reduced-motion:reduce){.sheet{animation:none}}
 /* buscador en el móvil: sin los atajos de teclado, con «Cancelar» */
 .kx-cancel{display:none}
 @media (pointer:coarse){#kx .kx-in kbd,#kx .kx-f{display:none}#kx .kx-cancel{display:block;flex:none;border:0;background:none;font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;font-size:15px;color:var(--ink2);padding:0 0 0 12px;cursor:pointer}}
@@ -2372,7 +2347,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 @media (max-width:760px){:is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs){position:relative;z-index:11}}
 /* v271 · la ficha en el PC no reserva hueco para su barra de desplazamiento: la barra es fina y flotante (aparece al desplazar o al pasar
    el ratón, se puede arrastrar y no ocupa sitio). Así la franja de cifras llega al borde y los márgenes son iguales a los dos lados */
-@media (min-width:760px){
+@media (min-width:761px){
   .sheet{scrollbar-gutter:auto;scrollbar-width:none}
   .sheet::-webkit-scrollbar{display:none}
   .sh-sb{position:fixed;z-index:7;width:6px;border-radius:3px;background:rgba(20,20,18,.30);opacity:0;transition:opacity .25s,width .12s;cursor:default;touch-action:none}
@@ -2388,7 +2363,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
    Con «Movimientos» elegido se ve como las demás; al elegir un tipo, los otros se apagan */
 :root{--mv-top:#E9E3D7}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--mv-top:#272420}}
-:root[data-theme="dark"]{--mv-top:#272420}
+
 #mtabs.mvt a,#mtabs.mvt a:hover,#mtabs.mvt a[aria-current="page"],#mtabs.mvt a[aria-current="page"]:hover{background:transparent;box-shadow:none;transition:opacity .15s}
 #mtabs.mvt a .mvt-n,#mtabs.mvt a[aria-current="page"] .mvt-n{color:var(--h-fg3)}
 #mtabs.mvt a:not(.mvt-all)[aria-current="page"] .mvt-n{color:var(--h-fg)}
@@ -2438,13 +2413,13 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   .hmob.hm1 .hm-kt,.hmob.hm1 .hm-kd{grid-row:3;justify-self:center;margin-top:7px}
   .hmob.hm1 .hm-kt{grid-column:1}
   .hmob.hm1 .hm-kd{grid-column:2}
-  .hmob.hm1 #hm-tot,.hmob.hm1 #hm-day{grid-row:4;align-self:start;justify-self:center;margin:3px 0 0;display:flex;align-items:baseline;gap:7px;font-size:15px;line-height:18px;--lhp:18px;font-weight:400;letter-spacing:0;color:var(--h-fg)}
+  .hmob.hm1 #hm-tot,.hmob.hm1 #hm-day{grid-row:4;align-self:start;justify-self:center;margin:3px 0 0;display:flex;gap:7px;font-size:15px;line-height:18px;--lhp:18px;font-weight:400;letter-spacing:0;color:var(--h-fg)}
   .hmob.hm1 #hm-tot{grid-column:1}
   .hmob.hm1 #hm-day{grid-column:2}
   .hmob.hm1 #hm-tot .pos,.hmob.hm1 #hm-day.pos{color:var(--h-pos)}
   .hmob.hm1 #hm-tot .neg,.hmob.hm1 #hm-day.neg{color:var(--h-neg)}
   .hmob.hm1 #hm-tot b{font-weight:400}
-  .hmob.hm1 #hm-tot .hm-pl,.hmob.hm1 #hm-day .hm-pl{margin:0;font-size:12px;line-height:16px;--lhp:16px;padding:0 5px;border-radius:4px;vertical-align:baseline;position:relative;top:-1.5px}
+
   .hmob.hm1 .hm-dv{grid-column:1/-1;grid-row:3/5;justify-self:center;width:1px;margin:9px 0 1px;background:var(--h-line)}
   .priv .hmob.hm1 #hm-val::after{text-align:center}
   /* en modo privado, los puntos de Total y Hoy ocupan lo suyo (no el ancho de la cifra oculta): el porcentaje queda a su lado */
@@ -2460,14 +2435,14 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 @media (max-width:700px){
   .hmob.hm1 #hm-tot,.hmob.hm1 #hm-day{align-items:flex-start}
   .hmob.hm1 #hm-tot>*,.hmob.hm1 #hm-day>*{line-height:18px;--lhp:18px}
-  .hmob.hm1 #hm-tot .hm-pl,.hmob.hm1 #hm-day .hm-pl{display:block;position:static;top:auto;margin:2.63px 0 0;box-sizing:border-box;height:10.91px;padding:1.5px 4px 0;font-size:10.5px;line-height:9px;--lhp:9px;border-radius:3px}
+  .hmob.hm1 #hm-tot .hm-pl,.hmob.hm1 #hm-day .hm-pl{vertical-align:baseline;display:block;position:static;top:auto;margin:2.63px 0 0;box-sizing:border-box;height:10.91px;padding:1.5px 4px 0;font-size:10.5px;line-height:9px;--lhp:9px;border-radius:3px}
 }
 /* v276 · las pestañas de la ficha (Posición, Movimientos, Cotización, Valoración), centradas en la ficha también en el PC; el mismo margen
    a los dos lados. Con márgenes automáticos: si en una pantalla muy estrecha no caben, empiezan en el borde en vez de cortarse */
 .sheet .sh-tabw{padding-right:var(--tabp,24px);padding-left:var(--tabp,24px)}
 .sheet .sh-tabs>:first-child{margin-left:auto}
 .sheet .sh-tabs>:last-child{margin-right:auto}
-@media (max-width:759px){.sheet .sh-tabw{--tabp:12px}}
+@media (max-width:760px){.sheet .sh-tabw{--tabp:12px}}
 /* v277–v279 · Resumen en el móvil con tres cifras del mismo tamaño (Cartera, Hoy, Total; sin TIR), como la franja del PC achicada y sin
    recuadros, en columnas centradas; encima, una barra clara como la del PC (estado, buscar, ojo y modo noche). Al bajar, la franja se queda
    fija arriba, más estrecha y con números más pequeños */
@@ -2503,7 +2478,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   html body.hm3on[data-view="resumen"].bg-top{background-color:var(--canvas)}
   /* la franja fija al bajar: más estrecha y con números más pequeños */
   body.hm3on[data-view="resumen"] .hm3c{display:grid}
-  .hm3c{position:fixed;top:0;left:0;right:0;z-index:12;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr) 1px minmax(0,1fr);padding:calc(env(safe-area-inset-top,0px) + 6px) 16px 8px;background:var(--h-bg);color:var(--h-fg);font-variant-numeric:tabular-nums;transform:translateY(-100%);transition:transform .2s ease;pointer-events:none}
+  .hm3c{position:fixed;top:0;left:0;right:0;z-index:12;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr) 1px minmax(0,1fr);padding:calc(env(safe-area-inset-top,0px) + 6px) 16px 8px;background:var(--h-bg);color:var(--h-fg);font-variant-numeric:tabular-nums;transform:translateY(-100%);pointer-events:none}
   .hm3c.on{transform:none;pointer-events:auto}
   .hm3c>div{display:flex;flex-direction:column;align-items:center;min-width:0;white-space:nowrap}
   .hm3c .hm3-k{font-size:9px;line-height:11px;--lhp:11px}
@@ -2529,7 +2504,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   /* cifras destacadas dentro de los bloques */
   .dv-v{font-size:17px!important}   /* la regla general lleva !important */
   .mvb .mk-v,.mk-v{font-size:17px}
-  .ts-v{font-size:17px;line-height:24px;--lhp:24px}
+
   /* Actualidad: cabecera, apartados, titulares y días del calendario, sin pasar de 17 px */
   /* Análisis › Lo que suma / Lo que resta: concepto, importe y porcentaje sobre la misma línea de base */
   .anat-cols .ar{align-items:baseline}
@@ -2538,7 +2513,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   :is(#s-aidx,#s-uni,#s-actb) .bg .bl,:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c1,.c2,.c3,.c4).r1{padding-bottom:4.5px}
   #mtabs.mvt .mvt-v{margin-top:.5px}
   .dv-v{margin-top:4px}.dv-s{margin-top:3px}
-  .ts-v{margin-top:2px}
+  .ts-v{font-size:17px;line-height:24px;--lhp:24px;margin-top:2px}
   .mvb .mk-v,.mk-v{margin-top:4px}.mvb .mk-x,.mk-x{margin-top:3px}
 }
 @container ficha (max-width:620px){
@@ -2576,7 +2551,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   .hm5>:nth-child(-n+3){grid-column:span 2}
   .hm5>:nth-child(n+4){grid-column:span 3;margin-top:14px;padding-top:14px;box-shadow:0 -1px 0 var(--h-line)}
   .hm5>:is(:nth-child(2),:nth-child(3)){box-shadow:inset 1px 0 var(--h-line)}
-  .hm5>:nth-child(5){box-shadow:inset 1px 0 var(--h-line),0 -1px 0 var(--h-line)}
+
   /* Movimientos: el apartado elegido, con su raya al pie (del ancho de la etiqueta), como en el menú; al elegir uno, los demás se apagan */
   .hm5-mv .hm5-c.on::after{content:"";position:absolute;left:50%;bottom:-7px;width:var(--uw,40px);height:2px;border-radius:1px;background:var(--h-fg);transform:translateX(-50%)}
   .hm5-mv>:nth-child(n+4).on::after{bottom:-9px}
@@ -2631,7 +2606,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 @container ficha (max-width:370px){ #sheet .fx-band:not(#_) .fp-b>small{font-size:10px} }
 .sheet{--fx2:#4A4843}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet{--fx2:#C6BFB4}}
-:root[data-theme="dark"] .sheet{--fx2:#C6BFB4}
+:root[data-theme="dark"] .sheet{--fxb:#272420;--fxl:#3B3730;--fx3:#9D968B;--fxs:var(--canvas);--fx2:#C6BFB4}
 /* la línea de una opción bajo su nombre: fecha larga en el PC y corta en el móvil */
 .fp-in .os-s{display:none}
 @container ficha (max-width:620px){ .fp-in .os-l{display:none} .fp-in .os-s{display:inline} }
@@ -2720,7 +2695,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
   --rv-az:#E3E7EF;--rv-ve:#D4EADF;--rv-hbg:#F7F6F3;--rv-hln:#E4E2DC;--rv-hlb:#6B6B66;--rv-hhd:#70706A;
   display:flex;flex-direction:column;gap:16px;min-width:0}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rv{--rv-sand:#2A2621;--rv-pill:#2B2B28;--rv-zebra:rgba(255,255,255,.04);--rv-az:#2C333E;--rv-ve:#25382E;--rv-hbg:#1F1F1D;--rv-hln:#363532;--rv-hlb:#A9A8A3;--rv-hhd:#8F8E89}}
-:root[data-theme="dark"] .rv{--rv-sand:#2A2621;--rv-pill:#2B2B28;--rv-zebra:rgba(255,255,255,.04);--rv-az:#2C333E;--rv-ve:#25382E;--rv-hbg:#1F1F1D;--rv-hln:#363532;--rv-hlb:#A9A8A3;--rv-hhd:#8F8E89}
+
 .rv :where(button){font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;color:inherit;background:none;border:0;padding:0;margin:0;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .rv p{margin:0}
 .rv .pos{color:var(--pos)}.rv .neg{color:var(--neg)}
@@ -2834,7 +2809,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 /* cada apartado: el título de la web y su contenido */
 .rv-sec{margin-top:30px}
 .rv-body>.rv-sec:first-child,.rv-body>.rv-n:first-child,.rv-body>.rv-note:first-child,.rv-body>.rv-sh0:first-child{margin-top:24px!important}
-.rv-sh{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 12px;font-size:11px;line-height:14px;--lhp:14px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink)}
+.rv-sh{display:flex;justify-content:space-between;gap:12px;margin:0 0 12px;font-size:11px;line-height:14px;--lhp:14px;font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink)}
 .rv-sh small{font-size:12px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--ink3)}
 .rv-tx p{font-family:var(--rv-serif);font-size:17px;line-height:27px;--lhp:27px;color:var(--ink);text-wrap:pretty}
 .rv-tx p+p{margin-top:14px!important}
@@ -2851,8 +2826,8 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 .rv-tm{scroll-margin-top:calc(max(env(safe-area-inset-top,0px),10px) + 64px)}
 .rv-tm+.rv-tm{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
 .rv-tm h4{display:flex;align-items:flex-start;gap:12px;margin:0 0 10px;font-family:var(--rv-serif);font-size:20px;line-height:26px;--lhp:26px;font-weight:500;color:var(--ink)}
-.rv-tm h4 .rv-no{margin-top:2px}
-.rv-dl{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0 0 12px 34px!important;font-size:13px;line-height:19px;--lhp:19px;color:var(--ink2)}
+
+.rv-dl{display:flex;flex-wrap:wrap;font-size:13px;line-height:19px;--lhp:19px;color:var(--ink2)}
 .rv-dl b{font-weight:600;color:var(--ink)}
 /* preguntas de los analistas: la pregunta y, al tocarla, la respuesta */
 .rv-ul li{font-family:var(--rv-serif);font-size:17px;line-height:27px;--lhp:27px;color:var(--ink)}
@@ -2925,7 +2900,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 .rv-load{margin-top:24px!important;font-size:14px;color:var(--ink3)}
 /* el pie: marcar como leída y la anterior y la siguiente */
 .rv-foot{display:flex;justify-content:center;margin-top:32px;padding-top:20px;border-top:1px solid var(--line)}
-.rv-rdb{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;height:32px;padding:0 12px!important;border-radius:16px!important;background:var(--rv-pill)!important;font-size:13px;font-weight:500;color:var(--ink)}
+.rv-rdb{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px!important;border-radius:16px!important;background:var(--rv-pill)!important;font-size:13px;font-weight:500;color:var(--ink)}
 .rv-rdb .ai{width:15px;height:15px}
 .rv-rdb[aria-pressed="true"]{background:var(--pos-bg)!important;color:var(--pos)}
 /* ---------- ordenador ---------- */
@@ -2946,7 +2921,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
   .rv-ts h4{font-size:21px;line-height:28px;--lhp:28px}
   .rv-ts dd,.rv-imp p,.rv-ad{font-size:17px;line-height:27px;--lhp:27px}
 }
-@media (min-width:1000px){
+@media (min-width:1001px){
   .rv-rl{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px}
   .rv-rl>.rv-ri:nth-child(2){border-top:0}
   .rv-rl>.rv-ri:nth-last-child(2):nth-child(odd){padding-bottom:0}
@@ -2956,7 +2931,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
   .rv-nl>.rv-row:last-child{padding-bottom:12px}
   .rv-nl>.rv-row:nth-child(-n+3){border-top:0}
 }
-@media (min-width:701px) and (max-width:999px){
+@media (min-width:701px) and (max-width:1000px){
   .rv-nl{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px;margin-bottom:-12px}
   .rv-nl>.rv-row:last-child{padding-bottom:12px}
   .rv-nl>.rv-row:nth-child(-n+2){border-top:0}
@@ -2973,7 +2948,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
    Dentro del texto, las cifras subrayadas con rotulador y los arranques en negrita («El matiz.») como etiqueta */
 .rv{--rv-mk:#EFDDA9}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rv{--rv-mk:#5A4A24}}
-:root[data-theme="dark"] .rv{--rv-mk:#5A4A24}
+:root[data-theme="dark"] .rv{--rv-sand:#2A2621;--rv-pill:#2B2B28;--rv-zebra:rgba(255,255,255,.04);--rv-az:#2C333E;--rv-ve:#25382E;--rv-hbg:#1F1F1D;--rv-hln:#363532;--rv-hlb:#A9A8A3;--rv-hhd:#8F8E89;--rv-mk:#5A4A24}
 .rv-sh{align-items:center}
 .rv-sh>span{display:inline-flex;align-items:center;gap:10px}
 .rv-si{display:inline-flex;align-items:center;justify-content:center;flex:none;width:26px;height:26px;border-radius:8px;background:var(--rv-pill);color:var(--ink)}
@@ -3062,7 +3037,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 /* TA-01 · tableta y PC estrecho (701–1239 px): la franja de Análisis, Universo y Actualidad en tres arriba y dos abajo, como en el móvil y
    con su forma de acortar; con las cinco en fila se partían etiquetas y subtítulos («SOBRE LO / EXIGIDO», «21 en cartera · 95 / candidatas»).
    Letra de tableta (cifras de 28 px, como Resumen a ese ancho); desde 1240 px las cinco caben en fila */
-@media (min-width:701px) and (max-width:1239px){
+@media (min-width:701px) and (max-width:1240px){
   body.hm5on :is(#s-aidx,#s-uni,#s-actb)>.bg{display:none}
   body.hm5on :is(#s-aidx,#s-uni,#s-actb)>.hm5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));color:var(--h-fg);font-variant-numeric:tabular-nums}
   :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-c{position:relative;display:grid;grid-template-rows:subgrid;grid-row:span 3;justify-items:center;align-content:start;text-align:center;padding:0 10px;min-width:0}
@@ -3079,7 +3054,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
   :is(#s-aidx,#s-uni,#s-actb)>.hm5>:nth-child(5)::before{content:"";position:absolute;left:0;top:18px;bottom:0;width:1px;background:var(--h-line)}
 }
 /* desde 1001 px la sección no tiene margen interior (la franja del PC lleva el suyo): la de tres y dos, con los 30 px que tiene a 1000 px */
-@media (min-width:1001px) and (max-width:1239px){ :is(#s-aidx,#s-uni,#s-actb)>.hm5{margin-inline:30px} }
+@media (min-width:1001px) and (max-width:1240px){ :is(#s-aidx,#s-uni,#s-actb)>.hm5{margin-inline:30px} }
 /* RE-02 · móvil: «Otros instrumentos · opciones», al ras del título de Posiciones */
 @media (max-width:700px){ .rt#t-pos tbody tr.grp-row{padding-left:0} }
 /* UN-04 · Radar: hasta 370 px, «8,0% de tu cartera» baja a su propia línea (a 360 px pisaba la pastilla de TIR; a 375 aún sobran 11 px) */
@@ -3094,9 +3069,9 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 @media (min-width:701px){ #s-mov .rt tbody tr.grp-row:not(:first-child) td{border-top-width:25px;border-bottom:1px solid color-mix(in srgb,var(--ink) 7%,var(--panel))}
   #s-mov .rt tbody tr:last-child td{border-bottom-width:0;box-shadow:inset 0 -1px 0 var(--line)} }
 /* CG-02/03 · el gris de etiqueta, uno solo: el de las franjas */
-:root{--lbl:#5F5A51}
+:root{--fs-hero:56px;--fs-xl:32px;--fs-l:20px;--fs-m:16px;--fs-b:14px;--fs-s:13px;--fs-xs:11px;--gap:16px;--acc-pd:#AEB9CF;--f-sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--f-mono:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--canvas:#F3F1EC;--panel:#FBFAF7;--card:#FFFFFF;--row:#F5F4F0;--line:#E5E2DB;--r:12px;--rc:12px;--r-md:8px;--r-sm:4px;--r-bar:2px;--lbl:#5F5A51}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--lbl:#9D968B}}
-:root[data-theme="dark"]{--lbl:#9D968B}
+:root[data-theme="dark"]{--ar-bg:#272420;--mv-top:#272420;--lbl:#9D968B}
 </style>
 
 <div class="wrap">
@@ -3332,7 +3307,6 @@ const fdate = (d,o={day:"numeric",month:"short"}) => d ? day(d).toLocaleDateStri
 // fecha en un texto: «4 nov» si es de este año; «17 jul 2025» si es de otro
 const flong = d => d ? day(d).toLocaleDateString("es-ES",{day:"numeric",month:"long",year:"numeric"}) : "";   // fecha dentro de un texto
 const fmd = d => d ? fdate(d,{day:"numeric",month:"short",year:"numeric"}) : "";   // fecha corta con año: «17 jul 2025»
-const fdt = d => d ? fdate(d, day(d).getFullYear()===new Date().getFullYear()?{day:"numeric",month:"short"}:{day:"numeric",month:"short",year:"numeric"}) : "";
 // fecha en un eje: «jul. 2025»
 const fax = d => d instanceof Date ? MES[d.getMonth()].toLowerCase()+" "+d.getFullYear() : "";
 const fmy = d => fax(d).replace(". "," ");   // en la ficha: «jul 2025»
@@ -3340,10 +3314,6 @@ const curSym = {EUR:"€",USD:"$",GBP:"£",CHF:"CHF",JPY:"¥",CAD:"C$"};
 const norm = s => typeof s==="string" ? s.replace(/\s+/g,"").toUpperCase() : "";
 const isNum = v => typeof v==="number" && isFinite(v);
 const money = (v,cur,d=2) => isNum(v) ? nfm(v,d)+" "+(curSym[cur]||cur||"") : "";
-// importe por acción: dos decimales, y hasta cuatro solo si hacen falta (1,88 €, 0,2243 £, 44,00 ¥)
-const nf24 = new Intl.NumberFormat("es-ES",{minimumFractionDigits:2,maximumFractionDigits:4,useGrouping:"always"});
-// (los decimales que sobran pasan a espacios del ancho de una cifra, para que las comas queden en columna)
-const money24 = (v,cur) => { if(!isNum(v)) return ""; const t=nf(4).format(v), m=t.match(/^(.*,\d\d\d*?)(0*)$/); return (m?m[1]+"\u2007".repeat(m[2].length):nf24.format(v))+" "+(curSym[cur]||cur||""); };
 const pp = v => isNum(v) ? (Math.abs(v)<0.0005?"0,0 pp":(v>0?"+":"−")+nf(1).format(Math.abs(v*100))+" pp") : "";
 const sum = (rs,f) => rs.reduce((s,r)=>s+(f(r)||0),0);
 const yr = d => d instanceof Date ? day(d).getFullYear() : null;
@@ -3747,7 +3717,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v307";   // la versión publicada, en el pie
+const VER="v308";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -3819,23 +3789,6 @@ function drawTray(live){
         g.font=`11px ${FONT}`; g.fillStyle=tok("--ink3"); g.textAlign="center"; g.fillText("Sin reinvertir",px,ca.top+6); }
       g.restore(); }}]});
   };
-  // un año por fila, con sus datos en columnas a la derecha; «Hoy» y «Sin reinvertir» van en su propia fila fina, para no pisar ninguna barra
-  const horiz=cols=>{
-    const R=[]; t.forEach((r,i)=>{ if(i===is&&is>ic+1) R.push({sp:"Sin reinvertir",dot:1}); R.push(r); if(i===ic&&ic<t.length-1) R.push({sp:"Hoy"}); });
-    const narrow=innerWidth<=700, rh=narrow?15:17, CW=cols.map(k=>k==="val"?(narrow?48:58):k==="ren"?(narrow?68:80):(narrow?46:60)); bx.style.height=bx.style.minHeight=(R.length*rh+52)+"px";
-    const b=baseOpts(), o={...b, indexAxis:"y", interaction:{mode:"index",axis:"y",intersect:false}, layout:{padding:{top:16,right:CW.reduce((x,y)=>x+y,0)}},
-      scales:{ x:{...b.scales.y, grid:{display:false}, stacked:true, ticks:{...b.scales.y.ticks, callback:v=>mfmt(v), padding:6}}, y:{...b.scales.x, stacked:true, ticks:{...b.scales.x.ticks, autoSkip:false, padding:6}} } };
-    if(live) o.animation=false; o.plugins.tooltip.callbacks=tips(1,R); o.plugins.tooltip.filter=c=>!R[c.dataIndex].sp;
-    make("c-tray",{type:"bar",data:{labels:R.map(r=>r.sp?"":r.y),datasets:sets(1,R)},options:o,plugins:[{id:"cols",afterDatasetsDraw(c){ const ys=c.scales.y, ca=c.chartArea, g=c.ctx; g.save(); g.textAlign="right";
-      let X=c.width-2; for(let k=cols.length-1;k>=0;k--){ const key=cols[k];
-        g.font=`500 11px ${FONT}`; g.fillStyle=tok("--ink2"); g.textBaseline="bottom"; g.fillText(lab(key),X-(key==="val"?4:0),ca.top-4); g.textBaseline="middle";
-        R.forEach((r,i)=>{ if(r.sp) return; const q=cell(key,r); if(!q.s) return; g.font=`${q.w} 11px ${FONT}`; g.fillStyle=tok(q.c); g.fillText(q.s,X-(key==="val"?4:0),ys.getPixelForValue(i)); });
-        X-=CW[k]; }
-      // la fila de cada marca: la raya de lado a lado y su nombre al principio, sobre el fondo para cortar la raya
-      R.forEach((r,i)=>{ if(!r.sp) return; const py=Math.round(ys.getPixelForValue(i))+.5; g.strokeStyle=tok("--ink3"); g.setLineDash(r.dot?[1,3]:[3,3]); g.lineWidth=1; g.beginPath(); g.moveTo(ca.left,py); g.lineTo(c.width,py); g.stroke(); g.setLineDash([]);
-        g.font=`11px ${FONT}`; const w=g.measureText(r.sp).width; g.fillStyle=tok("--panel"); g.fillRect(ca.left,py-7,w+8,14); g.fillStyle=tok(r.dot?"--ink3":"--ink2"); g.textAlign="left"; g.textBaseline="middle"; g.fillText(r.sp,ca.left+2,py); });
-      g.restore(); }}]});
-  };
   const trayTb=h=>{ let tb=$("tray-tb"); if(!tb){ tb=document.createElement("div"); tb.id="tray-tb"; tb.className="tray-tb"; const lg=box.closest("section").querySelector(".leg-c"); (lg||box).after(tb); } tb.innerHTML=h; };
   const mob=cols=>{
     bx.style.height=bx.style.minHeight="240px";
@@ -3871,7 +3824,6 @@ function bars(el,list,cls="",head=1){ const max=Math.max(...list.map(x=>Math.abs
   $(el).innerHTML = list.length ? list.map(x=>`<div class="bar${x.icon?" bi":""}">${x.icon||""}<span class="bn"><span>${esc(x.name)}</span></span><span class="bav">${avatars(x.ps)}</span><span class="num">${x.fmt?x.fmt:pct(x.val)}</span><div class="track"><div class="fill ${cls} ${x.cls||""}" style="width:${(Math.abs(x.val)/max*100).toFixed(1)}%"></div></div></div>`).join("")
     : `<span class="sub">Sin datos en la hoja</span>`; }
 
-const kv=(l,v,c="")=>`<div class="kv"><span>${l}</span><b class="${c}">${v}</b></div>`;
 // la misma línea con la fecha corta para el móvil (la ficha estrecha enseña una u otra)
 const optSubH=t=>{ const k=String(t).match(/\s([CP])\d/), e=optExpiry(t); return [k?(k[1]==="C"?"De compra":"De venta"):"", e?`vence el <span class="os-l">${esc(flong(e))}</span><span class="os-s">${esc(fdate(e,{day:"numeric",month:"short",year:"numeric"}).replace(/\./g,""))}</span>`:""].filter(Boolean).join(" · "); };
 const optSub=t=>{ const k=String(t).match(/\s([CP])\d/), e=optExpiry(t); return [k?(k[1]==="C"?"De compra":"De venta"):"", e?`vence el ${flong(e)}`:""].filter(Boolean).join(" · "); };
@@ -3883,7 +3835,7 @@ function fichaPos(p){
     // días hasta el vencimiento y valor intrínseco: lo que vale ejercerla hoy con el subyacente a su precio (sin la prima)
     const km=String(p.ticker).match(/\s([CP])(\d+(?:[.,]\d+)?)\s/), K=km?+km[2].replace(",","."):null, call=!km||km[1]==="C", S=m.price, rate=DATA.fx[m.cur||p.cur];
     const dl=exp?Math.round((exp-new Date(new Date().toDateString()))/864e5):null, iv=isNum(S)&&isNum(K)&&rate?Math.max(0,call?S-K:K-S)*(p.shares||0)*rate:null;
-    return {q:"",band:`${mb("Valor",eur(p.value),"a coste")}${mb("Contratos",`<span class="pv pvn">${nf(0).format(nc)}</span>`,`${shares(p.shares)} acciones`)}${mb("Vencimiento",exp?fdate(exp):"",exp?[day(exp).getFullYear(),dl==null?"":dl>1?`en ${dl} días`:dl===1?"mañana":dl===0?"hoy":"vencida"].filter(x=>x!=="").join(" · "):"")}${mb("Subyacente",pxm(S,m.cur),esc(m.name||""))}${mb("Valor intrínseco",isNum(iv)?eur(iv):"",isNum(K)?`ejercicio ${pxm(K,m.cur||p.cur)}`:"")}`,
+    return {band:`${mb("Valor",eur(p.value),"a coste")}${mb("Contratos",`<span class="pv pvn">${nf(0).format(nc)}</span>`,`${shares(p.shares)} acciones`)}${mb("Vencimiento",exp?fdate(exp):"",exp?[day(exp).getFullYear(),dl==null?"":dl>1?`en ${dl} días`:dl===1?"mañana":dl===0?"hoy":"vencida"].filter(x=>x!=="").join(" · "):"")}${mb("Subyacente",pxm(S,m.cur),esc(m.name||""))}${mb("Valor intrínseco",isNum(iv)?eur(iv):"",isNum(K)?`ejercicio ${pxm(K,m.cur||p.cur)}`:"")}`,
       body:`<section class="fp-c"><div class="fp-ch"><h4>Tu opción</h4><span>${nf(0).format(nc)} ${nc===1?"contrato":"contratos"}</span></div><div class="fp-kl"><span>Prima pagada</span><b class="num">${money(p.avg,p.cur)}</b><span>Invertido</span><b class="num">${eur(p.invested)}</b>${isNum(K)?`<span>Ejercicio</span><b class="num">${pxm(K,m.cur||p.cur)}</b>`:""}</div></section>`}; }
   // compras: todas las de esta empresa (también las ya vendidas), en una mini línea de tiempo
   const buys=(p.buys||[]).filter(b=>b.d instanceof Date).sort((a,b)=>a.d-b.d);
@@ -3905,9 +3857,6 @@ function fichaPos(p){
       <span class="fq-l l">${fmy(buys[0].d)}</span><span class="fq-l r">hoy</span></div>`; }
   const nSold=buys.filter(b=>b.sold).length, fd=fmd;
   const facts=xs=>`<div class="fp-f" style="--n:${xs.length}">${xs.map(([l,v,sb])=>`<div><span>${l}</span><b class="num">${v===""?"&nbsp;":v}</b><small>${sb||""}</small></div>`).join("")}</div>`;
-  // cabecera: la empresa y, en la misma fila, sus cifras clave
-  // cabecera: la empresa a la izquierda y, enfrente, su valor y su resultado; debajo, el resto de cifras
-  const q=`<div class="fp-q"><span class="fp-k">Valor</span><b class="num">${eur(p.value)}</b><span class="fp-qr num ${cls(p.totalEur)}">${seur(p.totalEur)}<span class="rlv ${retLevel(p.totalPct)}">${pct(p.totalPct,1,true)}</span></span></div>`;
   // la franja de arriba: valor, resultado, TIR, peso y dividendo (iguales en todas las pestañas)
   const band=`${mb("Valor",eur(p.value),`invertido ${eur(p.invested)}`)}${mb("Resultado",seur(p.totalEur),`<span class="${cls(p.totalPct)}">${pct(p.totalPct,1,true)}</span>`,cls(p.totalEur))}${mb("TIR",pct(p.irr,1,true),isNum(p.years)?`en ${nf(1).format(Math.max(0.1,Math.floor(p.years*10)/10))} años`:"",cls(p.irr))}${mb("Peso",pct(p.weight),`${shares(p.shares)} ${p.shares===1?"acción":"acciones"}`)}${mb("Dividendo",p.annual?eur(p.annual):"—",p.annual?(p.yov?`rinde ${pct(p.yov,2)}`:"al año"):"no reparte")}`;
   // tu posición: de dónde sale el resultado, como las columnas Revaloriz., FX y Dividendo de tu hoja (suman el total)
@@ -3932,7 +3881,7 @@ function fichaPos(p){
   const nx=p.next instanceof Date?p.next:null, nxA=nx?sum(DATA.dv.filter(r=>r.ticker===p.ticker&&!DATA.isPaid(r)&&r.d.toDateString()===nx.toDateString()),r=>r.gross||0):0;
   const cDiv=!yb&&!(p.paid>0)&&!nx?`<section class="fp-c dv fp-c1"><div class="fp-ch"><h4>Dividendos</h4><span>No reparte dividendo</span></div></section>`:`<section class="fp-c dv"><div class="fp-ch"><h4>Dividendos</h4><span>${nx?`Próximo cobro ${fmd(nx)}${nxA>0.5?" · "+eur(nxA):""}`:""}</span></div><div class="fp-v">${yb||`<p class="fp-none">Sin dividendos</p>`}</div>
     ${facts([["Cobrado",p.paid>0?eur(p.paid):""],["Sobre lo invertido",p.yoc?pct(p.yoc,2):""],["Sobre el valor de hoy",p.yov?pct(p.yov,2):""]])}</section>`;
-  return {q,band,body:`<div class="fp-cards">${cPos}${cBuy}${cDiv}</div>`};
+  return {band,body:`<div class="fp-cards">${cPos}${cBuy}${cDiv}</div>`};
 }
 // niveles de rentabilidad de la hoja (pestaña Cartera): ≥100 / ≥50 / ≥25 / ≥10 / >0 y <0 / ≤−5 / ≤−10 / ≤−15 / ≤−30 %
 const retLevel=r=>r>=1?"rp5":r>=0.5?"rp4":r>=0.25?"rp3":r>=0.1?"rp2":r>0?"rp1":r<=-0.3?"rn5":r<=-0.15?"rn4":r<=-0.1?"rn3":r<=-0.05?"rn2":r<0?"rn1":"";
@@ -3973,11 +3922,10 @@ function renderPositions(){
 let chkShow=false;   // el cuadre, si todo cuadra, solo se abre desde el pie
 function render(d){
   DATA=d; dataV++; const k=d.kpi;
-  const v=k.value||0, ent=Math.trunc(v), dec=Math.round((v-ent)*100);
+  const v=k.value||0;
   $("h-val").innerHTML = `${nf(0).format(Math.round(v))}<span class="cents"> €</span>`;
   $("h-sub").innerHTML=`Aportado <b>${eur(k.aport)}</b>`;   // la liquidez está en el cuadre y las empresas, en Posiciones
   { const a=(d.stats.find(x=>x.l==="Antigüedad media")||{}).v; const np=d.pos.length, h=`<b>${nf(0).format(np)}</b> ${np===1?"posición":"posiciones"}${isNum(a)?`<span class="pa-d"> · </span>Antigüedad<span class="pa-m"> media</span> <b>${nf(1).format(a)} años</b>`:""}`; $("pos-age").innerHTML=h; $("pos-age-m").innerHTML=h; }   // cuántas hay (las filas de la tabla, opciones incluidas) y su antigüedad
-  const kp=(t,val,s,c="")=>`<div class="kpi"><div class="k">${t}</div><div class="v num ${c}">${val}</div><div class="s">${esc(s||"")}</div></div>`;
   $("hk-ret").className="c2 r2 bv num "+cls(k.ret); $("hk-ret").textContent=seur(k.ret); $("hk-ret-s").innerHTML=k.retSub;
   $("hm-val").innerHTML=$("h-val").innerHTML;   // móvil: el valor y, debajo, el total con su porcentaje en pastilla
   { const rp=(String(k.retSub||"").replace(/<[^>]*>/g,"").match(/[+−-]?\d[\d.,]*\s?%/)||[""])[0], rc=cls(k.ret);
@@ -4082,7 +4030,6 @@ function tileHtml(p,x,y,w,h){
   return `<button type="button" class="tile ${lvl} ${size}${p.weight>=.06?" big":""}" data-t="${esc(p.ticker)}" style="left:${x.toFixed(1)}px;top:${y.toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px" title="${esc(p.name)} · ${chg} · ${pct(p.weight)} de la cartera" aria-label="${esc(p.name)}: ${chg} hoy">${inner}</button>`;
 }
 const mapItems=()=>DATA.pos.filter(p=>p.value>0&&!p.isOption).sort((a,b)=>b.value-a.value);
-const lay=(ps,wt,x,y,w,h)=>{ const t=sum(ps,wt)||1; return squarify(ps.map(p=>({p,a:wt(p)/t*w*h})),x,y,w,h); };
 // como squarify, pero cada recuadro sabe lo que necesita (nw × nh): antes de cerrar cada fila se prueban varias (de 1 a 7 recuadros),
 // se completa el resto del mapa y se queda la que deja menos recuadros sin sitio y menos alargados; así no salen tiras bajas al final
 function squarifyMin(items,x,y,w,h){
@@ -4103,7 +4050,7 @@ function renderTreemap(){
   const el=$("tmap"); if(!DATA||!el) return; const W=el.clientWidth;   // el mapa siempre en 4:3: nunca crece (con las dos columnas iguales, ya no se estira al alto de Evolución)
   const items=mapItems(), H=Math.round(W*.75), key=W+"x"+H+(innerWidth<=700?"m":"")+"|"+items.map(p=>[p.ticker,p.value,p.weight,p.today,p.atCost?1:0,p.name].join("~")).join("|");
   if(!W||key===tmW) return; tmW=key; tmFonts=!document.fonts||document.fonts.status==="loaded"; el.style.height=H+"px";
-  const tot=sum(items,p=>p.value), MIN=W<400?0.035:W<640?0.025:0.02;
+  const tot=sum(items,p=>p.value);
   // lo que necesita cada recuadro para que su logo y su cifra quepan holgados (margen, logo, 10 px —6 en el móvil, con logos más pequeños—,
   // cifra y margen; de lado, con su margen), medido con la letra de los recuadros pequeños: cada empresa con lo suyo, no con lo de la que más pide
   const GAP=W<480?6:10;
@@ -4172,11 +4119,7 @@ $("tmap").addEventListener("click",e=>{ const b=e.target.closest(".tile"); if(b)
 // wait = la hoja aún marca «Previo» (sin cotizar hoy): mercado sin abrir, festivo o retraso de la hoja
 const hq=()=>DATA.pos.filter(p=>p.value>0&&!p.isOption).map(p=>{ const live=!p.atCost&&isNum(p.today);
   return {p,t:live?p.today:null,e:live?p.value*p.today/(1+p.today):null,wait:!p.atCost&&!p.today&&p.status==="Previo"}; });
-function grpStat(xs){ const live=xs.filter(x=>isNum(x.t)&&!x.wait), e=sum(live,x=>x.e||0), base=sum(live,x=>x.p.value-(x.e||0));
-  return {live:live.length>0,e,r:base?e/base:0,v:sum(xs,x=>x.p.value)}; }
-function groups(keyOf){ const g={}; hq().forEach(x=>{ const k=keyOf(x.p); (g[k]=g[k]||[]).push(x); });
-  return Object.entries(g).map(([k,xs])=>({k,xs,...grpStat(xs)})).sort((a,b)=>b.v-a.v); }
-function hyHead(center){ const k=DATA.kpi, q=hq(), up=q.filter(x=>x.t>=0.0005).length, dn=q.filter(x=>x.t<=-0.0005).length, cero=q.filter(x=>isNum(x.t)&&!x.wait&&Math.abs(x.t)<0.0005).length, wait=q.filter(x=>x.wait).length, flat=q.length-up-dn-wait;
+function hyHead(center){ const k=DATA.kpi, q=hq(), up=q.filter(x=>x.t>=0.0005).length, dn=q.filter(x=>x.t<=-0.0005).length, cero=q.filter(x=>isNum(x.t)&&!x.wait&&Math.abs(x.t)<0.0005).length, wait=q.filter(x=>x.wait).length;
   const ss=lastSession(); $("t-pos").querySelector('th[data-k="today"]').textContent=ss.closed?"Sesión":"Hoy"; $("t-pos").querySelector('th[data-k="todayEur"]').textContent=ss.closed?"Sesión €":"Hoy €";
   // «suben / bajan» va debajo del mapa, como la leyenda de Evolución; la cifra del día, en la fila del título
   const lg=$("hy-leg"); if(lg) lg.innerHTML=`<span><i class="up"></i><b>${up}</b> ${up===1?"sube":"suben"}</span><span><i class="dn"></i><b>${dn}</b> ${dn===1?"baja":"bajan"}</span>${cero?`<span><i class="fl"></i><b>${cero}</b> sin cambios</span>`:""}`
@@ -4192,7 +4135,6 @@ function renderHoy(){
   $("hm-dk").textContent=ss.closed?"Última sesión":"Hoy"; $("hm-day").className="hm-g num "+c;
   $("hm-day").innerHTML=`${seur(k.today)}<span class="hm-pl">${pct(k.todayPct,1,true)}</span>`;   // móvil: lo de hoy, a la derecha
 }
-document.addEventListener("click",e=>{ const b=e.target.closest(".hoy [data-t]"); if(b&&!b.closest("#tmap")) openSheet("pos",b.dataset.t,listOf(b)); });
 
 /* ---------- concentración ---------- */
 
@@ -4324,8 +4266,7 @@ const MVG={in:'<path d="M11 4v10M6.5 9.5 11 14l4.5-4.5M4.5 18h13"/>',out:'<path 
 const mtK=r=>r.ty==="Compra"?"buy":r.ty==="Venta"?"sell":r.dv?"div":"cash";   // el color de la etiqueta de cada tipo
 let movAllC=null;
 function movAll(){ const d=DATA; if(!d) return []; if(movAllC&&movAllC.d===d) return movAllC.rows;
-  const out=[], sells=new Map(), opt=t=>/\s[CP]\d/.test(String(t||"")),
-    qty=(n,t)=>`${shares(n)} ${n===1?"acción":"acciones"}`;
+  const out=[], sells=new Map(), qty=(n,t)=>`${shares(n)} ${n===1?"acción":"acciones"}`;
   d.tx.forEach(r=>{ if(r.bd instanceof Date) out.push({d:r.bd,ty:"Compra",ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,note:r.note,det:`${qty(r.shares,r.ticker)} a ${money(r.bp,r.cur)}`,amt:eur(r.bt,2),v:r.bt});
     if(r.sd instanceof Date){ const k=[r.ticker,+r.sd,r.sp,r.broker].join("|"), o=sells.get(k)||{d:r.sd,ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,cur:r.cur,sp:r.sp,n:0,st:0,pnl:0};
       o.n+=r.shares||0; o.st+=+r.st||0; o.pnl+=+r.pnl||0; sells.set(k,o); } });
@@ -4365,12 +4306,7 @@ const MOV = {
     // cómo te ha ido vendiendo: lo ganado (ya sin las comisiones de compra y venta), cuánto operas y en cuántas empresas,
     // cuánto aguantas y cuántas ventas salen bien (todo, o del año elegido). Se cuentan órdenes, no filas: una venta que
     // cierra varias compras (misma empresa, día, precio y bróker) es una sola, con el resultado de todas
-    kpis:(all,ys)=>{ const cl=all.filter(r=>r.sd&&(!ys||yr(r.sd)===ys)), bu=all.filter(r=>!ys||yr(r.bd)===ys), pl=sum(cl,r=>r.pnl),
-        ord=(l,d,p)=>{ const m=new Map(); l.forEach(r=>{ const k=[r.ticker,+r[d],r[p],r.broker].join("|"); m.set(k,(m.get(k)||0)+(r.pnl||0)); }); return [...m.values()]; },
-        ob=ord(bu,"bd","bp"), os=ord(cl,"sd","sp"), fees=sum(cl,r=>(r.bfee||0)+(r.sfee||0)), ops=ob.length+os.length, win=os.filter(v=>v>0).length,
-        hold=cl.length?sum(cl,r=>(r.sd-r.bd)/864e5/365.25)/cl.length:null,
-        und=t=>{ const m=String(t||"").match(/^(\S+)\s[CP]\d/); return m?(DATA.tx.find(r=>!/\s/.test(r.ticker)&&String(r.ticker).split(":").pop()===m[1])||{}).ticker||m[1]:t; },
-        part=(n,l,a,b)=>{ const e=new Set(l.map(r=>und(r.ticker))).size; return `${nf(0).format(n)} ${n===1?a:b}<em><b class="dt"> · </b>${nf(0).format(e)} ${e===1?"empresa":"empresas"}</em>`; };
+    kpis:(all,ys)=>{ const cl=all.filter(r=>r.sd&&(!ys||yr(r.sd)===ys)), bu=all.filter(r=>!ys||yr(r.bd)===ys), pl=sum(cl,r=>r.pnl), ord=(l,d,p)=>{ const m=new Map(); l.forEach(r=>{ const k=[r.ticker,+r[d],r[p],r.broker].join("|"); m.set(k,(m.get(k)||0)+(r.pnl||0)); }); return [...m.values()]; }, ob=ord(bu,"bd","bp"), os=ord(cl,"sd","sp"), fees=sum(cl,r=>(r.bfee||0)+(r.sfee||0)), ops=ob.length+os.length, win=os.filter(v=>v>0).length, hold=cl.length?sum(cl,r=>(r.sd-r.bd)/864e5/365.25)/cl.length:null, und=t=>{ const m=String(t||"").match(/^(\S+)\s[CP]\d/); return m?(DATA.tx.find(r=>!/\s/.test(r.ticker)&&String(r.ticker).split(":").pop()===m[1])||{}).ticker||m[1]:t; };
       return [{k:"Resultado realizado",v:seur(pl),c:cls(pl),sub:cl.length?`tras ${eur(fees)} de comisiones`:"sin ventas"},
         // compras y ventas en la línea de la cifra, la barra con su proporción y las empresas en una sola línea: la casilla, del alto de las demás
         {k:"Compras y ventas",c:"mkcv",v:ops?`${nf(0).format(ob.length)}<small class="mk-u"> ${ob.length===1?"compra":"compras"}</small><small class="mk-u mk-d"> · </small>${nf(0).format(os.length)}<small class="mk-u"> ${os.length===1?"venta":"ventas"}</small>`:"0",nolg:1,split:ops?[{v:ob.length},{v:os.length}]:null,
@@ -4435,7 +4371,7 @@ function renderMov(refill){
   if(refill!==false&&DATA) drawn.movimientos=stampOf("movimientos");
   if(refill!==false){ opts($("m-year"),[...new Set(all.flatMap(c.years).filter(Boolean))].sort((a,b)=>b-a),"Año",true);
     opts($("m-broker"),[...new Set(all.map(r=>r.broker).filter(Boolean))].sort(),"Bróker",true);
-    const st=$("m-state"), v=st.value; st.hidden=!c.states;
+    const st=$("m-state"); st.hidden=!c.states;
     st.innerHTML=(c.states||[]).map(([k,l])=>`<option value="${k}">${l}</option>`).join(""); st.value=mstate[mtab]??""; if(mshowTab!==mtab){ mshow=MSTEP; mshowTab=mtab; }
     const ml=x=>(mtab==="transacciones"&&x.k==="bd"?"fecha de compra":({net:"importe neto",gross:"importe bruto"})[x.k])||({Compra:"fecha de compra",Venta:"fecha de venta",Fecha:"fecha","Por acción":"dividendo por acción"})[x.l]||x.l.toLowerCase(), d0=c.cols.find(x=>x.k===c.sort[0])||c.cols[0];
     $("m-sort").innerHTML=[d0,...c.cols.filter(x=>x!==d0)].map((x,i)=>`<option value="${x.k}">${i?"Por":"Ordenar por"} ${ml(x)}</option>`).join(""); }
@@ -4456,7 +4392,7 @@ function renderMov(refill){
   if(byM) rs.forEach(r=>cnt.set(mk(r),(cnt.get(mk(r))||0)+1));
   // la cabecera del mes ocupa solo las columnas que se ven (si no, la tabla gana una columna vacía al estrechar la pantalla)
   const span=byM||fromToday?[...$("m-head").querySelectorAll("th")].filter(t=>getComputedStyle(t).display!=="none").length||c.cols.length:0;
-  const nUp=fromToday?rs.filter(r=>!DATA.isPaid(r)).length:0; let st=null;
+   let st=null;
   const mHead=r=>{ if(fromToday){ const k=DATA.isPaid(r)?"p":"u"; if(k===st) return ""; st=k; return ""; }
     if(!byM||mk(r)===mo) return ""; mo=mk(r); const t=day(r.d), n=cnt.get(mo); return `<tr class="grp-row"><td colspan="${span}"><span class="gm">${MESL[t.getMonth()]} ${t.getFullYear()}</span><span class="gn">${nf(0).format(n)} ${n===1?"movimiento":"movimientos"}</span></td></tr>`; };
   $("m-body").innerHTML = rs.length ? rs.slice(0,mshow).map(r=>mHead(r)+`<tr${c.rc?` class="${c.rc(r)}"`:""}>`+c.cols.map(x=>cell(x,r)).join("")+line(r)+"</tr>").join("")
@@ -4921,10 +4857,6 @@ const aPath=()=>{ const e=aCur&&ACT&&ACT.ix.empresas.find(x=>x.id===aCur); retur
 // ir arriba de algo: si la web está dentro de un marco que se estira con ella (la de Claude en el ordenador), la página no se desplaza; entonces lo hace el marco
 const aGoTo=(el,off,blk="start")=>{ const y=Math.max(0,el.getBoundingClientRect().top+scrollY-off); scrollTo({top:y});
   if(document.documentElement.scrollHeight<=innerHeight+2) try{ el.scrollIntoView({block:blk}); }catch{} };
-const aByT=t=>ACT&&ACT.ix.empresas.find(e=>e.ticker===t);
-const aList=xs=>xs.length<2?xs.join(""):xs.slice(0,-1).join(", ")+" y "+xs[xs.length-1];
-const aNews=n=>`${n} ${n===1?"noticia":"noticias"} de la semana`;
-const NWF=["Ninguna","Una","Dos","Tres","Cuatro","Cinco","Seis","Siete","Ocho","Nueve","Diez","Once","Doce"];
 // leídas: se recuerda en este dispositivo, por semana
 let aRd={}; try{ aRd=JSON.parse(localStorage.getItem("actLeidas")||"{}")||{}; }catch{}
 const aIsRd=id=>!!ACT&&(aRd[ACT.ix.semana]||[]).includes(id);
@@ -4940,69 +4872,32 @@ const IC={res:AI('<path d="M3.5 13.5v-4M8 13.5v-9M12.5 13.5v-6"/>'),nr:AI('<path
   hoj:AI('<rect x="2.5" y="2.5" width="11" height="11" rx="1.5"/><path d="M2.5 6.2h11M2.5 9.8h11M6.5 6.2v7.3"/>'),lnk:AI('<path d="M6.8 9.2 9.2 6.8M7.2 4.8l.9-.9a2.6 2.6 0 0 1 3.7 3.7l-.9.9M8.8 11.2l-.9.9a2.6 2.6 0 0 1-3.7-3.7l.9-.9"/>'),
   nws:AI('<path d="M3 3.5h8v9.5H4.2A1.2 1.2 0 0 1 3 11.8zM11 6.5h2v5.8a.8.8 0 0 1-1.6 0M5 6.5h4M5 9h4M5 11.5h2.5"/>'),up:AI('<path d="M8 13V3.5M4 7.5l4-4 4 4"/>'),dn:AI('<path d="M8 3v9.5M4 8.5l4 4 4-4"/>'),pv:AI('<path d="M10 3.5 5.5 8l4.5 4.5"/>'),nx:AI('<path d="M6 3.5 10.5 8 6 12.5"/>'),
   chk:AI('<path d="M3.5 8.4 6.6 11.4 12.5 4.8"/>'),cir:AI('<circle cx="8" cy="8" r="5.5"/>'),idx:AI('<path d="M5.5 4.5h8M5.5 8h8M5.5 11.5h8M2.5 4.5h.1M2.5 8h.1M2.5 11.5h.1"/>')};
-const aVar=e=>{ const v=aV(e); return v==null?`<span class="mut">${aIn(e)?"Sin cotización fiable":""}</span>`:`<span class="avr ${cls(v)}">${e.alerta?IC.alr:""}${pct(v,1,true)}</span>`; };
 // las notas de trabajo de la tarea (qué leyó y si lo leyó entero, lo que no encontró, lo que ya está en otro apartado) no son noticia: no se enseñan
 const aPRC=/le[ií]d[oa]s? complet|no consta|no se ha (localizado|podido)|no se pudo|no se deja leer|ya est[aá]n? en (el|la|los|las) (an[aá]lisis|apartado)/i;
 const aCl=s=>String(s||"").replace(/([.;])\s+/g,"$1\u0001").split("\u0001").filter(x=>x.trim()&&!aPRC.test(x)).join(" ").trim().replace(/;$/,".");
+const aURL=u=>{ const x=String(u||"").trim(); return /^https?:\/\//i.test(x)?x:""; };   // solo direcciones web: nada de «javascript:» ni otros protocolos
 const aLb=s=>String(s||"").replace(/,?\s*le[ií]d[oa]s? complet[oa]s?(:[^.;]*)?/gi,"").trim();
-const aActs=f=>(f.actos||[]).filter(a=>!/^otros actos/i.test(atx(a.tipo))&&!aPRC.test(atx(a.fecha))&&(aCl(a.detalle)||a.url));
-const aLink=(tx,u)=>u?`<a class="alk" href="${esc(u)}" target="_blank" rel="noopener noreferrer">${IC.lnk}<span>${esc(atx(tx))}</span></a>`:"";
+const aActs=f=>(f.actos||[]).filter(a=>!/^otros actos/i.test(atx(a.tipo))&&!aPRC.test(atx(a.fecha))&&(aCl(a.detalle)||aURL(a.url)));
 
 // tu cartera en la semana: lo que se movió cada empresa, por lo que pesa en tu cartera; se guarda con la edición para verla sin esperar a la hoja
 function aWk(){ if(DATA){ const ps=aOrd().map(e=>[e,DATA.pos.find(p=>p.ticker===e.ticker&&!p.isOption)]).filter(([e,p])=>p&&p.value>0&&aV(e)!=null), W=sum(ps,x=>x[1].value);
     const w=W?sum(ps,([e,p])=>p.value*aV(e))/W:null; if(w!==ACT.wk){ ACT.wk=w; aSave(); } }
   return ACT.wk??null; }
 
-function renderAct(){ if(!$("v-actualidad")) return;
-  if(!ACT){ aSig=""; const M={cargando:"Leyendo el informe de esta semana…",vacío:"Todavía no ha llegado ningún informe a tu carpeta Informes.",
-      error:"No he podido leer tu carpeta Informes ahora mismo. Pulsa Actualizar en unos segundos.",
-      permiso:`La página necesita tu permiso para leer tu carpeta Informes. Solo lee; no escribe nada.</p><p class="p0"><button class="btn primary" type="button" id="act-allow">Permitir y cargar</button>`,
-      script:"Tu script de Google todavía no entrega los informes: añade el trozo nuevo y vuelve a implementarlo.",fuera:"Los informes se ven en tu web de Claude y en la de GitHub."};
-    $("paper").innerHTML=`<div class="pp"><p class="p0">${M[actSt]||M.cargando}</p></div>`; return; }
-  const sig=ACT.ix.semana+"|"+ACT.ix.generado; if(sig!==aSig){ aSig=sig; $("paper").innerHTML=`<div class="pa-wrap"><div class="pa-main" id="pa-main"></div></div>`; }
-  if(aCur&&!ACT.ix.empresas.some(e=>e.id===aCur&&aHas(e))) aCur=null;
-  aShow(); }
-// lo que se ve: la portada o la página de una empresa (con una edición nueva esperando, una línea para verla). Al volver a la portada, en el mismo punto
+// Actualidad: estas funciones se definen una sola vez, más abajo, en su bloque (junto a lo que usan)
+let renderAct, aShow, aOpen, aPortada, aAgenda, aArt, aMark, aSwitch;
 let aWas=null;
-function aShow(force){ const m=$("pa-main"); if(!m) return;
-  const k=new Date().toDateString()+"|"+aSig+"|"+(aCur||"")+"|"+(aTab||"")+"|"+(aNew?1:0)+"|"+(aCur?"":aWk()!=null?1:0); if(!force&&m.dataset.k===k) return; m.dataset.k=k;   // con el día: al cambiar de fecha se vuelve a pintar («Hoy» en el calendario)
-  const e=aCur&&ACT.ix.empresas.find(x=>x.id===aCur), back=aWas&&!aCur;
-  m.innerHTML=(aNew?`<p class="pa-new">${aNew.ix.semana===ACT.ix.semana?"Tu tarea ha rehecho esta edición.":`Ha llegado la edición de la ${esc(aNew.ix.titulo.toLowerCase())}.`} <button type="button" data-anew>${aNew.ix.semana===ACT.ix.semana?"Ver la nueva":"Leerla"}</button></p>`:"")
-    +(e?`<article class="pa-ar" id="a-${esc(e.id)}">${aArt(e)}</article>`:aPortada());
-  $("paper").classList.toggle("pa-fr",!e); aWas=aCur; aFit(); aBand();
-  if(back) requestAnimationFrame(aTop); }   // volver a la portada: siempre arriba del todo
 const aTop=()=>{ scrollTo(0,0); if(document.documentElement.scrollHeight<=innerHeight+2) try{ document.body.scrollIntoView({block:"start"}); }catch{} };
-// el nombre de la empresa, en una sola línea: si no cabe (en el móvil, los largos), la letra baja lo justo, sin cortarlo
-function aFit(){ const h=document.querySelector("#pa-main .ah .an"); if(!h) return; h.style.fontSize=""; let z=parseFloat(getComputedStyle(h).fontSize);
-  const n=()=>{ const r=document.createRange(); r.selectNodeContents(h); return new Set([...r.getClientRects()].map(q=>Math.round(q.top))).size; };
-  while(n()>1&&z>(innerWidth>700?24:17)){ z-=1; h.style.fontSize=z+"px"; } }
-{ let t=0; addEventListener("resize",()=>{ clearTimeout(t); t=setTimeout(aFit,120); }); }
-// abrir una empresa (o volver a la portada): con su propia dirección, para que «atrás» funcione; la empresa se abre arriba y la portada, también
-function aOpen(id,push=true,nw=null,tab){ aCur=id||null; if(tab) aTab=tab; aShow();
-  if(push){ try{ history.pushState(null,"","#"+aPath()); }catch{} }
-  if(!aCur) return;
-  const p=$("paper"), t=nw!=null&&$(`a-${aCur}-n${nw}`), top=innerWidth>700?84:12;
-  aGoTo(t||p,t?top+8:top); }
 
 /* ---------- la portada ---------- */
 // qué hay en cada empresa: un informe de resultados (o una noticia a fondo), sus noticias y, si se movió más de un 5%, por qué
 const aKind=e=>e.tipo==="resultados"?"res":e.tipo==="noticia_relevante"?"nr":"";
 const aShort=e=>(DATA&&cname(e.ticker,""))||atx(e.corto||e.nombre)||aNm(e);
-const aDate=iso=>{ if(!iso) return ""; const d=new Date(iso+"T12:00:00"); return isNaN(d)?"":d.toLocaleDateString("es-ES",{day:"numeric",month:"short"}).replace(".",""); };
 const aPub=e=>{ const p=atx(e.publicacion||""), m=p.match(/^(.*?)\s*·\s*([^·]+)$/); return m?{que:m[1],cuando:m[2]}:{que:p,cuando:""}; };
 // la primera frase de un texto (titular de un informe mientras la tarea no escriba uno)
 const aFirst=s=>{ const t=atx(s).replace(/<[^>]+>/g,""); for(let i=0;i<t.length;i++){ if(t[i]==="."&&(i===t.length-1||t[i+1]===" ")){ const w=t.slice(0,i).split(" ").pop(); if(!/^[A-ZÁÉÍÓÚ]{1,3}$/.test(w)) return t.slice(0,i+1); } } return t; };
-// las noticias de una empresa: de su ficha; mientras no ha llegado, la primera, del índice
-const aNws=e=>{ const f=ACT.emp[e.id]; return f&&f.noticias?f.noticias.map((n,i)=>({i,t:atx(n.titular),nv:n.nivel,d:aDate(n.fecha_iso)||atx(n.fecha)})):(e.primera_noticia_titular?[{i:0,t:atx(e.primera_noticia_titular),nv:"",d:""}]:[]); };
-const NV={empresa:"De la empresa",sector:"Del sector","segundo grado":"De segundo grado"};
 const aNiv=e=>{ const f=ACT.emp[e.id]; if(f&&f.noticias){ const c={}; f.noticias.forEach(x=>c[x.nivel]=(c[x.nivel]||0)+1); return c; }
   const z=e.noticias_por_nivel; return z?{empresa:z.empresa||0,sector:z.sector||0,"segundo grado":z.segundo_grado||z["segundo grado"]||0}:null; };
-const aY_=L=>L.length>1?L.slice(0,-1).join(", ")+" y "+L[L.length-1]:L[0]||"";
-const aNivTxt=e=>{ const c=aNiv(e), n=c?Object.values(c).reduce((a,b)=>a+b,0):(e.num_noticias||0); if(!n) return "";
-  return `<span>${n} ${n===1?"noticia":"noticias"}</span>`; };   // solo cuántas: sin etiquetas de tipo
-const aTag=(k,big)=>`<span class="ntag t-${k==="empresa"?"emp":k==="sector"?"sec":"seg"}">${big?NV[k]||esc(k):k}</span>`;
-const aVs=(e,c="")=>{ const v=aV(e); return `<span class="vx ${c} ${v==null?"mut":cls(v)}">${v==null?"":pct(v,1,true)}</span>`; };
-const aCo=(e,tag="span",attr="")=>`<${tag} class="aco${aIsRd(e.id)?" rd":""}"${attr}>${logoBare(aShort(e),e.ticker)}<b>${esc(aShort(e))}</b>${aIsRd(e.id)?`<span class="co-r" aria-label="Leída">${IC.chk}</span>`:""}${aVs(e)}</${tag}>`;
 // todas tus empresas: las de tu cartera (sin las opciones) y las que traiga la edición, cada una una vez, por nombre
 function aTodas(){ const E=ACT.ix.empresas, out=new Map();
   E.forEach(e=>out.set(e.ticker,{e,n:aShort(e),tk:e.ticker}));
@@ -5024,88 +4919,9 @@ function aBand(){ const s=$("s-actb"), b=$("actb"); if(!s||!b) return; if(!ACT||
     +c(3,"Noticias",String(tN),`de ${eN} ${eN===1?"empresa":"empresas"}`)
     +(nP==null?c(4,"Próximos resultados","—",""):c(4,`<span class="lg">Próximos resultados</span><span class="sh">Próximos</span>`,String(nP),nPub?`${nPub} ${nPub===1?"ya publicado":"ya publicados"}`:ix.periodo_proximos?esc(per(ix.periodo_proximos)):"esta semana"))+`<i class="dv d4"></i>`;
   s.hidden=false; }
-function aPortada(){
- const ix=ACT.ix, E=aOrd(), R=E.filter(e=>aKind(e)), wk=aWk(), rN=R.filter(e=>aKind(e)==="res").length;
-  // la cabecera, como la de un periódico: la semana, el nombre y tu cartera; una raya fina
-  let h=`<header class="mh"><p class="mh-l">${esc(ix.titulo)}</p><p class="mh-t">Actualidad</p>`
-    +`<p class="mh-r">${wk==null?"":Math.abs(wk)<0.0005?"Tu cartera se ha quedado igual esta semana":`Tu cartera ha ${wk>0?"subido":"bajado"} un <b class="${cls(wk)}">${pct(Math.abs(wk),1)}</b> esta semana`}</p></header>`;
-  // resultados: una columna por informe, separadas por rayas
-  if(R.length) h+=`<h2 class="asec" id="a-res">${rN===R.length?"Resultados":rN?"Resultados y noticias a fondo":"Noticias a fondo"}</h2><div class="rcol">${R.map(e=>{ const p=aPub(e), hl=e.titular_portada?atx(e.titular_portada):"";
-      return `<button type="button" class="rit${aIn(e)?"":" fuera"}" data-art="${esc(e.id)}" data-tab="res">${aCo(e)}<span class="rit-t">${esc(hl||p.que||"Resultados")}</span>${e.titular?`<span class="rit-d">${esc(aFirst(e.titular))}</span>`:""}<span class="rit-m">${hl&&p.que?`${esc(p.que)}, `:""}<span class="nw">${esc(p.cuando)}</span>${aIn(e)?"":` · <span class="nw">fuera de tu cartera</span>`}</span></button>`; }).join("")}</div>`;
-  // noticias: todas tus empresas por orden alfabético, sin adelantar titulares; debajo de cada una, solo cuántas noticias tiene y de qué tipo.
-  // Se pulsa la empresa y se abre su página. La que no tiene noticias sale igual, con «Sin noticias»; si no tiene página, no se pulsa
-  let fz=false;
-  h+=`<h2 class="asec" id="a-idx">Noticias</h2><div class="nlist">${aTodas().map(({e,n,tk})=>{ const t=e?aNivTxt(e):"", out=!aIn(e), lb=out&&!fz?`<p class="nfz">Fuera de tu cartera</p>`:""; if(out) fz=true;
-      const body=aCo(e||{id:"",ticker:tk,corto:n,nombre:n})+(t?`<span class="nsum">${t}</span>`:`<span class="n0">Sin noticias</span>`);
-      return lb+(e&&aHas(e)?`<button type="button" class="nrow${out?" fuera":""}" data-art="${esc(e.id)}" data-tab="${aHasN(e)?"nws":"res"}">${body}</button>`:`<div class="nrow${out?" fuera":""}">${body}</div>`); }).join("")}</div>`;
-  h+=aAgenda(ix);
-  return h+`<p class="colo">Preparado por tu tarea semanal${ix.generado?(g=>` el ${g.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}).replace(",","")} a las ${g.getHours()}:${String(g.getMinutes()).padStart(2,"0")}`)(new Date(ix.generado)):""}</p>`; }
-// próximos resultados: la semana como una agenda, de lunes a viernes (y sábado o domingo solo si alguien presenta); hoy, marcado; lo ya pasado, más claro
-function aAgenda(ix){ if(!ix.agenda||!ix.agenda.length) return "";
-  const byN=new Map(ix.empresas.flatMap(e=>[[atx(e.nombre),e],[atx(e.corto),e]])), FI={IR:"Confirmada",CAL:"Según calendario",EST:"Estimada"};
-  const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`, at=s=>new Date(s+"T12:00:00");
-  const ev=new Map(ix.agenda.map(d=>[d.fecha_iso,d.eventos])), fs=ix.agenda.map(d=>d.fecha_iso).sort(), mon=at(fs[0]), end=at(fs[fs.length-1]); mon.setDate(mon.getDate()-((mon.getDay()+6)%7));
-  const today=iso(new Date()), W=[]; for(const w=new Date(mon); w<=end; w.setDate(w.getDate()+7)) W.push([...Array(7)].map((_,k)=>{ const d=new Date(w); d.setDate(d.getDate()+k); return d; }).filter((d,k)=>k<5||ev.has(iso(d))));
-  const cell=x=>{ const e=byN.get(atx(x.empresa)), n=e?aShort(e):atx(x.empresa), h=atx(x.hora), m=h.match(/^(.*?)\s*\((.*)\)$/), c=m&&m[2]?m[2][0].toUpperCase()+m[2].slice(1):"";
-    return `<${e?`button type="button" data-art="${esc(e.id)}"`:"div"} class="cev"><span class="cev-h">${logoBare(n,e&&e.ticker)}<b>${esc(n)}</b></span><span>${esc(m?m[1]:h)}</span>${c?`<span>${esc(c)}</span>`:""}<small class="${x.fiabilidad==="IR"?"ir":""}">${FI[x.fiabilidad]||esc(x.fiabilidad)}</small></${e?"button":"div"}>`; };
-  return `<h2 class="asec" id="a-prox">Próximos resultados${ix.periodo_proximos?`<small>${esc(ix.periodo_proximos)} · horario de España</small>`:""}</h2>`
-    +W.map(D=>`<div class="acal" style="--n:${D.length}">${D.map(d=>{ const k=iso(d), E=ev.get(k)||[], wd=d.toLocaleDateString("es-ES",{weekday:"short"}).replace(".",""), W=wd[0].toUpperCase()+wd.slice(1);
-      return `<div class="cal-d${k===today?" hoy":k<today?" pas":""}${E.length?"":" vac"}"><p class="cal-h"><span>${W}</span><b>${d.getDate()}</b>${k===today?`<i>Hoy</i>`:""}</p><div class="cal-e">${E.length?E.map(cell).join(""):`<p class="cal-0">Sin resultados</p>`}</div></div>`; }).join("")}</div>`).join(""); }
 
-/* ---------- la página de cada empresa ---------- */
-// arriba: volver, anterior y siguiente; el logo y el nombre, con la variación de la semana a la derecha (siempre en el mismo sitio);
-// el aviso si se movió más de un 5%; luego, todo seguido, sus resultados (si los hay) y sus noticias
-function aArt(e){ const f=ACT.emp[e.id], n=aNm(e), rd=aIsRd(e.id), x=`a-${esc(e.id)}`, L=aNav(), i=L.indexOf(e), pv=L[i-1], nx=L[i+1], v=aV(e);
-  const tp=(o,l,k)=>`<button type="button"${o?` data-art="${esc(o.id)}"`:" disabled"}>${k==="p"?IC.pv:""}${l}${k==="n"?IC.nx:""}</button>`;
-  let h=`<nav class="pa-top" aria-label="Edición"><button type="button" class="pa-back" data-art="">${IC.pv}Portada</button><span class="pa-pn">${tp(pv,"Anterior","p")}${tp(nx,"Siguiente","n")}</span></nav>`
-    +`<header class="ah">${logoBare(n,e.ticker)}<h2 class="an">${esc(n)}</h2><span class="ard">${rd?`${IC.chk}Leída`:""}</span><p class="ah-v">${aIn(e)?`<b class="${v==null?"mut":cls(v)}">${v==null?"Sin cotización fiable":pct(v,1,true)}</b><span>en la semana</span>`:`<span>Fuera de tu cartera</span>`}</p></header>`;
-  h+=f?aBody(e,f,x):`<p class="aload">${aTry[e.id]&&!aPend[e.id]&&mcp?"No he podido leer esta empresa. Pulsa Actualizar en unos segundos.":"Leyendo…"}</p>`;
-  const nb=(o,k,l)=>o?`<button type="button" class="af-${k}" data-art="${esc(o.id)}"><small>${l}</small><b>${k==="p"?IC.pv:""}${esc(aNm(o))}${k==="n"?IC.nx:""}</b></button>`:"<span></span>";
-  return h+`<footer class="af"><button type="button" class="pa-back af-back" data-art="">${IC.pv}Portada</button><button type="button" class="ardb" data-ard="${esc(e.id)}" aria-pressed="${rd}">${rd?`${IC.chk}Leída`:`${IC.cir}Marcar como leída`}</button><nav class="af-nav" aria-label="Otras empresas">${nb(pv,"p","Anterior")}${nb(nx,"n","Siguiente")}</nav></footer>`; }
-const aSh=(id,ic,t,r="")=>`<h3 class="pa-sh" id="${id}">${ic}<span>${t}</span>${r?`<small>${r}</small>`:""}</h3>`;
-function aBody(e,f,x){ const nN=(f.noticias||[]).length, k=aKind(e), an=f.analisis, v=aV(e), two=!!(k&&nN), tab=two?aTabOf(e):k?"res":"nws";
-  // por qué se ha movido: un recuadro aparte, con su fondo, para que se vea que es un aviso (solo llega si se movió más de un 5%)
-  let s=aIn(e)&&f.por_que_se_movio&&f.por_que_se_movio.length?`<aside class="pa-av" id="${x}-mov" role="note"><p class="pa-avh">${IC.alr}${v==null?"Por qué se ha movido esta semana":`Por qué ha ${v<0?"caído":"subido"} un ${pct(Math.abs(v),1)} esta semana`}</p>${aPs(f.por_que_se_movio)}</aside>`:"";
-  // dos pestañas, no fijas: «Resultados» (o «La noticia, a fondo») y «Noticias»; al cambiar, la página no salta
-  if(two) s+=`<nav class="atabs" role="tablist" aria-label="Qué leer">${[["res",k==="res"?"Resultados":"La noticia, a fondo",""],["nws","Noticias",nN]].map(([t,l,c])=>`<button type="button" role="tab" data-tab="${t}" aria-selected="${t===tab}">${l}${c?`<span>${c}</span>`:""}</button>`).join("")}</nav>`;
-  if(k&&tab==="res"){ const p=aPub(e);
-    s+=`<section class="rs rs-r${two?" rs-t":""}" id="${x}-res">${two?"":`<h2 class="rs-h">${k==="res"?"Resultados":"La noticia, a fondo"}</h2>`}${p.que?`<p class="rs-k">${esc(p.que)}${p.cuando?` · ${esc(p.cuando)}`:""}</p>`:""}`
-      +(e.titular_portada?`<h3 class="rh">${esc(atx(e.titular_portada))}</h3>`:"")
-      +(f.titular||e.titular?`<p class="ld">${aRt(f.titular||e.titular)}</p>`:"");
-    if(f.pasado&&f.pasado.length) s+=aSh(x+"-pasado",IC.book,"Lo que ha pasado")+`<div class="pa-tx">${aPs(f.pasado)}</div>`;
-    if(an){ // en cada tema, sus cifras en una lista: el número y, al lado, qué es (solo cifras de verdad: con algún número)
-      if(an.temas.length) s+=aSh(x+"-temas",IC.lay,"Los temas")+an.temas.map(t=>{ const C=(t.cifras||[]).filter(c=>/\d/.test(atx(c.valor)));
-        return `<div class="tm"><h4>${aRt(t.titulo)}</h4>${C.length?`<div class="cf">${C.map(c=>`<div><b>${esc(atx(c.valor))}</b><span>${aRt(c.etiqueta)}</span></div>`).join("")}</div>`:""}<div class="pa-tx">${aPs(t.texto)}</div></div>`; }).join("");
-      if(an.mensaje.length) s+=aSh(x+"-msg",IC.msg,"Lo que nos quieren decir")+`<div class="pa-tx">${aPs(an.mensaje)}</div>`;
-      const q=an.analistas, qn=q&&aCl(q.nota); if(q&&(q.preguntas.length||qn)) s+=aSh(x+"-qa",IC.qa,aRt(q.titulo))+(qn?`<p class="nt">${aRt(qn)}</p>`:"")+`<div class="qa">${q.preguntas.map(p=>`<div><p class="q">${aRt(p.pregunta)}</p><p>${aRt(p.respuesta)}</p></div>`).join("")}</div>`;
-      if(an.perspectivas.length) s+=aSh(x+"-per",IC.per,"Perspectivas")+`<div class="pa-tx">${aPs(an.perspectivas)}</div>`;
-      if(an.detalles.length) s+=aSh(x+"-det",IC.lst,"Detalles")+`<ul class="dl">${an.detalles.map(d=>`<li>${aRt(d)}</li>`).join("")}</ul>`;
-      if(an.cifras.length) s+=aSh(x+"-cif",IC.tab,"Cifras clave")+an.cifras.map(aTable).join(""); }
-    if(f.tesis&&f.tesis.length){ const ES={refuerza:["Refuerza","refuerzan"],debilita:["Debilita","debilitan"],matiza:["Matiza","matizan"],contradice:["Contradice","contradicen"],neutro:["Sin efecto","sin efecto"]}, cnt={};
-      f.tesis.forEach(t=>cnt[t.estado]=(cnt[t.estado]||0)+1);
-      s+=aSh(x+"-tes",IC.tes,"Frente a tu tesis",Object.keys(ES).filter(k=>cnt[k]).map(k=>`${cnt[k]} ${cnt[k]===1?ES[k][0].toLowerCase():ES[k][1]}`).join(" · "))
-        +f.tesis.map(t=>`<div class="ts"><span class="tst ${esc(t.estado)}"><i></i>${(ES[t.estado]||[esc(t.estado)])[0]}</span><h4>${aRt(t.titulo)}</h4><dl><dt>Tu tesis dice</dt><dd>${aRt(t.dice)}</dd><dt>Lo que se ha visto</dt><dd>${aRt(t.visto)}</dd><dt>Qué cambia</dt><dd>${aRt(t.cambia)}</dd></dl></div>`).join(""); }
-    if(f.hoja){ const hb=(t,sub,o,nn,k1,k2)=>o.filas.length?`<div class="tbw hj ${k1==="nuevo"?"hj-d":"hj-e"}"><table class="tb"><colgroup><col><col class="c2"><col class="c3"></colgroup><caption><b>${t}</b> · ${sub}<span>${aRt(o.nota)}</span></caption><thead><tr><th>Casilla</th><th>En tu hoja</th><th>${nn}</th></tr></thead>`
-        +o.filas.map(r=>`<tbody><tr><td>${aRt(r.casilla)}</td><td>${esc(atx(r.en_hoja))}</td><td class="${r.sin_cambio?"same":"new"}">${esc(atx(r[k1]))}</td></tr>${r[k2]?`<tr class="hjw"><td colspan="3">${aRt(r[k2])}</td></tr>`:""}</tbody>`).join("")+`</table></div>`:"";
-      const hh=hb("Casillas de datos","las azules de tu hoja",f.hoja.datos,"Nuevo","nuevo","calculo")+hb("Casillas de estimaciones","las verdes de tu hoja",f.hoja.estimaciones,"Propuesta","propuesta","motivo");
-      if(hh) s+=aSh(x+"-hoj",IC.hoj,"Tu hoja")+hh; }
-    const AC=aActs(f); if(AC.length) s+=aSh(x+"-actos",IC.cal,"Actos de la semana")+`<div class="acs">${AC.map(a=>`<div class="acr"><b>${aRt(a.tipo)}</b><span class="acf">${esc(atx(a.fecha))}</span><div class="acd">${aCl(a.detalle)?`<p>${aRt(aCl(a.detalle))}</p>`:""}${aLink(aLb(a.enlace_texto),a.url)}</div></div>`).join("")}</div>`;
-    if(f.fuentes&&f.fuentes.length) s+=aSh(x+"-src",IC.lnk,"Fuentes")+`<ul class="src">${f.fuentes.map(z=>`<li>${aLink(aLb(z.texto),z.url)}</li>`).join("")}</ul>`;
-    s+=`</section>`; }
-  if(nN&&tab==="nws"){ const nt=aCl(f.noticias_nota);
-    s+=`<section class="rs rs-n${two?" rs-t":""}" id="${x}-nws">${two?"":`<h2 class="rs-h">Noticias<small>${nN} ${nN===1?"noticia":"noticias"} de la semana</small></h2>`}`+(nt?`<p class="nt">${aRt(nt)}</p>`:"")
-      +f.noticias.map((nw,i)=>`<div class="pa-nw" id="${x}-n${i}"><p class="nwm">${aTag(nw.nivel,1)}<span>${esc(atx(nw.fecha))}</span></p><h4>${aRt(nw.titular)}</h4><div class="pa-tx">${aPs(Array.isArray(nw.que)?nw.que:String(nw.que||"").split(/\n\s*\n/))}</div>${aLink(nw.fuente,nw.url)}`
-        +(nw.por_que_te_importa?`<p class="why"><b>Por qué te importa.</b> ${aRt(nw.por_que_te_importa)}</p>`:"")+`</div>`).join("")+`</section>`; }
-  return s; }
-function aTable(tb){ const hc=tb.ocultar_columna_en_movil, m=i=>hc&&i+1===hc?` m${hc}`:"", last=tb.cabeceras.length-1;
-  const cell=(c,i)=>{ const s=atx(c), k=i===last&&/^[+−-]\d/.test(s)?(s[0]==="+"?" pos":" neg"):""; return `<td class="${(m(i)+k).trim()}">${esc(s)}</td>`; };
-  return `<div class="tbw"><table class="tb"><thead><tr>${tb.cabeceras.map((c,i)=>`<th class="${m(i).trim()}">${esc(atx(c))}</th>`).join("")}</tr></thead><tbody>${tb.filas.map(r=>`<tr${r.destacada?' class="pa-tot"':""}>${r.celdas.map(cell).join("")}</tr>`).join("")}</tbody></table></div>`; }
 // cuando llega la ficha de una empresa: su página, si está abierta; y la portada, una sola vez, cuando ya están todas (sus noticias salen de ahí)
 function aFill(e){ if(!ACT) return; if(aCur===e.id) aShow(true); else if(!aCur&&ACT.ix.empresas.every(x=>!x.archivo||ACT.emp[x.id]||(aTry[x.id]&&!aPend[x.id]))) aShow(true); }   // las que no tienen ficha no se esperan
-// leída: cambia la marca de la página de la empresa (la portada se rehace al volver); nada se mueve
-function aMark(id){ const e=ACT&&ACT.ix.empresas.find(x=>x.id===id); if(!e) return; const rd=aIsRd(id), el=$("a-"+id);
-  if(el){ el.querySelector(".ard").innerHTML=rd?`${IC.chk}Leída`:""; const b=el.querySelector("[data-ard]"); b.setAttribute("aria-pressed",rd); b.innerHTML=rd?`${IC.chk}Leída`:`${IC.cir}Marcar como leída`; }
-  }
 // saltos: a una empresa (o a la portada), a un apartado del artículo, y la edición nueva cuando la pidas
 document.addEventListener("click",e=>{ if(e.target.id==="act-allow"){ loadAct(true); return; }
   if(e.target.closest("#v-actualidad [data-anew]")){ const k=aCur, w=ACT.ix.semana; ACT=aNew; aNew=null; aCur=ACT.ix.semana===w&&ACT.ix.empresas.some(x=>x.id===k)?k:null;   // la misma semana, rehecha: sigues en la empresa
@@ -5114,9 +4930,6 @@ document.addEventListener("click",e=>{ if(e.target.id==="act-allow"){ loadAct(tr
   const a=e.target.closest("#v-actualidad [data-art]"); if(a){ aOpen(a.dataset.art,true,a.dataset.nw!=null?a.dataset.nw:null,a.dataset.tab||(aCur?null:"res")); return; }
   const g=e.target.closest("#v-actualidad [data-goto]"); if(g){ const t=$(g.dataset.goto); if(t) t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"}); return; }
   const b=e.target.closest("#paper [data-ard]"); if(b){ aSetRd(b.dataset.ard,b.getAttribute("aria-pressed")!=="true"); aMark(b.dataset.ard); } });
-function aSwitch(t){ if(!aCur||aTab===t) return; const b=document.querySelector("#pa-main .atabs"), y0=b?b.getBoundingClientRect().top:0;
-  aTab=t; aShow(); try{ history.replaceState(null,"","#"+aPath()); }catch{}
-  const nb=document.querySelector("#pa-main .atabs"), top=innerWidth>700?84:12; if(nb&&y0<top) aGoTo(nb,top); }
 // en el PC, ← y → pasan a la empresa anterior o a la siguiente
 addEventListener("keydown",e=>{ if(view!=="actualidad"||!ACT||sheet||e.metaKey||e.ctrlKey||e.altKey||!$("kx").hidden||e.target.closest("input,textarea,select")||(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")) return;
   const L=aNav(), i=aCur?L.findIndex(x=>x.id===aCur):-1, n=e.key==="ArrowRight"?(i<0?L[0]:L[i+1]):(i>0?L[i-1]:i===0?{id:""}:null); if(!n) return; e.preventDefault(); aOpen(n.id); });
@@ -5124,7 +4937,7 @@ addEventListener("keydown",e=>{ if(view!=="actualidad"||!ACT||sheet||e.metaKey||
 // la barra de desplazamiento de la ficha en el PC: fina, flotante y arrastrable (la del navegador ocupaba un hueco a la derecha)
 { const sh=$("sheet"), sb=document.createElement("div"); sb.className="sh-sb"; sb.hidden=true; sb.setAttribute("aria-hidden","true"); document.body.append(sb);
   let t=0, drag=null; const geo=()=>{ const r=sh.getBoundingClientRect(), tr=r.height-8, h=Math.max(36,tr*sh.clientHeight/sh.scrollHeight), m=sh.scrollHeight-sh.clientHeight; return {r,tr,h,m}; };
-  const pon=on=>{ if(sh.hidden||innerWidth<760||sh.scrollHeight<=sh.clientHeight+1){ sb.hidden=true; return; } const {r,tr,h,m}=geo();
+  const pon=on=>{ if(sh.hidden||innerWidth<=760||sh.scrollHeight<=sh.clientHeight+1){ sb.hidden=true; return; } const {r,tr,h,m}=geo();
     sb.hidden=false; sb.style.height=h+"px"; sb.style.top=(r.top+4+(tr-h)*(m?sh.scrollTop/m:0))+"px"; sb.style.left=(r.right-sb.offsetWidth-3)+"px";
     if(on){ sb.classList.add("on"); clearTimeout(t); t=setTimeout(()=>{ if(!drag&&!sb.matches(":hover")) sb.classList.remove("on"); },900); } };
   sh.addEventListener("scroll",()=>pon(true),{passive:true}); sh.addEventListener("pointerenter",e=>{ if(e.pointerType==="mouse") pon(true); }); sh.addEventListener("pointermove",e=>{ if(e.pointerType==="mouse"&&!sb.classList.contains("on")) pon(true); },{passive:true});
@@ -5307,7 +5120,6 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
       return `<div class="acg-e${q?" q":""}">${logoBare(n,e&&e.ticker)}<b>${esc(n)}</b><span class="acg-t">${esc(up(corto(m?m[1]:h)))}</span><span class="acg-x">${esc(up(m?m[1]:h))}</span>${m&&m[2]?`<span class="acg-x">${esc(up(m[2]))}</span>`:""}${q?`<span class="acg-q">${esc(q)}</span>`:""}</div>`; };
     const sq=ix.agenda.some(d=>(d.eventos||[]).some(x=>x.fiabilidad&&x.fiabilidad!=="IR"));
     const WD=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
-    const m3=w=>w.slice(0,3).toLowerCase(), per=pm?(pm[2]?`${pm[1]} ${m3(pm[2])} – ${pm[3]} ${m3(pm[4])}`:`${pm[1]}–${pm[3]} ${m3(pm[4])}`):esc(ix.periodo_proximos||"");
     const g0=D[0], g1=D[D.length-1], gm=d=>MES[d.getMonth()].slice(0,3), rango=g0.getMonth()===g1.getMonth()?`${g0.getDate()}–${g1.getDate()} ${gm(g1)}`:`${g0.getDate()} ${gm(g0)} – ${g1.getDate()} ${gm(g1)}`;
     return `<h2 class="asec" id="a-prox">Calendario de resultados<small>${rango}</small></h2>`
       +`<div class="acg" style="--c:${nC}">${WD.slice(0,nC).map(w=>`<span class="acg-w">${w}</span>`).join("")}`
@@ -5324,10 +5136,6 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
     if(!aCur) return;
     const P=$("paper"), t=nw!=null&&$(`a-${aCur}-n${nw}`), off=acOff(), y=P.getBoundingClientRect().top+scrollY-off;
     if(t) aGoTo(t,off+8); else if(keep){ acHold(y0); return; } else if(!(was&&scrollY<=y+1)) aGoTo(P,off); };
-  // cambiar de pestaña: igual que antes, pero en el iPhone sin meter las pestañas bajo la barra de la hora
-  aSwitch=function(t){ if(!aCur||aTab===t) return; const b=document.querySelector("#pa-main .atabs"), y0=b?b.getBoundingClientRect().top:0;
-    aTab=t; aShow(); try{ history.replaceState(null,"","#"+aPath()); }catch{}
-    const nb=document.querySelector("#pa-main .atabs"), top=acOff(); if(nb&&y0<top) aGoTo(nb,top); };
 }
 
 // v296 · ACTUALIDAD, UNA REVISTA SOBRE EL CHASIS DE LA APP. La misma estructura de siempre (portada: Resultados, Noticias y Próximos
@@ -5403,12 +5211,12 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
     if((an.detalles||[]).length) s+=rvSec(x+"-det","Detalles",`<ul class="rv-ul">${an.detalles.map(d=>`<li>${rvF(aRt(d))}</li>`).join("")}</ul>`);
     if((an.cifras||[]).length) s+=rvSec(x+"-cif","Cifras",an.cifras.map(rvTable).join(""));
     s+=rvTes(e,f,x);
-    if(AC.length) s+=rvSec(x+"-actos","Qué se ha publicado",`<div class="rv-acts">${AC.map(a=>`<div class="rv-act"><p class="rv-at"><b>${aRt(a.tipo)}</b><span>${esc(atx(a.fecha))}</span></p>${aCl(a.detalle)?`<p class="rv-ad">${aRt(aCl(a.detalle))}</p>`:""}${a.url?`<a class="rv-lk" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">${esc(aLb(atx(a.enlace_texto))||"Abrir")}${IC.nx}</a>`:""}</div>`).join("")}</div>`);
-    if((f.fuentes||[]).length) s+=rvSec(x+"-src","Fuentes",`<ul class="rv-src">${f.fuentes.map(z=>`<li><a class="rv-lk" href="${esc(z.url)}" target="_blank" rel="noopener noreferrer">${esc(aLb(atx(z.texto)))}${IC.nx}</a></li>`).join("")}</ul>`);
+    if(AC.length) s+=rvSec(x+"-actos","Qué se ha publicado",`<div class="rv-acts">${AC.map(a=>`<div class="rv-act"><p class="rv-at"><b>${aRt(a.tipo)}</b><span>${esc(atx(a.fecha))}</span></p>${aCl(a.detalle)?`<p class="rv-ad">${aRt(aCl(a.detalle))}</p>`:""}${aURL(a.url)?`<a class="rv-lk" href="${esc(aURL(a.url))}" target="_blank" rel="noopener noreferrer">${esc(aLb(atx(a.enlace_texto))||"Abrir")}${IC.nx}</a>`:""}</div>`).join("")}</div>`);
+    if((f.fuentes||[]).length) s+=rvSec(x+"-src","Fuentes",`<ul class="rv-src">${f.fuentes.map(z=>`<li>${aURL(z.url)?`<a class="rv-lk" href="${esc(aURL(z.url))}" target="_blank" rel="noopener noreferrer">${esc(aLb(atx(z.texto)))}${IC.nx}</a>`:`<span>${esc(aLb(atx(z.texto)))}</span>`}</li>`).join("")}</ul>`);
     return s; };
   const rvNws=(e,f,x)=>{ const N=f.noticias||[], nt=aCl(f.noticias_nota);
     return (nt?`<p class="rv-note">${aRt(nt)}</p>`:"")+N.map((n,i)=>`<article class="rv-n" id="${x}-n${i}"><p class="rv-nm">${esc([NVt[n.nivel]||"",atx(n.fecha)].filter(Boolean).join(" · "))}</p><h4>${aRt(n.titular)}</h4>${n.que?`<div class="rv-tx">${rvP(pars(n.que))}</div>`:""}`
-      +(n.por_que_te_importa?`<div class="rv-imp"><b>Por qué te importa</b>${rvP(pars(n.por_que_te_importa))}</div>`:"")+(n.url?`<a class="rv-lk" href="${esc(n.url)}" target="_blank" rel="noopener noreferrer">Leer en ${esc(atx(n.fuente)||"la fuente")}${IC.nx}</a>`:"")+`</article>`).join(""); };
+      +(n.por_que_te_importa?`<div class="rv-imp"><b>Por qué te importa</b>${rvP(pars(n.por_que_te_importa))}</div>`:"")+(aURL(n.url)?`<a class="rv-lk" href="${esc(aURL(n.url))}" target="_blank" rel="noopener noreferrer">Leer en ${esc(atx(n.fuente)||"la fuente")}${IC.nx}</a>`:"")+`</article>`).join(""); };
   const rvRdb=(id,rd)=>`<button type="button" class="rv-rdb" data-ard="${esc(id)}" aria-pressed="${rd}">${rd?`${IC.chk}Leída`:`${IC.cir}Marcar como leída`}</button>`;
   aArt=function(e){ const f=ACT.emp[e.id], k=aKind(e), L=aNav(), i=L.indexOf(e), pv=L[i-1], nx=L[i+1], v=aV(e), x=`a-${esc(e.id)}`, p=aPub(e), rd=aIsRd(e.id);
     const nN=f?(f.noticias||[]).length:(e.num_noticias||0), T=(k?[["res",k==="res"?"Resultados":"La noticia, a fondo"]]:[]).concat(nN?[["nws","Noticias",nN]]:[]);
@@ -5523,7 +5331,7 @@ $("sheet").addEventListener("scroll",()=>$("sheet").classList.toggle("scrolled",
 const SH_HIST=!(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1));
 let shBack=false;   // el «atrás» que da la propia web para quitar su entrada: no hay que hacer nada más
 const closeUI=quick=>{ const S=$("sheet");
-  if(quick!==true&&sheet&&matchMedia("(max-width:759px) and (prefers-reduced-motion:no-preference)").matches){   // móvil: sale por la derecha, como «atrás» en el iPhone
+  if(quick!==true&&sheet&&matchMedia("(max-width:760px) and (prefers-reduced-motion:no-preference)").matches){   // móvil: sale por la derecha, como «atrás» en el iPhone
     if(S.classList.contains("sh-anim")) return; S.classList.add("sh-anim"); S.style.transform=`translateX(${S.offsetWidth}px)`; setTimeout(()=>closeUI(true),220); return; }
   const h=history.state&&history.state.sh; closeSheet(); if(h){ shBack=true; try{ history.back(); }catch{} setTimeout(()=>{ shBack=false; },800); } };   // se cierra sin esperar al historial
 try{ if(history.state&&history.state.sh) history.replaceState({...history.state,sh:0},""); }catch{}
