@@ -2585,8 +2585,8 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
    aparecía la franja estrecha, y la hora parpadeaba en claro). La ficha abierta sigue mandando (su regla es más fuerte) */
 @media (max-width:700px){ html body.hm3on.cap-dark[data-view="resumen"]:not(.__) #topcap{background:var(--h-bg)}
   /* escondida, la franja estrecha deja de verse del todo al acabar de subir (antes solo se desplazaba hacia arriba) */
-  .hm3c{visibility:hidden;transition:transform .2s ease,visibility 0s linear .2s}
-  .hm3c.on{visibility:visible;transition:transform .2s ease,visibility 0s} }
+  .hm3c{visibility:hidden;top:-100vh;transition:transform .2s ease,visibility 0s linear .2s,top 0s linear .2s}
+  .hm3c.on{visibility:visible;top:0;transition:transform .2s ease,visibility 0s,top 0s} }
 /* v285 · MÓVIL: la franja de la ficha como las de las pestañas: cinco cifras centradas, tres arriba y dos abajo, con las mismas letras,
    tamaños y rayas (antes, «Valor» sola arriba y cuatro columnas estrechas debajo, donde «Vencimiento» o «2026 · en 21 días» no cabían).
    :not(#_) solo sube la especificidad por encima de las reglas anteriores de la franja */
@@ -3757,7 +3757,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v314";   // la versión publicada, en el pie
+const VER="v315";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let TS=null, TS0=null, trayRaf=0;
 const TSD=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -5062,7 +5062,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   // franja estrecha deja de verse del todo (si no, el iPhone seguía cogiendo su color oscuro al volver arriba)
   let fq=0;
   const fija=()=>{ fq=0; const on=document.body.dataset.view==="resumen"&&hero.offsetWidth>0, r=hero.getBoundingClientRect();
-    const fx=on&&r.bottom<=C.offsetHeight; C.classList.toggle("on",fx);
+    const fx=on&&r.bottom<=C.offsetHeight; if(!fx&&C.classList.contains("on")) setTimeout(()=>document.dispatchEvent(new Event("tapa")),260); C.classList.toggle("on",fx);
     document.body.classList.toggle("cap-dark",fx||on&&r.top<=0); };   // la tapa cambia justo cuando la franja toca arriba (o sale la estrecha)
   const pide=()=>{ if(!fq) fq=requestAnimationFrame(fija); };
   addEventListener("scroll",pide,{passive:true}); addEventListener("resize",pide); new ResizeObserver(pide).observe(hero);
@@ -5657,8 +5657,8 @@ if(matchMedia("(pointer:coarse)").matches){ let C=document.createElement("div");
     // en el móvil la franja va por encima de la tira: la barra cambia cuando la franja ha salido del todo (si no, quedaría una raya de su color bajo la barra)
     document.body.classList.toggle("past-band",!b||scrollY>=b.offsetTop+b.offsetHeight-(+getComputedStyle(b).zIndex>10?0:C.offsetHeight));
     // el fondo de la página (lo que asoma al tirar hacia abajo) cambia cuando el desplazamiento se para: repintarlo en mitad del gesto daba tirones
-    clearTimeout(tb); tb=setTimeout(()=>document.body.classList.toggle("bg-top",!document.body.classList.contains("past-band")),140); };
-  let tb=0;
+    clearTimeout(tb); tb=setTimeout(()=>{ document.body.classList.toggle("bg-top",!document.body.classList.contains("past-band")); if(scrollY<=0&&enMarcha) otra(); },140); };
+  let tb=0, enMarcha=false; addEventListener("scroll",()=>{ enMarcha=true; },{passive:true,once:true});
   // el iPhone pinta la barra de la hora con el color de lo que hay arriba, pero no siempre lo vuelve a mirar cuando cambia (al pasar a
   // modo oscuro, por ejemplo): cada vez que la tapa cambia de color por otra pestaña, la ficha o el tema se pone una
   // tapa nueva, y el color de la ventana (theme-color) la acompaña
@@ -5671,7 +5671,7 @@ if(matchMedia("(pointer:coarse)").matches){ let C=document.createElement("div");
   new MutationObserver(bar).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
   new MutationObserver(bar).observe(document.body,{attributes:true,attributeFilter:["data-view","class"]});   // v284: también al desplazarse (el iPhone no siempre vuelve a mirar el color de arriba y la hora se quedaba oscura al subir)
   new MutationObserver(bar).observe($("sheet"),{attributes:true,attributeFilter:["hidden"]});
-  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",otra); addEventListener("pageshow",otra);
+  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",otra); addEventListener("pageshow",otra); document.addEventListener("tapa",otra);
   document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") otra(); });
   addEventListener("scroll",()=>{ if(!raf) raf=requestAnimationFrame(past); },{passive:true}); addEventListener("hashchange",()=>setTimeout(past,50)); document.addEventListener("click",()=>setTimeout(past,50)); past(); }
 $("hmob").addEventListener("click",()=>$("priv").click());   // móvil: tocar el bloque oscuro oculta o enseña los importes
