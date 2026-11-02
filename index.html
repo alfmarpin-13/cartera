@@ -2982,6 +2982,11 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   #t-p thead th>.thl{display:inline-block;margin:0 -24px}
   #t-p .mg-n{display:inline-block;text-align:right}
 }
+/* Por industria: filas completas de lado a lado (las arma ajustaInd); en el móvil, 4 por fila: nombre a 11 px y 4 px a los lados */
+.ind-g.filas{display:flex;flex-direction:column;gap:4px}
+.ind-f{display:flex;gap:4px}
+.ind-f>.ih{flex:1 1 0;min-width:0}
+@media (max-width:700px){ .ih{padding-left:4px;padding-right:4px} .ih span{font-size:var(--fs-11)} }
 </style>
 
 <div class="wrap">
@@ -3621,7 +3626,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v337";   // la versión publicada, en el pie
+const VER="v338";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4424,8 +4429,30 @@ function renderPerf(){
   const L=Object.entries(g).map(([k,v])=>({k,v:v.length?sum(v,x=>x)/v.length:null})).sort((a,b)=>(b.v??-1e9)-(a.v??-1e9));
   const hi=Math.max(0,...L.map(x=>x.v??0)), lo=Math.min(0,...L.map(x=>x.v??0));
   const lv=v=>!isNum(v)?"":v>0?(v>=hi*2/3?"ih3":v>=hi/3?"ih2":"ih1"):v<0?(v<=lo*2/3?"il3":v<=lo/3?"il2":"il1"):"";
-  $("perf-ind").innerHTML=L.map(x=>`<button type="button" class="ih ${lv(x.v)}" data-ind="${esc(x.k)}"><span>${esc(cortaPalabra(x.k)).replace(/ y /g," y\u00a0")}</span><b class="num">${isNum(x.v)?pct(x.v,1,true):""}</b></button>`).join("");
+  $("perf-ind").innerHTML=L.map(x=>`<button type="button" class="ih ${lv(x.v)}" data-ind="${esc(x.k)}"><span>${esc(cortaPalabra(x.k)).replace(/ y /g," y\u00a0")}</span><b class="num">${isNum(x.v)?pct(x.v,1,true):""}</b></button>`).join(""); ajustaInd();
 }
+// «Por industria»: las casillas, en filas completas de lado a lado y en el mínimo de filas. Una casilla cabe si cabe su palabra
+// más larga (y su cifra); si las filas no salen iguales, las que llevan una casilla menos las tienen algo más anchas
+let indW=0;
+function ajustaInd(){ const g=$("perf-ind"); if(!g) return; const bs=[...g.querySelectorAll(".ih")]; g.classList.remove("filas"); g.replaceChildren(...bs);
+  const W=g.clientWidth; indW=W; if(!W||!bs.length) return;
+  if(document.fonts&&document.fonts.status!=="loaded"){ document.fonts.ready.then(ajustaInd); return; }
+  const cs=getComputedStyle(bs[0]), gap=parseFloat(getComputedStyle(g).columnGap)||0, m=document.createElement("span");
+  const fs=getComputedStyle(bs[0].querySelector("span")); m.style.cssText="position:absolute;visibility:hidden;white-space:nowrap";
+  ["fontFamily","fontSize","fontWeight","fontStyle","letterSpacing","fontFeatureSettings","fontVariantNumeric"].forEach(k=>m.style[k]=fs[k]); document.body.append(m);
+  const an=t=>{ m.textContent=t; return m.getBoundingClientRect().width; };
+  // el texto de cada casilla, como venía (la «y» pegada a la palabra de detrás); si esa pareja no cabe en la casilla, se suelta
+  bs.forEach(b=>{ const sp=b.querySelector("span"); if(b.dataset.t0===undefined) b.dataset.t0=sp.textContent; else sp.textContent=b.dataset.t0; });
+  const pal=Math.max(...bs.flatMap(b=>b.dataset.t0.split(/[\s\u00a0]+/).flatMap(w=>{ const p=w.split("\u00ad"); return p.map((x,i)=>an(i<p.length-1?x+"-":x)); })));
+  const cif=Math.max(...bs.map(b=>b.querySelector("b").getBoundingClientRect().width));
+  const min=Math.max(pal,cif)+parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight)+1, n=bs.length;
+  const r=Math.ceil(n/Math.max(1,Math.floor((W+gap)/(min+gap)))), base=Math.floor(n/r), extra=n%r, cm=base+(extra?1:0); let i=0;
+  const libre=(W-(cm-1)*gap)/cm-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+  bs.forEach(b=>{ const t=b.dataset.t0; if(t.split(" ").some(u=>u.includes("\u00a0")&&an(u.replace(/\u00ad/g,""))>libre)) b.querySelector("span").textContent=t.replace(/\u00a0/g," "); }); m.remove();
+  g.replaceChildren(...Array.from({length:r},(_,k)=>{ const f=document.createElement("div"), c=base+(k<extra?1:0); f.className="ind-f"; f.append(...bs.slice(i,i+c)); i+=c; return f; }));
+  g.classList.add("filas"); }
+// al cambiar de ancho (o al verse por primera vez), se recolocan
+if(window.ResizeObserver) new ResizeObserver(()=>{ const g=$("perf-ind"); if(g.clientWidth&&g.clientWidth!==indW) ajustaInd(); }).observe($("perf-ind"));
 // al pulsar una industria, la tabla de abajo se filtra por ella
 $("perf-ind").addEventListener("click",e=>{ const b=e.target.closest("[data-ind]"); if(!b) return; $("p-ind").value=b.dataset.ind; $("p-ftg").closest(".toolbar").classList.add("open"); $("p-ftg").setAttribute("aria-expanded",true); renderPre(); });
 const setPerf=k=>{ perfK=k; perfAuto=false; renderPerf(); };
