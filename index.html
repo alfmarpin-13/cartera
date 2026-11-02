@@ -2980,9 +2980,6 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   #t-p td.num>.cifb{display:inline-flex;justify-content:flex-end}
   #t-p thead th:not(.l):not(.c):not(.g),#t-p td.num{padding-left:0;padding-right:0}
   #t-p thead th>.thl{display:inline-block;margin:0 -24px}
-  #t-p thead tr.grp th{height:24px;padding:0 var(--gr) 6px var(--gl);vertical-align:bottom;color:var(--ink3);border-bottom:0;box-shadow:none}
-  #t-p thead tr.grp th::after{content:"";position:absolute;left:var(--gl);right:var(--gr);bottom:0;height:1px;background:var(--g4)}
-  #t-p thead tr.grp+tr th{top:calc(var(--tbh,0px) + 24px)}
   #t-p .mg-n{display:inline-block;text-align:right}
 }
 </style>
@@ -3624,7 +3621,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v336";   // la versión publicada, en el pie
+const VER="v337";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4389,12 +4386,6 @@ function anchosPre(){
   st.textContent=`@media (min-width:701px){${n?`#t-p td[data-k="margin"] .mg-n{min-width:${n}px}`:""}${nums.map(c=>`#t-p td[data-k="${c.k}"]>.cifb{width:${c.v}px}`).join("")}}`;
   if(document.fonts&&document.fonts.status!=="loaded") document.fonts.ready.then(()=>{ preAnchosClave=""; renderPreTable(); });
   return cols.map(c=>c.w); }
-// la fila de títulos: «Mercado» y «Tu valoración», sobre las columnas que se ven; cada raya acaba a medio hueco de la otra
-function gruposPre(){ const vis=[...$("p-head").querySelectorAll("th[data-k]")].filter(th=>th.getClientRects().length).map(th=>PCOLS.find(c=>c.k===th.dataset.k));
-  const a=vis.filter(x=>x.g!=="est").length, b=vis.length-a, m=preHueco/2; if(!a||!b) return;
-  const tr=document.createElement("tr"); tr.className="grp";
-  tr.innerHTML=`<th class="g" colspan="${a}" style="--gl:8px;--gr:${m}px">Mercado</th><th class="g" colspan="${b}" style="--gl:${m}px;--gr:${m}px">Tu valoración</th>`;
-  $("p-head").prepend(tr); }
 // móvil: los datos secundarios, en una sola línea
 const mLine=it=>`<td class="mline">${it.filter(Boolean).map(h=>`<span class="mi">${h}</span>`).join("")}</td>`;
 function fillIndustries(){ opts($("p-ind"),[...new Set(DATA.pre.map(r=>r.ind).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"es")),"Industria: todas",true); }
@@ -4652,9 +4643,9 @@ function renderPreTable(){
   if(wide&&preAnchosClave!==String(innerWidth)){ $("t-p").style.tableLayout=""; cg()?.remove(); $("p-head").innerHTML=head(null); body.replaceChildren(...pRows.values());
     preAnchos=anchosPre(); preAnchosClave=preAnchos?String(innerWidth):""; }
   const fijo=wide&&preAnchos; $("t-p").style.tableLayout=fijo?"fixed":""; cg()?.remove();
-  // los anchos van en <col> (la primera fila es la de títulos y no sirve para fijarlos)
+  // los anchos van en <col>
   if(fijo){ const g=document.createElement("colgroup"); g.innerHTML=preAnchos.map(w=>`<col style="width:${w.toFixed(2)}px">`).join(""); $("t-p").prepend(g); }
-  $("p-head").innerHTML=head(null); if(fijo) gruposPre();
+  $("p-head").innerHTML=head(null);
   const nodes=[]; vis.forEach(r=>{ const tr=pRows.get(r.ticker); if(tr) nodes.push(tr); });
   if(!nodes.length){ const e=document.createElement("tr"); e.innerHTML=`<td colspan="${PCOLS.length}" class="empty">${!DATA.pre.length?"Sin empresas en tu hoja":preFiltro==="rev"&&!q&&!ind?"Ninguna valoración tiene más de un año":"Ninguna empresa coincide con los filtros"}</td>`; nodes.push(e); }
   body.replaceChildren(...nodes); markRows();
