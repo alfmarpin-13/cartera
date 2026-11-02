@@ -1182,9 +1182,10 @@ tr.grp-row td{font-size:var(--fs-13);font-weight:500;letter-spacing:0;text-trans
   .bg.ug .c2{grid-column:1/-1;padding-left:0}.bg.ug .c2.r3{grid-row:6}
     .bg.ug .bs .sep{display:block;height:0;margin:0}.bg.ug .bs .sep::before{content:none}.bg.ug .bs{font-size:var(--fs-11)}}
 /* Radar: tabla de filas fijas; la barra parte del centro (por debajo / por encima de lo exigido) */
-.pf-mas-w{display:none}
-@media (max-width:700px){ .pf-mas-w{display:flex;justify-content:center;margin-top:12px}
-  #perf-up:not(.mas)>.pf-row:nth-child(n+6),#perf-dn:not(.mas)>.pf-row:nth-child(n+6){display:none} }
+.pf-mas-w{display:flex;justify-content:center;margin-top:12px}
+@media (min-width:701px){ #perf-up:not(.mas)>.pf-row:nth-child(n+11),#perf-dn:not(.mas)>.pf-row:nth-child(n+11){display:none} }
+@media (max-width:700px){ #perf-up:not(.mas)>.pf-row:nth-child(n+6),#perf-dn:not(.mas)>.pf-row:nth-child(n+6){display:none}
+  #perf-up>.pf-row:nth-child(n+11),#perf-dn>.pf-row:nth-child(n+11){display:none} }
 /* Movimientos y Universo: «Restablecer» al final de los filtros; apagado si no hay nada que quitar */
 
 .toolbar .m-rst{flex:none;height:38px;padding:0 16px;font-size:var(--fs-13);font-weight:400;margin-left:auto;display:inline-flex;align-items:center;gap:6px}.toolbar .m-rst svg{width:14px;height:14px;flex:none}
@@ -2979,7 +2980,11 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   #t-p th:not(.l):not(.c),#t-p td.num{text-align:center}
   #t-p td.num>.cifb{display:inline-flex;justify-content:flex-end}
   #t-p thead th:not(.l):not(.c):not(.g),#t-p td.num{padding-left:0;padding-right:0}
-  #t-p thead th>.thl{display:inline-block;margin:0 -24px}
+  #t-p thead th>.thl{display:inline-block;margin:0 -24px;position:relative}
+  #t-p th[aria-sort]:not(.l):not(.c)::before{content:none}
+  #t-p th[aria-sort]>.thl::before{position:absolute;right:100%;top:0;width:1em;text-align:center}
+  #t-p th[aria-sort="ascending"]>.thl::before{content:"↑"}
+  #t-p th[aria-sort="descending"]>.thl::before{content:"↓"}
   #t-p .mg-n{display:inline-block;text-align:right}
 }
 /* Por industria: filas completas de lado a lado (las arma ajustaInd); en el móvil, 4 por fila: nombre a 11 px y 4 px a los lados */
@@ -3144,7 +3149,7 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
 
   <section class="panel" id="s-perf">
     <div class="chart-head"><div><h2 class="st">Rendimiento</h2></div>
-      <div class="perf-k" id="perf-k"><div class="seg" role="group" aria-label="Sesión"><button type="button" data-k="today" aria-pressed="true">Hoy</button><button type="button" data-k="last" aria-pressed="false">Última sesión</button><button type="button" data-k="dd" aria-pressed="false">Desde máximo</button></div><div class="seg" role="group" aria-label="Periodo"><button type="button" data-k="w1" aria-pressed="false">1 semana</button><button type="button" data-k="m1" aria-pressed="false">1 mes</button><button type="button" data-k="m3" aria-pressed="false">3 meses</button><button type="button" data-k="m6" aria-pressed="false">6 meses</button><button type="button" data-k="ytd" aria-pressed="false"><span class="wl">En </span><i class="cy"></i></button><button type="button" data-k="y1" aria-pressed="false">1 año</button><button type="button" data-k="y3" aria-pressed="false">3 años</button></div></div></div>
+      <div class="perf-k" id="perf-k"><div class="seg" role="group" aria-label="Sesión"><button type="button" data-k="today" aria-pressed="true">Hoy</button><button type="button" data-k="last" aria-pressed="false">Última sesión</button><button type="button" data-k="dd" aria-pressed="false">Desde máximos</button></div><div class="seg" role="group" aria-label="Periodo"><button type="button" data-k="w1" aria-pressed="false">1 semana</button><button type="button" data-k="m1" aria-pressed="false">1 mes</button><button type="button" data-k="m3" aria-pressed="false">3 meses</button><button type="button" data-k="m6" aria-pressed="false">6 meses</button><button type="button" data-k="ytd" aria-pressed="false"><span class="wl">En </span><i class="cy"></i></button><button type="button" data-k="y1" aria-pressed="false">1 año</button><button type="button" data-k="y3" aria-pressed="false">3 años</button></div></div></div>
     <div class="pf-cols"><div><div class="dv-h"><span id="perf-uh">Mejores</span></div><div id="perf-up"></div><div class="pf-mas-w"><button type="button" class="btn pf-mas" data-l="perf-up" hidden></button></div></div><div><div class="dv-h"><span id="perf-dh">Peores</span></div><div id="perf-dn"></div><div class="pf-mas-w"><button type="button" class="btn pf-mas" data-l="perf-dn" hidden></button></div></div></div>
     <div class="ind-w"><div class="dv-h"><span>Por industria</span></div><div class="ind-g" id="perf-ind"></div></div>
   </section>
@@ -3166,7 +3171,7 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
       <button type="button" class="inp ftg" id="p-ftg" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4.5h12M4.5 8h7M7 11.5h2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Filtros</span><b class="ftn num" id="p-ftn"></b></button>
       <div class="seg pf-seg" role="group" aria-label="Grupo" id="p-f"><button type="button" data-f="" aria-pressed="true">Todas</button><button type="button" data-f="pf" aria-pressed="false">En cartera</button><button type="button" data-f="out" aria-pressed="false">Candidatas</button><button type="button" data-f="mar" aria-pressed="false">Sobre lo exigido</button><button type="button" data-f="rev" aria-pressed="false">Por revisar</button></div>
       <select class="inp" id="p-ind" aria-label="Industria"></select>
-      <select class="inp show-s" id="p-sort" aria-label="Ordenar empresas"><option value="ind">Ordenar por industria</option><option value="name">Por nombre</option><option value="country">Por país</option><option value="margin">Por margen</option><option value="irrExp">Por TIR esperada</option><option value="today">Por variación de hoy</option><option value="dd">Por caída desde máximo</option></select>
+      <select class="inp show-s" id="p-sort" aria-label="Ordenar empresas"><option value="ind">Ordenar por industria</option><option value="name">Por nombre</option><option value="country">Por país</option><option value="margin">Por margen</option><option value="irrExp">Por TIR esperada</option><option value="today">Por variación de hoy</option><option value="dd">Por caída desde máximos</option></select>
       <button type="button" class="btn m-rst" id="p-rst" title="Quitar todos los filtros" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.5-3.6M3 2.5v2.5h2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Restablecer</span></button>
     </div>
     <div class="mleg" aria-hidden="true">Margen · Precio</div>
@@ -3626,7 +3631,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v338";   // la versión publicada, en el pie
+const VER="v339";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4368,8 +4373,8 @@ const PCOLS=[
   {k:"vd",l:"Valorada",r:"vd",g:"est",sv:r=>{ const d=valDate(r); return d?d.getTime():null; },
    f:r=>{ const d=valDate(r); return d?`<span class="vd-k">valorada </span><span class="${stale(r)?"vd-old":""}"${stale(r)?' title="Por revisar: valorada hace más de un año"':""}>${fdate(d,{day:"numeric",month:"short",year:"numeric"})}</span>`:""; }} ];
 const etiquetaDe=x=>typeof x.l==="function"?x.l():x.l;
-// pantallas anchas: los anchos de la lista, medidos con todas las empresas. Cada columna de cifras mide lo que el 90 % de sus
-// cifras más un hueco fijo, el mismo entre todas (las atípicas, más anchas, asoman por la izquierda); lo que sobra, para Empresa e Industria
+// pantallas anchas: los anchos de la lista, medidos con todas las empresas. Cada columna de cifras mide lo que su cifra mayor
+// más un hueco, el mismo entre todas y tan grande como quepa (hasta 48 px); lo que sobra, para Empresa e Industria
 let preHueco=40;
 function anchosPre(){
   const t=$("t-p"), st=$("pcv-css")||document.head.appendChild(Object.assign(document.createElement("style"),{id:"pcv-css"}));
@@ -4379,12 +4384,14 @@ function anchosPre(){
   if(n) st.textContent=`@media (min-width:701px){#t-p td[data-k="margin"] .mg-n{min-width:${n}px}}`;
   const tw=an(t), cols=vis.map(th=>{ const k=th.dataset.k, x=PCOLS.find(c=>c.k===k), cs=getComputedStyle(th), pad=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight);
     if(x.left||x.ctr){ // texto: lo que pide su cifra o nombre más largo (sin partirse)
-      const need=Math.max(txt(th),...[...t.querySelectorAll(`td[data-k="${k}"]`)].map(td=>{ const r=document.createRange(); r.selectNodeContents(td); const b=td.getBoundingClientRect(); const rs=[...r.getClientRects()].filter(q=>q.width>0); return rs.length?Math.max(...rs.map(q=>q.right))-b.left-parseFloat(getComputedStyle(td).paddingLeft):0; }));
+      const fin=td=>{ let R=0; const w=document.createTreeWalker(td,NodeFilter.SHOW_TEXT); let x; while((x=w.nextNode())){ if(!x.textContent.trim()) continue; const r=document.createRange(); r.selectNodeContents(x); for(const q of r.getClientRects()) if(q.width>0) R=Math.max(R,q.right); }
+        td.querySelectorAll("img,svg").forEach(e=>{ const q=e.getBoundingClientRect(); if(q.width>0) R=Math.max(R,q.right); }); return R; };
+      const need=Math.max(txt(th),...[...t.querySelectorAll(`td[data-k="${k}"]`)].map(td=>{ const R=fin(td); return R?R-td.getBoundingClientRect().left-parseFloat(getComputedStyle(td).paddingLeft):0; }));
       return {k,txt:1,need:Math.ceil(need)+pad}; }
     const ws=[...t.querySelectorAll(`td[data-k="${k}"]>.cifb>span`)].map(an).filter(v=>v>0).sort((p,q)=>p-q);
-    return {k,v:Math.ceil(ws.length?ws[Math.ceil(ws.length*.9)-1]:0),h:Math.ceil(txt(th))}; });
+    return {k,v:Math.ceil(ws.length?ws[ws.length-1]:0),h:Math.ceil(txt(th))}; });
   const nums=cols.filter(c=>!c.txt), need=cols.filter(c=>c.txt).reduce((s,c)=>s+c.need,0), base=nums.reduce((s,c)=>s+c.v,0);
-  preHueco=Math.max(16,Math.min(40,Math.floor((tw-need-base)/Math.max(nums.length,1))));
+  preHueco=Math.max(16,Math.min(48,Math.floor((tw-need-base)/Math.max(nums.length,1))));
   nums.forEach(c=>{ c.w=c.v+preHueco; });   // una cabecera más ancha que su columna asoma, centrada, por los dos lados
   const libre=tw-nums.reduce((s,c)=>s+c.w,0), crece=cols.filter(c=>c.txt&&c.k!=="country"), pide=crece.reduce((s,c)=>s+c.need,0);
   cols.filter(c=>c.txt).forEach(c=>{ c.w=c.k==="country"?c.need:c.need+(libre-need)*c.need/pide; });
@@ -4419,11 +4426,10 @@ function renderPerf(){
   const rs=DATA.pre.filter(r=>isNum(r[perfK])).sort((a,b)=>b[perfK]-a[perfK]);
   // las barras: en «Hoy» y «Última sesión», con la misma escala las que suben y las que bajan; en los plazos largos, cada lista con la
   // suya (si no, a un año las que bajan saldrían enanas al lado de las que suben)
-  const up=rs.slice(0,10), dn=rs.slice(-10).reverse(), mx=xs=>Math.max(...xs.map(r=>Math.abs(r[perfK])),0.0001), sep=perfK!=="today"&&perfK!=="last"&&perfK!=="dd";
+  const nl=Math.max(Math.min(20,Math.floor(rs.length/2)),Math.min(10,rs.length)), up=rs.slice(0,nl), dn=rs.slice(-nl).reverse(), mx=xs=>Math.max(...xs.map(r=>Math.abs(r[perfK])),0.0001), sep=perfK!=="today"&&perfK!=="last"&&perfK!=="dd";
   const max=sep?mx(up):mx(up.concat(dn)), maxD=sep?mx(dn):max;
   $("perf-up").innerHTML=rs.length?up.map(r=>pfRow(r,max)).join(""):`<p class="sub pf-none">${!DATA.pre.length?"Sin empresas en tu hoja":perfK==="today"?"Ningún mercado abierto todavía":"Sin datos para este periodo"}</p>`; $("perf-dn").innerHTML=dn.map(r=>pfRow(r,maxD)).join("");
-  // móvil: 5 y 5; «Ver más» enseña hasta 10 (en el PC salen las 10 y el botón no se ve)
-  [["perf-up",rs.length?up.length:0],["perf-dn",dn.length]].forEach(([id,n])=>{ const l=$(id), bt=l.parentElement.querySelector(".pf-mas"), on=l.classList.contains("mas"); bt.hidden=n<=5; bt.textContent=on?"Ver menos":`Ver ${n-5} más`; bt.classList.toggle("less",on); });
+  ["perf-up","perf-dn"].forEach(id=>pfMas($(id)));
   // por industria: media simple de sus empresas, como tu hoja Radar; color por tercios del mejor y del peor, igual que allí
   const g={}; DATA.pre.forEach(r=>{ if(!r.ind) return; (g[r.ind]=g[r.ind]||[]); if(isNum(r[perfK])) g[r.ind].push(r[perfK]); });
   const L=Object.entries(g).map(([k,v])=>({k,v:v.length?sum(v,x=>x)/v.length:null})).sort((a,b)=>(b.v??-1e9)-(a.v??-1e9));
@@ -4456,8 +4462,12 @@ if(window.ResizeObserver) new ResizeObserver(()=>{ const g=$("perf-ind"); if(g.c
 // al pulsar una industria, la tabla de abajo se filtra por ella
 $("perf-ind").addEventListener("click",e=>{ const b=e.target.closest("[data-ind]"); if(!b) return; $("p-ind").value=b.dataset.ind; $("p-ftg").closest(".toolbar").classList.add("open"); $("p-ftg").setAttribute("aria-expanded",true); renderPre(); });
 const setPerf=k=>{ perfK=k; perfAuto=false; renderPerf(); };
+// «Ver más» de Mejores y Peores: en el PC, 10 y hasta 20; en el móvil, 5 y hasta 10
+const pfMovil=matchMedia("(max-width:700px)");
+const pfMas=l=>{ const bt=l.parentElement.querySelector(".pf-mas"), n=l.querySelectorAll(".pf-row").length, a=pfMovil.matches?5:10, z=pfMovil.matches?Math.min(n,10):n, on=l.classList.contains("mas");
+  bt.hidden=z<=a; bt.parentElement.style.display=bt.hidden?"none":""; bt.textContent=on?"Ver menos":`Ver ${z-a} más`; bt.classList.toggle("less",on); };
 $("s-perf").addEventListener("click",e=>{ const bt=e.target.closest(".pf-mas"); if(!bt) return; const l=$(bt.dataset.l), on=l.classList.toggle("mas");
-  bt.textContent=on?"Ver menos":`Ver ${l.querySelectorAll(".pf-row").length-5} más`; bt.classList.toggle("less",on); });
+  pfMas(l); });
 document.querySelectorAll("#perf-k .cy").forEach(e=>e.textContent=new Date().getFullYear());   // «En 2026»: el año en curso
 $("perf-k").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) setPerf(b.dataset.k); });
 
@@ -4524,7 +4534,7 @@ function fichaPre(r){
   const cPrice=`<section class="fp-c fp-cot"><div class="fp-ch"><h4>Precio</h4><span>${sesT}</span></div>
     ${cotRule(lad,cur)}<ol class="cot-l">${lad.map(([l,cifra,me])=>`<li class="${me?"me":""}"><span>${l}</span><b class="num">${l==="Tu precio medio"?money(cifra,cur):precioVisible(cifra,cur)}</b><em class="num">${me||!isNum(P0)?"":pct(P0/cifra-1,1,true)}</em></li>`).join("")}</ol>
     ${na.length?`<ul class="cot-l cot-na">${na.map(([l])=>`<li><span>${l}</span><b>N/A</b><em></em></li>`).join("")}</ul>`:""}
-    <div class="cot-f"><span>Desde máximo</span><b class="num">${pct(r.dd,1,true)}</b><span>Volatilidad</span><b class="num">${pct(r.vol,1)}</b></div></section>`;
+    <div class="cot-f"><span>Desde máximos</span><b class="num">${pct(r.dd,1,true)}</b><span>Volatilidad</span><b class="num">${pct(r.vol,1)}</b></div></section>`;
   // rendimiento de cada periodo en barras; la marca, la media simple de su industria en ese periodo
   const peers=r.ind?DATA.pre.filter(x=>x.ind===r.ind):[], avgOf=k=>{ const vals=peers.map(x=>x[k]).filter(isNum); return vals.length>1?sum(vals,x=>x)/vals.length:null; };
   const z0=cifra=>isNum(cifra)&&Math.abs(cifra)<0.0005?0:cifra, rows=per.map(([l,k])=>[l,z0(r[k]),avgOf(k)]), rdv=rows.flatMap(x=>[x[1],x[2]]).filter(isNum),
