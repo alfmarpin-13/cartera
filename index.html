@@ -3643,7 +3643,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v341";   // la versión publicada, en el pie
+const VER="v342";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4451,26 +4451,29 @@ function renderPerf(){
 }
 // «Por industria»: las casillas, en filas completas de lado a lado y en el mínimo de filas. Una casilla cabe si cabe su palabra
 // más larga (y su cifra); si las filas no salen iguales, las que llevan una casilla menos las tienen algo más anchas
-let indW=0;
+let indW=0, indCfg=null; const indMedidas=new Map();
 function ajustaInd(){ const g=$("perf-ind"); if(!g) return; const bs=[...g.querySelectorAll(".ih")]; g.classList.remove("filas"); g.replaceChildren(...bs);
-  const W=g.clientWidth; indW=W; if(!W||!bs.length) return;
+  if(!bs.length) return;
   if(document.fonts&&document.fonts.status!=="loaded"){ document.fonts.ready.then(ajustaInd); return; }
-  const cs=getComputedStyle(bs[0]), gap=parseFloat(getComputedStyle(g).columnGap)||0, m=document.createElement("span");
-  const fs=getComputedStyle(bs[0].querySelector("span")); m.style.cssText="position:absolute;visibility:hidden;white-space:nowrap";
-  ["fontFamily","fontSize","fontWeight","fontStyle","letterSpacing","fontFeatureSettings","fontVariantNumeric"].forEach(k=>m.style[k]=fs[k]); document.body.append(m);
-  const an=t=>{ m.textContent=t; return m.getBoundingClientRect().width; };
+  // el ancho, los márgenes y la letra de las casillas solo se leen al cambiar el ancho (leerlos obliga a recalcular la maqueta)
+  if(!indCfg||indCfg.W!==indW){ const W=g.clientWidth; indW=W; if(!W){ indCfg=null; return; }
+    const cs=getComputedStyle(bs[0]), fs=getComputedStyle(bs[0].querySelector("span")), fb=getComputedStyle(bs[0].querySelector("b")), fuente=s=>`${s.fontStyle} ${s.fontWeight} ${s.fontSize} ${s.fontFamily}`;
+    indCfg={W, pad:parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight), gap:parseFloat(getComputedStyle(g).columnGap)||0, fnt:fuente(fs), ls:parseFloat(fs.letterSpacing)||0, fntB:fuente(fb)}; }
+  const {W,pad,gap,fnt,ls,fntB}=indCfg;
+  // palabras y cifras, medidas con el lienzo (no toca la maqueta); cada texto se mide una sola vez
+  const an=(t,f=fnt,l=ls)=>{ const k=f+"|"+l+"|"+t; let w=indMedidas.get(k); if(w===undefined){ w=textW(t,f)+l*[...t].length; indMedidas.set(k,w); } return w; };
   // el texto de cada casilla, como venía (la «y» pegada a la palabra de detrás); si esa pareja no cabe en la casilla, se suelta
   bs.forEach(b=>{ const sp=b.querySelector("span"); if(b.dataset.t0===undefined) b.dataset.t0=sp.textContent; else sp.textContent=b.dataset.t0; });
-  const pal=Math.max(...bs.flatMap(b=>b.dataset.t0.split(/[\s\u00a0]+/).flatMap(w=>{ const p=w.split("\u00ad"); return p.map((x,i)=>an(i<p.length-1?x+"-":x)); })));
-  const cif=Math.max(...bs.map(b=>b.querySelector("b").getBoundingClientRect().width));
-  const min=Math.max(pal,cif)+parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight)+1, n=bs.length;
+  const pal=Math.max(...bs.flatMap(b=>b.dataset.t0.split(/[\s ]+/).flatMap(w=>{ const p=w.split("­"); return p.map((x,i)=>an(i<p.length-1?x+"-":x)); })));
+  const cif=Math.max(...bs.map(b=>an(b.querySelector("b").textContent,fntB,0)))+2;   // +2: las cifras tabulares, algo más anchas que en el lienzo
+  const min=Math.max(pal,cif)+pad+1, n=bs.length;
   const r=Math.ceil(n/Math.max(1,Math.floor((W+gap)/(min+gap)))), base=Math.floor(n/r), extra=n%r, cm=base+(extra?1:0); let i=0;
-  const libre=(W-(cm-1)*gap)/cm-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
-  bs.forEach(b=>{ const t=b.dataset.t0; if(t.split(" ").some(u=>u.includes("\u00a0")&&an(u.replace(/\u00ad/g,""))>libre)) b.querySelector("span").textContent=t.replace(/\u00a0/g," "); }); m.remove();
+  const libre=(W-(cm-1)*gap)/cm-pad;
+  bs.forEach(b=>{ const t=b.dataset.t0; if(t.split(" ").some(u=>u.includes(" ")&&an(u.replace(/­/g,""))>libre)) b.querySelector("span").textContent=t.replace(/ /g," "); });
   g.replaceChildren(...Array.from({length:r},(_,k)=>{ const f=document.createElement("div"), c=base+(k<extra?1:0); f.className="ind-f"; f.append(...bs.slice(i,i+c)); i+=c; return f; }));
   g.classList.add("filas"); }
 // al cambiar de ancho (o al verse por primera vez), se recolocan
-if(window.ResizeObserver) new ResizeObserver(()=>{ const g=$("perf-ind"); if(g.clientWidth&&g.clientWidth!==indW) ajustaInd(); }).observe($("perf-ind"));
+if(window.ResizeObserver) new ResizeObserver(()=>{ const w=$("perf-ind").clientWidth; if(w&&w!==indW){ indW=w; ajustaInd(); } }).observe($("perf-ind"));
 // al pulsar una industria, la tabla de abajo se filtra por ella
 $("perf-ind").addEventListener("click",e=>{ const b=e.target.closest("[data-ind]"); if(!b) return; $("p-ind").value=b.dataset.ind; $("p-ftg").closest(".toolbar").classList.add("open"); $("p-ftg").setAttribute("aria-expanded",true); renderPre(); });
 const setPerf=k=>{ perfK=k; perfAuto=false; renderPerf(); };
