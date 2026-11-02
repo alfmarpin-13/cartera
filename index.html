@@ -659,7 +659,6 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 #m-k{gap:16px 0;margin:0 0 24px;border-bottom:1px solid var(--line);grid-auto-rows:auto;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
 #m-k>.kpi{background:none;border-radius:0;padding:0 24px 0 0;display:grid;grid-row:span 2;grid-template-rows:subgrid;row-gap:0;align-content:start}
 #m-k>.kpi>.k{align-self:end}
-.tag.xf{background:none;box-shadow:inset 0 0 0 1px var(--line);color:var(--ink3)}
 .m-more{margin:16px auto 0}
 @media (max-width:430px){#mtabs a{font-size:var(--fs-13)}}
 @media (max-width:380px){#mtabs a{font-size:var(--fs-12)}}
@@ -948,27 +947,24 @@ tr.grp-row td{font-size:var(--fs-13);font-weight:500;letter-spacing:0;text-trans
 /* el resto de listas de dos líneas en móvil (Posiciones, Movimientos y Radar), igual que Todas las empresas:
    el logo grande y centrado entre las dos líneas, con el nombre y su dato debajo en la segunda columna */
 @media (max-width:700px){
-  #t-pos tbody tr.pr,#t-rd tbody tr.pr,#s-mov .rt tbody tr:has(.lgb){grid-template-columns:48px minmax(0,1fr) auto;column-gap:12px;row-gap:2px;padding:12px 2px}
-  #t-pos td.r-main,#t-pos td.r-main>.co,#t-rd td.r-main,#t-rd td.r-main>.co,#s-mov .rt tr:has(.lgb) td.r-main,#s-mov .rt tr:has(.lgb) td.r-main>.co{display:contents}
-  #t-pos .co>.lgb,#t-rd .co>.lgb,#s-mov .rt .co>.lgb{grid-column:1;grid-row:1/span 2;align-self:center;width:48px;height:28px}
-  #t-pos .co>b,#t-rd .co>b,#s-mov .rt tr:has(.lgb) .co>b,#s-mov .rt tr:has(.lgb) .co>.cn{grid-column:2;grid-row:1;white-space:normal;overflow:visible;min-width:0}
-  #t-rd .co>b{align-self:center}
-  .rt#t-pos td.r-meta{grid-column:2;grid-row:2;margin:0}#s-mov .rt tr:has(.lgb) td.mline{grid-column:2/-1;grid-row:2;margin:0}
-  #t-pos td.r-amt,#t-rd td.r-amt,#s-mov .rt tr:has(.lgb) td.r-amt{grid-column:3;grid-row:1}
-  #t-pos td.r-sub,#t-rd td.r-sub{grid-column:3;grid-row:2}
-  #t-rd tbody tr.pr{height:auto}
-  #t-rd td.r-sub .rlv,#t-rd td.r-sub .tpill{padding-top:0;padding-bottom:0;line-height:var(--lh-18);--lhp:var(--lh-18)}
-}
-@media (max-width:380px){#t-pos tbody tr.pr,#t-rd tbody tr.pr,#s-mov .rt tbody tr:has(.lgb){column-gap:8px;grid-template-columns:44px minmax(0,1fr) auto}#t-pos .co>.lgb,#t-rd .co>.lgb,#s-mov .rt .co>.lgb{width:44px;height:26px}}
+  #t-pos tbody tr.pr,#s-mov .rt tbody tr:has(.lgb){grid-template-columns:48px minmax(0,1fr) auto;column-gap:12px;row-gap:2px;padding:12px 2px}
+  #t-pos td.r-main,#t-pos td.r-main>.co,#s-mov .rt tr:has(.lgb) td.r-main,#s-mov .rt tr:has(.lgb) td.r-main>.co{display:contents}
+  #t-pos .co>.lgb,#s-mov .rt .co>.lgb{grid-column:1;grid-row:1/span 2;align-self:center;width:48px;height:28px}
+  #t-pos .co>b,#s-mov .rt tr:has(.lgb) .co>b,#s-mov .rt tr:has(.lgb) .co>.cn{grid-column:2;grid-row:1;white-space:normal;overflow:visible;min-width:0}
+    .rt#t-pos td.r-meta{grid-column:2;grid-row:2;margin:0}#s-mov .rt tr:has(.lgb) td.mline{grid-column:2/-1;grid-row:2;margin:0}
+  #t-pos td.r-amt,#s-mov .rt tr:has(.lgb) td.r-amt{grid-column:3;grid-row:1}
+  #t-pos td.r-sub{grid-column:3;grid-row:2}
+    }
+@media (max-width:380px){#t-pos tbody tr.pr,#s-mov .rt tbody tr:has(.lgb){column-gap:8px;grid-template-columns:44px minmax(0,1fr) auto}#t-pos .co>.lgb,#s-mov .rt .co>.lgb{width:44px;height:26px}}
 /* todas las listas del móvil con la misma fila: dos líneas de 20 px (en la de abajo cabe la pastilla de Rentab.), el mismo alto,
    el nombre en negro, un solo gris debajo, la cifra a 13 px y el logo de 48 con el nombre siempre en la misma x */
 @media (max-width:700px){
-  #t-pos tbody tr.pr,#t-rd tbody tr.pr,#t-p tbody tr.pr,#s-mov .rt tbody tr{grid-template-rows:20px minmax(20px,auto);padding-top:12px;padding-bottom:12px;align-items:center}
+  #t-pos tbody tr.pr,#t-p tbody tr.pr,#s-mov .rt tbody tr{grid-template-rows:20px minmax(20px,auto);padding-top:12px;padding-bottom:12px;align-items:center}
   #t-p tbody tr.pr,#t-p tbody tr.pr.inpf{padding-bottom:12px}
   #s-mov .rt tbody tr{padding-left:2px;padding-right:2px}
   .rt#t-pos td.r-amt{font-size:var(--fs-13)}
   #s-mov .rt td.r-main,#s-mov .rt td.r-main>.tag{color:var(--ink);font-weight:500}
-  .rt#t-pos td.r-meta,#t-p td[data-l="Industria"],#t-p td.r-sub,#s-mov .rt td.mline,#t-rd td.r-sub{color:var(--ink3)}
+  .rt#t-pos td.r-meta,#t-p td[data-l="Industria"],#t-p td.r-sub,#s-mov .rt td.mline{color:var(--ink3)}
   .pf-row .co{column-gap:12px}.pf-row .co>.lgb{width:48px;height:28px}
   #b-payers .bar{padding:0 2px}.bar.bi{grid-template-columns:48px minmax(0,1fr) auto}.bar.bi>.lgb{width:48px;height:28px}
 }
@@ -1187,21 +1183,9 @@ tr.grp-row td{font-size:var(--fs-13);font-weight:500;letter-spacing:0;text-trans
   .bg.ug .c2{grid-column:1/-1;padding-left:0}.bg.ug .c2.r3{grid-row:6}
     .bg.ug .bs .sep{display:block;height:0;margin:0}.bg.ug .bs .sep::before{content:none}.bg.ug .bs{font-size:var(--fs-11)}}
 /* Radar: tabla de filas fijas; la barra parte del centro (por debajo / por encima de lo exigido) */
-#t-rd{table-layout:fixed}
-@media (max-width:700px){#t-rd{table-layout:auto}#t-rd colgroup{display:none}#t-rd tbody tr{box-sizing:border-box;align-content:center}}
-#t-rd th{cursor:default}
-#t-rd td.rd-px{display:none}
-@media (max-width:700px){#t-rd td.rd-px{display:block;grid-column:2;grid-row:2;padding:0;border:0;font-size:var(--fs-12);color:var(--ink3);white-space:nowrap;font-variant-numeric:tabular-nums}#t-rd .co>b{grid-row:1}}
-.rd-h{display:flex;justify-content:space-between;gap:8px;padding:0 8px}
-.rd-c{padding-left:16px;padding-right:16px}
-.rd-b{position:relative;display:block;height:6px;border-radius:var(--r-2);background:var(--line)}
-.rd-b::before{content:"";position:absolute;left:50%;top:-4px;bottom:-4px;width:1px;background:var(--g4)}
-.rd-b i{position:absolute;top:0;bottom:0;border-radius:var(--r-2)}
-.rd-b i.pos{background:var(--pos)}.rd-b i.neg{background:var(--neg)}
-#t-rd tbody tr.pr.inpf>td:first-child{box-shadow:inset 3px 0 0 var(--pf-bar)}
-#t-rd tbody tr.rd-x>td{border-bottom-color:transparent}
-.rd-more{display:flex;justify-content:center;margin-top:16px}
-#t-rd tbody tr.pr.inpf{background:var(--pf-bg)}
+.pf-mas-w{display:none}
+@media (max-width:700px){ .pf-mas-w{display:flex;justify-content:center;margin-top:12px}
+  #perf-up:not(.mas)>.pf-row:nth-child(n+6),#perf-dn:not(.mas)>.pf-row:nth-child(n+6){display:none} }
 /* Movimientos y Universo: «Restablecer» al final de los filtros; apagado si no hay nada que quitar */
 
 .toolbar .m-rst{flex:none;height:38px;padding:0 16px;font-size:var(--fs-13);font-weight:400;margin-left:auto;display:inline-flex;align-items:center;gap:6px}.toolbar .m-rst svg{width:14px;height:14px;flex:none}
@@ -1334,11 +1318,11 @@ html{-webkit-tap-highlight-color:transparent;scrollbar-gutter:stable;background:
 .sheet .sh-b2{background:none;border-color:transparent;border-radius:var(--r-8)}
 .sheet .sh-b2:hover:not(:disabled){background:color-mix(in srgb,var(--ink) 6%,transparent)}
 /* «Ver más» con su flecha (hacia arriba en «Ver menos») y «Añadir empresa» con su + */
-#rd-more{display:inline-flex;align-items:center;gap:6px}
+.pf-mas{display:inline-flex;align-items:center;gap:6px}
 #m-more{display:flex;width:max-content;align-items:center;gap:6px}
-#rd-more::after,#m-more::after,#pl-add::before,#pl-sell::before{content:"";width:12px;height:12px;flex:none;background:currentColor;-webkit-mask:var(--ic) center/12px no-repeat;mask:var(--ic) center/12px no-repeat}
-#rd-more,#m-more{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
-#rd-more.less::after{transform:rotate(180deg)}
+.pf-mas::after,#m-more::after,#pl-add::before,#pl-sell::before{content:"";width:12px;height:12px;flex:none;background:currentColor;-webkit-mask:var(--ic) center/12px no-repeat;mask:var(--ic) center/12px no-repeat}
+.pf-mas,#m-more{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.pf-mas.less::after{transform:rotate(180deg)}
 #pl-sell{display:inline-flex;align-items:center;gap:6px;--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6h8' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E")}
 #pl-add{display:inline-flex;align-items:center;gap:6px;--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 2v8M2 6h8' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E")}
 /* Trayectoria: los supuestos se mueven con barras; empiezan en los de tu hoja (la marca) y tu hoja no cambia */
@@ -1443,11 +1427,11 @@ html{-webkit-tap-highlight-color:transparent;scrollbar-gutter:stable;background:
 }
 /* 28 · en pantallas táctiles, cada control tiene al menos 44 pt de zona para el dedo; el dibujo no cambia */
 @media (pointer:coarse){
-  .btn.ic,.seg button,.ts-rst,.foot-b,.info,.m-more,#rd-more,.pl-bar,.pf-row,.sh-b2,.fp-go,.mc-l{position:relative}
-  .btn.ic::before,.seg button::before,.ts-rst::before,.foot-b::before,.info::before,.m-more::before,#rd-more::before,.pl-bar::before,.pf-row::before,.sh-b2::before,.fp-go::before,.mc-l::before,.fq-d::before{content:"";position:absolute;z-index:var(--z-dentro)}
+  .btn.ic,.seg button,.ts-rst,.foot-b,.info,.m-more,.pf-mas,.pl-bar,.pf-row,.sh-b2,.fp-go,.mc-l{position:relative}
+  .btn.ic::before,.seg button::before,.ts-rst::before,.foot-b::before,.info::before,.m-more::before,.pf-mas::before,.pl-bar::before,.pf-row::before,.sh-b2::before,.fp-go::before,.mc-l::before,.fq-d::before{content:"";position:absolute;z-index:var(--z-dentro)}
   .btn.ic::before{inset:-6px}
   .seg button::before{inset:-9px 0}
-  .ts-rst::before,.m-more::before,#rd-more::before{inset:-7px 0}
+  .ts-rst::before,.m-more::before,.pf-mas::before{inset:-7px 0}
   .foot-b::before{inset:-10px 0}
   .info::before{inset:-14px}
   .pl-bar::before{inset:-16px 0}
@@ -1764,21 +1748,21 @@ body{font-feature-settings:"cv11"}
 /* ===== Logos de un solo color en las listas (Posiciones, Movimientos, Dividendos y su tarjeta de «Próximos 12 meses», Radar, Rendimiento, Todas las empresas, Plan y buscador).
    Los logos a color siguen intactos en la página: esto solo los pinta. Para volver al color, poner LOGOS_UN_COLOR=false en el código (o borrar este bloque).
    La ficha, Actualidad y el mapa de Hoy no cambian. Los logos de dos tonos (LOGO_GRIS) van en gris para no perder su dibujo ===== */
-html.lmono :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb:not(.gr) img{filter:brightness(0) opacity(.82)}
-html.lmono :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.gr img{filter:grayscale(1) brightness(.8)}
+html.lmono :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb:not(.gr) img{filter:brightness(0) opacity(.82)}
+html.lmono :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.gr img{filter:grayscale(1) brightness(.8)}
 @media (prefers-color-scheme:dark){
-  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
-  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.fino img{filter:brightness(0) invert(1)}
-  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.gr img{filter:grayscale(1) brightness(1.15)}}
-html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
-html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.fino img{filter:brightness(0) invert(1)}
-html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.gr img{filter:grayscale(1) brightness(1.15)}
+  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
+  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.fino img{filter:brightness(0) invert(1)}
+  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.gr img{filter:grayscale(1) brightness(1.15)}}
+html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
+html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.fino img{filter:brightness(0) invert(1)}
+html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.gr img{filter:grayscale(1) brightness(1.15)}
 /* en oscuro, de un solo color se usa siempre el logo normal: las versiones para fondo oscuro (Starbucks, Pepsi, Danone…) rellenan su dibujo y serían una mancha */
 @media (prefers-color-scheme:dark){
-  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img{display:block}
-  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img.kd{display:none}}
-html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img{display:block}
-html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img.kd{display:none}
+  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img{display:block}
+  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img.kd{display:none}}
+html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img{display:block}
+html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img.kd{display:none}
 /* ===== Paleta «marfil» (modo claro): el mismo tono cálido de la hoja, con más luz. Lienzo más claro y bloques casi blancos, rayas más suaves.
    El modo oscuro no cambia. Para volver a la paleta anterior (lienzo #E4E2DC, bloques #F0EEE8), basta con borrar este bloque ===== */
 
@@ -1810,7 +1794,6 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 /* en pantallas medianas y en el móvil, las casillas se separan con una raya fina */
 @media (max-width:700px){#mtabs{overflow:hidden}}
 /* Actualidad: su franja con la semana, cómo ha ido tu cartera, lo que se cuenta a fondo y las noticias; la cabecera del periódico se queda solo con su nombre */
-@media (min-width:701px){}
 /* en oscuro, la franja conserva su verde casi negro (antes pasaba a gris grafito, más claro que el fondo) */
 /* ===== Esquinas: redondo fuera y casi recto dentro. Bloques 12 px; controles 8; casillas del mapa, píldoras y etiquetas 4; barras 2 ===== */
 
@@ -2132,7 +2115,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* lo que se queda «pasado por encima» tras tocar (en el iPhone el :hover se queda puesto): fuera; al pulsar, un instante de respuesta */
 @media (hover:none){
   tbody tr.pr:not(.open):not(.inpf):hover,.pf-row:not(.inpf):hover,.pl-del:hover{background:transparent}
-  tbody tr.pr.inpf:hover,#t-p tbody tr.pr.inpf:hover,#t-rd tbody tr.pr.inpf:hover,.pf-row.inpf:hover{background:var(--pf-bg)}
+  tbody tr.pr.inpf:hover,#t-p tbody tr.pr.inpf:hover,.pf-row.inpf:hover{background:var(--pf-bg)}
   .tile:hover{filter:none}
   .ih:hover{box-shadow:none}
   tbody tr.pr:active,.pf-row:active{background:var(--row)}
@@ -2860,7 +2843,6 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 /* RE-02 · móvil: «Otros instrumentos · opciones», al ras del título de Posiciones */
 @media (max-width:700px){ .rt#t-pos tbody tr.grp-row{padding-left:0} }
 /* UN-04 · Radar: hasta 370 px, «8,0% de tu cartera» baja a su propia línea (a 360 px pisaba la pastilla de TIR; a 375 aún sobran 11 px) */
-@media (max-width:370px){ #t-rd td.rd-px .rd-w{display:block} #t-rd td.rd-px .rd-sep{display:none} }
 /* CG-09 · buscador: el ticker con su bolsa (como la ficha); en el móvil, sin ella, que no cabe */
 .kx-sh{display:none}
 @media (max-width:700px){ .kx-lg{display:none} .kx-sh{display:inline} }
@@ -3131,6 +3113,12 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
     <div class="bg ug bg5" id="p-k"></div>
   </section>
 
+  <section class="panel" id="s-perf">
+    <div class="chart-head"><div><h2 class="st">Rendimiento</h2></div>
+      <div class="perf-k" id="perf-k"><div class="seg" role="group" aria-label="Sesión"><button type="button" data-k="today" aria-pressed="true">Hoy</button><button type="button" data-k="last" aria-pressed="false">Última sesión</button><button type="button" data-k="dd" aria-pressed="false">Desde máximo</button></div><div class="seg" role="group" aria-label="Periodo"><button type="button" data-k="w1" aria-pressed="false">1 semana</button><button type="button" data-k="m1" aria-pressed="false">1 mes</button><button type="button" data-k="m3" aria-pressed="false">3 meses</button><button type="button" data-k="m6" aria-pressed="false">6 meses</button><button type="button" data-k="ytd" aria-pressed="false"><span class="wl">En </span><i class="cy"></i></button><button type="button" data-k="y1" aria-pressed="false">1 año</button><button type="button" data-k="y3" aria-pressed="false">3 años</button></div></div></div>
+    <div class="pf-cols"><div><div class="dv-h"><span id="perf-uh">Mejores</span></div><div id="perf-up"></div><div class="pf-mas-w"><button type="button" class="btn pf-mas" data-l="perf-up" hidden></button></div></div><div><div class="dv-h"><span id="perf-dh">Peores</span></div><div id="perf-dn"></div><div class="pf-mas-w"><button type="button" class="btn pf-mas" data-l="perf-dn" hidden></button></div></div></div>
+    <div class="ind-w"><div class="dv-h"><span>Por industria</span></div><div class="ind-g" id="perf-ind"></div></div>
+  </section>
   <section class="panel" id="s-plan">
     <button type="button" class="pl-bar" id="pl-bar" aria-expanded="false" aria-controls="pl-full"><span class="st">Calculadora de operaciones</span><span class="pl-tg"><span id="pl-tg">Ver</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
     <div class="pl-full" id="pl-full">
@@ -3140,20 +3128,7 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
     </div>
   </section>
 
-  <section class="panel" id="s-radar">
-    <div class="chart-head"><div><h2 class="st">Radar</h2></div>
-      <div class="seg" role="group" aria-label="Lista" id="rd-k"><button type="button" data-k="pf" aria-pressed="true">Tu cartera</button><button type="button" data-k="inc" aria-pressed="false">Candidatas</button></div></div>
-    <div class="mleg" aria-hidden="true">Margen · TIR esperada</div>
-    <div class="tablewrap"><table id="t-rd" class="rt"><colgroup id="rd-cg"></colgroup><thead id="rd-head"></thead><tbody id="rd-body"></tbody></table></div>
-    <div class="rd-more"><button type="button" class="btn" id="rd-more"></button></div>
-  </section>
 
-  <section class="panel" id="s-perf">
-    <div class="chart-head"><div><h2 class="st">Rendimiento</h2></div>
-      <div class="perf-k" id="perf-k"><div class="seg" role="group" aria-label="Sesión"><button type="button" data-k="today" aria-pressed="false">Hoy</button><button type="button" data-k="last" aria-pressed="false">Última sesión</button><button type="button" data-k="dd" aria-pressed="false">Desde máximo</button></div><div class="seg" role="group" aria-label="Periodo"><button type="button" data-k="w1" aria-pressed="false">1 semana</button><button type="button" data-k="m1" aria-pressed="false">1 mes</button><button type="button" data-k="m3" aria-pressed="false">3 meses</button><button type="button" data-k="m6" aria-pressed="false">6 meses</button><button type="button" data-k="ytd" aria-pressed="false"><span class="wl">En </span><i class="cy"></i></button><button type="button" data-k="y1" aria-pressed="true">1 año</button><button type="button" data-k="y3" aria-pressed="false">3 años</button></div></div></div>
-    <div class="pf-cols"><div><div class="dv-h"><span id="perf-uh">Mejores</span></div><div id="perf-up"></div></div><div><div class="dv-h"><span id="perf-dh">Peores</span></div><div id="perf-dn"></div></div></div>
-    <div class="ind-w"><div class="dv-h"><span>Por industria</span></div><div class="ind-g" id="perf-ind"></div></div>
-  </section>
 
   <section class="panel" id="s-plist">
     <div class="chart-head"><div><h2 class="st">Todas las empresas</h2></div></div>
@@ -3622,7 +3597,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v331";   // la versión publicada, en el pie
+const VER="v332";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4362,7 +4337,7 @@ const mLine=it=>`<td class="mline">${it.filter(Boolean).map(h=>`<span class="mi"
 function fillIndustries(){ opts($("p-ind"),[...new Set(DATA.pre.map(r=>r.ind).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"es")),"Industria: todas",true); }
 
 /* rendimiento: mejores y peores del periodo */
-let perfK="y1";
+let perfK="today", perfAuto=true;   // abre en «Hoy»; si hoy aún no ha cotizado nada, en «Última sesión»; hasta que elijas otro periodo
 // cada fila: la empresa, su cotización, la barra y lo que ha subido o bajado (a partir del 1.000 %, sin decimales)
 function pfRow(r,max){ const v=perfK==="dd"&&Math.abs(r.dd)<0.0005?0:r[perfK], w=Math.min(Math.abs(v)/max,1)*100;
   return `<button type="button" class="pf-row ri-go${r.inPf?" inpf":""}" data-t="${esc(r.ticker)}">${coCell(r.name,r.ticker)}<span class="pf-px num">${precioVisible(r.price,r.cur)}</span>
@@ -4377,15 +4352,19 @@ const cortaPalabra=t=>t.replace(/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{12,}$/,w=
 function renderPerf(){
   // «Hoy» = lo que ya ha cotizado hoy; «Última sesión» = la sesión más reciente de cada empresa (por la mañana, EE. UU. es la de ayer).
   // Con todo cerrado son la misma: «Hoy» se apaga
-  const dd=perfK==="dd"; $("perf-uh").textContent=dd?"Más cerca del máximo":"Mejores"; $("perf-dh").textContent=dd?"Más lejos del máximo":"Peores";
   const closed=lastSession().closed; $("perf-k").querySelector('[data-k="today"]').disabled=closed;
-  if(closed&&perfK==="today") return setPerf("last");
+  if(perfAuto) perfK=!closed&&DATA.pre.some(r=>isNum(r.today))?"today":"last";
+  else if(closed&&perfK==="today") perfK="last";
+  $("perf-k").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.k===perfK));
+  const dd=perfK==="dd"; $("perf-uh").textContent=dd?"Más cerca del máximo":"Mejores"; $("perf-dh").textContent=dd?"Más lejos del máximo":"Peores";
   const rs=DATA.pre.filter(r=>isNum(r[perfK])).sort((a,b)=>b[perfK]-a[perfK]);
   // las barras: en «Hoy» y «Última sesión», con la misma escala las que suben y las que bajan; en los plazos largos, cada lista con la
   // suya (si no, a un año las que bajan saldrían enanas al lado de las que suben)
   const up=rs.slice(0,10), dn=rs.slice(-10).reverse(), mx=xs=>Math.max(...xs.map(r=>Math.abs(r[perfK])),0.0001), sep=perfK!=="today"&&perfK!=="last"&&perfK!=="dd";
   const max=sep?mx(up):mx(up.concat(dn)), maxD=sep?mx(dn):max;
   $("perf-up").innerHTML=rs.length?up.map(r=>pfRow(r,max)).join(""):`<p class="sub pf-none">${!DATA.pre.length?"Sin empresas en tu hoja":perfK==="today"?"Ningún mercado abierto todavía":"Sin datos para este periodo"}</p>`; $("perf-dn").innerHTML=dn.map(r=>pfRow(r,maxD)).join("");
+  // móvil: 5 y 5; «Ver más» enseña hasta 10 (en el PC salen las 10 y el botón no se ve)
+  [["perf-up",rs.length?up.length:0],["perf-dn",dn.length]].forEach(([id,n])=>{ const l=$(id), bt=l.parentElement.querySelector(".pf-mas"), on=l.classList.contains("mas"); bt.hidden=n<=5; bt.textContent=on?"Ver menos":`Ver ${n-5} más`; bt.classList.toggle("less",on); });
   // por industria: media simple de sus empresas, como tu hoja Radar; color por tercios del mejor y del peor, igual que allí
   const g={}; DATA.pre.forEach(r=>{ if(!r.ind) return; (g[r.ind]=g[r.ind]||[]); if(isNum(r[perfK])) g[r.ind].push(r[perfK]); });
   const L=Object.entries(g).map(([k,v])=>({k,v:v.length?sum(v,x=>x)/v.length:null})).sort((a,b)=>(b.v??-1e9)-(a.v??-1e9));
@@ -4395,7 +4374,9 @@ function renderPerf(){
 }
 // al pulsar una industria, la tabla de abajo se filtra por ella
 $("perf-ind").addEventListener("click",e=>{ const b=e.target.closest("[data-ind]"); if(!b) return; $("p-ind").value=b.dataset.ind; $("p-ftg").closest(".toolbar").classList.add("open"); $("p-ftg").setAttribute("aria-expanded",true); renderPre(); });
-const setPerf=k=>{ perfK=k; $("perf-k").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.k===k)); renderPerf(); };
+const setPerf=k=>{ perfK=k; perfAuto=false; renderPerf(); };
+$("s-perf").addEventListener("click",e=>{ const bt=e.target.closest(".pf-mas"); if(!bt) return; const l=$(bt.dataset.l), on=l.classList.toggle("mas");
+  bt.textContent=on?"Ver menos":`Ver ${l.querySelectorAll(".pf-row").length-5} más`; bt.classList.toggle("less",on); });
 document.querySelectorAll("#perf-k .cy").forEach(e=>e.textContent=new Date().getFullYear());   // «En 2026»: el año en curso
 $("perf-k").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) setPerf(b.dataset.k); });
 
@@ -4583,37 +4564,8 @@ function renderPre(){
     +hc(3,`<span class="lg">TIR esperada media</span><span class="sh">TIR esperada</span>`,pct(ti(inP),1),`candidatas <span class="${tc(ti(outP))}">${pct(ti(outP),1)}</span>`,tc(ti(inP)))
     +hc(4,"Por revisar",n0(all.filter(stale).length),all.some(stale)?sub(stale):"todas al día")
     +`<i class="dv d1"></i><i class="dv d2"></i><i class="dv d3"></i><i class="dv d4"></i>`;
-  renderPlan(); renderRadar(); renderPerf(); renderPreTable(); drawn.preseleccion=stampOf("preseleccion");
+  renderPlan(); renderPerf(); renderPreTable(); drawn.preseleccion=stampOf("preseleccion");
 }
-/* ---------- Radar: las dos listas de tu pestaña Radar ---------- */
-// Tu cartera por margen sobre lo exigido · Incorporar: las candidatas con más margen (lo lejos que está cada una de su máximo ya se ve en Rendimiento)
-let radarClave="pf", rdWide=null, rdShow=15; const RD_N=15;
-function rdBar(v,mx){ if(!isNum(v)) return ""; const w=Math.min(Math.abs(v)/mx,1)*50;
-  return `<span class="rd-b"><i class="${v<0?"neg":"pos"}" style="${v<0?"right:50%":"left:50%"};width:${w.toFixed(1)}%"></i></span>`; }
-function renderRadar(){
-  if(!DATA) return; const all=DATA.pre, mg=r=>isNum(r.margin)?r.margin:-1e9;
-  // las dos listas con las mismas columnas y 15 filas: el bloque no cambia de tamaño al pasar de una a otra; «Ver más» enseña el resto
-  const pf=all.filter(r=>r.inPf).sort((a,b)=>mg(b)-mg(a));
-  const full={ pf, inc:all.filter(r=>!r.inPf&&isNum(r.margin)).sort((a,b)=>b.margin-a.margin) }[radarClave];
-  const L=full.slice(0,rdShow), left=full.length-L.length, mb=$("rd-more");
-  mb.textContent=left>0?(left>RD_N?`Ver ${RD_N} más · quedan ${nf(0).format(left)}`:`Ver ${left} más`):rdShow>RD_N?"Ver menos":""; mb.style.visibility=left>0||rdShow>RD_N?"":"hidden"; mb.classList.toggle("less",left<=0);
-  const mx=Math.max(...L.map(r=>Math.abs(r.margin||0)),0.0001);
-  const M={l:"Margen",f:r=>`<span class="${clsM(r.margin)}">${puntosPct(r.margin)}</span>`}, E={l:"Exigida",f:r=>r.req>0?pct(r.req):""};
-  const C=[ {l:"Cotización",f:r=>precioVisible(r.price,r.cur)}, radarClave==="pf"?{l:"Peso",f:r=>pct(r.weight)}:{l:"",f:()=>""},
-    {l:`<span class="rd-h"><span>Por debajo</span><span>Por encima</span></span>`,f:r=>rdBar(r.margin,mx)}, M, {l:"TIR esperada",f:r=>tirP(r.irrExp)}, E ];
-  // anchos fijos; entre 701 y 1000 px, sin la segunda ni la última columna para que el nombre quepa
-  const wide=innerWidth>1000, W=wide?[108,76,180,96,112,84]:[104,0,150,96,112,0], use=W.map(w=>w>0); rdWide=wide;
-  const K=["num hide-s","num hide-s","rd-c hide-s","num r-amt","num r-sub","num hide-s"].filter((_,i)=>use[i]); C.splice(0,C.length,...C.filter((_,i)=>use[i]));
-  $("rd-cg").innerHTML=`<col>`+W.filter(w=>w>0).map(w=>`<col style="width:${w}px">`).join("");
-  $("rd-head").innerHTML=`<tr><th class="l">Empresa</th>${C.map((x,i)=>`<th class="${K[i].includes("hide-s")?"hide-s":""}">${x.l}</th>`).join("")}</tr>`;
-  const row=r=>`<tr class="pr ri-go${r.inPf&&!(radarClave==="pf")?" inpf":""}" data-t="${esc(r.ticker)}" tabindex="0"><td class="r-main" data-l="Empresa">${coCell(r.name,r.ticker)}</td>${C.map((x,i)=>`<td class="${K[i]}" data-l="${x.l.replace(/<[^>]*>/g,"")}">${x.f(r)}</td>`).join("")}<td class="rd-px">${precioVisible(r.price,r.cur)}${radarClave==="pf"&&isNum(r.weight)?`<span class="rd-w"><span class="rd-sep"> · </span>${pct(r.weight)} de tu cartera</span>`:""}</td></tr>`;
-  const blank=`<tr class="rd-x" aria-hidden="true"><td class="r-main">&nbsp;</td>${K.map(k=>`<td class="${k}"></td>`).join("")}</tr>`;
-  $("rd-body").innerHTML=full.length?L.map(row).join("")+blank.repeat(Math.max(0,RD_N-L.length)):`<tr><td colspan="${K.length+1}" class="empty">Sin empresas valoradas en tu hoja</td></tr>`;
-  markRows(); }
-addEventListener("resize",()=>{ if(DATA&&rdWide!==null&&(innerWidth>1000)!==rdWide) renderRadar(); });
-$("rd-more").addEventListener("click",()=>{ rdShow=$("rd-more").textContent==="Ver menos"?RD_N:rdShow+RD_N; renderRadar(); });
-$("rd-k").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; radarClave=b.dataset.k; rdShow=RD_N; $("rd-k").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b)); renderRadar(); });
-$("rd-body").addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.matches("tr.pr")){ e.preventDefault(); e.target.click(); } });
 // solo la lista: al buscar, filtrar, ordenar o abrir una ficha no se rehace lo de arriba
 function renderPreTable(){
   if(!DATA) return; const all=DATA.pre;
@@ -4683,7 +4635,7 @@ const ftCount=(id,l)=>{ const n=l.filter(Boolean).length; $(id+"-ftn").textConte
 /* ---------- ficha en panel lateral ---------- */
 // una empresa por ficha, con pestañas: Posición, Valoración y Movimientos (las que tenga); ‹ › pasa a la anterior o la siguiente de la lista de la que vienes
 let sheet=null;   // {t, tab, list}
-function markRows(){ document.querySelectorAll("#pos-body tr.pr,#p-body tr.pr,#rd-body tr.pr").forEach(tr=>{ const o=!!sheet&&sheet.t===tr.dataset.t; tr.classList.toggle("open",o); tr.setAttribute("aria-expanded",o); }); }
+function markRows(){ document.querySelectorAll("#pos-body tr.pr,#p-body tr.pr").forEach(tr=>{ const o=!!sheet&&sheet.t===tr.dataset.t; tr.classList.toggle("open",o); tr.setAttribute("aria-expanded",o); }); }
 // movimientos de la empresa, dentro de la ficha
 function fichaMov(t){
   const tx=DATA.tx.filter(r=>r.ticker===t).sort((a,b)=>(a.bd||0)-(b.bd||0)), dv=DATA.dv.filter(r=>r.ticker===t).sort((a,b)=>(a.d||0)-(b.d||0));   // de más antiguo a más reciente
@@ -4719,7 +4671,7 @@ let listBox=null;   // la lista desde la que se abre la ficha
 const listOf=el=>{ const box=el&&el.closest("tbody,#perf-up,#perf-dn,#tmap,.hoy"); listBox=box; return box?[...new Set([...box.querySelectorAll("[data-t]")].map(x=>x.dataset.t))]:[]; };
 function openSheet(tab,t,list){ const same=!!sheet&&sheet.t===t, box=list?listBox:sheet&&sheet.box; listBox=null; sheet={t,tab,list:list||(sheet&&sheet.list)||[],box}; renderSheet(); if(!same){ $("sheet").scrollTop=0; $("sheet").focus({preventScroll:true}); } }
 function closeSheet(){ if(!sheet) return; const was=sheet; sheet=null; renderSheet();
-  const tr=[...document.querySelectorAll("#pos-body tr.pr,#p-body tr.pr,#rd-body tr.pr")].find(x=>x.dataset.t===was.t&&x.offsetParent); if(tr) tr.focus({preventScroll:true}); }
+  const tr=[...document.querySelectorAll("#pos-body tr.pr,#p-body tr.pr")].find(x=>x.dataset.t===was.t&&x.offsetParent); if(tr) tr.focus({preventScroll:true}); }
 const toggleSheet=(tab,t,list)=>sheet&&sheet.t===t?closeSheet():openSheet(tab,t,list);
 function stepSheet(d){ if(!sheet) return; const L=sheet.list||[], i=L.indexOf(sheet.t); if(i<0||!L[i+d]) return; sheet.t=L[i+d]; renderSheet(); $("sheet").scrollTop=0;
   const B=sheet.box, tr=B&&B.isConnected&&B.matches("tbody")?[...B.querySelectorAll("tr.pr")].find(x=>x.dataset.t===sheet.t&&x.offsetParent):null; if(tr) tr.scrollIntoView({block:"nearest"}); }
@@ -5191,7 +5143,7 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
     ["Anatomía del retorno","Análisis","analisis","s-ret"],["Dividendos","Análisis","analisis","s-divs"],["Mayores pagadores al año","Análisis · Dividendos","analisis","b-payers"],["Próximos cobros","Análisis · Dividendos","analisis","pays"],
     ["Historial por año","Análisis · Dividendos","analisis","c-year"],["Trayectoria","Análisis","analisis","s-tray"],
     ["Movimientos","Pestaña","movimientos"],["Todos los movimientos","Movimientos","todo"],["Transacciones","Movimientos","transacciones"],["Dividendos cobrados","Movimientos","dividendos"],["Aportaciones","Movimientos","aportaciones"],["Ajustes","Movimientos","ajustes"],
-    ["Universo","Pestaña","preseleccion"],["Calculadora de operaciones","Universo","preseleccion","s-plan"],["Radar","Universo","preseleccion","s-radar"],["Rendimiento","Universo","preseleccion","s-perf"],["Todas las empresas","Universo","preseleccion","s-plist"],
+    ["Universo","Pestaña","preseleccion"],["Calculadora de operaciones","Universo","preseleccion","s-plan"],["Rendimiento","Universo","preseleccion","s-perf"],["Todas las empresas","Universo","preseleccion","s-plist"],
     ["Actualidad","Pestaña","actualidad"],["Resultados de la semana","Actualidad","actualidad","a-res"],["Noticias de la semana","Actualidad","actualidad","a-idx"],["Calendario de resultados","Actualidad","actualidad","a-prox"]];
   const ACTS=[["priv","Modo privado",["privado","importes","ocultar","mostrar"]],["theme","Apariencia",["oscuro","claro","tema","apariencia","noche"]],["refresh","Volver a leer tu hoja",["actualizar","recargar","leer","hoja"]]];
   const icA=id=>id==="theme"&&/claro/i.test($(id).getAttribute("aria-label"))?IC.sun:IC[id];
