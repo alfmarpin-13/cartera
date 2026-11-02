@@ -2958,6 +2958,23 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
    la cotización, como las demás cifras de su lista */
 .fp-dec .v:not(.t){font-weight:500}
 .fp-f .npv{color:var(--ink)}
+/* Universo: el margen con su barra (la de Radar) y la fecha de la última valoración; en ámbar si tiene más de un año */
+.mg-c{display:inline-flex;align-items:center;justify-content:flex-end;gap:10px}
+.mg-b{position:relative;display:block;flex:none;width:64px;height:6px;border-radius:var(--r-2);background:var(--line)}
+.mg-b::before{content:"";position:absolute;left:50%;top:-4px;bottom:-4px;width:1px;background:var(--g4)}
+.mg-b i{position:absolute;top:0;bottom:0;border-radius:var(--r-2)}
+.mg-b i.pos{background:var(--pos)}
+.mg-b i.neg{background:var(--neg)}
+#t-p td.r-vd{white-space:nowrap}
+.vd-k{display:none}
+.vd-old{color:var(--warn)}
+@media (max-width:700px){
+  .mg-b{display:none}
+  #t-p tbody tr.pr,#t-p tbody tr.pr.inpf{grid-template-rows:20px minmax(20px,auto) auto}
+  #t-p td.r-vd{grid-column:2;grid-row:3;font-size:var(--fs-12);color:var(--ink3)}
+  #t-p td.r-vd:empty{display:none}
+  .vd-k{display:inline}
+}
 </style>
 
 <div class="wrap">
@@ -3597,7 +3614,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v332";   // la versión publicada, en el pie
+const VER="v333";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4320,6 +4337,12 @@ const tipoPct = v => isNum(v) ? pct(v,1) : "";                   // tipos: 8,0%,
 // rojo solo para lo negativo, como en el resto de la web: una TIR positiva pero modesta (0–8 %) va sin color; el verde, desde el 8 %
 const tirLv = v => !isNum(v) ? "" : v>0.2?"rp5":v>0.15?"rp4":v>0.125?"rp3":v>0.1?"rp2":v>0.08?"rp1":v>=0?"t0":v>=-0.05?"rn2":v>=-0.1?"rn3":v>=-0.15?"rn4":"rn5";
 const tirP = (v,d=1) => isNum(v) ? `<span class="rlv ${tirLv(v)}">${pct(v,d)}</span>` : "";
+// el margen con su barra, como en Radar: a la derecha (verde) si supera lo exigido, a la izquierda (rojo) si no;
+// la escala, la misma en todas las filas: del 0 al mayor margen del universo
+let mgMx=1, mgFor=null;
+const margenBarra=v=>{ if(mgFor!==DATA){ mgFor=DATA; mgMx=Math.max(...(DATA?DATA.pre:[]).map(r=>isNum(r.margin)?Math.abs(r.margin):0),0.0001); }
+  if(!isNum(v)) return ""; const w=Math.min(Math.abs(v)/mgMx,1)*50;
+  return `<span class="mg-b"><i class="${v<0?"neg":"pos"}" style="${v<0?"right:50%":"left:50%"};width:${w.toFixed(1)}%"></i></span>`; };
 const PCOLS=[
   {k:"name",l:"Empresa",r:"main",left:1,f:r=>`<div class="co">${logoBare(r.name,r.ticker)}<b title="${esc(r.ticker)}">${esc(r.name||r.ticker)}</b></div>`},
   {k:"country",l:"País",ctr:1,f:r=>r.country?`<span title="${esc(ctryN(r.country))}">${flagHtml(r.country)}</span>`:""},
@@ -4330,7 +4353,9 @@ const PCOLS=[
   {k:"fv",l:"Valor razonable",hs:1,g:"est",sep:1,f:r=>precioVisible(r.fv,r.cur)},
   {k:"irrExp",l:"TIR esperada",g:"est",mx:1,f:r=>tirP(r.irrExp)},
   {k:"req",l:"Exigida",hs:1,g:"est",f:r=>r.req>0?pct(r.req):""},
-  {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>`<span class="${clsM(r.margin)}">${puntosPct(r.margin)}</span>`} ];
+  {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>`<span class="mg-c">${margenBarra(r.margin)}<span class="${clsM(r.margin)}">${puntosPct(r.margin)}</span></span>`},
+  {k:"vd",l:"Valorada",r:"vd",g:"est",sv:r=>{ const d=valDate(r); return d?d.getTime():null; },
+   f:r=>{ const d=valDate(r); return d?`<span class="vd-k">valorada </span><span class="${stale(r)?"vd-old":""}"${stale(r)?' title="Por revisar: valorada hace más de un año"':""}>${fdate(d,{day:"numeric",month:"short",year:"numeric"})}</span>`:""; }} ];
 const etiquetaDe=x=>typeof x.l==="function"?x.l():x.l;
 // móvil: los datos secundarios, en una sola línea
 const mLine=it=>`<td class="mline">${it.filter(Boolean).map(h=>`<span class="mi">${h}</span>`).join("")}</td>`;
