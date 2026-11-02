@@ -1083,15 +1083,15 @@ tr.grp-row td{font-size:var(--fs-13);font-weight:500;letter-spacing:0;text-trans
 .fp-ch h4{white-space:nowrap;margin:0;}
 .fp-ch>span{font-size:var(--fs-12);color:var(--ink2);text-align:right}
 /* tu posición: de dónde sale el resultado */
-.fp-dec{display:grid;align-items:center;gap:8px 12px;font-size:var(--fs-13)}
-.fp-dec>.t{font-size:var(--fs-13);font-weight:600;color:var(--ink)}
+.fp-dec{display:grid;align-items:center;gap:8px 12px;font-size:var(--fs-12)}
+.fp-dec>.t{font-size:var(--fs-12);font-weight:600;color:var(--ink)}
 .fp-dec .tr i.t.neg{background:var(--neg)}.fp-dec .tr i.t.pos{background:var(--pos)}
 .fp-dec .v.t.pos{color:var(--pos)}.fp-dec .v.t.neg{color:var(--neg)}
 /* datos de cada tarjeta: un bloque sombreado, sin líneas */
 .fp-f{display:grid;column-gap:8px;}
 .fp-f>div{display:grid;min-width:0}
 .fp-f span{font-size:var(--fs-12);color:var(--ink2);line-height:1.25;line-height:round(nearest,calc(1.25*1em - .01px),1px);--lhx:1.25;--lhp:initial}
-.fp-f b{font-size:var(--fs-13);font-weight:500;color:var(--ink);white-space:nowrap}
+.fp-f b{font-size:var(--fs-12);font-weight:500;color:var(--ink);white-space:nowrap}
 .fp-f small{font-size:var(--fs-11);color:var(--ink3);line-height:1.2;line-height:round(nearest,calc(1.2*1em - .01px),1px);--lhx:1.2;--lhp:initial}
 .fp-dec .l{color:var(--ink2)}
 .fp-dec .tr{position:relative;height:8px}
@@ -2983,6 +2983,10 @@ b.fw500{font-weight:500}
 details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
 .legend i.barra{height:9px;border-radius:var(--r-2)}
 .mide-reloj{position:fixed;top:0;left:0;width:0;height:env(safe-area-inset-top,0px);visibility:hidden;pointer-events:none}
+/* ficha: en cada fila, etiqueta y cifra del mismo tamaño; todas las cifras con el mismo peso (el total, destacado);
+   la cotización, como las demás cifras de su lista */
+.fp-dec .v:not(.t){font-weight:500}
+.fp-f .npv{color:var(--ink)}
 </style>
 
 <div class="wrap">
@@ -3630,7 +3634,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v329";   // la versión publicada, en el pie
+const VER="v330";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
