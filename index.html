@@ -779,10 +779,9 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 @media (min-width:701px) and (max-width:940px){#t-p [data-k="req"]{display:none}}
 @media (min-width:701px) and (max-width:880px){#t-p [data-k="fv"]{display:none}}
 @media (min-width:701px) and (max-width:810px){#t-p [data-k="country"]{display:none}}
-@media (min-width:701px) and (max-width:750px){#t-p [data-k="dd"]{display:none}}
 /* TIR por niveles en Universo */
 .rlv.t0{color:var(--ink2)}   /* UN-03 · entre 0 y 8 %, pastilla gris (la de base) */
-#t-p td[data-l="TIR esperada"] .rlv{min-width:58px}
+#t-p td[data-k="irrExp"] .rlv{min-width:58px}
 /* Universo: industria en la tabla */
 #t-p th[data-k="ind"],#t-p td[data-l="Industria"]{white-space:nowrap}
 #t-p th{box-sizing:border-box}
@@ -2977,7 +2976,6 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
 }
 /* Universo, pantallas anchas: cada cabecera, centrada sobre sus cifras; las cifras, a la derecha entre sí */
 @media (min-width:701px){
-  #t-p thead th{vertical-align:bottom}
   #t-p th:not(.l):not(.c),#t-p td.num{text-align:center}
   #t-p td.num>.cifb{display:inline-block;text-align:right}
   #t-p .mg-n{display:inline-block;text-align:right}
@@ -3621,7 +3619,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v334";   // la versión publicada, en el pie
+const VER="v335";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4356,9 +4354,8 @@ const PCOLS=[
   {k:"ind",l:"Industria",left:1,f:r=>`<span class="show-s">${r.country?flagHtml(r.country):""}</span>${esc(r.ind||"")}`},
   {k:"price",l:"Cotización",r:"sub",g:"real",f:r=>precioVisible(r.price,r.cur)},
   {k:"today",l:()=>lastSession().closed?"Sesión":"Hoy",g:"real",mx:1,f:r=>pctSigno(r.today)},
-  {k:"dd",l:"Desde máximo",g:"real",mx:1,f:r=>caidaPct(r.dd)},
   {k:"fv",l:"Valor razonable",hs:1,g:"est",sep:1,f:r=>precioVisible(r.fv,r.cur)},
-  {k:"irrExp",l:"TIR esperada",g:"est",mx:1,f:r=>tirP(r.irrExp)},
+  {k:"irrExp",l:"TIR",g:"est",mx:1,f:r=>tirP(r.irrExp)},
   {k:"req",l:"Exigida",hs:1,g:"est",f:r=>r.req>0?pct(r.req):""},
   {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>`<span class="mg-c">${margenBarra(r.margin)}<span class="mg-n ${clsM(r.margin)}">${puntosPct(r.margin)}</span></span>`},
   {k:"vd",l:"Valorada",r:"vd",g:"est",sv:r=>{ const d=valDate(r); return d?d.getTime():null; },
@@ -4616,7 +4613,7 @@ function renderPreTable(){
   rs.sort((a,b)=>{ const x=sv(a),y=sv(b); const c=typeof x==="string"||typeof y==="string" ? d*String(x??"").localeCompare(String(y??""),"es") : d*((x??-1e18)-(y??-1e18)); return c||byName(a,b); });
   const vis=rs;
   if([...$("p-sort").options].some(o=>o.value===k)) $("p-sort").value=k;
-  const head=w=>"<tr>"+PCOLS.map((x,i)=>`<th data-k="${x.k}" class="${x.left?"l ":x.ctr?"c ":""}${x.hs?"hide-s ":""}${x.g==="est"?"est ":""}${x.sep?"gsep":""}"${w&&w[i]?` style="width:${w[i].toFixed(2)}px"`:""}${x.k===k?` aria-sort="${d>0?"ascending":"descending"}"`:""}>${etiquetaDe(x).replace(" "," <br>")}</th>`).join("")+"</tr>";
+  const head=w=>"<tr>"+PCOLS.map((x,i)=>`<th data-k="${x.k}" class="${x.left?"l ":x.ctr?"c ":""}${x.hs?"hide-s ":""}${x.g==="est"?"est ":""}${x.sep?"gsep":""}"${w&&w[i]?` style="width:${w[i].toFixed(2)}px"`:""}${x.k===k?` aria-sort="${d>0?"ascending":"descending"}"`:""}>${etiquetaDe(x)}</th>`).join("")+"</tr>";
   const cellP=(x,r)=>{ const h=x.f(r), dash=String(h).replace(/<[^>]*>/g,"").trim()==="";
     return `<td class="${x.left?"l ":x.ctr?"c ":"num "}${x.nil&&x.nil(r)?"nil ":""}${x.hs?"hide-s ":""}${x.g==="est"?"est ":""}${x.sep?"gsep ":""}${x.mx?"mx ":""}${dash?"dash ":""}r-${x.r||"meta"}" data-k="${x.k}" data-l="${etiquetaDe(x)}">${!x.left&&!x.ctr&&!dash?`<span class="cifb">${h}</span>`:h}</td>`; };
   const rowP=r=>`<tr class="pr${r.inPf?" inpf":""}" data-t="${esc(r.ticker)}" tabindex="0" aria-expanded="false">`+PCOLS.map(x=>cellP(x,r)).join("")+"</tr>";
