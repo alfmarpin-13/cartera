@@ -250,9 +250,6 @@ td.wrapc{white-space:normal;min-width:220px;text-align:left;color:var(--ink2);fo
     .big{font-size:var(--fs-34)}
 }
 /* Logos */
-.logo{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:var(--fs-11);font-weight:600;background:var(--blanco);color:var(--ink3);border:1px solid var(--line);flex:none;overflow:hidden}
-.logo img{width:70%;height:70%;object-fit:contain;display:block}
-.logo.sm{width:24px;height:24px;font-size:var(--fs-11)}
 .co{display:flex;align-items:center;gap:8px;min-width:0}
 .co>div{min-width:0}
 .flag{width:15px;height:15px;border-radius:50%;object-fit:cover;vertical-align:-3px;margin-right:8px;outline:1px solid var(--flag-ol);outline-offset:-1px}
@@ -273,15 +270,11 @@ td.wrapc{white-space:normal;min-width:220px;text-align:left;color:var(--ink2);fo
 
 /* Mapa: una sola composición para todos los tamaños */
 /* Diversificación con empresas */
-.bar{grid-template-columns:minmax(0,1fr) auto auto;align-items:center}
+.bar{grid-template-columns:minmax(0,1fr) auto;align-items:center}
 .bar .bn{display:flex;align-items:center;gap:8px;min-width:0}
 #b-payers .bn>span{font-weight:500}   /* empresas: el nombre como en el resto de listas */
-.bar .bav{display:flex;align-items:center;padding-left:6px}
-.bar .bav .logo{width:20px;height:20px;margin-left:-6px;border:2px solid var(--panel);box-shadow:none}
-.bar .bav .logo:first-child{margin-left:0}
-.bar .bav em{font-style:normal;font-size:var(--fs-11);color:var(--ink3);margin-left:4px}
 .bar .num{min-width:44px;text-align:right}
-.bar.bi{grid-template-columns:38px minmax(0,1fr) auto auto;column-gap:12px}.bar.bi>.lgb{grid-row:1/span 2}.bar.bi .track{grid-column:2/-1}
+.bar.bi{grid-template-columns:38px minmax(0,1fr) auto;column-gap:12px}.bar.bi>.lgb{grid-row:1/span 2}.bar.bi .track{grid-column:2/-1}
 .cur{width:18px;height:18px;border-radius:50%;display:inline-grid;place-items:center;font-size:var(--fs-11);font-weight:600;background:var(--accent);color:var(--canvas);flex:none}
 .bar .flag{margin-right:0;width:18px;height:18px;flex:none}
 /* Dividendos (v2) */
@@ -331,8 +324,6 @@ details.chk[open]>summary{margin-bottom:12px}
 .top .tools{justify-self:end;display:flex;align-items:center;}
 /* Tarjetas blancas reutilizables */
 /* Fichas */
-.logo.xl{width:56px;height:56px;border-radius:var(--r-8);font-size:var(--fs-15);border:1px solid var(--line)}
-.logo.xl img{width:72%;height:72%}
 tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none}
 @media (max-width:700px){.rt tbody tr.grp-row{display:block;}.rt tbody tr.grp-row td{display:block;padding:0;border:0}}
 /* Rendimiento en preselección */
@@ -444,7 +435,6 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 .tmap .tile.lv0{color:var(--ink2)}
 .tmap .tile.lp1{color:var(--lp1t)}.tmap .tile.lp2{color:var(--lp2t)}.tmap .tile.lp3{color:var(--lp3t)}.tmap .tile.lp4{color:var(--lp4t)}.tmap .tile.lp5{color:var(--lp5t)}
 .tmap .tile.ln1{color:var(--ln1t)}.tmap .tile.ln2{color:var(--ln2t)}.tmap .tile.ln3{color:var(--ln3t)}.tmap .tile.ln4{color:var(--ln4t)}.tmap .tile.ln5{color:var(--ln5t)}
-.hoy .logo.xs{width:20px;height:20px;font-size:var(--fs-11)}
 .l1-side{display:flex;flex-direction:column;gap:20px}
 .l1-side .tbig{margin-top:8px}
 .amp{display:flex;gap:2px;height:6px;border-radius:var(--r-2);overflow:hidden}
@@ -516,7 +506,6 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 #t-pos td{padding:6px 8px}
 #t-pos .co{gap:8px}
 #t-pos .co b{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#t-pos .logo.sm{width:24px;height:24px}
 /* con la columna de acciones (más de 1200 px), las pastillas y la barra del peso, algo más estrechas, para que todo quepa */
 @media (min-width:1201px){#t-pos th,#t-pos td{padding-left:8px;padding-right:8px}}
 .tpill{display:inline-block;padding:2px 6px;border-radius:var(--r-4);font-weight:400}
@@ -981,9 +970,9 @@ tr.grp-row td{font-size:var(--fs-13);font-weight:500;letter-spacing:0;text-trans
   #s-mov .rt td.r-main,#s-mov .rt td.r-main>.tag{color:var(--ink);font-weight:500}
   .rt#t-pos td.r-meta,#t-p td[data-l="Industria"],#t-p td.r-sub,#s-mov .rt td.mline,#t-rd td.r-sub{color:var(--ink3)}
   .pf-row .co{column-gap:12px}.pf-row .co>.lgb{width:48px;height:28px}
-  #b-payers .bar{padding:0 2px}.bar.bi{grid-template-columns:48px minmax(0,1fr) auto auto}.bar.bi>.lgb{width:48px;height:28px}
+  #b-payers .bar{padding:0 2px}.bar.bi{grid-template-columns:48px minmax(0,1fr) auto}.bar.bi>.lgb{width:48px;height:28px}
 }
-@media (max-width:380px){.pf-row .co{column-gap:8px}.pf-row .co>.lgb{width:44px;height:26px}.bar.bi{grid-template-columns:44px minmax(0,1fr) auto auto;column-gap:8px}.bar.bi>.lgb{width:44px;height:26px}}
+@media (max-width:380px){.pf-row .co{column-gap:8px}.pf-row .co>.lgb{width:44px;height:26px}.bar.bi{grid-template-columns:44px minmax(0,1fr) auto;column-gap:8px}.bar.bi>.lgb{width:44px;height:26px}}
 /* Aportaciones y Ajustes en el móvil: el mismo modelo de fila que las demás pestañas, con un glifo en el hueco del logo */
 @media (max-width:700px){
   #s-mov .rt tbody tr.mv{grid-template-columns:48px minmax(0,1fr) auto;column-gap:12px}
@@ -1798,7 +1787,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 @media (min-width:901px){
     #s-hero .bg{grid-template-columns:repeat(4,minmax(0,1fr))}
   #s-hero .bg .c0{padding-right:12px}
-  #s-hero,#s-aidx,#s-uni,#s-actb,#mtabs{min-height:0}
+  #s-hero,#s-aidx,#s-uni,#mtabs{min-height:0}
   #h-sub{white-space:nowrap}
 }
 /* en Resumen, la línea de debajo del valor cabe en su columna: por debajo de 1.400 px de ancho se queda sin la liquidez */
@@ -1821,7 +1810,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 /* en pantallas medianas y en el móvil, las casillas se separan con una raya fina */
 @media (max-width:700px){#mtabs{overflow:hidden}}
 /* Actualidad: su franja con la semana, cómo ha ido tu cartera, lo que se cuenta a fondo y las noticias; la cabecera del periódico se queda solo con su nombre */
-@media (min-width:701px){#s-actb{border-radius:0;box-shadow:0 0 0 100vmax var(--h-bg);clip-path:inset(0 -100vmax)}}
+@media (min-width:701px){}
 /* en oscuro, la franja conserva su verde casi negro (antes pasaba a gris grafito, más claro que el fondo) */
 /* ===== Esquinas: redondo fuera y casi recto dentro. Bloques 12 px; controles 8; casillas del mapa, píldoras y etiquetas 4; barras 2 ===== */
 
@@ -1847,14 +1836,14 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 .hy-leg b{font-weight:500;color:var(--ink)}
 
 /* ===== Jerarquía de franjas: Resumen es la portada (verde casi negro); Análisis, Movimientos, Universo y Actualidad llevan la misma franja en arena, más compacta ===== */
-:is(#s-aidx,#s-uni,#s-actb,#mtabs){--h-bg:#E9E3D7;--h-card:#E1DACC;--h-line:#D3CABA;--h-fg:#1A1A1A;--h-fg2:var(--ink2);--h-fg3:var(--ink3);--h-pos:var(--pos);--h-neg:var(--neg)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) :is(#s-aidx,#s-uni,#s-actb,#mtabs){--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}}
-:root[data-theme="dark"] :is(#s-aidx,#s-uni,#s-actb,#mtabs){--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}
+:is(#s-aidx,#s-uni,#mtabs){--h-bg:#E9E3D7;--h-card:#E1DACC;--h-line:#D3CABA;--h-fg:#1A1A1A;--h-fg2:var(--ink2);--h-fg3:var(--ink3);--h-pos:var(--pos);--h-neg:var(--neg)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) :is(#s-aidx,#s-uni,#mtabs){--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}}
+:root[data-theme="dark"] :is(#s-aidx,#s-uni,#mtabs){--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}
 @media (min-width:901px){
-  :is(#s-aidx,#s-uni,#s-actb){padding-top:20px;padding-bottom:20px}
-  :is(#s-aidx,#s-uni,#s-actb) .bg .bv{font-size:var(--fs-28);line-height:var(--lh-32);--lhp:var(--lh-32)}
-  :is(#s-aidx,#s-uni,#s-actb) .bg .bl{padding-bottom:8px}
-  :is(#s-aidx,#s-uni,#s-actb) .bg .bs{padding-top:8px}
+  :is(#s-aidx,#s-uni){padding-top:20px;padding-bottom:20px}
+  :is(#s-aidx,#s-uni) .bg .bv{font-size:var(--fs-28);line-height:var(--lh-32);--lhp:var(--lh-32)}
+  :is(#s-aidx,#s-uni) .bg .bl{padding-bottom:8px}
+  :is(#s-aidx,#s-uni) .bg .bs{padding-top:8px}
   /* Resumen: la misma altura y el mismo tamaño de cifra que las secciones; lo que la distingue es su color */
   #s-hero{padding-top:20px;padding-bottom:20px}
   #s-hero .bg .bl{padding-bottom:8px}
@@ -1909,45 +1898,45 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#rd-body,#perf-up,#perf-dn,#
 .cot-r .lb.me{top:4px;font-size:var(--fs-12);font-weight:600;color:var(--ink)}
 /* ===== Análisis, Universo y Actualidad: cinco cifras, en las mismas cinco columnas que Movimientos ===== */
 @media (min-width:701px){
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5{grid-template-columns:repeat(5,minmax(0,1fr))}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .c0:is(.r1,.r2,.r3){grid-column:1;padding-left:0;padding-right:12px}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .c1:is(.r1,.r2,.r3){grid-column:2}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .c2:is(.r1,.r2,.r3){grid-column:3}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .c3:is(.r1,.r2,.r3){grid-column:4}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .c4:is(.r1,.r2,.r3){grid-column:5}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c1,.c2,.c3,.c4):is(.r1,.r2,.r3){padding-left:24px;padding-right:12px}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .r1{grid-row:1;margin-top:0;border-top:0}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .r2{grid-row:2}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .r3{grid-row:3;display:block}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .dv{display:block;grid-row:1/4;margin-top:0}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .d1{grid-column:2}:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .d2{grid-column:3}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .d3{grid-column:4}:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .d4{grid-column:5}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .bl .lg{display:inline}:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .bl .sh{display:none}
+  :is(#s-aidx,#s-uni) .bg.bg5{grid-template-columns:repeat(5,minmax(0,1fr))}
+  :is(#s-aidx,#s-uni) .bg.bg5 .c0:is(.r1,.r2,.r3){grid-column:1;padding-left:0;padding-right:12px}
+  :is(#s-aidx,#s-uni) .bg.bg5 .c1:is(.r1,.r2,.r3){grid-column:2}
+  :is(#s-aidx,#s-uni) .bg.bg5 .c2:is(.r1,.r2,.r3){grid-column:3}
+  :is(#s-aidx,#s-uni) .bg.bg5 .c3:is(.r1,.r2,.r3){grid-column:4}
+  :is(#s-aidx,#s-uni) .bg.bg5 .c4:is(.r1,.r2,.r3){grid-column:5}
+  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c2,.c3,.c4):is(.r1,.r2,.r3){padding-left:24px;padding-right:12px}
+  :is(#s-aidx,#s-uni) .bg.bg5 .r1{grid-row:1;margin-top:0;border-top:0}
+  :is(#s-aidx,#s-uni) .bg.bg5 .r2{grid-row:2}
+  :is(#s-aidx,#s-uni) .bg.bg5 .r3{grid-row:3;display:block}
+  :is(#s-aidx,#s-uni) .bg.bg5 .dv{display:block;grid-row:1/4;margin-top:0}
+  :is(#s-aidx,#s-uni) .bg.bg5 .d1{grid-column:2}:is(#s-aidx,#s-uni) .bg.bg5 .d2{grid-column:3}
+  :is(#s-aidx,#s-uni) .bg.bg5 .d3{grid-column:4}:is(#s-aidx,#s-uni) .bg.bg5 .d4{grid-column:5}
+  :is(#s-aidx,#s-uni) .bg.bg5 .bl .lg{display:inline}:is(#s-aidx,#s-uni) .bg.bg5 .bl .sh{display:none}
 }
-@media (min-width:701px) and (max-width:1340px){:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .bl .lg{display:none}:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .bl .sh{display:inline}}
+@media (min-width:701px) and (max-width:1340px){:is(#s-aidx,#s-uni) .bg.bg5 .bl .lg{display:none}:is(#s-aidx,#s-uni) .bg.bg5 .bl .sh{display:inline}}
 /* móvil: como en Movimientos, la primera cifra en una fila y las otras cuatro de dos en dos */
 @media (max-width:700px){
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5{grid-template-columns:repeat(2,minmax(0,1fr))}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .c0.r1{grid-column:1;grid-row:1;padding:0;margin:0;border:0}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .c0.r2{grid-column:2;grid-row:1;justify-self:end;padding:0;margin:0}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .r3{display:none}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c1,.c3):is(.r1,.r2){grid-column:1;padding-left:0;padding-right:12px}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c2,.c4):is(.r1,.r2){grid-column:2;padding-left:16px;padding-right:0}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c1,.c2,.c3,.c4).r1{margin-top:12px;padding-top:12px;border-top:1px solid var(--h-line)}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c1,.c2).r1{grid-row:2}:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c1,.c2).r2{grid-row:3}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c3,.c4).r1{grid-row:4}:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c3,.c4).r2{grid-row:5}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c1,.c2,.c3,.c4).r2{padding-bottom:0}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .dv{display:none}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .d1{display:block;grid-column:2;grid-row:2/4;margin-top:24px}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .d3{display:block;grid-column:2;grid-row:4/6;margin-top:24px}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .bl .lg{display:none}:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .bl .sh{display:inline}
+  :is(#s-aidx,#s-uni) .bg.bg5{grid-template-columns:repeat(2,minmax(0,1fr))}
+  :is(#s-aidx,#s-uni) .bg.bg5 .c0.r1{grid-column:1;grid-row:1;padding:0;margin:0;border:0}
+  :is(#s-aidx,#s-uni) .bg.bg5 .c0.r2{grid-column:2;grid-row:1;justify-self:end;padding:0;margin:0}
+  :is(#s-aidx,#s-uni) .bg.bg5 .r3{display:none}
+  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c3):is(.r1,.r2){grid-column:1;padding-left:0;padding-right:12px}
+  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c2,.c4):is(.r1,.r2){grid-column:2;padding-left:16px;padding-right:0}
+  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c2,.c3,.c4).r1{margin-top:12px;padding-top:12px;border-top:1px solid var(--h-line)}
+  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c2).r1{grid-row:2}:is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c2).r2{grid-row:3}
+  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c3,.c4).r1{grid-row:4}:is(#s-aidx,#s-uni) .bg.bg5 :is(.c3,.c4).r2{grid-row:5}
+  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c2,.c3,.c4).r2{padding-bottom:0}
+  :is(#s-aidx,#s-uni) .bg.bg5 .dv{display:none}
+  :is(#s-aidx,#s-uni) .bg.bg5 .d1{display:block;grid-column:2;grid-row:2/4;margin-top:24px}
+  :is(#s-aidx,#s-uni) .bg.bg5 .d3{display:block;grid-column:2;grid-row:4/6;margin-top:24px}
+  :is(#s-aidx,#s-uni) .bg.bg5 .bl .lg{display:none}:is(#s-aidx,#s-uni) .bg.bg5 .bl .sh{display:inline}
 }
 @media (min-width:1001px){
-  :is(#s-aidx,#s-uni,#s-actb):has(.bg5){padding-left:0;padding-right:0}
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c0,.c1,.c2,.c3,.c4):is(.r1,.r2,.r3){padding-left:clamp(16px,3vw,30px);padding-right:clamp(16px,3vw,30px)}
+  :is(#s-aidx,#s-uni):has(.bg5){padding-left:0;padding-right:0}
+  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c0,.c1,.c2,.c3,.c4):is(.r1,.r2,.r3){padding-left:clamp(16px,3vw,30px);padding-right:clamp(16px,3vw,30px)}
   #mtabs{grid-template-columns:repeat(5,minmax(0,1fr))}
 }
-@media (min-width:701px) and (max-width:1100px){:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 .bs{font-size:var(--fs-11)}}
+@media (min-width:701px) and (max-width:1100px){:is(#s-aidx,#s-uni) .bg.bg5 .bs{font-size:var(--fs-11)}}
 /* avisos con el diseño de las franjas: arena de borde a borde (tarjeta en el móvil); etiqueta, título y texto a la izquierda, el enlace a la derecha */
 #notice{--nt-bg:#E9E3D7;--nt-line:#D3CABA;--nt-fg:#1A1A1A;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #notice{--nt-bg:#272420;--nt-line:#3B3730;--nt-fg:#EDE9E2;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}}
@@ -2065,7 +2054,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   .top .tools{display:block;height:0;margin:0}
   .top .tools>:not(.more-m),.top .tools :is(#more,#priv,#kbtn){display:none}
   .more-m:not([hidden]){position:fixed;}
-  :is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs){border-radius:0;margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px;box-shadow:none}
+  :is(#s-hero,#s-aidx,#s-uni,#mtabs){border-radius:0;margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px;box-shadow:none}
 
   body[data-view="resumen"]:not(.past-band) #topcap{background:var(--h-bg)}
   body[data-view]:not([data-view="resumen"]):not(.past-band) #topcap{background:var(--ar-bg)}
@@ -2164,12 +2153,12 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* Movimientos en el móvil: una nota larga sigue desde el principio de la línea, sin sangría */
 @media (max-width:700px){#s-mov .rt td.mline:has(.w){display:block}#s-mov .rt td.mline:has(.w) .mi{display:inline}#s-mov .rt td.mline:has(.w) .mi::before{position:static;margin:0 6px}#s-mov .rt td.mline .mi:first-child::before{content:none}}   /* solo con nota; sin nota, la línea se parte sin empezar por «·» */
 /* móvil: menos aire entre la hora del iPhone y lo primero de cada pestaña (la primera letra, a 10 px; antes, 17–22) */
-@media (max-width:760px){:is(#s-aidx,#s-uni,#s-actb,#mtabs){padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px))}}
+@media (max-width:760px){:is(#s-aidx,#s-uni,#mtabs){padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px))}}
 @media (max-width:700px){#s-hero{padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px) + 1px)}}
 /* Universo tenía su propio margen (22 arriba y abajo): igual que las demás */
 /* la tira fija de arriba (la que da el color a la barra de la hora) queda por debajo de la primera franja de cada pestaña: ya no tapa
    las letras, que van pegadas a la barra. El iPhone sigue tomando el color de la tira (solo mira los elementos fijos) */
-@media (max-width:760px){:is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs){position:relative;z-index:var(--z-franja)}}
+@media (max-width:760px){:is(#s-hero,#s-aidx,#s-uni,#mtabs){position:relative;z-index:var(--z-franja)}}
 /* la ficha en el PC no reserva hueco para su barra de desplazamiento: la barra es fina y flotante (aparece al desplazar o al pasar
    el ratón, se puede arrastrar y no ocupa sitio). Así la franja de cifras llega al borde y los márgenes son iguales a los dos lados */
 @media (min-width:761px){
@@ -2317,10 +2306,10 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
 /* MÓVIL: ninguna cifra ni título por encima de las cifras de la franja de Resumen (17 px), y las etiquetas a la altura de su cifra */
 @media (max-width:700px){
   /* franjas de Análisis, Universo, Actualidad y Movimientos: cifras de 17 px como las de Resumen */
-  :is(#s-aidx,#s-uni,#s-actb) .bg .bv{font-size:var(--fs-17);line-height:var(--lh-20);--lhp:var(--lh-20)}
+  :is(#s-aidx,#s-uni) .bg .bv{font-size:var(--fs-17);line-height:var(--lh-20);--lhp:var(--lh-20)}
   #mtabs.mvt .mvt-v{font-size:var(--fs-17);line-height:var(--lh-20);--lhp:var(--lh-20)}
   /* la primera fila de esas franjas («Dividendos 2027 … 1.659 €»): etiqueta y cifra sobre la misma línea de base */
-  :is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c0.r1,.c0.r2){align-self:baseline}
+  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c0.r1,.c0.r2){align-self:baseline}
   #mtabs.mvt a.mvt-all,#mtabs.mvt a.mvt-all:hover,#mtabs.mvt a.mvt-all[aria-current="page"]{align-items:baseline}
   /* cifras destacadas dentro de los bloques */
   .dv-v{font-size:var(--fs-17)}   /* la regla general lleva !important */
@@ -2331,7 +2320,7 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   .anat-cols .ar{align-items:baseline}
   .anat-cols .ar .sw{align-self:center}
   /* el mismo aire en todas partes que en la franja de Resumen: 6 px de la etiqueta a la cifra y 3 px de la cifra a la línea de debajo */
-  :is(#s-aidx,#s-uni,#s-actb) .bg .bl,:is(#s-aidx,#s-uni,#s-actb) .bg.bg5 :is(.c1,.c2,.c3,.c4).r1{padding-bottom:4px}
+  :is(#s-aidx,#s-uni) .bg .bl,:is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c2,.c3,.c4).r1{padding-bottom:4px}
   #mtabs.mvt .mvt-v{margin-top:.5px}
   .dv-v{margin-top:4px}.dv-s{margin-top:2px}
   .ts-v{font-size:var(--fs-17);line-height:var(--lh-24);--lhp:var(--lh-24);margin-top:2px}
@@ -2352,8 +2341,8 @@ body:has(#sheet:not([hidden])) #topcap{background:var(--panel)}
   body.hm3on .view>.mtop{display:flex;order:-1;margin-bottom:-16px}
   html body.hm3on[data-view]:not(.__) #topcap{background:var(--canvas)}
   html body.hm3on.bg-top[data-view]:not(.__){background-color:var(--canvas)}
-  body.hm5on :is(#s-aidx,#s-uni,#s-actb),body.hm5on :is(#s-aidx,#s-uni,#s-actb).hero3.band2{padding:16px}   /* como la de Resumen (Universo tenía otra regla más fuerte) */
-  body.hm5on :is(#s-aidx,#s-uni,#s-actb)>.bg,body.hm5on #mtabs.mvt{display:none}
+  body.hm5on :is(#s-aidx,#s-uni),body.hm5on :is(#s-aidx,#s-uni).hero3.band2{padding:16px}   /* como la de Resumen (Universo tenía otra regla más fuerte) */
+  body.hm5on :is(#s-aidx,#s-uni)>.bg,body.hm5on #mtabs.mvt{display:none}
   body.hm5on .hm5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));color:var(--h-fg);font-variant-numeric:tabular-nums}
   body.hm5on .hm5-mv{background:var(--h-bg);margin:0 -16px;padding:16px}
   .hm5-c{position:relative;display:grid;grid-template-rows:subgrid;grid-row:span 3;justify-items:center;align-content:start;text-align:center;padding:0 4px;min-width:0;border:0;background:none;font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -2851,23 +2840,23 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
    con su forma de acortar; con las cinco en fila se partían etiquetas y subtítulos («SOBRE LO / EXIGIDO», «21 en cartera · 95 / candidatas»).
    Letra de tableta (cifras de 28 px, como Resumen a ese ancho); desde 1240 px las cinco caben en fila */
 @media (min-width:701px) and (max-width:1240px){
-  body.hm5on :is(#s-aidx,#s-uni,#s-actb)>.bg{display:none}
-  body.hm5on :is(#s-aidx,#s-uni,#s-actb)>.hm5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));color:var(--h-fg);font-variant-numeric:tabular-nums}
-  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-c{position:relative;display:grid;grid-template-rows:subgrid;grid-row:span 3;justify-items:center;align-content:start;text-align:center;padding:0 8px;min-width:0}
-  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-k{align-self:end;font-size:var(--fs-11);line-height:var(--lh-14);--lhp:var(--lh-14);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--h-fg3);white-space:nowrap}
-  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-v{margin-top:8px;font-size:var(--fs-28);line-height:var(--lh-32);--lhp:var(--lh-32);font-weight:300;letter-spacing:-.01em;white-space:nowrap}
-  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-s{margin-top:4px;font-size:var(--fs-11);line-height:var(--lh-15);--lhp:var(--lh-15);color:var(--h-fg2);white-space:nowrap}
-  :is(#s-aidx,#s-uni,#s-actb)>.hm5 :is(.hm5-s.w,.hm5-k.w){white-space:normal}
-  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-s:empty{display:none}
-  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .hm5-s b{font-weight:400;color:var(--h-fg)}
-  :is(#s-aidx,#s-uni,#s-actb)>.hm5 .pos{color:var(--h-pos)} :is(#s-aidx,#s-uni,#s-actb)>.hm5 .neg{color:var(--h-neg)}
-  :is(#s-aidx,#s-uni,#s-actb)>.hm5>:nth-child(-n+3){grid-column:span 2}
-  :is(#s-aidx,#s-uni,#s-actb)>.hm5>:nth-child(n+4){grid-column:span 3;margin-top:16px;padding-top:16px;box-shadow:0 -1px 0 var(--h-line)}
-  :is(#s-aidx,#s-uni,#s-actb)>.hm5>:is(:nth-child(2),:nth-child(3)){box-shadow:inset 1px 0 var(--h-line)}
-  :is(#s-aidx,#s-uni,#s-actb)>.hm5>:nth-child(5)::before{content:"";position:absolute;left:0;top:18px;bottom:0;width:1px;background:var(--h-line)}
+  body.hm5on :is(#s-aidx,#s-uni)>.bg{display:none}
+  body.hm5on :is(#s-aidx,#s-uni)>.hm5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));color:var(--h-fg);font-variant-numeric:tabular-nums}
+  :is(#s-aidx,#s-uni)>.hm5 .hm5-c{position:relative;display:grid;grid-template-rows:subgrid;grid-row:span 3;justify-items:center;align-content:start;text-align:center;padding:0 8px;min-width:0}
+  :is(#s-aidx,#s-uni)>.hm5 .hm5-k{align-self:end;font-size:var(--fs-11);line-height:var(--lh-14);--lhp:var(--lh-14);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--h-fg3);white-space:nowrap}
+  :is(#s-aidx,#s-uni)>.hm5 .hm5-v{margin-top:8px;font-size:var(--fs-28);line-height:var(--lh-32);--lhp:var(--lh-32);font-weight:300;letter-spacing:-.01em;white-space:nowrap}
+  :is(#s-aidx,#s-uni)>.hm5 .hm5-s{margin-top:4px;font-size:var(--fs-11);line-height:var(--lh-15);--lhp:var(--lh-15);color:var(--h-fg2);white-space:nowrap}
+  :is(#s-aidx,#s-uni)>.hm5 :is(.hm5-s.w,.hm5-k.w){white-space:normal}
+  :is(#s-aidx,#s-uni)>.hm5 .hm5-s:empty{display:none}
+  :is(#s-aidx,#s-uni)>.hm5 .hm5-s b{font-weight:400;color:var(--h-fg)}
+  :is(#s-aidx,#s-uni)>.hm5 .pos{color:var(--h-pos)} :is(#s-aidx,#s-uni)>.hm5 .neg{color:var(--h-neg)}
+  :is(#s-aidx,#s-uni)>.hm5>:nth-child(-n+3){grid-column:span 2}
+  :is(#s-aidx,#s-uni)>.hm5>:nth-child(n+4){grid-column:span 3;margin-top:16px;padding-top:16px;box-shadow:0 -1px 0 var(--h-line)}
+  :is(#s-aidx,#s-uni)>.hm5>:is(:nth-child(2),:nth-child(3)){box-shadow:inset 1px 0 var(--h-line)}
+  :is(#s-aidx,#s-uni)>.hm5>:nth-child(5)::before{content:"";position:absolute;left:0;top:18px;bottom:0;width:1px;background:var(--h-line)}
 }
 /* desde 1001 px la sección no tiene margen interior (la franja del PC lleva el suyo): la de tres y dos, con los 30 px que tiene a 1000 px */
-@media (min-width:1001px) and (max-width:1240px){ :is(#s-aidx,#s-uni,#s-actb)>.hm5{margin-inline:32px} }
+@media (min-width:1001px) and (max-width:1240px){ :is(#s-aidx,#s-uni)>.hm5{margin-inline:32px} }
 /* RE-02 · móvil: «Otros instrumentos · opciones», al ras del título de Posiciones */
 @media (max-width:700px){ .rt#t-pos tbody tr.grp-row{padding-left:0} }
 /* UN-04 · Radar: hasta 370 px, «8,0% de tu cartera» baja a su propia línea (a 360 px pisaba la pastilla de TIR; a 375 aún sobran 11 px) */
@@ -3247,7 +3236,6 @@ const LOGO_A=new Map(Object.entries({"NYSE:KO":0.345,"EPA:BN":0.421,"BME:EBRO":0
 // índice por ticker sin mercado (para «OTCMKTS:NSRGY» y similares): se hace una vez, no recorriendo las 388 claves en cada búsqueda
 const LOGO_U=new Map(); Object.keys(LOGOS).forEach(k=>{ if(k.startsWith("T:")){ const u=k.split(":").pop(); if(!LOGO_U.has(u)) LOGO_U.set(u,LOGOS[k]); } });
 const logoSrc = t => { if(!t) return null; if(LOGOS["T:"+t]) return LOGOS["T:"+t]; return LOGO_U.get(String(t).split(/\s+/)[0])||null; };
-const logoHtml = (name,t,c="") => { const src=logoSrc(t); return `<span class="logo ${c}">${src?`<img src="${src}" alt="" loading="lazy">`:esc(String(name||t||"").replace(/[^A-Za-zÀ-ÿ0-9 ]/g,"").split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase())}</span>`; };
 const ctryN = c => c==="USA"?"EE. UU.":c;   // el país como se escribe en español (la hoja dice «USA»)
 const flagHtml = c => LOGOS["P:"+c] ? `<img class="flag" src="${LOGOS["P:"+c]}" alt="">` : "";
 const MES = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
@@ -3524,8 +3512,8 @@ function model(d){
     {l:"Antigüedad media",v:(()=>{ const ol=d.tx.filter(r=>!r.sd&&r.bd), w=sum(ol,r=>r.bt||0); return w?sum(ol,r=>(now-r.bd)/Y*(r.bt||0))/w:null; })(),f:"yrs"} ];   // ponderada por lo invertido, como en la hoja
 
   // Diversificación con los valores recalculados
-  const agg=f=>{ const m=new Map(); [...pos].sort((a,b)=>b.value-a.value).forEach(p=>{ const k=f(p)||"Otros"; const g=m.get(k)||{v:0,ps:[]}; g.v+=p.value; if(!p.isOption) g.ps.push(p); m.set(k,g); });
-    return [...m].map(([name,g])=>({name,val:total?g.v/total:0,ps:g.ps})).sort((a,b)=>b.val-a.val); };
+  const agg=f=>{ const m=new Map(); [...pos].sort((a,b)=>b.value-a.value).forEach(p=>{ const k=f(p)||"Otros"; const g=m.get(k)||{v:0}; g.v+=p.value; m.set(k,g); });
+    return [...m].map(([name,g])=>({name,val:total?g.v/total:0})).sort((a,b)=>b.val-a.val); };
   d.ind=agg(p=>p.meta.ind); d.pais=agg(p=>p.meta.country); d.divisa=agg(p=>p.cur);
 
   // Dividendos: cobrado (fecha pasada) frente a apuntado (fecha futura)
@@ -3634,7 +3622,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v330";   // la versión publicada, en el pie
+const VER="v331";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -3655,7 +3643,6 @@ function trayShow(){ trayCampos.forEach(d=>{ const el=$("ts-"+d.k), p=(el.value-
   const t=trayProj(traySup), L=t[t.length-1], r=traySup.stop&&traySup.stop<=L.y?t.find(x=>x.y===traySup.stop)||L:L;
   $("tsv-out").innerHTML=`${eur(r.net)}<span class="ts-s">/mes</span>`;
   $("tso-out").textContent=r===L?`netos en ${L.y}`:`netos desde ${r.y} · ${eur(L.net)} en ${L.y}`;
-  trayOut={net:r.net,sub:r===L?`al mes, netos en ${L.y}`:`al mes, netos desde ${r.y}`}; aidxRen();
   $("tray-rst").disabled=JSON.stringify(traySup)===JSON.stringify(traySup0); }
 $("tray-s").addEventListener("input",e=>{ const d=trayCampos.find(x=>"ts-"+x.k===e.target.id); if(!d) return; const v=+e.target.value;
   traySup[d.k]=d.k==="stop"&&v>DATA.tray[DATA.tray.length-1].y?0:v; trayShow(); cancelAnimationFrame(trayRaf); trayRaf=requestAnimationFrame(()=>drawTray(true)); });
@@ -3735,10 +3722,8 @@ new MutationObserver(redraw).observe(document.documentElement,{attributes:true,a
 /* ---------- render ---------- */
 let sortK="value", sortDir=-1;
 function initials(n){ return n.replace(/[^A-Za-zÀ-ÿ0-9 ]/g,"").split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase(); }
-function avatars(ps){ if(!ps||!ps.length) return ""; const n=ps.length, show=ps.slice(0,4);
-  return show.map(p=>logoHtml(p.name,p.ticker).replace('class="logo ','title="'+esc(p.name)+'" class="logo ')).join("")+(n>4?`<em>+${n-4}</em>`:""); }
 function bars(el,list,clase="",head=1){ const max=Math.max(...list.map(x=>Math.abs(x.val)),0.0001)*head;
-  $(el).innerHTML = list.length ? list.map(x=>`<div class="bar${x.icon?" bi":""}">${x.icon||""}<span class="bn"><span>${esc(x.name)}</span></span><span class="bav">${avatars(x.ps)}</span><span class="num">${x.fmt?x.fmt:pct(x.val)}</span><div class="track"><div class="fill ${clase} ${x.cls||""}" style="width:${(Math.abs(x.val)/max*100).toFixed(1)}%"></div></div></div>`).join("")
+  $(el).innerHTML = list.length ? list.map(x=>`<div class="bar${x.icon?" bi":""}">${x.icon||""}<span class="bn"><span>${esc(x.name)}</span></span><span class="num">${x.fmt?x.fmt:pct(x.val)}</span><div class="track"><div class="fill ${clase} ${x.cls||""}" style="width:${(Math.abs(x.val)/max*100).toFixed(1)}%"></div></div></div>`).join("")
     : `<span class="sub">Sin datos en la hoja</span>`; }
 
 // la misma línea con la fecha corta para el móvil (la ficha estrecha enseña una u otra)
@@ -4084,7 +4069,6 @@ function concCurve(el){ if(!el||!DATA) return; const ps=DATA.pos.filter(p=>!p.is
 const dpsF=(v,cur)=>isNum(v)?nf(4).format(v).replace(/(,\d\d\d*?)0+$/,"$1")+" "+esc(curSym[cur]||cur||""):"";
 // Análisis: el índice oscuro, con la misma cifra que da cada bloque de debajo y en el mismo orden (no se pulsa)
 const CURN={USD:"dólar",GBP:"libra",CHF:"franco suizo",JPY:"yen",CAD:"dólar canadiense",AUD:"dólar australiano",HKD:"dólar de Hong Kong",DKK:"corona danesa",SEK:"corona sueca",NOK:"corona noruega"};
-let trayOut=null;
 function renderAidx(){ const d=DATA, el=$("a-k"); if(!d||!el) return;
   const ps=d.pos.filter(p=>!p.isOption&&p.value>0).sort((a,b)=>b.value-a.value), tot=sum(ps,p=>p.value)||1, eu=(d.divisa.find(x=>x.name==="EUR")||{val:0}).val, dm=d.dvm;
   const ti=(d.ind||[]).filter(x=>isNum(x.val)).sort((a,b)=>b.val-a.val)[0];   // la industria que más pesa
@@ -4096,12 +4080,11 @@ function renderAidx(){ const d=DATA, el=$("a-k"); if(!d||!el) return;
     +(tc?col(3,"pais","Mayor país",pct(tc.val,1),esc(ctryN(tc.name))):col(3,"pais","Mayor país","—",""))
     +(ti?col(4,"ind","Mayor industria",pct(ti.val,1),esc(ti.name)):col(4,"ind","Mayor industria","—",""))
     +'<i class="dv d1"></i><i class="dv d2"></i><i class="dv d3"></i><i class="dv d4"></i>';
-  aidxRen(); }
-function aidxRen(){ const a=$("ai-ren"), b=$("ai-ren-s"); if(!a) return; a.textContent=trayOut?eur(trayOut.net):""; b.textContent=trayOut?trayOut.sub:""; }
+  }
 function renderReparto(){
   const d=DATA; let ind=d.ind.slice();
-  if(ind.length>10){ const rest=ind.slice(9); ind=[...ind.slice(0,9),{name:`Resto · ${rest.length} industrias`,val:sum(rest,x=>x.val),ps:[],cls:"rest"}]; }
-  bars("b-ind",ind.map(x=>({...x,ps:[]})),"",1.25);
+  if(ind.length>10){ const rest=ind.slice(9); ind=[...ind.slice(0,9),{name:`Resto · ${rest.length} industrias`,val:sum(rest,x=>x.val),cls:"rest"}]; }
+  bars("b-ind",ind,"",1.25);
   paisGrid($("b-pais"));
   ring($("b-div"),d.divisa);
   concCurve($("b-conc"));
@@ -4968,7 +4951,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
     new MutationObserver(ms=>{ if(ms.some(m=>!B.contains(m.target))) later(); }).observe(src,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["class","aria-current"]}); if(window.ResizeObserver) new ResizeObserver(()=>fit(B)).observe(B); sync(); fit(B); };
   const set=(c,k,v,clase,s)=>{ c.dataset.k=k; c.dataset.s=s; const V=c.children[1]; if(V.innerHTML!==v) V.innerHTML=v; if(V.className!==clase) V.className=clase; };
   // Análisis, Universo y Actualidad: de su franja del PC (.bg con las casillas c0…c4)
-  ["s-aidx","s-uni","s-actb"].forEach(sid=>{ const sec=$(sid); if(!sec) return; const B=document.createElement("div"); B.className="hm5"; B.innerHTML=Array.from({length:5},()=>cell("div")).join(""); sec.append(B);
+  ["s-aidx","s-uni"].forEach(sid=>{ const sec=$(sid); if(!sec) return; const B=document.createElement("div"); B.className="hm5"; B.innerHTML=Array.from({length:5},()=>cell("div")).join(""); sec.append(B);
     watch(B,()=>{ const S=sec.querySelector(".bg"); if(!S) return; [...B.children].forEach((c,i)=>{ const k=S.querySelector(`.c${i}.r1`), v=S.querySelector(`.c${i}.r2`), s=S.querySelector(`.c${i}.r3`); if(!k||!v) return;
         set(c,((k.querySelector(".sh")||k).textContent||"").trim(),v.innerHTML,"hm5-v num"+tone(v),s?s.innerHTML.replace(/\s*<span class="sep"><\/span>\s*/g," · ").trim():""); }); },sec); });
   // Movimientos: las cinco casillas son los cinco apartados (al tocarlas, lo mismo que las del PC)
@@ -5524,7 +5507,7 @@ $("refresh").addEventListener("click",()=>{ load(true); loadAct(true); });
 // móvil: tirar hacia abajo desde arriba del todo lee la hoja de nuevo, igual que el botón Actualizar (en la app de la pantalla de inicio no hay otro gesto)
 if(matchMedia("(pointer:coarse)").matches){ let C=document.createElement("div"); C.id="topcap"; C.setAttribute("aria-hidden","true"); document.body.prepend(C);
   const sat=()=>C.classList.toggle("sat",C.offsetHeight>10); sat(); addEventListener("resize",sat);   // zona del reloj: la tapa, por encima
-  let raf=0; const past=()=>{ raf=0; const b=document.querySelector(".view:not([hidden]) > :is(#s-hero,#s-aidx,#s-uni,#s-actb,#mtabs)");
+  let raf=0; const past=()=>{ raf=0; const b=document.querySelector(".view:not([hidden]) > :is(#s-hero,#s-aidx,#s-uni,#mtabs)");
     // en el móvil la franja va por encima de la tira: la barra cambia cuando la franja ha salido del todo (si no, quedaría una raya de su color bajo la barra)
     document.body.classList.toggle("past-band",!b||scrollY>=b.offsetTop+b.offsetHeight-(+getComputedStyle(b).zIndex>+getComputedStyle(C).zIndex?0:C.offsetHeight));
     // el fondo de la página (lo que asoma al tirar hacia abajo) cambia cuando el desplazamiento se para: repintarlo en mitad del gesto daba tirones
