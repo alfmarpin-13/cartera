@@ -2975,6 +2975,13 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   #t-p td.r-vd:empty{display:none}
   .vd-k{display:inline}
 }
+/* Universo, pantallas anchas: cada cabecera, centrada sobre sus cifras; las cifras, a la derecha entre sí */
+@media (min-width:701px){
+  #t-p thead th{vertical-align:bottom}
+  #t-p th:not(.l):not(.c),#t-p td.num{text-align:center}
+  #t-p td.num>.cifb{display:inline-block;text-align:right}
+  #t-p .mg-n{display:inline-block;text-align:right}
+}
 </style>
 
 <div class="wrap">
@@ -3614,7 +3621,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v333";   // la versión publicada, en el pie
+const VER="v334";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4353,10 +4360,18 @@ const PCOLS=[
   {k:"fv",l:"Valor razonable",hs:1,g:"est",sep:1,f:r=>precioVisible(r.fv,r.cur)},
   {k:"irrExp",l:"TIR esperada",g:"est",mx:1,f:r=>tirP(r.irrExp)},
   {k:"req",l:"Exigida",hs:1,g:"est",f:r=>r.req>0?pct(r.req):""},
-  {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>`<span class="mg-c">${margenBarra(r.margin)}<span class="${clsM(r.margin)}">${puntosPct(r.margin)}</span></span>`},
+  {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>`<span class="mg-c">${margenBarra(r.margin)}<span class="mg-n ${clsM(r.margin)}">${puntosPct(r.margin)}</span></span>`},
   {k:"vd",l:"Valorada",r:"vd",g:"est",sv:r=>{ const d=valDate(r); return d?d.getTime():null; },
    f:r=>{ const d=valDate(r); return d?`<span class="vd-k">valorada </span><span class="${stale(r)?"vd-old":""}"${stale(r)?' title="Por revisar: valorada hace más de un año"':""}>${fdate(d,{day:"numeric",month:"short",year:"numeric"})}</span>`:""; }} ];
 const etiquetaDe=x=>typeof x.l==="function"?x.l():x.l;
+// pantallas anchas: el bloque de cifras de cada columna, tan ancho como su cifra mayor (se mide con todas las empresas)
+const igualaCifras=()=>{ const t=$("t-p"), st=$("pcv-css")||document.head.appendChild(Object.assign(document.createElement("style"),{id:"pcv-css"}));
+  const mx=s=>Math.ceil(Math.max(0,...[...t.querySelectorAll(s)].map(e=>e.getBoundingClientRect().width)));
+  st.textContent=""; const n=mx('td[data-k="margin"] .mg-n'); let css=n?`#t-p td[data-k="margin"] .mg-n{min-width:${n}px}`:"";
+  st.textContent=`@media (min-width:701px){${css}}`;
+  css+=PCOLS.filter(x=>!x.left&&!x.ctr).map(x=>{ const w=mx(`td[data-k="${x.k}"]>.cifb`); return w?`#t-p td[data-k="${x.k}"]>.cifb{min-width:${w}px}`:""; }).join("");
+  st.textContent=`@media (min-width:701px){${css}}`;
+  if(document.fonts&&document.fonts.status!=="loaded") document.fonts.ready.then(()=>{ preAnchosClave=""; renderPreTable(); }); };
 // móvil: los datos secundarios, en una sola línea
 const mLine=it=>`<td class="mline">${it.filter(Boolean).map(h=>`<span class="mi">${h}</span>`).join("")}</td>`;
 function fillIndustries(){ opts($("p-ind"),[...new Set(DATA.pre.map(r=>r.ind).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"es")),"Industria: todas",true); }
@@ -4601,16 +4616,16 @@ function renderPreTable(){
   rs.sort((a,b)=>{ const x=sv(a),y=sv(b); const c=typeof x==="string"||typeof y==="string" ? d*String(x??"").localeCompare(String(y??""),"es") : d*((x??-1e18)-(y??-1e18)); return c||byName(a,b); });
   const vis=rs;
   if([...$("p-sort").options].some(o=>o.value===k)) $("p-sort").value=k;
-  const head=w=>"<tr>"+PCOLS.map((x,i)=>`<th data-k="${x.k}" class="${x.left?"l ":x.ctr?"c ":""}${x.hs?"hide-s ":""}${x.g==="est"?"est ":""}${x.sep?"gsep":""}"${w&&w[i]?` style="width:${w[i].toFixed(2)}px"`:""}${x.k===k?` aria-sort="${d>0?"ascending":"descending"}"`:""}>${etiquetaDe(x)}</th>`).join("")+"</tr>";
+  const head=w=>"<tr>"+PCOLS.map((x,i)=>`<th data-k="${x.k}" class="${x.left?"l ":x.ctr?"c ":""}${x.hs?"hide-s ":""}${x.g==="est"?"est ":""}${x.sep?"gsep":""}"${w&&w[i]?` style="width:${w[i].toFixed(2)}px"`:""}${x.k===k?` aria-sort="${d>0?"ascending":"descending"}"`:""}>${etiquetaDe(x).replace(" "," <br>")}</th>`).join("")+"</tr>";
   const cellP=(x,r)=>{ const h=x.f(r), dash=String(h).replace(/<[^>]*>/g,"").trim()==="";
-    return `<td class="${x.left?"l ":x.ctr?"c ":"num "}${x.nil&&x.nil(r)?"nil ":""}${x.hs?"hide-s ":""}${x.g==="est"?"est ":""}${x.sep?"gsep ":""}${x.mx?"mx ":""}${dash?"dash ":""}r-${x.r||"meta"}" data-k="${x.k}" data-l="${etiquetaDe(x)}">${h}</td>`; };
+    return `<td class="${x.left?"l ":x.ctr?"c ":"num "}${x.nil&&x.nil(r)?"nil ":""}${x.hs?"hide-s ":""}${x.g==="est"?"est ":""}${x.sep?"gsep ":""}${x.mx?"mx ":""}${dash?"dash ":""}r-${x.r||"meta"}" data-k="${x.k}" data-l="${etiquetaDe(x)}">${!x.left&&!x.ctr&&!dash?`<span class="cifb">${h}</span>`:h}</td>`; };
   const rowP=r=>`<tr class="pr${r.inPf?" inpf":""}" data-t="${esc(r.ticker)}" tabindex="0" aria-expanded="false">`+PCOLS.map(x=>cellP(x,r)).join("")+"</tr>";
   // las filas se crean una vez por lectura de la hoja; buscar, filtrar u ordenar solo las muestra u oculta y las reordena
   const wide=innerWidth>700, body=$("p-body");
   if(pRowsFor!==DATA){ $("t-p").style.tableLayout=""; $("p-head").innerHTML=head(null); body.innerHTML=all.map(rowP).join("");
     pRows=new Map([...body.querySelectorAll("tr.pr")].map(tr=>[tr.dataset.t,tr])); pRowsFor=DATA; preAnchosClave=""; }
   // anchos de columna congelados: los que salen con todas las empresas, así nada cambia de ancho
-  if(wide&&preAnchosClave!==String(innerWidth)){ $("t-p").style.tableLayout=""; $("p-head").innerHTML=head(null); body.replaceChildren(...pRows.values());
+  if(wide&&preAnchosClave!==String(innerWidth)){ $("t-p").style.tableLayout=""; $("p-head").innerHTML=head(null); body.replaceChildren(...pRows.values()); igualaCifras();
     preAnchos=[...$("p-head").querySelectorAll("th")].map(th=>th.getBoundingClientRect().width); preAnchosClave=String(innerWidth); }
   $("t-p").style.tableLayout=wide&&preAnchos?"fixed":"";
   $("p-head").innerHTML=head(wide?preAnchos:null);
