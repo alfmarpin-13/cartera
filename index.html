@@ -3594,15 +3594,25 @@ function drawEvo(){
   o.scales.y.ticks.maxTicksLimit=4; o.scales.x.border={display:false}; o.scales.x.ticks.padding=8;
   o.layout={padding:{top:6}};
   o.scales.x.ticks.maxTicksLimit=8;
-  if(innerWidth<=700){ const jan=rows.map(r=>r.d instanceof Date&&r.d.getMonth()===0); if(jan.filter(Boolean).length>=2){ o.scales.x.ticks.autoSkip=false; o.scales.x.ticks.callback=(v,i)=>jan[i]?String(rows[i].d.getFullYear()):null; } }   // móvil: 2024 · 2025 · 2026
-  o.plugins.tooltip.callbacks = { label:c=>" "+c.dataset.label+": "+eur(c.parsed.y), afterBody:i=>{ const r=rows[i[0].dataIndex]; return ["", "Resultado: "+seur(r.v-r.a)]; } };
+  // el eje x en meses reales: cada foto en su fecha (la de hoy, a los días que lleva el mes, no un mes entero detrás de la del día 1).
+  // x = año×12 + mes + la parte del mes ya pasada; las fechas de la hoja llegan con unos segundos de desfase: se redondean al día
+  const dia=d=>{ const t=new Date(d.getTime()+432e5); return new Date(t.getFullYear(),t.getMonth(),t.getDate()); };
+  const mx=d=>{ const t=dia(d); return t.getFullYear()*12+t.getMonth()+(t.getDate()-1)/new Date(t.getFullYear(),t.getMonth()+1,0).getDate(); };
+  const xs=rows.map(r=>mx(r.d)), deMes=v=>{ const m=Math.round(v); return new Date(Math.floor(m/12),m%12,1); };
+  // marcas el día 1 de cada 1, 2, 3, 6 o 12 meses (las justas para que quepan); en el móvil, solo los eneros con el año si hay dos o más
+  const x0=xs[0], x1=xs[xs.length-1], cuenta=p=>Math.floor(x1/p)-Math.ceil(x0/p)+1, soloAnos=innerWidth<=700&&cuenta(12)>=2;
+  const paso=soloAnos?12:[1,2,3,6,12,24].find(p=>cuenta(p)<=(innerWidth<=700?4:7))||24;
+  Object.assign(o.scales.x,{type:"linear",min:x0,max:x1,afterBuildTicks:s=>{ const t=[]; for(let v=Math.ceil(x0/paso)*paso;v<=x1;v+=paso) t.push({value:v}); s.ticks=t; }});
+  o.scales.x.ticks.callback=v=>soloAnos?String(deMes(v).getFullYear()):mesAno(deMes(v));
+  o.plugins.tooltip.callbacks = { title:i=>{ const t=dia(rows[i[0].dataIndex].d); return t.getDate()===1?mesAno(t):fdate(t,{day:"numeric",month:"short",year:"numeric"}); },
+    label:c=>" "+c.dataset.label+": "+eur(c.parsed.y), afterBody:i=>{ const r=rows[i[0].dataIndex]; return ["", "Resultado: "+seur(r.v-r.a)]; } };
   o.plugins.tooltip.itemSort=(a,b)=>a.datasetIndex-b.datasetIndex;
   const last=rows.map((_,i)=>i===rows.length-1?3.5:0);
-  make("c-evo",{type:"line",data:{labels:rows.map(r=>r.d instanceof Date?mesAno(r.d):""),datasets:[
-    {label:"Valor de cartera",data:rows.map(r=>r.v),borderColor:varCss("--pos-deep"),borderWidth:2.2,pointRadius:last,pointBackgroundColor:varCss("--pos-deep"),pointHoverRadius:4,tension:.3,
+  make("c-evo",{type:"line",data:{datasets:[
+    {label:"Valor de cartera",data:rows.map((r,i)=>({x:xs[i],y:r.v})),borderColor:varCss("--pos-deep"),borderWidth:2.2,pointRadius:last,pointBackgroundColor:varCss("--pos-deep"),pointHoverRadius:4,tension:.3,
       fill:{target:1,above:hexTok("--pos")+"2A",below:hexTok("--neg")+"2A"}},
-    {label:"Aportado",data:rows.map(r=>r.a),borderColor:varCss("--g3"),borderDash:[5,4],borderWidth:1.5,pointRadius:0,tension:0,fill:false},
-    {label:"MSCI World",data:rows.map(r=>r.i),borderColor:varCss("--evo-msci"),borderDash:[2,3],borderWidth:1.5,pointRadius:0,tension:.3,fill:false}]},options:o,plugins:[crosshair]});
+    {label:"Aportado",data:rows.map((r,i)=>({x:xs[i],y:r.a})),borderColor:varCss("--g3"),borderDash:[5,4],borderWidth:1.5,pointRadius:0,tension:0,fill:false},
+    {label:"MSCI World",data:rows.map((r,i)=>({x:xs[i],y:r.i})),borderColor:varCss("--evo-msci"),borderDash:[2,3],borderWidth:1.5,pointRadius:0,tension:.3,fill:false}]},options:o,plugins:[crosshair]});
 }
 const hexTok=n=>{ const v=varCss(n); return /^#[0-9a-f]{6}$/i.test(v)?v:"#888888"; };
 function drawDivs(){
@@ -3631,7 +3641,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v339";   // la versión publicada, en el pie
+const VER="v340";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
