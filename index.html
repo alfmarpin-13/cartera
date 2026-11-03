@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-vbFlOwjjoOq1QbVAHaY6oBAj8p+x36fwC3AopvdnhSI=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-M8wX6zNw//sd2x8qehLiQegaP/9+RCpn6WsE0+1Amek=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3624,7 +3624,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v354";   // la versión publicada, en el pie
+const VER="v355";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4313,8 +4313,9 @@ function renderMov(refill){
   const rs=movRows(), [sk,sd]=msort[mtab]||c.sort, col=c.cols.find(x=>x.k===sk)||c.cols[0], sv=col.sv||(r=>r[sk]);
   rs.sort((a,b)=>{ let x=sv(a),y=sv(b); if(x instanceof Date) x=x.getTime(); if(y instanceof Date) y=y.getTime();
     if(typeof x==="string"||typeof y==="string") return sd*String(x??"").localeCompare(String(y??""),"es"); return sd*((x??-1e18)-(y??-1e18)); });
+  // Dividendos, por defecto: lo cobrado delante y los previstos al final, cada parte por fecha, del más reciente al más antiguo (ya vienen así ordenadas)
   const fromToday=mtab==="dividendos"&&!msort[mtab];
-  if(fromToday){ const up=rs.filter(r=>!DATA.isPaid(r)).sort((a,b)=>a.d-b.d), pd=rs.filter(r=>DATA.isPaid(r)).sort((a,b)=>b.d-a.d); rs.splice(0,rs.length,...up,...pd); }
+  if(fromToday){ const pd=rs.filter(r=>DATA.isPaid(r)), up=rs.filter(r=>!DATA.isPaid(r)); rs.splice(0,rs.length,...pd,...up); }
   $("m-sort").value=sk;
   // las cifras: con la búsqueda y el bróker; el año, solo donde la cifra es «de ese año»; el estado solo filtra la lista
   $("m-k").innerHTML = mkBlocks(c.kpis(movRows(true,true),+$("m-year").value||0));
