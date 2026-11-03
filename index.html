@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-pTzqOLCo65xFHSoMbK3YrgyrNfsTzPSM6xiAPec9orY=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-X48Igt1H00yzPD8eVc7Exz2/Jau6L2WniFYiMnvYmSQ=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -1564,7 +1564,8 @@ kbd{font:500 11px/1 var(--f-sans);line-height:1;line-height:round(nearest,calc(1
 #s-mov .tag.mt-div{color:var(--accent)}
 /* Movimientos: la fila de cada mes en una banda gris suave, el mes en el color del texto y cuántos movimientos a la derecha */
 #s-mov .rt tr.grp-row td{font-size:var(--fs-13);font-weight:400;color:var(--ink)}
-#s-mov .rt tr.grp-row .gn{float:right;color:var(--ink3);font-weight:400}
+#s-mov .rt tr.grp-row .gh{display:flex;align-items:baseline;justify-content:space-between;gap:8px}   /* MOV-01: el mes y la cuenta, por la línea base */
+#s-mov .rt tr.grp-row .gn{color:var(--ink3);font-weight:400}
 #s-mov .rt tr.grp-row .gm{color:var(--ink);font-weight:400;font-size:var(--fs-15)}
 @media (min-width:701px){
   #s-mov .rt tr.grp-row td{padding:8px 8px;border-top:26px solid var(--panel);border-bottom:0;background:color-mix(in srgb,var(--ink) 7%,var(--panel));background-clip:padding-box}
@@ -3621,7 +3622,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v351";   // la versión publicada, en el pie
+const VER="v352";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4204,6 +4205,9 @@ function movAll(){ const d=DATA; if(!d) return []; if(movAllC&&movAllC.d===d) re
   out.forEach(r=>{ r.det=nb(r.det); r.ds=nb(r.ds); r.detH=nb(r.detH); });
   const rk=r=>r.ty==="Compra"?0:r.ty==="Venta"?1:r.dv?2:r.g==="out"?3:r.g==="in"?4:5;   // mismo día: el dividendo, luego la retirada y al final la aportación (que es mandarlo a otro bróker)
   const rows=out.filter(r=>r.d instanceof Date).sort((a,b)=>(b.d-a.d)||(rk(a)-rk(b))); movAllC={d,rows}; return rows; }
+/* MOV-02 · el color de los importes: el dinero que entra o sale (compras, ventas, dividendos, aportaciones, retiradas) va sin color,
+   sea del signo que sea; llevan color solo las cifras que son ganancia o pérdida: los ajustes (rojo o verde según el signo) y el resultado
+   de las ventas (columna Resultado). Una venta con pérdida tiene su importe sin color y su resultado en rojo */
 const MOV = {
   todo:{ rows:movAll, rc:r=>"mr mr-"+tipoMov(r), date:r=>r.d, years:r=>[yr(r.d)], text:r=>[r.name,r.ticker,r.broker,r.note,r.ty].join(" "), sort:["d",-1],
     cols:[ {k:"d",l:"Fecha",r:"sub",f:r=>sdate(r.d)},
@@ -4319,7 +4323,7 @@ function renderMov(refill){
   const span=byM||fromToday?[...$("m-head").querySelectorAll("th")].filter(t=>getComputedStyle(t).display!=="none").length||c.cols.length:0;
    let st=null;
   const mHead=r=>{ if(fromToday){ const k=DATA.isPaid(r)?"p":"u"; if(k===st) return ""; st=k; return ""; }
-    if(!byM||mk(r)===mo) return ""; mo=mk(r); const t=day(r.d), n=cnt.get(mo); return `<tr class="grp-row"><td colspan="${span}"><span class="gm">${MESL[t.getMonth()]} ${t.getFullYear()}</span><span class="gn">${nf(0).format(n)} ${n===1?"movimiento":"movimientos"}</span></td></tr>`; };
+    if(!byM||mk(r)===mo) return ""; mo=mk(r); const t=day(r.d), n=cnt.get(mo); return `<tr class="grp-row"><td colspan="${span}"><div class="gh"><span class="gm">${MESL[t.getMonth()]} ${t.getFullYear()}</span><span class="gn">${nf(0).format(n)} ${n===1?"movimiento":"movimientos"}</span></div></td></tr>`; };
   $("m-body").innerHTML = rs.length ? rs.slice(0,mshow).map(r=>mHead(r)+`<tr${c.rc?` class="${c.rc(r)}"`:""}>`+c.cols.map(x=>cell(x,r)).join("")+line(r)+"</tr>").join("")
     : `<tr><td colspan="${c.cols.length}" class="empty">Nada coincide con los filtros</td></tr>`;
   const left=rs.length-mshow; $("m-more").hidden=left<=0; if(left>0) $("m-more").textContent=left>MSTEP?`Ver ${MSTEP} más · quedan ${nf(0).format(left)}`:`Ver ${left} más`;
