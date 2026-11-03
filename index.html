@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-jVfihTYOprXAAQinryxJC6oc9D7NHWw8xBPvBfJE1dA=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-vbFlOwjjoOq1QbVAHaY6oBAj8p+x36fwC3AopvdnhSI=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -638,7 +638,6 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 @media (max-width:700.98px){.cal-wrap{overflow:visible;margin:0;padding:0}.cal{grid-template-columns:repeat(6,minmax(0,1fr));min-width:0;row-gap:16px}}
 .mc-d{height:56px;min-height:0;padding:4px 0 2px;gap:2px}
 .mc-l{flex-direction:row;gap:2px}.mc-l .lgb.cs{width:24px;height:14px}
-.mc-l{max-width:calc(100% - 2px)}.mc-l em{flex:none}.mc-l .lgb.cs.ra{width:calc(10px * var(--ar));min-width:24px;flex:0 1 auto}   /* ANA-02 */
 #s-ret .abar>span{padding-left:0;min-width:2px}
 @media (max-width:860.98px){ #t-pos .hide-n{display:none} #t-pos th,#t-pos td{padding-left:4px;padding-right:4px} }
 /* la primera columna empieza donde en el resto de tablas, aunque las demás se estrechen */
@@ -3625,7 +3624,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v353";   // la versión publicada, en el pie
+const VER="v354";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4109,8 +4108,6 @@ function miniCal(el,pays){ if(!el) return; const k=t=>`${t.getFullYear()}-${t.ge
     return `<div class="mc-d${t.getDay()%6===0?" we":""}${past?" past":""}${k(t)===today?" today":""}${g.length?" on":""}">`
       +`<span class="mc-n"><b>${t.getDate()}</b>${i===0||t.getDate()===1?`<span class="mc-m">${MES[t.getMonth()].toLowerCase()}</span>`:""}</span>`
       +(g.length?`<span class="mc-l" tabindex="0" role="img" aria-label="${esc(`${t.getDate()} ${MES[t.getMonth()].toLowerCase()}: ${g.map(x=>`${x.name}, ${eur(x.v,2)}`).join("; ")}`)}" data-tip="${esc(g.length>1?g.map(x=>`${x.name} · ${eur(x.v,2)}`).join("\n"):eur(g[0].v,2))}">${logoBare(g[0].name,g[0].t,"cs")}${g.length>1?`<em>+${g.length-1}</em>`:""}</span><span class="mc-v num">${eur(v)}</span>`:"")+`</div>`; }).join("")}</div>`;
-  // ANA-02: un rótulo apaisado ensancha su caja hasta que el logo mide 10 px de alto, sin pasar del ancho de la casilla; el alto de la caja no cambia
-  el.querySelectorAll(".mc-l .lgb.cs > img:first-child").forEach(i=>{ const ar=LOGO_AR.get(i.getAttribute("src"))||1; if(ar>24/14){ i.parentNode.classList.add("ra"); i.parentNode.style.setProperty("--ar",ar); } });
   const cw=el.querySelector(".mc-d")?.clientWidth||0, ff=getComputedStyle(document.body).fontFamily;
   el.classList.toggle("na",[...by.entries()].some(([key,g])=>textW(eur(sum(g,x=>x.v)),`400 10.5px ${ff}`)>cw-2)); }
 
