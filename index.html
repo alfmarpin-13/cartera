@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-87ketEG/Jp9dt8OAk185uj4cxFoOUPWWOIeJmD10RrA=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-RuFvxIx4Sj/DUGFUc9/dSIStEtDjDiX4p+wZzkOFN80=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -66,7 +66,7 @@
   --ln1:#46302C; --ln1t:#F7D6D2; --ln2:#5D322D; --ln2t:#F7D6D2; --ln3:#7B3B35; --ln3t:#F7D6D2; --ln4:#9C453E; --ln4t:#FFFFFF; --ln5:#BB4F47; --ln5t:#FFFFFF;
   --seg-on:#3A3936; --seg-sh:none; --row-open:#2E2D2A;
   --pf-bg:color-mix(in srgb,var(--ink) 5%,transparent); --pf-bg-h:color-mix(in srgb,var(--ink) 8%,transparent); --pf-bar:#8C7647; --we-bg:color-mix(in srgb,var(--ink) 3%,transparent);
-  --tag-bg:color-mix(in srgb,var(--ink) 11%,transparent); --acc-pd:#46546A; --ps-bg:#46546A; --ps-op:1;
+  --tag-bg:color-mix(in srgb,var(--ink) 11%,transparent); --acc-pd:#5D6D88; --ps-bg:#46546A; --ps-op:1;
   --evo-msci:#D6D4CE; --ret-net:var(--pos); --ret-tot:#5A5955; --flag-ol:color-mix(in srgb,var(--ink) 24%,transparent); --hm-g:#2B4C3B; --hm-r:#593130;
 }}
 :root[data-theme="dark"]{
@@ -80,7 +80,7 @@
   --ln1:#46302C; --ln1t:#F7D6D2; --ln2:#5D322D; --ln2t:#F7D6D2; --ln3:#7B3B35; --ln3t:#F7D6D2; --ln4:#9C453E; --ln4t:#FFFFFF; --ln5:#BB4F47; --ln5t:#FFFFFF;
   --seg-on:#3A3936; --seg-sh:none; --row-open:#2E2D2A;
   --pf-bg:color-mix(in srgb,var(--ink) 5%,transparent); --pf-bg-h:color-mix(in srgb,var(--ink) 8%,transparent); --pf-bar:#8C7647; --we-bg:color-mix(in srgb,var(--ink) 3%,transparent);
-  --tag-bg:color-mix(in srgb,var(--ink) 11%,transparent); --acc-pd:#46546A; --ps-bg:#46546A; --ps-op:1;
+  --tag-bg:color-mix(in srgb,var(--ink) 11%,transparent); --acc-pd:#5D6D88; --ps-bg:#46546A; --ps-op:1;
   --evo-msci:#D6D4CE; --ret-net:var(--pos); --ret-tot:#5A5955; --flag-ol:color-mix(in srgb,var(--ink) 24%,transparent); --hm-g:#2B4C3B; --hm-r:#593130;
 }
 *{box-sizing:border-box}
@@ -156,8 +156,7 @@ tbody tr.pr.open{background:var(--row-open)}
 /* móviles estrechos: la línea de «Aportado · Liquidez · empresas» y las pestañas de Movimientos caben enteras */
 @media (max-width:380px){#s-hero #h-sub{font-size:var(--fs-11)}#s-hero #h-sub .sep{margin:0 4px}#mtabs .mvt-n{gap:4px}.bg .bl.bl{letter-spacing:var(--ls-up)}}
 @media (max-width:340px){#s-hero #h-sub{white-space:normal}#mtabs .mvt-n em{font-size:var(--fs-11)}
-  .bg .bl.bl{font-size:var(--fs-11);letter-spacing:var(--ls-up)}.evo-leg.evo-leg{gap:6px 8px;flex-wrap:wrap}#m-k .mk-v{font-size:var(--fs-20)}#m-k .mk-yr{gap:2px}#m-k .mk-yr em,#m-k .mk-yr small{font-size:var(--fs-11)}#m-k .mk-k{white-space:normal}.ts-k.ts-k{font-size:var(--fs-11)}
-  .ts-v.ts-v{font-size:var(--fs-20)}}
+  .bg .bl.bl{font-size:var(--fs-11);letter-spacing:var(--ls-up)}.evo-leg.evo-leg{gap:6px 8px;flex-wrap:wrap}#m-k .mk-yr{gap:2px}#m-k .mk-yr em,#m-k .mk-yr small{font-size:var(--fs-11)}#m-k .mk-k{white-space:normal}.ts-k.ts-k{font-size:var(--fs-11)}}
 .co small{font-family:var(--f-mono);font-size:var(--fs-11);color:var(--ink3)}
 @media (max-width:700px){.hide-s{display:none}}
 /* Barras horizontales */
@@ -536,7 +535,7 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 .panel{padding:26px clamp(16px,3vw,30px);border-radius:var(--r-12)}
 /* encabezado de sección único */
 .chart-head{margin-bottom:20px;align-items:center;gap:12px 20px}
-.chart-head .seg{margin-block:-8px}   /* el control no empuja el título: cae a la misma altura que en las tarjetas sin control */
+.chart-head .seg,.chart-head .ts-rst{margin-block:-9px}   /* el control (32 px) ocupa en la fila lo mismo que el título (14 px): no lo empuja y queda centrado en él */
 .st{margin:0;font-size:var(--fs-11);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink);line-height:1.3;line-height:round(nearest,calc(1.3*1em - .01px),1px);--lhx:1.3;--lhp:initial}
 #s-pos .chart-head{align-items:baseline}.pos-age{font-size:var(--fs-12);line-height:var(--lh-14);--lhp:var(--lh-14);color:var(--ink3);white-space:nowrap}.pos-age b{color:var(--ink2);font-weight:500}
 #pos-age-m{display:none;margin-top:12px;padding:0 2px}
@@ -699,7 +698,7 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
   #t-pos:not(.pm-tot) .m-tot{display:none}#t-pos:not(.pm-tot) .m-hoy{display:inline}
   #t-pos .m-var{display:inline-block;padding:1px 0}
   .rt#t-pos tbody tr.pr{grid-template-columns:48px minmax(0,1fr) minmax(86px,auto)}.rt#t-pos td.r-sub{min-height:20px}
-  #t-pos .m-sh .x{display:none}
+  #t-pos .m-sh .x{display:none}#t-pos .sdg{display:none}
   .duo{display:contents}#v-resumen>*{order:2}#v-resumen>:is(#s-hero,#hoja-al,#s-pos),#s-today{order:0}#s-evo{order:1}}
 @media (max-width:380px){.rt#t-pos tbody tr.pr{grid-template-columns:44px minmax(0,1fr) minmax(80px,auto)}#t-pos .m-var{font-size:var(--fs-11)}#t-pos .m-sh .w{display:none}#t-pos .m-sh .x{display:inline}}
 @media (max-width:440px){#m-k .mk-yr em i{display:none}#m-k .mk-yr em::after{content:attr(data-s)}
@@ -1100,7 +1099,7 @@ tr.grp-row td{font-size:var(--fs-13);font-weight:500;letter-spacing:0;text-trans
 .fp-lg{display:flex;justify-content:center;gap:12px;font-size:var(--fs-11);color:var(--ink3);margin:0}
 .fp-lg i{display:inline-block;width:14px;height:9px;border-radius:var(--r-2);margin-right:6px;vertical-align:-1px}
 .fp-lg i.c{background:var(--accent)}.fp-lg i.a{background:var(--acc-pd)}
-@container ficha (max-width:1004px){.fp-h{grid-template-columns:minmax(0,1fr)}.fp-id{padding-right:0}.fp-cards{grid-template-columns:minmax(0,1fr)}.fpp .fp-c{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,34%);grid-template-rows:auto 1fr;column-gap:24px}.fpp .fp-ch{grid-column:1/-1}.fpp .fp-v{grid-column:1;grid-row:2}.fpp .fp-c:not(:has(.fp-f)) .fp-v{grid-column:1/-1}.fpp .fp-f{grid-column:2;grid-row:2;align-self:center;margin:0;padding:0 0 0 20px;border-top:0;border-left:1px solid var(--line);grid-template-columns:minmax(0,1fr);grid-template-rows:none;}.fpp .fp-f>div{grid-row:auto;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:8px;row-gap:1px;align-items:baseline;justify-items:stretch;text-align:left}.fpp .fp-f span{grid-column:1;grid-row:1}.fpp .fp-f b{grid-column:2;grid-row:1;justify-self:end;align-self:baseline}.fpp .fp-f small{grid-column:2;grid-row:2;text-align:right}.fpp .fp-f small:empty{display:none}}
+@container ficha (max-width:1004px){.fp-h{grid-template-columns:minmax(0,1fr)}.fp-id{padding-right:0}.fp-cards{grid-template-columns:minmax(0,1fr)}.fpp .fp-c{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,34%);grid-template-rows:auto 1fr;column-gap:24px}.fpp .fp-ch{grid-column:1/-1}.fpp .fp-v{grid-column:1;grid-row:2}.fpp .fp-c:not(:has(.fp-f)) .fp-v{grid-column:1/-1}.fpp .fp-f{grid-column:2;grid-row:2;align-self:stretch;align-content:start;margin:0;padding:0 0 0 20px;border-top:0;border-left:1px solid var(--line);grid-template-columns:minmax(0,1fr);grid-template-rows:none;}.fpp .fp-f>div{grid-row:auto;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:8px;row-gap:0;align-items:baseline;justify-items:stretch;text-align:left}.fpp .fp-f span{grid-column:1;grid-row:1}.fpp .fp-f b{grid-column:2;grid-row:1;justify-self:end;align-self:baseline}.fpp .fp-f small{grid-column:2;grid-row:2;text-align:right}.fpp .fp-f small:empty{display:none}}
 @container ficha (max-width:620px){.ficha.fpx{padding:12px 16px 16px}.fp-m{grid-auto-flow:row;grid-template-rows:none;}.fp-id{gap:12px}.fp-id .lgb.xl{width:48px;height:28px}.fp-b{grid-row:auto;}.fp-b:nth-child(n+3){grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;}.fp-b:nth-child(n+3) .fp-k{grid-column:1;grid-row:1}.fp-b:nth-child(n+3) b{grid-column:2;grid-row:1;}.fp-b:nth-child(n+3) small{grid-column:1/-1;grid-row:2}.fp-b:nth-child(n+3) small:empty{display:none}.fpp .fp-c{display:flex}.fpp .fp-f{margin:12px 0 0;align-self:stretch;padding:12px 0 0;border-left:0;border-top:1px solid var(--line)}}
 /* ===== Ficha de empresa (Universo): el mismo sistema que la de posición ===== */
 .fp-in{margin-top:2px;font-size:var(--fs-13);color:var(--ink3)}
@@ -1408,7 +1407,7 @@ html{-webkit-tap-highlight-color:transparent;scrollbar-gutter:stable;background:
 .fp-dec>.t{margin-top:0}
 .fp-dec .l{font-size:var(--fs-12)}.fp-dec .l.t{color:var(--ink)}
 .fp-cards{gap:16px}
-.fpp .fp-f{row-gap:0}.fpp .fp-f>div{min-height:28px;align-content:center}
+.fpp .fp-f{row-gap:0}.fpp .fp-f>div{min-height:28px;align-content:center}.fpp .fp-f>div>small{margin-top:1px}
 /* 33 · rejillas de cifras: cada casilla ocupa toda la altura de su fila, así los divisores van de arriba abajo */
 .fp-m>.fp-b,.fp-m.fp-vm>.fp-b.fp-b{align-self:stretch}
 /* las cifras de la ficha alineadas a la izquierda, como el resto de bloques de cifras (la primera columna, a ras del borde) */
@@ -1618,6 +1617,7 @@ body:has(#sheet:not([hidden])) .sheet-bg{display:block}
 /* Tu posición: la columna de las cifras con ancho fijo (las barras no cambian de una empresa a otra) y la fila de reserva invisible */
 .fp-dec{grid-template-columns:auto minmax(0,1fr) 64px}.fp-dec>.v{text-align:right}
 .fp-dec>.ph{visibility:hidden}
+@container ficha (max-width:620px){.fp-dec>.ph{display:none}}
 /* Ficha › Dividendos: fecha larga en la ficha ancha y corta en la estrecha */
 /* Revisión · 6: dos niveles de título: el de bloque (mayúsculas espaciadas, como «DIVIDENDOS») y el subtítulo; también en las tarjetas de la ficha */
 #sheet .fp-ch h4,#sheet .fp-pc h4{font-size:var(--fs-11);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink);line-height:1.3;line-height:round(nearest,calc(1.3*1em - .01px),1px);--lhx:1.3;--lhp:initial}
@@ -1819,6 +1819,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 .hy-leg>span{display:inline-flex;align-items:center;gap:6px}
 .hy-leg i{width:10px;height:10px;margin:0;border-radius:var(--r-2);background:var(--lv0)}
 .hy-leg i.up{background:var(--lp3)}.hy-leg i.dn{background:var(--ln3)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hy-leg i.fl{background:#4F4E4A}}:root[data-theme="dark"] .hy-leg i.fl{background:#4F4E4A}
 .hy-leg b{font-weight:500;color:var(--ink)}
 
 /* ===== Jerarquía de franjas: Resumen es la portada (verde casi negro); Análisis, Movimientos, Universo y Actualidad llevan la misma franja en arena, más compacta ===== */
@@ -2975,7 +2976,7 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   .mg-b{display:none}
   #t-p tbody tr.pr,#t-p tbody tr.pr.inpf{grid-template-rows:20px minmax(20px,auto) auto}
   #t-p td.r-vd{grid-column:2;grid-row:3;font-size:var(--fs-12);color:var(--ink3)}
-  #t-p td.r-vd:empty{display:none}
+  #t-p td.r-vd:empty,#t-p td.r-vd.dash{display:none}#t-p .sdg{display:none}
   .vd-k{display:inline}
 }
 /* Universo, pantallas anchas: cada cabecera, centrada sobre sus cifras; las cifras, a la derecha entre sí */
@@ -3609,7 +3610,7 @@ function drawEvo(){
   const paso=soloAnos?12:[1,2,3,6,12,24].find(p=>cuenta(p)<=(innerWidth<=700?4:7))||24;
   Object.assign(o.scales.x,{type:"linear",min:x0,max:x1,afterBuildTicks:s=>{ const t=[]; for(let v=Math.ceil(x0/paso)*paso;v<=x1;v+=paso) t.push({value:v}); s.ticks=t; }});
   o.scales.x.ticks.callback=v=>soloAnos?String(deMes(v).getFullYear()):mesAno(deMes(v));
-  o.plugins.tooltip.callbacks = { title:i=>{ const t=dia(rows[i[0].dataIndex].d); return t.getDate()===1?mesAno(t):fdate(t,{day:"numeric",month:"short",year:"numeric"}); },
+  o.plugins.tooltip.callbacks = { title:i=>{ const t=dia(rows[i[0].dataIndex].d); return t.getDate()===1?mesAno(t):fechaCorta(t); },
     label:c=>" "+c.dataset.label+": "+eur(c.parsed.y), afterBody:i=>{ const r=rows[i[0].dataIndex]; return ["", "Resultado: "+seur(r.v-r.a)]; } };
   o.plugins.tooltip.itemSort=(a,b)=>a.datasetIndex-b.datasetIndex;
   const last=rows.map((_,i)=>i===rows.length-1?3.5:0);
@@ -3646,7 +3647,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v343";   // la versión publicada, en el pie
+const VER="v344";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -3829,18 +3830,18 @@ function renderPositions(){
   const rowOf=p=>{ const open=!!sheet&&sheet.k==="pos"&&sheet.t===p.ticker;
     return `<tr class="pr${open?" open":""}" data-t="${esc(p.ticker)}" tabindex="0" aria-expanded="${open}">
       <td class="r-main" data-l="Empresa"><div class="co">${logoBare(p.name,p.ticker)}<b title="${esc(p.ticker)}">${esc(p.name)}</b></div></td>
-      <td class="num hide-s hide-t" data-l="Cotización">${p.isOption?"":p.atCost?"":precioVisible(p.price,p.cur)}</td>
+      <td class="num hide-s hide-t" data-l="Cotización">${p.isOption?`<span class="mute">a coste</span>`:p.atCost?"":precioVisible(p.price,p.cur)}</td>
       <td class="num hide-s hide-m" data-l="Pr. medio">${p.isOption?money(p.avg,p.cur):p.atCost?"":money(p.avg,p.cur)}</td>
       <td class="num hide-s hide-m" data-l="Acciones">${!p.shares?"":`<span class="pv pvn">${nf(0).format(p.shares)}</span>`}</td>
-      <td class="num r-meta" data-l="Hoy">${p.isOption?"":`<span class="tpill ${p.today?cls(p.today):""}">${p.atCost?"":isNum(p.today)?pct(p.today,1,true):""}</span>`}<span class="m-sh">${`<span class="pv pvn">${shares(p.shares)}</span><span class="w"> ${p.shares===1?"acción":"acciones"} a</span>`}<span class="x"> ×</span> ${money(p.avg,p.cur)}</span></td>
-      <td class="num hide-s hide-m ${p.todayEur?"":"mute"}" data-l="Hoy €">${p.isOption?"":isNum(p.todayEur)?seur(p.todayEur):""}</td>
+      <td class="num r-meta" data-l="Hoy">${p.isOption?`<span class="mute sdg">—</span>`:`<span class="tpill ${p.today?cls(p.today):""}">${p.atCost?"":isNum(p.today)?pct(p.today,1,true):""}</span>`}<span class="m-sh">${`<span class="pv pvn">${shares(p.shares)}</span><span class="w"> ${p.shares===1?"acción":"acciones"} a</span>`}<span class="x"> ×</span> ${money(p.avg,p.cur)}</span></td>
+      <td class="num hide-s hide-m ${p.todayEur?"":"mute"}" data-l="Hoy €">${p.isOption?`<span class="mute">—</span>`:isNum(p.todayEur)?seur(p.todayEur):""}</td>
       <td class="num r-amt" data-l="Valor"><span class="m-tot">${eur(p.value)}</span><span class="m-hoy">${p.isOption||p.atCost?`<span class="mute">a coste</span>`:precioVisible(p.price,p.cur)}</span></td>
       <td class="num hide-s" data-l="Peso"><span class="wb2"><span>${pct(p.weight)}</span><i><b style="width:${((p.weight||0)/maxW*100).toFixed(1)}%"></b></i></span></td>
-      <td class="num r-sub" data-l="Rentab."><span class="m-tot">${p.isOption?"":p.atCost||!isNum(p.totalPct)?"":`<span class="rlv ${retLevel(p.totalPct)}">${pct(p.totalPct,1,true)}</span>`}</span><span class="m-hoy">${p.isOption||p.atCost||!isNum(p.today)?"":`<span class="m-var ${Math.abs(p.today)<0.0005?"mute":cls(p.today)}">${seur(p.todayEur)} (${pct(p.today,1,true)})</span>`}</span></td>
-      <td class="num hide-s hide-n" data-l="Resultado">${p.isOption?"":p.atCost?"":seur(p.totalEur)}</td>
-      <td class="num hide-s" data-l="TIR" title="${p.years<0.5?"Menos de 6 meses en cartera: no se anualiza":"TIR anualizada de la posición"}">${p.isOption?"":!isNum(p.irr)?`<span class="mute">—</span>`:pct(p.irr,1)}</td>
-      <td class="num hide-s hide-t" data-l="Años">${p.isOption?"":!isNum(p.years)?"":nf(1).format(Math.max(0.1,Math.floor(p.years*10)/10))}</td>
-      <td class="num hide-s" data-l="Rent. div.">${p.isOption?"":p.yov?pct(p.yov,2):`<span class="mute">—</span>`}</td></tr>`; };
+      <td class="num r-sub" data-l="Rentab."><span class="m-tot">${p.isOption?`<span class="mute sdg">—</span>`:p.atCost||!isNum(p.totalPct)?"":`<span class="rlv ${retLevel(p.totalPct)}">${pct(p.totalPct,1,true)}</span>`}</span><span class="m-hoy">${p.isOption||p.atCost||!isNum(p.today)?"":`<span class="m-var ${Math.abs(p.today)<0.0005?"mute":cls(p.today)}">${seur(p.todayEur)} (${pct(p.today,1,true)})</span>`}</span></td>
+      <td class="num hide-s hide-n" data-l="Resultado">${p.isOption?`<span class="mute">—</span>`:p.atCost?"":seur(p.totalEur)}</td>
+      <td class="num hide-s" data-l="TIR" title="${p.years<0.5?"Menos de 6 meses en cartera: no se anualiza":"TIR anualizada de la posición"}">${p.isOption?`<span class="mute">—</span>`:!isNum(p.irr)?`<span class="mute">—</span>`:pct(p.irr,1)}</td>
+      <td class="num hide-s hide-t" data-l="Años">${p.isOption?`<span class="mute">—</span>`:!isNum(p.years)?"":nf(1).format(Math.max(0.1,Math.floor(p.years*10)/10))}</td>
+      <td class="num hide-s" data-l="Rent. div.">${p.isOption?`<span class="mute">—</span>`:p.yov?pct(p.yov,2):`<span class="mute">—</span>`}</td></tr>`; };
   const st=ps.filter(p=>!p.isOption), ot=ps.filter(p=>p.isOption);
   $("pos-body").innerHTML = st.map(rowOf).join("") + (ot.length?`<tr class="grp-row"><td colspan="13">Otros instrumentos · opciones</td></tr>`+ot.map(rowOf).join(""):"");
 }
@@ -3851,12 +3852,12 @@ function render(d){
   const v=k.value||0;
   $("h-val").innerHTML = `${nf(0).format(Math.round(v))} €`;
   $("h-sub").innerHTML=`Aportado <b>${eur(k.aport)}</b>`;   // la liquidez está en el cuadre y las empresas, en Posiciones
-  { const a=(d.stats.find(x=>x.l==="Antigüedad media")||{}).v; const np=d.pos.length, h=`<b>${nf(0).format(np)}</b> ${np===1?"posición":"posiciones"}${isNum(a)?`<span class="pa-d"> · </span>antigüedad<span class="pa-m"> media</span> <b>${nf(1).format(a)} años</b>`:""}`; $("pos-age").innerHTML=h; $("pos-age-m").innerHTML=h; }   // cuántas hay (las filas de la tabla, opciones incluidas) y su antigüedad
+  { const a=(d.stats.find(x=>x.l==="Antigüedad media")||{}).v; const np=d.pos.filter(p=>!p.isOption).length, no=d.pos.length-np, h=`<b>${nf(0).format(np)}</b> ${np===1?"posición":"posiciones"}${no?` y <b>${nf(0).format(no)}</b> ${no===1?"opción":"opciones"}`:""}${isNum(a)?`<span class="pa-d"> · </span>antigüedad<span class="pa-m"> media</span> <b>${nf(1).format(a)} años</b>`:""}`; $("pos-age").innerHTML=h; $("pos-age-m").innerHTML=h; }   // cuántas hay (las acciones, como en el mapa, y aparte las opciones) y su antigüedad
   $("hk-ret").className="c2 r2 bv num "+cls(k.ret); $("hk-ret").textContent=seur(k.ret); $("hk-ret-s").innerHTML=k.retSub;
   $("hm-val").innerHTML=$("h-val").innerHTML;   // móvil: el valor y, debajo, el total con su porcentaje en pastilla
   { const rp=(String(k.retSub||"").replace(/<[^>]*>/g,"").match(/[+−-]?\d[\d.,]*\s?%/)||[""])[0], rc=cls(k.ret);
     $("hm-tot").innerHTML=`<b class="${rc}">${seur(k.ret)}</b>${rp?`<span class="hm-pl ${rc}">${rp}</span>`:""}`; }
-  $("hk-tir").textContent=pct(k.tir,1); $("hk-tir-s").innerHTML=isNum(k.tir)&&isNum(k.vsIdx)?`MSCI World: <b>${pct(k.tir-k.vsIdx,1)}</b>`:"";
+  $("hk-tir").textContent=pct(k.tir,1); $("hk-tir-s").innerHTML=isNum(k.tir)&&isNum(k.vsIdx)?`MSCI World <b>${pct(k.tir-k.vsIdx,1)}</b>`:"";
   // la cuarta casilla es la del día (renderHoy); los dividendos del año siguen en la franja de Análisis
 
   renderHoy(); renderTreemap();
@@ -4386,7 +4387,7 @@ const PCOLS=[
   {k:"req",l:"Exigida",hs:1,g:"est",f:r=>r.req>0?pct(r.req):""},
   {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>`<span class="mg-c">${margenBarra(r.margin)}<span class="mg-n ${clsM(r.margin)}">${puntosPct(r.margin)}</span></span>`},
   {k:"vd",l:"Valorada",r:"vd",g:"est",sv:r=>{ const d=valDate(r); return d?d.getTime():null; },
-   f:r=>{ const d=valDate(r); return d?`<span class="vd-k">valorada </span><span class="${stale(r)?"vd-old":""}"${stale(r)?' title="Por revisar: valorada hace más de un año"':""}>${fdate(d,{day:"numeric",month:"short",year:"numeric"})}</span>`:""; }} ];
+   f:r=>{ const d=valDate(r); return d?`<span class="vd-k">valorada </span><span class="${stale(r)?"vd-old":""}"${stale(r)?' title="Por revisar: valorada hace más de un año"':""}>${sdate(d)}</span>`:""; }} ];
 const etiquetaDe=x=>typeof x.l==="function"?x.l():x.l;
 // pantallas anchas: los anchos de la lista, medidos con todas las empresas. Cada columna de cifras mide lo que su cifra mayor
 // más un hueco, el mismo entre todas y tan grande como quepa (hasta 48 px); lo que sobra, para Empresa e Industria
@@ -4691,7 +4692,7 @@ function renderPreTable(){
   if([...$("p-sort").options].some(o=>o.value===k)) $("p-sort").value=k;
   const head=w=>"<tr>"+PCOLS.map((x,i)=>`<th data-k="${x.k}" class="${x.left?"l ":x.ctr?"c ":""}${x.hs?"hide-s ":""}${x.g==="est"?"est ":""}${x.sep?"gsep":""}"${w&&w[i]?` style="width:${w[i].toFixed(2)}px"`:""}${x.k===k?` aria-sort="${d>0?"ascending":"descending"}"`:""}>${x.left||x.ctr?etiquetaDe(x):`<span class="thl">${etiquetaDe(x)}</span>`}</th>`).join("")+"</tr>";
   const cellP=(x,r)=>{ const h=x.f(r), dash=String(h).replace(/<[^>]*>/g,"").trim()==="";
-    return `<td class="${x.left?"l ":x.ctr?"c ":"num "}${x.nil&&x.nil(r)?"nil ":""}${x.hs?"hide-s ":""}${x.g==="est"?"est ":""}${x.sep?"gsep ":""}${x.mx?"mx ":""}${dash?"dash ":""}r-${x.r||"meta"}" data-k="${x.k}" data-l="${etiquetaDe(x)}">${!x.left&&!x.ctr&&!dash?`<span class="cifb"><span>${h}</span></span>`:h}</td>`; };
+    return `<td class="${x.left?"l ":x.ctr?"c ":"num "}${x.nil&&x.nil(r)?"nil ":""}${x.hs?"hide-s ":""}${x.g==="est"?"est ":""}${x.sep?"gsep ":""}${x.mx?"mx ":""}${dash?"dash ":""}r-${x.r||"meta"}" data-k="${x.k}" data-l="${etiquetaDe(x)}">${!x.left&&!x.ctr?`<span class="cifb"><span>${dash?`<span class="sdg">—</span>`:h}</span></span>`:h}</td>`; };
   const rowP=r=>`<tr class="pr${r.inPf?" inpf":""}" data-t="${esc(r.ticker)}" tabindex="0" aria-expanded="false">`+PCOLS.map(x=>cellP(x,r)).join("")+"</tr>";
   // las filas se crean una vez por lectura de la hoja; buscar, filtrar u ordenar solo las muestra u oculta y las reordena
   const wide=innerWidth>700, body=$("p-body");
