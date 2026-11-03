@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-87ketEG/Jp9dt8OAk185uj4cxFoOUPWWOIeJmD10RrA=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2994,6 +2995,8 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
 .ind-f{display:flex;gap:4px}
 .ind-f>.ih{flex:1 1 0;min-width:0}
 @media (max-width:700px){ .ih{padding-left:4px;padding-right:4px} .ih span{font-size:var(--fs-11)} }
+/* SEG-06 · en modo privado, los carteles enseñan su versión con los importes tapados */
+.priv [data-tip-pv]::after{content:attr(data-tip-pv)}
 </style>
 
 <div class="wrap">
@@ -3643,7 +3646,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v342";   // la versión publicada, en el pie
+const VER="v343";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0;
 const trayCampos=[ {k:"saving",l:"Ahorro anual",min:0,max:36000,step:500,f:v=>eur(v)},
@@ -4799,8 +4802,18 @@ let ACT=null;   // {ix: el índice, emp: {id: ficha}}
 const INF_ID="1gCkYHkHlwhz-nICuLjBBR5-3O1hm7hFh";   // Inversiones › Informes
 let actSt="", actAt=0, actBusy=false, actIds={}, actIntentadas={}, actFirma=""; const actPendientes={};
 let actAbierta=null, actNueva=null, actPestana=null;   // la empresa abierta (null: la portada), una edición nueva que espera a que la pidas y la pestaña preferida («res» o «nws»)
+// SEG-01 y SEG-07 · la edición llega de fuera (Drive o tu script) y se guarda en este dispositivo: se comprueba antes de usarla.
+// Cada empresa necesita un id sencillo (letras, cifras, guion y guion bajo: acaba en la dirección y en selectores) y los recuentos
+// han de ser números (se pintan tal cual); lo que no cumpla se descarta
+const actNum=v=>{ const x=Number(v); return Number.isFinite(x)&&x>=0?Math.floor(x):0; };
+const actIdOk=id=>typeof id==="string"&&/^[a-z0-9_-]{1,40}$/i.test(id);
+const actSanea=x=>{ if(!x||typeof x!=="object"||!x.ix||typeof x.ix!=="object"||!Array.isArray(x.ix.empresas)) return null;
+  const empresas=x.ix.empresas.filter(e=>e&&typeof e==="object"&&actIdOk(e.id)).map(e=>{ const z=e.noticias_por_nivel;
+    return {...e,num_noticias:actNum(e.num_noticias),noticias_por_nivel:z&&typeof z==="object"?{empresa:actNum(z.empresa),sector:actNum(z.sector),segundo_grado:actNum(z.segundo_grado??z["segundo grado"])}:null}; });
+  const emp={}; Object.entries(x.emp&&typeof x.emp==="object"?x.emp:{}).forEach(([k,v])=>{ if(actIdOk(k)&&v&&typeof v==="object") emp[k]=v; });
+  return {...x,ix:{...x.ix,empresas},emp}; };
 // la última edición se guarda en este dispositivo: al abrir se ve al momento y, por detrás, se comprueba si ha llegado otra
-try{ const c=JSON.parse(localStorage.getItem("actEd")||"null"); if(c&&c.ix&&c.emp) ACT=c; }catch{}
+try{ const c=actSanea(JSON.parse(localStorage.getItem("actEd")||"null")); if(c) ACT=c; }catch{}
 let actGuardaT=0; const actGuarda=()=>{ clearTimeout(actGuardaT); actGuardaT=setTimeout(()=>{ try{ if(ACT) localStorage.setItem("actEd",JSON.stringify(ACT)); }catch{} },1500); };
 const b64txt=b=>new TextDecoder().decode(Uint8Array.from(atob(b),c=>c.charCodeAt(0)));
 const actContenido=r=>{ let p=r&&r.payload; if(typeof p==="string"){ try{ p=JSON.parse(p); }catch{} } return p||{}; };
@@ -4824,6 +4837,7 @@ async function loadAct(force){
       if(!j||!j.ok) throw {code:"rem_error"};
       if(!("ix" in j)){ ACT=null; actSt="script"; return; }   // tu script todavía no entrega los informes
       got=j.ix?{ix:j.ix,emp:j.emp||{}}:null; }
+    if(got) got=actSanea(got);
     const same=got&&ACT&&ACT.ix.semana===got.ix.semana&&ACT.ix.generado===got.ix.generado;
     if(same) got.emp={...ACT.emp,...got.emp};   // la misma edición: lo ya guardado sigue valiendo
     if(force) actIntentadas={};
@@ -4895,7 +4909,7 @@ const actPublicacion=e=>{ const p=actTexto(e.publicacion||""), m=p.match(/^(.*?)
 // la primera frase de un texto (titular de un informe mientras la tarea no escriba uno)
 const actPrimeraFrase=s=>{ const t=actTexto(s).replace(/<[^>]+>/g,""); for(let i=0;i<t.length;i++){ if(t[i]==="."&&(i===t.length-1||t[i+1]===" ")){ const w=t.slice(0,i).split(" ").pop(); if(!/^[A-ZÁÉÍÓÚ]{1,3}$/.test(w)) return t.slice(0,i+1); } } return t; };
 const actNiveles=e=>{ const f=ACT.emp[e.id]; if(f&&f.noticias){ const c={}; f.noticias.forEach(x=>c[x.nivel]=(c[x.nivel]||0)+1); return c; }
-  const z=e.noticias_por_nivel; return z?{empresa:z.empresa||0,sector:z.sector||0,"segundo grado":z.segundo_grado||z["segundo grado"]||0}:null; };
+  const z=e.noticias_por_nivel; return z?{empresa:actNum(z.empresa),sector:actNum(z.sector),"segundo grado":actNum(z.segundo_grado??z["segundo grado"])}:null; };
 // todas tus empresas: las de tu cartera (sin las opciones) y las que traiga la edición, cada una una vez, por nombre
 function actTodas(){ const E=ACT.ix.empresas, out=new Map();
   E.forEach(e=>out.set(e.ticker,{e,n:actCorto(e),tk:e.ticker}));
@@ -5155,7 +5169,7 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
       +R.map(e=>{ const p=actPublicacion(e), hl=actTexto(e.titular_portada||""), sm=e.titular?actPrimeraFrase(e.titular):"", meta=[p.cuando,hl?p.que:""].filter(Boolean).map(rvQ).join(" · ");
         return `<button type="button" class="rv-ri" data-art="${esc(e.id)}" data-tab="res">${rvRow(e,actCorto(e),e.ticker,esc(meta),"span")}<span class="rv-h">${esc(hl||p.que||"Resultados")}</span>${sm?`<span class="rv-s">${esc(sm)}</span>`:""}</button>`; }).join("")+`</div></section>`;
     h+=`<section class="panel rv-p" id="a-idx"><h2 class="st rv-st"><span>Noticias</span><small>${A.length} ${A.length===1?"empresa":"empresas"}</small></h2><div class="rv-nl">`
-      +A.map(({e,n,tk})=>{ const c=e?actNiveles(e):null, tot=c?Object.values(c).reduce((a,b)=>a+b,0):e?(e.num_noticias||0):0, sub=tot?(tot===1?"1 noticia":`${tot} noticias`):"Sin noticias";
+      +A.map(({e,n,tk})=>{ const c=e?actNiveles(e):null, tot=c?Object.values(c).reduce((a,b)=>a+b,0):e?actNum(e.num_noticias):0, sub=tot?(tot===1?"1 noticia":`${tot} noticias`):"Sin noticias";
         return e&&actConPagina(e)?rvRow(e,n,tk,sub,"button",` type="button" data-art="${esc(e.id)}" data-tab="${actConNoticias(e)?"nws":"res"}"`):rvRow(e,n,tk,sub); }).join("")+`</div></section>`;
     const cal=actAgenda(ix); if(cal) h+=`<section class="panel rv-p rv-cal">${cal}</section>`;
     return h; };
@@ -5201,7 +5215,7 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
       +(n.por_que_te_importa?`<div class="rv-imp"><b>Por qué te importa</b>${rvP(pars(n.por_que_te_importa))}</div>`:"")+(actUrl(n.url)?`<a class="rv-lk" href="${esc(actUrl(n.url))}" target="_blank" rel="noopener noreferrer">Leer en ${esc(actTexto(n.fuente)||"la fuente")}${actIconos.nx}</a>`:"")+`</article>`).join(""); };
   const rvRdb=(id,rd)=>`<button type="button" class="rv-rdb" data-ard="${esc(id)}" aria-pressed="${rd}">${rd?`${actIconos.chk}Leída`:`${actIconos.cir}Marcar como leída`}</button>`;
   actArticulo=function(e){ const f=ACT.emp[e.id], k=actTipo(e), L=actNavegables(), i=L.indexOf(e), pv=L[i-1], nx=L[i+1], v=actVariacion(e), x=`a-${esc(e.id)}`, p=actPublicacion(e), rd=actEsLeida(e.id);
-    const nN=f?(f.noticias||[]).length:(e.num_noticias||0), T=(k?[["res",k==="res"?"Resultados":"La noticia, a fondo"]]:[]).concat(nN?[["nws","Noticias",nN]]:[]);
+    const nN=f?(f.noticias||[]).length:actNum(e.num_noticias), T=(k?[["res",k==="res"?"Resultados":"La noticia, a fondo"]]:[]).concat(nN?[["nws","Noticias",nN]]:[]);
     const tab=T.some(z=>z[0]===actPestana)?actPestana:T.length?T[0][0]:"nws";
     const tp=(o,l,d)=>`<button type="button"${o?` data-art="${esc(o.id)}"`:" disabled"} aria-label="${l}">${d<0?actIconos.pv:""}<span>${l}</span>${d>0?actIconos.nx:""}</button>`;
     let h=`<nav class="rv-top" aria-label="Actualidad"><button type="button" class="rv-back" data-art="">${actIconos.pv}<span>Actualidad</span></button><span class="pa-pn">${tp(pv,"Anterior",-1)}${tp(nx,"Siguiente",1)}</span></nav>`
@@ -5380,7 +5394,7 @@ document.addEventListener("click",e=>{ const a=e.target.closest("#nav a,#mtabs a
   const same=!!a.closest("#nav")&&a.dataset.v===view; navega(a.dataset.v||a.dataset.t||a.dataset.go,true);
   if(same) window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"}); });   // la pestaña en la que ya estás: arriba del todo
 addEventListener("hashchange",()=>{ const c=remCfg(location.hash);
-  if(c&&!c.bad&&!(REM&&REM.d===c.d&&REM.k===c.k)){ try{ localStorage.setItem("cartera-d",c.d); localStorage.setItem("cartera-k",c.k); }catch{} location.reload(); return; }   // un enlace personal nuevo: se guarda y se vuelve a abrir
+  if(c&&!c.bad&&!(REM&&REM.d===c.d&&REM.k===c.k)){ location.reload(); return; }   // un enlace personal nuevo: se vuelve a abrir y allí se comprueba (y se pregunta si cambia el script)
   navega(location.hash.slice(1)); });
 // modo privado: se recuerda en este dispositivo. Cada importe visible se envuelve en <span class="pv"> (también lo que se pinta
 // después, mientras está activo) y el CSS lo emborrona; al quitarlo, las envolturas se quedan pero ya no se nota nada
@@ -5394,9 +5408,15 @@ addEventListener("hashchange",()=>{ const c=remCfg(location.hash);
     t.replace(AM,(m,off)=>{ if(off>last) f.append(t.slice(last,off)); const sp=document.createElement("span"); sp.className="pv"; sp.textContent=m; f.append(sp); last=off+m.length; return m; }); if(last<t.length) f.append(t.slice(last)); n.replaceWith(f); };
   const maskIn=r=>{ if(r.nodeType===3){ if(r.parentNode&&!skip(r.parentElement)) wrap(r); return; } if(r.nodeType!==1||!r.isConnected||skip(r)) return;
     const w=document.createTreeWalker(r,NodeFilter.SHOW_TEXT), L=[]; let n; while(n=w.nextNode()){ if(skip(n.parentElement)) continue; AM.lastIndex=0; if(AM.test(n.textContent)) L.push(n); } L.forEach(wrap); };
-  const mo=new MutationObserver(R2=>{ if(!R.classList.contains("priv")) return; for(const x of R2){ if(x.type==="characterData") maskIn(x.target); else x.addedNodes.forEach(maskIn); } });
+  // SEG-06 · los carteles (data-tip, title y aria-label) llevan importes y acciones: en modo privado se tapan con puntos; al quitarlo vuelven
+  const tapa=t=>{ AM.lastIndex=0; return t.replace(AM,"••••"); }, ATR=[["title","pvTitle"],["aria-label","pvAria"]];
+  const maskAtr=r=>{ if(!r||r.nodeType!==1) return; [r,...r.querySelectorAll("[data-tip],[title],[aria-label]")].forEach(e=>{
+    const tip=e.getAttribute("data-tip"); if(tip!=null){ AM.lastIndex=0; if(AM.test(tip)) e.setAttribute("data-tip-pv",tapa(tip)); else e.removeAttribute("data-tip-pv"); }
+    ATR.forEach(([a,k])=>{ const v=e.getAttribute(a); if(v==null||e.dataset[k]!=null) return; AM.lastIndex=0; if(AM.test(v)){ e.dataset[k]=v; e.setAttribute(a,tapa(v)); } }); }); };
+  const unmaskAtr=()=>document.querySelectorAll("[data-pv-title],[data-pv-aria]").forEach(e=>ATR.forEach(([a,k])=>{ if(e.dataset[k]!=null){ e.setAttribute(a,e.dataset[k]); delete e.dataset[k]; } }));
+  const mo=new MutationObserver(R2=>{ if(!R.classList.contains("priv")) return; for(const x of R2){ if(x.type==="characterData") maskIn(x.target); else if(x.type==="attributes") maskAtr(x.target); else x.addedNodes.forEach(n=>{ maskIn(n); maskAtr(n); }); } });
   const set=on=>{ R.classList.toggle("priv",on); btn.setAttribute("aria-pressed",on); btn.title=on?"Mostrar importes":"Ocultar importes";
-    if(on){ mask(); mo.observe(document.body,{childList:true,subtree:true,characterData:true}); } else mo.disconnect(); };
+    if(on){ mask(); maskAtr(document.body); mo.observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:["data-tip","title","aria-label"]}); } else { mo.disconnect(); unmaskAtr(); } };
   let on0=false; try{ on0=localStorage.getItem("priv")==="1"; }catch{} set(on0);
   btn.addEventListener("click",()=>{ const on=!R.classList.contains("priv"); try{ localStorage.setItem("priv",on?"1":"0"); }catch{} set(on); }); }
 
@@ -5428,7 +5448,7 @@ function lastSession(now=new Date()){ const d=new Date(now), wd=d.getDay(), back
     close();
     if(b.id==="mm-priv") $("priv").click(); else if(b.id==="mm-find") $("kbtn").click();
     else if(b.id==="mm-ref") $("refresh").click();
-    else if(b.id==="mm-key"&&confirm("¿Quitar de este dispositivo el ID y la clave guardados? Para volver a ver tus datos tendrás que pegarlos otra vez.")){ try{ ["cartera-d","cartera-k","cartera-ok"].forEach(k=>localStorage.removeItem(k)); }catch{} location.replace(location.pathname+location.search); } });
+    else if(b.id==="mm-key"&&confirm("¿Quitar de este dispositivo el ID, la clave y la copia de tus datos? Para volver a verlos tendrás que pegar el ID y la clave otra vez.")){ try{ ["cartera-d","cartera-k"].forEach(k=>localStorage.removeItem(k)); }catch{} olvidaDatos(); location.replace(location.pathname+location.search); } });
   document.addEventListener("click",e=>{ if(!M.hidden&&!e.target.closest("#more-m,#more")){ e.preventDefault(); e.stopPropagation(); close(); } },true);   // tocar fuera solo cierra el menú
   document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!M.hidden) close(); }); }
 function setStatus(kind,text){ $("dot").className="dot "+kind; $("stat").textContent=text; $("refresh").classList.toggle("spin",kind==="busy");
@@ -5452,17 +5472,23 @@ let mcp=null, busy=false, retried=false;
 // dónde vive la web: en Claude lee la hoja con el conector de Google Drive; en tu Google, con el script de tu hoja (getXlsx)
 const GAS = typeof google!=="undefined" && google.script && google.script.run ? google.script.run : null;
 // en tu web de GitHub: los datos los entrega tu script de Google, solo con tu clave. La dirección del script (d) y la clave (k)
-// llegan una vez en tu enlace personal (#d=…&k=…) y se guardan en este dispositivo; en Safari del iPhone el enlace se deja tal cual
-// para que «Añadir a pantalla de inicio» se lo lleve
+// llegan una vez en tu enlace personal (#d=…&k=…) y se guardan en este dispositivo. SEG-05: el enlace se borra siempre de la barra,
+// también en el iPhone (en la app de la pantalla de inicio, ID y clave se pegan una vez en su formulario)
 // el ID de tu script empieza por AKfy; si en el enlace va la dirección /exec entera, se saca el ID de ahí. Con la clave pero sin un ID que valga: {bad:true}
 const remId = s => (String(s||"").match(/AKfy[\w-]{20,}/)||[])[0]||null;
-const remCfg = s => { try{ const h=new URLSearchParams(String(s||"").replace(/^[^#]*#/,"")); const d=remId(h.get("d")), k=h.get("k"); return d&&k?{d,k}:k?{bad:true}:null; }catch{ return null; } };
+// SEG-07 · solo cuenta como enlace personal lo que empieza por d= o k= (una dirección de Actualidad con «&d=…» dentro no vale)
+const remCfg = s => { try{ const h0=String(s||"").replace(/^[^#]*#/,""); if(!/^(d|k)=/.test(h0)) return null; const h=new URLSearchParams(h0); const d=remId(h.get("d")), k=h.get("k"); return d&&k?{d,k}:k?{bad:true}:null; }catch{ return null; } };
 let remBad=false;   // el enlace (o lo guardado) trae la clave pero no un ID que valga
 // CO-13 · cada petición a tu script lleva la clave dentro (no en la dirección); el script la recibe en doPost
 function remPide(q,signal){ return fetch(`https://script.google.com/macros/s/${encodeURIComponent(REM.d)}/exec`,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(q?{k:REM.k,q}:{k:REM.k}),cache:"no-store",signal}); }
-const REM = (()=>{ let c=remCfg(location.hash); if(c&&!(/iPhone|iPad|iPod/.test(navigator.userAgent)&&!navigator.standalone)) history.replaceState(null,"",location.pathname+location.search);   // la clave no se queda en la barra de direcciones
+// SEG-02 y SEG-08 · lo que se guarda de tus datos en este dispositivo, aparte del ID y la clave: se borra al cambiar de script o al quitar la clave
+const olvidaDatos=()=>{ try{ ["cartera-ok","actEd","actLeidas","plan-aportacion","hoja-al"].forEach(k=>localStorage.removeItem(k)); }catch{} try{ indexedDB.deleteDatabase("cartera"); }catch{} ACT=null; };
+const REM = (()=>{ let c=remCfg(location.hash); if(c) history.replaceState(null,"",location.pathname+location.search);   // la clave no se queda en la barra de direcciones
   if(c&&c.bad){ remBad=true; c=null; }
-  try{ if(c){ localStorage.setItem("cartera-d",c.d); localStorage.setItem("cartera-k",c.k); }
+  try{ const d0=remId(localStorage.getItem("cartera-d"));
+    // SEG-02 · un enlace que cambia el script del que salen tus datos no se usa sin preguntar; si se acepta, se olvida lo del anterior
+    if(c&&d0&&d0!==c.d&&!confirm(`Este enlace cambia el script del que salen tus datos (el nuevo acaba en …${c.d.slice(-6)}; el que tienes guardado, en …${d0.slice(-6)}). Úsalo solo si lo has creado tú. ¿Lo cambio?`)) c=null;
+    if(c){ if(d0&&d0!==c.d) olvidaDatos(); localStorage.setItem("cartera-d",c.d); localStorage.setItem("cartera-k",c.k); }
     else { const d=localStorage.getItem("cartera-d"), k=localStorage.getItem("cartera-k"); if(remId(d)&&k){ c={d:remId(d),k}; remBad=false; } else if(d||k) remBad=true; } }catch{}   // un enlace sin ID no borra el que ya funciona
   return c; })();
 const canRead = () => !!(mcp||GAS||REM);
