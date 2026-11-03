@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-8jjQ7amt4Np/QWLE3caceDGwLYARa+jrNADIK4P6Rlo=' 'self' https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-pTCoydXxuS/scHGeaqPUaExcaPAsR9aUP1y2tzmUewM=' 'self' https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -595,7 +595,7 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 #s-ret .ag-h{font-size:var(--fs-13);font-weight:500;letter-spacing:0;text-transform:none;color:var(--ink2);border-bottom:0;padding-bottom:6px}
 #s-ret .ag-h b{font-weight:400}
 #s-ret .ag-h .ag-s{font-size:var(--fs-12);font-weight:400;color:var(--ink3)}   /* ANA-04 */
-#anat-l .ar .sh{margin-left:-4px}   /* ANA-04: «105,0 %» mide 47,8 px y la columna 46: la casilla crece 4 px hacia la izquierda (dentro del hueco de 12), sin mover nada */
+#anat-l .ar .sh{margin-left:-4px}   /* ANA-04: «110,0 %» mide 47,8 px y la columna 46: la casilla crece 4 px hacia la izquierda (dentro del hueco de 12), sin mover nada */
 @media (max-width:760.98px){#s-ret .anat-cols>div{padding:0;border-left:0}#s-ret .anat-cols>div+div{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}}
 
 .htip{position:fixed;z-index:var(--z-panel);pointer-events:none;background:var(--ink);color:var(--canvas);border-radius:var(--r-4);padding:6px 8px;font-size:var(--fs-12);line-height:1.4;line-height:round(nearest,calc(1.4*1em - .01px),1px);--lhx:1.4;--lhp:initial;flex-direction:column;white-space:nowrap;box-shadow:0 6px 20px var(--sombra-18)}
@@ -725,7 +725,7 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 .mvb .mk-yr{height:57px}
 /* tablas: Fecha y Empresa/Tipo siempre con el mismo ancho */
 @media (min-width:701px){#s-mov .rt{table-layout:fixed;width:100%}#s-mov .rt th:nth-child(1){width:96px}#s-mov .rt th:nth-child(2){width:300px}#s-mov .rt td{overflow:hidden}}
-/* «Interactive Brokers» cabe entero: su columna toma el ancho de Acciones y Estado, que les sobraba */
+/* un bróker de nombre largo cabe entero: su columna toma el ancho de Acciones y Estado, que les sobraba */
 @media (min-width:701px){#s-mov .rt th[data-k="shares"]{width:72px}#s-mov .rt th[data-k="st"]{width:80px}}
 @media (max-width:700.98px){  .mvb{padding:0;border-bottom:1px solid var(--line)}
     .mvb .mk:nth-child(odd){padding-left:0;border-left:0}  }
@@ -1736,7 +1736,7 @@ html.sh-open:not(#_) body .sheet-bg{display:block}
 
 body{font-feature-settings:"cv11"}
 .cv-t{font-family:var(--f-sans)}
-/* Inter es algo más ancha que Plex: la columna Bróker de Movimientos gana 12 px para que «Interactive Brokers» quepa entero */
+/* Inter es algo más ancha que Plex: la columna Bróker de Movimientos gana 12 px para que un bróker de nombre largo quepa entero */
 #s-mov .rt th[data-k="broker"]:not(:nth-child(2)){width:144px}
 /* ===== Menú: la raya de la sección activa se apoya en la línea que cierra la barra (una sola línea que engorda donde estás).
    Ordenador: el menú ocupa toda la altura de la barra (16 px arriba y 12 abajo de relleno) sin cambiarla: sigue midiendo 65 px.
@@ -2024,11 +2024,11 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
 .priv #h-val::after{text-align:left;letter-spacing:0}
 /* Resumen: «Tu cartera hoy» y Evolución del mismo ancho; su separación cae en el centro, bajo la división Hoy | Retorno total */
 @media (min-width:901px){.duo{grid-template-columns:repeat(2,minmax(0,1fr))}}
-/* Movimientos › Transacciones: «239 compras · 47 ventas» en la línea de la cifra y las empresas en una línea; la franja baja de 131 a 117 px */
+/* Movimientos › Transacciones: «120 compras · 30 ventas» en la línea de la cifra y las empresas en una línea; la franja baja de 131 a 117 px */
 #m-k .mk-v.mkcv .mk-u{font-size:var(--fs-13);font-weight:400;letter-spacing:0;color:var(--ink2)}
 #m-k .mk-v.mkcv .mk-d{color:var(--ink3)}
 @media (min-width:1001px){#m-k{height:117px}}
-@media (max-width:700.98px){#m-k .mk-v.mkcv .mk-u:not(.mk-d){display:none}}   /* en el móvil, «239 · 47»: el título ya dice qué es cada cifra */
+@media (max-width:700.98px){#m-k .mk-v.mkcv .mk-u:not(.mk-d){display:none}}   /* en el móvil, «120 · 30»: el título ya dice qué es cada cifra */
 .pos-age .pa-d{color:var(--ink3)}
 /* móvil: sin título grande; la cabecera en una línea: el estado a la izquierda, el ojo y «···» a la derecha */
 @media (max-width:760.98px){
@@ -2275,7 +2275,7 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
   /* franjas de Análisis, Universo, Actualidad y Movimientos: cifras de 17 px como las de Resumen */
   :is(#s-aidx,#s-uni) .bg .bv{font-size:var(--fs-17);line-height:var(--lh-20);--lhp:var(--lh-20)}
   #mtabs.mvt .mvt-v{font-size:var(--fs-17);line-height:var(--lh-20);--lhp:var(--lh-20)}
-  /* la primera fila de esas franjas («Dividendos 2027 … 1.659 €»): etiqueta y cifra sobre la misma línea de base */
+  /* la primera fila de esas franjas («Dividendos 2027 … 1.234 €»): etiqueta y cifra sobre la misma línea de base */
   :is(#s-aidx,#s-uni) .bg.bg5 :is(.c0.r1,.c0.r2){align-self:baseline}
   #mtabs.mvt a.mvt-all,#mtabs.mvt a.mvt-all:hover,#mtabs.mvt a.mvt-all[aria-current="page"]{align-items:baseline}
   /* cifras destacadas dentro de los bloques */
@@ -2708,7 +2708,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 /* modo privado: donde la cifra va centrada por la maquetación (barras de dividendos por meses, calendario de cobros, franja fija
    del móvil, cifras sobre las barras por año), los puntos también van centrados */
 .priv :is(.ca,.mc-v,.hm3-v,.y>.v) .pv::after{text-align:center}
-/* Resumen › posiciones: la pastilla de Rentab. con sitio para tres cifras enteras (+276,9%): 6,6 px a la izquierda y 7 a la derecha
+/* Resumen › posiciones: la pastilla de Rentab. con sitio para tres cifras enteras (+123,4%): 6,6 px a la izquierda y 7 a la derecha
    (antes, 68 px desde 1201 y 66 px entre 701 y 860: al texto le quedaban 2,6 y 0,6 px a la derecha; entre 861 y 1200 ya mide 76) */
 @media (min-width:701px) and (max-width:860.98px),(min-width:1201px){ #t-pos td[data-l="Rentab."] :is(.tpill,.rlv){width:72px;min-width:72px} }
 /* ======================= Resultados para leer sin perderse =======================
@@ -2826,7 +2826,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 @media (min-width:1001px) and (max-width:1240px){ :is(#s-aidx,#s-uni)>.hm5{margin-inline:32px} }
 /* RE-02 · móvil: «Otros instrumentos · opciones», al ras del título de Posiciones */
 @media (max-width:700.98px){ .rt#t-pos tbody tr.grp-row{padding-left:0} }
-/* UN-04 · Radar: hasta 370 px, «8,0% de tu cartera» baja a su propia línea (a 360 px pisaba la pastilla de TIR; a 375 aún sobran 11 px) */
+/* UN-04 · Radar: hasta 370 px, «5,0% de tu cartera» baja a su propia línea (a 360 px pisaba la pastilla de TIR; a 375 aún sobran 11 px) */
 /* CG-09 · buscador: el ticker con su bolsa (como la ficha); en el móvil, sin ella, que no cabe */
 .kx-sh{display:none}
 @media (max-width:700.98px){ .kx-lg{display:none} .kx-sh{display:inline} }
@@ -3185,7 +3185,7 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
 <script async id="lib-chart" src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js" integrity="sha384-dug+JxfBvklEQdJ4AYuBBAIScUz0bVN73xpy273gcAwHjb3qI0fXmuYNaNfdyYJG" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 (() => {
-const FILE_ID = "1JpGSj7S3lq3R9KeCmotDuLmeWj9C5aGmyme0_ArYWi8";
+const FILE_ID = "";
 const SERVER = "Google Drive";
 const XLSX_MIME = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 const $ = id => document.getElementById(id);
@@ -3196,7 +3196,7 @@ const nfCache = {}; const nf = (d=0) => nfCache[d] || (nfCache[d] = new Intl.Num
 const cifraSigno = (v,d) => { const t=nf(d).format(Math.abs(v)); return (v<0&&/[1-9]/.test(t)?"−":"")+t; };
 const eur = (v,d=0) => v==null||isNaN(v) ? "" : cifraSigno(v,d)+" €";
 const seur = (v,d=0) => v==null||isNaN(v) ? "" : (Math.abs(v)<.5/10**d?"":v>0?"+":"−")+nf(d).format(Math.abs(v))+" €";
-const pct = (v,d=1,sign=false) => v==null||isNaN(v) ? "" : (Math.abs(v*100)<.5/10**d?"":sign&&v>0?"+":v<0?"−":"")+nf(d).format(Math.abs(v*100))+"\u202F%";   // TXT-02: «12,1 %» con espacio fino de no separación
+const pct = (v,d=1,sign=false) => v==null||isNaN(v) ? "" : (Math.abs(v*100)<.5/10**d?"":sign&&v>0?"+":v<0?"−":"")+nf(d).format(Math.abs(v*100))+"\u202F%";   // TXT-02: «10,5 %» con espacio fino de no separación
 const cls = v => v>0?"pos":v<0?"neg":"mute";
 const DIA_MS=864e5, MOVIL=700;   // COD-27: un día en milisegundos; hasta este ancho, diseño de móvil
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -3445,7 +3445,7 @@ function model(d){
   const fxs={}; d.pos.forEach(p=>{ if(isNum(p.value)&&isNum(p.price)&&p.price&&p.shares) (fxs[p.cur]=fxs[p.cur]||[]).push(p.value/(p.price*p.shares)); });
   const fx={...(d.fxRef||{}),EUR:1}; Object.entries(fxs).forEach(([c,a])=>{ a.sort((x,y)=>x-y); fx[c]=a[a.length>>1]; });
   if(isNum(fx.GBP)){ if(fx.GBX==null) fx.GBX=fx.GBP/100; if(fx.GBp==null) fx.GBp=fx.GBP/100; }   // COD-19: peniques
-  // opciones: solo los tickers con forma de contrato (p. ej. «ASTS C55 20NOV26»); el resto sin cotización va a coste
+  // opciones: solo los tickers con forma de contrato (p. ej. «XYZ C50 18DIC26»); el resto sin cotización va a coste
   const isOpt=t=>/\s[CP]\d+(?:[.,]\d+)?\s\d{1,2}[A-Z]{3}\d{2}$/.test(String(t||""));
   const under=t=>{ const u=String(t).split(/\s+/)[0]; return Object.keys(meta).find(k=>k.split(":")[1]===u); };
 
@@ -3630,7 +3630,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v359";   // la versión publicada, en el pie
+const VER="v360";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4809,7 +4809,7 @@ $("sh-prev").addEventListener("click",()=>stepSheet(-1)); $("sh-next").addEventL
 let ACT=null;   // {ix: el índice, emp: {id: ficha}}
 // de dónde sale: en Claude, con el conector de Google Drive (la subcarpeta más reciente, su índice y las fichas); en tu web de GitHub,
 // tu script de Google lo entrega todo de una vez, con tu clave
-const INF_ID="1gCkYHkHlwhz-nICuLjBBR5-3O1hm7hFh";   // Inversiones › Informes
+const INF_ID="";   // Inversiones › Informes
 let actSt="", actAt=0, actBusy=false, actIds={}, actIntentadas={}, actFirma=""; const actPendientes={};
 let actAbierta=null, actNueva=null, actPestana=null;   // la empresa abierta (null: la portada), una edición nueva que espera a que la pidas y la pestaña preferida («res» o «nws»)
 // SEG-01 y SEG-07 · la edición llega de fuera (Drive o tu script) y se guarda en este dispositivo: se comprueba antes de usarla.
@@ -5021,7 +5021,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   const cell=tag=>`<${tag} class="hm5-c"${tag==="button"?' type="button" role="tab" aria-controls="s-mov"':""}><span class="hm5-k"></span><span class="hm5-v num"></span><span class="hm5-s"></span></${tag}>`;
   const tone=e=>e&&(e.classList.contains("neg")?" neg":e.classList.contains("pos")?" pos":"")||"";
   // en una línea: si la etiqueta no cabe, su primera palabra; si la línea de debajo no cabe, su parte marcada con data-hm («el año que viene») o la de cifras
-  // o, si aun así no cabe, sin las primeras palabras («de tus 21 empresas»); la raya del apartado elegido, del ancho de su etiqueta
+  // o, si aun así no cabe, sin las primeras palabras («de tus 12 empresas»); la raya del apartado elegido, del ancho de su etiqueta
   const fits=(e,c)=>e.getBoundingClientRect().width<=c.clientWidth-8+.5;   // hasta 4 px de la raya
   // al acortar una etiqueta no puede quedar acabada en «de», «en», «lo»…: si no hay forma buena, va en dos líneas
   const STOP=new Set(["a","al","con","de","del","el","en","la","las","lo","los","para","por","sin","sobre","y"]);
