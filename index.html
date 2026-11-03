@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-ByS8Ot/KSV+CbnBB0vS+i8jBj1eHsJc9e2d51UlHLZY=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-0TGmVnQEsRo5fZPjs384hxQhy356oaC9pZXuU6qivDw=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -1950,8 +1950,14 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 #notice .keyf{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 8px;align-items:end}
 #notice .kf-l{display:flex;flex-direction:column;gap:6px;min-width:0}
 #notice .kf-l.kf-d{grid-column:1/-1}
-#notice .kf-l>span{font-size:var(--fs-11);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--nt-fg3)}
+#notice .kf-l>:is(span,label){font-size:var(--fs-11);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--nt-fg3)}
 #notice .keyf .inp{width:100%;flex:none}   /* la regla antigua del hueco (flex:1) las aplastaba */
+/* SEG-10: «Mostrar» dentro de la casilla de la clave, a la derecha; mide lo mismo con «Ocultar», así nada se mueve al pulsarlo */
+#notice .kf-pw{position:relative}
+#notice .kf-pw .inp{padding-right:80px}
+#notice .kf-ver{position:absolute;top:0;right:0;height:100%;width:76px;display:flex;align-items:center;justify-content:center;padding:0;border:0;background:none;border-radius:0 var(--r-8) var(--r-8) 0;font:inherit;font-size:var(--fs-13);font-weight:500;color:var(--nt-fg3);cursor:pointer}
+#notice .kf-ver:hover{color:var(--nt-fg)}
+#notice .kf-ver:focus-visible{outline:2px solid var(--nt-fg3);outline-offset:-4px}
 #notice .kf-m{grid-column:1/-1;margin:-4px 0 0;font-size:var(--fs-13);line-height:var(--lh-18);--lhp:var(--lh-18);color:var(--neg)}
 #notice .kf-m:empty{display:none}
 /* tirar para actualizar en el móvil: un círculo bajo el borde de arriba que gira al tirar y da vueltas mientras lee la hoja */
@@ -3622,7 +3628,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v356";   // la versión publicada, en el pie
+const VER="v357";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4147,7 +4153,7 @@ function renderAnatomy(){
 // anatomía: al pasar por una barra, qué es, cuánto y qué parte del retorno; y se marca su fila abajo
 { const tt=document.createElement("div"); tt.className="htip"; tt.hidden=true; document.body.appendChild(tt);
   const hide=()=>{ tt.hidden=true; document.querySelectorAll("#s-ret .on-k").forEach(x=>x.classList.remove("on-k")); $("anat").classList.remove("hov"); };
-  const show=(t,e)=>{ const d=t.dataset; tt.innerHTML=`<b>${d.n}</b><span>${d.v}${d.p?` · ${d.p}`:""}</span>`; tt.hidden=false;
+  const show=(t,e)=>{ const d=t.dataset, b=document.createElement("b"), s=document.createElement("span"); b.textContent=d.n||""; s.textContent=(d.v||"")+(d.p?` · ${d.p}`:""); tt.replaceChildren(b,s); tt.hidden=false;   // SEG-15
     document.querySelectorAll("#s-ret .on-k").forEach(el=>el.classList.remove("on-k")); document.querySelectorAll(`#s-ret [data-k="${d.k}"]`).forEach(el=>el.classList.add("on-k")); $("anat").classList.add("hov");
     const r=tt.getBoundingClientRect(), x=Math.min(Math.max(8,e.clientX-r.width/2),innerWidth-r.width-8), y=e.clientY-r.height-14;
     tt.style.left=x+"px"; tt.style.top=(y<8?e.clientY+18:y)+"px"; };
@@ -5522,7 +5528,7 @@ const readSheet = ac => GAS
         e=>Promise.reject(e&&e.name==="AbortError"?e:{code:"rem_net",message:String((e&&e.message)||e)}))
       .then(j=>j&&j.ok?{payload:{content:j.xlsx}}:Promise.reject({code:j&&j.error==="clave"?"bad_key":"rem_error",message:(j&&j.error)||""}));
 // el hueco para pegar tu enlace personal, si falta o la clave no vale
-const keyForm = `<form class="keyf" id="keyf" novalidate><label class="kf-l kf-d"><span>ID de implementación</span><input class="inp" id="keyd" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Empieza por AKfy…"></label><label class="kf-l"><span>Tu clave</span><input class="inp" id="keyk" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="La de tu Code.gs"></label><button class="btn primary" type="submit">Entrar</button><p class="kf-m" id="keym" aria-live="polite"></p></form>`;
+const keyForm = `<form class="keyf" id="keyf" novalidate><label class="kf-l kf-d"><span>ID de implementación</span><input class="inp" id="keyd" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Empieza por AKfy…"></label><div class="kf-l"><label for="keyk">Tu clave</label><div class="kf-pw"><input class="inp" id="keyk" type="password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="La de tu Code.gs"><button class="kf-ver" id="keyv" type="button" aria-controls="keyk" aria-pressed="false">Mostrar</button></div></div><button class="btn primary" type="submit">Entrar</button><p class="kf-m" id="keym" aria-live="polite"></p></form>`;
 const keyHelp = `<p>Los dos salen del script que guarda tu clave en su Code.gs (no del que sirve la web desde tu Google). El ID de implementación está en Implementar → Gestionar implementaciones y empieza por AKfy (no es el HOJA_ID); también vale la dirección que acaba en /exec.</p>`;
 document.addEventListener("submit",e=>{ if(e.target.id!=="keyf") return; e.preventDefault();
   const dv=$("keyd").value.trim(), kv=$("keyk").value.trim(), m=$("keym"), all=[remCfg(dv),remCfg(kv)].find(c=>c&&!c.bad);   // el enlace personal entero, en cualquiera de las dos
@@ -5530,6 +5536,9 @@ document.addEventListener("submit",e=>{ if(e.target.id!=="keyf") return; e.preve
   if(!d){ m.textContent=!dv?"Pega el ID de implementación de tu script":/^[\w-]{30,}$/.test(dv)||/docs\.google\.com\/spreadsheets/.test(dv)?"Eso es el ID de tu hoja (HOJA_ID). Aquí va el ID de implementación, el que empieza por AKfy":"Eso no es el ID de implementación: empieza por AKfy"; $("keyd").focus(); return; }
   if(!k||remId(k)){ m.textContent="Pega tu clave en la segunda casilla"; $("keyk").focus(); return; }
   try{ localStorage.setItem("cartera-d",d); localStorage.setItem("cartera-k",k); }catch{} location.replace(location.pathname+location.search); });
+// SEG-10: la clave se escribe tapada; «Mostrar» la enseña mientras haga falta y «Ocultar» la vuelve a tapar
+document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest("#keyv"); if(!b) return; const k=$("keyk"); if(!k) return;
+  const ver=k.type==="password"; k.type=ver?"text":"password"; b.textContent=ver?"Ocultar":"Mostrar"; b.setAttribute("aria-pressed",String(ver)); k.focus(); });
 // copia de la última hoja leída en este navegador (IndexedDB; solo en este dispositivo): se pinta al abrir mientras llega la nueva
 const abreBd=()=>new Promise((res,rej)=>{ try{ const r=indexedDB.open("cartera",1); r.onupgradeneeded=()=>r.result.createObjectStore("hoja"); r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); }catch(e){ rej(e); } });
 const cacheGet=()=>Promise.race([abreBd().then(db=>new Promise((res,rej)=>{ const q=db.transaction("hoja").objectStore("hoja").get("ultima"); q.onsuccess=()=>res(q.result||null); q.onerror=()=>rej(q.error); })),new Promise(r=>setTimeout(()=>r(null),1500))]).catch(()=>null);
