@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-c+7V0vbOHZUh5s4inu7A2kxjD/gFFiY+XR+ahyjqRUQ=' 'self' https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-8jjQ7amt4Np/QWLE3caceDGwLYARa+jrNADIK4P6Rlo=' 'self' https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -462,6 +462,7 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 .fq-l{position:absolute;top:calc(var(--h,34px) - 12px);font-size:var(--fs-11);color:var(--ink3)}.fq-l.l{left:0}.fq-l.r{right:0}
 /* ===== Paso 2: año a año y concentración ===== */
 .evo-leg{justify-content:center;margin-top:12px}
+@media (max-width:439.98px){ #s-evo .evo-leg{display:grid;grid-template-columns:repeat(2,auto);justify-content:center;column-gap:16px;row-gap:6px} }   /* MOB-01 */
 .yl{flex:1 1 auto;display:flex;flex-direction:column}
 .yb{position:relative;display:block;height:5px}
 .yb::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line)}
@@ -568,6 +569,7 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 #s-divs .dv-top>.dv-card{background:none;border-radius:0;padding:0 24px;border-left:1px solid var(--line)}
 #s-divs .dv-top>.dv-card:first-child{padding-left:0;border-left:0}
 .dv-cal{margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}
+@media (max-width:1000.98px){ #s-divs .dv-cal{margin-top:16px} }   /* MOB-02: con las casillas apiladas, el mismo aire que entre sus filas */
 
 .lgb-t.cs{font-size:var(--fs-11)}
 @media (max-width:1000.98px){#s-divs .dv-top>.dv-card{padding:16px 0 0;border-left:0}#s-divs .dv-top>.dv-card:nth-child(n+2){border-top:1px solid var(--line);margin-top:16px}#s-divs .dv-top>.dv-card:nth-child(3){padding-left:20px;border-left:1px solid var(--line)}#s-divs .dv-top>.dv-card:first-child{padding-top:0}}
@@ -3628,7 +3630,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v358";   // la versión publicada, en el pie
+const VER="v359";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
