@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-z2VLQxgdFWCv1PjZkTWde4g2Km+n7eUOJovRMwSIGYc=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-/4etuGLlhnHzhjdVtHhYBRiY0fXmX5OVnfkaZlj0WlI=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3621,7 +3621,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v349";   // la versión publicada, en el pie
+const VER="v350";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4077,7 +4077,7 @@ function renderAidx(){ const d=DATA, el=$("a-k"); if(!d||!el) return;
   const ti=(d.ind||[]).filter(x=>isNum(x.val)).sort((a,b)=>b.val-a.val)[0];   // la industria que más pesa
   const tc=(d.pais||[]).filter(x=>isNum(x.val)).sort((a,b)=>b.val-a.val)[0];   // y el país
   const col=(i,k,l,v,sub)=>`<div class="c${i} r1 bl">${l}</div><div class="c${i} r2 bv num">${v}</div><div class="c${i} r3 bs">${sub}</div>`;
-  el.innerHTML=col(0,"dvs",`Dividendos ${dm.curY+1}`,eur(d.kpi&&d.kpi.rentas),`previstos · <b>${eur(((d.kpi&&d.kpi.rentas)||0)/12)}</b> al mes`)
+  el.innerHTML=col(0,"dvs","Dividendos",eur(d.kpi&&d.kpi.rentas),`<span data-hm>el año que viene</span> · <b>${eur(((d.kpi&&d.kpi.rentas)||0)/12)}</b> al mes`)
     +col(1,"div","Fuera del euro",pct(1-eu,1),d.divisa.filter(x=>x.name!=="EUR").slice(0,2).map(x=>`${esc(CURN[x.name]||x.name)} <b>${pct(x.val,1)}</b>`).join('<span class="sep"></span>'))
     +col(2,"conc","Concentración",pct(sum(ps.slice(0,5),p=>p.value)/tot,1),"en las 5 mayores")
     +(tc?col(3,"pais","Mayor país",pct(tc.val,1),esc(ctryN(tc.name))):col(3,"pais","Mayor país","—",""))
@@ -5003,7 +5003,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   new MutationObserver(cp).observe(T0,{subtree:true,childList:true,characterData:true,attributes:true}); cp();
   const cell=tag=>`<${tag} class="hm5-c"${tag==="button"?' type="button" role="tab" aria-controls="s-mov"':""}><span class="hm5-k"></span><span class="hm5-v num"></span><span class="hm5-s"></span></${tag}>`;
   const tone=e=>e&&(e.classList.contains("neg")?" neg":e.classList.contains("pos")?" pos":"")||"";
-  // en una línea: si la etiqueta no cabe, su primera palabra; si la línea de debajo no cabe, su parte con cifras («138 € al mes»)
+  // en una línea: si la etiqueta no cabe, su primera palabra; si la línea de debajo no cabe, su parte marcada con data-hm («el año que viene») o la de cifras
   // o, si aun así no cabe, sin las primeras palabras («de tus 21 empresas»); la raya del apartado elegido, del ancho de su etiqueta
   const fits=(e,c)=>e.getBoundingClientRect().width<=c.clientWidth-8+.5;   // hasta 4 px de la raya
   // al acortar una etiqueta no puede quedar acabada en «de», «en», «lo»…: si no hay forma buena, va en dos líneas
@@ -5014,7 +5014,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
       if(!fits(k,c)){ const w=K.split(" "); let ok=false; while(w.length>1){ w.pop(); if(STOP.has(w[w.length-1].toLowerCase())) continue; k.textContent=w.join(" "); if(fits(k,c)){ ok=true; break; } }
         if(!ok){ k.textContent=K; k.classList.add("w"); } }
       if(s.innerHTML!==S) s.innerHTML=S; if(s.classList.contains("w")) s.classList.remove("w");
-      if(S&&!fits(s,c)){ const seg=S.split(" · "), d=seg.find(x=>/\d/.test(x.replace(/<[^>]*>/g,"")))||seg[0]; s.innerHTML=d;
+      if(S&&!fits(s,c)){ const seg=S.split(" · "), d=seg.find(x=>/data-hm/.test(x))||seg.find(x=>/\d/.test(x.replace(/<[^>]*>/g,"")))||seg[0]; /* data-hm: la parte que manda (ANA-01) */ s.innerHTML=d;
         if(!fits(s,c)&&!/</.test(d)){ const w=d.split(" "); while(w.length>2&&!fits(s,c)){ w.shift(); s.textContent=w.join(" "); } }
         if(!fits(s,c)) s.classList.add("w"); }
       if(B.classList.contains("hm5-mv")){ const r=document.createRange(); r.selectNodeContents(k); c.style.setProperty("--uw",r.getBoundingClientRect().width.toFixed(1)+"px"); } }); };
