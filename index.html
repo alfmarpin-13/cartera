@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-X48Igt1H00yzPD8eVc7Exz2/Jau6L2WniFYiMnvYmSQ=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-jVfihTYOprXAAQinryxJC6oc9D7NHWw8xBPvBfJE1dA=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -594,6 +594,8 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 #s-ret .anat-cols>div{padding:0 24px;border-left:1px solid var(--line)}#s-ret .anat-cols>div:first-child{padding-left:0;border-left:0}#s-ret .anat-cols>div:last-child{padding-right:0}
 #s-ret .ag-h{font-size:var(--fs-13);font-weight:500;letter-spacing:0;text-transform:none;color:var(--ink2);border-bottom:0;padding-bottom:6px}
 #s-ret .ag-h b{font-weight:400}
+#s-ret .ag-h .ag-s{font-size:var(--fs-12);font-weight:400;color:var(--ink3)}   /* ANA-04 */
+#anat-l .ar .sh{margin-left:-4px}   /* ANA-04: «105,0 %» mide 47,8 px y la columna 46: la casilla crece 4 px hacia la izquierda (dentro del hueco de 12), sin mover nada */
 @media (max-width:760.98px){#s-ret .anat-cols>div{padding:0;border-left:0}#s-ret .anat-cols>div+div{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}}
 
 .htip{position:fixed;z-index:var(--z-panel);pointer-events:none;background:var(--ink);color:var(--canvas);border-radius:var(--r-4);padding:6px 8px;font-size:var(--fs-12);line-height:1.4;line-height:round(nearest,calc(1.4*1em - .01px),1px);--lhx:1.4;--lhp:initial;flex-direction:column;white-space:nowrap;box-shadow:0 6px 20px var(--sombra-18)}
@@ -636,6 +638,7 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 @media (max-width:700.98px){.cal-wrap{overflow:visible;margin:0;padding:0}.cal{grid-template-columns:repeat(6,minmax(0,1fr));min-width:0;row-gap:16px}}
 .mc-d{height:56px;min-height:0;padding:4px 0 2px;gap:2px}
 .mc-l{flex-direction:row;gap:2px}.mc-l .lgb.cs{width:24px;height:14px}
+.mc-l{max-width:calc(100% - 2px)}.mc-l em{flex:none}.mc-l .lgb.cs.ra{width:calc(10px * var(--ar));min-width:24px;flex:0 1 auto}   /* ANA-02 */
 #s-ret .abar>span{padding-left:0;min-width:2px}
 @media (max-width:860.98px){ #t-pos .hide-n{display:none} #t-pos th,#t-pos td{padding-left:4px;padding-right:4px} }
 /* la primera columna empieza donde en el resto de tablas, aunque las demás se estrechen */
@@ -3622,7 +3625,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v352";   // la versión publicada, en el pie
+const VER="v353";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -3654,6 +3657,7 @@ function drawTray(live){
   if(!DATA||!DATA.tray.length) return; if(!traySup) traySliders();
   const t=trayProj(traySup), cur=DATA.curYear, fut=y=>y>cur, box=$("tray-v"), ms=msciYears();
   const is=t.findIndex(r=>fut(r.y)&&r.re===false);   // primer año sin reinvertir
+  let kV=false; const fV=v=>kV?kfmt(v):mfmt(v);   // ANA-03: «495 mil», como el eje; «495k» (y el eje en «k») solo si no cabe
   if(!box.querySelector("#c-tray")) box.innerHTML=`<div class="chartbox"><canvas id="c-tray" role="img" aria-label="Patrimonio y TIR de cada año"></canvas></div>`;
   const bx=box.querySelector(".chartbox"), ic=t.findIndex(r=>r.y===cur);
   const hex=hexTok, a=(c,y)=>fut(y)?c+(isDk()?"A6":"66"):c;
@@ -3663,9 +3667,9 @@ function drawTray(live){
     {label:"Crecimiento",data:T.map(r=>r.sp||r.val-r.acc<=0?null:r.val-r.acc),minBarLength:3,backgroundColor:T.map(r=>r.sp?"transparent":a(hex("--pos-mid"),r.y)),borderRadius:hz?{topRight:4,bottomRight:4}:{topLeft:4,topRight:4},maxBarThickness:22}];
   // cada dato de la fila/columna: TIR real en color; en los años por venir, la que sale de los supuestos, en gris
   const cell=(k,r,sign=true)=>{ if(k==="y") return {s:String(r.y),c:fut(r.y)?"--ink3":"--ink2",w:400,z:-0.5};
-    if(k==="val") return {s:kfmt(r.val),c:fut(r.y)?"--ink2":"--ink",w:400};
+    if(k==="val") return {s:fV(r.val),c:fut(r.y)?"--ink2":"--ink",w:400};
     // renta neta al mes: en gris mientras se reinvierte; en el color de los dividendos cuando ya la cobras
-    if(k==="ren") return !isNum(r.net)?{s:"",c:"--ink3",w:400}:{s:kfmt(r.net),c:r.re===false?"--accent":fut(r.y)?"--ink3":"--ink2",w:400};
+    if(k==="ren") return !isNum(r.net)?{s:"",c:"--ink3",w:400}:{s:fV(r.net),c:r.re===false?"--accent":fut(r.y)?"--ink3":"--ink2",w:400};
     if(k==="msci"){ const v=ms[r.y]; if(!isNum(v)||fut(r.y)) return {s:"",c:"--ink3",w:400}; const s=pct(v,1); return {s:sign?s:s.replace(/\u202F?%/,""),c:"--ink2",w:400}; }
     if(isNum(r.tir)){ const s=pct(r.tir,1); return {s:sign?s:s.replace(/\u202F?%/,""),c:r.tir<0?"--neg":"--pos",w:400}; }
     if(fut(r.y)&&isNum(r.ti)){ const s=pct(r.ti,1); return {s:sign?s:s.replace(/\u202F?%/,""),c:"--ink3",w:400}; } return {s:"",c:"--ink3",w:400}; };
@@ -3674,7 +3678,7 @@ function drawTray(live){
   const vert=rows=>{
     const step=(bx.clientWidth-58)/t.length; if(step<27) return mob(rows); trayTb("");
     const RH=23, nR=rows.length+1; bx.style.height=bx.style.minHeight=(300+nR*RH)+"px";
-    const o=baseOpts(); if(live) o.animation=false; o.scales.x.stacked=true; o.scales.y.stacked=true; o.scales.y.ticks.callback=v=>mfmt(v); o.scales.x.ticks.display=false;
+    const o=baseOpts(); if(live) o.animation=false; o.scales.x.stacked=true; o.scales.y.stacked=true; o.scales.y.ticks.callback=v=>fV(v); o.scales.x.ticks.display=false;
     // la columna del eje es también la de los rótulos de las filas: que quepa el más largo («MSCI %»)
     const lw=Math.ceil(Math.max(...rows.map(k=>textW(lab(k)+" %",`500 11px ${FONT}`))))+12; o.scales.y.afterFit=s=>{ if(s.width<lw) s.width=lw; }; o.plugins.tooltip.callbacks=tips(); o.layout={padding:{bottom:nR*RH+6}};
     make("c-tray",{type:"bar",data:{labels:t.map(r=>r.y),datasets:sets()},options:o,plugins:[{id:"filas",afterDraw(c){ const x=c.scales.x, ca=c.chartArea, g=c.ctx, st=Math.abs(x.getPixelForValue(1)-x.getPixelForValue(0)); g.save(); g.textBaseline="middle";
@@ -3695,6 +3699,9 @@ function drawTray(live){
       if(is>ic+1){ const px=(x.getPixelForValue(is-1)+x.getPixelForValue(is))/2; g.strokeStyle=varCss("--ink3"); g.setLineDash([1,3]); g.lineWidth=1; g.beginPath(); g.moveTo(px,ca.top+14); g.lineTo(px,ca.bottom+8+nR*RH); g.stroke(); g.setLineDash([]);
         g.font=`11px ${FONT}`; g.fillStyle=varCss("--ink3"); g.textAlign="center"; g.fillText("Sin reinvertir",px,ca.top+6); }
       g.restore(); }}]});
+    // ANA-03: con la gráfica ya medida, si el valor en «mil» no cabe en su columna (a 10,5 px, la letra más pequeña de las demás filas), fila y eje pasan a «k»
+    const c=charts["c-tray"]; if(c&&c.scales.x){ const x=c.scales.x, st=Math.abs(x.getPixelForValue(1)-x.getPixelForValue(0)), W=(a,sz)=>Math.max(0,...a.map(s=>textW(s,`600 ${sz}px ${FONT}`)));
+      if(W(t.map(r=>fV(r.val)),10.5)>st-4||W(t.filter(r=>isNum(r.net)).map(r=>fV(r.net)),10.5)>st-4){ kV=true; c.update("none"); } }
   };
   const trayTb=h=>{ let tb=$("tray-tb"); if(!tb){ tb=document.createElement("div"); tb.id="tray-tb"; tb.className="tray-tb"; const lg=box.closest("section").querySelector(".leg-c"); (lg||box).after(tb); } tb.innerHTML=h; };
   const mob=cols=>{
@@ -4102,6 +4109,8 @@ function miniCal(el,pays){ if(!el) return; const k=t=>`${t.getFullYear()}-${t.ge
     return `<div class="mc-d${t.getDay()%6===0?" we":""}${past?" past":""}${k(t)===today?" today":""}${g.length?" on":""}">`
       +`<span class="mc-n"><b>${t.getDate()}</b>${i===0||t.getDate()===1?`<span class="mc-m">${MES[t.getMonth()].toLowerCase()}</span>`:""}</span>`
       +(g.length?`<span class="mc-l" tabindex="0" role="img" aria-label="${esc(`${t.getDate()} ${MES[t.getMonth()].toLowerCase()}: ${g.map(x=>`${x.name}, ${eur(x.v,2)}`).join("; ")}`)}" data-tip="${esc(g.length>1?g.map(x=>`${x.name} · ${eur(x.v,2)}`).join("\n"):eur(g[0].v,2))}">${logoBare(g[0].name,g[0].t,"cs")}${g.length>1?`<em>+${g.length-1}</em>`:""}</span><span class="mc-v num">${eur(v)}</span>`:"")+`</div>`; }).join("")}</div>`;
+  // ANA-02: un rótulo apaisado ensancha su caja hasta que el logo mide 10 px de alto, sin pasar del ancho de la casilla; el alto de la caja no cambia
+  el.querySelectorAll(".mc-l .lgb.cs > img:first-child").forEach(i=>{ const ar=LOGO_AR.get(i.getAttribute("src"))||1; if(ar>24/14){ i.parentNode.classList.add("ra"); i.parentNode.style.setProperty("--ar",ar); } });
   const cw=el.querySelector(".mc-d")?.clientWidth||0, ff=getComputedStyle(document.body).fontFamily;
   el.classList.toggle("na",[...by.entries()].some(([key,g])=>textW(eur(sum(g,x=>x.v)),`400 10.5px ${ff}`)>cw-2)); }
 
@@ -4134,9 +4143,9 @@ function renderAnatomy(){
     <div class="an-r"><div class="an-ls"><div style="${fx(net)}">${lab("Retorno total",`<b class="fw500">${seur(net)}</b>`,cls(net))}</div>${C?`<div style="${fx(Math.min(C,G))}">${lab("Costes",seur(-C),"neg"," end")}</div>`:""}</div>
       <div class="abar"><span class="an-net" style="${fx(net)}" data-k="net" data-n="Retorno total" data-v="${seur(net)}" data-p=""></span>${costs.map(c=>seg(c,G)).join("")}</div></div>` : "";
   anFit();
-  const grp=(title,list,tot)=>`<div><div class="ag-h"><span>${title}</span></div>`
+  const grp=(title,list,tot)=>`<div><div class="ag-h"><span>${title}</span><span class="ag-s">sobre el retorno total</span></div>`
     +list.map(c=>`<div class="ar" data-k="${c.k}"><i class="sw c-${c.k}"></i><div><div class="k">${esc(c.l)}</div><div class="s">${esc(c.s||"")}</div></div><span class="v num ${c.k==="div"?"acc":cls(c.v)}">${seur(c.v)}</span><span class="sh num" title="Parte del retorno total">${pct(a.ret?c.v/a.ret:null,1)}</span></div>`).join("")
-    +`<div class="ar tot"><i></i><div><div class="k">Total</div></div><span class="v num ${cls(tot)}">${seur(tot)}</span><span class="sh"></span></div></div>`;
+    +`<div class="ar tot"><i></i><div><div class="k">Total</div></div><span class="v num ${cls(tot)}">${seur(tot)}</span><span class="sh num" title="Parte del retorno total">${pct(a.ret?tot/a.ret:null,1)}</span></div></div>`;
   $("anat-l").innerHTML = grp("Lo que suma",gains,G)+grp("Lo que resta",costs,-C);
 }
 
