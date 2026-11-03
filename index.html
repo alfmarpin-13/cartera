@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-/4etuGLlhnHzhjdVtHhYBRiY0fXmX5OVnfkaZlj0WlI=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-pTzqOLCo65xFHSoMbK3YrgyrNfsTzPSM6xiAPec9orY=' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3621,7 +3621,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v350";   // la versión publicada, en el pie
+const VER="v351";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -3814,8 +3814,8 @@ function renderPositions(){
       <td class="num hide-s hide-t" data-l="Cotización">${p.isOption?`<span class="mute">a coste</span>`:p.atCost?"":precioVisible(p.price,p.cur)}</td>
       <td class="num hide-s hide-m" data-l="Pr. medio">${p.isOption?money(p.avg,p.cur):p.atCost?"":money(p.avg,p.cur)}</td>
       <td class="num hide-s hide-m" data-l="Acciones">${!p.shares?"":`<span class="pv pvn">${nf(0).format(p.shares)}</span>`}</td>
-      <td class="num r-meta" data-l="Hoy">${p.isOption?`<span class="mute sdg">—</span>`:`<span class="tpill ${isNum(p.today)&&Math.abs(p.today)>=0.0005?cls(p.today):""}">${p.atCost?"":isNum(p.today)?pct(p.today,1,true):""}</span>`}<span class="m-sh">${`<span class="pv pvn">${shares(p.shares)}</span><span class="w"> ${p.shares===1?"acción":"acciones"} a</span>`}<span class="x"> ×</span> ${money(p.avg,p.cur)}</span></td>
-      <td class="num hide-s hide-m ${isNum(p.todayEur)&&Math.abs(p.todayEur)>=0.5?"":"mute"}" data-l="Hoy €">${p.isOption?`<span class="mute">—</span>`:isNum(p.todayEur)?seur(p.todayEur):""}</td>
+      <td class="num r-meta" data-l="Hoy">${p.isOption?`<span class="mute sdg">—</span>`:`<span class="tpill ${isNum(p.today)&&Math.abs(p.today)>=0.0005?cls(p.today):""}">${p.atCost?"":isNum(p.today)?pct(p.today,1,true):`<span class="mute sdg">—</span>`}</span>`}<span class="m-sh">${`<span class="pv pvn">${shares(p.shares)}</span><span class="w"> ${p.shares===1?"acción":"acciones"} a</span>`}<span class="x"> ×</span> ${money(p.avg,p.cur)}</span></td>
+      <td class="num hide-s hide-m ${isNum(p.todayEur)&&Math.abs(p.todayEur)>=0.5?"":"mute"}" data-l="Hoy €">${p.isOption?`<span class="mute">—</span>`:isNum(p.todayEur)?seur(p.todayEur):p.atCost?"":`<span class="mute sdg">—</span>`}</td>
       <td class="num r-amt" data-l="Valor"><span class="m-tot">${eur(p.value)}</span><span class="m-hoy">${p.isOption||p.atCost?`<span class="mute">a coste</span>`:precioVisible(p.price,p.cur)}</span></td>
       <td class="num hide-s" data-l="Peso"><span class="wb2"><span>${pct(p.weight)}</span><i><b style="width:${((p.weight||0)/maxW*100).toFixed(1)}%"></b></i></span></td>
       <td class="num r-sub" data-l="Rentab."><span class="m-tot">${p.isOption?`<span class="mute sdg">—</span>`:p.atCost||!isNum(p.totalPct)?"":`<span class="rlv ${retLevel(p.totalPct)}">${pct(p.totalPct,1,true)}</span>`}</span><span class="m-hoy">${p.isOption||p.atCost||!isNum(p.today)?"":`<span class="m-var ${Math.abs(p.today)<0.0005?"mute":cls(p.today)}">${seur(p.todayEur)} (${pct(p.today,1,true)})</span>`}</span></td>
