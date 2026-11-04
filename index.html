@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-+m9oo9VBnil5AAhSOP5GBT+KMH1SR47BQIfggCgOKOY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-8hEXDZAedt3i1n8Rue5lSacrfxKgd/Q166DEEpeAyks=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -821,12 +821,16 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 input[type=number].inp{-moz-appearance:textfield}
 input[type=number].inp::-webkit-inner-spin-button,input[type=number].inp::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 /* el nombre de la empresa siempre entero en su desplegable: se quitan columnas secundarias y, por debajo de 860 px, la tabla pasa a fichas */
-@media (min-width:861px) and (max-width:1160px){#t-plan [data-l="Comisión"],#t-plan th:nth-child(6),#t-plan [data-l="Cotización"],#t-plan th:nth-child(3){display:none}}
-@media (min-width:861px) and (max-width:960px){#t-plan [data-l="Peso actual"],#t-plan th:nth-child(7){display:none}}
+/* v363 · con «Pr. medio actual» y «Pr. medio final», se ocultan antes: hasta 1400 px Comisión y Cotización; hasta 1200, las dos «actual»;
+   hasta 980, también «Pr. medio final» (y queda como antes de 960). Así la columna Empresa nunca baja de 314 px, como hasta ahora */
+@media (min-width:861px) and (max-width:1400px){#t-plan [data-l="Comisión"],#t-plan th:nth-child(6),#t-plan [data-l="Cotización"],#t-plan th:nth-child(3){display:none}}
+@media (min-width:861px) and (max-width:1200px){#t-plan [data-l="Peso actual"],#t-plan th:nth-child(9),#t-plan [data-l="Pr. medio actual"],#t-plan th:nth-child(7){display:none}}
+@media (min-width:861px) and (max-width:980px){#t-plan [data-l="Pr. medio final"],#t-plan th:nth-child(8){display:none}}
 /* anchos fijos: escribir un importe no mueve las columnas */
 @media (min-width:861px){#t-plan{table-layout:fixed;width:100%}
   #t-plan th:nth-child(2){width:132px}#t-plan th:nth-child(3){width:110px}#t-plan th:nth-child(4){width:84px}#t-plan th:nth-child(5){width:126px}
-  #t-plan th:nth-child(6){width:92px}#t-plan th:nth-child(7){width:94px}#t-plan th:nth-child(8){width:84px}#t-plan th:nth-child(9){width:34px}
+  #t-plan th:nth-child(6){width:92px}#t-plan th:nth-child(7){width:110px}#t-plan th:nth-child(8){width:110px}
+  #t-plan th:nth-child(9){width:94px}#t-plan th:nth-child(10){width:84px}#t-plan th:nth-child(11){width:34px}
   #t-plan td{white-space:nowrap}}
 @media (max-width:860.98px){
   #t-plan,#t-plan tbody{display:block}#t-plan thead{display:none}
@@ -2414,10 +2418,15 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
   #t-plan td.r-meta:empty::after,#t-plan td.r-sub:empty::after{content:"—";color:var(--ink3)}
   #t-plan td[data-c="px"]{grid-area:2/1}#t-plan td[data-c="sh"]{grid-area:2/2}#t-plan td[data-c="cost"]{grid-area:2/3}
   #t-plan td[data-c="fee"]{grid-area:3/1}#t-plan td[data-c="w0"]{grid-area:3/2}#t-plan td[data-c="w1"]{grid-area:3/3}
+  #t-plan td[data-c="pm0"]{grid-area:4/2}#t-plan td[data-c="pm1"]{grid-area:4/3}
   /* los botones de abajo, a la izquierda, y «Borrar datos» a la derecha, en la misma fila */
   .pl-acts{grid-template-columns:auto 1fr;margin-top:12px}
   .pl-adds{grid-column:1;gap:8px}
   .pl-clr{grid-column:2}
+}
+@media (max-width:380px){
+  #t-plan td[data-c="pm0"]::before{content:"Pr. medio\A actual";white-space:pre}
+  #t-plan td[data-c="pm1"]::before{content:"Pr. medio\A final";white-space:pre}
 }
 /* ficha: la TIR de las listas («En 2030»…) acaba donde las demás cifras. Su margen de −8 px era para la pastilla, que en la
    ficha ya no lleva fondo ni relleno, y la sacaba 8 px por la derecha */
@@ -3641,7 +3650,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v362";   // la versión publicada, en el pie
+const VER="v363";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4331,12 +4340,14 @@ function renderMov(refill){
   rs.sort((a,b)=>{ let x=sv(a),y=sv(b); if(x instanceof Date) x=x.getTime(); if(y instanceof Date) y=y.getTime();
     if(typeof x==="string"||typeof y==="string") return sd*String(x??"").localeCompare(String(y??""),"es"); return sd*((x??-1e18)-(y??-1e18)); });
   // Dividendos, por defecto: lo cobrado delante y los previstos al final, cada parte por fecha, del más reciente al más antiguo (ya vienen así ordenadas)
-  const fromToday=mtab==="dividendos"&&!msort[mtab];
+  const fromToday=mtab==="dividendos"&&!msort[mtab], txOrden=mtab==="transacciones"&&!msort[mtab];
+  // v363 · Transacciones, por defecto: abiertas arriba (por fecha de compra) y cerradas debajo (por fecha de venta), de la más reciente a la más antigua
+  if(txOrden){ const ab=rs.filter(r=>!r.sd).sort((a,b)=>b.bd-a.bd), ce=rs.filter(r=>r.sd).sort((a,b)=>b.sd-a.sd); rs.splice(0,rs.length,...ab,...ce); }
   if(fromToday){ const pd=rs.filter(r=>DATA.isPaid(r)), up=rs.filter(r=>!DATA.isPaid(r)); rs.splice(0,rs.length,...pd,...up); }
   $("m-sort").value=sk;
   // las cifras: con la búsqueda y el bróker; el año, solo donde la cifra es «de ese año»; el estado solo filtra la lista
   $("m-k").innerHTML = mkBlocks(c.kpis(movRows(true,true),+$("m-year").value||0));
-  $("m-head").innerHTML = "<tr>"+c.cols.map(x=>`<th data-k="${x.k}"${x.w?` style="width:${x.w}px"`:""} class="${x.left||x.wrap?"l ":""}${x.hs?"hide-s":""}"${x.k===sk&&!fromToday?` aria-sort="${sd>0?"ascending":"descending"}"`:""}><button type="button" class="thb">${x.l}</button></th>`).join("")+"</tr>";
+  $("m-head").innerHTML = "<tr>"+c.cols.map(x=>`<th data-k="${x.k}"${x.w?` style="width:${x.w}px"`:""} class="${x.left||x.wrap?"l ":""}${x.hs?"hide-s":""}"${x.k===sk&&!fromToday&&!txOrden?` aria-sort="${sd>0?"ascending":"descending"}"`:""}><button type="button" class="thb">${x.l}</button></th>`).join("")+"</tr>";
   const isNil=h=>/^(–|)$/.test(String(h).replace(/<[^>]*>/g,"").trim());
   const cell=(x,r)=>{ const h=x.f(r), nil=isNil(h); return `<td class="${x.wrap?"wrapc ":x.left?"l ":"num "}${x.hs?"hide-s ":""}${x.sec?"sec ":""}${nil?"nil ":""}r-${x.r||"meta"}" data-k="${x.k}" data-l="${x.l}">${h}</td>`; };
   const line=r=>mLine(c.cols.filter(x=>x.r==="sub"||!x.r&&!x.hs).map(x=>{ const h=x.f(r); return isNil(h)?"":x.mf?x.mf(r):x.nl||x.r==="sub"?(x.wrap?`<span class="w">${h}</span>`:h):`<span class="ml">${x.l}</span> ${h}`; }));
@@ -4454,9 +4465,13 @@ function renderPerf(){
   const rs=DATA.pre.filter(r=>isNum(r[perfK])).sort((a,b)=>b[perfK]-a[perfK]);
   // las barras: en «Hoy» y «Última sesión», con la misma escala las que suben y las que bajan; en los plazos largos, cada lista con la
   // suya (si no, a un año las que bajan saldrían enanas al lado de las que suben)
-  const nl=Math.min(20,Math.ceil(rs.length/2)), up=rs.slice(0,nl), dn=rs.slice(Math.max(nl,rs.length-nl)).reverse(), mx=xs=>Math.max(...xs.map(r=>Math.abs(r[perfK])),0.0001), sep=perfK!=="today"&&perfK!=="last"&&perfK!=="dd";
+  // v363: en «Mejores» solo las que suben y en «Peores» solo las que bajan (lo que se escribe «0,0 %», en ninguna); «Desde máximos», como antes
+  const sube=r=>r[perfK]>=0.0005, baja=r=>r[perfK]<=-0.0005;
+  const nl=Math.min(20,Math.ceil(rs.length/2)), up=dd?rs.slice(0,nl):rs.filter(sube).slice(0,20), dn=dd?rs.slice(Math.max(nl,rs.length-nl)).reverse():rs.filter(baja).reverse().slice(0,20), mx=xs=>Math.max(...xs.map(r=>Math.abs(r[perfK])),0.0001), sep=perfK!=="today"&&perfK!=="last"&&perfK!=="dd";
   const max=sep?mx(up):mx(up.concat(dn)), maxD=sep?mx(dn):max;
-  $("perf-up").innerHTML=rs.length?up.map(r=>pfRow(r,max)).join(""):`<p class="sub pf-none">${!DATA.pre.length?"Sin empresas en tu hoja":perfK==="today"?"Ningún mercado abierto todavía":"Sin datos para este periodo"}</p>`; $("perf-dn").innerHTML=dn.map(r=>pfRow(r,maxD)).join("");
+  const nada=t=>`<p class="sub pf-none">${t}</p>`;
+  $("perf-up").innerHTML=!rs.length?nada(!DATA.pre.length?"Sin empresas en tu hoja":perfK==="today"?"Ningún mercado abierto todavía":"Sin datos para este periodo"):up.length?up.map(r=>pfRow(r,max)).join(""):nada("Ninguna empresa sube");
+  $("perf-dn").innerHTML=!rs.length?"":dn.length?dn.map(r=>pfRow(r,maxD)).join(""):nada("Ninguna empresa baja");
   pfMas();
   // por industria: media simple de sus empresas, como tu hoja Radar; color por tercios del mejor y del peor, igual que allí
   const g={}; DATA.pre.forEach(r=>{ if(!r.ind) return; (g[r.ind]=g[r.ind]||[]); if(isNum(r[perfK])) g[r.ind].push(r[perfK]); });
@@ -4612,13 +4627,13 @@ function renderPlan(){
   // mientras escribes no se rehace la tabla (si llega una recarga de datos, solo se recalcula)
   if(!$("pl-full").contains(document.activeElement)){
     $("pl-ap").value=isNum(plan.aport)?plan.aport:"";
-    $("pl-head").innerHTML=`<tr><th class="l">Empresa</th><th>Importe</th><th>Cotización</th><th>Acciones</th><th>Coste</th><th>Comisión</th><th>Peso actual</th><th>Peso final</th><th></th></tr>`;
+    $("pl-head").innerHTML=`<tr><th class="l">Empresa</th><th>Importe</th><th>Cotización</th><th>Acciones</th><th>Coste</th><th>Comisión</th><th title="Precio medio de tus acciones, en su divisa y sin comisiones">Pr. medio actual</th><th title="Precio medio tras estas operaciones (en las ventas salen primero las acciones más antiguas)">Pr. medio final</th><th>Peso actual</th><th>Peso final</th><th></th></tr>`;
     // una venta: etiqueta «Venta», solo empresas de tu cartera y, en vez de euros, cuántas acciones (como mucho, las que tienes)
     $("pl-body").innerHTML=plan.rows.map((o,i)=>`<tr data-i="${i}"${o.sell?' class="pl-sell" title="Venta"':""}><td class="l r-main" data-l="Empresa"><div class="co"><span class="pl-lg"></span><select class="inp pl-co" data-i="${i}" aria-label="${o.sell?"Empresa que vendes":"Empresa"}">${planOpts(o.t,o.sell)}</select></div></td>`
       +(o.sell?`<td class="num r-amt" data-l="Vendes"><span class="pl-in pl-n"><input class="inp pl-amt" data-i="${i}" type="number" min="0" max="${plShares(o.t)||9999999}" step="1" inputmode="numeric" placeholder="${plShares(o.t)?`máx. ${nf(0).format(plShares(o.t))}`:"0"}" aria-label="Acciones que vendes" value="${isNum(o.n)?o.n:""}"><i>acc.</i></span></td>`
         :`<td class="num r-amt" data-l="Importe"><span class="pl-in"><input class="inp pl-amt" data-i="${i}" type="number" min="0" max="9999999" step="any" inputmode="decimal" placeholder="0" aria-label="Importe" value="${isNum(o.amt)?o.amt:""}"><i>€</i></span></td>`)
       +`<td class="num r-meta sec" data-l="Cotización" data-c="px"></td><td class="num r-meta" data-l="Acciones" data-c="sh"></td><td class="num r-meta" data-l="${o.sell?"Ingreso":"Coste"}" data-c="cost"></td>`
-      +`<td class="num r-meta sec" data-l="Comisión" data-c="fee"></td><td class="num r-meta sec" data-l="Peso actual" data-c="w0"></td><td class="num r-sub" data-l="Peso final" data-c="w1"></td>`
+      +`<td class="num r-meta sec" data-l="Comisión" data-c="fee"></td><td class="num r-meta sec" data-l="Pr. medio actual" data-c="pm0"></td><td class="num r-sub" data-l="Pr. medio final" data-c="pm1"></td><td class="num r-meta sec" data-l="Peso actual" data-c="w0"></td><td class="num r-sub" data-l="Peso final" data-c="w1"></td>`
       +`<td class="c pl-x"><button type="button" class="pl-del" data-i="${i}" aria-label="Quitar">×</button></td></tr>`).join("");
   }
   planCalc();
@@ -4631,6 +4646,13 @@ function planCalc(){
     if(o.sell){ const nAcc=pxe&&o.n>0?Math.min(Math.floor(o.n),plShares(o.t)):0, inc=nAcc*pxe||0, comision=inc>0&&cm?Math.max(cm.min,cm.fix+cm.pct*inc):0; return {o,r,pxe,sh: nAcc,cost:0,inc,fee: comision,val}; }
     const sh=pxe&&o.amt>0?Math.floor(o.amt/pxe):0, cost=sh&&pxe?sh*pxe:0;
     const fee=cost>0&&cm?Math.max(cm.min,cm.fix+cm.pct*cost)+cm.tax*cost:0; return {o,r,pxe,sh,cost,inc:0,fee,val}; });
+  /* v363 · precio medio final de cada empresa con operaciones: sus lotes abiertos (del más antiguo al más reciente), más las compras
+     de la tabla a la cotización; las ventas quitan acciones empezando por las más antiguas (FIFO) */
+  const pmFin={}; new Set(rows.filter(x=>x.r&&x.sh>0).map(x=>x.o.t)).forEach(t=>{ const p=DATA.pos.find(y=>y.ticker===t&&!y.isOption), de=rows.filter(x=>x.o.t===t&&x.sh>0);
+    const ls=(p?p.buys||[]:[]).filter(b=>!b.sold&&b.n>0).sort((a,b)=>a.d-b.d).map(b=>({n:b.n,pr:b.pr||0}));
+    de.filter(x=>!x.o.sell).forEach(x=>ls.push({n:x.sh,pr:x.r.price}));
+    let v=sum(de.filter(x=>x.o.sell),x=>x.sh); for(const l of ls){ if(v<=0) break; const q=Math.min(l.n,v); l.n-=q; v-=q; }
+    const n=sum(ls,l=>l.n); pmFin[t]=n>0?sum(ls,l=>l.n*l.pr)/n:null; });
   const buys=sum(rows,x=>x.cost||0), sells=sum(rows,x=>x.inc||0), fees=sum(rows,x=>x.fee||0), disp=ap+liq+sells, left=disp-buys-fees, nBuy=rows.filter(x=>x.cost>0).length;
   $("pl-k").innerHTML=mkBlocks([
     {k:"Disponible",v:eur(disp,2),split:[{v:Math.max(ap,0),l:`${eur(ap)} de aportación`},{v:Math.max(liq,0),l:`${eur(liq)} de liquidez`},...(sells>0?[{v:sells,l:`${eur(sells)} de ventas`}]:[])]},
@@ -4644,13 +4666,16 @@ function planCalc(){
   $("pl-clr").hidden=!plHas();
   rows.forEach((x,i)=>{ const tr=$("pl-body").querySelector(`tr[data-i="${i}"]`); if(!tr) return; const set=(c,h,nil)=>{ const td=tr.querySelector(`[data-c="${c}"]`); td.innerHTML=h; td.classList.toggle("nil",!!nil); };
     tr.querySelector(".pl-lg").innerHTML=x.r?logoBare(x.r.name,x.r.ticker):"";
-    if(!x.r){ ["px","sh","cost","fee","w0","w1"].forEach(c=>set(c,"",1)); return; }
+    if(!x.r){ ["px","sh","cost","fee","pm0","pm1","w0","w1"].forEach(c=>set(c,"",1)); return; }
     const same=sum(rows.filter(y=>y.o.t===x.o.t),y=>(y.cost||0)-(y.inc||0)), after=tot+buys-sells;
     set("px",money(x.r.price,x.r.cur)); set("sh","",!x.sh); tr.querySelector('[data-c="sh"]').title=x.pxe?"":`No hay tipo de cambio ${x.r.cur}: no tienes posiciones en esa divisa`;
     if(x.sh) tr.querySelector('[data-c="sh"]').textContent=(x.o.sell?"−":"")+nf(0).format(x.sh);
     else if(x.o.sell&&plShares(x.o.t)) set("sh",`<button type="button" class="pl-all" data-i="${i}" title="Vender todas las acciones">todas (${nf(0).format(plShares(x.o.t))})</button>`);   // en una venta vacía: un botón para venderlas todas
     if(x.o.sell) set("cost",x.inc?`<span class="pos">+${eur(x.inc,2)}</span>`:"",!x.inc); else set("cost",x.cost?eur(x.cost,2):"",!x.cost);
     set("fee",x.fee?eur(x.fee,2):"",!x.fee);
+    { const p=DATA.pos.find(y=>y.ticker===x.o.t&&!y.isOption), a=p&&isNum(p.avg)&&p.avg>0?p.avg:null, f=x.sh>0&&isNum(pmFin[x.o.t])?pmFin[x.o.t]:null;
+      set("pm0",a!=null?money(a,x.r.cur):"",a==null); set("pm1",f!=null?money(f,x.r.cur):"",f==null);
+      tr.querySelector('[data-c="pm1"]').title=x.sh>0&&f==null?"Vendes todas las acciones":""; }
     set("w0",pct(tot?x.val/tot:null)); set("w1",x.cost||x.inc?pct(after>0?Math.max(x.val+same,0)/after:null):""); });
 }
 function plFit(){ $("pl-k").querySelectorAll(".mk-v").forEach(el=>{ el.style.fontSize=""; let f=parseFloat(getComputedStyle(el).fontSize); while(el.scrollWidth>el.clientWidth+1&&f>12){ f-=1; el.style.fontSize=f+"px"; } }); }
