@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-j9086zyUGgOqgb/I3AhmVN59o3F+D04lZPFZW/gGi00=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-+m9oo9VBnil5AAhSOP5GBT+KMH1SR47BQIfggCgOKOY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2785,7 +2785,7 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
 .hy-leg:empty{display:flex;visibility:hidden}.hy-leg:empty::before{content:"\00a0"}
 #s-pos:has(#pos-body .skel){min-height:70vh}
 /* Universo en el móvil: el navegador no maqueta las filas que no se ven */
-@media (max-width:700.98px){ #p-body tr.pr{content-visibility:auto;contain-intrinsic-size:auto 66px} }
+@media (max-width:700.98px){ #p-body tr.pr{content-visibility:auto;contain-intrinsic-size:auto 42px} }
 /* las acciones de Movimientos, con puntos como el resto de lo tapado (antes, emborronadas) */
 
 /* FI-01 · «Tu valoración» en el móvil: cinco casillas en tres arriba y dos abajo (como la franja), sin la última sola en su fila */
@@ -2959,6 +2959,17 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   #t-p td.r-vd:empty,#t-p td.r-vd.dash{display:none}#t-p .sdg{display:none}
   .vd-k{display:inline}
 }
+/* v362 · Universo en el móvil, dos líneas: nombre y cotización (13 px, como el nombre); industria y margen en pp (12 px, como la industria,
+   con su color). Sin la fecha de valoración: cada empresa pasa de 86 a 66 px de alto */
+@media (max-width:700.98px){
+  #t-p tbody tr.pr,#t-p tbody tr.pr.inpf{grid-template-rows:20px minmax(20px,auto)}
+  #t-p td.r-vd{display:none}
+  #t-p td.r-sub{grid-column:3;grid-row:1;font-size:var(--fs-13);font-weight:500;color:var(--ink)}
+  #t-p td.r-amt{grid-column:3;grid-row:2;font-size:var(--fs-12)}
+}
+/* en pantallas estrechas (380 px o menos), la cifra de la derecha baja a 12 px, como ya pasaba: así ningún nombre parte línea (a 360,
+   «Brookfield Asset Management» quedaba a 0,3 px de caber) */
+@media (max-width:380px){ #t-p td.r-sub{font-size:var(--fs-12)} }
 /* Universo, pantallas anchas: cada cabecera, centrada sobre sus cifras; las cifras, a la derecha entre sí */
 @media (min-width:701px){
   #t-p th:not(.l):not(.c),#t-p td.num{text-align:center}
@@ -3157,7 +3168,7 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
       <select class="inp show-s" id="p-sort" aria-label="Ordenar empresas"><option value="ind">Ordenar por industria</option><option value="name">Por nombre</option><option value="country">Por país</option><option value="margin">Por margen</option><option value="irrExp">Por TIR esperada</option><option value="today">Por variación de hoy</option><option value="dd">Por caída desde máximos</option></select>
       <button type="button" class="btn m-rst" id="p-rst" title="Quitar todos los filtros" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.5-3.6M3 2.5v2.5h2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Restablecer</span></button>
     </div>
-    <div class="mleg" aria-hidden="true">Margen · Precio</div>
+    <div class="mleg" aria-hidden="true">Precio · Margen</div>
     <div class="tablewrap"><table id="t-p" class="rt"><thead id="p-head"></thead><tbody id="p-body"></tbody></table></div>
   </section>
   </div>
@@ -3630,7 +3641,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v361";   // la versión publicada, en el pie
+const VER="v362";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
