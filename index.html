@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-buNWOEDF70uLSzBTCTu+10wMOyXFRyt+8ANC3PNiEb8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-WzS6cashKMK9VO3tKuGKbbCDOPhykUCyNaUDa2HTlQg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2313,10 +2313,6 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
 .hm5{display:none}
 @media (max-width:700.98px){
   body.hm3on .view>.mtop{display:flex;order:-1;margin-bottom:-16px}
-  /* la línea de arriba, fija (con su hueco reservado en la página: su alto menos lo que pisaba la franja) */
-  body.hm3on .view>.mtop{position:fixed;top:0;left:0;right:0;margin:0;z-index:calc(var(--z-reloj-alto) + 1);padding-top:max(calc(env(safe-area-inset-top,0px) - 12px),6px)}
-  body.hm3on .view::before{content:"";display:block;order:-2;flex:none;height:max(calc(var(--mtop-h,0px) - 16px),0px)}
-  html:has(body.hm3on){scroll-padding-top:var(--mtop-h,0px)}
   html body.hm3on[data-view]:not(.__) #topcap{background:var(--canvas)}
   html body.hm3on.bg-top[data-view]:not(.__){background-color:var(--canvas)}
   body.hm5on :is(#s-aidx,#s-uni,#s-cal),body.hm5on :is(#s-aidx,#s-uni,#s-cal).hero3.band2{padding:16px}   /* como la de Resumen (Universo tenía otra regla más fuerte) */
@@ -3753,7 +3749,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v390";   // la versión publicada, en el pie
+const VER="v391";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5144,8 +5140,6 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
 // buscar, ocultar importes y modo noche) y la franja oscura con las cinco cifras centradas, tres arriba y dos abajo. Las cifras salen
 // de las franjas del PC
 { const T0=$("mtop"), tops=[];
-  if(T0&&window.ResizeObserver){ const alto=()=>{ const t=document.querySelector(".view:not([hidden])>.mtop")||T0, v=t.offsetHeight; if(v) document.documentElement.style.setProperty("--mtop-h",v+"px"); };
-    new ResizeObserver(alto).observe(T0); addEventListener("resize",alto); new MutationObserver(alto).observe(document.body,{attributes:true,attributeFilter:["data-view"]}); alto(); }
   ["v-analisis","v-movimientos","v-preseleccion","v-actualidad"].forEach(id=>{ const v=$(id); if(!v||!T0) return; const t=T0.cloneNode(true); t.removeAttribute("id"); t.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id")); v.prepend(t); tops.push(t);
     const [f,p,m]=t.querySelectorAll(".mt-ic button"); f.addEventListener("click",()=>$("kbtn").click()); p.addEventListener("click",()=>$("priv").click()); m.addEventListener("click",()=>$("theme").click()); });
   // el estado, el punto y la luna, iguales que en la barra de Resumen
