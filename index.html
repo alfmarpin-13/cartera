@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-35DM34oofguTo1uGAQjndevkuSBqQjXXkXWZRP6IqT8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-awuv9OWX64c4ee87V943Q4Ye/ol9h3YVfXDgheC/DYA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -1979,12 +1979,17 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 #notice .kf-m{grid-column:1/-1;margin:-4px 0 0;font-size:var(--fs-13);line-height:var(--lh-18);--lhp:var(--lh-18);color:var(--neg)}
 #notice .kf-m:empty{display:none}
 /* tirar para actualizar en el móvil: un círculo bajo el borde de arriba que gira al tirar y da vueltas mientras lee la hoja */
-.ptr{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:var(--z-menu);width:38px;height:38px;border-radius:50%;background:var(--panel);box-shadow:0 0 0 1px var(--line),0 2px 8px var(--sombra-08);display:grid;place-items:center;color:var(--ink3);opacity:0;transform:translate(-50%,-48px);pointer-events:none;transition:transform .25s,opacity .25s,color .15s}
-.ptr.pull{transition:color .15s}
-.ptr svg{width:16px;height:16px}
-.ptr.go,.ptr.run{color:var(--ink)}
-.ptr.run{opacity:1}
-.ptr.run svg{animation:rot .9s linear infinite}
+.ptr{position:fixed;left:50%;top:calc(max(env(safe-area-inset-top,0px),10px) + 6px);z-index:var(--z-menu);display:flex;align-items:center;gap:6px;height:30px;padding:0 12px 0 9px;border-radius:999px;background:var(--panel);box-shadow:0 0 0 1px var(--line),0 4px 14px var(--sombra-08);color:var(--ink2);font-size:var(--fs-12);line-height:16px;white-space:nowrap;opacity:0;transform:translate(-50%,-44px);pointer-events:none;transition:transform .3s cubic-bezier(.32,.72,0,1),opacity .25s}
+.ptr.pull{transition:none}
+.ptr.run,.ptr.fin{opacity:1;transform:translate(-50%,0)}
+.ptr-i{display:grid;place-items:center;width:16px;height:16px;flex:none}
+.ptr svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.ptr .ptr-gi,.ptr .ptr-ok{display:none}
+.ptr[data-m="go"]{color:var(--ink)} .ptr[data-m="go"] svg{transform:rotate(180deg)}
+.ptr[data-m="run"] .ptr-fl,.ptr[data-m="ok"] .ptr-fl,.ptr[data-m="err"] .ptr-fl{display:none}
+.ptr[data-m="run"] .ptr-gi{display:block} .ptr[data-m="run"] svg{animation:rot .9s linear infinite}
+.ptr[data-m="ok"] .ptr-ok{display:block} .ptr[data-m="ok"] .ptr-i{color:var(--pos)}
+.ptr[data-m="err"] .ptr-gi{display:block} .ptr[data-m="err"] .ptr-i{color:var(--neg)}
 /* sin la recarga de página del navegador: tira la web */
 /* Tu cartera hoy: la cifra del día debajo del título, como en las franjas (grande y fina, el porcentaje al lado del mismo color) */
 #s-today .hy-a{flex-direction:column;align-items:flex-start;gap:8px}
@@ -3830,7 +3835,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v422";   // la versión publicada, en el pie
+const VER="v423";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5980,19 +5985,30 @@ $("more").addEventListener("click",()=>{ const M=$("more-m"), b=$("more"); if(M.
   M.style.setProperty("--mm-x",Math.round(Math.min(Math.max(8,r.right-w),innerWidth-w-8))+"px"); M.style.setProperty("--mm-y",Math.round(r.bottom+8)+"px"); });
 // en el PC, el menú se cierra al desplazarse o al cambiar el tamaño de la ventana (se quedaría lejos de su botón)
 ["scroll","resize"].forEach(ev=>addEventListener(ev,()=>{ const M=$("more-m"); if(M&&!M.hidden&&innerWidth>760) $("more").click(); },{passive:true}));   // móvil: «Ajustes», al pie de la página   // iPhone: la zona del reloj, de color liso y sin difuminar
-if(matchMedia("(pointer:coarse)").matches){ const P=document.createElement("div"); P.className="ptr"; P.setAttribute("aria-hidden","true"); P.innerHTML=$("refresh").querySelector("svg").outerHTML; document.body.append(P);
-  const GO=64, MAX=104; let y0=null, d=0, on=false;
-  const set=v=>{ d=v; P.style.transform=`translate(-50%,${Math.min(v,MAX)-48}px) rotate(${Math.round(v*3)}deg)`; P.style.opacity=String(Math.min(1,v/GO)); P.classList.toggle("go",v>=GO); };
-  const quieto=()=>!$("sheet").hidden||!$("kx").hidden||busy||!canRead();   // con la ficha o el buscador abiertos, o ya leyendo, no
-  addEventListener("touchstart",e=>{ y0=scrollY<=0&&e.touches.length===1&&!quieto()?e.touches[0].clientY:null; on=false; },{passive:true});
+if(matchMedia("(pointer:coarse)").matches){ const P=document.createElement("div"); P.className="ptr"; P.setAttribute("role","status"); P.setAttribute("aria-live","polite");
+  P.innerHTML='<span class="ptr-i"><svg viewBox="0 0 16 16" aria-hidden="true"><path class="ptr-fl" d="M8 3v9M4.5 8.5 8 12l3.5-3.5"/><path class="ptr-gi" d="M13 8a5 5 0 1 1-1.5-3.6M13 2.5v2.4h-2.4"/><path class="ptr-ok" d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></span><span class="ptr-t"></span>'; document.body.append(P);
+  const T=P.querySelector(".ptr-t"), GO=56, MAX=96, ARR=.6; let y0=null, d=0, on=false, fase="";
+  const hora=()=>{ const m=($("stat").textContent||"").match(/\b(\d{1,2}:\d{2})\b/); return m?m[1]:""; };
+  const texto=t=>{ if(T.textContent!==t) T.textContent=t; };
+  const modo=m=>{ if(fase===m) return; fase=m; P.dataset.m=m; };
+  const set=v=>{ d=v; P.style.transform=`translate(-50%,${Math.round(Math.min(v,MAX)*.55-44)}px)`; P.style.opacity=String(Math.min(1,v/28));
+    if(v>=GO){ modo("go"); texto("Suelta para actualizar"); } else { modo("tira"); const hm=hora(); texto(hm?`Datos de las ${hm} · tira para actualizar`:"Tira para actualizar"); } };
+  const esconde=()=>{ P.classList.remove("pull","run","fin"); P.style.transform=""; P.style.opacity=""; modo(""); };
+  const arriba=()=>scrollY<=1;
+  const quieto=()=>!$("sheet").hidden||!$("kx").hidden||busy||!canRead()||P.classList.contains("run")||P.classList.contains("fin");   // con la ficha o el buscador abiertos, o ya leyendo, no
+  addEventListener("touchstart",e=>{ y0=arriba()&&e.touches.length===1&&!quieto()?e.touches[0].clientY:null; on=false; },{passive:true});
   addEventListener("touchmove",e=>{ if(y0===null) return; const dy=e.touches[0].clientY-y0;
-    if(dy<=0||scrollY>0){ if(on){ P.classList.remove("pull"); set(0); } on=false; return; }
-    on=true; P.classList.add("pull"); set(Math.min(dy*.5,MAX)); },{passive:true});
+    if(dy<=0||!arriba()){ if(on){ P.classList.remove("pull"); esconde(); } on=false; return; }
+    on=true; P.classList.add("pull"); set(Math.min(dy*ARR,MAX)); },{passive:true});
   const fin=()=>{ if(y0===null) return; y0=null; if(!on) return; on=false; P.classList.remove("pull");
-    if(d<GO){ set(0); return; }
-    P.classList.add("run"); P.style.transform="translate(-50%,14px)"; archivoLocal=false; load(true); loadAct(true);
-    const t0=Date.now(), w=setInterval(()=>{ if(!busy&&Date.now()-t0>700){ clearInterval(w); P.classList.remove("run"); set(0); } },150); };
-  addEventListener("touchend",fin,{passive:true}); addEventListener("touchcancel",()=>{ y0=null; on=false; P.classList.remove("pull"); set(0); },{passive:true}); }
+    if(d<GO){ esconde(); return; }
+    P.classList.add("run"); P.style.transform=""; P.style.opacity=""; modo("run"); texto("Actualizando…");
+    archivoLocal=false; load(true); loadAct(true);
+    const t0=performance.now(), w=setInterval(()=>{ if(busy||performance.now()-t0<700) return; clearInterval(w);
+      const err=$("dot").classList.contains("err"), hm=hora(); P.classList.remove("run"); P.classList.add("fin"); modo(err?"err":"ok");
+      texto(err?($("stat").textContent||"No se ha podido actualizar"):hm?`Actualizado · ${hm}`:"Actualizado");
+      setTimeout(esconde,1600); },150); };
+  addEventListener("touchend",fin,{passive:true}); addEventListener("touchcancel",()=>{ if(y0===null) return; y0=null; on=false; P.classList.remove("pull"); esconde(); },{passive:true}); }
 // móvil: Hoy (cotización y variación de la sesión) o Total (valor y rentabilidad); se recuerda en cada dispositivo
 { let m="hoy"; try{ m=localStorage.getItem("pos-mode")==="tot"?"tot":"hoy"; }catch{}
   const setM=v=>{ m=v; $("t-pos").classList.toggle("pm-tot",v==="tot"); $("pos-mode").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.m===v))); try{ localStorage.setItem("pos-mode",v); }catch{} };
