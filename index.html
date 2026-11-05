@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-55h/Lnb5Mt/A6SSuQjs5wz+1iel5RXS9hf8UOLs+ki4=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-NOPV8uw3y1TZGB6U4XdRYv+gM78dzlq2U5TKINrScPM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2498,15 +2498,21 @@ html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:non
 .cal-c.past .cal-n,.cal-c.out .cal-n{opacity:.45}
 .cal-c.today .cal-n{opacity:1}
 .cal-c.today .cal-n b{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:20px;height:20px;padding:0 4px;border-radius:var(--r-10);background:var(--ink);color:var(--card);font-weight:600}
-.cal-e{position:relative;display:flex;flex-direction:column;gap:2px;width:100%;min-width:0;padding:6px 8px 7px 10px;border:0;border-radius:var(--r-4);background:color-mix(in srgb,var(--ink) 5%,transparent);text-align:left;font:inherit;color:inherit;cursor:pointer}
-.cal-e:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
-.cal-e::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;border-radius:1px;background:var(--ink2)}
-.cal-e.d{background:color-mix(in srgb,var(--pos) 9%,transparent)}
-.cal-e.d:hover{background:color-mix(in srgb,var(--pos) 14%,transparent)}
+.cal-e{position:relative;display:flex;flex-direction:column;gap:2px;width:100%;min-width:0;padding:6px 8px 7px 11px;border:0;border-radius:var(--r-4);background:color-mix(in srgb,var(--ink) 8%,transparent);text-align:left;font:inherit;color:inherit;cursor:pointer}
+.cal-e:hover{background:color-mix(in srgb,var(--ink) 12%,transparent)}
+.cal-e::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:var(--r-4) 0 0 var(--r-4);background:var(--ink)}
+.cal-e.d{background:color-mix(in srgb,var(--pos) 16%,transparent)}
+.cal-e.d:hover{background:color-mix(in srgb,var(--pos) 22%,transparent)}
 .cal-e.d::before{background:var(--pos)}
-.cal-e.est{background:none}
-.cal-e.est::before{width:0;background:none;border-left:2px dashed var(--ink3)}
-.cal-e.est:hover{background:color-mix(in srgb,var(--ink) 4%,transparent)}
+.cal-e.d .am{color:var(--pos);font-weight:600}
+.cal-e .ic{display:inline-flex;align-items:center;gap:4px;flex:none;color:var(--ink2)}
+.ci{width:12px;height:12px;flex:none;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.cal-mas{align-self:flex-start;border:0;background:none;padding:0 2px;font-size:var(--fs-11);line-height:var(--lh-15);--lhp:var(--lh-15);color:var(--ink2);cursor:pointer}
+.cal-mas:hover{color:var(--ink);text-decoration:underline}
+.cal-lg{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;margin:12px 0 0;font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);color:var(--ink2)}
+.cal-lg span{display:inline-flex;align-items:center;gap:6px}
+.cal-lg i{display:inline-block;width:10px;height:10px;border-radius:2px;background:color-mix(in srgb,var(--ink) 8%,transparent);box-shadow:inset 3px 0 0 var(--ink)}
+.cal-lg i.d{background:color-mix(in srgb,var(--pos) 16%,transparent);box-shadow:inset 3px 0 0 var(--pos)}
 .cal-e.past{opacity:.55}
 .cal-e[disabled]{cursor:default}
 .cal-e .tp{display:flex;align-items:center;gap:6px;min-width:0}
@@ -2519,7 +2525,7 @@ html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:non
 .cal-e.cand b{font-weight:400;color:var(--ink2)}
 .cal-k{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .cal-dia{display:none}
-.cal-pie{margin:12px 0 0;font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);color:var(--ink3)}
+.cal-pie{margin:6px 0 0;font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);color:var(--ink3)}
 .cal-pie:empty{display:none}
 /* estrecho (tableta en vertical y móvil): el mes con puntos y, debajo, el día elegido con sus tarjetas grandes */
 @media (max-width:1100.98px){
@@ -2531,15 +2537,16 @@ html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:non
   .cal-n{padding:0;justify-content:center}
   .cal-c .cal-e{display:none}
   .cal-c.sel{background:color-mix(in srgb,var(--ink) 7%,transparent)}
-  .cal-p{display:flex;gap:3px;height:6px}
-  .cal-p i{width:6px;height:6px;border-radius:50%;background:var(--ink2)}
+  .cal-p{display:flex;gap:3px;height:7px}
+  .cal-p i{width:7px;height:7px;border-radius:50%;background:var(--ink)}
   .cal-p i.d{background:var(--pos)}
-  .cal-p i.est{background:none;box-shadow:inset 0 0 0 1px var(--ink3)}
+  .cal-p i.est{background:none;box-shadow:inset 0 0 0 1.5px var(--ink)}
+  .cal-c .cal-mas{display:none}
   .cal-dia{display:block;margin-top:16px}
   .cal-dia h3{margin:0 0 8px}
   .cal-dia .cal-l{display:flex;flex-direction:column;gap:8px}
   .cal-dia .cal-e{padding:10px 12px 10px 14px;gap:3px}
-  .cal-dia .cal-e::before{top:8px;bottom:8px}
+  .cal-dia .cal-mas{display:none}
   .cal-dia .cal-e .lgb{width:24px;height:18px}
   .cal-dia .cal-e b{font-size:var(--fs-13);line-height:var(--lh-17);--lhp:var(--lh-17)}
   .cal-dia .cal-e small{font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16)}
@@ -3267,6 +3274,7 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
       <div class="perf-k cal-k"><div class="seg" role="group" aria-label="Qué ver" id="cal-f"><button type="button" data-cf="todo" aria-pressed="true">Todo</button><button type="button" data-cf="res" aria-pressed="false">Resultados</button><button type="button" data-cf="div" aria-pressed="false">Dividendos</button></div><div class="seg" role="group" aria-label="Qué empresas" id="cal-u"><button type="button" data-cu="0" aria-pressed="true">Mi cartera</button><button type="button" data-cu="1" aria-pressed="false">Todo el Universo</button></div></div></div>
     <div class="cal-g" id="cal-g"></div>
     <div class="cal-dia" id="cal-d"></div>
+    <p class="cal-lg"><span><i></i>Resultados</span><span><i class="d"></i>Dividendo</span><span><svg class="ci" viewBox="0 0 12 12" role="img" aria-label="Antes de la apertura"><title>Antes de la apertura</title><circle cx="6" cy="6" r="2.3"/><path d="M6 .9v1.3M6 9.8v1.3M.9 6h1.3M9.8 6h1.3M2.4 2.4l.9.9M8.7 8.7l.9.9M2.4 9.6l.9-.9M8.7 3.3l.9-.9"/></svg>Antes de la apertura</span><span><svg class="ci" viewBox="0 0 12 12" role="img" aria-label="Tras el cierre"><title>Tras el cierre</title><path d="M9.8 7.6A4.3 4.3 0 0 1 4.4 2.2a4.3 4.3 0 1 0 5.4 5.4z"/></svg>Tras el cierre</span><span><svg class="ci" viewBox="0 0 12 12" role="img" aria-label="Fecha estimada"><title>Fecha estimada</title><circle cx="6" cy="6" r="4.6" stroke-dasharray="1.2 1.7"/></svg>Fecha estimada</span></p>
     <p class="cal-pie" id="cal-pie"></p>
   </section>
   </div>
@@ -3733,7 +3741,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v367";   // la versión publicada, en el pie
+const VER="v368";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5495,7 +5503,7 @@ document.addEventListener("click",e=>{ const a=e.target.closest("[data-gomov]");
 /* ---------- vistas ---------- */
 let view="resumen";
 /* ---------- CALENDARIO (v367) ---------- */
-let calM=null, calSel=null, calFi="todo", calUn=false, calSig="";
+let calExp=0, calM=null, calSel=null, calFi="todo", calUn=false, calSig="";
 try{ const f=localStorage.getItem("cal-f"); if(["todo","res","div"].includes(f)) calFi=f; calUn=localStorage.getItem("cal-u")==="1"; }catch{}
 const calYmd=s=>{ const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); };
 const calHoy=()=>{ const n=new Date(); return new Date(n.getFullYear(),n.getMonth(),n.getDate()); };
@@ -5520,10 +5528,12 @@ function calEventos(){ const pf=new Set(DATA.pos.filter(p=>!p.isOption).map(p=>p
   ((DATA.dvm&&DATA.dvm.pays)||[]).forEach(p=>{ if(p.d instanceof Date&&isNum(p.v)&&calKey(day(p.d))>=hk) ev.push({k:"d",d:day(p.d),t:p.t,n:nom(p.t),v:p.v,pf:true,ok:true,ya:false}); });
   ev.forEach(e=>{ e.d=new Date(e.d.getFullYear(),e.d.getMonth(),e.d.getDate()); });
   return ev.sort((a,b)=>a.d-b.d||(a.pf===b.pf?0:a.pf?-1:1)||(a.k===b.k?0:a.k==="r"?-1:1)||a.n.localeCompare(b.n,"es")); }
+// sol, luna y fecha estimada (círculo de puntos), en la misma línea del periodo; con su nombre para el lector de pantalla
+const CAL_SOL=`<svg class="ci" viewBox="0 0 12 12" role="img" aria-label="Antes de la apertura"><title>Antes de la apertura</title><circle cx="6" cy="6" r="2.3"/><path d="M6 .9v1.3M6 9.8v1.3M.9 6h1.3M9.8 6h1.3M2.4 2.4l.9.9M8.7 8.7l.9.9M2.4 9.6l.9-.9M8.7 3.3l.9-.9"/></svg>`, CAL_LUNA=`<svg class="ci" viewBox="0 0 12 12" role="img" aria-label="Tras el cierre"><title>Tras el cierre</title><path d="M9.8 7.6A4.3 4.3 0 0 1 4.4 2.2a4.3 4.3 0 1 0 5.4 5.4z"/></svg>`, CAL_EST=`<svg class="ci" viewBox="0 0 12 12" role="img" aria-label="Fecha estimada"><title>Fecha estimada</title><circle cx="6" cy="6" r="4.6" stroke-dasharray="1.2 1.7"/></svg>`;
 const calTarjeta=(e,hoy)=>{ const fut=calKey(e.d)>=calKey(hoy), det=e.k==="r"
-    ?`${esc(calPer(e.per))}${!e.ya&&(e.hora||e.est)?`<br>${e.hora?esc(e.hora[0].toUpperCase()+e.hora.slice(1))+" · ":""}${e.est?"fecha estimada":"confirmada"}`:""}`
+    ?`<span class="dl"><span>${esc(calPer(e.per))}</span>${!e.ya&&(e.hora||e.est)?`<span class="ic">${e.hora==="antes de la apertura"?CAL_SOL:e.hora==="tras el cierre"?CAL_LUNA:""}${e.est?CAL_EST:""}</span>`:""}</span>`
     :`<span class="dl"><span>${fut&&!e.ya?"Dividendo":"Cobrado"}</span><span class="am">${eur(e.v,2)}</span></span>`;
-  return `<button type="button" class="cal-e ${e.k}${e.k==="r"&&!e.ya&&e.est?" est":""}${e.pf?"":" cand"}${calKey(e.d)<calKey(hoy)?" past":""}"${e.ok?` data-t="${esc(e.t)}" data-pf="${e.pf?1:0}"`:" disabled"} aria-label="${esc(e.n)}: ${e.k==="r"?esc(calPer(e.per)):"dividendo de "+esc(eur(e.v,2))}"><span class="tp">${logoBare(e.n,e.t)}<b>${esc(e.n)}</b></span><small>${det}</small></button>`; };
+  return `<button type="button" class="cal-e ${e.k}${e.pf?"":" cand"}${calKey(e.d)<calKey(hoy)?" past":""}"${e.ok?` data-t="${esc(e.t)}" data-pf="${e.pf?1:0}"`:" disabled"} aria-label="${esc(e.n)}: ${e.k==="r"?esc(calPer(e.per))+(!e.ya&&e.hora?", "+e.hora:"")+(!e.ya&&e.est?", fecha estimada":""):"dividendo de "+esc(eur(e.v,2))}"><span class="tp">${logoBare(e.n,e.t)}<b>${esc(e.n)}</b></span><small>${det}</small></button>`; };
 function renderCal(){ calSync(); const G=$("cal-g"); if(!G||!DATA) return;
   const hoy=calHoy(); if(!calM) calM=new Date(hoy.getFullYear(),hoy.getMonth(),1); if(!calSel) calSel=hoy;
   const todo=calEventos(), cart=todo.filter(e=>e.pf);
@@ -5550,7 +5560,7 @@ function renderCal(){ calSync(); const G=$("cal-g"); if(!G||!DATA) return;
     +[...Array(nd)].map((_,i)=>{ const d=new Date(ini); d.setDate(ini.getDate()+i); const k=calKey(d), out=d.getMonth()!==m, g=out?[]:(por.get(k)||[]);
       return `<div class="cal-c${i%7>4?" we":""}${out?" out":""}${k<calKey(hoy)?" past":""}${k===calKey(hoy)?" today":""}${g.length?" on":""}${k===calKey(calSel)&&!out?" sel":""}" data-k="${k}"><span class="cal-n"><b>${d.getDate()}</b></span>`
         +`<span class="cal-p" aria-hidden="true">${g.slice(0,4).map(e=>`<i class="${e.k==="d"?"d":e.est&&!e.ya?"est":""}"></i>`).join("")}</span>`
-        +g.map(e=>calTarjeta(e,hoy)).join("")+`</div>`; }).join("");
+        +(k===calExp?g:g.slice(0,3)).map(e=>calTarjeta(e,hoy)).join("")+(g.length>3?`<button type="button" class="cal-mas" data-mas="${k}">${k===calExp?"Ver menos":`+${g.length-3} más`}</button>`:"")+`</div>`; }).join("");
   // el día elegido (pantallas estrechas)
   const gs=por.get(calKey(calSel))||[], dS=calSel.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"});
   $("cal-d").innerHTML=`<h3 class="st">${esc(dS)}</h3>${gs.length?`<div class="cal-l">${gs.map(e=>calTarjeta(e,hoy)).join("")}</div>`:`<p class="nada">Nada este día</p>`}`;
@@ -5564,6 +5574,7 @@ function renderCal(){ calSync(); const G=$("cal-g"); if(!G||!DATA) return;
 renderAct=renderCal;
 $("s-calm").addEventListener("click",e=>{
   const c=e.target.closest("[data-cm]"); if(c){ const n=+c.dataset.cm, hoy=calHoy(); if(n){ calM=new Date(calM.getFullYear(),calM.getMonth()+n,1); calSel=new Date(calM); } else { calM=new Date(hoy.getFullYear(),hoy.getMonth(),1); calSel=hoy; } renderCal(); return; }
+  const mas=e.target.closest("[data-mas]"); if(mas){ calExp=calExp===+mas.dataset.mas?0:+mas.dataset.mas; renderCal(); return; }
   const f=e.target.closest("[data-cf]"); if(f){ calFi=f.dataset.cf; try{ localStorage.setItem("cal-f",calFi); }catch{} renderCal(); return; }
   const u=e.target.closest("[data-cu]"); if(u){ calUn=u.dataset.cu==="1"; try{ localStorage.setItem("cal-u",calUn?"1":"0"); }catch{} renderCal(); return; }
   const t=e.target.closest(".cal-e[data-t]"); if(t&&(!matchMedia("(max-width:1100.98px)").matches||t.closest("#cal-d"))){ const L=[...t.closest("#cal-d,#cal-g").querySelectorAll(".cal-e[data-t]")].map(x=>x.dataset.t); openSheet(t.dataset.pf==="1"?"pos":"pre",t.dataset.t,[...new Set(L)]); return; }
