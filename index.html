@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-CeMDqtuEXwsv0RM9gIcLQk4rNAPEPF5+UYkvkVfMxAQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-55h/Lnb5Mt/A6SSuQjs5wz+1iel5RXS9hf8UOLs+ki4=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -1468,7 +1468,7 @@ html{-webkit-tap-highlight-color:transparent;scrollbar-gutter:stable;background:
   .bg.ag .dv{margin-top:0}  .bg.ag .bv{font-size:var(--fs-24)}.bg.ag .bs{font-size:var(--fs-11)}}
 @media (max-width:700.98px){#v-analisis>.panel,#v-analisis .grid3 .panel{scroll-margin-top:16px}}
 /* H: «Todo», todos los movimientos por fecha, como primera pestaña (más estrecha: su cifra es corta) */
-@media (max-width:1000.98px){#mtabs,#s-uni,#s-aidx{min-height:0}    .mvt-all .mvt-n{margin-right:auto}}
+@media (max-width:1000.98px){#mtabs,#s-uni,#s-cal,#s-aidx{min-height:0}    .mvt-all .mvt-n{margin-right:auto}}
 .lgb.mvg svg{width:22px;height:22px;fill:none;stroke:var(--ink2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 @media (min-width:701px){#s-mov[data-t="todo"] .rt td.wrapc{white-space:normal}}
 @media (min-width:701px) and (max-width:1240px){#s-mov[data-t="todo"] .pa{display:none}}
@@ -1719,7 +1719,7 @@ html.sh-open:not(#_) body .sheet-bg{display:block}
 @media (min-width:701px){
   .top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line);box-shadow:0 0 0 100vmax var(--line);clip-path:inset(0 -100vmax);pointer-events:none}
   .top{box-shadow:0 0 0 100vmax var(--canvas);clip-path:inset(0 -100vmax -1px)}
-  #s-hero,#s-aidx,#s-uni{border-radius:0;box-shadow:0 0 0 100vmax var(--h-bg);clip-path:inset(0 -100vmax)}
+  #s-hero,#s-aidx,#s-uni,#s-cal{border-radius:0;box-shadow:0 0 0 100vmax var(--h-bg);clip-path:inset(0 -100vmax)}
 }
 /* Posiciones: al ensanchar la columna, el espacio que sobra se reparte entre todas las columnas (Peso se lleva la mayor parte y la barra crece)
    --ex = lo que la tabla mide de más sobre los 1.132 px de antes: de 0 (pantalla de 1.212 px) a 260 px (columna completa de 1.440) */
@@ -1779,7 +1779,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 @media (min-width:901px){
     #s-hero .bg{grid-template-columns:repeat(4,minmax(0,1fr))}
   #s-hero .bg .c0{padding-right:12px}
-  #s-hero,#s-aidx,#s-uni,#mtabs{min-height:0}
+  #s-hero,#s-aidx,#s-uni,#s-cal,#mtabs{min-height:0}
   #h-sub{white-space:nowrap}
 }
 /* en Resumen, la línea de debajo del valor cabe en su columna: por debajo de 1.400 px de ancho se queda sin la liquidez */
@@ -1828,14 +1828,14 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 .hy-leg b{font-weight:500;color:var(--ink)}
 
 /* ===== Jerarquía de franjas: Resumen es la portada (verde casi negro); Análisis, Movimientos, Universo y Actualidad llevan la misma franja en arena, más compacta ===== */
-:is(#s-aidx,#s-uni,#mtabs){--h-bg:#E9E3D7;--h-card:#E1DACC;--h-line:#D3CABA;--h-fg:#1A1A1A;--h-fg2:var(--ink2);--h-fg3:var(--ink3);--h-pos:var(--pos);--h-neg:var(--neg)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) :is(#s-aidx,#s-uni,#mtabs){--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}}
-:root[data-theme="dark"] :is(#s-aidx,#s-uni,#mtabs){--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}
+:is(#s-aidx,#s-uni,#s-cal,#mtabs){--h-bg:#E9E3D7;--h-card:#E1DACC;--h-line:#D3CABA;--h-fg:#1A1A1A;--h-fg2:var(--ink2);--h-fg3:var(--ink3);--h-pos:var(--pos);--h-neg:var(--neg)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) :is(#s-aidx,#s-uni,#s-cal,#mtabs){--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}}
+:root[data-theme="dark"] :is(#s-aidx,#s-uni,#s-cal,#mtabs){--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}
 @media (min-width:901px){
-  :is(#s-aidx,#s-uni){padding-top:20px;padding-bottom:20px}
-  :is(#s-aidx,#s-uni) .bg .bv{font-size:var(--fs-28);line-height:var(--lh-32);--lhp:var(--lh-32)}
-  :is(#s-aidx,#s-uni) .bg .bl{padding-bottom:8px}
-  :is(#s-aidx,#s-uni) .bg .bs{padding-top:8px}
+  :is(#s-aidx,#s-uni,#s-cal){padding-top:20px;padding-bottom:20px}
+  :is(#s-aidx,#s-uni,#s-cal) .bg .bv{font-size:var(--fs-28);line-height:var(--lh-32);--lhp:var(--lh-32)}
+  :is(#s-aidx,#s-uni,#s-cal) .bg .bl{padding-bottom:8px}
+  :is(#s-aidx,#s-uni,#s-cal) .bg .bs{padding-top:8px}
   /* Resumen: la misma altura y el mismo tamaño de cifra que las secciones; lo que la distingue es su color */
   #s-hero{padding-top:20px;padding-bottom:20px}
   #s-hero .bg .bl{padding-bottom:8px}
@@ -1895,45 +1895,45 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 @container ficha (max-width:360px){.sheet .cot-l{grid-template-columns:max-content minmax(40px,1fr) minmax(84px,max-content) 50px;column-gap:8px}}
 /* ===== Análisis, Universo y Actualidad: cinco cifras, en las mismas cinco columnas que Movimientos ===== */
 @media (min-width:701px){
-  :is(#s-aidx,#s-uni) .bg.bg5{grid-template-columns:repeat(5,minmax(0,1fr))}
-  :is(#s-aidx,#s-uni) .bg.bg5 .c0:is(.r1,.r2,.r3){grid-column:1;padding-left:0;padding-right:12px}
-  :is(#s-aidx,#s-uni) .bg.bg5 .c1:is(.r1,.r2,.r3){grid-column:2}
-  :is(#s-aidx,#s-uni) .bg.bg5 .c2:is(.r1,.r2,.r3){grid-column:3}
-  :is(#s-aidx,#s-uni) .bg.bg5 .c3:is(.r1,.r2,.r3){grid-column:4}
-  :is(#s-aidx,#s-uni) .bg.bg5 .c4:is(.r1,.r2,.r3){grid-column:5}
-  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c2,.c3,.c4):is(.r1,.r2,.r3){padding-left:24px;padding-right:12px}
-  :is(#s-aidx,#s-uni) .bg.bg5 .r1{grid-row:1;margin-top:0;border-top:0}
-  :is(#s-aidx,#s-uni) .bg.bg5 .r2{grid-row:2}
-  :is(#s-aidx,#s-uni) .bg.bg5 .r3{grid-row:3;display:block}
-  :is(#s-aidx,#s-uni) .bg.bg5 .dv{display:block;grid-row:1/4;margin-top:0}
-  :is(#s-aidx,#s-uni) .bg.bg5 .d1{grid-column:2}:is(#s-aidx,#s-uni) .bg.bg5 .d2{grid-column:3}
-  :is(#s-aidx,#s-uni) .bg.bg5 .d3{grid-column:4}:is(#s-aidx,#s-uni) .bg.bg5 .d4{grid-column:5}
-  :is(#s-aidx,#s-uni) .bg.bg5 .bl .lg{display:inline}:is(#s-aidx,#s-uni) .bg.bg5 .bl .sh{display:none}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5{grid-template-columns:repeat(5,minmax(0,1fr))}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .c0:is(.r1,.r2,.r3){grid-column:1;padding-left:0;padding-right:12px}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .c1:is(.r1,.r2,.r3){grid-column:2}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .c2:is(.r1,.r2,.r3){grid-column:3}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .c3:is(.r1,.r2,.r3){grid-column:4}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .c4:is(.r1,.r2,.r3){grid-column:5}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 :is(.c1,.c2,.c3,.c4):is(.r1,.r2,.r3){padding-left:24px;padding-right:12px}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .r1{grid-row:1;margin-top:0;border-top:0}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .r2{grid-row:2}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .r3{grid-row:3;display:block}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .dv{display:block;grid-row:1/4;margin-top:0}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .d1{grid-column:2}:is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .d2{grid-column:3}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .d3{grid-column:4}:is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .d4{grid-column:5}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .bl .lg{display:inline}:is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .bl .sh{display:none}
 }
-@media (min-width:701px) and (max-width:1340px){:is(#s-aidx,#s-uni) .bg.bg5 .bl .lg{display:none}:is(#s-aidx,#s-uni) .bg.bg5 .bl .sh{display:inline}}
+@media (min-width:701px) and (max-width:1340px){:is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .bl .lg{display:none}:is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .bl .sh{display:inline}}
 /* móvil: como en Movimientos, la primera cifra en una fila y las otras cuatro de dos en dos */
 @media (max-width:700.98px){
-  :is(#s-aidx,#s-uni) .bg.bg5{grid-template-columns:repeat(2,minmax(0,1fr))}
-  :is(#s-aidx,#s-uni) .bg.bg5 .c0.r1{grid-column:1;grid-row:1;padding:0;margin:0;border:0}
-  :is(#s-aidx,#s-uni) .bg.bg5 .c0.r2{grid-column:2;grid-row:1;justify-self:end;padding:0;margin:0}
-  :is(#s-aidx,#s-uni) .bg.bg5 .r3{display:none}
-  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c3):is(.r1,.r2){grid-column:1;padding-left:0;padding-right:12px}
-  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c2,.c4):is(.r1,.r2){grid-column:2;padding-left:16px;padding-right:0}
-  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c2,.c3,.c4).r1{margin-top:12px;padding-top:12px;border-top:1px solid var(--h-line)}
-  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c2).r1{grid-row:2}:is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c2).r2{grid-row:3}
-  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c3,.c4).r1{grid-row:4}:is(#s-aidx,#s-uni) .bg.bg5 :is(.c3,.c4).r2{grid-row:5}
-  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c2,.c3,.c4).r2{padding-bottom:0}
-  :is(#s-aidx,#s-uni) .bg.bg5 .dv{display:none}
-  :is(#s-aidx,#s-uni) .bg.bg5 .d1{display:block;grid-column:2;grid-row:2/4;margin-top:24px}
-  :is(#s-aidx,#s-uni) .bg.bg5 .d3{display:block;grid-column:2;grid-row:4/6;margin-top:24px}
-  :is(#s-aidx,#s-uni) .bg.bg5 .bl .lg{display:none}:is(#s-aidx,#s-uni) .bg.bg5 .bl .sh{display:inline}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5{grid-template-columns:repeat(2,minmax(0,1fr))}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .c0.r1{grid-column:1;grid-row:1;padding:0;margin:0;border:0}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .c0.r2{grid-column:2;grid-row:1;justify-self:end;padding:0;margin:0}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .r3{display:none}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 :is(.c1,.c3):is(.r1,.r2){grid-column:1;padding-left:0;padding-right:12px}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 :is(.c2,.c4):is(.r1,.r2){grid-column:2;padding-left:16px;padding-right:0}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 :is(.c1,.c2,.c3,.c4).r1{margin-top:12px;padding-top:12px;border-top:1px solid var(--h-line)}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 :is(.c1,.c2).r1{grid-row:2}:is(#s-aidx,#s-uni,#s-cal) .bg.bg5 :is(.c1,.c2).r2{grid-row:3}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 :is(.c3,.c4).r1{grid-row:4}:is(#s-aidx,#s-uni,#s-cal) .bg.bg5 :is(.c3,.c4).r2{grid-row:5}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 :is(.c1,.c2,.c3,.c4).r2{padding-bottom:0}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .dv{display:none}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .d1{display:block;grid-column:2;grid-row:2/4;margin-top:24px}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .d3{display:block;grid-column:2;grid-row:4/6;margin-top:24px}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .bl .lg{display:none}:is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .bl .sh{display:inline}
 }
 @media (min-width:1001px){
-  :is(#s-aidx,#s-uni):has(.bg5){padding-left:0;padding-right:0}
-  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c0,.c1,.c2,.c3,.c4):is(.r1,.r2,.r3){padding-left:clamp(16px,3vw,30px);padding-right:clamp(16px,3vw,30px)}
+  :is(#s-aidx,#s-uni,#s-cal):has(.bg5){padding-left:0;padding-right:0}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 :is(.c0,.c1,.c2,.c3,.c4):is(.r1,.r2,.r3){padding-left:clamp(16px,3vw,30px);padding-right:clamp(16px,3vw,30px)}
   #mtabs{grid-template-columns:repeat(5,minmax(0,1fr))}
 }
-@media (min-width:701px) and (max-width:1100px){:is(#s-aidx,#s-uni) .bg.bg5 .bs{font-size:var(--fs-11)}}
+@media (min-width:701px) and (max-width:1100px){:is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .bs{font-size:var(--fs-11)}}
 /* avisos con el diseño de las franjas: arena de borde a borde (tarjeta en el móvil); etiqueta, título y texto a la izquierda, el enlace a la derecha */
 #notice{--nt-bg:#E9E3D7;--nt-line:#D3CABA;--nt-fg:#1A1A1A;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #notice{--nt-bg:#272420;--nt-line:#3B3730;--nt-fg:#EDE9E2;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}}
@@ -2057,7 +2057,7 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
   .top .tools{display:block;height:0;margin:0}
   .top .tools>:not(.more-m),.top .tools :is(#more,#priv,#kbtn){display:none}
   .more-m:not([hidden]){position:fixed;}
-  :is(#s-hero,#s-aidx,#s-uni,#mtabs){border-radius:0;margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px;box-shadow:none}
+  :is(#s-hero,#s-aidx,#s-uni,#s-cal,#mtabs){border-radius:0;margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px;box-shadow:none}
 
   body[data-view="resumen"]:not(.past-band) #topcap{background:var(--h-bg)}
   body[data-view]:not([data-view="resumen"]):not(.past-band) #topcap{background:var(--ar-bg)}
@@ -2154,12 +2154,12 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
 /* Movimientos en el móvil: una nota larga sigue desde el principio de la línea, sin sangría */
 @media (max-width:700.98px){#s-mov .rt td.mline:has(.w){display:block}#s-mov .rt td.mline:has(.w) .mi{display:inline}#s-mov .rt td.mline:has(.w) .mi::before{position:static;margin:0 6px}#s-mov .rt td.mline .mi:first-child::before{content:none}}   /* solo con nota; sin nota, la línea se parte sin empezar por «·» */
 /* móvil: menos aire entre la hora del iPhone y lo primero de cada pestaña (la primera letra, a 10 px; antes, 17–22) */
-@media (max-width:760.98px){:is(#s-aidx,#s-uni,#mtabs){padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px))}}
+@media (max-width:760.98px){:is(#s-aidx,#s-uni,#s-cal,#mtabs){padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px))}}
 @media (max-width:700.98px){#s-hero{padding-top:calc(env(safe-area-inset-top,0px) + var(--pt0,2px) + 1px)}}
 /* Universo tenía su propio margen (22 arriba y abajo): igual que las demás */
 /* la tira fija de arriba (la que da el color a la barra de la hora) queda por debajo de la primera franja de cada pestaña: ya no tapa
    las letras, que van pegadas a la barra. El iPhone sigue tomando el color de la tira (solo mira los elementos fijos) */
-@media (max-width:760.98px){:is(#s-hero,#s-aidx,#s-uni,#mtabs){position:relative;z-index:var(--z-franja)}}
+@media (max-width:760.98px){:is(#s-hero,#s-aidx,#s-uni,#s-cal,#mtabs){position:relative;z-index:var(--z-franja)}}
 /* la ficha en el PC no reserva hueco para su barra de desplazamiento: la barra es fina y flotante (aparece al desplazar o al pasar
    el ratón, se puede arrastrar y no ocupa sitio). Así la franja de cifras llega al borde y los márgenes son iguales a los dos lados */
 @media (min-width:761px){
@@ -2280,10 +2280,10 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
 /* MÓVIL: ninguna cifra ni título por encima de las cifras de la franja de Resumen (17 px), y las etiquetas a la altura de su cifra */
 @media (max-width:700.98px){
   /* franjas de Análisis, Universo, Actualidad y Movimientos: cifras de 17 px como las de Resumen */
-  :is(#s-aidx,#s-uni) .bg .bv{font-size:var(--fs-17);line-height:var(--lh-20);--lhp:var(--lh-20)}
+  :is(#s-aidx,#s-uni,#s-cal) .bg .bv{font-size:var(--fs-17);line-height:var(--lh-20);--lhp:var(--lh-20)}
   #mtabs.mvt .mvt-v{font-size:var(--fs-17);line-height:var(--lh-20);--lhp:var(--lh-20)}
   /* la primera fila de esas franjas («Dividendos 2027 … 1.234 €»): etiqueta y cifra sobre la misma línea de base */
-  :is(#s-aidx,#s-uni) .bg.bg5 :is(.c0.r1,.c0.r2){align-self:baseline}
+  :is(#s-aidx,#s-uni,#s-cal) .bg.bg5 :is(.c0.r1,.c0.r2){align-self:baseline}
   #mtabs.mvt a.mvt-all,#mtabs.mvt a.mvt-all:hover,#mtabs.mvt a.mvt-all[aria-current="page"]{align-items:baseline}
   /* cifras destacadas dentro de los bloques */
   .dv-v{font-size:var(--fs-17)}   /* la regla general lleva !important */
@@ -2294,7 +2294,7 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
   .anat-cols .ar{align-items:baseline}
   .anat-cols .ar .sw{align-self:center}
   /* el mismo aire en todas partes que en la franja de Resumen: 6 px de la etiqueta a la cifra y 3 px de la cifra a la línea de debajo */
-  :is(#s-aidx,#s-uni) .bg .bl,:is(#s-aidx,#s-uni) .bg.bg5 :is(.c1,.c2,.c3,.c4).r1{padding-bottom:4px}
+  :is(#s-aidx,#s-uni,#s-cal) .bg .bl,:is(#s-aidx,#s-uni,#s-cal) .bg.bg5 :is(.c1,.c2,.c3,.c4).r1{padding-bottom:4px}
   #mtabs.mvt .mvt-v{margin-top:.5px}
   .dv-v{margin-top:4px}.dv-s{margin-top:2px}
   .ts-v{font-size:var(--fs-17);line-height:var(--lh-24);--lhp:var(--lh-24);margin-top:2px}
@@ -2315,8 +2315,8 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
   body.hm3on .view>.mtop{display:flex;order:-1;margin-bottom:-16px}
   html body.hm3on[data-view]:not(.__) #topcap{background:var(--canvas)}
   html body.hm3on.bg-top[data-view]:not(.__){background-color:var(--canvas)}
-  body.hm5on :is(#s-aidx,#s-uni),body.hm5on :is(#s-aidx,#s-uni).hero3.band2{padding:16px}   /* como la de Resumen (Universo tenía otra regla más fuerte) */
-  body.hm5on :is(#s-aidx,#s-uni)>.bg,body.hm5on #mtabs.mvt{display:none}
+  body.hm5on :is(#s-aidx,#s-uni,#s-cal),body.hm5on :is(#s-aidx,#s-uni,#s-cal).hero3.band2{padding:16px}   /* como la de Resumen (Universo tenía otra regla más fuerte) */
+  body.hm5on :is(#s-aidx,#s-uni,#s-cal)>.bg,body.hm5on #mtabs.mvt{display:none}
   body.hm5on .hm5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));color:var(--h-fg);font-variant-numeric:tabular-nums}
   body.hm5on .hm5-mv{background:var(--h-bg);margin:0 -16px;padding:16px}
   .hm5-c{position:relative;display:grid;grid-template-rows:subgrid;grid-row:span 3;justify-items:center;align-content:start;text-align:center;padding:0 4px;min-width:0;border:0;background:none;font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -2460,19 +2460,92 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
    Todo lo que no es lectura es la web (tarjetas, colores, rayas, esquinas de 12 px, títulos de sección, filas de Posiciones, pestañas,
    tablas, etiquetas, cifras en su letra y nunca más de 17 px en el móvil). Lo que se lee va con serifa y aire */
 /* los logos, en negro como en las listas de la web (con el mismo interruptor) */
-html.lmono #paper.rvp .lgb:not(.gr) img{filter:brightness(0) opacity(.82)}
-html.lmono #paper.rvp .lgb.gr img{filter:grayscale(1) brightness(.8)}
+html.lmono :is(#paper.rvp,#s-calm) .lgb:not(.gr) img{filter:brightness(0) opacity(.82)}
+html.lmono :is(#paper.rvp,#s-calm) .lgb.gr img{filter:grayscale(1) brightness(.8)}
 @media (prefers-color-scheme:dark){
-  html.lmono:not([data-theme="light"]) #paper.rvp .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
-  html.lmono:not([data-theme="light"]) #paper.rvp .lgb.fino img{filter:brightness(0) invert(1)}
-  html.lmono:not([data-theme="light"]) #paper.rvp .lgb.gr img{filter:grayscale(1) brightness(1.15)}
-  html.lmono:not([data-theme="light"]) #paper.rvp .lgb.kv img{display:block}
-  html.lmono:not([data-theme="light"]) #paper.rvp .lgb.kv img.kd{display:none}}
-html.lmono[data-theme="dark"] #paper.rvp .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
-html.lmono[data-theme="dark"] #paper.rvp .lgb.fino img{filter:brightness(0) invert(1)}
-html.lmono[data-theme="dark"] #paper.rvp .lgb.gr img{filter:grayscale(1) brightness(1.15)}
-html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img{display:block}
-html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
+  html.lmono:not([data-theme="light"]) :is(#paper.rvp,#s-calm) .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
+  html.lmono:not([data-theme="light"]) :is(#paper.rvp,#s-calm) .lgb.fino img{filter:brightness(0) invert(1)}
+  html.lmono:not([data-theme="light"]) :is(#paper.rvp,#s-calm) .lgb.gr img{filter:grayscale(1) brightness(1.15)}
+  html.lmono:not([data-theme="light"]) :is(#paper.rvp,#s-calm) .lgb.kv img{display:block}
+  html.lmono:not([data-theme="light"]) :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:none}}
+html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
+html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.fino img{filter:brightness(0) invert(1)}
+html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.gr img{filter:grayscale(1) brightness(1.15)}
+html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img{display:block}
+html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:none}
+/* ======================= CALENDARIO (v367) =======================
+   Mes de pared con el lenguaje de «Próximos cobros» (Análisis): sin casillas, una raya fina encima de cada día, fin de semana con
+   el fondo suave de siempre, el día de hoy en su pastilla oscura y las letras de los días como en aquel. Cada día lleva sus tarjetas:
+   sin borde ni sombra, un fondo muy suave (gris resultados, verde cobros) y una raya a la izquierda; si la fecha es estimada, sin
+   fondo y con la raya discontinua. En el móvil y en pantallas estrechas, el mes con un punto por acontecimiento y, debajo, el día elegido */
+.cal-h .cal-t{display:flex;align-items:center;gap:12px}
+.cal-h .st{min-width:136px}
+.cal-nv{display:inline-flex;align-items:center;gap:4px}
+.cal-nv .btn{height:28px;display:inline-flex;align-items:center;justify-content:center;background:none;color:var(--ink2)}
+.cal-nv .btn:hover{background:var(--row);color:var(--ink)}
+.cal-nv .cal-a{width:28px;padding:0}
+.cal-nv .cal-a svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.cal-nv #cal-hoy[disabled]{opacity:.4;cursor:default;background:none}
+.cal-g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.cal-w{font-size:var(--fs-11);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink3);padding:4px 8px 6px;line-height:var(--lh-14);--lhp:var(--lh-14)}
+.cal-w.we,.cal-c.we{background:var(--we-bg)}
+.cal-w.we:nth-child(6){border-top-left-radius:var(--r-4)}.cal-w.we:nth-child(7){border-top-right-radius:var(--r-4)}
+.cal-g>.cal-c.we:nth-last-child(2){border-bottom-left-radius:var(--r-4)}.cal-g>.cal-c.we:last-child{border-bottom-right-radius:var(--r-4)}
+.cal-c{border-top:1px solid var(--line);min-height:88px;padding:8px 6px 12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.cal-n{font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);color:var(--ink3);padding:0 2px;height:20px;display:flex;align-items:center}
+.cal-n b{font-weight:inherit}
+.cal-c.on .cal-n{color:var(--ink)}
+.cal-c.past .cal-n,.cal-c.out .cal-n{opacity:.45}
+.cal-c.today .cal-n{opacity:1}
+.cal-c.today .cal-n b{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:20px;height:20px;padding:0 4px;border-radius:var(--r-10);background:var(--ink);color:var(--card);font-weight:600}
+.cal-e{position:relative;display:flex;flex-direction:column;gap:2px;width:100%;min-width:0;padding:6px 8px 7px 10px;border:0;border-radius:var(--r-4);background:color-mix(in srgb,var(--ink) 5%,transparent);text-align:left;font:inherit;color:inherit;cursor:pointer}
+.cal-e:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.cal-e::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;border-radius:1px;background:var(--ink2)}
+.cal-e.d{background:color-mix(in srgb,var(--pos) 9%,transparent)}
+.cal-e.d:hover{background:color-mix(in srgb,var(--pos) 14%,transparent)}
+.cal-e.d::before{background:var(--pos)}
+.cal-e.est{background:none}
+.cal-e.est::before{width:0;background:none;border-left:2px dashed var(--ink3)}
+.cal-e.est:hover{background:color-mix(in srgb,var(--ink) 4%,transparent)}
+.cal-e.past{opacity:.55}
+.cal-e[disabled]{cursor:default}
+.cal-e .tp{display:flex;align-items:center;gap:6px;min-width:0}
+.cal-e .lgb{width:18px;height:14px;flex:none}
+.cal-e b{flex:1 1 auto;min-width:0;font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);font-weight:500;color:var(--ink);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
+.cal-e .tp{align-items:flex-start}.cal-e .tp .lgb{margin-top:1px}
+.cal-e .dl{display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.cal-e .am{flex:none;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.cal-e small{display:block;font-size:var(--fs-11);line-height:var(--lh-15);--lhp:var(--lh-15);color:var(--ink2)}
+.cal-e.cand b{font-weight:400;color:var(--ink2)}
+.cal-k{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cal-dia{display:none}
+.cal-pie{margin:12px 0 0;font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);color:var(--ink3)}
+.cal-pie:empty{display:none}
+/* estrecho (tableta en vertical y móvil): el mes con puntos y, debajo, el día elegido con sus tarjetas grandes */
+@media (max-width:1100.98px){
+  .cal-h{flex-direction:column;align-items:stretch}
+  #s-calm .cal-k{display:flex;flex-direction:column;align-items:stretch;gap:8px;width:100%}
+  #s-calm .cal-k .seg{display:flex;width:100%;margin-block:0}#s-calm .cal-k .seg button{flex:1 1 0;height:34px;padding:0 2px;min-width:0;white-space:nowrap}
+  .cal-w{text-align:center;padding:4px 0 6px}
+  .cal-c{min-height:0;height:52px;padding:4px 0 2px;gap:4px;align-items:center;cursor:pointer;border-radius:0}
+  .cal-n{padding:0;justify-content:center}
+  .cal-c .cal-e{display:none}
+  .cal-c.sel{background:color-mix(in srgb,var(--ink) 7%,transparent)}
+  .cal-p{display:flex;gap:3px;height:6px}
+  .cal-p i{width:6px;height:6px;border-radius:50%;background:var(--ink2)}
+  .cal-p i.d{background:var(--pos)}
+  .cal-p i.est{background:none;box-shadow:inset 0 0 0 1px var(--ink3)}
+  .cal-dia{display:block;margin-top:16px}
+  .cal-dia h3{margin:0 0 8px}
+  .cal-dia .cal-l{display:flex;flex-direction:column;gap:8px}
+  .cal-dia .cal-e{padding:10px 12px 10px 14px;gap:3px}
+  .cal-dia .cal-e::before{top:8px;bottom:8px}
+  .cal-dia .cal-e .lgb{width:24px;height:18px}
+  .cal-dia .cal-e b{font-size:var(--fs-13);line-height:var(--lh-17);--lhp:var(--lh-17)}
+  .cal-dia .cal-e small{font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16)}
+  .cal-dia .nada{margin:0;font-size:var(--fs-13);color:var(--ink3)}
+}
+@media (min-width:1101px){ .cal-p{display:none} }
 #paper.rvp{display:block;margin:0;padding:0;background:none;border:0;border-radius:0;box-shadow:none;max-width:none;min-height:0}
 .rv{--rv-serif:"Newsreader",Georgia,"Times New Roman",serif;--rv-sand:#F1ECE2;--rv-pill:#ECE9E2;--rv-zebra:rgba(26,26,26,.035);
   --rv-az:#E3E7EF;--rv-ve:#D4EADF;--rv-hbg:#F7F6F3;--rv-hln:#E4E2DC;--rv-hlb:#6B6B66;--rv-hhd:#70706A;
@@ -2819,23 +2892,23 @@ html.lmono[data-theme="dark"] #paper.rvp .lgb.kv img.kd{display:none}
    con su forma de acortar; con las cinco en fila se partían etiquetas y subtítulos («SOBRE LO / EXIGIDO», «21 en cartera · 95 / candidatas»).
    Letra de tableta (cifras de 28 px, como Resumen a ese ancho); desde 1240 px las cinco caben en fila */
 @media (min-width:701px) and (max-width:1240px){
-  body.hm5on :is(#s-aidx,#s-uni)>.bg{display:none}
-  body.hm5on :is(#s-aidx,#s-uni)>.hm5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));color:var(--h-fg);font-variant-numeric:tabular-nums}
-  :is(#s-aidx,#s-uni)>.hm5 .hm5-c{position:relative;display:grid;grid-template-rows:subgrid;grid-row:span 3;justify-items:center;align-content:start;text-align:center;padding:0 8px;min-width:0}
-  :is(#s-aidx,#s-uni)>.hm5 .hm5-k{align-self:end;font-size:var(--fs-11);line-height:var(--lh-14);--lhp:var(--lh-14);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--h-fg3);white-space:nowrap}
-  :is(#s-aidx,#s-uni)>.hm5 .hm5-v{margin-top:8px;font-size:var(--fs-28);line-height:var(--lh-32);--lhp:var(--lh-32);font-weight:300;letter-spacing:-.01em;white-space:nowrap}
-  :is(#s-aidx,#s-uni)>.hm5 .hm5-s{margin-top:4px;font-size:var(--fs-11);line-height:var(--lh-15);--lhp:var(--lh-15);color:var(--h-fg2);white-space:nowrap}
-  :is(#s-aidx,#s-uni)>.hm5 :is(.hm5-s.w,.hm5-k.w){white-space:normal}
-  :is(#s-aidx,#s-uni)>.hm5 .hm5-s:empty{display:none}
-  :is(#s-aidx,#s-uni)>.hm5 .hm5-s b{font-weight:400;color:var(--h-fg)}
-  :is(#s-aidx,#s-uni)>.hm5 .pos{color:var(--h-pos)} :is(#s-aidx,#s-uni)>.hm5 .neg{color:var(--h-neg)}
-  :is(#s-aidx,#s-uni)>.hm5>:nth-child(-n+3){grid-column:span 2}
-  :is(#s-aidx,#s-uni)>.hm5>:nth-child(n+4){grid-column:span 3;margin-top:16px;padding-top:16px;box-shadow:0 -1px 0 var(--h-line)}
-  :is(#s-aidx,#s-uni)>.hm5>:is(:nth-child(2),:nth-child(3)){box-shadow:inset 1px 0 var(--h-line)}
-  :is(#s-aidx,#s-uni)>.hm5>:nth-child(5)::before{content:"";position:absolute;left:0;top:18px;bottom:0;width:1px;background:var(--h-line)}
+  body.hm5on :is(#s-aidx,#s-uni,#s-cal)>.bg{display:none}
+  body.hm5on :is(#s-aidx,#s-uni,#s-cal)>.hm5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));color:var(--h-fg);font-variant-numeric:tabular-nums}
+  :is(#s-aidx,#s-uni,#s-cal)>.hm5 .hm5-c{position:relative;display:grid;grid-template-rows:subgrid;grid-row:span 3;justify-items:center;align-content:start;text-align:center;padding:0 8px;min-width:0}
+  :is(#s-aidx,#s-uni,#s-cal)>.hm5 .hm5-k{align-self:end;font-size:var(--fs-11);line-height:var(--lh-14);--lhp:var(--lh-14);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--h-fg3);white-space:nowrap}
+  :is(#s-aidx,#s-uni,#s-cal)>.hm5 .hm5-v{margin-top:8px;font-size:var(--fs-28);line-height:var(--lh-32);--lhp:var(--lh-32);font-weight:300;letter-spacing:-.01em;white-space:nowrap}
+  :is(#s-aidx,#s-uni,#s-cal)>.hm5 .hm5-s{margin-top:4px;font-size:var(--fs-11);line-height:var(--lh-15);--lhp:var(--lh-15);color:var(--h-fg2);white-space:nowrap}
+  :is(#s-aidx,#s-uni,#s-cal)>.hm5 :is(.hm5-s.w,.hm5-k.w){white-space:normal}
+  :is(#s-aidx,#s-uni,#s-cal)>.hm5 .hm5-s:empty{display:none}
+  :is(#s-aidx,#s-uni,#s-cal)>.hm5 .hm5-s b{font-weight:400;color:var(--h-fg)}
+  :is(#s-aidx,#s-uni,#s-cal)>.hm5 .pos{color:var(--h-pos)} :is(#s-aidx,#s-uni,#s-cal)>.hm5 .neg{color:var(--h-neg)}
+  :is(#s-aidx,#s-uni,#s-cal)>.hm5>:nth-child(-n+3){grid-column:span 2}
+  :is(#s-aidx,#s-uni,#s-cal)>.hm5>:nth-child(n+4){grid-column:span 3;margin-top:16px;padding-top:16px;box-shadow:0 -1px 0 var(--h-line)}
+  :is(#s-aidx,#s-uni,#s-cal)>.hm5>:is(:nth-child(2),:nth-child(3)){box-shadow:inset 1px 0 var(--h-line)}
+  :is(#s-aidx,#s-uni,#s-cal)>.hm5>:nth-child(5)::before{content:"";position:absolute;left:0;top:18px;bottom:0;width:1px;background:var(--h-line)}
 }
 /* desde 1001 px la sección no tiene margen interior (la franja del PC lleva el suyo): la de tres y dos, con los 30 px que tiene a 1000 px */
-@media (min-width:1001px) and (max-width:1240px){ :is(#s-aidx,#s-uni)>.hm5{margin-inline:32px} }
+@media (min-width:1001px) and (max-width:1240px){ :is(#s-aidx,#s-uni,#s-cal)>.hm5{margin-inline:32px} }
 /* RE-02 · móvil: «Otros instrumentos · opciones», al ras del título de Posiciones */
 @media (max-width:700.98px){ .rt#t-pos tbody tr.grp-row{padding-left:0} }
 /* UN-04 · Radar: hasta 370 px, «5,0% de tu cartera» baja a su propia línea (a 360 px pisaba la pastilla de TIR; a 375 aún sobran 11 px) */
@@ -3007,7 +3080,7 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   <header class="top">
     
     <div class="status"><i class="dot busy" id="dot"></i><span id="stat" role="status">Conectando…</span><span id="asof" hidden></span><button class="btn ic" id="refresh" type="button" disabled aria-label="Actualizar" title="Actualizar"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 2.2v3h-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Actualizar</span></button></div>
-    <nav class="nav" id="nav" aria-label="Secciones"><a href="#resumen" data-v="resumen"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 3v7h7"/></svg><span>Resumen</span></a><a href="#analisis" data-v="analisis"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16.5V10M10 16.5V3.5M16 16.5V7.5"/></svg><span>Análisis</span></a><a href="#movimientos" data-v="movimientos"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 7.5h12.5l-3-3M16.5 12.5H4l3 3"/></svg><span>Movimientos</span></a><a href="#universo" data-v="preseleccion"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M3 10h14M10 3c2.4 2.2 2.4 11.8 0 14M10 3c-2.4 2.2-2.4 11.8 0 14"/></svg><span>Universo</span></a><a href="#actualidad" data-v="actualidad"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 5A1.5 1.5 0 0 1 5 3.5h8A1.5 1.5 0 0 1 14.5 5v10.5H5A1.5 1.5 0 0 1 3.5 15zM14.5 8h2v6.5a1 1 0 0 1-2 0M6.5 7.5h5M6.5 10.5h5M6.5 13.5h3"/></svg><span>Actualidad</span></a></nav>
+    <nav class="nav" id="nav" aria-label="Secciones"><a href="#resumen" data-v="resumen"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 3v7h7"/></svg><span>Resumen</span></a><a href="#analisis" data-v="analisis"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16.5V10M10 16.5V3.5M16 16.5V7.5"/></svg><span>Análisis</span></a><a href="#movimientos" data-v="movimientos"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 7.5h12.5l-3-3M16.5 12.5H4l3 3"/></svg><span>Movimientos</span></a><a href="#universo" data-v="preseleccion"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M3 10h14M10 3c2.4 2.2 2.4 11.8 0 14M10 3c-2.4 2.2-2.4 11.8 0 14"/></svg><span>Universo</span></a><a href="#calendario" data-v="actualidad"><svg class="nav-i" viewBox="0 0 20 20" aria-hidden="true"><rect x="3.5" y="4.5" width="13" height="12" rx="2"/><path d="M3.5 8.5h13M7 3v3M13 3v3"/></svg><span>Calendario</span></a></nav>
     <div class="tools"><button class="btn kbar" id="kbtn" type="button" aria-label="Buscar" aria-haspopup="dialog" aria-expanded="false" aria-keyshortcuts="Meta+K Control+K"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.75" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="kb-l">Buscar</span><kbd id="kb-k">⌘K</kbd></button><button class="btn ic sq" id="priv" type="button" aria-pressed="false" aria-label="Ocultar importes" title="Ocultar importes"><svg class="eye" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M1.5 8s2.4-4.5 6.5-4.5S14.5 8 14.5 8 12.1 12.5 8 12.5 1.5 8 1.5 8z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8" cy="8" r="2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg><svg class="eye-x" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.6 5.6C1.9 6.6 1.5 8 1.5 8s2.4 4.5 6.5 4.5c1 0 1.9-.3 2.7-.7M6 3.8c.6-.2 1.3-.3 2-.3 4.1 0 6.5 4.5 6.5 4.5s-.5 1-1.4 2M2.5 2.5l11 11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="btn ic sq" id="theme" type="button" aria-label="Modo oscuro"><svg class="moon" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M13.2 9.6A5.6 5.6 0 0 1 6.4 2.8a5.6 5.6 0 1 0 6.8 6.8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><svg class="sun" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><button class="btn ic" id="more" type="button" aria-label="Más opciones" aria-haspopup="menu" aria-expanded="false" aria-controls="more-m"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="3.5" cy="8" r="1.35" fill="currentColor"/><circle cx="8" cy="8" r="1.35" fill="currentColor"/><circle cx="12.5" cy="8" r="1.35" fill="currentColor"/></svg></button></div>
   </header>
 
@@ -3188,7 +3261,14 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   <!-- Actualidad: el periódico de la semana -->
   <div class="view" id="v-actualidad" hidden>
   
-  <article class="rvp" id="paper" aria-label="Actualidad"></article>
+  <section class="panel hero3 band2" id="s-cal"><div class="bg ug bg5" id="c-k"></div></section>
+  <section class="panel" id="s-calm" aria-label="Calendario">
+    <div class="chart-head cal-h"><div class="cal-t"><h2 class="st" id="cal-mes"></h2><span class="cal-nv"><button type="button" class="btn cal-a" data-cm="-1" aria-label="Mes anterior"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5"/></svg></button><button type="button" class="btn cal-a" data-cm="1" aria-label="Mes siguiente"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6 4.5 9.5"/></svg></button><button type="button" class="btn" data-cm="0" id="cal-hoy">Hoy</button></span></div>
+      <div class="perf-k cal-k"><div class="seg" role="group" aria-label="Qué ver" id="cal-f"><button type="button" data-cf="todo" aria-pressed="true">Todo</button><button type="button" data-cf="res" aria-pressed="false">Resultados</button><button type="button" data-cf="div" aria-pressed="false">Dividendos</button></div><div class="seg" role="group" aria-label="Qué empresas" id="cal-u"><button type="button" data-cu="0" aria-pressed="true">Mi cartera</button><button type="button" data-cu="1" aria-pressed="false">Todo el Universo</button></div></div></div>
+    <div class="cal-g" id="cal-g"></div>
+    <div class="cal-dia" id="cal-d"></div>
+    <p class="cal-pie" id="cal-pie"></p>
+  </section>
   </div>
 
   <div class="pop" id="pop" role="tooltip" hidden></div>
@@ -3653,7 +3733,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v366";   // la versión publicada, en el pie
+const VER="v367";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4382,9 +4462,13 @@ $("m-sort").addEventListener("input",e=>{ const k=e.target.value; msort[mtab]=[k
 { const mq=matchMedia("(max-width:600.98px)"), ph=()=>{ $("m-q").placeholder=mq.matches?"Buscar":"Buscar empresa, ticker o comentario"; }; mq.addEventListener?.("change",ph); ph(); }
 
 /* ---------- universo ---------- */
-// valoraciones con más de un año: «Por revisar»
+// «Por revisar» (v367): la empresa ha presentado resultados después de la fecha de tu valoración (fechas del calendario del agente).
+// Si de una empresa no hay fecha de resultados, como antes: valoración de hace más de un año
 const valDate=r=>r.fvDate instanceof Date?r.fvDate:r.val&&r.val.date instanceof Date?r.val.date:null;
-const stale=r=>{ const d=valDate(r); return !!d&&Date.now()-d>365.25*DIA_MS; };
+let CALT=new Map();   // ticker → {u: fecha de los últimos resultados (Date, a mediodía), up: su periodo, p: próximos, pp, est, hora}
+const diaN=d=>{ const x=day(d); return x.getFullYear()*1e4+(x.getMonth()+1)*100+x.getDate(); };
+const staleRes=r=>{ const d=valDate(r), c=CALT.get(r.ticker); return !!(d&&c&&c.u&&diaN(c.u)>diaN(d)); };
+const stale=r=>{ const d=valDate(r); if(!d) return false; const c=CALT.get(r.ticker); return c&&c.u?diaN(c.u)>diaN(d):Date.now()-d>365.25*DIA_MS; };
 let preEsperaLetras=false, preFiltro="", psort=["ind",1], preAnchos=null, preAnchosClave="", pRows=null, pRowsFor=null;
 const clsM = v => cls(isNum(v)&&Math.abs(v)<0.0005?0:v);   // margen: lo que redondea a 0,0 pp va en neutro
 const pctSigno = v => isNum(v)&&Math.abs(v)<0.0005 ? `<span class="mute">0,0\u202F%</span>` : `<span class="${cls(v)}">${pct(v,1,true)}</span>`;
@@ -4413,7 +4497,7 @@ const PCOLS=[
   {k:"req",l:"Exigida",hs:1,g:"est",f:r=>r.req>0?pct(r.req):""},
   {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>`<span class="mg-c">${margenBarra(r.margin)}<span class="mg-n ${clsM(r.margin)}">${puntosPct(r.margin)}</span></span>`},
   {k:"vd",l:"Valorada",r:"vd",g:"est",sv:r=>{ const d=valDate(r); return d?d.getTime():null; },
-   f:r=>{ const d=valDate(r); return d?`<span class="vd-k">valorada </span><span class="${stale(r)?"vd-old":""}"${stale(r)?' title="Por revisar: valorada hace más de un año"':""}>${sdate(d)}</span>`:""; }} ];
+   f:r=>{ const d=valDate(r); return d?`<span class="vd-k">valorada </span><span class="${stale(r)?"vd-old":""}"${stale(r)?` title="${esc(staleRes(r)?`Por revisar: resultados del ${fdate(CALT.get(r.ticker).u)}, posteriores a tu valoración`:"Por revisar: valorada hace más de un año")}"`:""}>${sdate(d)}</span>`:""; }} ];
 const etiquetaDe=x=>typeof x.l==="function"?x.l():x.l;
 // pantallas anchas: los anchos de la lista, medidos con todas las empresas. Cada columna de cifras mide lo que su cifra mayor
 // más un hueco, el mismo entre todas y tan grande como quepa (hasta 48 px); lo que sobra, para Empresa e Industria
@@ -4592,7 +4676,7 @@ function fichaPre(r){
   const mr=pair([v.multTxt?card("Múltiplo",multiplo(mult),ps(v.multTxt)):"", v.retTxt?card("TIR exigida",tipoPct(req),ps(v.retTxt)):""]);
   // debajo, todo es tu valoración: primero sus cifras clave y su fecha
   // si no la tienes, sus cifras ya van en la franja de arriba: aquí solo el título y la fecha
-  const vcard=card(`Tu valoración${stale(r)?`<span class="tag warn vrv">Por revisar</span>`:""}`,vdS?`valorada el ${vdS}`:"",own?vsum:""," fp-vc"+(own?"":" fp-c1"));
+  const vcard=card(`Tu valoración${stale(r)?`<span class="tag warn vrv">Por revisar</span>`:""}`,vdS?`valorada el ${vdS}${staleRes(r)?` · resultados del ${fdate(CALT.get(r.ticker).u)}`:""}`:"",own?vsum:""," fp-vc"+(own?"":" fp-c1"));
   // la valoración es una estimación: sus cuentas (2030, deuda, tabla, proyección, notas y argumentos) quedan plegadas
   const calc=val||pj||mr?`<details class="fp-calc"><summary><h4>Cálculo de la valoración</h4><span class="pl-tg"><span class="o">Ver</span><span class="c">Plegar</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><div class="fp-cb">${val}${pj}${mr}</div></details>`:"";
     // «Cotización» (lo que ha hecho en bolsa) va en su propia pestaña; «Valoración», lo tuyo
@@ -4839,7 +4923,13 @@ let actAbierta=null, actNueva=null, actPestana=null;   // la empresa abierta (nu
 // han de ser números (se pintan tal cual); lo que no cumpla se descarta
 const actNum=v=>{ const x=Number(v); return Number.isFinite(x)&&x>=0?Math.floor(x):0; };
 const actIdOk=id=>typeof id==="string"&&/^[a-z0-9_-]{1,40}$/i.test(id);
+// v367 · el archivo del calendario: cada empresa con su ticker, nombre, últimos y próximos resultados; fechas AAAA-MM-DD; lo demás se descarta
+const calF=s=>typeof s==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(s)?s:null, calT=s=>typeof s==="string"?s.slice(0,80):"";
+const calSanea=x=>({ix:{tipo:"calendario",semana:calF(x.ix.semana)||"",generado:typeof x.ix.generado==="string"?x.ix.generado.slice(0,40):"",
+  empresas:x.ix.empresas.filter(e=>e&&typeof e==="object"&&typeof e.ticker==="string"&&e.ticker).map(e=>{ const u=e.ultimos&&typeof e.ultimos==="object"?e.ultimos:{}, p=e.proximos&&typeof e.proximos==="object"?e.proximos:{};
+    return {ticker:calT(e.ticker),nombre:calT(e.nombre),ultimos:{fecha:calF(u.fecha),periodo:calT(u.periodo)},proximos:{fecha:calF(p.fecha),periodo:calT(p.periodo),estado:p.estado==="confirmada"?"confirmada":"estimada",hora:p.hora==="antes de la apertura"||p.hora==="tras el cierre"?p.hora:""}}; })},emp:{}});
 const actSanea=x=>{ if(!x||typeof x!=="object"||!x.ix||typeof x.ix!=="object"||!Array.isArray(x.ix.empresas)) return null;
+  if(x.ix.tipo==="calendario") return calSanea(x);
   const empresas=x.ix.empresas.filter(e=>e&&typeof e==="object"&&actIdOk(e.id)).map(e=>{ const z=e.noticias_por_nivel;
     return {...e,num_noticias:actNum(e.num_noticias),noticias_por_nivel:z&&typeof z==="object"?{empresa:actNum(z.empresa),sector:actNum(z.sector),segundo_grado:actNum(z.segundo_grado??z["segundo grado"])}:null}; });
   const emp={}; Object.entries(x.emp&&typeof x.emp==="object"?x.emp:{}).forEach(([k,v])=>{ if(actIdOk(k)&&v&&typeof v==="object") emp[k]=v; });
@@ -4881,7 +4971,7 @@ async function loadAct(force){
 function actCargaEmpresa(e){ if(!ACT||ACT.emp[e.id]||!mcp) return Promise.resolve(); const id=actIds[e.archivo], w=ACT.ix.semana, g=ACT.ix.generado; actIntentadas[e.id]=true;
   if(!id){ actRellena(e); return Promise.resolve(); }
   return actPendientes[e.id]||(actPendientes[e.id]=actDescarga(id).then(f=>{ if(ACT&&ACT.ix.semana===w&&ACT.ix.generado===g&&(!f||!f.semana||f.semana===w)) ACT.emp[e.id]=f; }).catch(err=>console.warn("Cartera · Actualidad, "+e.id+":",err)).finally(()=>{ delete actPendientes[e.id]; actRellena(e); actGuarda(); })); }
-async function actCargaTodas(){ const q=actNavegables().filter(e=>e.archivo&&!ACT.emp[e.id]&&!actIntentadas[e.id]); let i=0; const run=async()=>{ while(ACT&&i<q.length) await actCargaEmpresa(q[i++]); }; await Promise.all([run(),run(),run()]); }
+async function actCargaTodas(){ if(ACT&&ACT.ix.tipo==="calendario") return; const q=actNavegables().filter(e=>e.archivo&&!ACT.emp[e.id]&&!actIntentadas[e.id]); let i=0; const run=async()=>{ while(ACT&&i<q.length) await actCargaEmpresa(q[i++]); }; await Promise.all([run(),run(),run()]); }
 
 const actHtml=s=>esc(s).replace(/&lt;(\/?)(b|i)&gt;/g,"<$1$2>").replace(/&amp;(amp|nbsp);/g,"&$1;").replace(/(\d)(?:[ \u00A0]|&nbsp;)?%/g,"$1\u202F%");   // TXT-02: «20 %» con espacio fino
 const actTexto=s=>String(s??"").replace(/<\/?[bi]>/g,"").replace(/&nbsp;/g," ").replace(/&amp;/g,"&").replace(/(\d)(?:[ \u00A0]|&nbsp;)?%/g,"$1\u202F%");
@@ -4959,7 +5049,7 @@ document.addEventListener("click",e=>{ if(e.target.id==="act-allow"){ loadAct(tr
   const g=e.target.closest("#v-actualidad [data-goto]"); if(g){ const t=$(g.dataset.goto); if(t) t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"}); return; }
   const b=e.target.closest("#paper [data-ard]"); if(b){ actMarcaLeida(b.dataset.ard,b.getAttribute("aria-pressed")!=="true"); actMarca(b.dataset.ard); } });
 // en el PC, ← y → pasan a la empresa anterior o a la siguiente
-addEventListener("keydown",e=>{ if(view!=="actualidad"||!ACT||sheet||e.metaKey||e.ctrlKey||e.altKey||!$("kx").hidden||e.target.closest("input,textarea,select")||(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")) return;
+addEventListener("keydown",e=>{ if(view!=="actualidad"||!ACT||ACT.ix.tipo==="calendario"||sheet||e.metaKey||e.ctrlKey||e.altKey||!$("kx").hidden||e.target.closest("input,textarea,select")||(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")) return;
   const L=actNavegables(), i=actAbierta?L.findIndex(x=>x.id===actAbierta):-1, n=e.key==="ArrowRight"?(i<0?L[0]:L[i+1]):(i>0?L[i-1]:i===0?{id:""}:null); if(!n) return; e.preventDefault(); actAbre(n.id); });
 
 // la barra de desplazamiento de la ficha en el PC: fina, flotante y arrastrable (la del navegador ocupaba un hueco a la derecha)
@@ -5062,7 +5152,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
     new MutationObserver(ms=>{ if(ms.some(m=>!B.contains(m.target))) later(); }).observe(src,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["class","aria-current"]}); if(window.ResizeObserver) new ResizeObserver(()=>fit(B)).observe(B); sync(); fit(B); };
   const set=(c,k,v,clase,s)=>{ c.dataset.k=k; c.dataset.s=s; const V=c.children[1]; if(V.innerHTML!==v) V.innerHTML=v; if(V.className!==clase) V.className=clase; };
   // Análisis, Universo y Actualidad: de su franja del PC (.bg con las casillas c0…c4)
-  ["s-aidx","s-uni"].forEach(sid=>{ const sec=$(sid); if(!sec) return; const B=document.createElement("div"); B.className="hm5"; B.innerHTML=Array.from({length:5},()=>cell("div")).join(""); sec.append(B);
+  ["s-aidx","s-uni","s-cal"].forEach(sid=>{ const sec=$(sid); if(!sec) return; const B=document.createElement("div"); B.className="hm5"; B.innerHTML=Array.from({length:5},()=>cell("div")).join(""); sec.append(B);
     watch(B,()=>{ const S=sec.querySelector(".bg"); if(!S) return; [...B.children].forEach((c,i)=>{ const k=S.querySelector(`.c${i}.r1`), v=S.querySelector(`.c${i}.r2`), s=S.querySelector(`.c${i}.r3`); if(!k||!v) return;
         set(c,((k.querySelector(".sh")||k).textContent||"").trim(),v.innerHTML,"hm5-v num"+tone(v),s?s.innerHTML.replace(/\s*<span class="sep"><\/span>\s*/g," · ").trim():""); }); },sec); });
   // Movimientos: las cinco casillas son los cinco apartados (al tocarlas, lo mismo que las del PC)
@@ -5304,7 +5394,7 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
     ["Historial por año","Análisis · Dividendos","analisis","c-year"],["Trayectoria","Análisis","analisis","s-tray"],
     ["Movimientos","Pestaña","movimientos"],["Todos los movimientos","Movimientos","todo"],["Transacciones","Movimientos","transacciones"],["Dividendos cobrados","Movimientos","dividendos"],["Aportaciones","Movimientos","aportaciones"],["Ajustes","Movimientos","ajustes"],
     ["Universo","Pestaña","preseleccion"],["Calculadora de operaciones","Universo","preseleccion","s-plan"],["Rendimiento","Universo","preseleccion","s-perf"],["Todas las empresas","Universo","preseleccion","s-plist"],
-    ["Actualidad","Pestaña","actualidad"],["Resultados de la semana","Actualidad","actualidad","a-res"],["Noticias de la semana","Actualidad","actualidad","a-idx"],["Calendario de resultados","Actualidad","actualidad","a-prox"]];
+    ["Calendario","Pestaña","actualidad"],["Resultados y cobros del mes","Calendario","actualidad","s-calm"]];
   const ACTS=[["priv","Modo privado",["privado","importes","ocultar","mostrar"]],["theme","Apariencia",["oscuro","claro","tema","apariencia","noche"]],["refresh","Volver a leer tu hoja",["actualizar","recargar","leer","hoja"]]];
   const icA=id=>id==="theme"&&/claro/i.test($(id).getAttribute("aria-label"))?IC.sun:IC[id];
   const goTo=g=>{ navega(g[2],true); if(!g[3]) return; requestAnimationFrame(()=>requestAnimationFrame(()=>{ const el=$(g[3]); if(!el) return; const t=el.closest(".dv3>div,.panel")||el; t.scrollIntoView({block:"start"}); })); };
@@ -5404,9 +5494,84 @@ document.addEventListener("click",e=>{ const a=e.target.closest("[data-gomov]");
 
 /* ---------- vistas ---------- */
 let view="resumen";
+/* ---------- CALENDARIO (v367) ---------- */
+let calM=null, calSel=null, calFi="todo", calUn=false, calSig="";
+try{ const f=localStorage.getItem("cal-f"); if(["todo","res","div"].includes(f)) calFi=f; calUn=localStorage.getItem("cal-u")==="1"; }catch{}
+const calYmd=s=>{ const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); };
+const calHoy=()=>{ const n=new Date(); return new Date(n.getFullYear(),n.getMonth(),n.getDate()); };
+const calKey=d=>d.getFullYear()*1e4+(d.getMonth()+1)*100+d.getDate();
+// el periodo, en palabras: «3T 2026», «Ventas 3T 2026», «1S 2027 fiscal»
+const calPer=p=>{ const v=/\(ventas\)/i.test(p||""), t=String(p||"").replace(/\s*\(ventas\)/ig,"").replace(/\s*\(fiscal\)/ig," fiscal").trim(); return (v?"Ventas ":"Resultados ")+t; };
+// el archivo del agente → CALT; si ha cambiado, Universo y la ficha vuelven a mirar «Por revisar»
+function calSync(){ const ok=ACT&&ACT.ix&&ACT.ix.tipo==="calendario", sig=ok?ACT.ix.semana+"|"+ACT.ix.generado:"";
+  if(sig===calSig) return false; calSig=sig; CALT=new Map();
+  if(ok) ACT.ix.empresas.forEach(e=>CALT.set(e.ticker,{n:e.nombre,u:e.ultimos.fecha?calYmd(e.ultimos.fecha):null,up:e.ultimos.periodo,p:e.proximos.fecha?calYmd(e.proximos.fecha):null,pp:e.proximos.periodo,est:e.proximos.estado!=="confirmada",hora:e.proximos.hora}));
+  if(DATA){ drawn.preseleccion=null; if(view==="preseleccion") renderPre(); if(sheet) renderSheet(); }
+  return true; }
+calSync();
+// todos los acontecimientos: resultados (últimos y próximos) y cobros (los cobrados de la hoja y los previstos)
+function calEventos(){ const pf=new Set(DATA.pos.filter(p=>!p.isOption).map(p=>p.ticker)), ev=[];
+  const nom=t=>{ const r=DATA.pre.find(x=>x.ticker===t)||DATA.pos.find(x=>x.ticker===t); return r?r.name:(CALT.get(t)||{}).n||t; };
+  CALT.forEach((c,t)=>{ const R=DATA.pre.some(x=>x.ticker===t);
+    if(c.u) ev.push({k:"r",d:c.u,t,n:nom(t),per:c.up,est:false,hora:"",pf:pf.has(t),ok:R,ya:true});
+    if(c.p) ev.push({k:"r",d:c.p,t,n:nom(t),per:c.pp,est:c.est,hora:c.hora,pf:pf.has(t),ok:R,ya:false}); });
+  const hk=calKey(calHoy());
+  (DATA.dv||[]).forEach(r=>{ if(r.d instanceof Date&&isNum(r.gross)&&r.gross>0&&calKey(day(r.d))<hk) ev.push({k:"d",d:day(r.d),t:r.ticker,n:nom(r.ticker),v:r.gross,pf:true,ok:DATA.pre.some(x=>x.ticker===r.ticker)||pf.has(r.ticker),ya:true}); });
+  ((DATA.dvm&&DATA.dvm.pays)||[]).forEach(p=>{ if(p.d instanceof Date&&isNum(p.v)&&calKey(day(p.d))>=hk) ev.push({k:"d",d:day(p.d),t:p.t,n:nom(p.t),v:p.v,pf:true,ok:true,ya:false}); });
+  ev.forEach(e=>{ e.d=new Date(e.d.getFullYear(),e.d.getMonth(),e.d.getDate()); });
+  return ev.sort((a,b)=>a.d-b.d||(a.pf===b.pf?0:a.pf?-1:1)||(a.k===b.k?0:a.k==="r"?-1:1)||a.n.localeCompare(b.n,"es")); }
+const calTarjeta=(e,hoy)=>{ const fut=calKey(e.d)>=calKey(hoy), det=e.k==="r"
+    ?`${esc(calPer(e.per))}${!e.ya&&(e.hora||e.est)?`<br>${e.hora?esc(e.hora[0].toUpperCase()+e.hora.slice(1))+" · ":""}${e.est?"fecha estimada":"confirmada"}`:""}`
+    :`<span class="dl"><span>${fut&&!e.ya?"Dividendo":"Cobrado"}</span><span class="am">${eur(e.v,2)}</span></span>`;
+  return `<button type="button" class="cal-e ${e.k}${e.k==="r"&&!e.ya&&e.est?" est":""}${e.pf?"":" cand"}${calKey(e.d)<calKey(hoy)?" past":""}"${e.ok?` data-t="${esc(e.t)}" data-pf="${e.pf?1:0}"`:" disabled"} aria-label="${esc(e.n)}: ${e.k==="r"?esc(calPer(e.per)):"dividendo de "+esc(eur(e.v,2))}"><span class="tp">${logoBare(e.n,e.t)}<b>${esc(e.n)}</b></span><small>${det}</small></button>`; };
+function renderCal(){ calSync(); const G=$("cal-g"); if(!G||!DATA) return;
+  const hoy=calHoy(); if(!calM) calM=new Date(hoy.getFullYear(),hoy.getMonth(),1); if(!calSel) calSel=hoy;
+  const todo=calEventos(), cart=todo.filter(e=>e.pf);
+  // franja: lo mismo en las cinco casillas que en las demás pestañas
+  const lun=new Date(hoy); lun.setDate(lun.getDate()-((lun.getDay()+6)%7)); const sig7=new Date(lun); sig7.setDate(sig7.getDate()+7);
+  const enSem=e=>e.d>=lun&&e.d<sig7, resS=todo.filter(e=>e.k==="r"&&enSem(e)), mes=cart.filter(e=>e.k==="d"&&e.d.getFullYear()===hoy.getFullYear()&&e.d.getMonth()===hoy.getMonth());
+  const pc=cart.find(e=>e.k==="d"&&!e.ya&&calKey(e.d)>=calKey(hoy)), pr=cart.find(e=>e.k==="r"&&!e.ya&&calKey(e.d)>=calKey(hoy));
+  const all=DATA.pre, rv=all.filter(stale), n0=v=>nf(0).format(v), cand=n=>`${n0(n)} ${n===1?"candidata":"candidatas"}`;
+  const hc=(i,l,v,t)=>`<div class="c${i} r1 bl">${l}</div><div class="c${i} r2 bv num">${v}</div><div class="c${i} r3 bs">${t}</div>`;
+  $("c-k").innerHTML=hc(0,"Resultados",n0(resS.filter(e=>e.pf).length),`esta semana · ${n0(resS.length)} en el Universo`)
+    +hc(1,"Por revisar",n0(rv.length),`${n0(rv.filter(r=>r.inPf).length)} en cartera<span class="sep"></span>${cand(rv.filter(r=>!r.inPf).length)}`)
+    +hc(2,"Cobros este mes",eur(sum(mes,e=>e.v)),`${n0(mes.length)} ${mes.length===1?"cobro":"cobros"}`)
+    +hc(3,"Próximo cobro",pc?fdate(pc.d):"—",pc?`${esc(pc.n)} · ${eur(pc.v,2)}`:"")
+    +hc(4,"Próximos resultados",pr?fdate(pr.d):"—",pr?esc(pr.n)+(pr.est?" · estimada":""):(CALT.size?"":"sin fechas todavía"))
+    +`<i class="dv d1"></i><i class="dv d2"></i><i class="dv d3"></i><i class="dv d4"></i>`;
+  // el mes
+  const ev=(calUn?todo:cart).filter(e=>calFi==="todo"||(calFi==="res"?e.k==="r":e.k==="d")), por=new Map();
+  ev.forEach(e=>{ const k=calKey(e.d); if(!por.has(k)) por.set(k,[]); por.get(k).push(e); });
+  const y=calM.getFullYear(), m=calM.getMonth(), ini=new Date(y,m,1); ini.setDate(ini.getDate()-((ini.getDay()+6)%7));
+  const fin=new Date(y,m+1,0), nd=Math.ceil((Math.round((fin-ini)/DIA_MS)+1)/7)*7;
+  $("cal-mes").textContent=calM.toLocaleDateString("es-ES",{month:"long",year:"numeric"}).replace(" de "," ");
+  const hb=$("cal-hoy"); hb.disabled=y===hoy.getFullYear()&&m===hoy.getMonth()&&calKey(calSel)===calKey(hoy);
+  G.innerHTML=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"].map((x,i)=>`<span class="cal-w${i>4?" we":""}">${x}</span>`).join("")
+    +[...Array(nd)].map((_,i)=>{ const d=new Date(ini); d.setDate(ini.getDate()+i); const k=calKey(d), out=d.getMonth()!==m, g=out?[]:(por.get(k)||[]);
+      return `<div class="cal-c${i%7>4?" we":""}${out?" out":""}${k<calKey(hoy)?" past":""}${k===calKey(hoy)?" today":""}${g.length?" on":""}${k===calKey(calSel)&&!out?" sel":""}" data-k="${k}"><span class="cal-n"><b>${d.getDate()}</b></span>`
+        +`<span class="cal-p" aria-hidden="true">${g.slice(0,4).map(e=>`<i class="${e.k==="d"?"d":e.est&&!e.ya?"est":""}"></i>`).join("")}</span>`
+        +g.map(e=>calTarjeta(e,hoy)).join("")+`</div>`; }).join("");
+  // el día elegido (pantallas estrechas)
+  const gs=por.get(calKey(calSel))||[], dS=calSel.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"});
+  $("cal-d").innerHTML=`<h3 class="st">${esc(dS)}</h3>${gs.length?`<div class="cal-l">${gs.map(e=>calTarjeta(e,hoy)).join("")}</div>`:`<p class="nada">Nada este día</p>`}`;
+  // de dónde salen las fechas
+  const ok=ACT&&ACT.ix&&ACT.ix.tipo==="calendario", gen=ok&&ACT.ix.semana?calYmd(ACT.ix.semana):null;
+  $("cal-pie").innerHTML=ok?`Fechas de resultados al ${fdate(gen)} · cada lunes`
+    :actSt==="permiso"?`Para ver las fechas de resultados necesito permiso para leer tu carpeta Informes (solo lee). <button class="btn" type="button" id="act-allow">Permitir y cargar</button>`
+    :actSt==="cargando"?"Leyendo las fechas de resultados…":`Las fechas de resultados llegan cada lunes a tu carpeta Informes; ${actSt==="error"?"ahora mismo no he podido leerla":"todavía no ha llegado ninguna"}.`;
+  document.querySelectorAll("#cal-f button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.cf===calFi)));
+  document.querySelectorAll("#cal-u button").forEach(b=>b.setAttribute("aria-pressed",String((b.dataset.cu==="1")===calUn))); }
+renderAct=renderCal;
+$("s-calm").addEventListener("click",e=>{
+  const c=e.target.closest("[data-cm]"); if(c){ const n=+c.dataset.cm, hoy=calHoy(); if(n){ calM=new Date(calM.getFullYear(),calM.getMonth()+n,1); calSel=new Date(calM); } else { calM=new Date(hoy.getFullYear(),hoy.getMonth(),1); calSel=hoy; } renderCal(); return; }
+  const f=e.target.closest("[data-cf]"); if(f){ calFi=f.dataset.cf; try{ localStorage.setItem("cal-f",calFi); }catch{} renderCal(); return; }
+  const u=e.target.closest("[data-cu]"); if(u){ calUn=u.dataset.cu==="1"; try{ localStorage.setItem("cal-u",calUn?"1":"0"); }catch{} renderCal(); return; }
+  const t=e.target.closest(".cal-e[data-t]"); if(t&&(!matchMedia("(max-width:1100.98px)").matches||t.closest("#cal-d"))){ const L=[...t.closest("#cal-d,#cal-g").querySelectorAll(".cal-e[data-t]")].map(x=>x.dataset.t); openSheet(t.dataset.pf==="1"?"pos":"pre",t.dataset.t,[...new Set(L)]); return; }
+  const d=e.target.closest(".cal-c:not(.out)"); if(d&&matchMedia("(max-width:1100.98px)").matches){ const k=+d.dataset.k; calSel=new Date(Math.floor(k/1e4),Math.floor(k/100)%100-1,k%100); renderCal(); } });
 const tabY={};   // cada pestaña recuerda hasta dónde habías bajado (pulsar la que ya estás, arriba del todo)
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="actualidad"; } else if(token==="actualidad"&&push&&view==="actualidad") actAbierta=null;
+  if(token==="calendario") token="actualidad";
   const sub=Object.keys(MOV).includes(token);
   if(token==="universo") token="preseleccion";
   const v = sub ? "movimientos" : (["resumen","analisis","movimientos","preseleccion","actualidad"].includes(token)?token:"resumen");
@@ -5416,7 +5581,7 @@ function navega(token,push){
   document.querySelectorAll(".view").forEach(el=>el.hidden=el.id!=="v-"+view);
   document.querySelectorAll("#nav a").forEach(a=>a.setAttribute("aria-current",a.dataset.v===view?"page":"false"));
   document.body.dataset.view=view;
-  if(push){ try{ history.replaceState(null,"","#"+(token==="preseleccion"?"universo":token==="actualidad"&&actAbierta?actRuta():token)); }catch{} }
+  if(push){ try{ history.replaceState(null,"","#"+(token==="preseleccion"?"universo":token==="actualidad"?"calendario":token)); }catch{} }
   if(DATA){ const nuevo=drawn[view]!==stampOf(view);   // la pestaña se rehace solo si algo ha cambiado desde que se dibujó
     if(view==="movimientos"){ if(nuevo) renderMov(true); } else if(view==="preseleccion"){ if(nuevo) renderPre(); } else if(view==="actualidad"){ renderAct(); if(!ACT&&!actBusy&&Date.now()-actAt>6e4) loadAct(true); } else if(nuevo) drawAll(); }
   else if(view==="actualidad"&&ACT) renderAct();   // la edición guardada se ve sin esperar a la hoja
@@ -5636,7 +5801,7 @@ $("refresh").addEventListener("click",()=>{ archivoLocal=false; load(true); load
 // móvil: tirar hacia abajo desde arriba del todo lee la hoja de nuevo, igual que el botón Actualizar (en la app de la pantalla de inicio no hay otro gesto)
 if(matchMedia("(pointer:coarse)").matches){ let C=document.createElement("div"); C.id="topcap"; C.setAttribute("aria-hidden","true"); document.body.prepend(C);
   const sat=()=>C.classList.toggle("sat",C.offsetHeight>10); sat(); addEventListener("resize",sat);   // zona del reloj: la tapa, por encima
-  let raf=0; const past=()=>{ raf=0; const b=document.querySelector(".view:not([hidden]) > :is(#s-hero,#s-aidx,#s-uni,#mtabs)");
+  let raf=0; const past=()=>{ raf=0; const b=document.querySelector(".view:not([hidden]) > :is(#s-hero,#s-aidx,#s-uni,#s-cal,#mtabs)");
     // en el móvil la franja va por encima de la tira: la barra cambia cuando la franja ha salido del todo (si no, quedaría una raya de su color bajo la barra)
     document.body.classList.toggle("past-band",!b||scrollY>=b.offsetTop+b.offsetHeight-(+getComputedStyle(b).zIndex>+getComputedStyle(C).zIndex?0:C.offsetHeight));
     // el fondo de la página (lo que asoma al tirar hacia abajo) cambia cuando el desplazamiento se para: repintarlo en mitad del gesto daba tirones
