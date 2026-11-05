@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-cPD2DUF58EKBFrFkIuBk53QpklQJ0WMHCfrLEy6ir0g=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Y5Wb/ShoItg07g0ucOOvn1JNphvo5YVmOcNW1USCNpw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3157,17 +3157,16 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   html body #s-perf .pf-cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
   html body #s-perf .dv-h span{white-space:nowrap}
   html body #perf-up,html body #perf-dn{margin:0}
-  html body #perf-up .pf-row,html body #perf-dn .pf-row{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-rows:auto auto;column-gap:8px;row-gap:1px;align-content:center;height:46px;padding:0 4px 0 0}
+  html body #perf-up .pf-row,html body #perf-dn .pf-row{display:grid;grid-template-columns:22px minmax(0,1fr);grid-template-rows:auto auto;column-gap:8px;row-gap:0;align-content:center;height:34px;min-height:0;padding:0 4px 0 0}
   html body #perf-up .pf-row::after,html body #perf-dn .pf-row::after{left:0;right:0}
   html body #s-perf .pf-row .pf-px,html body #s-perf .pf-row .pf-bar{display:none}
   html body #s-perf .pf-row .co{display:contents}
-  html body #s-perf .pf-row .co>.lgb{grid-column:1;grid-row:1/span 2;align-self:center;width:34px;height:20px;margin:0}
+  html body #s-perf .pf-row .co>.lgb{grid-column:1;grid-row:1/span 2;align-self:center;width:22px;height:13px;margin:0}
   html body #s-perf .pf-row .co>.lgb img{max-width:100%;max-height:100%}
-  html body #s-perf .pf-row .co>b{grid-column:2;grid-row:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:var(--fs-12);line-height:15px;--lhp:15px;font-weight:400;text-align:left}
+  html body #s-perf .pf-row .co>b{grid-column:2;grid-row:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:var(--fs-11);line-height:13px;--lhp:13px;font-weight:400;text-align:left}
   html body #s-perf .pf-row .co>.tag{display:none}
-  html body #s-perf .pf-row .c{grid-column:2;grid-row:2;text-align:left;font-size:var(--fs-13);line-height:16px;--lhp:16px}
-  html body #s-perf .pf-row.inpf{padding-left:6px;grid-template-columns:28px minmax(0,1fr)}
-  html body #s-perf .pf-row.inpf .co>.lgb{width:28px}
+  html body #s-perf .pf-row .c{grid-column:2;grid-row:2;text-align:left;font-size:var(--fs-12);line-height:14px;--lhp:14px}
+  html body #s-perf .pf-row.inpf{padding-left:6px;grid-template-columns:22px minmax(0,1fr)}
 }
 </style>
 
@@ -3829,7 +3828,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v416";   // la versión publicada, en el pie
+const VER="v417";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
