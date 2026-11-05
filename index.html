@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Fhw7gqsjQJ9zE/E2174aN5E+WgQ0xNZJfffItbnVeOE=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-w6dlkWy1rv5q7YxcFFRYxoVkahg/ElLUnKxFzCpEV70=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -1956,7 +1956,14 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 #notice .nt-alt{font-size:var(--fs-12);line-height:var(--lh-18);--lhp:var(--lh-18);color:var(--nt-fg3)}
 #notice .nt-alt label{color:var(--nt-fg);text-decoration:underline;text-decoration-color:var(--nt-fg3);text-underline-offset:3px;cursor:pointer}
 @media (min-width:701px){#notice .notice{border-radius:0;box-shadow:0 0 0 100vmax var(--nt-bg);clip-path:inset(0 -100vmax)}}
-@media (max-width:700.98px){#notice .notice,#notice .notice:has(.nt-ac){grid-template-columns:minmax(0,1fr);padding:20px 16px;gap:16px}#notice h2{font-size:var(--fs-20);line-height:var(--lh-26);--lhp:var(--lh-26)}}
+@media (max-width:700.98px){#notice .notice,#notice .notice:has(.nt-ac){grid-template-columns:minmax(0,1fr);padding:20px 16px;gap:16px}#notice h2{font-size:var(--fs-20);line-height:var(--lh-26);--lhp:var(--lh-26)}
+  /* aviso sin botones: compacto, más bajo que la tarjeta negra */
+  #notice:not([hidden]){margin-top:max(env(safe-area-inset-top,0px),10px)}   /* que no lo tape la franja fija de arriba (10 px) */
+  #notice .notice:not(:has(.nt-ac)){padding:6px 12px 7px}
+  #notice .notice:not(:has(.nt-ac)) .nt-tx{gap:1px}
+  #notice .notice:not(:has(.nt-ac)) .nt-k{display:none}
+  #notice .notice:not(:has(.nt-ac)) h2{font-size:var(--fs-13);line-height:16px;--lhp:16px;font-weight:500;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #notice .notice:not(:has(.nt-ac)) p{font-size:var(--fs-11);line-height:13px;--lhp:13px}}
 /* el acceso en dos casillas: ID de tu script y clave, cada una con su nombre encima */
 #notice .keyf{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 8px;align-items:end}
 #notice .kf-l{display:flex;flex-direction:column;gap:6px;min-width:0}
@@ -2438,7 +2445,12 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
 #sheet .fp-kl>b>.rlv{margin-right:0}
 /* mapa de «Tu cartera hoy»: la cifra, mayor en las posiciones de más del 6 % de la cartera (15 px en el PC y 13 en el móvil) */
 .tmap .tile.big.big .tp{font-size:var(--fs-15)}
-@media (max-width:700.98px){ .tmap .tile.big.big .tp{font-size:var(--fs-13)} }
+@media (max-width:700.98px){
+  html body.hm3on .view>.mtop{display:none!important}
+  html body #foot{margin-top:-9px}   /* último bloque → letras del pie: 20 px a la vista (antes 41) */
+  body.hm3on #v-analisis>#s-aidx,body.hm3on #v-movimientos>.hm5-mv,body.hm3on #v-preseleccion>#s-uni,body.hm3on #v-actualidad>#s-cal{margin-top:max(env(safe-area-inset-top,0px),10px)}
+}
+@media (max-width:700.98px){ .tmap .tile.big.big .tp{font-size:var(--fs-11)} }   /* en el móvil, todos los porcentajes del mapa iguales */
 /* PC: Actualizar junto a la hora (vuelve a leer lo que la hora dice cuándo se leyó); mientras lee, la flecha gira */
 .top .status #refresh{display:inline-grid;place-items:center;flex:none;width:28px;height:28px;margin:0 0 0 -6px;padding:0;border:0;border-radius:var(--r-8);background:none;color:var(--ink3);cursor:pointer}
 .top .status #refresh span{display:none}
@@ -3794,7 +3806,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v413";   // la versión publicada, en el pie
+const VER="v414";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5153,7 +5165,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   const sync=()=>{ const hv=$("h-val"); if(!hv) return;
     const v=hv.textContent.replace(/,\d{2}(?=\s*€)/,"").trim(), V=v?`<span class="pv">${v}</span>`:"";
     const ren=$("hk-ren"), ret=$("hk-ret"), rs=$("hk-ren-s").querySelector("span"), ts=$("hk-ret-s").querySelector("span");
-    put("hm3-v1",V,"hm3-v num"); put("hm3-s1",$("h-sub").innerHTML);
+    put("hm3-v1",V,"hm3-v num"); put("hm3-s1",DATA&&DATA.kpi?`Liquidez <b><span class="pv">${eur(DATA.kpi.liquidez||0)}</span></b>`:"");
     put("hm3-k2",kHoy()); put("hm3-v2",ren.innerHTML,"hm3-v num "+clase(ren)); put("hm3-s2",rs?rs.outerHTML:"");
     put("hm3-v3",ret.innerHTML,"hm3-v num "+clase(ret)); put("hm3-s3",ts?ts.outerHTML:"");
     put("hm3c-v1",V,"hm3-v num"); put("hm3c-k2",kHoy()); put("hm3c-v2",ren.innerHTML,"hm3-v num "+clase(ren)); put("hm3c-v3",ret.innerHTML,"hm3-v num "+clase(ret));
