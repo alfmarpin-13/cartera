@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-h/jgjndRI1BZZkYXyGT1wk46RA/CYkx6r58/pqQSgPE=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-zQKIvDZDvAGZZ/HDhMQ8MFovnBQlqAFhiMqEaE3e9Wo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3091,6 +3091,16 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
 @media (max-width:700.98px){ .ih{padding-left:4px;padding-right:4px} .ih span{font-size:var(--fs-11)} }
 /* SEG-06 · en modo privado, los carteles enseñan su versión con los importes tapados */
 .priv [data-tip-pv]::after{content:attr(data-tip-pv)}
+
+/* móvil · Resumen oscuro hasta arriba (zona de la isla, línea de estado y franja, del mismo color) */
+@media (max-width:700.98px){
+  html body.hm3on[data-view="resumen"]:not(.__) #topcap{background:var(--h-bg)}
+  html body.hm3on.bg-top[data-view="resumen"]:not(.__){background-color:var(--h-bg)}
+  body.hm3on #v-resumen>.mtop{background:var(--h-bg)}
+  body.hm3on #v-resumen>.mtop .mt-st{color:var(--h-fg2)}
+  body.hm3on #v-resumen>.mtop .mt-ic button{color:var(--h-fg)}
+  body.hm3on #v-resumen>.mtop .mt-ic button:active{background:color-mix(in srgb,var(--h-fg) 12%,transparent)}
+}
 </style>
 
 <div class="wrap">
@@ -3751,7 +3761,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v402";   // la versión publicada, en el pie
+const VER="v403";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
