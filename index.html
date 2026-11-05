@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-BCThaD9wvX+tVGjeb7jPWDTbmFvIGGmtWCAUufP+ET8=' 'sha256-POcbBEV/UJRnSUUPHSwfdaL9rUUfOy1Ril8oSTy3mu8=' 'sha256-TMu6Y6mzMsBrc+tNedUspBi0ka1TKWcWmDbBgzVPs3w=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-BCThaD9wvX+tVGjeb7jPWDTbmFvIGGmtWCAUufP+ET8=' 'sha256-POcbBEV/UJRnSUUPHSwfdaL9rUUfOy1Ril8oSTy3mu8=' 'sha256-wOygrbO8f4fhGYvan/ZMaUEwJBGlQTKYFM9Pj602J8U=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3099,7 +3099,6 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   html.fijo body{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;bottom:0;min-height:0;margin:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:contain;
     background-color:var(--cap,var(--canvas))!important;--sat:0px;--sat10:max(calc(10px - env(safe-area-inset-top,0px)),0px)}
   html.fijo.sh-open body{overflow:hidden}
-  html.fijo #topcap,html.fijo body::before{display:none!important}
 }
 </style>
 
@@ -3788,7 +3787,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v383";   // la versión publicada, en el pie
+const VER="v384";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
