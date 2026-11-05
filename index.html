@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-+nJOEhxskzNOe+iDt88heMyP631/2t2uI4PrEfOLyvQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-InndTscN0tNfWaB2ZrrMi8okR8wYEX20zv+JLRqJF68=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3127,10 +3127,10 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   html .top .nav a[aria-current="page"]{background:none}
   html .top .nav a.hov{color:var(--ink);transform:scale(1.14)}
   .nav-pill{display:block;position:absolute;top:4px;bottom:4px;left:0;width:0;z-index:0;border-radius:999px;background:var(--glass-on);pointer-events:none;
-    transition:translate .45s cubic-bezier(.32,.72,0,1),scale .25s ease,background .25s,box-shadow .25s}
+    transition:translate .45s cubic-bezier(.32,.72,0,1),width .45s cubic-bezier(.32,.72,0,1),scale .25s ease,background .25s,box-shadow .25s}
   .nav-pill.quieto{transition:none}
   .nav-pill.drag{scale:1.24 1.4;background:var(--glass-lens);-webkit-backdrop-filter:blur(1.5px) saturate(2.2) brightness(1.06);backdrop-filter:blur(1.5px) saturate(2.2) brightness(1.06);
-    box-shadow:inset 0 0 0 1px var(--glass-hl),inset 0 2px 3px var(--glass-hl),inset 0 -2px 4px var(--glass-in),0 10px 26px -8px var(--glass-sh);transition:translate .16s cubic-bezier(.2,.8,.3,1),scale .3s cubic-bezier(.3,1.5,.5,1),background .2s,box-shadow .2s}
+    box-shadow:inset 0 0 0 1px var(--glass-hl),inset 0 2px 3px var(--glass-hl),inset 0 -2px 4px var(--glass-in),0 10px 26px -8px var(--glass-sh);transition:translate .16s cubic-bezier(.2,.8,.3,1),width .16s cubic-bezier(.2,.8,.3,1),scale .3s cubic-bezier(.3,1.5,.5,1),background .2s,box-shadow .2s}
   .wrap{padding-bottom:calc(62px + 36px + env(safe-area-inset-bottom,0px))}
 }
 @media (max-width:700.98px){ html body.hm3on[data-view="resumen"] #s-hero.hero3{margin-bottom:-16px} }   /* tarjeta negra → primer bloque: 6 px, como al hacer scroll */
@@ -3794,7 +3794,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v411";   // la versión publicada, en el pie
+const VER="v412";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5663,9 +5663,10 @@ document.addEventListener("click",e=>{ const a=e.target.closest("#nav a,#mtabs a
   const P=document.createElement("span"); P.className="nav-pill"; P.setAttribute("aria-hidden","true"); N.prepend(P);
   const items=()=>[...N.querySelectorAll("a[data-v]")], cur=()=>N.querySelector('a[aria-current="page"]')||items()[0];
   const pon=(x,w)=>{ P.style.translate=`${x}px 0`; P.style.width=w+"px"; };
-  // ancho de la burbuja, igual en las cinco: el texto más largo (o el icono) más 8 px a cada lado, como mínimo la casilla
-  const ancho=()=>Math.max(...items().map(a=>{ const t=a.querySelector("span"), i=a.querySelector("svg"); return Math.max(a.getBoundingClientRect().width,Math.max(t?t.scrollWidth:0,i?i.getBoundingClientRect().width:0)+16); }));
-  const en=a=>{ if(!a) return; const nr=N.getBoundingClientRect(), r=a.getBoundingClientRect(), w=ancho(); pon(Math.max(4,Math.min(nr.width-w-4,r.left-nr.left+r.width/2-w/2)),w); };
+  // ancho de la burbuja de cada pestaña: su texto (o el icono) más 12 px a cada lado, como mínimo la casilla
+  const ancho=a=>{ const t=a.querySelector("span"), i=a.querySelector("svg"); return Math.max(a.getBoundingClientRect().width,Math.max(t?t.scrollWidth:0,i?i.getBoundingClientRect().width:0)+24); };
+  // siempre centrada en su pestaña: en los extremos, si no cabe, se estrecha por igual a los dos lados (4 px hasta el borde de la cápsula)
+  const en=a=>{ if(!a) return; const nr=N.getBoundingClientRect(), r=a.getBoundingClientRect(), c=r.left-nr.left+r.width/2, w=Math.min(ancho(a),2*(c-4),2*(nr.width-4-c)); pon(c-w/2,w); };
   const coloca=()=>{ if(mq.matches) en(cur()); };
   // sin animación al abrir y al girar la pantalla; con animación (viaja) cuando cambia la pestaña
   const quieto=()=>{ P.classList.add("quieto"); coloca(); requestAnimationFrame(()=>requestAnimationFrame(()=>P.classList.remove("quieto"))); };
@@ -5674,7 +5675,7 @@ document.addEventListener("click",e=>{ const a=e.target.closest("#nav a,#mtabs a
   let x0=null, mov=false, bajo=null;
   const debajo=x=>items().find(a=>{ const r=a.getBoundingClientRect(); return x>=r.left&&x<r.right; });
   const marca=a=>{ if(a!==bajo){ if(bajo) bajo.classList.remove("hov"); bajo=a; if(a) a.classList.add("hov"); } };
-  const sigue=x=>{ const nr=N.getBoundingClientRect(), w=ancho(); pon(Math.max(4,Math.min(nr.width-w-4,x-nr.left-w/2)),w); marca(debajo(x)); };
+  const sigue=x=>{ const nr=N.getBoundingClientRect(), w=ancho(bajo||cur()); pon(Math.max(4,Math.min(nr.width-w-4,x-nr.left-w/2)),w); marca(debajo(x)); };
   // al tocar, la burbuja no se mueve (solo se marca la pestaña); si se arrastra, crece y sigue al dedo
   N.addEventListener("touchstart",e=>{ if(!mq.matches||e.touches.length!==1) return; const x=e.touches[0].clientX, a=debajo(x); if(!a){ x0=null; return; }
     x0=x; mov=false; marca(a); },{passive:true});
