@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-WzS6cashKMK9VO3tKuGKbbCDOPhykUCyNaUDa2HTlQg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-UnHbXjWNAMUXIKSFgoKw774ER3N8OF38qDtps7h4778=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -1987,6 +1987,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 /* iPhone con iOS 26: Safari pinta la zona del reloj del color del elemento fijo que encuentra a 4 px del borde de arriba, sin difuminar.
    Tiene que ser un elemento de verdad (los pseudoelementos cuentan como el body), opaco, de lado a lado y sin backdrop-filter */
 #topcap{position:fixed;top:0;left:0;right:0;height:max(env(safe-area-inset-top,0px),10px);z-index:var(--z-reloj);background:var(--canvas)}
+@media (max-width:760.98px){#topcap,body::before{visibility:hidden!important}}   /* iOS 26: sin fondo propio debajo de la isla */
 #topcap.sat{z-index:var(--z-reloj-alto)}   /* con zona de reloj: por encima de las franjas (11) y de la franja estrecha (12), por debajo de la ficha, el buscador y los menús */
 html.sh-open:not(#_) body #topcap{background:var(--panel)}
 /* móvil como una app: el nombre de la pestaña en grande con el estado debajo; a la derecha, el ojo y «···» */
@@ -3749,7 +3750,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v391";   // la versión publicada, en el pie
+const VER="v392";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
