@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-vtaDXD2DE37YS+s4sPnCMflmnup3JnI+/QVWLv/td5U=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-lmgzf/nHyCAoZZE9Y9FoGBPO+i8mway2wzr+fdJCgDM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3118,6 +3118,16 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
 @media (max-width:760.98px){.status .lg-app{display:none}}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lg-app{box-shadow:0 0 0 .5px rgba(255,255,255,.16)}}
 :root[data-theme="dark"] .lg-app{box-shadow:0 0 0 .5px rgba(255,255,255,.16)}
+
+/* móvil · franja difuminada de abajo, detrás del menú (como el borde de arriba del iPhone) */
+.nav-edge{display:none}
+@media (max-width:760.98px){
+  .nav-edge{display:block;position:fixed;left:0;right:0;bottom:0;height:calc(62px + max(calc(env(safe-area-inset-bottom,0px) - 8px),12px) + 36px);
+    z-index:calc(var(--z-menu) - 1);pointer-events:none;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    background:linear-gradient(to top,color-mix(in srgb,var(--canvas) 55%,transparent),color-mix(in srgb,var(--canvas) 0%,transparent));
+    -webkit-mask-image:linear-gradient(to top,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(to top,#000 calc(100% - 44px),transparent)}
+  html.sh-open .nav-edge{display:none}
+}
 </style>
 
 <div class="wrap">
@@ -3778,7 +3788,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v398";   // la versión publicada, en el pie
+const VER="v399";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5641,6 +5651,7 @@ function navega(token,push){
 document.addEventListener("click",e=>{ const a=e.target.closest("#nav a,#mtabs a,a[data-go]"); if(!a) return; e.preventDefault();
   const same=!!a.closest("#nav")&&a.dataset.v===view; navega(a.dataset.v||a.dataset.t||a.dataset.go,true);
   if(same) window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"}); });   // la pestaña en la que ya estás: arriba del todo
+{ const E=document.createElement("div"); E.className="nav-edge"; E.setAttribute("aria-hidden","true"); document.body.append(E); }   // la franja difuminada de abajo
 // móvil · la burbuja del menú de abajo: sigue a la pestaña activa y, al arrastrar el dedo por el menú, sigue al dedo (al soltar, cambia)
 (()=>{ const N=$("nav"); if(!N) return; const mq=matchMedia("(max-width:760.98px)");
   const P=document.createElement("span"); P.className="nav-pill"; P.setAttribute("aria-hidden","true"); N.prepend(P);
