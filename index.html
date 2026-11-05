@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-t7fwOSShT8p00/sfVpn9WUZbYQdoYRu3ulz5F8pLwFQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-ZG1KmP8kVXIJsGVcs9Bm4heZuS7+SUrPlx7/ds35yIo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3099,8 +3099,8 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   body.hm3on #v-resumen>.mtop{display:none}
   body.hm3on[data-view="resumen"] .hm3c{display:none!important}
   html body.hm3on[data-view="resumen"] #s-hero.hero3{position:sticky;top:0;z-index:var(--z-franja-alta);background:var(--canvas);color:var(--ink);
-    padding:calc(env(safe-area-inset-top,0px) + 6px) 10px 6px;box-shadow:none;clip-path:none}
-  body.hm3on #s-hero .hm3{background:var(--h-bg);border-radius:18px;padding:8px 4px 9px;box-shadow:0 6px 18px -6px var(--sombra-28,rgba(0,0,0,.3))}
+    padding:calc(env(safe-area-inset-top,0px) + 6px) 16px 6px;box-shadow:none;clip-path:none}
+  body.hm3on #s-hero .hm3{background:var(--h-bg);border-radius:12px;padding:8px 4px 9px;box-shadow:0 6px 18px -6px var(--sombra-28,rgba(0,0,0,.3))}
   body.hm3on #s-hero .hm3-c{padding:0 4px}
   body.hm3on #s-hero .hm3-k{font-size:9px;line-height:var(--lh-11);--lhp:var(--lh-11)}
   body.hm3on #s-hero .hm3-v{margin-top:2px;font-size:var(--fs-15);line-height:var(--lh-18);--lhp:var(--lh-18);font-weight:400}
@@ -3112,6 +3112,21 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   .top .nav .nav-opt[aria-expanded="true"]{color:var(--ink)}
   .top .nav .nav-opt .nav-i{width:24px;height:24px}
   .mm-st{display:flex;align-items:center;gap:8px;margin:2px 0 4px;padding:6px 12px 8px;border-bottom:1px solid var(--line);font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);color:var(--ink3)}
+}
+
+/* móvil · la burbuja del menú de abajo (sin difuminar el fondo del menú) */
+.nav-pill{display:none}
+:root{--pill-on:color-mix(in srgb,var(--ink) 8%,transparent);--pill-lens:rgba(255,255,255,.55);--pill-hl:rgba(255,255,255,.75);--pill-in:rgba(0,0,0,.06);--pill-sh:rgba(0,0,0,.18)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pill-on:rgba(255,255,255,.1);--pill-lens:rgba(255,255,255,.12);--pill-hl:rgba(255,255,255,.18);--pill-in:rgba(0,0,0,.3);--pill-sh:rgba(0,0,0,.5)}}
+:root[data-theme="dark"]{--pill-on:rgba(255,255,255,.1);--pill-lens:rgba(255,255,255,.12);--pill-hl:rgba(255,255,255,.18);--pill-in:rgba(0,0,0,.3);--pill-sh:rgba(0,0,0,.5)}
+@media (max-width:760.98px){
+  .top .nav{touch-action:none}
+  .top .nav a{position:relative;z-index:1;transition:color .2s,transform .2s}
+  .top .nav a.hov{color:var(--ink);transform:scale(1.12)}
+  .nav-pill{display:block;position:absolute;top:4px;height:41px;left:0;width:0;z-index:0;border-radius:999px;background:var(--pill-on);pointer-events:none;
+    transition:translate .45s cubic-bezier(.3,1.35,.5,1),width .45s cubic-bezier(.3,1.35,.5,1),scale .25s ease,background .25s,box-shadow .25s}
+  .nav-pill.drag{scale:1.24 1.6;background:var(--pill-lens);box-shadow:inset 0 0 0 1px var(--pill-hl),inset 0 2px 3px var(--pill-hl),inset 0 -2px 4px var(--pill-in),0 10px 24px -8px var(--pill-sh);
+    transition:scale .3s cubic-bezier(.3,1.5,.5,1),background .2s,box-shadow .2s}
 }
 </style>
 
@@ -3773,7 +3788,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v407";   // la versión publicada, en el pie
+const VER="v408";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5636,6 +5651,26 @@ function navega(token,push){
 document.addEventListener("click",e=>{ const a=e.target.closest("#nav a,#mtabs a,a[data-go]"); if(!a) return; e.preventDefault();
   const same=!!a.closest("#nav")&&a.dataset.v===view; navega(a.dataset.v||a.dataset.t||a.dataset.go,true);
   if(same) window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"}); });   // la pestaña en la que ya estás: arriba del todo
+// móvil · la burbuja del menú de abajo: sigue a la pestaña activa y, al arrastrar el dedo por el menú, sigue al dedo (al soltar, cambia)
+(()=>{ const N=$("nav"); if(!N) return; const mq=matchMedia("(max-width:760.98px)");
+  const P=document.createElement("span"); P.className="nav-pill"; P.setAttribute("aria-hidden","true"); N.prepend(P);
+  const items=()=>[...N.querySelectorAll("a[data-v]")], cur=()=>N.querySelector('a[aria-current="page"]')||items()[0];
+  const pon=(x,w,anim)=>{ if(!anim) P.style.transition="none"; P.style.translate=`${x}px 0`; P.style.width=w+"px"; if(!anim){ P.offsetWidth; P.style.transition=""; } };
+  const coloca=anim=>{ if(!mq.matches) return; const a=cur(); if(!a) return; const nr=N.getBoundingClientRect(), r=a.getBoundingClientRect(); pon(r.left-nr.left,r.width,anim); };
+  new MutationObserver(()=>coloca(true)).observe(N,{subtree:true,attributes:true,attributeFilter:["aria-current"]});
+  addEventListener("resize",()=>coloca(false)); requestAnimationFrame(()=>coloca(false));
+  let x0=null, mov=false, bajo=null;
+  const debajo=x=>items().find(a=>{ const r=a.getBoundingClientRect(); return x>=r.left&&x<r.right; });
+  const sigue=x=>{ const nr=N.getBoundingClientRect(), w=cur().getBoundingClientRect().width;
+    pon(Math.max(4,Math.min(nr.width-w-4,x-nr.left-w/2)),w,false);
+    const a=debajo(x); if(a!==bajo){ if(bajo) bajo.classList.remove("hov"); bajo=a; if(a) a.classList.add("hov"); } };
+  N.addEventListener("touchstart",e=>{ if(!mq.matches||e.touches.length!==1) return; x0=e.touches[0].clientX; mov=false; P.classList.add("drag"); sigue(x0); },{passive:true});
+  N.addEventListener("touchmove",e=>{ if(x0===null) return; const x=e.touches[0].clientX; if(!mov&&Math.abs(x-x0)<6) return; mov=true; e.preventDefault(); sigue(x); },{passive:false});
+  const fin=e=>{ if(x0===null) return; x0=null; P.classList.remove("drag"); if(bajo) bajo.classList.remove("hov");
+    const a=bajo; bajo=null;
+    if(a&&a!==cur()){ if(mov){ e.preventDefault(); a.click(); } setTimeout(()=>coloca(true),450); } else coloca(true); };
+  N.addEventListener("touchend",fin,{passive:false}); N.addEventListener("touchcancel",fin,{passive:false});
+})();
 addEventListener("hashchange",()=>{ const c=remCfg(location.hash);
   if(c&&!c.bad&&!(REM&&REM.d===c.d&&REM.k===c.k)){ location.reload(); return; }   // un enlace personal nuevo: se vuelve a abrir y allí se comprueba (y se pregunta si cambia el script)
   navega(location.hash.slice(1)); });
