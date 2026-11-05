@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-g63pEAQNW3sZX1qP3KVWeiXynGsbXcmh94HuYIu4wEE=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-wVkJ0HgqRwK8d9g3iw0fsFzDJFOBqRTDE8CaS0/jjjI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2479,13 +2479,13 @@ html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:non
    sin borde ni sombra, un fondo muy suave (gris resultados, verde cobros) y una raya a la izquierda; si la fecha es estimada, sin
    fondo y con la raya discontinua. En el móvil y en pantallas estrechas, el mes con un punto por acontecimiento y, debajo, el día elegido */
 .cal-h .cal-t{display:flex;align-items:center;gap:12px}
-.cal-h .st{min-width:136px}
-.cal-nv{display:inline-flex;align-items:center;gap:4px}
-.cal-nv .btn{height:28px;display:inline-flex;align-items:center;justify-content:center;background:none;color:var(--ink2)}
+#cal-hoy{height:28px;display:inline-flex;align-items:center;padding:0 12px;border-color:color-mix(in srgb,var(--ink) 22%,transparent);background:none;color:var(--ink)}
+#cal-hoy:hover{background:var(--row)}
+#cal-hoy[disabled]{color:var(--ink3);border-color:var(--line);cursor:default;background:none}
+.cal-nv{display:inline-flex;align-items:center;gap:0}
+.cal-nv .btn{width:28px;height:28px;padding:0;display:inline-flex;align-items:center;justify-content:center;border-color:transparent;background:none;color:var(--ink2)}
 .cal-nv .btn:hover{background:var(--row);color:var(--ink)}
-.cal-nv .cal-a{width:28px;padding:0}
 .cal-nv .cal-a svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.cal-nv #cal-hoy[disabled]{opacity:.4;cursor:default;background:none}
 .cal-g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
 .cal-w{font-size:var(--fs-11);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink3);padding:4px 8px 6px;line-height:var(--lh-14);--lhp:var(--lh-14)}
 .cal-w.we,.cal-c.we{background:var(--we-bg)}
@@ -3273,7 +3273,7 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   
   <section class="panel hero3 band2" id="s-cal"><div class="bg ug bg5" id="c-k"></div></section>
   <section class="panel" id="s-calm" aria-label="Calendario">
-    <div class="chart-head cal-h"><div class="cal-t"><h2 class="st" id="cal-mes"></h2><span class="cal-nv"><button type="button" class="btn cal-a" data-cm="-1" aria-label="Mes anterior"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5"/></svg></button><button type="button" class="btn cal-a" data-cm="1" aria-label="Mes siguiente"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6 4.5 9.5"/></svg></button><button type="button" class="btn" data-cm="0" id="cal-hoy">Hoy</button></span></div>
+    <div class="chart-head cal-h"><div class="cal-t"><button type="button" class="btn" data-cm="0" id="cal-hoy">Hoy</button><span class="cal-nv"><button type="button" class="btn cal-a" data-cm="-1" aria-label="Mes anterior"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5"/></svg></button><button type="button" class="btn cal-a" data-cm="1" aria-label="Mes siguiente"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6 4.5 9.5"/></svg></button></span><h2 class="st" id="cal-mes"></h2></div>
       <div class="perf-k cal-k"><div class="seg" role="group" aria-label="Qué ver" id="cal-f"><button type="button" data-cf="todo" aria-pressed="true">Todo</button><button type="button" data-cf="res" aria-pressed="false">Resultados</button><button type="button" data-cf="div" aria-pressed="false">Dividendos</button></div><div class="seg" role="group" aria-label="Qué empresas" id="cal-u"><button type="button" data-cu="0" aria-pressed="false">Mi cartera</button><button type="button" data-cu="1" aria-pressed="true">Todo el Universo</button></div></div></div>
     <div class="cal-g" id="cal-g"></div>
     <div class="cal-dia" id="cal-d"></div>
@@ -3744,7 +3744,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v375";   // la versión publicada, en el pie
+const VER="v376";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
