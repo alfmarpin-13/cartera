@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-NG4iADuwiqNm7my2okDVQgWbfJ+L+48IkCPRjEKZfgo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-g63pEAQNW3sZX1qP3KVWeiXynGsbXcmh94HuYIu4wEE=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2491,13 +2491,14 @@ html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:non
 .cal-w.we,.cal-c.we{background:var(--we-bg)}
 .cal-w.we:nth-child(6){border-top-left-radius:var(--r-4)}.cal-w.we:nth-child(7){border-top-right-radius:var(--r-4)}
 .cal-g>.cal-c.we:nth-last-child(2){border-bottom-left-radius:var(--r-4)}.cal-g>.cal-c.we:last-child{border-bottom-right-radius:var(--r-4)}
-.cal-c{border-top:1px solid var(--line);min-height:146px;padding:8px 6px 12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.cal-c{border-top:1px solid var(--line);min-height:88px;padding:8px 6px 12px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .cal-n{font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);color:var(--ink3);padding:0 2px;height:20px;display:flex;align-items:center}
 .cal-n b{font-weight:inherit}
 .cal-c.on .cal-n{color:var(--ink)}
 .cal-c.past .cal-n,.cal-c.out .cal-n{opacity:.45}
 .cal-c.today .cal-n{opacity:1}
 .cal-c.today .cal-n b{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:20px;height:20px;padding:0 4px;border-radius:var(--r-10);background:var(--ink);color:var(--card);font-weight:600}
+.cal-c.wk{min-height:146px}
 .cal-e{position:relative;display:flex;flex-direction:column;gap:2px;width:100%;min-width:0;padding:6px 8px 7px 11px;border:0;border-radius:var(--r-4);background:color-mix(in srgb,var(--ink) 8%,transparent);text-align:left;font:inherit;color:inherit;cursor:pointer}
 .cal-e:hover{background:color-mix(in srgb,var(--ink) 12%,transparent)}
 .cal-e::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:var(--r-4) 0 0 var(--r-4);background:var(--ink)}
@@ -2537,7 +2538,7 @@ html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:non
   #s-calm .cal-k{display:flex;flex-direction:column;align-items:stretch;gap:8px;width:100%}
   #s-calm .cal-k .seg{display:flex;width:100%;margin-block:0}#s-calm .cal-k .seg button{flex:1 1 0;height:34px;padding:0 2px;min-width:0;white-space:nowrap}
   .cal-w{text-align:center;padding:4px 0 6px}
-  .cal-c{min-height:0;height:52px;padding:4px 0 2px;gap:4px;align-items:center;cursor:pointer;border-radius:0}
+  .cal-c,.cal-c.wk{min-height:0;height:52px;padding:4px 0 2px;gap:4px;align-items:center;cursor:pointer;border-radius:0}
   .cal-n{padding:0;justify-content:center}
   .cal-c .cal-e{display:none}
   .cal-c.sel{background:color-mix(in srgb,var(--ink) 7%,transparent)}
@@ -3743,7 +3744,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v374";   // la versión publicada, en el pie
+const VER="v375";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5558,11 +5559,13 @@ function renderCal(){ calSync(); const G=$("cal-g"); if(!G||!DATA) return;
   ev.forEach(e=>{ const k=calKey(e.d); if(!por.has(k)) por.set(k,[]); por.get(k).push(e); });
   const y=calM.getFullYear(), m=calM.getMonth(), ini=new Date(y,m,1); ini.setDate(ini.getDate()-((ini.getDay()+6)%7));
   const fin=new Date(y,m+1,0), nd=Math.ceil((Math.round((fin-ini)/DIA_MS)+1)/7)*7;
+  // semanas con algo (del mes): alto de dos tarjetas; las vacías, bajas
+  const wk=[...Array(nd/7)].map((_,r)=>[...Array(7)].some((_,j)=>{ const d=new Date(ini); d.setDate(ini.getDate()+r*7+j); return d.getMonth()===m&&(por.get(calKey(d))||[]).length; }));
   $("cal-mes").textContent=calM.toLocaleDateString("es-ES",{month:"long",year:"numeric"}).replace(" de "," ");
   const hb=$("cal-hoy"); hb.disabled=y===hoy.getFullYear()&&m===hoy.getMonth()&&calKey(calSel)===calKey(hoy);
   G.innerHTML=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"].map((x,i)=>`<span class="cal-w${i>4?" we":""}">${x}</span>`).join("")
     +[...Array(nd)].map((_,i)=>{ const d=new Date(ini); d.setDate(ini.getDate()+i); const k=calKey(d), out=d.getMonth()!==m, g=out?[]:(por.get(k)||[]);
-      return `<div class="cal-c${i%7>4?" we":""}${out?" out":""}${k<calKey(hoy)?" past":""}${k===calKey(hoy)?" today":""}${g.length?" on":""}${k===calKey(calSel)&&!out?" sel":""}" data-k="${k}"><span class="cal-n"><b>${d.getDate()}</b></span>`
+      return `<div class="cal-c${wk[Math.floor(i/7)]?" wk":""}${i%7>4?" we":""}${out?" out":""}${k<calKey(hoy)?" past":""}${k===calKey(hoy)?" today":""}${g.length?" on":""}${k===calKey(calSel)&&!out?" sel":""}" data-k="${k}"><span class="cal-n"><b>${d.getDate()}</b></span>`
         +`<span class="cal-p" aria-hidden="true">${g.slice(0,4).map(e=>`<i class="${e.k==="d"?"d":e.est&&!e.ya?"est":""}"></i>`).join("")}</span>`
         +g.map(e=>calTarjeta(e,hoy)).join("")+`</div>`; }).join("");
   // el día elegido (pantallas estrechas)
