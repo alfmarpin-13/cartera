@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-enOwC2IFWjWcMrc+/2igHpQm7hQmneskTw9wHr5GGxY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-6Ui4J8LVXqWAaWMsmn8Ynj1uOVHTZeCZJll3XdQ60v0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3749,7 +3749,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v378";   // la versión publicada, en el pie
+const VER="v379";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5832,9 +5832,12 @@ if(matchMedia("(pointer:coarse)").matches){ let C=document.createElement("div");
   // el iPhone pinta la barra de la hora con el color de lo que hay arriba, pero no siempre lo vuelve a mirar cuando cambia (al pasar a
   // modo oscuro, por ejemplo): cada vez que la tapa cambia de color por otra pestaña, la ficha o el tema se pone una
   // tapa nueva, y el color de la ventana (theme-color) la acompaña
-  let last="", rq=0, f=false;
+  let last="", rq=0, f=false, mv=0;
+  addEventListener("scroll",()=>{ mv=performance.now(); },{passive:true});
+  // la tapa vieja se quita solo con la página quieta y sin estirar: así el iPhone, si no está mirando, siempre tiene una tapa que recordar
+  const quita=v=>{ if(scrollY<0||performance.now()-mv<300){ setTimeout(()=>quita(v),150); return; } v.remove(); };
   const pinta=()=>{ rq=0; const c=getComputedStyle(C).backgroundColor; if(c===last&&!f) return; last=c; f=false;
-    const nC=C.cloneNode(); C.replaceWith(nC); C=nC;
+    const nC=C.cloneNode(), vC=C; vC.after(nC); C=nC; quita(vC);
     let M=[...document.querySelectorAll('meta[name="theme-color"]')]; if(!M.length){ const m=document.createElement("meta"); m.name="theme-color"; document.head.append(m); M=[m]; }
     M.forEach(m=>{ m.removeAttribute("media"); m.content=c; }); };
   const bar=()=>{ if(!rq) rq=requestAnimationFrame(pinta); }, otra=()=>{ f=true; bar(); };   // otra: al volver a la app, tapa nueva aunque no cambie
