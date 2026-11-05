@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-NOPV8uw3y1TZGB6U4XdRYv+gM78dzlq2U5TKINrScPM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-UKJasTehaONElZm1lDDKvVqEbn/6fMC2vPSxE35uDpw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3741,7 +3741,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v368";   // la versión publicada, en el pie
+const VER="v369";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5509,7 +5509,8 @@ const calYmd=s=>{ const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,
 const calHoy=()=>{ const n=new Date(); return new Date(n.getFullYear(),n.getMonth(),n.getDate()); };
 const calKey=d=>d.getFullYear()*1e4+(d.getMonth()+1)*100+d.getDate();
 // el periodo, en palabras: «3T 2026», «Ventas 3T 2026», «1S 2027 fiscal»
-const calPer=p=>{ const v=/\(ventas\)/i.test(p||""), t=String(p||"").replace(/\s*\(ventas\)/ig,"").replace(/\s*\(fiscal\)/ig," fiscal").trim(); return (v?"Ventas ":"Resultados ")+t; };
+const calPer=p=>{ const s=String(p||""), v=/\bventas\b/i.test(s); let t=s.replace(/\([^)]*\)/g," ").replace(/\bfiscal\b|\bventas\b/ig," ").replace(/\s+/g," ").trim();
+  t=t.replace(/^a[ñn]o\s+(\d{4})$/i,"anuales $1"); return ((v?"Ventas ":"Resultados ")+t).trim(); };
 // el archivo del agente → CALT; si ha cambiado, Universo y la ficha vuelven a mirar «Por revisar»
 function calSync(){ const ok=ACT&&ACT.ix&&ACT.ix.tipo==="calendario", sig=ok?ACT.ix.semana+"|"+ACT.ix.generado:"";
   if(sig===calSig) return false; calSig=sig; CALT=new Map();
