@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-8hEXDZAedt3i1n8Rue5lSacrfxKgd/Q166DEEpeAyks=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-v2xlx06j6gCOJxu8OL2NDxuuc2SW8UIy5eaWyMHq2rs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -1385,9 +1385,7 @@ html{-webkit-tap-highlight-color:transparent;scrollbar-gutter:stable;background:
 .cot-l li em{font-style:normal;text-align:right;color:var(--ink3);font-size:var(--fs-13)}
 .cot-l li.me{color:var(--ink);font-weight:600}
 .cot-l li.me b{font-weight:600}
-.cot-na::before,.cot-na li::before{content:none}
 .fp-rd .fp-ch .hid{visibility:hidden}
-.cot-na li,.cot-na li b{color:var(--ink3)}
 .cot-l li.me::before{left:-18px;width:9px;height:9px;margin-top:-4px;background:var(--ink);box-shadow:0 0 0 3px var(--panel)}
 .cot-f{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 8px;align-items:baseline;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:var(--fs-12);color:var(--ink2)}
 .cot-f b{font-size:var(--fs-13);font-weight:500;color:var(--ink);text-align:right}
@@ -1881,15 +1879,20 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 /* en la ficha, la TIR y la rentabilidad van como texto de color, sin píldora */
 .sheet .rlv{background:none!important;padding:0!important;min-width:0!important;border-radius:0;font-weight:inherit;color:inherit!important}
 .sheet .rlv[class*="rp"]{color:var(--pos)!important}.sheet .rlv[class*="rn"]{color:var(--neg)!important}
-/* cotización: la regla de precios; la lista de debajo, sin puntos */
+/* cotización: la lista, sin la raya y los puntos de la izquierda (los de fuera de la ficha) */
 .sheet .cot-l{padding-left:0}.sheet .cot-l::before,.sheet .cot-l li::before{display:none}
-.cot-r{position:relative;height:84px;margin:4px 6px 8px}
-.cot-r .ln{position:absolute;left:0;right:0;top:32px;height:2px;border-radius:var(--r-2);background:var(--line)}
-.cot-r .mk{position:absolute;top:27px;width:2px;height:12px;margin-left:-1px;background:var(--ink3)}
-.cot-r .mk.me{width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px var(--fxs)}
-.cot-r .lb{position:absolute;font-size:var(--fs-11);line-height:var(--lh-14);--lhp:var(--lh-14);color:var(--ink3);white-space:nowrap}
-.cot-r .lb.r0{top:48px}.cot-r .lb.r1{top:64px}
-.cot-r .lb.me{top:4px;font-size:var(--fs-12);font-weight:600;color:var(--ink)}
+/* v364 · Precio: nombre, puntos, cifra y distancia, en las mismas cuatro columnas en todas las filas. Cada punto, en su fila y en la
+   misma escala; la línea discontinua es la cotización (el punto grande) */
+.sheet .cot-l{display:grid;grid-template-columns:max-content minmax(48px,1fr) max-content 64px;column-gap:12px}
+.sheet .cot-l li{grid-column:1/-1;grid-template-columns:subgrid;column-gap:inherit}
+.cot-l .tk{position:relative;align-self:stretch}
+.cot-l .tk .bl{position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line)}
+.cot-l .tk .ref{position:absolute;top:0;bottom:0;width:0;margin-left:-.5px;border-left:1px dashed var(--g3)}
+.cot-l .tk .ref.t0{top:50%}.cot-l .tk .ref.t1{bottom:50%}
+.cot-l .tk .dt{position:absolute;top:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:var(--ink2)}
+.cot-l li.me .tk .dt{width:11px;height:11px;margin:-5.5px 0 0 -5.5px;background:var(--ink);box-shadow:0 0 0 3px var(--panel)}
+.cot-l li.na,.cot-l li.na b{color:var(--ink3)}
+@container ficha (max-width:360px){.sheet .cot-l{grid-template-columns:max-content minmax(40px,1fr) max-content 50px;column-gap:8px}}
 /* ===== Análisis, Universo y Actualidad: cinco cifras, en las mismas cinco columnas que Movimientos ===== */
 @media (min-width:701px){
   :is(#s-aidx,#s-uni) .bg.bg5{grid-template-columns:repeat(5,minmax(0,1fr))}
@@ -3650,7 +3653,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v363";   // la versión publicada, en el pie
+const VER="v364";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4389,8 +4392,9 @@ const numSigno = (x,d=0) => isNum(x) ? (x<0?"−":"")+nf(d).format(Math.abs(x)) 
 const multiplo = m => isNum(m) ? numSigno(m,1)+"×" : "";        // múltiplos: 25,0×, 22,5×
 const tipoPct = v => isNum(v) ? pct(v,1) : "";                   // tipos: 8,0%, 12,5%
 // niveles de la TIR esperada de tu hoja (Preselección y Radar): >20% / >15% / >12,5% / >10% / >8%; por debajo, gris
-// rojo solo para lo negativo, como en el resto de la web: una TIR positiva pero modesta (0–8 %) va sin color; el verde, desde el 8 %
-const tirLv = v => !isNum(v) ? "" : v>0.2?"rp5":v>0.15?"rp4":v>0.125?"rp3":v>0.1?"rp2":v>0.08?"rp1":v>=0?"t0":v>=-0.05?"rn2":v>=-0.1?"rn3":v>=-0.15?"rn4":"rn5";
+// v364 · tramos de la TIR, según el reparto de tu Universo: verde desde el 8 % (8, 10, 12,5 y 15 %, tus TIR exigidas); sin color de 4 a 8 %;
+// rojo por debajo del 4 % (menos de la mitad de tu exigida mínima), más intenso por debajo de 0 y de −5 %. Se mide la cifra que se ve (un decimal)
+const tirLv = v => { if(!isNum(v)) return ""; const x=Math.round(v*1000)/1000; return x>=0.15?"rp5":x>=0.125?"rp4":x>=0.1?"rp3":x>=0.08?"rp1":x>=0.04?"t0":x>=0?"rn1":x>=-0.05?"rn3":"rn5"; };
 const tirP = (v,d=1) => isNum(v) ? `<span class="rlv ${tirLv(v)}">${pct(v,d)}</span>` : "";
 // el margen con su barra, como en Radar: a la derecha (verde) si supera lo exigido, a la izquierda (rojo) si no;
 // la escala, la misma en todas las filas: del 0 al mayor margen del universo
@@ -4522,27 +4526,6 @@ document.querySelectorAll("#perf-k .cy").forEach(e=>e.textContent=new Date().get
 $("perf-k").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) setPerf(b.dataset.k); });
 
 /* ficha: tu hoja Valoración + mercado */
-// cotización: una regla con el precio y sus referencias (máximo del año, media de 200 sesiones, valor razonable y tu precio medio)
-function cotRule(lad,cur){ const it=lad.filter(x=>isNum(x[1])); if(it.length<2) return ""; const lo=Math.min(...it.map(x=>x[1])), hi=Math.max(...it.map(x=>x[1])); if(hi-lo<1e-9) return "";
-  const a=lo-(hi-lo)*.03, z=hi+(hi-lo)*.03, L=v=>(v-a)/(z-a)*100;
-  const at=l=>l<10?`left:${l.toFixed(1)}%`:l>90?`right:${(100-l).toFixed(1)}%`:`left:${l.toFixed(1)}%;transform:translateX(-50%)`;   // en los extremos, la etiqueta se alinea hacia dentro
-  return `<div class="cot-r" aria-hidden="true"><i class="ln"></i>${it.filter(x=>!x[2]).sort((p,q)=>p[1]-q[1]).map((x,i)=>`<span class="mk" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb r${i%2}" style="${at(L(x[1]))}" data-x="${L(x[1]).toFixed(2)}">${x[0]}</span>`).join("")}${it.filter(x=>x[2]).map(x=>`<span class="mk me" style="left:${L(x[1]).toFixed(1)}%"></span><span class="lb me" style="${at(L(x[1]))}" data-x="${L(x[1]).toFixed(2)}">Cotización ${precioVisible(x[1],cur)}</span>`).join("")}</div>`; }
-// regla de precios, ya pintada: cada etiqueta, centrada en su marca y dentro de la regla; si dos chocan, una pasa a la otra fila
-// o se apartan lo justo (las que se tocan se mueven juntas, 8 px entre ellas). Sin choques, quedan como siempre: una arriba y otra abajo
-function cotFit(box){ const W=box.clientWidth; if(!W) return; const G=8;
-  const put=(o,x)=>{ o.e.style.left=x.toFixed(1)+"px"; o.e.style.right="auto"; o.e.style.transform="none"; };
-  const lab=[...box.querySelectorAll(".lb[data-x]")].map(e=>({e,w:e.getBoundingClientRect().width,c:+e.dataset.x/100*W}));
-  lab.filter(o=>o.e.classList.contains("me")).forEach(o=>put(o,Math.min(Math.max(o.c-o.w/2,0),Math.max(0,W-o.w))));
-  const it=lab.filter(o=>!o.e.classList.contains("me")).sort((p,q)=>p.c-q.c);
-  const row=xs=>{ const S=[], fix=g=>{ g.x=Math.min(Math.max(g.sum/g.n,0),Math.max(0,W-g.w)); return g; };
-    for(const o of xs){ let g=fix({m:[o],w:o.w,sum:o.c-o.w/2,n:1});
-      while(S.length&&S[S.length-1].x+S[S.length-1].w+G>g.x){ const p=S.pop(); g=fix({m:[...p.m,...g.m],w:p.w+G+g.w,sum:p.sum+g.sum-(p.w+G)*g.n,n:p.n+g.n}); }
-      S.push(g); }
-    let cost=0; const pos=[]; S.forEach(g=>{ let x=g.x; if(g.w>W) cost+=1e9; g.m.forEach(o=>{ pos.push([o,x]); cost+=(x-(o.c-o.w/2))**2; x+=o.w+G; }); }); return {pos,cost}; };
-  let best=null; for(let k=0;k<1<<it.length;k++){ const A=[row(it.filter((o,i)=>!(k>>i&1))),row(it.filter((o,i)=>k>>i&1))]; const cost=A[0].cost+A[1].cost+it.filter((o,i)=>(k>>i&1)!==i%2).length*.5; if(!best||cost<best.cost) best={cost,A}; }
-  if(best) best.A.forEach((r,j)=>r.pos.forEach(([o,x])=>{ o.e.classList.toggle("r0",!j); o.e.classList.toggle("r1",!!j); put(o,x); })); }
-const cotRO=window.ResizeObserver?new ResizeObserver(es=>es.forEach(e=>cotFit(e.target))):null;
-if(document.fonts&&document.fonts.addEventListener) document.fonts.addEventListener("loadingdone",()=>document.querySelectorAll(".cot-r").forEach(cotFit));
 function fichaPre(r){
   const v=r.val||{}, cur=r.cur, mult=isNum(v.mult)?v.mult:r.mult, req=isNum(r.req)?r.req:v.req, vd=r.fvDate instanceof Date?r.fvDate:v.date;
   const mb=(k,x,sub,c="",cl="")=>`<div class="fp-b${cl}"><span class="fp-k">${k}</span><b class="num ${c}">${x===""?"&nbsp;":x}</b><small>${sub||""}</small></div>`;
@@ -4581,9 +4564,13 @@ function fichaPre(r){
   const refs=[ ["Máximo 1 año",isNum(r.hi52)&&r.hi52>-1&&isNum(P0)?P0/(1+r.hi52):null], ["Valor razonable",isNum(r.fv)&&r.fv>0?r.fv:null],
     ["Tu precio medio",own&&isNum(own.avg)&&own.avg>0?own.avg:null], ["Media 200",isNum(r.mm200)&&r.mm200>-1&&isNum(P0)?P0/(1+r.mm200):null] ];
   const rv=x=>isNum(x[1])?x[1]:-Infinity, lad=[...refs.filter(x=>isNum(x[1])),["Cotización",P0,1]].sort((a,b)=>rv(b)-rv(a)), na=refs.filter(x=>!isNum(x[1]));
+  // v364 · cada referencia, un punto en su fila y todos en la misma escala (con un 6 % de aire a cada lado); la línea discontinua
+  // une las filas por la cotización. Sin cotización o con una sola cifra, la columna queda vacía
+  const nv=lad.map(x=>x[1]).filter(isNum), pLo=Math.min(...nv), pHi=Math.max(...nv), conPts=isNum(P0)&&nv.length>1&&pHi-pLo>1e-9;
+  const ex=(pHi-pLo)*.06, Lp=v=>((v-pLo+ex)/(pHi-pLo+2*ex)*100).toFixed(1), cX=conPts?Lp(P0):0, ult=lad.length-1;
+  const tk=(cifra,i)=>`<span class="tk" aria-hidden="true">${conPts&&isNum(cifra)?`<i class="bl"></i><i class="ref${i===0?" t0":""}${i===ult?" t1":""}" style="left:${cX}%"></i><i class="dt" style="left:${Lp(cifra)}%"></i>`:""}</span>`;
   const cPrice=`<section class="fp-c fp-cot"><div class="fp-ch"><h4>Precio</h4><span>${sesT}</span></div>
-    ${cotRule(lad,cur)}<ol class="cot-l">${lad.map(([l,cifra,me])=>`<li class="${me?"me":""}"><span>${l}</span><b class="num">${l==="Tu precio medio"?money(cifra,cur):precioVisible(cifra,cur)}</b><em class="num">${me||!isNum(P0)?"":pct(P0/cifra-1,1,true)}</em></li>`).join("")}</ol>
-    ${na.length?`<ul class="cot-l cot-na">${na.map(([l])=>`<li><span>${l}</span><b>N/A</b><em></em></li>`).join("")}</ul>`:""}
+    <ol class="cot-l">${lad.map(([l,cifra,me],i)=>`<li class="${me?"me":""}"><span>${l}</span>${tk(cifra,i)}<b class="num">${l==="Tu precio medio"?money(cifra,cur):precioVisible(cifra,cur)}</b><em class="num">${me||!isNum(P0)?"":pct(P0/cifra-1,1,true)}</em></li>`).join("")}${na.map(([l])=>`<li class="na"><span>${l}</span><span class="tk" aria-hidden="true"></span><b>N/A</b><em></em></li>`).join("")}</ol>
     <div class="cot-f"><span>Desde máximos</span><b class="num">${pct(r.dd,1,true)}</b><span>Volatilidad</span><b class="num">${pct(r.vol,1)}</b></div></section>`;
   // rendimiento de cada periodo en barras; la marca, la media simple de su industria en ese periodo
   const peers=r.ind?DATA.pre.filter(x=>x.ind===r.ind):[], avgOf=k=>{ const vals=peers.map(x=>x[k]).filter(isNum); return vals.length>1?sum(vals,x=>x)/vals.length:null; };
@@ -4707,7 +4694,7 @@ function renderPre(){
   const n0=v=>nf(0).format(v), avg=rs=>{ const x=rs.filter(r=>isNum(r.margin)); return x.length?sum(x,r=>r.margin)/x.length:null; };
   const sub=f=>{ const a=inP.filter(f).length, b=outP.filter(f).length; return `${n0(a)} en cartera<span class="sep"></span>${n0(b)} ${b===1?"candidata":"candidatas"}`; };
   const hc=(i,l,v,t,c="")=>`<div class="c${i} r1 bl">${l}</div><div class="c${i} r2 bv num ${c}">${v}</div><div class="c${i} r3 bs">${t}</div>`, cc=v=>isNum(v)&&Math.abs(v)>=0.0005?cls(v):"";
-  // TIR esperada media (simple, como el margen) y su color con la escala de la TIR: rojo si es negativa, verde desde el 8 %
+  // TIR esperada media (simple, como el margen) y su color con la escala de la TIR: rojo por debajo del 4 %, verde desde el 8 %
   const ti=rs=>{ const x=rs.filter(r=>isNum(r.irrExp)); return x.length?sum(x,r=>r.irrExp)/x.length:null; }, tc=v=>{ const l=tirLv(v); return /^rp/.test(l)?"pos":/^rn/.test(l)?"neg":""; };
   $("p-k").innerHTML=hc(0,"Empresas",n0(all.length),sub(()=>true))
     +hc(1,"Sobre lo exigido",n0(all.filter(r=>r.margin>0).length),sub(r=>r.margin>0))
@@ -4822,7 +4809,6 @@ function renderSheet0(){ const el=$("sheet"), t=sheet&&DATA?sheet.t:null, p=t&&D
     const body=sheet.tab==="pos"?P.body:sheet.tab==="pre"?R.body:sheet.tab==="mkt"?R.mkt:fichaMov(t);
     $("sheet-b").innerHTML=`<div class="ficha fpx ${sheet.tab==="pos"&&!p.isOption?"fpp":sheet.tab==="pre"||sheet.tab==="mkt"?"fpu":"fpm"}"><div class="fp-h">${idb}</div>${band?`<div class="fx-band">${band}</div>`:""}${tb}<div class="sh-pane" id="sh-pane" role="tabpanel"${tabs.length?` aria-labelledby="sht-${sheet.tab}"`:""}>${body}</div></div>`;
     $("sh-tt").innerHTML=`${logoBare(co.name,t)}<b>${esc(co.name)}</b>`; el.setAttribute("aria-label",co.name);
-    if(cotRO) cotRO.disconnect(); $("sheet-b").querySelectorAll(".cot-r").forEach(b=>{ cotFit(b); if(cotRO) cotRO.observe(b); });   // regla de precios: colocar etiquetas (y al cambiar de ancho)
     const i=(sheet.list||[]).indexOf(t); $("sh-prev").disabled=i<=0; $("sh-next").disabled=i<0||i>=sheet.list.length-1;
   }
   el.hidden=!sheet; document.documentElement.classList.toggle("sh-open",!!sheet); markRows(); }
