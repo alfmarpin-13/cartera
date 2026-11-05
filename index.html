@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-ZiWOY4jIzAq8WK9PUX6OGbiFzAd4Jv/+pxyAj9ld3Mo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-7NBqMaaf+OQ8yMuF0iQDgqH+Dcc5iE6oPYVCw+F6m6w=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2261,7 +2261,7 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
   body.hm3on[data-view="resumen"] #s-hero.hero3{padding-bottom:16px}
   /* con la barra clara arriba, la tira fija y el fondo de arriba van del color claro (la barra de la hora del iPhone, clara) */
       /* la franja fija al bajar: más estrecha y con números más pequeños */
-  body.hm3on[data-view="resumen"] .hm3c{display:none}
+  body.hm3on[data-view="resumen"] .hm3c{display:grid}
   .hm3c{position:fixed;left:0;right:0;z-index:var(--z-franja-alta);grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr) 1px minmax(0,1fr);padding:calc(env(safe-area-inset-top,0px) + 6px) 16px 8px;background:var(--h-bg);color:var(--h-fg);font-variant-numeric:tabular-nums;transform:translateY(-100%);pointer-events:none}
   .hm3c.on{transform:none;pointer-events:auto}
   .hm3c>div{display:flex;flex-direction:column;align-items:center;min-width:0;white-space:nowrap}
@@ -2361,7 +2361,7 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
 :root[data-theme="dark"] .hm5-mv{--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}
 /* iPhone: desde que la franja oscura de Resumen llega arriba, la tapa de la hora es de su color (antes, clara hasta que
    aparecía la franja estrecha, y la hora parpadeaba en claro). La ficha abierta sigue mandando (su regla es más fuerte) */
-@media (max-width:700.98px){
+@media (max-width:700.98px){ html body.hm3on.cap-dark[data-view="resumen"]:not(.__) #topcap{background:var(--h-bg)}
   /* escondida, la franja estrecha deja de verse del todo al acabar de subir (antes solo se desplazaba hacia arriba) */
   .hm3c{visibility:hidden;top:-100vh;transition:transform .2s ease,visibility 0s linear .2s,top 0s linear .2s}
   .hm3c.on{visibility:visible;top:0;transition:transform .2s ease,visibility 0s,top 0s} }
@@ -3749,7 +3749,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v393";   // la versión publicada, en el pie
+const VER="v394";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5125,7 +5125,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   const fija=()=>{ fq=0; const on=document.body.dataset.view==="resumen"&&hero.offsetWidth>0, r=hero.getBoundingClientRect();
     const fx=on&&r.bottom<=C.offsetHeight; if(!fx&&C.classList.contains("on")) setTimeout(()=>document.dispatchEvent(new Event("tapa")),260); C.classList.toggle("on",fx);
     const tc=document.getElementById("topcap"), capH=tc&&tc.classList.contains("sat")?tc.offsetHeight:0;
-    document.body.classList.remove("cap-dark"); };   // la tapa cambia justo cuando la franja toca arriba (o sale la estrecha)
+    document.body.classList.toggle("cap-dark",fx||on&&r.top<=capH); };   // la tapa cambia justo cuando la franja toca arriba (o sale la estrecha)
   const pide=()=>{ if(!fq) fq=requestAnimationFrame(fija); };
   addEventListener("scroll",pide,{passive:true}); addEventListener("resize",pide); if(window.ResizeObserver) new ResizeObserver(pide).observe(hero);
   new MutationObserver(pide).observe(document.body,{attributes:true,attributeFilter:["data-view"]}); pide();
