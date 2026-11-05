@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-awuv9OWX64c4ee87V943Q4Ye/ol9h3YVfXDgheC/DYA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-/6UeobZgiA5SzBDz+M4sSHCwNsOfB8Pf/HrnDLHeL7k=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3835,7 +3835,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v423";   // la versión publicada, en el pie
+const VER="v424";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5991,8 +5991,9 @@ if(matchMedia("(pointer:coarse)").matches){ const P=document.createElement("div"
   const hora=()=>{ const m=($("stat").textContent||"").match(/\b(\d{1,2}:\d{2})\b/); return m?m[1]:""; };
   const texto=t=>{ if(T.textContent!==t) T.textContent=t; };
   const modo=m=>{ if(fase===m) return; fase=m; P.dataset.m=m; };
-  const set=v=>{ d=v; P.style.transform=`translate(-50%,${Math.round(Math.min(v,MAX)*.55-44)}px)`; P.style.opacity=String(Math.min(1,v/28));
-    if(v>=GO){ modo("go"); texto("Suelta para actualizar"); } else { modo("tira"); const hm=hora(); texto(hm?`Datos de las ${hm} · tira para actualizar`:"Tira para actualizar"); } };
+  const set=v=>{ d=v; P.style.transform=`translate(-50%,${Math.round(Math.min(v*2.5,44)-44)}px)`; P.style.opacity=String(Math.min(1,v/12));
+    const hm=hora(), pre=hm?`Datos de las ${hm} · `:"";
+    if(v>=GO){ modo("go"); texto(pre+(pre?"suelta":"Suelta")+" para actualizar"); } else { modo("tira"); texto(pre+(pre?"tira":"Tira")+" para actualizar"); } };
   const esconde=()=>{ P.classList.remove("pull","run","fin"); P.style.transform=""; P.style.opacity=""; modo(""); };
   const arriba=()=>scrollY<=1;
   const quieto=()=>!$("sheet").hidden||!$("kx").hidden||busy||!canRead()||P.classList.contains("run")||P.classList.contains("fin");   // con la ficha o el buscador abiertos, o ya leyendo, no
