@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-8rEJ3R5ZHJcmeckEXcbSMgAI41BHUU6DfsW9DYfAY5s=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Rq2NcGH5OFQzfgiGd0UlOGQ/Y+KHaikfhWd6a656VAU=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2491,7 +2491,7 @@ html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:non
 .cal-w.we,.cal-c.we{background:var(--we-bg)}
 .cal-w.we:nth-child(6){border-top-left-radius:var(--r-4)}.cal-w.we:nth-child(7){border-top-right-radius:var(--r-4)}
 .cal-g>.cal-c.we:nth-last-child(2){border-bottom-left-radius:var(--r-4)}.cal-g>.cal-c.we:last-child{border-bottom-right-radius:var(--r-4)}
-.cal-c{border-top:1px solid var(--line);min-height:156px;padding:8px 6px 12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.cal-c{border-top:1px solid var(--line);min-height:220px;padding:8px 6px 12px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .cal-n{font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);color:var(--ink3);padding:0 2px;height:20px;display:flex;align-items:center}
 .cal-n b{font-weight:inherit}
 .cal-c.on .cal-n{color:var(--ink)}
@@ -2517,8 +2517,10 @@ html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:non
 .cal-e[disabled]{cursor:default}
 .cal-e .tp{display:flex;align-items:center;gap:6px;min-width:0}
 .cal-e .lgb{width:18px;height:14px;flex:none}
-.cal-e b{flex:1 1 auto;min-width:0;font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);font-weight:500;color:var(--ink);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
-.cal-e .tp{align-items:flex-start}.cal-e .tp .lgb{margin-top:1px}
+.cal-e b{flex:1 1 auto;min-width:0;font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-e .tp{align-items:center}
+.cal-e small{white-space:nowrap;overflow:hidden}
+.cal-e .dl>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis}
 .cal-e .dl{display:flex;justify-content:space-between;align-items:baseline;gap:6px}
 .cal-e .am{flex:none;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
 .cal-e small{display:block;font-size:var(--fs-11);line-height:var(--lh-15);--lhp:var(--lh-15);color:var(--ink2)}
@@ -3741,7 +3743,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v370";   // la versión publicada, en el pie
+const VER="v371";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5534,7 +5536,7 @@ const CAL_SOL=`<svg class="ci" viewBox="0 0 12 12" role="img" aria-label="Antes 
 const calTarjeta=(e,hoy)=>{ const fut=calKey(e.d)>=calKey(hoy), det=e.k==="r"
     ?`<span class="dl"><span>${esc(calPer(e.per))}</span>${!e.ya&&(e.hora||e.est)?`<span class="ic">${e.hora==="antes de la apertura"?CAL_SOL:e.hora==="tras el cierre"?CAL_LUNA:""}${e.est?CAL_EST:""}</span>`:""}</span>`
     :`<span class="dl"><span>${fut&&!e.ya?"Dividendo":"Cobrado"}</span><span class="am">${eur(e.v,2)}</span></span>`;
-  return `<button type="button" class="cal-e ${e.k}${e.pf?"":" cand"}${calKey(e.d)<calKey(hoy)?" past":""}"${e.ok?` data-t="${esc(e.t)}" data-pf="${e.pf?1:0}"`:" disabled"} aria-label="${esc(e.n)}: ${e.k==="r"?esc(calPer(e.per))+(!e.ya&&e.hora?", "+e.hora:"")+(!e.ya&&e.est?", fecha estimada":""):"dividendo de "+esc(eur(e.v,2))}"><span class="tp">${logoBare(e.n,e.t)}<b>${esc(e.n)}</b></span><small>${det}</small></button>`; };
+  return `<button type="button" class="cal-e ${e.k}${e.pf?"":" cand"}${calKey(e.d)<calKey(hoy)?" past":""}"${e.ok?` data-t="${esc(e.t)}" data-pf="${e.pf?1:0}"`:" disabled"} aria-label="${esc(e.n)}: ${e.k==="r"?esc(calPer(e.per))+(!e.ya&&e.hora?", "+e.hora:"")+(!e.ya&&e.est?", fecha estimada":""):"dividendo de "+esc(eur(e.v,2))}"><span class="tp">${logoBare(e.n,e.t)}<b title="${esc(e.n)}">${esc(e.n)}</b></span><small>${det}</small></button>`; };
 function renderCal(){ calSync(); const G=$("cal-g"); if(!G||!DATA) return;
   const hoy=calHoy(); if(!calM) calM=new Date(hoy.getFullYear(),hoy.getMonth(),1); if(!calSel) calSel=hoy;
   const todo=calEventos(), cart=todo.filter(e=>e.pf);
