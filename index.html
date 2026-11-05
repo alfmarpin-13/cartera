@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-iDViQ7kyyI2gF1mlz3PeBMbBz/hngy01bsgeXWDdqqM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-35DM34oofguTo1uGAQjndevkuSBqQjXXkXWZRP6IqT8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3162,6 +3162,14 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   html body .top .nav{grid-template-columns:repeat(5,auto)!important;justify-content:space-between}
   html body .top .nav a{padding-left:clamp(4px,calc((100vw - 278px) / 10),12px);padding-right:clamp(4px,calc((100vw - 278px) / 10),12px)}
 }
+
+/* v422 · Calendario en el móvil: dos desplegables en una fila en lugar de las dos filas de botones */
+.cal-sels{display:none}
+@media (max-width:700.98px){
+  html body #s-calm .cal-k .seg{display:none}
+  html body #s-calm .cal-sels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%}
+  html body #s-calm .cal-sels select{width:100%;height:34px;min-height:0;padding:0 30px 0 12px;font-size:var(--fs-13);line-height:32px}
+}
 </style>
 
 <div class="wrap">
@@ -3352,7 +3360,7 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
   <section class="panel hero3 band2" id="s-cal"><div class="bg ug bg5" id="c-k"></div></section>
   <section class="panel" id="s-calm" aria-label="Calendario">
     <div class="chart-head cal-h"><div class="cal-t"><button type="button" class="btn" data-cm="0" id="cal-hoy">Hoy</button><span class="cal-nv"><button type="button" class="btn cal-a" data-cm="-1" aria-label="Mes anterior"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5"/></svg></button><button type="button" class="btn cal-a" data-cm="1" aria-label="Mes siguiente"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6 4.5 9.5"/></svg></button></span><h2 class="st" id="cal-mes"></h2></div>
-      <div class="perf-k cal-k"><div class="seg" role="group" aria-label="Qué ver" id="cal-f"><button type="button" data-cf="todo" aria-pressed="true">Todo</button><button type="button" data-cf="res" aria-pressed="false">Resultados</button><button type="button" data-cf="div" aria-pressed="false">Dividendos</button></div><div class="seg" role="group" aria-label="Qué empresas" id="cal-u"><button type="button" data-cu="0" aria-pressed="false">Mi cartera</button><button type="button" data-cu="1" aria-pressed="true">Todo el Universo</button></div></div></div>
+      <div class="perf-k cal-k"><div class="seg" role="group" aria-label="Qué ver" id="cal-f"><button type="button" data-cf="todo" aria-pressed="true">Todo</button><button type="button" data-cf="res" aria-pressed="false">Resultados</button><button type="button" data-cf="div" aria-pressed="false">Dividendos</button></div><div class="seg" role="group" aria-label="Qué empresas" id="cal-u"><button type="button" data-cu="0" aria-pressed="false">Mi cartera</button><button type="button" data-cu="1" aria-pressed="true">Todo el Universo</button></div><div class="cal-sels"><select class="inp" id="cal-fs" aria-label="Qué ver"><option value="todo">Todo</option><option value="res">Resultados</option><option value="div">Dividendos</option></select><select class="inp" id="cal-us" aria-label="Qué empresas"><option value="0">Mi cartera</option><option value="1">Todo el Universo</option></select></div></div></div>
     <div class="cal-g" id="cal-g"></div>
     <div class="cal-dia" id="cal-d"></div>
     <p class="cal-lg"><span><i class="pf"></i>Resultados de tu cartera</span><span><i></i>Resultados de candidatas</span><span><i class="d"></i>Dividendo</span><span><svg class="ci" viewBox="0 0 12 12" role="img" aria-label="Antes de la apertura"><title>Antes de la apertura</title><circle cx="6" cy="6" r="2.3"/><path d="M6 .9v1.3M6 9.8v1.3M.9 6h1.3M9.8 6h1.3M2.4 2.4l.9.9M8.7 8.7l.9.9M2.4 9.6l.9-.9M8.7 3.3l.9-.9"/></svg>Antes de la apertura</span><span><svg class="ci" viewBox="0 0 12 12" role="img" aria-label="Tras el cierre"><title>Tras el cierre</title><path d="M9.8 7.6A4.3 4.3 0 0 1 4.4 2.2a4.3 4.3 0 1 0 5.4 5.4z"/></svg>Tras el cierre</span><span><svg class="ci" viewBox="0 0 12 12" role="img" aria-label="Fecha estimada"><title>Fecha estimada</title><path d="M3.9 4.2a2.1 2.1 0 1 1 3 1.9c-.6.3-.9.8-.9 1.4v.6" stroke-width="1.5"/><circle cx="6" cy="10.1" r=".95" fill="currentColor" stroke="none"/></svg>Fecha estimada</span></p>
@@ -3822,7 +3830,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v421";   // la versión publicada, en el pie
+const VER="v422";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5657,7 +5665,8 @@ function renderCal(){ calSync(); const G=$("cal-g"); if(!G||!DATA) return;
     :actSt==="permiso"?`Para ver las fechas de resultados necesito permiso para leer tu carpeta Informes (solo lee). <button class="btn" type="button" id="act-allow">Permitir y cargar</button>`
     :actSt==="cargando"?"Leyendo las fechas de resultados…":`Las fechas de resultados llegan cada lunes a tu carpeta Informes; ${actSt==="error"?"ahora mismo no he podido leerla":"todavía no ha llegado ninguna"}.`;
   document.querySelectorAll("#cal-f button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.cf===calFi)));
-  document.querySelectorAll("#cal-u button").forEach(b=>b.setAttribute("aria-pressed",String((b.dataset.cu==="1")===calUn))); }
+  document.querySelectorAll("#cal-u button").forEach(b=>b.setAttribute("aria-pressed",String((b.dataset.cu==="1")===calUn)));
+  { const a=$("cal-fs"), b=$("cal-us"); if(a) a.value=calFi; if(b) b.value=calUn?"1":"0"; } }   // los desplegables del móvil
 renderAct=renderCal;
 $("s-calm").addEventListener("click",e=>{
   const c=e.target.closest("[data-cm]"); if(c){ const n=+c.dataset.cm, hoy=calHoy(); if(n){ calM=new Date(calM.getFullYear(),calM.getMonth()+n,1); calSel=new Date(calM); } else { calM=new Date(hoy.getFullYear(),hoy.getMonth(),1); calSel=hoy; } renderCal(); return; }
@@ -5717,6 +5726,9 @@ document.addEventListener("click",e=>{ const a=e.target.closest("#nav a,#mtabs a
     en(a); if(a!==cur()){ e.preventDefault(); requestAnimationFrame(()=>requestAnimationFrame(()=>a.click())); } };
   N.addEventListener("touchend",fin,{passive:false}); N.addEventListener("touchcancel",fin,{passive:false});
 })();
+// Calendario en el móvil: los desplegables hacen lo mismo que los botones
+$("cal-fs").addEventListener("change",e=>{ const b=document.querySelector(`#cal-f [data-cf="${e.target.value}"]`); if(b) b.click(); });
+$("cal-us").addEventListener("change",e=>{ const b=document.querySelector(`#cal-u [data-cu="${e.target.value}"]`); if(b) b.click(); });
 addEventListener("hashchange",()=>{ const c=remCfg(location.hash);
   if(c&&!c.bad&&!(REM&&REM.d===c.d&&REM.k===c.k)){ location.reload(); return; }   // un enlace personal nuevo: se vuelve a abrir y allí se comprueba (y se pregunta si cambia el script)
   navega(location.hash.slice(1)); });
