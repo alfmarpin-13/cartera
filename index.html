@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-1luKRTpZYV3cshy6nMMw4zyRtAnFvMIlERwtC1M2zNU=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-CeMDqtuEXwsv0RM9gIcLQk4rNAPEPF5+UYkvkVfMxAQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3653,7 +3653,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v365";   // la versión publicada, en el pie
+const VER="v366";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -3835,7 +3835,7 @@ const LOGO_FINO=new Set(["EPA:RMS","SWX:NESN"]);   // logos de trazo fino: en os
 const LOGOS_UN_COLOR=true;
 if(LOGOS_UN_COLOR) document.documentElement.classList.add("lmono");
 // logos de dos tonos (un dibujo claro dentro de una forma de color): de un solo color serían una mancha, así que van en gris
-const LOGO_GRIS=new Set(["ETR:HEN3","NASDAQ:MELI","NYSE:PBR","NYSE:PBR.A","NYSE:TSM","NASDAQ:TROW","NYSE:GE","NYSE:UNP","EBR:LOTB","NYSE:MO","AMS:WKL","NYSE:DE","HEL:KNEBV","NYSE:AXP","NYSE:PG","NASDAQ:BKNG"]);
+const LOGO_GRIS=new Set(["ETR:HEN3","NASDAQ:MELI","NYSE:PBR","NYSE:PBR.A","NYSE:TSM","NASDAQ:TROW","NYSE:GE","NYSE:UNP","EBR:LOTB","NYSE:MO","AMS:WKL","NYSE:DE","HEL:KNEBV","NYSE:AXP","NYSE:PG","NASDAQ:BKNG","NYSE:TBBB"]);
 const logoBare=(name,t,size="")=>{ const src=logoSrc(t), c=size?" "+size:""; if(!src) return `<span class="lgb lgb-t${c}">${esc(initials(name||t||""))}</span>`;
   const kv=LOGO_KV.get(src), lf=LOGO_F.get(src); return `<span class="lgb${c}${LOGO_DK.has(src)?" dk"+(LOGO_FINO.has(t)?" fino":""):""}${kv?" kv":""}${LOGO_GRIS.has(t)?" gr":""}"${lf?` style="--lf:${lf}"`:""}><img src="${src}" alt="">${kv?`<img class="kd" src="${kv}" alt="">`:""}</span>`; };
 function renderPositions(){
