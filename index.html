@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-HLyNpOLN9RD5b9iEP+nYHZvME/NZM1CkDNOn+UIgVkM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-N9eSCi1b1Q5L2dclOgT1sIz7nvAPCv8G03gx8D0fvas=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3017,6 +3017,13 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   #sheet .fx-band.fx-pos:not(#_) .fp-b>b{margin-top:2px;font-size:var(--fs-15);line-height:var(--lh-18);--lhp:var(--lh-18);font-weight:400;letter-spacing:-.01em}
   #sheet .fx-band.fx-pos:not(#_) .fp-b>small{margin-top:1px;font-size:var(--fs-10);line-height:var(--lh-14);--lhp:var(--lh-14);white-space:nowrap}
 }
+
+/* v448 · LE-01: la primera cifra de cada tarjeta de 3, un punto más firme (500); las otras dos, 400 */
+@media (max-width:700.98px){
+  html body.hm3on #s-hero #hm3-v1{font-weight:500}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5>.hm5-c:first-child .hm5-v{font-weight:500}
+  #sheet .fx-band.fx-pos:not(#_) .fp-b:first-child>b{font-weight:500}
+}
 </style>
 
 <div class="wrap">
@@ -3680,7 +3687,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v447";   // la versión publicada, en el pie
+const VER="v448";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
