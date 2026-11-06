@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-oboodjuhWh5hKIILfS1QUJEZpm9IaXLXw8xcYe+i/s4=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-HLyNpOLN9RD5b9iEP+nYHZvME/NZM1CkDNOn+UIgVkM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2998,6 +2998,25 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 /* v446 · CO-02: lo previsto, del mismo azul que lo cobrado, rayado y con su filo */
 :root{--pd-pat:repeating-linear-gradient(135deg,var(--accent) 0 1.5px,transparent 1.5px 4.5px)}
 .prog .ps,.cm .cb .ps,.fp-yb .bar i.a,.fp-lg i.a,.mk.acc .mk-yr b.pd,.mk.acc .mk-yr span.now b.pd,.legend span[style*="--acc-pd"] i{background:var(--pd-pat);box-shadow:inset 0 0 0 1px var(--accent);opacity:1}
+
+/* v447 · CM-01: la ficha del móvil abre con la tarjeta de 3 cifras de las pestañas (Valor · Resultado · Peso); TIR y Dividendo, en «Tu posición» */
+.fp-mov{display:none}
+@media (max-width:700.98px){
+  .fp-mov{display:block}
+  .fpp .fp-mov>.fp-f{margin:0;padding:0;border-top:0}   /* sigue la misma lista: sin raya ni hueco aparte */
+  #sheet .fx-band.fx-pos:not(#_){display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr) 1px minmax(0,1fr);column-gap:0;row-gap:0;margin:12px 0 0;padding:8px 4px 9px;
+    border-radius:12px;background:var(--fxb);box-shadow:0 6px 18px -6px var(--sombra-28,rgba(0,0,0,.3))}
+  #sheet .fx-band.fx-pos:not(#_) .fp-b{position:relative;display:flex;flex-direction:column;align-items:center;grid-row:1;margin:0;padding:0 4px;box-shadow:none;min-width:0;text-align:center;white-space:nowrap}
+  #sheet .fx-band.fx-pos:not(#_) .fp-b:is(:nth-child(3),:nth-child(5)){display:none}
+  #sheet .fx-band.fx-pos:not(#_) .fp-b:nth-child(1){grid-column:1}
+  #sheet .fx-band.fx-pos:not(#_) .fp-b:nth-child(2){grid-column:3}
+  #sheet .fx-band.fx-pos:not(#_) .fp-b:nth-child(4){grid-column:5}
+  #sheet .fx-band.fx-pos:not(#_) .fp-b::before{content:none}
+  #sheet .fx-band.fx-pos:not(#_) .fp-b:is(:nth-child(2),:nth-child(4))::before{content:"";position:absolute;left:-1px;top:4px;bottom:4px;width:1px;background:var(--fxl)}
+  #sheet .fx-band.fx-pos:not(#_) .fp-b .fp-k{font-size:9px;line-height:var(--lh-11);--lhp:var(--lh-11);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--fx3);margin:0;align-self:auto}
+  #sheet .fx-band.fx-pos:not(#_) .fp-b>b{margin-top:2px;font-size:var(--fs-15);line-height:var(--lh-18);--lhp:var(--lh-18);font-weight:400;letter-spacing:-.01em}
+  #sheet .fx-band.fx-pos:not(#_) .fp-b>small{margin-top:1px;font-size:var(--fs-10);line-height:var(--lh-14);--lhp:var(--lh-14);white-space:nowrap}
+}
 </style>
 
 <div class="wrap">
@@ -3661,7 +3680,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v446";   // la versión publicada, en el pie
+const VER="v447";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -3826,7 +3845,7 @@ function fichaPos(p){
       return `<span class="l">${l}</span><span class="tr">${w>0.05?`<i class="${k||(v<0?"neg":"pos")}" style="${v<0?"right":"left"}:50%;width:${w.toFixed(1)}%"></i>`:""}</span><span class="v num ${k?(isNum(v)&&Math.abs(v)>=0.0005?k:"mute"):cls(isNum(v)&&Math.abs(v)>=0.0005?v:0)}">${isNum(v)?(Math.abs(v)<0.0005?"0,0\u202F%":pct(v,1,true)):"—"}</span>`; }).join("")}
 <span class="l t">Total</span><span class="tr t">${barT(p.totalPct)}</span><span class="v t num ${cls(p.totalPct)}">${pct(p.totalPct,1,true)}</span>${parts.length<3?`<span class="l ph" aria-hidden="true">&nbsp;</span><span class="tr ph" aria-hidden="true"></span><span class="v ph" aria-hidden="true">&nbsp;</span>`:""}</div>`;
   const cPos=`<section class="fp-c"><div class="fp-ch"><h4>Tu posición</h4><span>${shares(p.shares)} ${p.shares===1?"acción":"acciones"}</span></div><div class="fp-v">${dec}</div>
-    ${facts([["Invertido",eur(p.invested)],["Precio medio",money(p.avg,p.cur)],["Cotización",precioVisible(p.price,p.cur)]])}</section>`;
+    ${facts([["Invertido",eur(p.invested)],["Precio medio",money(p.avg,p.cur)],["Cotización",precioVisible(p.price,p.cur)]])}<div class="fp-mov">${facts([["TIR",pct(p.irr,1)],["Dividendo al año",p.annual?eur(p.annual):"—"]])}</div></section>`;   // CM-01: en el móvil, lo que sale de la tarjeta
   const cBuy=`<section class="fp-c"><div class="fp-ch"><h4>Compras</h4><span>${buys.length?`${nf(0).format(buys.length)} ${buys.length===1?"compra":"compras"}${nSold?` · ${nSold} ${nSold>1?"vendidas":"vendida"}`:""}`:""}</span></div><div class="fp-v">${tl}</div>
     ${facts([["Primera",buys.length?fd(buys[0].d):""],["Última",buys.length?fd(buys[buys.length-1].d):""],["Desde la última",buys.length?hace(buys[buys.length-1].d):""]])}</section>`;
   // dividendos: por año desde que tienes la posición actual (lo cobrado cuadra con «Cobrado» de tu hoja) y lo apuntado
@@ -4842,7 +4861,7 @@ function renderSheet0(){ if(sheet&&sheet.t==="__cq"&&DATA) return renderCuadre()
     // debajo del nombre, igual en todas las pestañas: la franja con cinco cifras (las de tu posición o, si no la tienes, las de su valoración)
     const band=P?P.band:R?R.band:"", tb=tabs.length?`<div class="sh-tabw"><div class="sh-tabs" role="tablist">${tabs.map(([k,l])=>`<button type="button" role="tab" id="sht-${k}" aria-controls="sh-pane" data-shtab="${k}" aria-selected="${k===sheet.tab}" tabindex="${k===sheet.tab?0:-1}">${l}</button>`).join("")}</div></div>`:"";
     const body=sheet.tab==="pos"?P.body:sheet.tab==="pre"?R.body:sheet.tab==="mkt"?R.mkt:fichaMov(t);
-    $("sheet-b").innerHTML=`<div class="ficha fpx ${sheet.tab==="pos"&&!p.isOption?"fpp":sheet.tab==="pre"||sheet.tab==="mkt"?"fpu":"fpm"}"><div class="fp-h">${idb}</div>${band?`<div class="fx-band">${band}</div>`:""}${tb}<div class="sh-pane" id="sh-pane" role="tabpanel"${tabs.length?` aria-labelledby="sht-${sheet.tab}"`:""}>${body}</div></div>`;
+    $("sheet-b").innerHTML=`<div class="ficha fpx ${sheet.tab==="pos"&&!p.isOption?"fpp":sheet.tab==="pre"||sheet.tab==="mkt"?"fpu":"fpm"}"><div class="fp-h">${idb}</div>${band?`<div class="fx-band${P&&!p.isOption?" fx-pos":""}">${band}</div>`:""}${tb}<div class="sh-pane" id="sh-pane" role="tabpanel"${tabs.length?` aria-labelledby="sht-${sheet.tab}"`:""}>${body}</div></div>`;
     $("sh-tt").innerHTML=`${logoBare(co.name,t)}<b>${esc(co.name)}</b>`; el.setAttribute("aria-label",co.name);
     const i=(sheet.list||[]).indexOf(t); $("sh-prev").disabled=i<=0; $("sh-next").disabled=i<0||i>=sheet.list.length-1;
   }
