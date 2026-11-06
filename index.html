@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-SaeUdF8e4k5OOZ7LW6HzBzclILZGI89gLQ0BJ1fo2oM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-gRwuJm9CqqfTQhWy9EiqZcMVTrFl7Ns2WfqFckof7VM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3875,7 +3875,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v428";   // la versión publicada, en el pie
+const VER="v429";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4097,7 +4097,7 @@ function render(d){
   DATA=d; dataV++; const k=d.kpi;
   const v=k.value||0;
   $("h-val").innerHTML = `${nf(0).format(Math.round(v))}\u202F€`;
-  $("h-sub").innerHTML=`Aportado <b>${eur(k.aport)}</b>`;   // la liquidez está en el cuadre y las empresas, en Posiciones
+  $("h-sub").innerHTML=`Liquidez <b><span class="pv">${eur(k.liquidez||0)}</span></b>`;   // RES-01 (v429): como en el móvil   // la liquidez está en el cuadre y las empresas, en Posiciones
   { const a=(d.stats.find(x=>x.l==="Antigüedad media")||{}).v; const np=d.pos.filter(p=>!p.isOption).length, no=d.pos.length-np, h=`<b>${nf(0).format(np)}</b> ${np===1?"posición":"posiciones"}${no?` y <b>${nf(0).format(no)}</b> ${no===1?"opción":"opciones"}`:""}${isNum(a)?`<span class="pa-d"> · </span>antigüedad<span class="pa-m"> media</span> <b>${nf(1).format(a)} años</b>`:""}`; $("pos-age").innerHTML=h; $("pos-age-m").innerHTML=h; }   // cuántas hay (las acciones, como en el mapa, y aparte las opciones) y su antigüedad
   $("hk-ret").className="c2 r2 bv num "+cls(k.ret); $("hk-ret").textContent=seur(k.ret); $("hk-ret-s").innerHTML=k.retSub;
   $("hk-tir").textContent=pct(k.tir,1); $("hk-tir-s").innerHTML=isNum(k.tir)&&isNum(k.vsIdx)?`MSCI World <b>${pct(k.tir-k.vsIdx,1)}</b>`:"";
