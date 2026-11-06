@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-/1iV9+QT1je447aNGwdFLVY79Gc5fPBk6xMR0X1Afz8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-evynDxgDt4ELp+4mAtt21nEEmOQFCdDTKTjv+HDErfQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -1831,8 +1831,8 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 
 /* ===== Jerarquía de franjas: Resumen es la portada (verde casi negro); Análisis, Movimientos, Universo y Actualidad llevan la misma franja en arena, más compacta ===== */
 :is(#s-aidx,#s-uni,#s-cal,#mtabs){--h-bg:#E9E3D7;--h-card:#E1DACC;--h-line:#D3CABA;--h-fg:#1A1A1A;--h-fg2:var(--ink2);--h-fg3:var(--ink3);--h-pos:var(--pos);--h-neg:var(--neg)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) :is(#s-aidx,#s-uni,#s-cal,#mtabs){--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}}
-:root[data-theme="dark"] :is(#s-aidx,#s-uni,#s-cal,#mtabs){--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) :is(#s-aidx,#s-uni,#s-cal,#mtabs){--h-bg:#2E2820;--h-card:#362F26;--h-line:#463E33;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}}
+:root[data-theme="dark"] :is(#s-aidx,#s-uni,#s-cal,#mtabs){--h-bg:#2E2820;--h-card:#362F26;--h-line:#463E33;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}
 @media (min-width:901px){
   :is(#s-aidx,#s-uni,#s-cal){padding-top:20px;padding-bottom:20px}
   :is(#s-aidx,#s-uni,#s-cal) .bg .bv{font-size:var(--fs-28);line-height:var(--lh-32);--lhp:var(--lh-32)}
@@ -1857,7 +1857,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
   }
 /* ===== Ficha: arriba, la franja con cinco cifras (igual en todas las pestañas); debajo, un solo fondo y cada bloque separado por una raya fina ===== */
 .sheet{--fxb:#E9E3D7;--fxl:#D3CABA;--fx3:var(--ink3);--fxs:var(--panel);background:var(--fxs)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet{--fxb:#272420;--fxl:#3B3730;--fx3:var(--ink3);--fxs:var(--canvas)}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet{--fxb:#2E2820;--fxl:#463E33;--fx3:var(--ink3);--fxs:var(--canvas)}}
 
 .sheet .sh-top,.sheet .sh-tabw{background:var(--fxs)}
 .fx-band{display:flex;background:var(--fxb);margin:0 -20px;padding:16px 20px}
@@ -1938,8 +1938,8 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 @media (min-width:701px) and (max-width:1100px){:is(#s-aidx,#s-uni,#s-cal) .bg.bg5 .bs{font-size:var(--fs-11)}}
 /* avisos con el diseño de las franjas: arena de borde a borde (tarjeta en el móvil); etiqueta, título y texto a la izquierda, el enlace a la derecha */
 #notice{--nt-bg:#E9E3D7;--nt-line:#D3CABA;--nt-fg:#1A1A1A;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #notice{--nt-bg:#272420;--nt-line:#3B3730;--nt-fg:#EDE9E2;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}}
-:root[data-theme="dark"] #notice{--nt-bg:#272420;--nt-line:#3B3730;--nt-fg:#EDE9E2;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #notice{--nt-bg:#2E2820;--nt-line:#463E33;--nt-fg:#EDE9E2;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}}
+:root[data-theme="dark"] #notice{--nt-bg:#2E2820;--nt-line:#463E33;--nt-fg:#EDE9E2;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}
 #notice .notice{background:var(--nt-bg);color:var(--nt-fg);border:0;border-radius:var(--r-12);padding:24px 32px;display:grid;grid-template-columns:minmax(0,1fr);gap:20px 64px;align-items:center}
 #notice .notice:has(.nt-ac){grid-template-columns:minmax(0,1fr) minmax(0,440px)}
 #notice .nt-tx{display:flex;flex-direction:column;gap:8px;min-width:0}
@@ -2062,7 +2062,7 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
    Resumen: el bloque oscuro en dos mitades (el valor y el total a la izquierda; hoy y la hora a la derecha, pegados al borde),
    alineado con los bordes de la tarjeta de abajo. «···», en el hueco a la derecha de «Tu cartera hoy» */
 :root{--ar-bg:#E9E3D7}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ar-bg:#272420}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ar-bg:#2E2820}}
 
 
 @media (max-width:760.98px){
@@ -2119,8 +2119,8 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
 /* tu hoja: lo que no tiene cotización y lo que no cuadra, en un solo aviso. Una franja arena pegada debajo del bloque oscuro,
    con el diseño de los avisos (etiqueta pequeña y texto); en el móvil, de lado a lado como las franjas */
 .hoja-al{--nt-bg:#E9E3D7;--nt-line:#D3CABA;--nt-fg:#1A1A1A;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3);margin-top:calc(-1 * var(--gap))}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hoja-al{--nt-bg:#272420;--nt-line:#3B3730;--nt-fg:#EDE9E2;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}}
-:root[data-theme="dark"] .hoja-al{--nt-bg:#272420;--nt-line:#3B3730;--nt-fg:#EDE9E2;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hoja-al{--nt-bg:#2E2820;--nt-line:#463E33;--nt-fg:#EDE9E2;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}}
+:root[data-theme="dark"] .hoja-al{--nt-bg:#2E2820;--nt-line:#463E33;--nt-fg:#EDE9E2;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}
 .hoja-al .hal{background:var(--nt-bg);color:var(--nt-fg2);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 40px;align-items:center;padding:16px 32px}
 .hoja-al .hal-tx{display:flex;flex-direction:column;gap:6px;min-width:0}
 .hoja-al .nt-k{font-size:var(--fs-11);font-weight:600;line-height:var(--lh-14);--lhp:var(--lh-14);letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--nt-fg3)}
@@ -2191,7 +2191,7 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
 /* Movimientos: la franja de arriba igual que la de Análisis y Universo, sin «carpetas» (ni tarjeta clara colgando de la barra).
    Con «Movimientos» elegido se ve como las demás; al elegir un tipo, los otros se apagan */
 :root{--mv-top:#E9E3D7}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--mv-top:#272420}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--mv-top:#2E2820}}
 
 #mtabs.mvt a,#mtabs.mvt a:hover,#mtabs.mvt a[aria-current="page"],#mtabs.mvt a[aria-current="page"]:hover{background:transparent;box-shadow:none;transition:opacity .15s}
 #mtabs.mvt a .mvt-n,#mtabs.mvt a[aria-current="page"] .mvt-n{color:var(--h-fg3)}
@@ -2371,8 +2371,8 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
 /* ficha: en la franja, la etiqueta solo reserva dos líneas si alguna se parte (si no, las rayas empezaban 14 px por encima del texto) */
 /* móvil: las franjas de Análisis, Movimientos, Universo y Actualidad, en arena como en el PC (Resumen, la portada, en oscuro) */
 .hm5-mv{--h-bg:#E9E3D7;--h-card:#E1DACC;--h-line:#D3CABA;--h-fg:#1A1A1A;--h-fg2:var(--ink2);--h-fg3:var(--ink3);--h-pos:var(--pos);--h-neg:var(--neg)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hm5-mv{--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}}
-:root[data-theme="dark"] .hm5-mv{--h-bg:#272420;--h-card:#2F2B26;--h-line:#3B3730;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hm5-mv{--h-bg:#2E2820;--h-card:#362F26;--h-line:#463E33;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}}
+:root[data-theme="dark"] .hm5-mv{--h-bg:#2E2820;--h-card:#362F26;--h-line:#463E33;--h-fg:#EDE9E2;--h-fg2:var(--ink2);--h-fg3:var(--ink3)}
 /* iPhone: desde que la franja oscura de Resumen llega arriba, la tapa de la hora es de su color (antes, clara hasta que
    aparecía la franja estrecha, y la hora parpadeaba en claro). La ficha abierta sigue mandando (su regla es más fuerte) */
 @media (max-width:700.98px){
@@ -2398,7 +2398,7 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
 @container ficha (max-width:370px){ #sheet .fx-band:not(#_) .fp-b>small{font-size:var(--fs-10)} }
 .sheet{--fx2:var(--ink2)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet{--fx2:var(--ink2)}}
-:root[data-theme="dark"] .sheet{--fxb:#272420;--fxl:#3B3730;--fx3:var(--ink3);--fxs:var(--canvas);--fx2:var(--ink2)}
+:root[data-theme="dark"] .sheet{--fxb:#2E2820;--fxl:#463E33;--fx3:var(--ink3);--fxs:var(--canvas);--fx2:var(--ink2)}
 /* la línea de una opción bajo su nombre: fecha larga en el PC y corta en el móvil */
 .fp-in .os-s{display:none}
 @container ficha (max-width:620.98px){ .fp-in .os-l{display:none} .fp-in .os-s{display:inline} }
@@ -2691,7 +2691,7 @@ html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:non
 /* CG-02/03 · el gris de etiqueta, uno solo: el de las franjas */
 :root{--gap:16px;--acc-pd:#AEB9CF;--f-sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--f-mono:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--canvas:#F3F1EC;--panel:#FBFAF7;--card:#FFFFFF;--row:#F5F4F0;--line:#E5E2DB;}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){}}
-:root[data-theme="dark"]{--ar-bg:#272420;--mv-top:#272420;}
+:root[data-theme="dark"]{--ar-bg:#2E2820;--mv-top:#2E2820;}
 /* calendario de cobros: el cartel, centrado sobre el logo (--tx lo mueve lo justo si no cabe en el panel) */
 .mc-l[data-tip]::after{left:calc(50% + var(--tx,0px))}
 /* Movimientos (móvil): cuatro casillas del mismo alto en todas las pestañas; la raya vertical, sin tocar las horizontales */
@@ -3656,7 +3656,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v444";   // la versión publicada, en el pie
+const VER="v445";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
