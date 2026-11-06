@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-mKXU9BUFoqD69sdyBKN40A4U43DIgmL9OcVBfZrbG0M=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-bnA+6EcM1RTJ9eV4cb5/26pOyB9hSajOQPRCCBOCISo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2756,7 +2756,7 @@ img{-webkit-user-drag:none}
    la apariencia (automática, clara u oscura) y quitar el ID y la clave de este dispositivo (en GitHub), con la versión al final */
 @media (min-width:761px){
   #more{display:inline-flex}
-  .more-m:not([hidden]){display:flex;flex-direction:column;position:fixed;left:var(--mm-x,50%);top:var(--mm-y,50%);z-index:var(--z-panel);box-sizing:border-box;width:280px;padding:6px;background:var(--card);border-radius:var(--r-14);box-shadow:0 0 0 1px var(--line),0 16px 40px -10px var(--sombra-28)}
+  .more-m:not([hidden]){display:flex;flex-direction:column;position:fixed;left:var(--mm-x,50%);top:var(--mm-y,50%);z-index:var(--z-panel);box-sizing:border-box;width:300px;padding:6px;background:var(--card);border-radius:var(--r-14);box-shadow:0 0 0 1px var(--line),0 16px 40px -10px var(--sombra-28)}
   #mm-find,#mm-ref,#mm-priv{display:none}
   .more-m>button{align-items:center;gap:12px;height:40px;padding:0 12px;border:0;background:none;border-radius:var(--r-10);font:inherit;font-size:var(--fs-13);color:var(--ink);text-align:left;cursor:pointer}
     .more-m>button svg{width:18px;height:18px;color:var(--ink2);flex:none}
@@ -2978,6 +2978,7 @@ html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"\2
 /* v440 · HI-01: el Cuadre en Opciones (con su etiqueta) y en el panel lateral; el punto ámbar de aviso en «···» y en «Opciones» */
 .more-m>#mm-chk{display:flex;align-items:center;border-bottom:1px solid var(--line);margin-bottom:4px;border-radius:var(--r-10) var(--r-10) 0 0}
 #mm-chk .tag{margin-left:auto}
+#mm-chk>span{white-space:nowrap}
 #mm-chk:not(:has(.tag:not(:empty))) .tag{display:none}
 #more{position:relative}
 #more.aviso::after{content:"";position:absolute;top:7px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--warn);box-shadow:0 0 0 2px var(--canvas);pointer-events:none}
@@ -3647,7 +3648,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v441";   // la versión publicada, en el pie
+const VER="v442";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
