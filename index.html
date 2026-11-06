@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-lfR25JuwgTu66rpCvUcGnxO3Ke0soqnl48S6x15d8ac=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-8XkchoCYuPsv9w+aWZUBF1FTJzI6/C/NTPzXzXOaOIc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2932,6 +2932,23 @@ body[data-view="resumen"]:has(#s-check:not([hidden])) #foot #chk-show{display:no
 html body table th[aria-sort][aria-sort]:not(#_)::before,html body #t-p th[aria-sort][aria-sort]>.thl::before{content:none}
 html body table th[aria-sort="ascending"][aria-sort]:not(#_)::after{content:"\202F↑";display:inline-block;width:1em;margin-right:-1em;text-align:left}
 html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"\202F↓";display:inline-block;width:1em;margin-right:-1em;text-align:left}
+
+/* v432 · ANA-04: Dividendos de Análisis en el móvil, dos filas de dos (Año y Rentabilidad; Crecimiento y Cobrado total) */
+.dv-mo{display:none}
+@media (max-width:700.98px){
+  .dv-pc{display:none}
+  span.dv-mo{display:inline} div.dv-mo{display:block}
+  html body #s-divs .dv-top{grid-template-columns:repeat(2,minmax(0,1fr))}
+  html body #s-divs .dv-top>.dv-card.dv-card{grid-column:auto;margin:0;padding:0;border:0}
+  html body #s-divs .dv-top>.dv-card.dv-a{order:1;padding-right:16px}
+  html body #s-divs .dv-top>.dv-card.dv-r{order:2;padding-left:16px;border-left:1px solid var(--line)}
+  html body #s-divs .dv-top>.dv-card.dv-c{order:3;margin-top:16px;padding:16px 16px 0 0;border-top:1px solid var(--line)}
+  html body #s-divs .dv-top>.dv-card.dv-t{order:4;margin-top:16px;padding:16px 0 0 16px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  html body #s-divs .dv-top:not(:has(.dv-c))>.dv-card.dv-t{padding-left:0;border-left:0}
+  html body #s-divs .dv-top>.dv-r .dv-x .dv-s+.dv-s{margin-top:0}
+  /* ANA-01: el cuadrado de la leyenda de Anatomía, centrado con la primera línea del texto (antes, 7 px más abajo) */
+  html body .anat-cols .ar .sw{align-self:start;margin-top:calc((1lh - 10px) / 2)}
+}
 </style>
 
 <div class="wrap">
@@ -3553,7 +3570,7 @@ function drawEvo(){
   // marcas el día 1 de cada 1, 2, 3, 6 o 12 meses (las justas para que quepan); en el móvil, solo los eneros con el año si hay dos o más
   const x0=xs[0], x1=xs[xs.length-1], cuenta=p=>Math.floor(x1/p)-Math.ceil(x0/p)+1, soloAnos=innerWidth<=MOVIL&&cuenta(12)>=2;
   const paso=soloAnos?12:[1,2,3,6,12,24].find(p=>cuenta(p)<=(innerWidth<=MOVIL?4:7))||24;
-  Object.assign(o.scales.x,{type:"linear",min:x0,max:x1,afterBuildTicks:s=>{ const t=[]; for(let v=Math.ceil(x0/paso)*paso;v<=x1;v+=paso) t.push({value:v}); s.ticks=t; }});
+  Object.assign(o.scales.x,{type:"linear",min:x0,max:x1,afterBuildTicks:s=>{ const t=[]; for(let v=Math.ceil(x0/paso)*paso;v<=x1;v+=paso) t.push({value:v}); if(soloAnos&&t.length&&t[0].value-x0>=(x1-x0)*0.12) t.unshift({value:x0}); s.ticks=t; }});   // ANA-03 (v432)
   o.scales.x.ticks.callback=v=>soloAnos?String(deMes(v).getFullYear()):mesAno(deMes(v));
   o.plugins.tooltip.callbacks = { title:i=>{ const t=day(rows[i[0].dataIndex].d); return t.getDate()===1?mesAno(t):fechaCorta(t); },
     label:c=>" "+c.dataset.label+": "+eur(c.parsed.y), afterBody:i=>{ const r=rows[i[0].dataIndex]; return ["", "Resultado: "+seur(r.v-r.a)]; } };
@@ -3592,7 +3609,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v431";   // la versión publicada, en el pie
+const VER="v432";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -3829,12 +3846,12 @@ function render(d){
   const dm=d.dvm, yTot=dm.paidY+dm.schedY;
   const cg=(d.div&&d.div.cagr)||{};
   $("dv-top").innerHTML =
-    `<div class="dv-card"><div class="dv-k">Año ${dm.curY}</div><div class="dv-v num">${eur(dm.paidY)} <span class="sub sub13">cobrados de ${eur(yTot)}</span></div>
+    `<div class="dv-card dv-a"><div class="dv-k">Año ${dm.curY}</div><div class="dv-v num">${eur(dm.paidY)} <span class="sub sub13 dv-pc">cobrados de ${eur(yTot)}</span></div>
       <div class="dv-x"><div class="prog"><span class="pa" style="width:${yTot?(dm.paidY/yTot*100).toFixed(1):0}%"></span><span class="ps" style="width:${yTot?(dm.schedY/yTot*100).toFixed(1):0}%"></span></div>
-      <div class="dv-s">${pct(yTot?dm.paidY/yTot:null,1)} cobrado</div></div></div>`
-    +(isNum(cg.v)?`<div class="dv-card"><div class="dv-k">Crecimiento anual</div><div class="dv-v num ${cls(cg.v)}">${pct(cg.v,1,true)}</div>${(m=>m?`<div class="dv-s">de ${m[1]} a ${m[2]}</div>`:"")(String(cg.label).match(/(\d{4})\s*[-–]\s*(\d{4})/))}</div>`:"")
-    +`<div class="dv-card"><div class="dv-k">Cobrado total</div><div class="dv-v num">${eur(dm.paidAll)}</div></div>`
-    +`<div class="dv-card"><div class="dv-k">Rentabilidad</div><div class="dv-v num">${pct(dm.yoc,2)} <span class="sub sub13">sobre lo invertido</span></div><div class="dv-x"><div class="dv-s">${pct(dm.yov,2)} sobre el valor de hoy</div></div></div>`;
+      <div class="dv-s"><span class="dv-pc">${pct(yTot?dm.paidY/yTot:null,1)} cobrado</span><span class="dv-mo">${pct(yTot?dm.paidY/yTot:null,1)} de ${eur(yTot)}</span></div></div></div>`
+    +(isNum(cg.v)?`<div class="dv-card dv-c"><div class="dv-k">Crecimiento anual</div><div class="dv-v num ${cls(cg.v)}">${pct(cg.v,1,true)}</div>${(m=>m?`<div class="dv-s">de ${m[1]} a ${m[2]}</div>`:"")(String(cg.label).match(/(\d{4})\s*[-–]\s*(\d{4})/))}</div>`:"")
+    +`<div class="dv-card dv-t"><div class="dv-k">Cobrado total</div><div class="dv-v num">${eur(dm.paidAll)}</div>${(n=>n?`<div class="dv-s">${nf(0).format(n)} ${n===1?"cobro":"cobros"}</div>`:"")(d.dv.filter(d.isPaid).length)}</div>`   // ANA-02 (v432)
+    +`<div class="dv-card dv-r"><div class="dv-k">Rentabilidad</div><div class="dv-v num">${pct(dm.yoc,2)} <span class="sub sub13 dv-pc">sobre lo invertido</span></div><div class="dv-x"><div class="dv-s dv-mo">sobre lo invertido</div><div class="dv-s">${pct(dm.yov,2)} sobre el valor de hoy</div></div></div>`;
   const cmax=Math.max(...dm.months.map(m=>m.paid+m.sched),1);
   const cRows=m=>d.dv.filter(r=>r.d instanceof Date&&day(r.d).getFullYear()===m.y&&day(r.d).getMonth()===m.m).sort((a,b)=>a.d-b.d);
   $("cal").innerHTML = dm.months.map((m,i)=>{ const t=m.paid+m.sched, rs=cRows(m), al=i<2?" al":i>dm.months.length-3?" ar":"";
