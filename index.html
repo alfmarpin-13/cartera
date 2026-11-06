@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-3Aiq8OKyiCCbFWASuWuaEPqd38Mzjegr5O958Hrj7vk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-QYTjIf14rDEVvbvfM9OmDGN96tehUHA4JWqp938PFC0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -500,7 +500,7 @@ details.chk[open]>summary{margin-bottom:12px}
 /* columnas con etiqueta (Hoy y Rentab.): etiqueta de ancho fijo, centrada con su cabecera; el número dentro, a la derecha */
 #t-pos th[data-k="today"],#t-pos th[data-k="totalPct"],#t-pos td[data-l="Hoy"],#t-pos td[data-l="Rentab."]{text-align:center}
 #t-pos .tpill,#t-pos .rlv{width:76px;min-width:76px;box-sizing:border-box;text-align:right}
-@media (max-width:700.98px){ #t-pos .tpill,#t-pos .rlv{width:auto;min-width:0;padding:1px 6px} #t-pos td[data-l="Hoy"]{text-align:left} #t-pos td[data-l="Rentab."]{text-align:right} }
+@media (max-width:700.98px){ #t-pos .tpill,#t-pos .rlv{width:auto;min-width:0;padding:1px 6px} #t-pos .rlv{min-width:68px;box-sizing:border-box;text-align:right} #t-pos td[data-l="Hoy"]{text-align:left} #t-pos td[data-l="Rentab."]{text-align:right} }
 @media (min-width:701px){ #t-pos tr.grp-row td{padding:40px 8px 8px} }
 @media (max-width:700.98px){ .rt#t-pos tbody tr.grp-row{padding:32px 2px 8px} }
 /* Posiciones compacta */
@@ -3634,7 +3634,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v438";   // la versión publicada, en el pie
+const VER="v439";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
