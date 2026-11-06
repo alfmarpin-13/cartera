@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Xvq3w2AdHg+dp9Nv87m6ES861LVkLQt3AngueKRf+uA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-xvGQVFv/B+ek+lrTi4M5TOAAqyx7zEKcnOuRo9jZrM0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2969,9 +2969,7 @@ html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"\2
 @media (min-width:761px) and (max-width:999.98px){.top .status .marca{display:none}.top .status{font-size:var(--fs-12)}}   /* tableta estrecha: como hasta ahora (no cabe sin recortar el estado) */
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .marca-l{box-shadow:0 0 0 .5px rgba(255,255,255,.22)}}
 :root[data-theme="dark"] .marca-l{box-shadow:0 0 0 .5px rgba(255,255,255,.22)}
-/* el punto de «ahora»: el mismo de «En vivo» (verde con su halo) */
-.cal-c.today .cal-n b,.mc-d.today .mc-n b{display:inline-flex;align-items:center;gap:7px;min-width:0;height:auto;margin:0;padding:0;border-radius:0;background:none;color:var(--ink);font-weight:600}
-.cal-c.today .cal-n b::after,.mc-d.today .mc-n b::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--pos);box-shadow:0 0 0 2px var(--pos-bg);flex:none}
+/* el punto de «ahora» en Compras: el mismo de «En vivo» (verde con su halo) */
 .fp-c .fq-hoy{top:calc(var(--h,34px) - 25.5px);right:-3.5px;width:7px;height:7px;border-radius:50%;background:var(--pos);box-shadow:0 0 0 3px var(--pos-bg)}
 /* los iconos del menú: el punto relleno; en la pestaña abierta, verde como el del logo */
 .nav-i .nd{fill:currentColor;stroke:none}
@@ -3636,7 +3634,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v436";   // la versión publicada, en el pie
+const VER="v437";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
