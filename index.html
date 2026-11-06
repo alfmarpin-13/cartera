@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-uQbdhgKCQLqz1vxtfMOCToJQkGNzFjRKYeyHpLPVr0E=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-mKXU9BUFoqD69sdyBKN40A4U43DIgmL9OcVBfZrbG0M=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3647,7 +3647,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v440";   // la versión publicada, en el pie
+const VER="v441";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4813,7 +4813,7 @@ function renderSheet(){ const el0=$("sheet"), clave=sheet?sheet.t+"|"+sheet.tab:
 // HI-01 · el Cuadre en el panel lateral: su título, su etiqueta y la misma tabla que se pinta en la portada (oculta)
 const abreCuadre=()=>{ if(!DATA) return; $("more-m").hidden=true; $("more").setAttribute("aria-expanded","false"); openSheet("cq","__cq",[]); };
 function renderCuadre(){ const el=$("sheet"), tg=$("chk-tag");
-  $("sheet-b").innerHTML=`<div class="cq"><div class="cq-h"><h3>Cuadre con tu hoja de Inversiones</h3><span class="${esc(tg.className)}">${esc(tg.textContent)}</span></div><div class="cq-b">${$("chk").innerHTML}</div></div>`;
+  $("sheet-b").innerHTML=`<div class="cq"><div class="cq-h"><h3>Cuadre con tu hoja</h3><span class="${esc(tg.className)}">${esc(tg.textContent)}</span></div><div class="cq-b">${$("chk").innerHTML}</div></div>`;
   $("sh-tt").innerHTML="<b>Cuadre con tu hoja</b>"; el.setAttribute("aria-label","Cuadre con tu hoja"); $("sh-prev").disabled=$("sh-next").disabled=true;
   el.classList.add("sh-cq"); el.hidden=false; document.documentElement.classList.add("sh-open"); markRows(); }
 function renderSheet0(){ if(sheet&&sheet.t==="__cq"&&DATA) return renderCuadre(); $("sheet").classList.remove("sh-cq"); const el=$("sheet"), t=sheet&&DATA?sheet.t:null, p=t&&DATA.pos.find(x=>x.ticker===t), r=t&&DATA.pre.find(x=>x.ticker===t);
