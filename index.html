@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-8XkchoCYuPsv9w+aWZUBF1FTJzI6/C/NTPzXzXOaOIc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-b7IXqhkr8T8Jl9RIMdF4/E9V6ty2A/4TWkZcrfSkEEg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2949,6 +2949,14 @@ html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"\2
   /* ANA-01: el cuadrado de la leyenda de Anatomía, centrado con la primera línea del texto (antes, 7 px más abajo) */
   html body .anat-cols .ar .sw{align-self:start;margin-top:calc((1lh - 10px) / 2)}
 }
+
+/* v433 · CAL-02: el mes junto al día 1 en el Calendario, como en Análisis */
+.cal-m{margin-left:2px;font-size:var(--fs-10);font-weight:500;color:var(--ink3)}
+.cal-c.today .cal-n .cal-m{color:var(--ink3)}
+/* v433 · FIC-01: Valoración en el móvil, Margen y Múltiplo en las mismas columnas que Cotización y Valor razonable */
+@container ficha (max-width:620.98px){
+  #sheet .fp-vc .fp-m.fp-vm:has(>.fp-b:nth-child(5):last-child)>.fp-b.fp-b:nth-child(n+4){grid-column:span 2}
+}
 </style>
 
 <div class="wrap">
@@ -3609,7 +3617,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v432";   // la versión publicada, en el pie
+const VER="v433";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -3767,11 +3775,11 @@ function fichaPos(p){
   // la franja de arriba: valor, resultado, TIR, peso y dividendo (iguales en todas las pestañas)
   const band=`${mb("Valor",eur(p.value),`invertido ${eur(p.invested)}`)}${mb("Resultado",seur(p.totalEur),`<span class="${cls(p.totalPct)}">${pct(p.totalPct,1,true)}</span>`,cls(p.totalEur))}${mb("TIR",pct(p.irr,1),isNum(p.years)?`en ${nf(1).format(Math.max(0.1,Math.floor(p.years*10)/10))} años`:"",cls(p.irr))}${mb("Peso",pct(p.weight),`${shares(p.shares)} ${p.shares===1?"acción":"acciones"}`)}${mb("Dividendo",p.annual?eur(p.annual):"—",p.annual?(p.yov?`rinde ${pct(p.yov,2)}`:"al año"):"no reparte")}`;
   // tu posición: de dónde sale el resultado, como las columnas Revaloriz., FX y Dividendo de tu hoja (suman el total)
-  const effP=isNum(p.price)&&p.avg?p.price/p.avg-1:p.reval, effF=isNum(p.reval)&&isNum(effP)?p.reval-effP:null, effD=p.invested?(p.paid||0)/p.invested:null;
+  const effP=isNum(p.price)&&p.avg?p.price/p.avg-1:p.reval, effF=isNum(p.reval)&&isNum(effP)?p.reval-effP:null, effD=!p.annual&&!(p.paid>0)?null:p.invested?(p.paid||0)/p.invested:null;   // FIC-02 (v433): no reparte → «—»
   const parts=[["Revalorización",effP,""],...(String(p.cur||"").toUpperCase()==="EUR"?[]:[["Divisa",effF,""]]),["Dividendos",effD,"dv"]], mxp=Math.max(...parts.map(x=>Math.abs(x[1]||0)),Math.abs(p.totalPct||0),0.0001);
   const barT=v=>{ const w=isNum(v)?Math.abs(v)/mxp*50:0; return w>0.05?`<i class="${v<0?"neg":"pos"} t" style="${v<0?"right":"left"}:50%;width:${w.toFixed(1)}%"></i>`:""; };
   const dec=`<div class="fp-dec">${parts.map(([l,v,k])=>{ const w=isNum(v)?Math.abs(v)/mxp*50:0;
-      return `<span class="l">${l}</span><span class="tr">${w>0.05?`<i class="${k||(v<0?"neg":"pos")}" style="${v<0?"right":"left"}:50%;width:${w.toFixed(1)}%"></i>`:""}</span><span class="v num ${k?(isNum(v)&&Math.abs(v)>=0.0005?k:"mute"):cls(isNum(v)&&Math.abs(v)>=0.0005?v:0)}">${isNum(v)?(Math.abs(v)<0.0005?"0,0\u202F%":pct(v,1,true)):""}</span>`; }).join("")}
+      return `<span class="l">${l}</span><span class="tr">${w>0.05?`<i class="${k||(v<0?"neg":"pos")}" style="${v<0?"right":"left"}:50%;width:${w.toFixed(1)}%"></i>`:""}</span><span class="v num ${k?(isNum(v)&&Math.abs(v)>=0.0005?k:"mute"):cls(isNum(v)&&Math.abs(v)>=0.0005?v:0)}">${isNum(v)?(Math.abs(v)<0.0005?"0,0\u202F%":pct(v,1,true)):"—"}</span>`; }).join("")}
 <span class="l t">Total</span><span class="tr t">${barT(p.totalPct)}</span><span class="v t num ${cls(p.totalPct)}">${pct(p.totalPct,1,true)}</span>${parts.length<3?`<span class="l ph" aria-hidden="true">&nbsp;</span><span class="tr ph" aria-hidden="true"></span><span class="v ph" aria-hidden="true">&nbsp;</span>`:""}</div>`;
   const cPos=`<section class="fp-c"><div class="fp-ch"><h4>Tu posición</h4><span>${shares(p.shares)} ${p.shares===1?"acción":"acciones"}</span></div><div class="fp-v">${dec}</div>
     ${facts([["Invertido",eur(p.invested)],["Precio medio",money(p.avg,p.cur)],["Cotización",precioVisible(p.price,p.cur)]])}</section>`;
@@ -4189,12 +4197,15 @@ const MESL=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","S
 const iconosMov={in:'<path d="M11 4v10M6.5 9.5 11 14l4.5-4.5M4.5 18h13"/>',out:'<path d="M11 14V4M6.5 8.5 11 4l4.5 4.5M4.5 18h13"/>',adj:'<path d="M11 4v8M7 8h8M7 17h8"/>'};
 const tipoMov=r=>r.ty==="Compra"?"buy":r.ty==="Venta"?"sell":r.dv?"div":"cash";   // el color de la etiqueta de cada tipo
 let movAllC=null;
+const esOpcion=t=>/\s[CP]\d+(?:[.,]\d+)?\s\d{1,2}[A-Z]{3}\d{2}$/.test(String(t||""));   // MOV-02 (v433)
+const contratos=(n,t)=>esOpcion(t)&&isNum(n)&&n>0&&n%100===0?n/100:null;
+const detOp=(n,t,p,cur,qty)=>{ const c=contratos(n,t); return c?`${nf(0).format(c)} ${c===1?"contrato":"contratos"} · ${money(p,cur)} por acción`:`${qty(n)} a ${money(p,cur)}`; };
 function movAll(){ const d=DATA; if(!d) return []; if(movAllC&&movAllC.d===d) return movAllC.rows;
   const out=[], sells=new Map(), qty=n=>`${shares(n)} ${n===1?"acción":"acciones"}`;
-  d.tx.forEach(r=>{ if(r.bd instanceof Date) out.push({d:r.bd,ty:"Compra",ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,note:r.note,det:`${qty(r.shares,r.ticker)} a ${money(r.bp,r.cur)}`,amt:seur(-r.bt,2),v:r.bt});
+  d.tx.forEach(r=>{ if(r.bd instanceof Date) out.push({d:r.bd,ty:"Compra",ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,note:r.note,det:detOp(r.shares,r.ticker,r.bp,r.cur,qty),amt:seur(-r.bt,2),v:r.bt});
     if(r.sd instanceof Date){ const k=[r.ticker,+r.sd,r.sp,r.broker].join("|"), o=sells.get(k)||{d:r.sd,ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,cur:r.cur,sp:r.sp,n:0,st:0,pnl:0};
       o.n+=r.shares||0; o.st+=+r.st||0; o.pnl+=+r.pnl||0; sells.set(k,o); } });
-  sells.forEach(o=>out.push({d:o.d,ty:"Venta",ticker:o.ticker,name:o.name,broker:o.broker,det:`${qty(o.n,o.ticker)} a ${money(o.sp,o.cur)}`,amt:seur(o.st,2),v:o.st,pnl:o.pnl}));
+  sells.forEach(o=>out.push({d:o.d,ty:"Venta",ticker:o.ticker,name:o.name,broker:o.broker,det:detOp(o.n,o.ticker,o.sp,o.cur,qty),amt:seur(o.st,2),v:o.st,pnl:o.pnl}));
   d.dv.filter(d.isPaid).forEach(r=>{ const a=`${shares(r.shares)} ${r.shares===1?"acción":"acciones"} · ${dpsF(r.dps,r.cur)}`;
     out.push({d:r.d,ty:r.type||"Dividendo",dv:1,ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,det:a+" por acción",detH:esc(a)+'<span class="pa"> por acción</span>',ds:a,amt:seur(r.gross,2),v:r.gross}); });
   d.ap.forEach(r=>out.push({d:r.d,ty:r.type||(r.amt<0?"Retirada":"Aportación"),g:r.amt<0?"out":"in",broker:r.broker,note:r.note,det:r.note||"",amt:seur(r.amt,2),v:r.amt}));
@@ -4215,16 +4226,17 @@ const MOV = {
       {k:"broker",l:"Bróker",left:1,hs:1,sec:1,f:r=>esc(r.broker||"")},
       {k:"amt",l:"Importe",r:"amt",w:128,sv:r=>r.v,f:r=>r.amt},
       {k:"pnl",l:"Resultado",w:118,sv:r=>isNum(r.pnl)?r.pnl:null,f:r=>isNum(r.pnl)?`<span class="${cls(r.pnl)}">${seur(r.pnl,2)}</span>`:""} ],
-    // lo que pasó en el año elegido (o el actual): lo aportado, lo comprado, lo vendido con su resultado y los dividendos cobrados
-    kpis:(all,ys)=>{ const y=ys||new Date().getFullYear(), iy=all.filter(r=>yr(r.d)===y), n=x=>nf(0).format(x),
+    // lo que pasó en el año elegido (MOV-01, v433: con «Año: todos», en todos los años): lo aportado, lo comprado, lo vendido con su
+    // resultado y los dividendos cobrados
+    kpis:(all,ys)=>{ const y=ys?`en ${ys}`:"en total", iy=ys?all.filter(r=>yr(r.d)===ys):all, n=x=>nf(0).format(x),
         ap=iy.filter(r=>r.g==="in"||r.g==="out"), bu=iy.filter(r=>r.ty==="Compra"), se=iy.filter(r=>r.ty==="Venta"), dv=iy.filter(r=>r.dv), pl=sum(se,r=>r.pnl);
-      return [{k:`Aportado en ${y}`,v:eur(sum(ap,r=>r.v)),sub:`${n(ap.length)} ${ap.length===1?"movimiento":"movimientos"}`},
-        {k:`Comprado en ${y}`,v:eur(sum(bu,r=>r.v)),sub:`${n(bu.length)} ${bu.length===1?"compra":"compras"}`},
-        {k:`Vendido en ${y}`,v:eur(sum(se,r=>r.v)),sub:se.length?`${n(se.length)} ${se.length===1?"venta":"ventas"} · <span class="${cls(pl)}">${seur(pl)}</span>`:"sin ventas"},
-        {k:`Dividendos en ${y}`,v:eur(sum(dv,r=>r.v)),sub:`brutos · ${n(dv.length)} ${dv.length===1?"cobro":"cobros"}`}]; } },
+      return [{k:`Aportado ${y}`,v:eur(sum(ap,r=>r.v)),sub:`${n(ap.length)} ${ap.length===1?"movimiento":"movimientos"}`},
+        {k:`Comprado ${y}`,v:eur(sum(bu,r=>r.v)),sub:`${n(bu.length)} ${bu.length===1?"compra":"compras"}`},
+        {k:`Vendido ${y}`,v:eur(sum(se,r=>r.v)),sub:se.length?`${n(se.length)} ${se.length===1?"venta":"ventas"} · <span class="${cls(pl)}">${seur(pl)}</span>`:"sin ventas"},
+        {k:`Dividendos ${y}`,v:eur(sum(dv,r=>r.v)),sub:`brutos · ${n(dv.length)} ${dv.length===1?"cobro":"cobros"}`}]; } },
   transacciones:{ rows:()=>DATA?DATA.tx:[], date:r=>r.sd||r.bd, years:r=>[yr(r.bd),yr(r.sd)], text:r=>[r.name,r.ticker,r.note].join(" "), sort:["bd",-1], states:[["","Estado"],["open","Abiertas"],["closed","Cerradas"]], stateFn:(r,s)=>s==="open"?!r.sd:!!r.sd,
     cols:[ {k:"bd",l:"Fecha",r:"sub",f:r=>sdate(r.bd)}, {k:"name",l:"Empresa",r:"main",left:1,f:r=>coCell(r.name,r.ticker,infoBtn(r.note,"tx"+r.ticker+(+r.bd)))},
-      {k:"broker",l:"Bróker",left:1,hs:1,sec:1,f:r=>esc(r.broker||"")}, {k:"shares",l:"Acciones",sec:1,f:r=>{ const s=shares(r.shares); return s?`<span class="pv pvn">${s}</span>`:""; },mf:r=>!isNum(r.shares)?"":`${shares(r.shares)} ${r.shares===1?"acción":"acciones"}`},
+      {k:"broker",l:"Bróker",left:1,hs:1,sec:1,f:r=>esc(r.broker||"")}, {k:"shares",l:"Acciones",sec:1,f:r=>{ const s=shares(r.shares); return s?`<span class="pv pvn">${s}</span>`:""; },mf:r=>!isNum(r.shares)?"":(c=>c?`${nf(0).format(c)} ${c===1?"contrato":"contratos"}`:`${shares(r.shares)} ${r.shares===1?"acción":"acciones"}`)(contratos(r.shares,r.ticker))},
       {k:"bp",l:"Precio de compra",hs:1,sec:1,f:r=>money(r.bp,r.cur)}, {k:"bt",l:"Importe",r:"amt",f:r=>seur(-r.bt,2)},
       {k:"st",l:"Estado",nl:1,sv:r=>r.sd?1:0,f:r=>r.sd?`<span class="tag cl">Cerrada</span>`:`<span class="tag">Abierta</span>`},
       {k:"sd",l:"Fecha de venta",sec:1,sv:r=>r.sd?r.sd.getTime():null,f:r=>r.sd?sdate(r.sd):""},
@@ -4379,7 +4391,7 @@ const PCOLS=[
   {k:"fv",l:"Valor razonable",hs:1,g:"est",sep:1,f:r=>precioVisible(r.fv,r.cur)},
   {k:"irrExp",l:"TIR",g:"est",mx:1,f:r=>tirP(r.irrExp)},
   {k:"req",l:"Exigida",hs:1,g:"est",f:r=>r.req>0?pct(r.req):""},
-  {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>`<span class="mg-c">${margenBarra(r.margin)}<span class="mg-n ${clsM(r.margin)}">${puntosPct(r.margin)}</span></span>`},
+  {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>!isNum(r.margin)?`<span class="mute">—</span>`:`<span class="mg-c">${margenBarra(r.margin)}<span class="mg-n ${clsM(r.margin)}">${puntosPct(r.margin)}</span></span>`},
   {k:"vd",l:"Valorada",r:"vd",g:"est",sv:r=>{ const d=valDate(r); return d?d.getTime():null; },
    f:r=>{ const d=valDate(r); return d?`<span class="vd-k">valorada </span><span class="${stale(r)?"vd-old":""}"${stale(r)?` title="${esc(staleRes(r)?`Por revisar: resultados del ${fdate(CALT.get(r.ticker).u)}, posteriores a tu valoración`:"Por revisar: valorada hace más de un año")}"`:""}>${sdate(d)}</span>`:""; }} ];
 const etiquetaDe=x=>typeof x.l==="function"?x.l():x.l;
@@ -5356,7 +5368,7 @@ function renderCal(){ calSync(); const G=$("cal-g"); if(!G||!DATA) return;
   const hb=$("cal-hoy"); hb.disabled=y===hoy.getFullYear()&&m===hoy.getMonth()&&calKey(calSel)===calKey(hoy);
   G.innerHTML=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"].map((x,i)=>`<span class="cal-w${i>4?" we":""}">${x}</span>`).join("")
     +[...Array(nd)].map((_,i)=>{ const d=new Date(ini); d.setDate(ini.getDate()+i); const k=calKey(d), out=d.getMonth()!==m, g=out?[]:(por.get(k)||[]);
-      return `<div class="cal-c${wk[Math.floor(i/7)]?" wk":""}${i%7>4?" we":""}${out?" out":""}${k<calKey(hoy)?" past":""}${k===calKey(hoy)?" today":""}${g.length?" on":""}${k===calKey(calSel)&&!out?" sel":""}" data-k="${k}"><span class="cal-n"><b>${d.getDate()}</b></span>`
+      return `<div class="cal-c${wk[Math.floor(i/7)]?" wk":""}${i%7>4?" we":""}${out?" out":""}${k<calKey(hoy)?" past":""}${k===calKey(hoy)?" today":""}${g.length?" on":""}${k===calKey(calSel)&&!out?" sel":""}" data-k="${k}"><span class="cal-n"><b>${d.getDate()}</b>${i===0||d.getDate()===1?`<span class="cal-m">${MES[d.getMonth()].toLowerCase()}</span>`:""}</span>`
         +`<span class="cal-p" aria-hidden="true">${g.slice(0,4).map(e=>`<i class="${e.k==="d"?"d":e.est&&!e.ya?"est":""}"></i>`).join("")}</span>`
         +g.map(e=>calTarjeta(e,hoy)).join("")+`</div>`; }).join("");
   // el día elegido (pantallas estrechas)
