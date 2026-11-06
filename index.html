@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-EOJLPSdt+H7JY+gk49WnNkB1oGUpIxSxLUDiExcn9L0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-hqZyhoFbRgiR2L33kwzjv/1tLfKODeuOZXaiYH8RNbw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -701,7 +701,7 @@ details.chk[open]>summary{margin-bottom:12px}
   #t-pos .m-var{display:inline-block;padding:1px 0}
   .rt#t-pos tbody tr.pr{grid-template-columns:48px minmax(0,1fr) minmax(86px,auto)}.rt#t-pos td.r-sub{font-size:var(--fs-12);min-height:20px}
   #t-pos .m-sh .x{display:none}#t-pos .sdg{display:none}
-  .duo{display:contents}#v-resumen>*{order:2}#v-resumen>:is(#s-hero,#hoja-al,#td-res,#s-pos),#s-today{order:0}#s-evo{order:1}}
+  .duo{display:contents}#v-resumen>*{order:2}#v-resumen>:is(#s-hero,#hoja-al,#s-pos),#s-today{order:0}#s-evo{order:1}}
 @media (max-width:380px){.rt#t-pos tbody tr.pr{grid-template-columns:44px minmax(0,1fr) minmax(80px,auto)}#t-pos .m-var{font-size:var(--fs-11)}#t-pos .m-sh .w{display:none}#t-pos .m-sh .x{display:inline}}
 @media (max-width:440px){#m-k .mk-yr em i{display:none}#m-k .mk-yr em::after{content:attr(data-s)}
   #m-k .mk-sl.col{gap:4px}#m-k .mk-sl.col span{flex-wrap:wrap;row-gap:0}#m-k .mk-sl.col em{flex-basis:100%;margin-left:0;padding-left:12px}#m-k .mk-sl.col b.dt{display:none}}
@@ -2957,17 +2957,6 @@ html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"\2
 @container ficha (max-width:620.98px){
   #sheet .fp-vc .fp-m.fp-vm:has(>.fp-b:nth-child(5):last-child)>.fp-b.fp-b:nth-child(n+4){grid-column:span 2}
 }
-
-/* v434 · GR-01: el titular del día, a la altura del texto de los bloques */
-.td{margin:20px 0 0;padding:0 clamp(16px,3vw,30px);max-width:78ch;font-size:var(--fs-17);line-height:var(--lh-24,1.45);color:var(--ink);text-wrap:pretty}
-.td:empty{display:none}
-.td b{font-weight:600}
-.priv .td .pv{display:inline-block;width:2.44em;white-space:nowrap}   /* tapado: los puntos ocupan lo suyo, sin el hueco del importe */
-.td.td-f{margin:12px 0 0;padding:0 16px;font-size:var(--fs-15);line-height:var(--lh-22,1.45)}
-@media (max-width:700.98px){
-  .td{margin:14px 0 -2px;padding:0 16px;font-size:var(--fs-15);line-height:var(--lh-21,1.4)}
-  .td.td-f{margin:10px 0 0}
-}
 </style>
 
 <div class="wrap">
@@ -3001,7 +2990,6 @@ html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"\2
     </div>
   </section>
   <div class="hoja-al" id="hoja-al" role="status" hidden></div>
-  <p class="td" id="td-res"></p>
 
   <div class="duo">
   <!-- Tu cartera hoy -->
@@ -3050,7 +3038,6 @@ html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"\2
   <div class="view" id="v-analisis" hidden>
   <!-- Índice: una cifra de cada bloque; al pulsarla, lleva a él -->
   <section class="panel hero3 band2" id="s-aidx" aria-label="Índice de Análisis"><div class="bg ag bg5" id="a-k"></div></section>
-  <p class="td" id="td-ana"></p>
   <!-- Dividendos -->
   <section class="panel" id="s-divs">
     <div class="chart-head"><div><h2 class="st">Dividendos</h2></div></div>
@@ -3100,7 +3087,6 @@ html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"\2
     <a href="#aportaciones" data-t="aportaciones"><span class="mvt-n">Aportaciones<em></em></span><b class="mvt-v num" id="mt-ap"></b><span class="mvt-s">netas</span></a>
     <a href="#ajustes" data-t="ajustes"><span class="mvt-n">Ajustes<em></em></span><b class="mvt-v num" id="mt-aj"></b><span class="mvt-s">netos</span></a>
   </nav>
-  <p class="td" id="td-mov"></p>
   <section class="panel" id="s-mov">
     <div class="toolbar">
       <label class="search"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.75" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><input class="inp" type="search" id="m-q" placeholder="Buscar empresa, ticker o comentario" aria-label="Buscar"></label>
@@ -3122,7 +3108,6 @@ html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"\2
   <section class="panel hero3 band2" id="s-uni">
     <div class="bg ug bg5" id="p-k"></div>
   </section>
-  <p class="td" id="td-uni"></p>
 
   <section class="panel" id="s-perf">
     <div class="chart-head"><div><h2 class="st">Rendimiento</h2></div><select class="inp pf-sel" id="perf-sel" aria-label="Periodo"><option value="today">Hoy</option><option value="last">Última sesión</option><option value="w1">1 semana</option><option value="m1">1 mes</option><option value="m3">3 meses</option><option value="m6">6 meses</option><option value="ytd" class="cy-o">En el año</option><option value="y1">1 año</option><option value="y3">3 años</option><option value="dd">Desde máximo histórico</option></select>
@@ -3160,7 +3145,6 @@ html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"\2
   <div class="view" id="v-calendario" hidden>
   
   <section class="panel hero3 band2" id="s-cal"><div class="bg ug bg5" id="c-k"></div></section>
-  <p class="td" id="td-cal"></p>
   <section class="panel" id="s-calm" aria-label="Calendario">
     <div class="chart-head cal-h"><div class="cal-t"><button type="button" class="btn" data-cm="0" id="cal-hoy">Hoy</button><span class="cal-nv"><button type="button" class="btn cal-a" data-cm="-1" aria-label="Mes anterior"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5"/></svg></button><button type="button" class="btn cal-a" data-cm="1" aria-label="Mes siguiente"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6 4.5 9.5"/></svg></button></span><h2 class="st" id="cal-mes"></h2></div>
       <div class="perf-k cal-k"><div class="seg" role="group" aria-label="Qué ver" id="cal-f"><button type="button" data-cf="todo" aria-pressed="true">Todo</button><button type="button" data-cf="res" aria-pressed="false">Resultados</button><button type="button" data-cf="div" aria-pressed="false">Dividendos</button></div><div class="seg" role="group" aria-label="Qué empresas" id="cal-u"><button type="button" data-cu="0" aria-pressed="false">Tu cartera</button><button type="button" data-cu="1" aria-pressed="true">Todo el Universo</button></div><div class="cal-sels"><select class="inp" id="cal-fs" aria-label="Qué ver"><option value="todo">Todo</option><option value="res">Resultados</option><option value="div">Dividendos</option></select><select class="inp" id="cal-us" aria-label="Qué empresas"><option value="0">Tu cartera</option><option value="1">Todo el Universo</option></select></div></div></div>
@@ -3633,7 +3617,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v434";   // la versión publicada, en el pie
+const VER="v435";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -3865,7 +3849,7 @@ function render(d){
 
     renderPositions();
 
-  renderReparto(); renderAidx(); renderAct(); tdPon("td-mov",tdMovimientos()); tdPon("td-ana",tdAnalisis());   // GR-01
+  renderReparto(); renderAidx(); renderAct();
 
   const dm=d.dvm, yTot=dm.paidY+dm.schedY;
   const cg=(d.div&&d.div.cagr)||{};
@@ -4062,7 +4046,6 @@ function renderHoy(){
   $("hk-ren-l").innerHTML=ss.closed?`<span class="lg">Última sesión</span><span class="sh">Sesión</span>`:"Hoy";
   $("hk-ren").className="c1 r2 bv num "+c; $("hk-ren").textContent=seur(k.today);
   $("hk-ren-s").innerHTML=`<span class="${c}">${pct(k.todayPct,1,true)}</span> ${ss.closed?"· "+ss.lbl:"sobre el cierre anterior"}`;
-  tdPon("td-res",tdResumen());   // GR-01
 }
 
 /* ---------- concentración ---------- */
@@ -4210,30 +4193,6 @@ const shares=v=>isNum(v)?nf(v%1?2:0).format(v):"";
 const precioVisible=(v,cur)=>{ const s=money(v,cur); return s?`<span class="npv">${s}</span>`:""; };
 const infoBtn=(note,k)=>note?`<button type="button" class="info" data-note="${esc(note)}" data-k="${esc(k)}" aria-label="Ver comentario"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 5.4v3.4M6 3.3v.05" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>`:"";
 // «Todo»: compras, ventas (una por orden, aunque cierre varias compras), dividendos ya cobrados, aportaciones y ajustes, por fecha
-/* v434 · GR-01: el titular del día. Ayudas: el importe tapado en modo privado, la lista «A, B y C» y el singular/plural */
-const tdE=v=>`<b class="pv">${eur(Math.abs(v))}</b>`, tdY=xs=>xs.length<2?xs.join(""):xs.slice(0,-1).join(", ")+" y "+xs[xs.length-1], tdN=(n,a,b)=>`${nf(0).format(n)} ${n===1?a:b}`;
-const tdPon=(id,t)=>{ const e=$(id); if(e&&e.innerHTML!==t) e.innerHTML=t; };
-// Resumen: cuánto sube o baja hoy (o en la última sesión) y quién lo mueve, con la misma cuenta que la tarjeta («Hoy»)
-function tdResumen(){ const k=DATA.kpi, ss=lastSession(), tot=k.today||0, P=ss.closed;
-  if(Math.abs(tot)<0.5) return P?"En la última sesión tu cartera no se movió.":"Hoy tu cartera no se mueve.";
-  const up=tot>0, its=DATA.pos.filter(p=>!p.isOption&&isNum(p.today)&&p.value>0).map(p=>({n:cname(p.ticker,p.name),t:p.today,c:p.value*p.today/(1+p.today)}));
-  const same=its.filter(x=>up?x.c>0:x.c<0).sort((a,b)=>Math.abs(b.c)-Math.abs(a.c)), opp=its.filter(x=>(up?x.c<0:x.c>0)&&Math.abs(x.c)>=Math.max(5,Math.abs(tot)*.05)).sort((a,b)=>Math.abs(b.c)-Math.abs(a.c)).slice(0,2);
-  let s=`${P?"En la última sesión":"Hoy"} ${up?(P?"subiste":"subes"):(P?"bajaste":"bajas")} ${tdE(tot)}.`;
-  const m=same[0]; if(m){ const sh=m.c/tot, N=`<b>${esc(m.n)}</b>`, T=`(${pct(m.t,1,true)})`;
-    // si una sola empresa mueve más que la cartera entera, «casi todo» sería falso: se dice lo que resta (o suma) ella sola
-    s+=sh>=1?` Solo ${N} ${up?(P?"sumó":"suma"):(P?"restó":"resta")} ${tdE(m.c)} ${T}`:sh>=.6?` Casi todo ${P?"fue":"es"} ${N} ${T}`:` Lo que más ${P?"pesó":"pesa"} ${P?"fue":"es"} ${N} ${T}`;
-    s+=opp.length?`; ${tdY(opp.map(x=>esc(x.n)))} ${opp.length>1?(P?"tiraron":"tiran"):(P?"tiró":"tira")} hacia ${up?"abajo":"arriba"}.`:"."; }
-  return s; }
-// Movimientos: el último mes con aportaciones, compras o ventas
-function tdMovimientos(){ const rs=movAll(); if(!rs.length) return ""; const now=new Date(), mk=d=>d.getFullYear()*12+d.getMonth();
-  const act=r=>r.g==="in"||r.g==="out"||r.ty==="Compra"||r.ty==="Venta", m=rs.filter(r=>act(r)&&day(r.d)<=now).map(r=>mk(day(r.d))).sort((a,b)=>b-a)[0]; if(m==null) return "";
-  const en=rs.filter(r=>mk(day(r.d))===m), ap=sum(en.filter(r=>r.g==="in"||r.g==="out"),r=>r.v), bu=en.filter(r=>r.ty==="Compra").length, se=en.filter(r=>r.ty==="Venta").length;
-  const mes=MESL[m%12].toLowerCase()+(Math.floor(m/12)!==now.getFullYear()?` de ${Math.floor(m/12)}`:""), ops=[bu?tdN(bu,"compra","compras"):"",se?tdN(se,"venta","ventas"):""].filter(Boolean);
-  const a=Math.abs(ap)>=0.5?`${ap>0?"aportaste":"retiraste"} ${tdE(ap)}`:"", o=ops.length?`hiciste ${tdY(ops)}`:"";
-  return a||o?`En ${mes} ${a}${a&&o?" e ":""}${o}.`:""; }
-// Análisis: los dividendos del año que viene (la misma cifra que la franja)
-function tdAnalisis(){ const v=(DATA.kpi&&DATA.kpi.rentas)||0, y=new Date().getFullYear()+1;
-  return v>=0.5?`En ${y} cobrarás unos ${tdE(v)} en dividendos, unos ${tdE(v/12)} al mes.`:`Todavía no hay dividendos previstos para ${y}.`; }
 const MESL=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const iconosMov={in:'<path d="M11 4v10M6.5 9.5 11 14l4.5-4.5M4.5 18h13"/>',out:'<path d="M11 14V4M6.5 8.5 11 4l4.5 4.5M4.5 18h13"/>',adj:'<path d="M11 4v8M7 8h8M7 17h8"/>'};
 const tipoMov=r=>r.ty==="Compra"?"buy":r.ty==="Venta"?"sell":r.dv?"div":"cash";   // el color de la etiqueta de cada tipo
@@ -4720,8 +4679,6 @@ function renderPre(){
   const hc=(i,l,v,t,c="")=>`<div class="c${i} r1 bl">${l}</div><div class="c${i} r2 bv num ${c}">${v}</div><div class="c${i} r3 bs">${t}</div>`, cc=v=>isNum(v)&&Math.abs(v)>=0.0005?cls(v):"";
   // TIR esperada media (simple, como el margen) y su color con la escala de la TIR: rojo por debajo del 4 %, verde desde el 8 %
   const ti=rs=>{ const x=rs.filter(r=>isNum(r.irrExp)); return x.length?sum(x,r=>r.irrExp)/x.length:null; }, tc=v=>{ const l=tirLv(v); return /^rp/.test(l)?"pos":/^rn/.test(l)?"neg":""; };
-  { const so=all.filter(r=>r.margin>0).length, rv=all.filter(stale).length, N=all.length;   // GR-01
-    tdPon("td-uni",`${so===N?`Las ${n0(N)}`:`${n0(so)} de las ${n0(N)}`} empresas del Universo ${so===1?"está":"están"} por encima de lo exigido; ${rv?`${n0(rv)} ${rv===1?"está":"están"} por revisar`:"todas están al día"}.`); }
   $("p-k").innerHTML=hc(0,"Empresas",n0(all.length),sub(()=>true))
     +hc(1,"Sobre lo exigido",n0(all.filter(r=>r.margin>0).length),sub(r=>r.margin>0))
     +hc(2,`<span class="lg">Margen medio en cartera</span><span class="sh">Margen en cartera</span>`,puntosPct(avg(inP)),`candidatas <span class="${cc(avg(outP))}">${puntosPct(avg(outP))}</span>`,cc(avg(inP)))
@@ -4833,7 +4790,7 @@ function renderSheet0(){ const el=$("sheet"), t=sheet&&DATA?sheet.t:null, p=t&&D
     // debajo del nombre, igual en todas las pestañas: la franja con cinco cifras (las de tu posición o, si no la tienes, las de su valoración)
     const band=P?P.band:R?R.band:"", tb=tabs.length?`<div class="sh-tabw"><div class="sh-tabs" role="tablist">${tabs.map(([k,l])=>`<button type="button" role="tab" id="sht-${k}" aria-controls="sh-pane" data-shtab="${k}" aria-selected="${k===sheet.tab}" tabindex="${k===sheet.tab?0:-1}">${l}</button>`).join("")}</div></div>`:"";
     const body=sheet.tab==="pos"?P.body:sheet.tab==="pre"?R.body:sheet.tab==="mkt"?R.mkt:fichaMov(t);
-    $("sheet-b").innerHTML=`<div class="ficha fpx ${sheet.tab==="pos"&&!p.isOption?"fpp":sheet.tab==="pre"||sheet.tab==="mkt"?"fpu":"fpm"}"><div class="fp-h">${idb}</div>${(f=>f?`<p class="td td-f">${f}</p>`:"")(tdFicha(t))}${band?`<div class="fx-band">${band}</div>`:""}${tb}<div class="sh-pane" id="sh-pane" role="tabpanel"${tabs.length?` aria-labelledby="sht-${sheet.tab}"`:""}>${body}</div></div>`;
+    $("sheet-b").innerHTML=`<div class="ficha fpx ${sheet.tab==="pos"&&!p.isOption?"fpp":sheet.tab==="pre"||sheet.tab==="mkt"?"fpu":"fpm"}"><div class="fp-h">${idb}</div>${band?`<div class="fx-band">${band}</div>`:""}${tb}<div class="sh-pane" id="sh-pane" role="tabpanel"${tabs.length?` aria-labelledby="sht-${sheet.tab}"`:""}>${body}</div></div>`;
     $("sh-tt").innerHTML=`${logoBare(co.name,t)}<b>${esc(co.name)}</b>`; el.setAttribute("aria-label",co.name);
     const i=(sheet.list||[]).indexOf(t); $("sh-prev").disabled=i<=0; $("sh-next").disabled=i<0||i>=sheet.list.length-1;
   }
@@ -5394,9 +5351,6 @@ function renderCal(){ calSync(); const G=$("cal-g"); if(!G||!DATA) return;
   const pc=cart.find(e=>e.k==="d"&&!e.ya&&calKey(e.d)>=calKey(hoy)), pr=cart.find(e=>e.k==="r"&&!e.ya&&calKey(e.d)>=calKey(hoy));
   const all=DATA.pre, rv=all.filter(stale), n0=v=>nf(0).format(v), cand=n=>`${n0(n)} ${n===1?"candidata":"candidatas"}`;
   const hc=(i,l,v,t)=>`<div class="c${i} r1 bl">${l}</div><div class="c${i} r2 bv num">${v}</div><div class="c${i} r3 bs">${t}</div>`;
-  { const rc=resS.filter(e=>e.pf), ns=[...new Set(rc.map(e=>e.n))];   // GR-01
-    const a=!ns.length?"Esta semana no presenta resultados ninguna empresa de tu cartera":ns.length<=3?`Esta semana ${ns.length===1?"presenta":"presentan"} resultados ${tdY(ns.map(n=>`<b>${esc(n)}</b>`))}`:`Esta semana presentan resultados ${ns.length} empresas de tu cartera`;
-    tdPon("td-cal",a+(pc?`; el ${fdate(pc.d,{day:"numeric",month:"long"})} cobras ${tdE(pc.v)} de <b>${esc(pc.n)}</b>.`:".")); }
   $("c-k").innerHTML=hc(0,"Resultados",n0(resS.filter(e=>e.pf).length),`esta semana · ${n0(resS.length)} en el Universo`)
     +hc(1,"Por revisar",n0(rv.length),`${n0(rv.filter(r=>r.inPf).length)} en cartera<span class="sep"></span>${cand(rv.filter(r=>!r.inPf).length)}`)
     +hc(2,"Cobros este mes",eur(sum(mes,e=>e.v)),`${n0(mes.length)} ${mes.length===1?"cobro":"cobros"}`)
@@ -5529,12 +5483,6 @@ $("pos-body").addEventListener("click",e=>{ const tr=e.target.closest("tr.pr"); 
 $("pos-body").addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.matches("tr.pr")){ e.preventDefault(); e.target.click(); } });
 
 /* ---------- conexión con Google Drive ---------- */
-// GR-01 · ficha: lo que ganas o pierdes y dónde cotiza frente a tu valor razonable (si es candidata, su TIR esperada frente a la exigida)
-function tdFicha(t){ if(!DATA) return ""; const p=DATA.pos.find(x=>x.ticker===t&&!x.isOption), r=DATA.pre.find(x=>x.ticker===t), out=[];
-  if(p&&isNum(p.totalEur)) out.push(Math.abs(p.totalEur)<0.5?"Ni ganas ni pierdes.":`${p.totalEur>0?"Ganas":"Pierdes"} ${tdE(p.totalEur)} (${pct(p.totalPct,1,true)}).`);
-  if(r&&isNum(r.dist)) out.push(Math.abs(r.dist)<0.0005?"Cotiza en tu valor razonable.":`Cotiza un ${pct(Math.abs(r.dist),1)} ${r.dist>0?"por encima":"por debajo"} de tu valor razonable.`);
-  if(!p&&r&&isNum(r.irrExp)&&r.req>0) out.push(`Su TIR esperada es ${pct(r.irrExp,1)}, ${r.irrExp>=r.req?"por encima":"por debajo"} del ${pct(r.req,1)} que exiges.`);
-  return out.join(" "); }
 function lastSession(now=new Date()){ const d=new Date(now), wd=d.getDay(), back=wd===6?1:wd===0?2:d.getHours()<9?(wd===1?3:1):0; d.setDate(d.getDate()-back); return {d,closed:back>0,lbl:d.toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"}).replace(/[.,]/g,"").replace(/\bsept\b/,"sep")}; }
 // modo claro / oscuro: por defecto el del sistema; el botón lo fija y se recuerda en este navegador
 { const R=document.documentElement, mq=matchMedia("(prefers-color-scheme: dark)"), dark=()=>R.dataset.theme?R.dataset.theme==="dark":mq.matches;
