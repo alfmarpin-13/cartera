@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-3EKPvD6ZurWiSAWrm5mPRRpWJ/QzPDRNRik9lmnbVxg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-jPvS3RUzIqTSY+Ge6g5M703wUyLkiW4SFKDLyZ5Wcdw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3178,6 +3178,36 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
 
 /* v425 · el cartel «Por revisar» no hace más alta la cabecera de «Tu valoración» */
 .fp-ch h4 .vrv{line-height:14px;padding:1px 7px;margin:-1px 0 -1px 8px;vertical-align:1px}
+
+/* v427 · GR-01: en el móvil, las cinco pestañas abren con la misma tarjeta de 3 cifras (la de Resumen: 370 × 63 px, esquinas de 12 px,
+   fija arriba al bajar). Negra en Resumen y arena en las demás (sus --h-* de siempre). El PC no cambia */
+.mv-h,.hm5-mw{display:none}
+@media (max-width:700.98px){
+  html body.hm3on.hm5on :is(#v-analisis>#s-aidx,#v-preseleccion>#s-uni,#v-actualidad>#s-cal,#v-movimientos>.hm5-mw){position:sticky;top:0;z-index:var(--z-franja-alta);
+    display:block;margin:0 -16px -16px;padding:calc(env(safe-area-inset-top,0px) + 6px) 16px 6px;min-height:0;background:var(--canvas);color:var(--ink);border:0;border-radius:0;box-shadow:none;clip-path:none}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5{display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr) 1px minmax(0,1fr);column-gap:0;margin:0;
+    background:var(--h-bg);color:var(--h-fg);border-radius:12px;padding:8px 4px 9px;box-shadow:0 6px 18px -6px var(--sombra-28,rgba(0,0,0,.3));font-variant-numeric:tabular-nums}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5>.hm5-c{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;grid-row:1;
+    margin:0;padding:0 4px;min-width:0;text-align:center;white-space:nowrap;box-shadow:none;cursor:default}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5>.hm5-c:nth-child(1){grid-column:1}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5>.hm5-c:nth-child(2){grid-column:3}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5>.hm5-c:nth-child(3){grid-column:5}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5>.hm5-c::after{content:none}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5>.hm5-c::before{content:none}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5>.hm5-c+.hm5-c::before{content:"";position:absolute;left:-1px;top:4px;bottom:4px;width:1px;background:var(--h-line)}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5 .hm5-k{align-self:auto;font-size:9px;line-height:var(--lh-11);--lhp:var(--lh-11);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--h-fg3);white-space:nowrap}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5 .hm5-v{margin-top:2px;font-size:var(--fs-15);line-height:var(--lh-18);--lhp:var(--lh-18);font-weight:400;letter-spacing:-.01em;white-space:nowrap}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5 .hm5-s{margin-top:1px;font-size:var(--fs-10);line-height:var(--lh-14);--lhp:var(--lh-14);color:var(--h-fg2);white-space:nowrap}
+  html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5 .hm5-c>*{opacity:1}
+  /* las 3 de cada pestaña: Análisis (Dividendos · Fuera del euro · Concentración), Universo (Empresas · TIR esperada · Por revisar),
+     Calendario (Resultados · Próximo cobro · Cobros este mes) */
+  html body.hm5on #s-aidx>.hm5>.hm5-c:nth-child(n+4),html body.hm5on #s-uni>.hm5>.hm5-c:is(:nth-child(2),:nth-child(3)),html body.hm5on #s-cal>.hm5>.hm5-c:is(:nth-child(2),:nth-child(5)){display:none}
+  html body.hm5on #s-uni>.hm5>.hm5-c:nth-child(4),html body.hm5on #s-cal>.hm5>.hm5-c:nth-child(4){grid-column:3}
+  html body.hm5on #s-uni>.hm5>.hm5-c:nth-child(5),html body.hm5on #s-cal>.hm5>.hm5-c:nth-child(3){grid-column:5}
+  /* Movimientos: el desplegable de los apartados, en la cabecera del bloque como el de Rendimiento */
+  html body.hm5on #s-mov>.mv-h{display:flex;order:-1;align-items:center;justify-content:space-between;gap:12px;flex-wrap:nowrap}
+  html body.hm5on #s-mov>.mv-h .pf-sel{display:block;width:auto;flex:none;height:34px;min-height:0;padding:0 30px 0 12px;font-size:var(--fs-13);line-height:32px}
+}
 </style>
 
 <div class="wrap">
@@ -3838,7 +3868,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v426";   // la versión publicada, en el pie
+const VER="v427";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5264,12 +5294,18 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
     watch(B,()=>{ const S=sec.querySelector(".bg"); if(!S) return; [...B.children].forEach((c,i)=>{ const k=S.querySelector(`.c${i}.r1`), v=S.querySelector(`.c${i}.r2`), s=S.querySelector(`.c${i}.r3`); if(!k||!v) return;
         set(c,((k.querySelector(".sh")||k).textContent||"").trim(),v.innerHTML,"hm5-v num"+tone(v),s?s.innerHTML.replace(/\s*<span class="sep"><\/span>\s*/g," · ").trim():""); }); },sec); });
   // Movimientos: las cinco casillas son los cinco apartados (al tocarlas, lo mismo que las del PC)
-  { const M=$("mtabs"); if(M){ const B=document.createElement("div"); B.className="hm5 hm5-mv"; B.setAttribute("role","tablist"); B.setAttribute("aria-label","Movimientos");
-      const A=[...M.querySelectorAll("a[data-t]")]; B.innerHTML=A.map(()=>cell("button")).join(""); M.before(B);   // delante: «#mtabs + #s-mov» del PC sigue valiendo
-      [...B.children].forEach((b,i)=>b.addEventListener("click",()=>A[i].click()));
-      watch(B,()=>A.forEach((a,i)=>{ const b=B.children[i], n=a.querySelector(".mvt-n"), v=a.querySelector(".mvt-v"), s=a.querySelector(".mvt-s");
-        set(b,(n.firstChild?n.firstChild.textContent:n.textContent).trim(),v.innerHTML,"hm5-v num"+tone(v),s?s.innerHTML.trim():"");
-        const on=a.getAttribute("aria-current")==="page"; if(b.getAttribute("aria-selected")!==String(on)) b.setAttribute("aria-selected",String(on)); b.classList.toggle("on",on); }),M); } }
+  // v427 · Movimientos: la tarjeta (Movimientos · Transacciones · Dividendos) solo informa; los cinco apartados, en un desplegable
+  // en la cabecera del bloque (Todo · Transacciones · Dividendos · Aportaciones · Ajustes), como «Hoy ▾» en Rendimiento
+  { const M=$("mtabs"); if(M){ const W=document.createElement("div"); W.className="hm5-mv hm5-mw"; const B=document.createElement("div"); B.className="hm5"; W.append(B);
+      const A=[...M.querySelectorAll("a[data-t]")], nom=a=>{ const n=a.querySelector(".mvt-n"); return (n.firstChild?n.firstChild.textContent:n.textContent).trim(); };
+      B.innerHTML=A.slice(0,3).map(()=>cell("div")).join(""); M.before(W);   // delante: «#mtabs + #s-mov» del PC sigue valiendo
+      const P=$("s-mov"), H=document.createElement("div"); H.className="chart-head mv-h"; const T=document.createElement("div"), h2=document.createElement("h2"); h2.className="st"; h2.textContent="Movimientos"; T.append(h2);
+      const S=document.createElement("select"); S.className="inp pf-sel"; S.id="mv-sel"; S.setAttribute("aria-label","Qué movimientos");
+      A.forEach((a,i)=>{ const o=document.createElement("option"); o.value=String(i); o.textContent=i?nom(a):"Todo"; S.append(o); });
+      H.append(T,S); if(P) P.prepend(H); S.addEventListener("change",()=>{ const a=A[+S.value]; if(a) a.click(); });
+      watch(B,()=>{ A.slice(0,3).forEach((a,i)=>{ const b=B.children[i], v=a.querySelector(".mvt-v"), s=a.querySelector(".mvt-s");
+        set(b,nom(a),v.innerHTML,"hm5-v num"+tone(v),s?s.innerHTML.trim():""); });
+        const k=A.findIndex(a=>a.getAttribute("aria-current")==="page"); if(k>=0&&S.value!==String(k)) S.value=String(k); },M); } }
   if(document.fonts) document.fonts.ready.then(()=>bands.forEach(fit));
   addEventListener("load",()=>bands.forEach(fit));
   addEventListener("hashchange",()=>requestAnimationFrame(()=>bands.forEach(fit)));
