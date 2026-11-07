@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-CQ2RvZF58x3f2+04KH6kNBQSRpDP3ck4afD7Tw4jJTE=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-S2BqLkJSYwLE28id53eAIiykN3joyi10eIxGN2FKZfs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3113,6 +3113,10 @@ html body .marca,html body .top .status .marca{font-family:'Newsreader',Georgia,
 .view.v-in{animation:v-in .15s ease-out}
 @keyframes v-in{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){ .view.v-in{animation:none} }
+/* v470 · móvil: el fundido al cambiar de pestaña, solo en el contenido. Si se funde la vista entera, la tarjeta fija de 3 cifras pierde
+   su capa durante 150 ms y la franja del reloj (#topcap) la corta por arriba; así sale ya entera y quieta */
+@media (max-width:700.98px){ .view.v-in{animation:none} .view.v-in>:not(#s-hero,#s-aidx,#s-uni,#s-cal,.hm5-mw){animation:v-in .15s ease-out} }
+@media (max-width:700.98px) and (prefers-reduced-motion:reduce){ .view.v-in>*{animation:none} }
 
 
 /* v461 · Cabecera del PC (v462: vuelve a 65 px de alto); logo, pestañas e iconos en el mismo eje; la hora a la derecha */
@@ -3903,7 +3907,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v469";   // la versión publicada, en el pie
+const VER="v470";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
