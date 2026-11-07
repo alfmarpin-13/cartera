@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-BOBR1ZIkPJPadQrGm72QHMkUMLI1+IFQdrZKK0YB9/4=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Vc9MHCK3JKFPpP70mq3FWdZEwlL7kpcHSUbOiq0PhJA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3801,7 +3801,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v458";   // la versión publicada, en el pie
+const VER="v459";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5937,7 +5937,7 @@ if(matchMedia("(pointer:coarse)").matches){ const P=document.createElement("div"
     if(v>=GO){ modo("go"); texto(pre+(pre?"suelta":"Suelta")+" para actualizar"); } else { modo("tira"); texto(pre+(pre?"tira":"Tira")+" para actualizar"); } };
   const esconde=()=>{ P.classList.remove("pull","run","fin"); P.style.transform=""; P.style.opacity=""; modo(""); };
   const arriba=()=>scrollY<=1;
-  const quieto=()=>!$("sheet").hidden||!$("kx").hidden||busy||!canRead()||P.classList.contains("run")||P.classList.contains("fin");   // con la ficha o el buscador abiertos, o ya leyendo, no
+  const quieto=()=>!$("sheet").hidden||!$("kx").hidden||!canRead()||P.classList.contains("run")||P.classList.contains("fin");   // con la ficha o el buscador abiertos, no; v459: si ya está leyendo, sí (se espera a esa lectura)
   addEventListener("touchstart",e=>{ y0=arriba()&&e.touches.length===1&&!quieto()?e.touches[0].clientY:null; on=false; },{passive:true});
   addEventListener("touchmove",e=>{ if(y0===null) return; const dy=e.touches[0].clientY-y0;
     if(dy<=0||!arriba()){ if(on){ P.classList.remove("pull"); esconde(); } on=false; return; }
@@ -5945,7 +5945,7 @@ if(matchMedia("(pointer:coarse)").matches){ const P=document.createElement("div"
   const fin=()=>{ if(y0===null) return; y0=null; if(!on) return; on=false; P.classList.remove("pull");
     if(d<GO){ esconde(); return; }
     P.classList.add("run"); P.style.transform=""; P.style.opacity=""; modo("run"); texto("Actualizando…");
-    archivoLocal=false; load(true); loadAct(true);
+    if(!busy){ archivoLocal=false; load(true); loadAct(true); }   // v459: si ya estaba leyendo, no se lanza otra lectura; se espera a la que va
     const t0=performance.now(), w=setInterval(()=>{ if(busy||performance.now()-t0<700) return; clearInterval(w);
       const err=$("dot").classList.contains("err"), hm=hora(); P.classList.remove("run"); P.classList.add("fin"); modo(err?"err":"ok");
       texto(err?($("stat").textContent||"No se ha podido actualizar"):hm?`Actualizado · ${hm}`:"Actualizado");
