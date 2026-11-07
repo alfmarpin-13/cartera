@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-94N4iwnPjVRNERYdCyGZXNtGQcIpOUAHKV80KZLs5vQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-AIKH+mW/6kMh0Kd7KApLFIDBiG6s14F8cM+S7miJ2g8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3766,11 +3766,14 @@ function drawEvo(){
     {label:"Aportado",data:rows.map((r,i)=>({x:xs[i],y:r.a})),borderColor:varCss("--g3"),borderDash:[5,4],borderWidth:1.5,pointRadius:0,tension:0,fill:false},
     {label:"MSCI World",data:rows.map((r,i)=>({x:xs[i],y:r.i})),borderColor:varCss("--evo-msci"),borderDash:[2,3],borderWidth:1.5,pointRadius:0,tension:.3,fill:false}]},options:o,plugins:[crosshair,evoX]});
   const ch=charts["c-evo"];
-  if(ch&&!evoTrazada){ evoTrazada=true; if(!matchMedia("(prefers-reduced-motion: reduce)").matches){ ch.$p=0; ch.draw();
-    const corre=()=>{ const t0=performance.now(), f=t=>{ if(charts["c-evo"]!==ch) return; const k=Math.min(1,(t-t0)/1800); ch.$p=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2; ch.draw(); if(k<1) requestAnimationFrame(f); }; requestAnimationFrame(f); };
-    if(window.IntersectionObserver){ const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); corre(); } },{threshold:.3}); io.observe($("c-evo")); } else corre(); } }
+  if(ch&&!evoTrazada){
+    if(matchMedia("(prefers-reduced-motion: reduce)").matches) evoTrazada=true;
+    else { ch.$p=evoP; ch.draw();   // un gráfico nuevo a mitad del trazo sigue donde iba el anterior
+      if(!evoEspera){ evoEspera=true;
+        const corre=()=>{ const t0=performance.now(), f=t=>{ const k=Math.min(1,(t-t0)/1800); evoP=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2; const c=charts["c-evo"]; if(c){ c.$p=evoP; c.draw(); } if(k<1) requestAnimationFrame(f); else evoTrazada=true; }; requestAnimationFrame(f); };
+        if(window.IntersectionObserver){ const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); corre(); } },{threshold:.3}); io.observe($("c-evo")); } else corre(); } } }
 }
-let evoTrazada=false;
+let evoTrazada=false, evoEspera=false, evoP=0;
 const hexTok=n=>{ const v=varCss(n); return /^#[0-9a-f]{6}$/i.test(v)?v:"#888888"; };
 function drawDivs(){
   if(!DATA||!DATA.dvm) return; const dm=DATA.dvm, pd=varCss("--acc-pd"), soft=/^#[0-9a-f]{6}$/i.test(pd)?pd:hexTok("--accent")+"59";
@@ -3798,7 +3801,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v456";   // la versión publicada, en el pie
+const VER="v457";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
