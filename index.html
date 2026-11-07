@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-N9eSCi1b1Q5L2dclOgT1sIz7nvAPCv8G03gx8D0fvas=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-lhWpljQafcOhFyhAz9tmLNJvq4z9d1qv39eS5oLKPFI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3024,6 +3024,66 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   html body.hm5on :is(#s-aidx,#s-uni,#s-cal,.hm5-mw)>.hm5>.hm5-c:first-child .hm5-v{font-weight:500}
   #sheet .fx-band.fx-pos:not(#_) .fp-b:first-child>b{font-weight:500}
 }
+
+/* v449 · (1) candidata en el móvil: tarjeta de 3 (Valor razonable · TIR esperada · Múltiplo) y el Margen en «Tu valoración»;
+   (2) tarjeta estrecha de Resumen con LE-01; (3) la llave del menú del PC, centrada con su texto */
+.fp-mgc{display:none}
+.fp-mgc>b.pos{color:var(--pos)}.fp-mgc>b.neg{color:var(--neg)}
+@media (max-width:700.98px){
+  #sheet .ficha:has(.fx-cand) .fp-mgc{display:grid;margin-top:4px}
+  #sheet .fx-band.fx-cand:not(#_){display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr) 1px minmax(0,1fr);column-gap:0;row-gap:0;margin:12px 0 0;padding:8px 4px 9px;
+    border-radius:12px;background:var(--fxb);box-shadow:0 6px 18px -6px var(--sombra-28,rgba(0,0,0,.3))}
+  #sheet .fx-band.fx-cand:not(#_) .fp-b{position:relative;display:flex;flex-direction:column;align-items:center;grid-row:1;margin:0;padding:0 4px;box-shadow:none;min-width:0;text-align:center;white-space:nowrap}
+  #sheet .fx-band.fx-cand:not(#_) .fp-b:is(:nth-child(1),:nth-child(4)){display:none}
+  #sheet .fx-band.fx-cand:not(#_) .fp-b:nth-child(2){grid-column:1}
+  #sheet .fx-band.fx-cand:not(#_) .fp-b:nth-child(3){grid-column:3}
+  #sheet .fx-band.fx-cand:not(#_) .fp-b:nth-child(5){grid-column:5}
+  #sheet .fx-band.fx-cand:not(#_) .fp-b::before{content:none}
+  #sheet .fx-band.fx-cand:not(#_) .fp-b:is(:nth-child(3),:nth-child(5))::before{content:"";position:absolute;left:-1px;top:4px;bottom:4px;width:1px;background:var(--fxl)}
+  #sheet .fx-band.fx-cand:not(#_) .fp-b .fp-k{font-size:9px;line-height:var(--lh-11);--lhp:var(--lh-11);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--fx3);margin:0;align-self:auto}
+  #sheet .fx-band.fx-cand:not(#_) .fp-b>b{margin-top:2px;font-size:var(--fs-15);line-height:var(--lh-18);--lhp:var(--lh-18);font-weight:400;letter-spacing:-.01em}
+  #sheet .fx-band.fx-cand:not(#_) .fp-b:nth-child(2)>b{font-weight:500}
+  #sheet .fx-band.fx-cand:not(#_) .fp-b>small{margin-top:1px;font-size:var(--fs-10);line-height:var(--lh-14);--lhp:var(--lh-14);white-space:nowrap}
+  html body #hm3c-v1{font-weight:500}
+  html body :is(#hm3c-v2,#hm3c-v3){font-weight:400}
+}
+@media (min-width:761px){.more-m>#mm-key{display:flex;align-items:center}.more-m>#mm-key[hidden]{display:none}}
+
+/* v450 · «Por industria» en el PC y en el móvil: lista con barras, como «Mejores» y «Peores» (filas de 30 px, raya fina, barra de 5 px, cifra en color) */
+.ind-g.ind-l{display:grid;grid-auto-flow:column;column-gap:24px;row-gap:0}
+.ind-l .ir{display:grid;grid-template-columns:var(--in,150px) minmax(0,1fr) var(--ip,48px);column-gap:12px;align-items:center;height:30px;padding:0 8px;border:0;border-bottom:1px solid var(--line);
+  background:none;font:inherit;font-size:var(--fs-13);color:inherit;text-align:left;cursor:pointer;white-space:nowrap}
+.ind-l .ir:hover{background:var(--row)}
+.ind-l .ir>span:first-child{overflow:hidden;text-overflow:ellipsis}
+.ind-l .ir .pf-bar{display:block;height:5px}
+.ind-l .ir>b{font-weight:400;text-align:right;font-variant-numeric:tabular-nums}
+/* plegado en el móvil, como la Calculadora: «Ver» / «Plegar» a la derecha y toda la fila pulsable */
+.ind-tg{display:none}
+@media (max-width:700.98px){
+  .ind-w>.dv-h{position:relative;align-items:center;flex-wrap:nowrap}
+  .ind-tg{display:inline-flex;padding:0;border:0;background:none;font:inherit;font-size:var(--fs-13);font-weight:500;color:var(--ink2);cursor:pointer}
+  .ind-tg::before{content:"";position:absolute;inset:-16px 0}
+  #ind-w.open .ind-tg svg{transform:rotate(180deg)}
+  #ind-w:not(.open)>.dv-h{margin-bottom:0}
+  #ind-w:not(.open) #perf-ind{display:none}
+}
+/* v450 · CM-02 · Calendario estrecho (móvil y tableta en vertical): los eventos del día, filas ligeras en lugar de tarjetas; sin fondo gris
+   ni barra; logo a la izquierda, nombre y tipo uno encima de otro, el icono del momento a la derecha; el arena, solo en tus empresas */
+@media (max-width:1100.98px){
+  #s-calm .cal-dia .cal-l{gap:0}
+  #s-calm .cal-dia .cal-e{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:12px;row-gap:1px;align-items:center;padding:10px 8px;border-radius:0;background:none;border-bottom:1px solid var(--line)}
+  #s-calm .cal-dia .cal-e:first-child{border-top:1px solid var(--line)}
+  #s-calm .cal-dia .cal-e::before{display:none}
+  #s-calm .cal-dia .cal-e:hover{background:var(--row)}
+  #s-calm .cal-dia .cal-e .tp{display:contents}
+  #s-calm .cal-dia .cal-e .lgb{grid-column:1;grid-row:1/3;width:24px;height:18px}
+  #s-calm .cal-dia .cal-e .tp>b{grid-column:2;grid-row:1}
+  #s-calm .cal-dia .cal-e .tp>.mt{display:none}
+  #s-calm .cal-dia .cal-e small{grid-column:2;grid-row:2;color:var(--ink3)}
+  #s-calm .cal-dia .cal-e .dl .ic{color:var(--ink3)}
+  #s-calm .cal-dia .cal-e[data-pf="1"]{background:var(--pf-bg)}
+  #s-calm .cal-dia .cal-e[data-pf="1"]:hover{background:var(--pf-bg-h)}
+}
 </style>
 
 <div class="wrap">
@@ -3180,7 +3240,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
     <div class="chart-head"><div><h2 class="st">Rendimiento</h2></div><select class="inp pf-sel" id="perf-sel" aria-label="Periodo"><option value="today">Hoy</option><option value="last">Última sesión</option><option value="w1">1 semana</option><option value="m1">1 mes</option><option value="m3">3 meses</option><option value="m6">6 meses</option><option value="ytd" class="cy-o">En el año</option><option value="y1">1 año</option><option value="y3">3 años</option><option value="dd">Desde máximo histórico</option></select>
       <div class="perf-k" id="perf-k"><div class="seg" role="group" aria-label="Sesión"><button type="button" data-k="today" aria-pressed="true">Hoy</button><button type="button" data-k="last" aria-pressed="false">Última sesión</button><button type="button" data-k="dd" aria-pressed="false">Desde máximo histórico</button></div><div class="seg" role="group" aria-label="Periodo"><button type="button" data-k="w1" aria-pressed="false">1 semana</button><button type="button" data-k="m1" aria-pressed="false">1 mes</button><button type="button" data-k="m3" aria-pressed="false">3 meses</button><button type="button" data-k="m6" aria-pressed="false">6 meses</button><button type="button" data-k="ytd" aria-pressed="false"><span class="wl">En </span><i class="cy"></i></button><button type="button" data-k="y1" aria-pressed="false">1 año</button><button type="button" data-k="y3" aria-pressed="false">3 años</button></div></div></div>
     <div class="pf-cols"><div><div class="dv-h"><span id="perf-uh">Mejores</span></div><div id="perf-up"></div><div class="pf-mas-w"><button type="button" class="btn pf-mas" data-l="perf-up" hidden></button></div></div><div><div class="dv-h"><span id="perf-dh">Peores</span></div><div id="perf-dn"></div><div class="pf-mas-w"><button type="button" class="btn pf-mas" data-l="perf-dn" hidden></button></div></div></div><div class="pf-mas-w pf-mas-ambas"><button type="button" class="btn pf-mas" data-l="ambas" hidden></button></div>
-    <div class="ind-w"><div class="dv-h"><span>Por industria</span></div><div class="ind-g" id="perf-ind"></div></div>
+    <div class="ind-w" id="ind-w"><div class="dv-h"><span>Por industria</span><button type="button" class="pl-tg ind-tg" id="ind-tg" aria-expanded="false" aria-controls="perf-ind"><span id="ind-tgt">Ver</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div class="ind-g" id="perf-ind"></div></div>
   </section>
   <section class="panel" id="s-plan">
     <button type="button" class="pl-bar" id="pl-bar" aria-expanded="false" aria-controls="pl-full"><span class="st">Calculadora de operaciones</span><span class="pl-tg"><span id="pl-tg">Ver</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
@@ -3687,7 +3747,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v448";   // la versión publicada, en el pie
+const VER="v450";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4535,12 +4595,22 @@ function renderPerf(){
   const L=Object.entries(g).map(([k,v])=>({k,v:v.length?sum(v,x=>x)/v.length:null})).sort((a,b)=>(b.v??-1e9)-(a.v??-1e9));
   const hi=Math.max(0,...L.map(x=>x.v??0)), lo=Math.min(0,...L.map(x=>x.v??0));
   const lv=v=>!isNum(v)?"":v>0?(v>=hi*2/3?"ih3":v>=hi/3?"ih2":"ih1"):v<0?(v<=lo*2/3?"il3":v<=lo/3?"il2":"il1"):"";
-  $("perf-ind").innerHTML=L.map(x=>`<button type="button" class="ih ${lv(x.v)}" data-ind="${esc(x.k)}"><span>${esc(cortaPalabra(x.k)).replace(/ y /g," y\u00a0")}</span><b class="num">${isNum(x.v)?pct(x.v,1,true):""}</b></button>`).join(""); ajustaInd();
+  indL={L,lv}; pintaInd();
 }
+// v450 · lista con barras (como «Mejores» y «Peores»), en el PC y en el móvil
+let indL=null;
+function pintaInd(){ const g=$("perf-ind"); if(!g||!indL) return; const {L,lv}=indL;
+  const mx=Math.max(0.0001,...L.map(x=>Math.abs(x.v??0)));
+  g.classList.add("ind-l");
+  g.innerHTML=L.map(x=>{ const v=x.v, w=isNum(v)?Math.min(Math.abs(v)/mx,1)*100:0;
+    return `<button type="button" class="ir" data-ind="${esc(x.k)}"><span>${esc(x.k)}</span><span class="pf-bar"><span style="width:${w.toFixed(1)}%;background:var(${v>=0?"--sbar":"--tbar"})"></span></span><b class="num${isNum(v)?" "+cls(v):""}">${isNum(v)?pct(v,1,true):"—"}</b></button>`; }).join("");
+  ajustaInd(); }
 // «Por industria»: las casillas, en filas completas de lado a lado y en el mínimo de filas. Una casilla cabe si cabe su palabra
 // más larga (y su cifra); si las filas no salen iguales, las que llevan una casilla menos las tienen algo más anchas
 let indEsperaLetras=false, indW=0, indCfg=null; const indMedidas=new Map();
-function ajustaInd(){ const g=$("perf-ind"); if(!g) return; const bs=[...g.querySelectorAll(".ih")]; g.classList.remove("filas"); g.replaceChildren(...bs);
+function ajustaInd(){ const g=$("perf-ind"); if(!g) return;
+  if(g.classList.contains("ind-l")) return ajustaLista(g);
+  const bs=[...g.querySelectorAll(".ih")]; g.classList.remove("filas"); g.replaceChildren(...bs);
   if(!bs.length) return;
   if(document.fonts&&document.fonts.status!=="loaded"){ if(!indEsperaLetras){ indEsperaLetras=true; document.fonts.ready.then(()=>{ indEsperaLetras=false; ajustaInd(); }); } return; }   // COD-17
   // el ancho, los márgenes y la letra de las casillas solo se leen al cambiar el ancho (leerlos obliga a recalcular la maqueta)
@@ -4560,6 +4630,22 @@ function ajustaInd(){ const g=$("perf-ind"); if(!g) return; const bs=[...g.query
   bs.forEach(b=>{ const t=b.dataset.t0; if(t.split(" ").some(u=>u.includes(" ")&&an(u.replace(/­/g,""))>libre)) b.querySelector("span").textContent=t.replace(/ /g," "); });
   g.replaceChildren(...Array.from({length:r},(_,k)=>{ const f=document.createElement("div"), c=base+(k<extra?1:0); f.className="ind-f"; f.append(...bs.slice(i,i+c)); i+=c; return f; }));
   g.classList.add("filas"); }
+// v450 · la lista del PC: el nombre más largo y la cifra más ancha fijan sus columnas (iguales en todas, para que las barras empiecen y
+// acaben a la misma altura); caben tantas columnas como dejen al menos 32 px de barra, hasta 4; se leen de arriba abajo
+function ajustaLista(g){ const rs=[...g.querySelectorAll(".ir")]; if(!rs.length) return;
+  if(document.fonts&&document.fonts.status!=="loaded"){ if(!indEsperaLetras){ indEsperaLetras=true; document.fonts.ready.then(()=>{ indEsperaLetras=false; ajustaInd(); }); } return; }
+  const W=g.clientWidth; indW=W; if(!W) return;
+  const cr=getComputedStyle(rs[0]), fs=getComputedStyle(rs[0].firstElementChild), fb=getComputedStyle(rs[0].lastElementChild), fuente=s=>`${s.fontStyle} ${s.fontWeight} ${s.fontSize} ${s.fontFamily}`;
+  const pad=parseFloat(cr.paddingLeft)+parseFloat(cr.paddingRight), cg=parseFloat(cr.columnGap)||0, gap=parseFloat(getComputedStyle(g).columnGap)||0;
+  const nW=Math.ceil(Math.max(...rs.map(r=>textW(r.firstElementChild.textContent,fuente(fs)))))+1, pW=Math.ceil(Math.max(...rs.map(r=>textW(r.lastElementChild.textContent,fuente(fb)))))+3;
+  const need=nW+pW+2*cg+pad+32, cols=Math.max(1,Math.min(4,Math.floor((W+gap)/(need+gap)))), filas=Math.ceil(rs.length/cols);
+  g.style.setProperty("--in",nW+"px"); g.style.setProperty("--ip",pW+"px");
+  g.style.gridTemplateColumns=`repeat(${cols},minmax(0,1fr))`; g.style.gridTemplateRows=`repeat(${filas},auto)`; }
+// v450 · en el móvil, «Por industria» plegado como la Calculadora de operaciones (se recuerda abierto o plegado); en el PC, siempre a la vista
+let indOpen=false; try{ indOpen=localStorage.getItem("indOpen")==="1"; }catch{}
+function indModo(){ $("ind-w").classList.toggle("open",indOpen); $("ind-tg").setAttribute("aria-expanded",indOpen); $("ind-tgt").textContent=indOpen?"Plegar":"Ver"; }
+$("ind-tg").addEventListener("click",()=>{ indOpen=!indOpen; try{ localStorage.setItem("indOpen",indOpen?"1":"0"); }catch{} indModo(); });
+indModo();
 // al cambiar de ancho (o al verse por primera vez), se recolocan
 if(window.ResizeObserver) new ResizeObserver(()=>{ const w=$("perf-ind").clientWidth; if(w&&w!==indW){ indW=w; ajustaInd(); } }).observe($("perf-ind"));
 // al pulsar una industria, la tabla de abajo se filtra por ella
@@ -4647,7 +4733,7 @@ function fichaPre(r){
   // debajo, todo es tu valoración: primero sus cifras clave y su fecha
   // si no la tienes, sus cifras ya van en la franja de arriba: aquí solo el título y la fecha
   const porQue=stale(r)?(staleRes(r)?`Resultados del ${fdate(CALT.get(r.ticker).u)}, posteriores a tu valoración`:"Valorada hace más de un año"):"";
-  const vcard=card(`Tu valoración${stale(r)?`<span class="tag warn vrv" title="${esc(porQue)}" aria-label="Por revisar: ${esc(porQue)}">Por revisar</span>`:""}`,vdS?`valorada el ${vdS}`:"",own?vsum:""," fp-vc"+(own?"":" fp-c1"));   // v425: una sola línea, como en las demás
+  const vcard=card(`Tu valoración${stale(r)?`<span class="tag warn vrv" title="${esc(porQue)}" aria-label="Por revisar: ${esc(porQue)}">Por revisar</span>`:""}`,vdS?`valorada el ${vdS}`:"",(own?vsum:"")+`<div class="fp-kl fp-mgc"><span>Margen</span><b class="num ${clsM(r.margin)}">${puntosPct(r.margin)}</b></div>`," fp-vc"+(own?"":" fp-c1"));   // v425: una sola línea, como en las demás
   // la valoración es una estimación: sus cuentas (2030, deuda, tabla, proyección, notas y argumentos) quedan plegadas
   const calc=val||pj||mr?`<details class="fp-calc"><summary><h4>Cálculo de la valoración</h4><span class="pl-tg"><span class="o">Ver</span><span class="c">Plegar</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><div class="fp-cb">${val}${pj}${mr}</div></details>`:"";
     // «Cotización» (lo que ha hecho en bolsa) va en su propia pestaña; «Valoración», lo tuyo
@@ -4868,7 +4954,7 @@ function renderSheet0(){ if(sheet&&sheet.t==="__cq"&&DATA) return renderCuadre()
     // debajo del nombre, igual en todas las pestañas: la franja con cinco cifras (las de tu posición o, si no la tienes, las de su valoración)
     const band=P?P.band:R?R.band:"", tb=tabs.length?`<div class="sh-tabw"><div class="sh-tabs" role="tablist">${tabs.map(([k,l])=>`<button type="button" role="tab" id="sht-${k}" aria-controls="sh-pane" data-shtab="${k}" aria-selected="${k===sheet.tab}" tabindex="${k===sheet.tab?0:-1}">${l}</button>`).join("")}</div></div>`:"";
     const body=sheet.tab==="pos"?P.body:sheet.tab==="pre"?R.body:sheet.tab==="mkt"?R.mkt:fichaMov(t);
-    $("sheet-b").innerHTML=`<div class="ficha fpx ${sheet.tab==="pos"&&!p.isOption?"fpp":sheet.tab==="pre"||sheet.tab==="mkt"?"fpu":"fpm"}"><div class="fp-h">${idb}</div>${band?`<div class="fx-band${P&&!p.isOption?" fx-pos":""}">${band}</div>`:""}${tb}<div class="sh-pane" id="sh-pane" role="tabpanel"${tabs.length?` aria-labelledby="sht-${sheet.tab}"`:""}>${body}</div></div>`;
+    $("sheet-b").innerHTML=`<div class="ficha fpx ${sheet.tab==="pos"&&!p.isOption?"fpp":sheet.tab==="pre"||sheet.tab==="mkt"?"fpu":"fpm"}"><div class="fp-h">${idb}</div>${band?`<div class="fx-band${P&&!p.isOption?" fx-pos":!P&&R?" fx-cand":""}">${band}</div>`:""}${tb}<div class="sh-pane" id="sh-pane" role="tabpanel"${tabs.length?` aria-labelledby="sht-${sheet.tab}"`:""}>${body}</div></div>`;
     $("sh-tt").innerHTML=`${logoBare(co.name,t)}<b>${esc(co.name)}</b>`; el.setAttribute("aria-label",co.name);
     const i=(sheet.list||[]).indexOf(t); $("sh-prev").disabled=i<=0; $("sh-next").disabled=i<0||i>=sheet.list.length-1;
   }
