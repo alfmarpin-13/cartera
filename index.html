@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-U3uJAizCV9fjzNlL74HbBpRBPYuB1o2GZIQubqmBZBI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Hsl3ulji+y7HwdbTdTkVcNJ4OX92J/z+lLcxCtbqoXI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3168,11 +3168,11 @@ html body .marca,html body .top .status .marca{font-family:'Newsreader',Georgia,
 
 /* v466 · barra del menú: arena un punto más tostado que el lienzo, translúcida, con desenfoque (de borde a borde) */
 @media (min-width:701px){
-  .top{--bar-bg:rgba(232,228,219,.80);background:transparent;box-shadow:none}
-  .top::before{content:"";position:absolute;top:0;bottom:0;left:-100vmax;right:-100vmax;z-index:-1;background:var(--bar-bg);-webkit-backdrop-filter:blur(20px) saturate(1.5);backdrop-filter:blur(20px) saturate(1.5);pointer-events:none}
+  .top{--bar-bg:#EAE7DE;background:transparent;box-shadow:none}
+  .top::before{content:"";position:absolute;top:0;bottom:0;left:-100vmax;right:-100vmax;z-index:-1;background:var(--bar-bg);pointer-events:none}   /* v467: opaca, sin desenfoque */
 }
-@media (min-width:701px) and (prefers-color-scheme:dark){:root:not([data-theme="light"]) .top{--bar-bg:rgba(30,30,28,.78)}}
-@media (min-width:701px){:root[data-theme="dark"] .top{--bar-bg:rgba(30,30,28,.78)}}
+@media (min-width:701px) and (prefers-color-scheme:dark){:root:not([data-theme="light"]) .top{--bar-bg:#1B1B1A}}
+@media (min-width:701px){:root[data-theme="dark"] .top{--bar-bg:#1B1B1A}}
 </style>
 
 <div class="wrap">
@@ -3861,7 +3861,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v466";   // la versión publicada, en el pie
+const VER="v467";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
