@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-S2BqLkJSYwLE28id53eAIiykN3joyi10eIxGN2FKZfs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-z1RigxrCDcdWMUl2ExxCVeNOv+DvMl9iXXlUgMTBuls=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3084,14 +3084,8 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   #s-calm .cal-dia .cal-e[data-pf="1"]:hover{background:var(--pf-bg-h)}
 }
 
-/* v451 · GR-03: una voz tipográfica. Los títulos de bloque, el nombre de la empresa en la ficha y la marca, en la serifa Newsreader;
-   las cifras, tablas y etiquetas siguen en Inter. El día elegido del Calendario del móvil se queda como estaba (pesaría más que su lista) */
-.st{font-family:'Newsreader',Georgia,serif;font-size:21px;font-weight:500;letter-spacing:-.005em;text-transform:none;line-height:25px;--lhp:25px}
-.st::first-letter{text-transform:uppercase}
-.cal-dia h3.st{font-family:inherit;font-size:var(--fs-11);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;line-height:1.3}
-.fp-t h3,html body #sheet .fp-t h3{font-family:'Newsreader',Georgia,serif;font-size:24px;font-weight:500;letter-spacing:-.005em;line-height:28px}
-html body .marca,html body .top .status .marca{font-family:'Newsreader',Georgia,serif;font-size:22px;font-weight:600;letter-spacing:0}
-@media (max-width:700.98px){ .fp-t h3,html body #sheet .fp-t h3{font-size:21px;line-height:25px} }
+/* v471 · una sola letra (Inter) para todo: los títulos, la ficha y la marca vuelven a como estaban antes de la v451 */
+.top .status .marca span{position:relative;top:1px}   /* «Cartera», centrado por su altura de mayúsculas con el logo */
 /* v451 · una raya entre «Mejores / Peores» y «Por industria», como entre los apartados de Dividendos */
 .ind-w{margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}
 @media (max-width:700.98px){ .ind-w{margin-top:24px;padding-top:16px} }
@@ -3124,7 +3118,6 @@ html body .marca,html body .top .status .marca{font-family:'Newsreader',Georgia,
   .top{padding-block:14px 14px}
   .top .nav{min-height:65px;margin-block:-14px -14px}
   .top .nav a{font-size:14px}
-  html body .top .status .marca{font-size:21px}
   .top .tools .status.hora{display:flex;align-items:center;gap:7px;height:20px;margin-right:10px;padding-right:12px;border-right:1px solid var(--line);font-size:var(--fs-12);color:var(--ink3);white-space:nowrap;font-variant-numeric:tabular-nums}
   .top .tools .status.hora #stat{white-space:nowrap}
   #more.aviso::after{width:6px;height:6px}
@@ -3144,8 +3137,6 @@ html body .marca,html body .top .status .marca{font-family:'Newsreader',Georgia,
 #notice .nt-x svg{width:16px;height:16px}
 @media (max-width:700.98px){#notice .notice:has(.nt-x){padding-right:48px}#notice .nt-x{top:8px;right:8px}}
 
-/* v464 · el nombre, centrado por su altura de mayúsculas con el logo (antes 3 px alto) */
-.top .status .marca span{position:relative;top:3px}
 
 /* v465 · PC y tableta: solo el menú va de borde a borde; fuera las franjas */
 .pl-sub,.cal-prox,.mv-seg,.seg .segn{display:none}
@@ -3907,7 +3898,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v470";   // la versión publicada, en el pie
+const VER="v471";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
