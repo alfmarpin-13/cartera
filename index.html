@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-6OUk/n5/EWxu5mTqi9OedExWe6rvNY+OL8UxFGXCArQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-CQ2RvZF58x3f2+04KH6kNBQSRpDP3ck4afD7Tw4jJTE=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3166,6 +3166,54 @@ html body .marca,html body .top .status .marca{font-family:'Newsreader',Georgia,
   #s-mov .mv-seg button[aria-pressed="true"] em{color:var(--ink2)}
 }
 
+
+/* v469 · Movimientos (PC): gráfico de entradas y salidas, cabecera de mes ligera con sus totales y detalle al pulsar */
+:root{--g-ap:#2F4A3B;--g-ve:#93A399;--g-dv:var(--accent);--g-co:#CBC3B3;--g-re:#9C9381}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--g-ap:#7FA48D;--g-ve:#4E6458;--g-co:#57524A;--g-re:#7D7567}}
+:root[data-theme="dark"]{--g-ap:#7FA48D;--g-ve:#4E6458;--g-co:#57524A;--g-re:#7D7567}
+#mv-g{position:relative;margin:4px 0 28px}
+.mv-gh{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:10px}
+.mv-gh h3{margin:0;font:500 var(--fs-13)/1.3 var(--f-sans);color:var(--ink2);letter-spacing:0}
+.mv-gl{display:flex;gap:16px;font-size:var(--fs-12);color:var(--ink2);white-space:nowrap}
+.mv-gl i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+#mv-g svg{display:block;overflow:visible}
+#mv-g svg text{font-family:var(--f-sans);font-size:11px;fill:var(--ink3)}
+#mv-g svg text.mx{font-size:12px} #mv-g svg text.mx.hoy{fill:var(--ink);font-weight:600}
+#mv-g svg text.out{fill:var(--ink2)}
+#mv-g .rj{stroke:var(--line);stroke-dasharray:2 4} #mv-g .r0{stroke:color-mix(in srgb,var(--ink) 35%,transparent)}
+#mv-g .g-ap{fill:var(--g-ap)} #mv-g .g-ve{fill:var(--g-ve)} #mv-g .g-dv{fill:var(--g-dv)} #mv-g .g-co{fill:var(--g-co)} #mv-g .g-re{fill:var(--g-re)}
+#mv-g .g-cut{fill:var(--panel)}
+#mv-g .g-hit{fill:transparent} #mv-g.go .g-hit{cursor:pointer}
+#mv-g .g-hit:hover{fill:color-mix(in srgb,var(--ink) 4%,transparent)}
+.priv #mv-g svg{filter:blur(6px)}
+.mv-tip{position:absolute;z-index:3;pointer-events:none;min-width:188px;padding:10px 12px;border-radius:var(--r-8);background:var(--card);border:1px solid var(--line);box-shadow:0 8px 24px -12px var(--sombra-22);font-size:var(--fs-12);color:var(--ink2)}
+.mv-tip b{display:block;font-weight:500;color:var(--ink);margin-bottom:6px}
+.mv-tip p{display:flex;justify-content:space-between;gap:16px;margin:3px 0}
+.mv-tip p span:last-child{color:var(--ink);font-variant-numeric:tabular-nums}
+.mv-tip i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+.mv-tip p.nt{margin-top:7px;padding-top:7px;border-top:1px solid var(--line)}
+@media (min-width:701px){
+  #s-mov .rt tbody tr.grp-row td,#s-mov .rt tbody tr.grp-row:not(:first-child) td{background:none;border-bottom:1px solid color-mix(in srgb,var(--ink) 22%,transparent);padding:8px 8px 9px}
+  #s-mov .rt tr.grp-row .gm{font-weight:500}
+  #s-mov .rt tr.grp-row .gx .pos{color:var(--pos)} #s-mov .rt tr.grp-row .gx .o{color:var(--ink)}
+  #m-body tr[data-mi]{cursor:pointer}
+  #m-body tr[data-mi].open td{background:var(--row-open)}
+  .sheet.sh-mv{width:min(480px,calc(100vw - 64px))}
+}
+@media (max-width:700.98px){ #mv-g{display:none!important} #s-mov .gx{display:none} }
+.mvd{padding-bottom:32px}
+.mvd .fp-id .lgb.mvg svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.mvd-tg{margin:4px 0 0}
+.mvd-imp{font-size:28px;font-weight:300;letter-spacing:-.01em;line-height:1.15;margin:22px 0 2px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.mvd-s{color:var(--ink3);font-size:var(--fs-13)}
+.mvd .fp-c{margin-top:0}
+.mvd .fp-ch{margin-bottom:4px}
+.mvd-r{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line);font-size:var(--fs-13)}
+.mvd-r>span:first-child{color:var(--ink2)} .mvd-r>span:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.mvd-r.t{font-weight:600} .mvd-r.t>span:first-child{color:var(--ink)}
+.mvd-r.w>span:last-child{max-width:68%;white-space:normal}
+.mvd-n{color:var(--ink3);font-size:var(--fs-13);margin:8px 0 0}
+.mvd .fp-go{margin-top:24px}
 </style>
 
 <div class="wrap">
@@ -3307,6 +3355,7 @@ html body .marca,html body .top .status .marca{font-family:'Newsreader',Georgia,
       <button type="button" class="btn m-rst" id="m-rst" title="Quitar todos los filtros" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.5-3.6M3 2.5v2.5h2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Restablecer</span></button>
     </div>
     <div class="mvb" id="m-k"></div>
+    <div class="mv-g" id="mv-g" hidden></div>
     <div class="tablewrap"><table class="rt"><thead id="m-head"></thead><tbody id="m-body"></tbody></table></div>
     <button type="button" class="btn m-more" id="m-more" hidden></button>
   </section>
@@ -3854,7 +3903,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v468";   // la versión publicada, en el pie
+const VER="v469";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4456,14 +4505,14 @@ const contratos=(n,t)=>esOpcion(t)&&isNum(n)&&n>0&&n%100===0?n/100:null;
 const detOp=(n,t,p,cur,qty)=>{ const c=contratos(n,t); return c?`${nf(0).format(c)} ${c===1?"contrato":"contratos"} · ${money(p,cur)} por acción`:`${qty(n)} a ${money(p,cur)}`; };
 function movAll(){ const d=DATA; if(!d) return []; if(movAllC&&movAllC.d===d) return movAllC.rows;
   const out=[], sells=new Map(), qty=n=>`${shares(n)} ${n===1?"acción":"acciones"}`;
-  d.tx.forEach(r=>{ if(r.bd instanceof Date) out.push({d:r.bd,ty:"Compra",ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,note:r.note,det:detOp(r.shares,r.ticker,r.bp,r.cur,qty),amt:seur(-r.bt,2),v:r.bt});
-    if(r.sd instanceof Date){ const k=[r.ticker,+r.sd,r.sp,r.broker].join("|"), o=sells.get(k)||{d:r.sd,ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,cur:r.cur,sp:r.sp,n:0,st:0,pnl:0};
-      o.n+=r.shares||0; o.st+=+r.st||0; o.pnl+=+r.pnl||0; sells.set(k,o); } });
-  sells.forEach(o=>out.push({d:o.d,ty:"Venta",ticker:o.ticker,name:o.name,broker:o.broker,det:detOp(o.n,o.ticker,o.sp,o.cur,qty),amt:seur(o.st,2),v:o.st,pnl:o.pnl}));
+  d.tx.forEach(r=>{ if(r.bd instanceof Date) out.push({d:r.bd,ty:"Compra",ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,note:r.note,det:detOp(r.shares,r.ticker,r.bp,r.cur,qty),amt:seur(-r.bt,2),v:r.bt,src:r});
+    if(r.sd instanceof Date){ const k=[r.ticker,+r.sd,r.sp,r.broker].join("|"), o=sells.get(k)||{d:r.sd,ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,cur:r.cur,sp:r.sp,n:0,st:0,pnl:0,lots:[]};
+      o.n+=r.shares||0; o.st+=+r.st||0; o.pnl+=+r.pnl||0; o.lots.push(r); sells.set(k,o); } });
+  sells.forEach(o=>out.push({d:o.d,ty:"Venta",ticker:o.ticker,name:o.name,broker:o.broker,det:detOp(o.n,o.ticker,o.sp,o.cur,qty),amt:seur(o.st,2),v:o.st,pnl:o.pnl,lots:o.lots}));
   d.dv.filter(d.isPaid).forEach(r=>{ const a=`${shares(r.shares)} ${r.shares===1?"acción":"acciones"} · ${dpsF(r.dps,r.cur)}`;
-    out.push({d:r.d,ty:r.type||"Dividendo",dv:1,ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,det:a+" por acción",detH:esc(a)+'<span class="pa"> por acción</span>',ds:a,amt:seur(r.gross,2),v:r.gross}); });
-  d.ap.forEach(r=>out.push({d:r.d,ty:r.type||(r.amt<0?"Retirada":"Aportación"),g:r.amt<0?"out":"in",broker:r.broker,note:r.note,det:r.note||"",amt:seur(r.amt,2),v:r.amt}));
-  d.aj.forEach(r=>out.push({d:r.d,ty:"Ajuste",g:"adj",broker:r.broker,note:r.note,det:r.note||"",amt:`<span class="${cls(r.amt)}">${seur(r.amt,2)}</span>`,v:r.amt}));
+    out.push({d:r.d,ty:r.type||"Dividendo",dv:1,ticker:r.ticker,name:cname(r.ticker,r.name),broker:r.broker,det:a+" por acción",detH:esc(a)+'<span class="pa"> por acción</span>',ds:a,amt:seur(r.gross,2),v:r.gross,src:r}); });
+  d.ap.forEach(r=>out.push({d:r.d,ty:r.type||(r.amt<0?"Retirada":"Aportación"),g:r.amt<0?"out":"in",broker:r.broker,note:r.note,det:r.note||"",amt:seur(r.amt,2),v:r.amt,src:r}));
+  d.aj.forEach(r=>out.push({d:r.d,ty:"Ajuste",g:"adj",broker:r.broker,note:r.note,det:r.note||"",amt:`<span class="${cls(r.amt)}">${seur(r.amt,2)}</span>`,v:r.amt,src:r}));
   const nb=x=>typeof x==="string"?x.replace(/(\d) (?=[€$£¥]|Fr\b|C\$|kr\b)/g,"$1\u00a0"):x;
   out.forEach(r=>{ r.det=nb(r.det); r.ds=nb(r.ds); r.detH=nb(r.detH); });
   const rk=r=>r.ty==="Compra"?0:r.ty==="Venta"?1:r.dv?2:r.g==="out"?3:r.g==="in"?4:5;   // mismo día: el dividendo, luego la retirada y al final la aportación (que es mandarlo a otro bróker)
@@ -4589,16 +4638,20 @@ function renderMov(refill){
   // en «Todo», por fecha: cada mes con su cabecera y cuántos movimientos tiene
   const mk=r=>{ const t=day(r.d); return t.getFullYear()*12+t.getMonth(); }, byM=mtab==="todo"&&sk==="d", cnt=new Map(); let mo=null; movMes=byM;   // TXT-02
   if(byM) rs.forEach(r=>cnt.set(mk(r),(cnt.get(mk(r))||0)+1));
+  // v469 · lo que entra y lo que sale cada mes (compras y retiradas salen; ventas, dividendos y aportaciones entran; los ajustes, según su signo)
+  const flu=new Map(); if(byM) rs.forEach(r=>{ const f=r.ty==="Compra"?-(r.v||0):r.ty==="Venta"||r.dv?(r.v||0):(r.v||0), o=flu.get(mk(r))||[0,0]; f>0?o[0]+=f:o[1]+=f; flu.set(mk(r),o); });
   // la cabecera del mes ocupa solo las columnas que se ven (si no, la tabla gana una columna vacía al estrechar la pantalla)
   const span=byM||fromToday?[...$("m-head").querySelectorAll("th")].filter(t=>getComputedStyle(t).display!=="none").length||c.cols.length:0;
    let st=null;
   const mHead=r=>{ if(fromToday){ const k=DATA.isPaid(r)?"p":"u"; if(k===st) return ""; st=k; return ""; }
-    if(!byM||mk(r)===mo) return ""; mo=mk(r); const t=day(r.d), n=cnt.get(mo); return `<tr class="grp-row"><td colspan="${span}"><div class="gh"><span class="gm">${MESL[t.getMonth()]} ${t.getFullYear()}</span><span class="gn">${nf(0).format(n)} ${n===1?"movimiento":"movimientos"}</span></div></td></tr>`; };
-  $("m-body").innerHTML = rs.length ? rs.slice(0,mshow).map(r=>mHead(r)+`<tr${c.rc?` class="${c.rc(r)}"`:""}>`+c.cols.map(x=>cell(x,r)).join("")+line(r)+"</tr>").join("")
+    if(!byM||mk(r)===mo) return ""; mo=mk(r); const t=day(r.d), n=cnt.get(mo); const [fi,fo]=flu.get(mo)||[0,0], z=v=>Math.abs(v)<0.5?"0\u202F€":seur(v); return `<tr class="grp-row" data-mk="${mo}"><td colspan="${span}"><div class="gh"><span class="gm">${MESL[t.getMonth()]} ${t.getFullYear()}</span><span class="gn">${nf(0).format(n)} ${n===1?"movimiento":"movimientos"}<span class="gx"> · <span class="${fi>=0.5?"pos":"o"}">${z(fi)}</span> · <span class="o">${z(fo)}</span></span></span></div></td></tr>`; };
+  mvVis=rs.slice(0,mshow).map(r=>({k:mvKind(r),r})); mvRs=rs; mvByM=byM;
+  $("m-body").innerHTML = rs.length ? rs.slice(0,mshow).map((r,i)=>mHead(r)+`<tr${c.rc?` class="${c.rc(r)}"`:""} data-mi="${i}" tabindex="0">`+c.cols.map(x=>cell(x,r)).join("")+line(r)+"</tr>").join("")
     : `<tr><td colspan="${c.cols.length}" class="empty">Nada coincide con los filtros</td></tr>`;
   const left=rs.length-mshow; $("m-more").hidden=left<=0; if(left>0) $("m-more").textContent=left>MSTEP?`Ver ${MSTEP} más · quedan ${nf(0).format(left)}`:`Ver ${left} más`;
   { const df=c.states?c.states[0][0]:"", [s0,d0]=c.sort, f=[$("m-year").value,$("m-broker").value,c.states&&$("m-state").value!==df,sk!==s0||sd!==d0]; ftCount("m",f);
     $("m-rst").disabled=!$("m-q").value.trim()&&!f.some(Boolean); }
+  mvGraf(mtab==="todo"?movRows():null,+$("m-year").value||0); markRows();
 }
 $("m-head").addEventListener("click",e=>{ const th=e.target.closest("th"); if(!th) return; const [k,d]=msort[mtab]||MOV[mtab].sort;
   msort[mtab]=[th.dataset.k, k===th.dataset.k?-d:(/^(name|broker|type|note)$/.test(th.dataset.k)?1:-1)]; renderMov(false); });
@@ -4613,6 +4666,95 @@ $("m-sort").addEventListener("input",e=>{ const k=e.target.value; msort[mtab]=[k
 // buscador: texto corto en móvil para que no se corte
 { const mq=matchMedia("(max-width:600.98px)"), ph=()=>{ $("m-q").placeholder=mq.matches?"Buscar":"Buscar empresa, ticker o comentario"; }; mq.addEventListener?.("change",ph); ph(); }
 
+
+/* v469 · Movimientos en el PC: el gráfico de entradas y salidas, ir a un mes y el detalle de cada movimiento */
+let mvVis=[], mvRs=[], mvByM=false, mvSnap=[], mvgArgs=null, mvgW=0;
+const mvKind=r=>mtab==="transacciones"?"lot":mtab==="dividendos"?"dv":mtab==="aportaciones"?"ap":mtab==="ajustes"?"aj":r.ty==="Compra"?"buy":r.ty==="Venta"?"sell":r.dv?"dv":r.g==="adj"?"aj":"ap";
+const MVG=[["ap","Aportado"],["ve","Vendido"],["dv","Dividendos"],["co","Comprado"],["re","Retirado"]];
+const mvLab=v=>v>=1000?`${nf(v%1000?1:0).format(v/1000)} mil`:`${nf(0).format(v)} €`;
+function mvGraf(rows,y){ const G=$("mv-g"); if(!G) return; mvgArgs=[rows,y];
+  if(!rows||!DATA||matchMedia("(max-width:700.98px)").matches){ G.hidden=true; G.innerHTML=""; return; }
+  const now=day(new Date()), cm=now.getFullYear()*12+now.getMonth(), m0=y?y*12:cm-11, M=Array.from({length:12},(_,i)=>({k:m0+i,ap:0,ve:0,dv:0,co:0,re:0}));
+  rows.forEach(r=>{ const t=day(r.d), i=t.getFullYear()*12+t.getMonth()-m0; if(i<0||i>11) return; const o=M[i], v=r.v||0;
+    if(r.ty==="Compra") o.co+=v; else if(r.ty==="Venta") o.ve+=v; else if(r.dv) o.dv+=v; else if(r.g==="in") o.ap+=v; else if(r.g==="out") o.re-=v; });
+  M.forEach(o=>{ o.up=o.ap+o.ve+o.dv; o.dn=o.co+o.re; });
+  const vals=M.map(o=>Math.max(o.up,o.dn)).filter(v=>v>0.5).sort((a,b)=>b-a);
+  if(!vals.length){ G.hidden=true; G.innerHTML=""; return; }
+  G.hidden=false; G.classList.toggle("go",mvByM);
+  const top=vals[0], sec=vals[1]||top, cap0=top>2.2*sec?sec*1.15:top, nice=x=>{ const p=10**Math.floor(Math.log10(x)), f=x/p; return (f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10)*p; },
+    step=nice(cap0/2), cap=step*2, W=Math.max(320,Math.round(G.clientWidth)), PT=24, HALF=80, H=PT+HALF*2+18+22, y0=PT+HALF, k=HALF/cap, L=52, bw=(W-L)/12, w=Math.min(56,bw*.44);
+  mvgW=G.clientWidth;
+  let g=""; [2,1,-1,-2].forEach(s=>{ const yy=y0-s*step*k; g+=`<line class="rj" x1="${L}" x2="${W}" y1="${yy}" y2="${yy}"/><text x="${L-8}" y="${yy+4}" text-anchor="end">${mvLab(step*Math.abs(s))}</text>`; });
+  g+=`<line class="r0" x1="${L}" x2="${W}" y1="${y0}" y2="${y0}"/><text x="${L-8}" y="${y0+4}" text-anchor="end">0</text>`;
+  const f1=v=>nf(1).format(v/1000);
+  M.forEach((o,i)=>{ const x=L+i*bw+(bw-w)/2; let yy=y0, used=0;
+    ["ap","ve","dv"].forEach(s=>{ const hh=Math.min(o[s],cap-used)*k; if(hh>0.2){ yy-=hh; used+=o[s]; g+=`<rect class="g-${s}" x="${x}" y="${yy}" width="${w}" height="${hh}"/>`; } });
+    if(o.up>cap){ g+=`<rect class="g-cut" x="${x-2}" y="${yy+10}" width="${w+4}" height="3"/><text class="out" x="${x+w/2}" y="${yy-7}" text-anchor="middle">entra ${f1(o.up)} mil</text>`; }
+    yy=y0; used=0; ["co","re"].forEach(s=>{ const hh=Math.min(o[s],cap-used)*k; if(hh>0.2){ g+=`<rect class="g-${s}" x="${x}" y="${yy}" width="${w}" height="${hh}"/>`; yy+=hh; used+=o[s]; } });
+    if(o.dn>cap){ g+=`<rect class="g-cut" x="${x-2}" y="${yy-13}" width="${w+4}" height="3"/><text class="out" x="${x+w/2}" y="${yy+15}" text-anchor="middle">sale ${f1(o.dn)} mil</text>`; }
+    g+=`<text class="mx${o.k===cm?" hoy":""}" x="${x+w/2}" y="${H-6}" text-anchor="middle">${MESL[o.k%12].slice(0,3).toLowerCase()}</text>`;
+    g+=`<rect class="g-hit" data-i="${i}" x="${L+i*bw}" y="0" width="${bw}" height="${H}"/>`; });
+  const sw=s=>`<i style="background:var(--g-${s})"></i>`;
+  G.innerHTML=`<div class="mv-gh"><h3>Entradas y salidas · ${y?y:"últimos 12 meses"}</h3><div class="mv-gl">${MVG.map(([s,l])=>`<span>${sw(s)}${l}</span>`).join("")}</div></div><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Entradas y salidas de cada mes">${g}</svg><div class="mv-tip" hidden></div>`;
+  G._M=M; }
+{ const G=$("mv-g"), tip=()=>G.querySelector(".mv-tip");
+  G.addEventListener("mousemove",e=>{ const h=e.target.closest(".g-hit"), T=tip(); if(!T) return; if(!h||!G._M){ T.hidden=true; return; }
+    const o=G._M[+h.dataset.i], ls=MVG.filter(([s])=>o[s]>0.5), net=o.up-o.dn;
+    T.innerHTML=`<b>${MESL[o.k%12]} ${Math.floor(o.k/12)}</b>`+(ls.length?ls.map(([s,l])=>`<p><span><i style="background:var(--g-${s})"></i>${l}</span><span>${eur(o[s])}</span></p>`).join("")+`<p class="nt"><span>Neto</span><span>${Math.abs(net)<0.5?"0 €":seur(net)}</span></p>`:`<p><span>Sin movimientos</span><span></span></p>`);
+    T.hidden=false; const R=G.getBoundingClientRect(), hr=h.getBoundingClientRect(), tw=T.offsetWidth; let x=hr.left-R.left+hr.width/2-tw/2; x=Math.max(0,Math.min(x,R.width-tw)); T.style.left=x+"px"; T.style.top=(hr.top-R.top+34)+"px"; });
+  G.addEventListener("mouseleave",()=>{ const T=tip(); if(T) T.hidden=true; });
+  // pulsar un mes: la lista baja hasta él (y enseña más filas si hace falta)
+  G.addEventListener("click",e=>{ const h=e.target.closest(".g-hit"); if(!h||!G._M||!mvByM) return; const k=G._M[+h.dataset.i].k, mk=r=>{ const t=day(r.d); return t.getFullYear()*12+t.getMonth(); }, i=mvRs.findIndex(r=>mk(r)===k); if(i<0) return;
+    const need=Math.min(mvRs.length,Math.ceil((i+MSTEP)/MSTEP)*MSTEP); if(need>mshow){ mshow=need; renderMov(false); }   // con filas de sobra debajo, para que el mes quede arriba
+    const tr=document.querySelector(`#m-body tr.grp-row[data-mk="${k}"]`); if(!tr) return; const tb=document.querySelector(".top").getBoundingClientRect().bottom, th=$("m-head").getBoundingClientRect().height;
+    scrollTo({top:Math.max(0,tr.getBoundingClientRect().top+scrollY+25-(tb+th+10)),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); });
+  if(window.ResizeObserver) new ResizeObserver(()=>{ if(mvgArgs&&!G.hidden&&Math.abs(G.clientWidth-mvgW)>1) mvGraf(...mvgArgs); }).observe(G); }
+// el detalle de un movimiento, en el panel lateral (como la ficha): qué fue, su desglose y cómo está hoy esa empresa
+const mvFL=d=>fdate(d,{day:"numeric",month:"long",year:"numeric"});
+const mvR=(k,v,c="")=>`<div class="mvd-r${c?" "+c:""}"><span>${k}</span><span>${v}</span></div>`;
+const mvSec=(t,body)=>`<section class="fp-c fp-c1"><div class="fp-ch"><h4>${t}</h4></div>${body}</section>`;
+const mvQty=n=>`${shares(n)} ${n===1?"acción":"acciones"}`;
+const mvTiempo=(a,b)=>{ const d=Math.round((day(b)-day(a))/DIA_MS); if(d<45) return `${d} ${d===1?"día":"días"}`; const m=Math.round(d/30.44); if(m<24) return `${m} meses`; return `${nf(1).format(d/365.25)} años`; };
+function mvHoy(tk,name){ const p=DATA.pos.find(x=>x.ticker===tk), cmp=DATA.tx.filter(x=>x.ticker===tk), vs=new Set(cmp.filter(x=>x.sd).map(x=>+x.sd)).size;
+  const hoy=p?mvR("Acciones",p.isOption?`${nf(0).format(contratos(p.shares,tk)||p.shares)} ${contratos(p.shares,tk)===1?"contrato":"contratos"}`:shares(p.shares))+mvR("Precio medio",money(p.avg,p.cur))+mvR("Peso en la cartera",pct(p.weight,1)):`<p class="mvd-n">Ya no está en tu cartera.</p>`;
+  const his=cmp.length?mvR(`Compras de ${esc(name)}`,nf(0).format(cmp.length))+(vs?mvR("Ventas",nf(0).format(vs)):"")+mvR("Primera compra",fechaCorta(cmp.reduce((m,x)=>!m||x.bd<m?x.bd:m,null))):"";
+  return mvSec("En tu cartera hoy",hoy+his); }
+function mvDet(o){ const r=o.r, k=o.k, s=r.src||r, tg=(c,l)=>`<span class="tag mt mt-${c}">${esc(l)}</span>`;
+  let tk=null, name="", ic=null, sub="", tag="", imp="", impC="", s2="", body="";
+  if(k==="buy"||k==="lot"){ const x=k==="lot"?r:s; tk=x.ticker; name=cname(x.ticker,x.name); tag=tg("buy","Compra"); sub=`${esc(tk)} · ${mvFL(x.bd)} · ${esc(x.broker||"")}`;
+    imp=seur(-x.bt,2); s2=detOp(x.shares,x.ticker,x.bp,x.cur,mvQty);
+    body=mvSec("Desglose",mvR(`${esc(mvQty(x.shares))} × ${money(x.bp,x.cur)}`,eur(x.bt-(x.bfee||0),2))+mvR("Comisión",eur(x.bfee||0,2))+mvR("Total",eur(x.bt,2),"t"));
+    if(x.sd) body+=mvSec("Después",mvR("Vendida",mvFL(x.sd))+mvR("Precio de venta",money(x.sp,x.cur))+mvR("Tiempo en cartera",mvTiempo(x.bd,x.sd))+mvR("Resultado",`<span class="${cls(x.pnl)}">${seur(x.pnl,2)}</span>`,"t"));
+    if(x.note) body+=mvSec("Comentario",`<p class="mvd-n">${esc(x.note)}</p>`); }
+  else if(k==="sell"){ const L=r.lots||[], sf=sum(L,x=>x.sfee||0), bt=sum(L,x=>x.bt||0), b0=L.reduce((m,x)=>!m||x.bd<m?x.bd:m,null); tk=r.ticker; name=r.name; tag=tg("sell","Venta"); sub=`${esc(tk)} · ${mvFL(r.d)} · ${esc(r.broker||"")}`;
+    imp=seur(r.v,2); s2=r.det;
+    body=mvSec("Desglose",mvR(`${esc(mvQty(sum(L,x=>x.shares||0)))} × ${money(L[0]&&L[0].sp,L[0]&&L[0].cur)}`,eur(r.v+sf,2))+mvR("Comisión",eur(sf,2))+mvR("Recibido",eur(r.v,2),"t"))
+      +mvSec("Resultado",mvR(L.length>1?`Coste de las ${L.length} compras`:"Coste de la compra",eur(bt,2))+(b0?mvR(L.length>1?"Primera compra":"Comprada",fechaCorta(b0))+mvR("Tiempo en cartera",mvTiempo(b0,r.d)):"")+mvR("Rentabilidad",bt?`<span class="${cls(r.pnl)}">${pct(r.pnl/bt,1,true)}</span>`:"")+mvR("Resultado",`<span class="${cls(r.pnl)}">${seur(r.pnl,2)}</span>`,"t")); }
+  else if(k==="dv"){ tk=s.ticker; name=cname(s.ticker,s.name); const pd=DATA.isPaid(s), all=DATA.dv.filter(x=>x.ticker===tk&&DATA.isPaid(x)), y=yr(s.d), ret=(s.gross||0)-(s.net||0);
+    tag=tg("div",s.type||"Dividendo")+(pd?"":` <span class="tag">Previsto</span>`); sub=`${esc(tk)} · ${mvFL(s.d)} · ${esc(s.broker||"")}`; imp=seur(s.gross,2); s2=`${esc(mvQty(s.shares))} · ${dpsF(s.dps,s.cur)} por acción`;
+    body=mvSec("Desglose",mvR(`${esc(mvQty(s.shares))} × ${dpsF(s.dps,s.cur)}`,eur(s.gross,2))+(ret>0.005?mvR("Retención",`−${eur(ret,2)}`):"")+mvR("En el bróker",eur(s.net,2),"t"))
+      +mvSec(`Dividendos de ${esc(name)}`,mvR(`Cobrado en ${y}`,eur(sum(all.filter(x=>yr(x.d)===y),x=>x.gross||0),2))+mvR("Cobrado en total",eur(sum(all,x=>x.gross||0),2))+mvR("Cobros",nf(0).format(all.length))); }
+  else if(k==="ap"){ apAcc(); const out=s.amt<0, y=yr(s.d); ic=iconosMov[out?"out":"in"]; name=s.type||(out?"Retirada":"Aportación"); sub=`${esc(s.broker||"")} · ${mvFL(s.d)}`; imp=seur(s.amt,2);
+    body=mvSec("Detalle",mvR("Bróker",esc(s.broker||""))+(s.note?mvR("Comentario",esc(s.note),"w"):"")+mvR(`Neto aportado en ${y}`,eur(sum(DATA.ap.filter(x=>yr(x.d)===y),x=>x.amt||0),2))+(isNum(s.acc)?mvR("Aportado hasta aquí",eur(s.acc,2),"t"):"")); }
+  else { ic=iconosMov.adj; name="Ajuste"; sub=`${esc(s.broker||"")} · ${mvFL(s.d)}`; imp=seur(s.amt,2); impC=cls(s.amt);
+    body=mvSec("Detalle",mvR("Bróker",esc(s.broker||""))+(s.note?mvR("Comentario",esc(s.note),"w"):"")); }
+  const logo=tk?logoBare(name,tk,"xl"):`<span class="lgb mvg xl" aria-hidden="true"><svg viewBox="0 0 22 22">${ic}</svg></span>`;
+  const enC=tk&&(DATA.pos.some(x=>x.ticker===tk)||DATA.pre.some(x=>x.ticker===tk));
+  if(tk) body+=mvHoy(tk,name);
+  const go=enC?`<button type="button" class="fh-go fp-go" data-mvficha="${esc(tk)}">Ver la ficha de ${esc(name)}<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5L8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`:"";
+  return {tk,name,html:`<div class="ficha fpx mvd"><div class="fp-h"><div class="fp-id">${logo}<div class="fp-t"><h3>${esc(name)}</h3><div class="sub"><span>${sub}</span></div>${tag?`<div class="mvd-tg">${tag}</div>`:""}</div></div></div><div class="mvd-imp${impC?" "+impC:""}">${imp}</div>${s2?`<div class="mvd-s">${s2}</div>`:""}${body}${go}</div>`}; }
+function renderMovDet(){ const el=$("sheet"), i=+String(sheet.t).slice(5), o=mvSnap[i];
+  if(!o){ sheet=null; el.hidden=true; document.documentElement.classList.remove("sh-open"); markRows(); return; }
+  const d=mvDet(o); el.classList.remove("sh-cq"); el.classList.add("sh-mv"); $("sheet-b").innerHTML=d.html;
+  $("sh-tt").innerHTML=(d.tk?logoBare(d.name,d.tk):"")+`<b>${esc(d.name)}</b>`; el.setAttribute("aria-label",d.name);
+  $("sh-prev").disabled=i<=0; $("sh-next").disabled=i>=mvSnap.length-1; el.hidden=false; document.documentElement.classList.add("sh-open"); markRows();
+  const tr=[...document.querySelectorAll("#m-body tr[data-mi]")].find(x=>mvVis[+x.dataset.mi]&&mvVis[+x.dataset.mi].r===o.r); if(tr) tr.scrollIntoView({block:"nearest"}); }
+{ const abre=tr=>{ if(matchMedia("(max-width:700.98px)").matches) return; const i=+tr.dataset.mi, o=mvVis[i]; if(!o) return;
+    if(sheet&&String(sheet.t).startsWith("__mv:")&&mvSnap[+String(sheet.t).slice(5)]===o) return closeSheet();
+    mvSnap=mvVis.slice(); openSheet("mv","__mv:"+i,mvSnap.map((_,j)=>"__mv:"+j)); };
+  $("m-body").addEventListener("click",e=>{ if(e.target.closest("a,button,input,select,summary")) return; const tr=e.target.closest("tr[data-mi]"); if(tr) abre(tr); });
+  $("m-body").addEventListener("keydown",e=>{ if(e.key!=="Enter"&&e.key!==" ") return; const tr=e.target.closest("tr[data-mi]"); if(!tr||e.target!==tr) return; e.preventDefault(); abre(tr); });
+  $("sheet-b").addEventListener("click",e=>{ const b=e.target.closest("[data-mvficha]"); if(!b) return; const t=b.dataset.mvficha; openSheet(DATA.pos.some(x=>x.ticker===t)?"pos":"pre",t,[t]); }); }
 /* ---------- universo ---------- */
 // «Por revisar» (v367): la empresa ha presentado resultados después de la fecha de tu valoración (fechas del calendario del agente).
 // Si de una empresa no hay fecha de resultados, como antes: valoración de hace más de un año
@@ -5045,7 +5187,8 @@ const ftCount=(id,l)=>{ const n=l.filter(Boolean).length; $(id+"-ftn").textConte
 /* ---------- ficha en panel lateral ---------- */
 // una empresa por ficha, con pestañas: Posición, Valoración y Movimientos (las que tenga); ‹ › pasa a la anterior o la siguiente de la lista de la que vienes
 let sheet=null;   // {t, tab, list}
-function markRows(){ document.querySelectorAll("#pos-body tr.pr,#p-body tr.pr").forEach(tr=>{ const o=!!sheet&&sheet.t===tr.dataset.t; tr.classList.toggle("open",o); }); }
+function markRows(){ document.querySelectorAll("#pos-body tr.pr,#p-body tr.pr").forEach(tr=>{ const o=!!sheet&&sheet.t===tr.dataset.t; tr.classList.toggle("open",o); });
+  const mo=sheet&&String(sheet.t).startsWith("__mv:")?mvSnap[+String(sheet.t).slice(5)]:null; document.querySelectorAll("#m-body tr[data-mi]").forEach(tr=>{ const v=mvVis[+tr.dataset.mi]; tr.classList.toggle("open",!!mo&&!!v&&v.r===mo.r); }); }
 // movimientos de la empresa, dentro de la ficha
 function fichaMov(t){
   const tx=DATA.tx.filter(r=>r.ticker===t).sort((a,b)=>(a.bd||0)-(b.bd||0)), dv=DATA.dv.filter(r=>r.ticker===t).sort((a,b)=>(a.d||0)-(b.d||0));   // de más antiguo a más reciente
@@ -5070,7 +5213,7 @@ function renderCuadre(){ const el=$("sheet"), tg=$("chk-tag");
   $("sheet-b").innerHTML=`<div class="cq"><div class="cq-h"><h3>Cuadre con tu hoja</h3><span class="${esc(tg.className)}">${esc(tg.textContent)}</span></div><div class="cq-b">${$("chk").innerHTML}</div></div>`;
   $("sh-tt").innerHTML="<b>Cuadre con tu hoja</b>"; el.setAttribute("aria-label","Cuadre con tu hoja"); $("sh-prev").disabled=$("sh-next").disabled=true;
   el.classList.add("sh-cq"); el.hidden=false; document.documentElement.classList.add("sh-open"); markRows(); }
-function renderSheet0(){ if(sheet&&sheet.t==="__cq"&&DATA) return renderCuadre(); $("sheet").classList.remove("sh-cq"); const el=$("sheet"), t=sheet&&DATA?sheet.t:null, p=t&&DATA.pos.find(x=>x.ticker===t), r=t&&DATA.pre.find(x=>x.ticker===t);
+function renderSheet0(){ if(sheet&&sheet.t==="__cq"&&DATA) return renderCuadre(); if(sheet&&String(sheet.t).startsWith("__mv:")&&DATA) return renderMovDet(); $("sheet").classList.remove("sh-cq","sh-mv"); const el=$("sheet"), t=sheet&&DATA?sheet.t:null, p=t&&DATA.pos.find(x=>x.ticker===t), r=t&&DATA.pre.find(x=>x.ticker===t);
   if(!p&&!r) sheet=null;
   else {
     const hasM=DATA.tx.some(x=>x.ticker===t)||DATA.dv.some(x=>x.ticker===t), tabs=[p&&["pos","Posición"],hasM&&["mov","Movimientos"],r&&["mkt","Cotización"],r&&["pre","Valoración"]].filter(Boolean);
