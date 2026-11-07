@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Zuo0fjh2CJWpqqT/pTi/sOqyISuzC5KL0qKDX4EnQww=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-qBCgrzaktzSShdwKgSiFQ7vsdCzC3IMZkGZ+ry6mg3c=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3131,6 +3131,14 @@ html body .marca,html body .top .status .marca{font-family:'Newsreader',Georgia,
   .top .nav{justify-self:start;gap:24px}
 }
 @media (min-width:761px) and (max-width:999.98px){.top>.status{display:none}}   /* sin logo a este ancho: que el menú empiece en el borde */
+
+/* v463 · X para cerrar el aviso (igual que la del aviso de «Tu hoja») */
+#notice .notice{position:relative}
+#notice .notice:has(.nt-x){padding-right:64px}
+#notice .nt-x{position:absolute;top:12px;right:16px;width:36px;height:36px;display:grid;place-items:center;border:0;border-radius:var(--r-8);background:none;color:var(--nt-fg3);cursor:pointer}
+#notice .nt-x:hover{color:var(--nt-fg);background:color-mix(in srgb,var(--nt-fg) 7%,transparent)}
+#notice .nt-x svg{width:16px;height:16px}
+@media (max-width:700.98px){#notice .notice:has(.nt-x){padding-right:48px}#notice .nt-x{top:8px;right:8px}}
 </style>
 
 <div class="wrap">
@@ -3818,7 +3826,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v462";   // la versión publicada, en el pie
+const VER="v463";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5763,6 +5771,7 @@ function setStatus(kind,text){ $("dot").className="dot "+kind; $("stat").setAttr
 const enMovil=()=>{ const r=$("refresh"); return !r||!r.getClientRects().length; }, actz=may=>{ const t=enMovil()?"desliza hacia abajo":"pulsa Actualizar"; return may?t[0].toUpperCase()+t.slice(1):t; };
 function notice(html,k){ const n=$("notice"); n.innerHTML = html ? `<div class="notice"><div class="nt-tx"><span class="nt-k">${k||"Aviso"}</span>${html}</div></div>` : ""; n.hidden=!html;
   if(html){ const tx=n.querySelector(".nt-tx"), ac=[...tx.children].filter(e=>e.matches(".keyf,.btn,.nt-alt")); if(ac.length){ const a=document.createElement("div"); a.className="nt-ac"; a.append(...ac); tx.after(a); } }
+  if(html&&DATA){ const b=document.createElement("button"); b.type="button"; b.className="nt-x"; b.setAttribute("aria-label","Cerrar el aviso"); b.innerHTML='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>'; b.onclick=()=>notice(""); n.querySelector(".notice").append(b); }   // v463: con datos a la vista, el aviso se puede cerrar
   document.body.classList.toggle("nodata",!!html&&!DATA); }   // sin datos que esperar, los huecos de carga dejan de parpadear
 const fileBtn = `<label class="btn filelbl">Abrir un archivo .xlsx<input type="file" id="file" accept=".xlsx"></label>`;
 const fileAlt = `<p class="nt-alt">¿Sin la clave a mano? <label class="filelbl" title="En tu hoja: Archivo → Descargar → Microsoft Excel">Abre una copia de tu hoja<input type="file" id="file" accept=".xlsx"></label> descargada en Excel</p>`;
