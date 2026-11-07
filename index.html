@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-s0C0DOYRQ30NT0VB8g+rbj6ejPNbIAC6mFnIkP3jatA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Zuo0fjh2CJWpqqT/pTi/sOqyISuzC5KL0qKDX4EnQww=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3115,11 +3115,11 @@ html body .marca,html body .top .status .marca{font-family:'Newsreader',Georgia,
 @media (prefers-reduced-motion:reduce){ .view.v-in{animation:none} }
 
 
-/* v461 · Cabecera del PC: barra de 56 px; logo, pestañas e iconos en el mismo eje; la hora a la derecha */
+/* v461 · Cabecera del PC (v462: vuelve a 65 px de alto); logo, pestañas e iconos en el mismo eje; la hora a la derecha */
 @media (min-width:761px){
-  .top{padding-block:10px 10px}
-  .top .nav{min-height:56px;margin-block:-10px -10px}
-  .top .nav a{font-size:14px;padding:7px 0 9px}   /* la Inter queda ópticamente 1 px baja: así coincide con el logo y los iconos */
+  .top{padding-block:14px 14px}
+  .top .nav{min-height:65px;margin-block:-14px -14px}
+  .top .nav a{font-size:14px}
   html body .top .status .marca{font-size:21px}
   .top .tools .status.hora{display:flex;align-items:center;gap:7px;height:20px;margin-right:10px;padding-right:12px;border-right:1px solid var(--line);font-size:var(--fs-12);color:var(--ink3);white-space:nowrap;font-variant-numeric:tabular-nums}
   .top .tools .status.hora #stat{white-space:nowrap}
@@ -3818,7 +3818,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v461";   // la versión publicada, en el pie
+const VER="v462";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
