@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-6nfK2uAYhdj/j2jKGg5hJyDzRqN6bH/qRytzyPu1vNY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-94N4iwnPjVRNERYdCyGZXNtGQcIpOUAHKV80KZLs5vQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3114,11 +3114,6 @@ html body .marca,html body .top .status .marca{font-family:'Newsreader',Georgia,
 @keyframes v-in{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){ .view.v-in{animation:none} }
 
-/* v455 · DV-01: Divisas, barra apilada en lugar del dónut */
-#b-div{display:block}
-#b-div .dvb{display:flex;gap:2px;height:12px;margin:4px 0 18px}
-#b-div .dvb>span{border-radius:2px;min-width:3px}
-#b-div .rg-l{width:100%;margin:0}
 </style>
 
 <div class="wrap">
@@ -3803,7 +3798,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v455";   // la versión publicada, en el pie
+const VER="v456";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4240,9 +4235,11 @@ function renderHoy(){
 
 /* ---------- reparto: industrias, países, divisas y concentración ---------- */
 // anillo para pocas categorías (divisas)
-// v455 · DV-01: divisas en una barra apilada (los mismos grises de antes, de más a menos) y la lista debajo
-function ring(el,items){ const L=items.filter(x=>x.val>0).sort((a,b)=>b.val-a.val), op=["62%","46%","32%","22%","14%"].map(p=>`color-mix(in srgb,var(--ink-soft) ${p},var(--panel))`), cw=n=>n==="EUR"?"Euro":CURN[n]?CURN[n][0].toUpperCase()+CURN[n].slice(1):n;
-  el.innerHTML=`<div class="dvb" role="img" aria-label="${esc(L.map(x=>cw(x.name)+" "+pct(x.val,1)).join(", "))}">${L.map((x,i)=>`<span style="flex:${x.val} 1 0;background:${op[i]||op[4]}" title="${esc(cw(x.name))} · ${pct(x.val,1)}"></span>`).join("")}</div>`
+function ring(el,items){ const L=items.filter(x=>x.val>0).sort((a,b)=>b.val-a.val), t=sum(L,x=>x.val)||1, S=150, c=S/2, R=68, r=48, op=["62%","46%","32%","22%","14%"].map(p=>`color-mix(in srgb,var(--ink-soft) ${p},var(--panel))`), cw=n=>n==="EUR"?"Euro":CURN[n]?CURN[n][0].toUpperCase()+CURN[n].slice(1):n;
+  const pt=(a,rr)=>[c+rr*Math.sin(a),c-rr*Math.cos(a)]; let a0=0, path="";
+  L.forEach((x,i)=>{ const w=x.val/t*Math.PI*2, a1=a0+w, g=0.02, s=a0+g/2, e=a1-g/2, big=e-s>Math.PI?1:0, [x1,y1]=pt(s,R),[x2,y2]=pt(e,R),[x3,y3]=pt(e,r),[x4,y4]=pt(s,r);
+    path+=`<path d="M${x1.toFixed(1)} ${y1.toFixed(1)}A${R} ${R} 0 ${big} 1 ${x2.toFixed(1)} ${y2.toFixed(1)}L${x3.toFixed(1)} ${y3.toFixed(1)}A${r} ${r} 0 ${big} 0 ${x4.toFixed(1)} ${y4.toFixed(1)}Z" style="fill:${op[i]||op[4]}"><title>${esc(cw(x.name))} · ${pct(x.val,1)}</title></path>`; a0=a1; });
+  el.innerHTML=`<svg viewBox="0 0 ${S} ${S}" class="rg">${path}</svg>`
     +`<div class="rg-l">${L.map((x,i)=>`<div><i style="background:${op[i]||op[4]}"></i><span>${esc(cw(x.name))}</span><b class="num">${pct(x.val,1)}</b></div>`).join("")}</div>`; }
 // países: rejilla de banderas; con más de 8, los 7 mayores y «Resto» con el icono del mundo
 function paisGrid(el){ if(!el||!DATA) return; let L=DATA.pais.filter(x=>x.val>0).sort((a,b)=>b.val-a.val);
