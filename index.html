@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-DJ9rCKatbVM/MKM5eiEzI704OyBDtnpnF5qnDp20lkg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-EN8IKZXAEcHRxmf5Bf7GkD1dHYMF3Q9lPX1fT6KU7hw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3272,7 +3272,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 @media (min-width:700.99px){
   .gx3{display:block;background:var(--gx-bg);color:var(--ink);padding-block:56px 72px;margin-bottom:40px;position:relative;box-sizing:border-box}
   .gxv > :is(#s-aidx,#mtabs,#s-uni,#s-perf,#s-cal),.gxv #m-k,.gxv #mv-g,.gxv .mv-seg{display:none!important}
-  .gxv > :not(.gx3):not(.mtop){max-width:1200px;width:100%;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box}
+  /* v480: el detalle vuelve a su ancho (el de la columna de la app, 1440 px como mucho), igual que la portada */
   .gx-t{margin:0 0 40px;font-size:clamp(26px,calc(10px + 1.95vw),38px);line-height:1.21;height:2.42em;overflow:visible;font-weight:600;letter-spacing:-.028em;max-width:none;color:var(--ink)}
   .gx-t .l1,.gx-t .l2{display:block;white-space:nowrap;line-height:1.21;height:1.21em}
   .gx-t .l1 :not(.kw-m,.kw-m *),.gx-t .l2 *{line-height:inherit}   /* v479: nada dentro del titular (importes del modo privado incluidos) agranda la línea */
@@ -4058,7 +4058,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v479";   // la versión publicada, en el pie
+const VER="v480";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
