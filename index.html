@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-P7AS6qxeyG50qCIYZcEZuIMXXzZbktasulVqQJ/fKCQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-4OXkg2TF31rXnJYO8r7B9WC5Sy2rGRsaUA37hy+U4fI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3268,10 +3268,31 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 :root{--gx-bg:#FFFFFF;--gx-tile:var(--canvas);--gx-pop:#FFFFFF;--gx-out:#B9AE9B;--gx-in:#346F57}
 :root[data-theme="dark"]{--gx-bg:#1E1E1C;--gx-tile:#262624;--gx-pop:#2C2C29;--gx-out:#7D766A;--gx-in:#71B595}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gx-bg:#1E1E1C;--gx-tile:#262624;--gx-pop:#2C2C29;--gx-out:#7D766A;--gx-in:#71B595}}
-.gx3{display:none}
+.gx3,.gxag{display:none}
 @media (min-width:700.99px){
   .gx3{display:block;background:var(--gx-bg);color:var(--ink);padding-block:56px 72px;margin-bottom:40px;position:relative;box-sizing:border-box}
-  .gxv > :is(#s-aidx,#mtabs,#s-uni,#s-perf,#s-cal),.gxv #m-k,.gxv #mv-g,.gxv .mv-seg{display:none!important}
+  .gxv > :is(#s-aidx,#mtabs,#s-uni,#s-perf,#s-cal,#s-calm),.gxv #m-k,.gxv #mv-g,.gxv .mv-seg{display:none!important}
+  /* v482 · la agenda del Calendario */
+  .gxag{display:block}
+  .gxag-h{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin:0 0 20px}
+  .gxag-h span{font-size:13px;color:var(--ink3)}
+  .gxag-nada{margin:0;color:var(--ink3);font-size:14px}
+  .gxag-s{display:grid;grid-template-columns:220px 1fr;gap:0 32px;padding:18px 0;border-top:1px solid var(--line)}
+  .gxag-h+.gxag-s{border-top:0;padding-top:4px}
+  .gxag-st{font-size:15px;font-weight:600;color:var(--ink);line-height:22px}
+  .gxag-st em{display:block;font-style:normal;font-weight:400;font-size:13px;color:var(--ink3)}
+  .gxag-ds{display:flex;flex-direction:column;gap:10px}
+  .gxag-d{display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:start}
+  .gxag-dn{font-size:13px;line-height:28px;color:var(--ink3);font-variant-numeric:tabular-nums}
+  .gxag-dn b{color:var(--ink);font-weight:600}
+  .gxag-ev{display:flex;flex-wrap:wrap;gap:8px}
+  .gxag-c{display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 10px 0 8px;border:0;border-radius:6px;background:var(--card);font:inherit;font-size:13px;color:var(--ink);white-space:nowrap;cursor:pointer}
+  .gxag-c:hover{filter:brightness(.97)}
+  .gxag-c.fuera{color:var(--ink3);background:transparent;box-shadow:inset 0 0 0 1px var(--line)}
+  .gxag-c.fuera .gxl img{opacity:.45}
+  .gxag-c em{font-style:normal;color:var(--ink3);font-size:12px}
+  .gxag-c.div{background:color-mix(in srgb,var(--accent) 12%,var(--card))}
+  .gxag-c.div b{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}
   /* v480: el detalle vuelve a su ancho (el de la columna de la app, 1440 px como mucho), igual que la portada */
   .gx-t{margin:0 0 40px;font-size:clamp(26px,calc(10px + 1.95vw),38px);line-height:1.21;height:2.42em;overflow:visible;font-weight:600;letter-spacing:-.028em;max-width:none;color:var(--ink)}
   .gx-t .l1,.gx-t .l2{display:block;white-space:nowrap;line-height:1.21;height:1.21em}
@@ -4071,7 +4092,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v481";   // la versión publicada, en el pie
+const VER="v482";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6153,7 +6174,7 @@ function gxCal(){ const s=gxSec("v-calendario"), hoy=new Date(); hoy.setHours(12
       html+=n?`<button type="button" class="${cls}" data-t="${esc(e[0].t)}" title="${esc(e.map(x=>nm[x.t]||x.t).join(" · "))}"><span class="n">${d}</span><span class="lr">${ve.map(x=>gxLogo(x.t,lw,lh,{cls:r.length?"inv":""})).join("")}</span><span class="lb">${lab}</span></button>`:`<div class="${cls}"><span class="n">${d}</span></div>`; }
     for(let i=off+dim;i<42;i++) html+=`<div class="gx-d vac"></div>`;   // v479: seis semanas siempre, para que no cambie de alto de un mes a otro
     html+=`</div></div>`; }
-  s.querySelector(".gx-cal").innerHTML=html; gxPega(s); }
+  s.querySelector(".gx-cal").innerHTML=html; gxPega(s); gxAgenda(); }
 
 // ── Universo · el mosaico del día (las quince que más suben y las quince que más bajan, del tamaño de su movimiento, con los colores del mapa
 // de Resumen) y las columnas de la exigencia. La palabra del titular elige el periodo; sustituye a la lista de Rendimiento del PC
@@ -6233,6 +6254,30 @@ document.addEventListener("click",e=>{
     if(t.closest(".gx-mos")){ const l=JSON.parse(t.closest(".gx-mos").dataset.l||"[]"); openSheet(DATA.pos.some(p=>p.ticker===tk)?"pos":"pre",tk,l); }
     else openSheet("pos",tk,DATA.pos.filter(p=>!p.isOption).map(p=>p.ticker)); } });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ const m=document.querySelector(".kw-m:not([hidden])"); if(m){ m.hidden=true; const b=m.previousElementSibling; b.setAttribute("aria-expanded","false"); b.focus(); } } });
+
+// v482 · Calendario (PC): debajo de los dos meses, la agenda de las próximas 16 semanas en lugar de la cuadrícula del mes: una fila por semana y,
+// dentro, una línea por día con cada cita (resultados del Universo y cobros de tu cartera)
+const GX_DS=["dom","lun","mar","mié","jue","vie","sáb"];
+function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=document.createElement("section"); A.id="gxag"; A.className="panel gxag"; $("s-calm").after(A); }
+  const D0=d=>{ const x=new Date(d); x.setHours(12,0,0,0); return x; }, hoy=D0(new Date()), fin=new Date(hoy.getTime()+16*7*DIA_MS), lunes=d=>{ const x=D0(d); x.setDate(x.getDate()-((x.getDay()+6)%7)); return x; };
+  const pf=new Set(DATA.pos.map(p=>p.ticker)), nm={}; DATA.pre.forEach(p=>nm[p.ticker]=p.name); DATA.pos.forEach(p=>nm[p.ticker]=p.name);
+  const ev={}, add=(d,o)=>{ if(d>=hoy&&d<=fin){ (ev[+d]=ev[+d]||[]).push(o); } };
+  (ACT&&ACT.ix&&ACT.ix.empresas||[]).forEach(e=>{ const p=e.proximos||{}; if(p.fecha) add(D0(p.fecha+"T12:00:00"),{k:"r",t:e.ticker,n:e.nombre||nm[e.ticker]||e.ticker,mia:pf.has(e.ticker),per:p.periodo||"",est:p.estado==="estimada",hora:p.hora||""}); });
+  DATA.dv.filter(r=>!DATA.isPaid(r)&&r.d instanceof Date).forEach(r=>add(D0(r.d),{k:"d",t:r.ticker,n:nm[r.ticker]||r.name,v:r.gross||0,mia:true}));
+  const dias=Object.keys(ev).map(Number).sort((a,b)=>a-b), sem=new Map(); dias.forEach(k=>{ const l=+lunes(new Date(k)); (sem.get(l)||sem.set(l,[]).get(l)).push(k); });
+  const nR=dias.reduce((s,k)=>s+ev[k].filter(o=>o.k==="r").length,0), nD=dias.reduce((s,k)=>s+ev[k].filter(o=>o.k==="d").length,0);
+  const hora=h=>/^antes/i.test(h)?"antes de la apertura":/^(desp|tras)/i.test(h)?"tras el cierre":h;
+  let h=`<div class="gxag-h"><h2 class="st">Agenda</h2><span>${nR} ${nR===1?"resultado":"resultados"} y ${nD} ${nD===1?"cobro":"cobros"} en las próximas 16 semanas</span></div>`;
+  if(!dias.length) h+=`<p class="gxag-nada">Nada en las próximas 16 semanas.</p>`;
+  sem.forEach((ks,l)=>{ const a=new Date(l), b=new Date(l+6*DIA_MS), n=ks.reduce((s,k)=>s+ev[k].length,0), dd=Math.round((l-+lunes(hoy))/DIA_MS/7);
+    const tit=dd===0?"Esta semana":dd===1?"La semana que viene":`Del ${a.getDate()}${a.getMonth()!==b.getMonth()?" de "+GX_MESL[a.getMonth()]:""} al ${b.getDate()} de ${GX_MESL[b.getMonth()]}`;
+    h+=`<div class="gxag-s"><div class="gxag-st">${tit}<em>${n} ${n===1?"cita":"citas"}</em></div><div class="gxag-ds">`+ks.map(k=>{ const d=new Date(k), L=ev[k].slice().sort((x,y)=>(x.k===y.k?0:x.k==="d"?-1:1)||(y.mia-x.mia)||String(x.n).localeCompare(y.n,"es"));
+      return `<div class="gxag-d"><div class="gxag-dn">${GX_DS[d.getDay()]} <b>${d.getDate()}</b></div><div class="gxag-ev">${L.map(o=>o.k==="r"
+        ?`<button type="button" class="gxag-c ${o.mia?"":"fuera"}" data-t="${esc(o.t)}">${gxLogo(o.t,30,16)}<span>${esc(o.n)}</span><em>${[o.per,o.est?"estimada":"",hora(o.hora)].filter(Boolean).map(esc).join(" · ")}</em></button>`
+        :`<button type="button" class="gxag-c div" data-t="${esc(o.t)}">${gxLogo(o.t,30,16)}<span>${esc(o.n)}</span><b>${gxE(o.v)}</b></button>`).join("")}</div></div>`; }).join("")+`</div></div>`; });
+  A.innerHTML=h; }
+document.addEventListener("click",e=>{ const c=e.target.closest("#gxag [data-t]"); if(!c) return; const t=c.dataset.t, l=[...document.querySelectorAll("#gxag [data-t]")].map(x=>x.dataset.t);
+  openSheet(DATA.pos.some(p=>p.ticker===t)?"pos":"pre",t,[...new Set(l)]); });
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
