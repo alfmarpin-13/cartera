@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-a/I7QaoubFbjoVBIjiQG0TvjO/r50xAsOK+amnNyjYM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-piR5VJPJ6EW25/BbXJWjM17ZScj5JzP0xzvtwlcNcKI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3265,9 +3265,9 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 #perf-k .pk-menu button[aria-pressed="true"]{font-weight:500;color:var(--ink);background:var(--row)}
 
 /* v478 · GC-01: portadas del PC (blanco a todo lo ancho, titular de dos líneas como mucho, dibujo propio) y detalle en crema a 1200 px */
-:root{--gx-id:#86D3AA;--gx-id-ink:#1A231E;--gx-bg:#FFFFFF;--gx-tile:var(--canvas);--gx-pop:#FFFFFF;--gx-out:#B9AE9B;--gx-in:#346F57}
-:root[data-theme="dark"]{--gx-bg:#1E1E1C;--gx-tile:#262624;--gx-pop:#2C2C29;--gx-out:#7D766A;--gx-in:#71B595}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gx-bg:#1E1E1C;--gx-tile:#262624;--gx-pop:#2C2C29;--gx-out:#7D766A;--gx-in:#71B595}}
+:root{--gx-id:#86D3AA;--gx-id-ink:#1A231E;--gx-bg:#FFFFFF;--gx-tile:var(--canvas);--gx-pop:#FFFFFF;--gx-out:#D9D2C4;--gx-in:#1A231E}   /* v487: Movimientos con la tinta del logo (entradas) y arena (salidas) */
+:root[data-theme="dark"]{--gx-bg:#1E1E1C;--gx-tile:#262624;--gx-pop:#2C2C29;--gx-out:#6B655B;--gx-in:#E8E5DE}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gx-bg:#1E1E1C;--gx-tile:#262624;--gx-pop:#2C2C29;--gx-out:#6B655B;--gx-in:#E8E5DE}}
 .gx3,.gxag{display:none}
 @media (min-width:700.99px){
   .gx3{display:block;background:var(--gx-bg);color:var(--ink);padding-block:56px 72px;margin-bottom:40px;position:relative;box-sizing:border-box}
@@ -3315,7 +3315,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   /* la palabra que hace de selector */
   .kwr{position:relative;display:inline}
   .kw{font:inherit;line-height:inherit;vertical-align:baseline;height:auto;letter-spacing:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;white-space:nowrap;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:8px;text-decoration-color:var(--gx-id)}   /* v486: subrayado con el verde del logo */
-  .kw:hover{text-decoration-color:currentColor}
+  .kw:hover{text-decoration-color:var(--gx-id)}   /* v487: al pasar el ratón, sigue verde */
   .kw i{display:inline-block;width:.34em;height:.34em;margin:0 .06em 0 .16em;border-right:3px solid currentColor;border-bottom:3px solid currentColor;transform:translateY(-.2em) rotate(45deg);opacity:.55}
   .kw-m{position:absolute;left:-12px;top:calc(100% + 14px);background:var(--gx-pop);border-radius:12px;box-shadow:0 14px 36px rgba(0,0,0,.16),0 0 0 1px var(--line);padding:6px;font-size:15px;line-height:20px;font-weight:500;letter-spacing:0;min-width:240px;z-index:var(--z-menu,60);color:var(--ink);text-align:left;display:flex;flex-direction:column}
   .kw-m[hidden]{display:none}
@@ -4107,7 +4107,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v486";   // la versión publicada, en el pie
+const VER="v487";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6151,7 +6151,7 @@ function gxMov(){ const s=gxSec("v-movimientos"), hoy=new Date(), divs=DATA.dv.f
   else { sc=v=>v/(mxu+mxd)*BA; HU=sc(mxu); }
   const mid=top+HU;
   const HD=BA-HU, NB=44, H=top+BA+6+NB+40, bw=Math.max(3,Math.round(slot*0.6));
-  const cUp=modo==="dv"?"var(--accent)":"var(--gx-in)"; let g="";
+  const cUp="var(--gx-in)"; let g="";   // v487: también los dividendos, con la tinta del logo
   for(let i=0;i<NM;i++) if((m0+i)%12===0) g+=`<line x1="${(i*slot).toFixed(1)}" x2="${(i*slot).toFixed(1)}" y1="${top-8}" y2="${H-22}" stroke="var(--line)"/>`;
   arr.forEach((o,i)=>{ const x=(i*slot+(slot-bw)/2).toFixed(1);
     if(o.up>0){ const hh=Math.max(1.5,sc(o.up)); g+=`<rect x="${x}" y="${(mid-1-hh).toFixed(1)}" width="${bw}" height="${hh.toFixed(1)}" rx="2" fill="${cUp}"><title>${lbl(i)}</title></rect>`; }
