@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-piR5VJPJ6EW25/BbXJWjM17ZScj5JzP0xzvtwlcNcKI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-9L4UTSfzELsFcRZK53xSbIwLz+2rQui2sBTHDNCtyOY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4107,7 +4107,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v487";   // la versión publicada, en el pie
+const VER="v488";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6243,6 +6243,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   const okr=DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0), reqs=[...new Set(okr.map(r=>Math.round(r.req*1000)/1000))].sort((a,b)=>a-b), sob=okr.filter(r=>r.margin>0);
   if(!reqs.length){ s2.remove(); gxPega(s); return; }
   const top3=sob.slice().sort((a,b)=>b.margin-a.margin).slice(0,3);
+  okr.forEach(r=>gxSol(gxSrc(r.ticker),r.ticker));   // v488: los logos de los carteles, preparados ya (si se preparaban al pasar el ratón, la gráfica se redibujaba y el cartel desaparecía)
   s2.querySelector(".gx-c2").innerHTML=gxH(`${sob.length} de ${N} rinden más de lo que les exiges.`,top3.length?`Las que más: ${top3.map(r=>esc(r.name)).join(", ").replace(/, ([^,]*)$/," y $1")}.`:"Ninguna lo supera.");
   const U=s2.querySelector(".gx-un"), WU=Math.round(U.getBoundingClientRect().width), H=340, PL=46, tp=16, bottom=H-44, ymin=-0.10, ymax=Math.max(0.4,Math.ceil(Math.max(...okr.map(r=>r.irrExp))*10)/10);
   const ys=v=>tp+(ymax-Math.max(ymin,Math.min(ymax,v)))/(ymax-ymin)*(bottom-tp), cw=(WU-PL)/reqs.length; let g=""; const TODOS=[], LB=[], T3=new Set(top3.map(r=>r.ticker));
@@ -6270,7 +6271,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   // al pasar el ratón por un punto, su cartel (logo, nombre y TIR); al pulsarlo, su ficha
   const tip=U.querySelector(".gx-tip"), sv=U.querySelector("svg"); let cur=null;
   sv.addEventListener("mousemove",e=>{ const c=e.target.closest("circle[data-i]"); if(c===cur) return; if(cur) cur.setAttribute("r","6"); cur=c; if(!c){ tip.hidden=true; return; }
-    const p=TODOS[+c.dataset.i]; c.setAttribute("r","8"); tip.innerHTML=`${gxLogo(p.r.ticker,40,22)}<span><b>${esc(p.r.name)}</b><em>TIR ${gxP(p.r.irrExp,1)}</em></span>`;   // v486: solo logo, nombre y TIR (la exigida ya la dice la columna) tip.hidden=false;
+    const p=TODOS[+c.dataset.i]; c.setAttribute("r","8"); tip.innerHTML=`${gxLogo(p.r.ticker,40,22)}<span><b>${esc(p.r.name)}</b><em>TIR ${gxP(p.r.irrExp,1)}</em></span>`; tip.hidden=false;   // v486: solo logo, nombre y TIR (la exigida ya la dice la columna)
     const tw=tip.offsetWidth; tip.style.left=Math.min(Math.max(0,p.x-tw/2),WU-tw)+"px"; tip.style.top=(p.y-tip.offsetHeight-14)+"px"; });
   sv.addEventListener("mouseleave",()=>{ if(cur) cur.setAttribute("r","6"); cur=null; tip.hidden=true; });
   sv.addEventListener("click",e=>{ const c=e.target.closest("circle[data-i]"); if(c){ const p=TODOS[+c.dataset.i]; openSheet(p.r.inPf?"pos":"pre",p.r.ticker,TODOS.map(q=>q.r.ticker)); } });
