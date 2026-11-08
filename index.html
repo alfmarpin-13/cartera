@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-HKPzfgH4r3TG7Vw+V3pMYHykiBlinypnis1LxpLBC/I=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-/VhUVh8FzbM9g9sAnmgtjfaUbfq9YR2dYVkaGw5rsvg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3460,6 +3460,25 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   /* v505 · a prueba: Anatomía del retorno sin tarjeta, sobre una franja blanca de lado a lado (alterna con las tarjetas crema) */
   #v-analisis > #gxret{background:var(--gx-bg);border-radius:0;padding:72px 0 80px;margin:32px 0 48px;box-shadow:0 0 0 100vmax var(--gx-bg);clip-path:inset(0 -100vmax)}
 }
+/* v506 · Universo (PC): calculadora y lista en bloques con titular; la calculadora siempre abierta */
+@media (min-width:700.99px){
+  #v-universo > #s-plan,#v-universo > #s-plist{border-radius:20px;padding:48px 48px 44px}
+  #s-plan > .pl-bar{display:none}
+  #s-plan .pl-full{display:block!important}
+  #s-plan #pl-k{margin-top:0}
+  #s-plan .pl-mvb{border-top:0!important;padding-top:0!important;margin-top:0!important}
+  #v-universo > #s-plan{margin-bottom:32px}
+  #s-plist > .chart-head{align-items:flex-start;margin-bottom:32px}
+  #s-plist > .chart-head .st,#s-plist > .chart-head .pl-sub{display:none}
+  #s-plist > .chart-head .gxan-t{margin:0}
+  #s-plist > .chart-head > .pf-seg{margin-top:6px}
+  #s-plist > .mleg{display:none}
+  /* tus empresas: un punto detrás del nombre, como en el mosaico (sin la barra ni el fondo de color) */
+  #t-p tbody tr.pr.inpf,#t-p tbody tr.pr.inpf:hover{background:none}
+  #t-p tbody tr.pr.inpf>td:first-child{box-shadow:none}
+  #t-p tbody tr.pr:hover{background:color-mix(in srgb,var(--ink) 3%,var(--panel))}
+  #t-p tbody tr.pr.inpf .co > b::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ink);margin-left:8px;vertical-align:middle;position:relative;top:-1px}
+}
 </style>
 
 <div class="wrap">
@@ -4149,7 +4168,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v505";   // la versión publicada, en el pie
+const VER="v506";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6461,6 +6480,22 @@ function gxTray(){ if(innerWidth<=MOVIL||!DATA||!DATA.tray||!DATA.tray.length||t
   C.innerHTML=`<svg width="${W}" height="${HB+4}" viewBox="0 0 ${W} ${HB+4}" role="img" aria-label="Patrimonio y renta de cada año">${g}</svg>`; }
 function gxAnaDet(){ [gxDivs,gxRet,gxTray].forEach(f=>{ try{ f(); }catch(e){ console.warn("Cartera · Análisis:",e); } }); }
 { const _dt=drawTray; drawTray=function(live){ _dt(live); gxTray(); }; }   // al mover un deslizador, también el titular y las barras nuevas
+
+// v506 · Universo (PC): la calculadora y la lista de empresas, cada una en su bloque con un titular de dos líneas que cuenta lo que hay
+function gxTit(sec,id){ let t=$(id); if(!t){ t=document.createElement("h2"); t.id=id; t.className="gxan-t gxan-x"; sec.prepend(t); } return t; }
+function gxPlanT(){ if(innerWidth<=MOVIL) return; const S=$("s-plan"), K=$("pl-k"); if(!S||!K) return;
+  const mk=[...K.querySelectorAll(".mk")].map(m=>({k:(m.querySelector(".mk-k")||{}).textContent||"",v:((m.querySelector(".mk-v")||{}).textContent||"").trim(),s:[...m.querySelectorAll(".mk-sl span,.mk-s")].map(x=>x.textContent.trim())})), by=k=>mk.find(m=>m.k===k)||{v:"",s:[]};
+  const D=by("Disponible"), C=by("Compras"), F=by("Comisiones"), L=by("Sobrante"), rows=(typeof plan!=="undefined"&&plan.rows)||[];
+  const nC=rows.filter(o=>!o.sell&&o.t&&o.amt>0).length, nV=rows.filter(o=>o.sell&&o.t&&o.n>0).length, falta=/^−/.test(L.v);
+  const T=gxTit(S,"gxpl-t"), sp=t=>`<span class="pv">${t}</span>`;
+  if(!nC&&!nV) T.innerHTML=`<span>Tienes ${sp(D.v)} para invertir.</span><span>${D.s.join(" y ")||"&nbsp;"}.</span>`;
+  else T.innerHTML=`<span>${nC?`Compras ${nC} ${nC===1?"empresa":"empresas"} por ${sp(C.v)}`:""}${nC&&nV?" y vendes ":nV?"Vendes ":""}${nV?`${nV}`:""}${nV&&!nC?` ${nV===1?"empresa":"empresas"}`:""}.</span><span>Comisiones de ${sp(F.v)}; ${falta?`te faltan ${sp(L.v.replace(/^−/,""))}`:`te sobran ${sp(L.v)}`}.</span>`; }
+function gxRadarT(){ if(innerWidth<=MOVIL||!DATA||!DATA.pre) return; const S=$("s-plist"); if(!S) return; const h=S.querySelector(".chart-head > div:first-child"); if(!h) return;
+  const all=DATA.pre, n=all.length, pf=all.filter(r=>r.inPf).length, sob=all.filter(r=>r.margin>0).length, rev=typeof stale==="function"?all.filter(stale).length:0;
+  let T=$("gxpx-t"); if(!T){ T=document.createElement("h2"); T.id="gxpx-t"; T.className="gxan-t gxan-x"; h.prepend(T); }
+  T.innerHTML=`<span>${gxMil(n)} empresas en tu radar, ${gxMil(pf)} en tu cartera.</span><span>${gxMil(sob)} ${sob===1?"rinde":"rinden"} más de lo que les exiges; ${rev?`${gxMil(rev)} ${rev===1?"está":"están"} por revisar`:"ninguna está por revisar"}.</span>`; }
+{ const _pc=planCalc; planCalc=function(){ _pc(); try{ gxPlanT(); }catch(e){ console.warn("Cartera · calculadora:",e); } }; }
+{ const _rp=renderPre; renderPre=function(){ _rp(); try{ gxRadarT(); gxPlanT(); }catch(e){ console.warn("Cartera · Universo:",e); } }; }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
