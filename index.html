@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Oj4QeWxmxEzAGCB110TdFu3nZTO+Eaq/tS/hpDZEEMQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-VMyEWKSdDB4rNuvGkkXTx7/Q9mDOwDRvkVhOYYGoKQI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3253,6 +3253,16 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 #foot .foot-b{padding:0;color:var(--ink2);text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--ink) 25%,transparent);text-underline-offset:3px}
 #foot .foot-b:hover{color:var(--ink)}
 @media (min-width:761px){ #foot{padding:24px 0 32px} }
+
+/* v477 · UN-01: Rendimiento, cuatro periodos a la vista y el resto en «Más ⌄» (un menú pequeño debajo) */
+#perf-k .pk-mas{position:relative;display:inline-flex}
+#perf-k .pk-mb{display:inline-flex;align-items:center;gap:6px}
+#perf-k .pk-mb svg{width:12px;height:12px;flex:none}
+#perf-k .pk-menu{position:absolute;top:calc(100% + 6px);right:0;z-index:var(--z-menu,60);display:flex;flex-direction:column;min-width:168px;padding:4px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-8);box-shadow:0 12px 32px -12px var(--sombra-22,rgba(0,0,0,.22))}
+#perf-k .pk-menu[hidden]{display:none}
+#perf-k .pk-menu button{height:32px;padding:0 10px;text-align:left;border-radius:var(--r-4);font-size:var(--fs-13);font-weight:400;color:var(--ink2);background:none}
+#perf-k .pk-menu button:hover{background:var(--row);color:var(--ink)}
+#perf-k .pk-menu button[aria-pressed="true"]{font-weight:500;color:var(--ink);background:var(--row)}
 </style>
 
 <div class="wrap">
@@ -3408,7 +3418,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 
   <section class="panel" id="s-perf">
     <div class="chart-head"><div><h2 class="st">Rendimiento</h2></div><select class="inp pf-sel" id="perf-sel" aria-label="Periodo"><option value="today">Hoy</option><option value="last">Última sesión</option><option value="w1">1 semana</option><option value="m1">1 mes</option><option value="m3">3 meses</option><option value="m6">6 meses</option><option value="ytd" class="cy-o">En el año</option><option value="y1">1 año</option><option value="y3">3 años</option><option value="dd">Desde máximo histórico</option></select>
-      <div class="perf-k" id="perf-k"><div class="seg" role="group" aria-label="Sesión"><button type="button" data-k="today" aria-pressed="true">Hoy</button><button type="button" data-k="last" aria-pressed="false">Última sesión</button><button type="button" data-k="dd" aria-pressed="false">Desde máximo histórico</button></div><div class="seg" role="group" aria-label="Periodo"><button type="button" data-k="w1" aria-pressed="false">1 semana</button><button type="button" data-k="m1" aria-pressed="false">1 mes</button><button type="button" data-k="m3" aria-pressed="false">3 meses</button><button type="button" data-k="m6" aria-pressed="false">6 meses</button><button type="button" data-k="ytd" aria-pressed="false"><span class="wl">En </span><i class="cy"></i></button><button type="button" data-k="y1" aria-pressed="false">1 año</button><button type="button" data-k="y3" aria-pressed="false">3 años</button></div></div></div>
+      <div class="perf-k" id="perf-k"><div class="seg pk-seg" role="group" aria-label="Periodo"><button type="button" data-k="today" aria-pressed="true">Hoy</button><button type="button" data-k="m1" aria-pressed="false">1 mes</button><button type="button" data-k="ytd" aria-pressed="false"><span class="wl">En </span><i class="cy"></i></button><button type="button" data-k="dd" aria-pressed="false">Desde máximo</button><span class="pk-mas"><button type="button" class="pk-mb" id="pk-mb" aria-haspopup="menu" aria-expanded="false" aria-pressed="false"><span id="pk-ml">Más</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="pk-menu" id="pk-menu" role="menu" hidden><button type="button" role="menuitemradio" data-k="last" aria-pressed="false">Última sesión</button><button type="button" role="menuitemradio" data-k="w1" aria-pressed="false">1 semana</button><button type="button" role="menuitemradio" data-k="m3" aria-pressed="false">3 meses</button><button type="button" role="menuitemradio" data-k="m6" aria-pressed="false">6 meses</button><button type="button" role="menuitemradio" data-k="y1" aria-pressed="false">1 año</button><button type="button" role="menuitemradio" data-k="y3" aria-pressed="false">3 años</button></span></span></div></div></div>
     <div class="pf-cols"><div><div class="dv-h"><span id="perf-uh">Mejores</span></div><div id="perf-up"></div><div class="pf-mas-w"><button type="button" class="btn pf-mas" data-l="perf-up" hidden></button></div></div><div><div class="dv-h"><span id="perf-dh">Peores</span></div><div id="perf-dn"></div><div class="pf-mas-w"><button type="button" class="btn pf-mas" data-l="perf-dn" hidden></button></div></div></div><div class="pf-mas-w pf-mas-ambas"><button type="button" class="btn pf-mas" data-l="ambas" hidden></button></div>
     <div class="ind-w" id="ind-w"><div class="dv-h"><span>Por industria</span><button type="button" class="pl-tg ind-tg" id="ind-tg" aria-expanded="false" aria-controls="perf-ind"><span id="ind-tgt">Ver</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div class="ind-g" id="perf-ind"></div></div>
   </section>
@@ -3942,7 +3952,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v476";   // la versión publicada, en el pie
+const VER="v477";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4887,7 +4897,8 @@ function renderPerf(){
   const closed=lastSession().closed; $("perf-k").querySelector('[data-k="today"]').disabled=closed;
   if(perfAuto) perfK=!closed&&DATA.pre.some(r=>isNum(r.today))?"today":"last";
   else if(closed&&perfK==="today") perfK="last";
-  $("perf-k").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.k===perfK));
+  $("perf-k").querySelectorAll("button[data-k]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.k===perfK));
+  { const o=$("pk-menu").querySelector(`[data-k="${perfK}"]`); $("pk-ml").textContent=o?o.textContent:"Más"; $("pk-mb").setAttribute("aria-pressed",String(!!o)); }   // v477 · UN-01: «Más» dice cuál está elegido
   { const S=$("perf-sel"); if(S){ S.querySelector('[value="today"]').disabled=closed; S.querySelector(".cy-o").textContent="En "+new Date().getFullYear(); S.value=perfK; } }   // el desplegable del móvil
   const dd=perfK==="dd"; $("perf-uh").textContent=dd?"Más cerca del máximo":"Mejores"; $("perf-dh").textContent=dd?"Más lejos del máximo":"Peores";
   const rs=DATA.pre.filter(r=>isNum(r[perfK])).sort((a,b)=>b[perfK]-a[perfK]);
@@ -4973,7 +4984,11 @@ $("s-perf").addEventListener("click",e=>{ const bt=e.target.closest(".pf-mas"); 
   if(bt.dataset.l==="ambas"){ const ls=[$("perf-up"),$("perf-dn")], on=!ls.every(l=>l.classList.contains("mas")); ls.forEach(l=>l.classList.toggle("mas",on)); }
   else $(bt.dataset.l).classList.toggle("mas"); pfMas(); });
 document.querySelectorAll("#perf-k .cy").forEach(e=>e.textContent=new Date().getFullYear());   // «En 2026»: el año en curso
-$("perf-k").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) setPerf(b.dataset.k); });
+{ const M=$("pk-menu"), B=$("pk-mb"), cierra=()=>{ M.hidden=true; B.setAttribute("aria-expanded","false"); };   // v477 · UN-01: el menú de «Más»
+  $("perf-k").addEventListener("click",e=>{ if(e.target.closest("#pk-mb")){ const ab=M.hidden; M.hidden=!ab; B.setAttribute("aria-expanded",String(ab)); if(ab) M.querySelector('[aria-pressed="true"]')?.focus(); return; }
+    const b=e.target.closest("button[data-k]"); if(b){ cierra(); setPerf(b.dataset.k); } });
+  document.addEventListener("click",e=>{ if(!M.hidden&&!e.target.closest(".pk-mas")) cierra(); });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!M.hidden){ cierra(); B.focus(); } }); }
 $("perf-sel").addEventListener("change",e=>setPerf(e.target.value));
 
 /* ficha: tu hoja Valoración + mercado */
