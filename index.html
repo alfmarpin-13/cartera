@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-bEGN9eW6FP5n0JvAJbB8C6cCFFq+FwtKDGgQwfL9md8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-bYMsAZfV0FhzODH7rAQ/0rl1zBi/XwVdyzbNrYDuGmo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3291,10 +3291,6 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gxag-f .t3{color:var(--ink3)}
   .gxag-f.fuera{color:var(--ink3)}
   .gxag-f.fuera .gxl img{opacity:.5}
-  .gxag-v{flex:none;width:8px;height:8px;border-radius:50%;margin-right:-4px}   /* v492: el punto verde de las que rinden más de lo que les exiges */
-  .gxag-v.si{background:var(--gx-id);box-shadow:0 0 0 1.5px var(--ink)}
-  .gxag-ley{display:inline-flex;align-items:center;gap:7px;margin-left:auto;font-size:13px;color:var(--ink3)}
-  .gxag-ley i{width:8px;height:8px;border-radius:50%;background:var(--gx-id);box-shadow:0 0 0 1.5px var(--ink)}
   /* v480: el detalle vuelve a su ancho (el de la columna de la app, 1440 px como mucho), igual que la portada */
   .gx-t{margin:0 0 40px;font-size:clamp(26px,calc(10px + 1.95vw),38px);line-height:1.21;height:2.42em;overflow:visible;font-weight:600;letter-spacing:-.028em;max-width:none;color:var(--ink)}
   .gx-t .l1,.gx-t .l2{display:block;white-space:nowrap;line-height:1.21;height:1.21em}
@@ -3424,7 +3420,9 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 @media (min-width:700.99px){
   :root{--gx-pie:#EAE7E0}
   :root[data-theme="dark"]{--gx-pie:#0A0A09}
-  .foot{background:var(--gx-pie);box-shadow:0 0 0 100vmax var(--gx-pie);clip-path:inset(0 -100vmax -100vmax);margin-top:48px;padding-block:22px}
+  .foot{background:var(--gx-pie);box-shadow:0 0 0 100vmax var(--gx-pie);clip-path:inset(0 -100vmax -100vmax);margin-top:48px}
+  #foot.foot{padding:12px 0!important}
+  body{padding-bottom:0!important}   /* v493: el pie, estrecho y pegado al final de la página */
   .foot .f-op{display:none}
 }
 @media (min-width:700.99px) and (prefers-color-scheme:dark){ :root:not([data-theme="light"]){--gx-pie:#0A0A09} }
@@ -4117,7 +4115,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v492";   // la versión publicada, en el pie
+const VER="v493";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6323,14 +6321,14 @@ function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=docum
   const frase=o=>{ if(o.k==="d") return `Cobras <b>${gxE(o.v)}</b> de ${esc(o.n)}.`;
     const per=o.per.trim(), anual=/^año\s+(\d{4})(.*)$/i.exec(per), h=hora(o.hora);
     return `${esc(o.n)} presenta ${anual?`las cuentas de ${anual[1]}${esc(anual[2])}`:per?`resultados del ${esc(per)}`:"resultados"}${/apertura|cierre/.test(h)?", "+h:""}.${o.est?' <span class="t3">Fecha estimada.</span>':""}`; };
-  const hasta=`hasta final de ${GX_MESL[fin.getMonth()]}`, nS=dias.reduce((s,k)=>s+ev[k].filter(o=>o.sube).length,0);
-  let h=`<div class="gxag-h"><h2>Fuera de tu cartera</h2><span>${nR} ${nR===1?"resultado":"resultados"} ${hasta}</span>${nS?`<span class="gxag-ley"><i></i>rinden más de lo que les exiges</span>`:""}</div>`;   // v492: el verde del logo, en las que rinden más de lo exigido
+  const hasta=`hasta final de ${GX_MESL[fin.getMonth()]}`;
+  let h=`<div class="gxag-h"><h2>Fuera de tu cartera</h2><span>${nR} ${nR===1?"resultado":"resultados"} ${hasta}</span></div>`;   // v493: sin leyenda ni bolas verdes
   if(!dias.length) h+=`<p class="gxag-nada">Ningún resultado ${hasta}.</p>`;
   // v492: dos columnas, los mismos meses que arriba: a la izquierda el primero y a la derecha el segundo, cada uno con sus días en orden
   h+=`<div class="gxag-cols">`;
   for(let m=0;m<2;m++){ const mes=new Date(hoy.getFullYear(),hoy.getMonth()+m,1,12), ks=dias.filter(k=>new Date(k).getMonth()===mes.getMonth());
-    h+=`<div class="gxag-s"><div class="gxag-st">${GX_MESL[mes.getMonth()]}</div>`+(ks.length?ks.map(k=>{ const d=new Date(k), L=ev[k].slice().sort((x,y)=>(y.sube-x.sube)||String(x.n).localeCompare(y.n,"es"));
-      return `<div class="gxag-d"><div class="gxag-dn"><b>${d.getDate()}</b>${GX_DS[d.getDay()]}</div><div class="gxag-ev">${L.map(o=>`<div class="gxag-f" data-t="${esc(o.t)}"><i class="gxag-v${o.sube?" si":""}"></i>${gxLogo(o.t,30,16)}<span>${frase(o)}</span></div>`).join("")}</div></div>`; }).join(""):`<p class="gxag-nada">Ningún resultado.</p>`)+`</div>`; }
+    h+=`<div class="gxag-s"><div class="gxag-st">${GX_MESL[mes.getMonth()]}</div>`+(ks.length?ks.map(k=>{ const d=new Date(k), L=ev[k].slice().sort((x,y)=>String(x.n).localeCompare(y.n,"es"));
+      return `<div class="gxag-d"><div class="gxag-dn"><b>${d.getDate()}</b>${GX_DS[d.getDay()]}</div><div class="gxag-ev">${L.map(o=>`<div class="gxag-f" data-t="${esc(o.t)}">${gxLogo(o.t,30,16)}<span>${frase(o)}</span></div>`).join("")}</div></div>`; }).join(""):`<p class="gxag-nada">Ningún resultado.</p>`)+`</div>`; }
   A.innerHTML=h+`</div>`; }
 document.addEventListener("click",e=>{ const c=e.target.closest("#gxag [data-t]"); if(!c) return; const t=c.dataset.t, l=[...document.querySelectorAll("#gxag [data-t]")].map(x=>x.dataset.t);
   openSheet(DATA.pos.some(p=>p.ticker===t)?"pos":"pre",t,[...new Set(l)]); });
