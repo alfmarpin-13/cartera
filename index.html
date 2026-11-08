@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-zMxKCb0EdDcP/dvX5jA6C7DQboqzhWqypqXEhOyv22E=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Q+wBC4VtgxMmEAUcSnka/JVjLmF4weAoJQ32ty39KaY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4120,7 +4120,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v497";   // la versión publicada, en el pie
+const VER="v498";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6327,9 +6327,10 @@ function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=docum
   const nR=dias.reduce((s,k)=>s+ev[k].filter(o=>o.k==="r").length,0), nD=dias.reduce((s,k)=>s+ev[k].filter(o=>o.k==="d").length,0);
   const hora=h=>/^antes/i.test(h)?"antes de la apertura":/^(desp|tras)/i.test(h)?"tras el cierre":h;
   // v490: la agenda como un diario: cada semana, sus días y, en cada día, una frase por cita (sin botones); lo que no es de tu cartera, en gris
-  const frase=o=>{ if(o.k==="d") return `Cobras <b>${gxE(o.v)}</b> de ${esc(o.n)}.`;
+  // v498: lo ya pasado, en pasado («presentó») y sin la hora (ya está presentado); hoy y lo que viene, en presente
+  const frase=(o,d)=>{ const pas=+d<+hoy, vb=pas?"presentó":"presenta"; if(o.k==="d") return `Cobras <b>${gxE(o.v)}</b> de ${esc(o.n)}.`;
     const per=o.per.trim(), anual=/^año\s+(\d{4})(.*)$/i.exec(per), h=hora(o.hora);
-    return `${esc(o.n)} presenta ${anual?`las cuentas de ${anual[1]}${esc(anual[2])}`:per?`resultados del ${esc(per)}`:"resultados"}${/apertura|cierre/.test(h)?", "+h:""}.${o.est?' <span class="t3">Fecha estimada.</span>':""}`; };
+    return `${esc(o.n)} ${vb} ${anual?`las cuentas de ${anual[1]}${esc(anual[2])}`:per?`resultados del ${esc(per)}`:"resultados"}${!pas&&/apertura|cierre/.test(h)?", "+h:""}.${o.est?' <span class="t3">Fecha estimada.</span>':""}`; };
   const hasta=`hasta final de ${GX_MESL[fin.getMonth()]}`;
   let h=`<div class="gxag-h"><h2>Fuera de tu cartera</h2><span>${nR} ${nR===1?"resultado":"resultados"} ${hasta}</span></div>`;   // v493: sin leyenda ni bolas verdes
   if(!dias.length) h+=`<p class="gxag-nada">Ningún resultado ${hasta}.</p>`;
@@ -6337,7 +6338,7 @@ function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=docum
   h+=`<div class="gxag-cols">`;
   for(let m=0;m<2;m++){ const mes=new Date(hoy.getFullYear(),hoy.getMonth()+m,1,12), ks=dias.filter(k=>new Date(k).getMonth()===mes.getMonth());
     h+=`<div class="gxag-s"><div class="gxag-st">${GX_MESL[mes.getMonth()]}</div>`+(ks.length?ks.map(k=>{ const d=new Date(k), L=ev[k].slice().sort((x,y)=>String(x.n).localeCompare(y.n,"es"));
-      return `<div class="gxag-d${d<hoy?" pas":""}"><div class="gxag-dn"><b>${d.getDate()}</b>${GX_DS[d.getDay()]}</div><div class="gxag-ev">${L.map(o=>`<div class="gxag-f" data-t="${esc(o.t)}">${gxLogo(o.t,30,16)}<span>${frase(o)}</span></div>`).join("")}</div></div>`; }).join(""):`<p class="gxag-nada">Ningún resultado.</p>`)+`</div>`; }
+      return `<div class="gxag-d${d<hoy?" pas":""}"><div class="gxag-dn"><b>${d.getDate()}</b>${GX_DS[d.getDay()]}</div><div class="gxag-ev">${L.map(o=>`<div class="gxag-f" data-t="${esc(o.t)}">${gxLogo(o.t,30,16)}<span>${frase(o,d)}</span></div>`).join("")}</div></div>`; }).join(""):`<p class="gxag-nada">Ningún resultado.</p>`)+`</div>`; }
   A.innerHTML=h+`</div>`; }
 document.addEventListener("click",e=>{ const c=e.target.closest("#gxag [data-t]"); if(!c) return; const t=c.dataset.t, l=[...document.querySelectorAll("#gxag [data-t]")].map(x=>x.dataset.t);
   openSheet(DATA.pos.some(p=>p.ticker===t)?"pos":"pre",t,[...new Set(l)]); });
