@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-mE302xw88NrvvEymV/U7Wy2hKQ2ExkCK+LMMocU/g1Q=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-n4eMw/Kf81TB5uL8Sqnr3f1tOjQKl6IKi6W1SdL/F0Q=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3431,6 +3431,33 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gx-d.pas.res{background:color-mix(in srgb,var(--ink) 38%,var(--gx-tile))}
   .gxag-d.pas{opacity:.5}
 }
+/* v503 · Análisis (PC): bloques con titular de dos líneas; fuera Industrias, Países, Divisas y Concentración (lo cuenta la portada) */
+.gxan,.gxan-x{display:none}
+@media (min-width:700.99px){
+  #v-analisis > #s-divs, #v-analisis > .grid3.rep, #v-analisis > #s-ret{display:none!important}
+  .gxan{display:block;background:var(--panel);border-radius:20px;padding:48px 48px 44px;margin:0 0 16px;color:var(--ink);box-sizing:border-box}
+  .gxan-x{display:block}
+  .gxan-t{margin:0 0 40px;font-size:clamp(20px,calc(8px + 1.45vw),28px);line-height:1.25;font-weight:600;letter-spacing:-.022em;color:var(--ink)}
+  .gxan-t > span{display:block;white-space:nowrap}.gxan-t > span + span{color:var(--ink3)}
+  .gxan svg,#gxtr-c svg{display:block;overflow:visible}
+  .gxan svg text,#gxtr-c svg text{font-family:inherit;font-variant-numeric:tabular-nums}
+  .gxan-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;margin-top:48px;padding-top:40px;border-top:1px solid var(--line)}
+  .gxan-h{font-size:15px;line-height:20px;font-weight:500;margin:0 0 20px;color:var(--ink)}
+  .gxan-pg{display:grid;grid-template-columns:72px minmax(0,1fr) 64px;align-items:center;column-gap:16px;height:40px}
+  .gxan-pg .lg{display:flex;justify-content:center;align-items:center;height:28px;color:var(--ink)}
+  .gxan-pg .gxsil{display:block;max-width:72px;background:currentColor;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center}
+  .gxan-pg .br{height:6px;border-radius:3px;background:color-mix(in srgb,var(--ink) 7%,var(--panel));position:relative}
+  .gxan-pg .br i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--gx-id)}
+  .gxan-pg b{font-weight:400;font-size:15px;text-align:right;font-variant-numeric:tabular-nums}
+  /* Trayectoria: el mismo bloque, con su titular arriba, sin la casilla de renta (va en el titular), y las barras nuevas */
+  #v-analisis > #s-tray{position:relative;border-radius:20px;padding:48px 48px 44px}
+  #s-tray > .chart-head{position:absolute;top:44px;right:48px;margin:0;z-index:1}
+  #s-tray > .chart-head h2{display:none}
+  #s-tray .tsc.ts-out{display:none}
+  #s-tray .ts-g{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:0;margin:0 0 40px;padding-bottom:0;border-bottom:0}
+  #s-tray > #tray-v,#s-tray > .legend,#s-tray > #tray-tb{display:none!important}
+  .priv .gxan .pvs,.priv #gxtr-c .pvs{visibility:hidden}
+}
 </style>
 
 <div class="wrap">
@@ -4120,7 +4147,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v502";   // la versión publicada, en el pie
+const VER="v503";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6282,11 +6309,11 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
     pl.forEach(p=>{ const sube=p.r.margin>0, mine=p.r.inPf; p.i=TODOS.length; g+=`<circle data-i="${p.i}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6" style="fill:color-mix(in srgb,${sube?"var(--gx-id)":"var(--ink)"} ${sube?(mine?100:45):(mine?75:12)}%,var(--canvas))"/>` /* v502: tuyas llenas sin aro; candidatas al 45 % */; TODOS.push(p); if(T3.has(p.r.ticker)) LB.push(p); }); });
   // v481: cada cartel, dentro de la columna de su exigencia: a la derecha del punto, a la izquierda, encima o debajo, sin pisar puntos ni otros carteles
   // v481: las destacadas llevan solo su logo, junto al punto y dentro de la columna de su exigencia, sin pisar puntos ni otros logos
-  const caja=[], ET=[]; LB.forEach(p=>{ const ci=reqs.indexOf(Math.round(p.r.req*1000)/1000), c0=PL+cw*ci+10, c1=PL+cw*(ci+1)-10, tw=40, h=22, cl=x=>Math.min(Math.max(x,c0),c1-tw);
+  const caja=[], ET=[]; LB.forEach(p=>{ const ci=reqs.indexOf(Math.round(p.r.req*1000)/1000), c0=PL+cw*ci+10, c1=PL+cw*(ci+1)-10, aw=LOGO_ANCHO[p.r.ticker], tw=aw?Math.min(92,Math.round(20*(LOGO_R[aw]||3.5))):40, h=22,   /* v503: logo ancho si lo hay */ cl=x=>Math.min(Math.max(x,c0),c1-tw);
     const cands=[{x0:p.x+12,y0:p.y-h/2},{x0:p.x-12-tw,y0:p.y-h/2},{x0:cl(p.x-tw/2),y0:p.y-h-10},{x0:cl(p.x-tw/2),y0:p.y+10},{x0:cl(p.x-tw/2),y0:p.y-h-32},{x0:cl(p.x-tw/2),y0:p.y+32}].map(c=>({...c,x1:c.x0+tw,y1:c.y0+h}));
     const fuera=c=>c.x0<c0-0.5||c.x1>c1+0.5||c.y0<tp-4||c.y1>bottom+4, choca=c=>TODOS.some(q=>q!==p&&q.x+7>c.x0&&q.x-7<c.x1&&q.y+7>c.y0&&q.y-7<c.y1)||caja.some(b=>b.x0<c.x1&&b.x1>c.x0&&b.y0<c.y1&&b.y1>c.y0);
     const c=cands.find(c=>!fuera(c)&&!choca(c))||cands.find(c=>!fuera(c))||cands[2];
-    caja.push(c); ET.push(`<span class="gx-et" style="left:${c.x0.toFixed(1)}px;top:${c.y0.toFixed(1)}px">${gxLogo(p.r.ticker,tw,h)}</span>`); });
+    caja.push(c); ET.push(`<span class="gx-et" style="left:${c.x0.toFixed(1)}px;top:${c.y0.toFixed(1)}px">${gxLogo(p.r.ticker,tw,h,{ancho:!!aw})}</span>`); });
   U.innerHTML=`<svg width="${WU}" height="${H+6}" viewBox="0 0 ${WU} ${H+6}" role="img" aria-label="TIR esperada frente a la exigida">${g}</svg>${ET.join("")}<span class="gx-tip" hidden></span>`;
   // al pasar el ratón por un punto, su cartel (logo, nombre y TIR); al pulsarlo, su ficha
   const tip=U.querySelector(".gx-tip"), sv=U.querySelector("svg"); let cur=null;
@@ -6298,7 +6325,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   gxPega(s); }
 
 function gxPinta(){ if(!DATA||innerWidth<=MOVIL) return;
-  try{ if(view==="analisis") gxAna(); else if(view==="movimientos") gxMov(); else if(view==="calendario") gxCal(); else if(view==="universo") gxUni(); }catch(e){ console.warn("Cartera · portada:",e); } }
+  try{ if(view==="analisis"){ gxAna(); gxAnaDet(); } else if(view==="movimientos") gxMov(); else if(view==="calendario") gxCal(); else if(view==="universo") gxUni(); }catch(e){ console.warn("Cartera · portada:",e); } }
 // v486: al cambiar el ancho de la ventana, la franja blanca y la tarjeta se estiran al momento (antes se veía el crema hasta que se redibujaba)
 function gxEstira(){ if(innerWidth<=MOVIL) return; const wr=document.querySelector(".wrap"); if(!wr) return; const w=wr.getBoundingClientRect(), dw=document.documentElement.clientWidth;
   document.querySelectorAll(".gxv > .gx3").forEach(s=>{ s.style.marginLeft=-w.left+"px"; s.style.marginRight=-(dw-w.right)+"px"; s.style.paddingLeft=w.left+"px"; s.style.paddingRight=(dw-w.right)+"px";
@@ -6344,6 +6371,83 @@ function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=docum
   A.innerHTML=h+`</div>`; }
 document.addEventListener("click",e=>{ const c=e.target.closest("#gxag [data-t]"); if(!c) return; const t=c.dataset.t, l=[...document.querySelectorAll("#gxag [data-t]")].map(x=>x.dataset.t);
   openSheet(DATA.pos.some(p=>p.ticker===t)?"pos":"pre",t,[...new Set(l)]); });
+
+// v503 · Análisis (PC): Dividendos, Anatomía del retorno y Trayectoria, cada uno en su bloque con titular de dos líneas y un gráfico protagonista
+const gxMil=v=>nf(0).format(Math.round(v));
+const gxSv=v=>`<tspan class="pvs">${v}</tspan>`;
+function gxDetSec(id,antes){ const v=$("v-analisis"); let s=$(id); if(!s){ s=document.createElement("section"); s.id=id; s.className="gxan"; const r=$(antes); v.insertBefore(s,r); } return s; }
+function gxDivs(){ const d=DATA, dv=d.dvm; if(!dv||!dv.years||!dv.years.length){ const s=$("gxdv"); if(s) s.remove(); return; }
+  const s=gxDetSec("gxdv","s-divs"), prev=dv.paidY+dv.schedY, nCob=d.dv.filter(d.isPaid).length, y0=dv.years[0].y;
+  s.innerHTML=`<h2 class="gxan-t"><span>${gxE(dv.paidY)} cobrados este año, el ${gxP(prev?dv.paidY/prev:1)} de lo previsto.</span><span>${gxE(dv.paidAll)} en ${gxMil(nCob)} ${nCob===1?"cobro":"cobros"} desde ${y0}, un ${gxP(dv.yoc,2)} sobre lo invertido.</span></h2>
+    <div class="gxan-c" id="gxdv-m"></div><div class="gxan-row"><div><div class="gxan-h">Quién te paga más al año</div><div id="gxdv-p"></div></div><div><div class="gxan-h">Cada año</div><div id="gxdv-y"></div></div></div>`;
+  const W=s.querySelector("#gxdv-m").clientWidth, hoy=new Date(), fd=r=>new Date(+new Date(r.d)+3*36e5);   // las fechas llegan a medianoche de Madrid
+  const pas=[]; for(let i=12;i>=1;i--){ const dt=new Date(hoy.getFullYear(),hoy.getMonth()-i,1), y=dt.getFullYear(), m=dt.getMonth();
+    pas.push({y,m,paid:sum(d.dv.filter(r=>d.isPaid(r)&&fd(r).getFullYear()===y&&fd(r).getMonth()===m),r=>r.gross||0),sched:0}); }
+  const M=[...pas,...(dv.months||[]).map(r=>({y:r.y,m:r.m,paid:r.paid||0,sched:r.sched||0}))], H=200, cw=W/M.length, bw=Math.min(28,cw*.5), mx=Math.max(1,...M.map(r=>r.paid+r.sched));
+  const PREV="color-mix(in srgb,var(--gx-id) 55%,var(--panel))";
+  let g=`<line x1="0" x2="${W}" y1="${H}" y2="${H}" stroke="var(--line)"/>`;
+  M.forEach((r,i)=>{ const x=i*cw+cw/2, hp=r.paid/mx*(H-28), hs=r.sched/mx*(H-28), t=r.paid+r.sched;
+    if(hp>0) g+=`<rect x="${(x-bw/2).toFixed(1)}" y="${(H-hp).toFixed(1)}" width="${bw.toFixed(1)}" height="${hp.toFixed(1)}" rx="3" fill="var(--gx-in)"/>`;
+    if(hs>0) g+=`<rect x="${(x-bw/2).toFixed(1)}" y="${(H-hp-hs).toFixed(1)}" width="${bw.toFixed(1)}" height="${hs.toFixed(1)}" rx="3" fill="${PREV}"/>`;
+    if(t>=.5) g+=`<text x="${x.toFixed(1)}" y="${(H-hp-hs-8).toFixed(1)}" text-anchor="middle" font-size="12" fill="var(--ink2)">${gxSv(gxMil(t))}</text>`;
+    g+=`<text x="${x.toFixed(1)}" y="${H+20}" text-anchor="middle" font-size="12" fill="${i>=12?"var(--ink2)":"var(--ink3)"}">${GX_MES[r.m]}</text>`;
+    if(r.m===0||i===0) g+=`<text x="${x.toFixed(1)}" y="${H+36}" text-anchor="middle" font-size="12" fill="var(--ink3)">${r.y}</text>`; });
+  const xh=12*cw; g+=`<line x1="${xh}" x2="${xh}" y1="-6" y2="${H}" stroke="var(--ink)" stroke-dasharray="2 3" stroke-opacity=".5"/><text x="${xh+8}" y="4" font-size="12" fill="var(--ink3)">hoy</text>`;
+  s.querySelector("#gxdv-m").innerHTML=`<svg width="${W}" height="${H+40}" viewBox="0 0 ${W} ${H+40}" role="img" aria-label="Dividendos de los últimos doce meses y de los doce próximos">${g}</svg>`;
+  // quién paga más: el logo en silueta, del color del texto
+  const top=(dv.payers||[]).slice(0,8), pm=top.length?top[0].val:1;
+  s.querySelector("#gxdv-p").innerHTML=top.map(p=>{ const src=((p.icon||"").match(/src="([^"]+)"/)||[])[1], lf=+(((p.icon||"").match(/--lf:([\d.]+)/)||[])[1]||1);
+    const lg=src?`<span class="gxsil" style="width:${Math.round(64*lf)}px;height:${Math.round(22*lf)}px;-webkit-mask-image:url('${src}');mask-image:url('${src}')"></span>`:"";
+    return `<div class="gxan-pg" title="${p.name}"><span class="lg">${lg}</span><span class="br"><i style="width:${(p.val/pm*100).toFixed(1)}%"></i></span><b>${gxE(p.val)}</b></div>`; }).join("");
+  // cada año: lo cobrado en tinta y lo previsto en menta, con lo que crece o cae respecto al anterior
+  const Y=dv.years, W2=s.querySelector("#gxdv-y").clientWidth, H2=232, cw2=W2/Y.length, bw2=40, my=Math.max(1,...Y.map(r=>r.paid+r.sched));
+  let g2=`<line x1="0" x2="${W2}" y1="${H2}" y2="${H2}" stroke="var(--line)"/>`;
+  Y.forEach((r,i)=>{ const x=i*cw2+cw2/2, hp=r.paid/my*(H2-40), hs=r.sched/my*(H2-40), t=r.paid+r.sched;
+    if(hp>0) g2+=`<rect x="${x-bw2/2}" y="${(H2-hp).toFixed(1)}" width="${bw2}" height="${hp.toFixed(1)}" rx="3" fill="var(--gx-in)"/>`;
+    if(hs>0) g2+=`<rect x="${x-bw2/2}" y="${(H2-hp-hs).toFixed(1)}" width="${bw2}" height="${hs.toFixed(1)}" rx="3" fill="${PREV}"/>`;
+    g2+=`<text x="${x}" y="${(H2-hp-hs-10).toFixed(1)}" text-anchor="middle" font-size="13" fill="var(--ink)">${gxSv(gxMil(t)+" €")}</text>`;
+    g2+=`<text x="${x}" y="${H2+20}" text-anchor="middle" font-size="12" fill="var(--ink2)">${r.y}</text>`;
+    if(i>0){ const pr=Y[i-1].paid+Y[i-1].sched; if(pr>0){ const gr=t/pr-1; g2+=`<text x="${x}" y="${H2+36}" text-anchor="middle" font-size="12" fill="${gr>=0?"var(--ink3)":"var(--neg)"}">${gxPS(gr,0)}</text>`; } } });
+  s.querySelector("#gxdv-y").innerHTML=`<svg width="${W2}" height="${H2+40}" viewBox="0 0 ${W2} ${H2+40}" role="img" aria-label="Dividendos de cada año">${g2}</svg>`; }
+function gxRet(){ const A=DATA.anat; if(!A||!A.comps||!A.comps.length){ const s=$("gxret"); if(s) s.remove(); return; }
+  const s=gxDetSec("gxret","s-ret"), C=A.comps, cost=-sum(C.filter(c=>c.v<0),c=>c.v), pos=C.filter(c=>c.v>0&&["reval","closed","div"].includes(c.k)).sort((a,b)=>b.v-a.v)[0];
+  const QUE={closed:"lo que ya vendiste",reval:"lo que aún tienes",div:"los dividendos"}, sh=pos&&A.ret>0?pos.v/A.ret:0;
+  const cuanto=sh>.5?"Más de la mitad":sh>=.45?"Casi la mitad":`El ${gxP(sh)}`;
+  s.innerHTML=`<h2 class="gxan-t"><span>${gxE(A.ret)} ganados sobre ${gxE(A.aport)} aportados.</span><span>${pos?`${cuanto} sale de ${QUE[pos.k]}; `:""}los costes restan ${gxE(cost)}.</span></h2><div class="gxan-c" id="gxret-c"></div>`;
+  const NOM={reval:"Revalorización",closed:"Posiciones cerradas",div:"Dividendos",ret:"Retenciones",fees:"Comisiones",adj:"Ajustes"};
+  const cols=[...C.map(c=>({l:NOM[c.k]||c.l,v:c.v})),{l:"Retorno",v:A.ret,tot:true}], W=s.querySelector("#gxret-c").clientWidth, H=300, cw=W/cols.length, bw=Math.min(96,cw*.56);
+  let run=0, mx=Math.max(1,A.ret); cols.forEach(c=>{ if(!c.tot){ run+=c.v; mx=Math.max(mx,run); } });
+  const yv=v=>H-Math.max(0,v)/mx*(H-36); run=0; let g=`<line x1="0" x2="${W}" y1="${H}" y2="${H}" stroke="var(--line)"/>`;
+  cols.forEach((c,i)=>{ const x=i*cw+cw/2; let a,b,fill;
+    if(c.tot){ a=0; b=c.v; fill="var(--gx-in)"; } else { a=run; b=run+c.v; run=b; fill=c.v>0?"var(--gx-id)":"color-mix(in srgb,var(--neg) 70%,var(--panel))"; }
+    const y1=yv(Math.max(a,b)), y2=yv(Math.min(a,b));
+    g+=`<rect x="${(x-bw/2).toFixed(1)}" y="${y1.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(2,y2-y1).toFixed(1)}" rx="3" fill="${fill}"/>`;
+    g+=`<text x="${x.toFixed(1)}" y="${(y1-10).toFixed(1)}" text-anchor="middle" font-size="15" fill="${c.v<0?"var(--neg)":"var(--ink)"}">${gxSv((c.tot?"":c.v>0?"+":"−")+gxMil(Math.abs(c.v))+" €")}</text>`;
+    g+=`<text x="${x.toFixed(1)}" y="${H+22}" text-anchor="middle" font-size="13" fill="var(--ink2)">${c.l}</text>`;
+    if(!c.tot&&i<cols.length-1){ const xn=(i+1)*cw+cw/2; g+=`<line x1="${(x+bw/2).toFixed(1)}" x2="${(xn-bw/2).toFixed(1)}" y1="${yv(b).toFixed(1)}" y2="${yv(b).toFixed(1)}" stroke="var(--ink)" stroke-opacity=".35" stroke-dasharray="2 3"/>`; } });
+  s.querySelector("#gxret-c").innerHTML=`<svg width="${W}" height="${H+32}" viewBox="0 0 ${W} ${H+32}" role="img" aria-label="De dónde sale el retorno">${g}</svg>`; }
+// Trayectoria: el mismo bloque y los mismos deslizadores; encima, el titular; debajo, las barras con dos filas (valor y renta)
+function gxTray(){ if(innerWidth<=MOVIL||!DATA||!DATA.tray||!DATA.tray.length||typeof traySup==="undefined"||!traySup) return; const S=$("s-tray"); if(!S) return;
+  let T0=$("gxtr-t"); if(!T0){ T0=document.createElement("h2"); T0.id="gxtr-t"; T0.className="gxan-t gxan-x"; S.prepend(T0); }
+  let C=$("gxtr-c"); if(!C){ C=document.createElement("div"); C.id="gxtr-c"; C.className="gxan-c gxan-x"; $("tray-v").after(C); }
+  const t=trayProj(traySup), cur=DATA.curYear, L=t[t.length-1], st=traySup.stop&&traySup.stop<=L.y?t.find(x=>x.y===traySup.stop):null;
+  const cifra=v=>v>=1e6?`${nf(2).format(v/1e6)} millones de €`:`${gxMil(v/1000)} mil €`;
+  T0.innerHTML=`<span><span class="pv">${cifra(L.val)}</span> en ${L.y}${isNum(L.age)?`, a los ${L.age} años`:""}.</span><span>${st?`Desde ${st.y}, ${gxE(st.net)} al mes de renta sin vender nada.`:`En ${L.y}, ${gxE(L.net)} al mes de renta sin vender nada.`}</span>`;
+  const W=C.clientWidth||S.clientWidth-96, H=300, n=t.length, cw=W/n, bw=Math.min(26,cw*.56), mx=Math.max(1,...t.map(r=>r.val||0)), yh=v=>Math.max(0,v)/mx*(H-24);
+  let g=`<line x1="0" x2="${W}" y1="${H}" y2="${H}" stroke="var(--line)"/>`;
+  t.forEach((r,i)=>{ const x=i*cw+cw/2, fu=r.y>cur, ha=yh(Math.min(r.acc,r.val)), hc=yh(r.val-r.acc);
+    g+=`<rect x="${(x-bw/2).toFixed(1)}" y="${(H-ha).toFixed(1)}" width="${bw.toFixed(1)}" height="${ha.toFixed(1)}" rx="2" fill="${fu?"color-mix(in srgb,var(--gx-in) 16%,var(--panel))":"var(--gx-in)"}"/>`;
+    if(hc>0) g+=`<rect x="${(x-bw/2).toFixed(1)}" y="${(H-ha-hc).toFixed(1)}" width="${bw.toFixed(1)}" height="${hc.toFixed(1)}" rx="2" fill="${fu?"color-mix(in srgb,var(--gx-id) 55%,var(--panel))":"var(--gx-id)"}"/>`;
+    g+=`<text x="${x.toFixed(1)}" y="${H+20}" text-anchor="middle" font-size="12" fill="var(--ink3)">${r.y}</text>`;
+    g+=`<text x="${x.toFixed(1)}" y="${H+46}" text-anchor="middle" font-size="12" fill="var(--ink)">${gxSv(gxMil((r.val||0)/1000))}</text>`;
+    if(isNum(r.net)) g+=`<text x="${x.toFixed(1)}" y="${H+68}" text-anchor="middle" font-size="12" fill="${r.re===false?"var(--ink)":"var(--ink3)"}">${gxSv(gxMil(r.net))}</text>`; });
+  const xi=t.findIndex(r=>r.y>cur), xs=t.findIndex(r=>r.y>cur&&r.re===false);
+  if(xi>0) g+=`<line x1="${xi*cw}" x2="${xi*cw}" y1="-4" y2="${H+76}" stroke="var(--ink)" stroke-dasharray="2 3" stroke-opacity=".5"/><text x="${xi*cw+8}" y="6" font-size="12" fill="var(--ink3)">hoy</text>`;
+  if(xs>0) g+=`<line x1="${xs*cw}" x2="${xs*cw}" y1="-4" y2="${H+76}" stroke="var(--ink)" stroke-dasharray="2 3" stroke-opacity=".5"/><text x="${xs*cw+8}" y="6" font-size="12" fill="var(--ink3)">sin reinvertir</text>`;
+  g+=`<text x="-10" y="${H+46}" text-anchor="end" font-size="12" fill="var(--ink3)">mil €</text><text x="-10" y="${H+68}" text-anchor="end" font-size="12" fill="var(--ink3)">€/mes</text>`;
+  C.innerHTML=`<svg width="${W}" height="${H+76}" viewBox="0 0 ${W} ${H+76}" role="img" aria-label="Patrimonio y renta de cada año">${g}</svg>`; }
+function gxAnaDet(){ [gxDivs,gxRet,gxTray].forEach(f=>{ try{ f(); }catch(e){ console.warn("Cartera · Análisis:",e); } }); }
+{ const _dt=drawTray; drawTray=function(live){ _dt(live); gxTray(); }; }   // al mover un deslizador, también el titular y las barras nuevas
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
