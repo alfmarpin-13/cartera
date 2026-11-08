@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-iS3rpeGyVAza3RYFAp3B35jU41DTymZkXksKpuutrM0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-dlq9947cYxr8Oxd0XqOmf4el01/b/Hig/yxLCceI44I=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3300,7 +3300,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gx-t .l2{color:var(--ink3)}
   /* v481: Universo es un solo lienzo; la exigencia, separada solo por una línea fina */
   .gx3:has(+ .gx3b){margin-bottom:0;padding-bottom:0}
-  .gx3b{padding-block:56px 72px}
+  .gx3b{padding-block:56px 72px;margin-top:-16px}   /* v485: sin la franja crema de 16 px entre los dos bloques */
   .gx3b .gx-c2{border-top:1px solid var(--line);padding-top:56px}
   .gx-un{position:relative}
   .gx-un circle[data-i]{cursor:pointer}
@@ -3355,20 +3355,24 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gx-cal{display:grid;grid-template-columns:1fr 1fr;gap:56px}
   .gx-mh{display:flex;align-items:baseline;gap:12px;margin:0 0 16px;font-size:13px;color:var(--ink3)}
   .gx-mh b{font-size:17px;line-height:22px;font-weight:600;color:var(--ink)}
-  .gx-dw{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:8px;font-size:11px;letter-spacing:.06em;color:var(--ink3);text-transform:uppercase}
+  .gx-dw{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-bottom:8px;font-size:11px;letter-spacing:.06em;color:var(--ink3);text-transform:uppercase}
   .gx-dw span{padding-left:10px}
-  .gx-gr{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+  .gx-gr{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}   /* v485: ninguna columna crece por su contenido */
   .gx-d{position:relative;height:88px;border-radius:8px;background:var(--gx-tile);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:12px 0 0;box-sizing:border-box;border:0;font:inherit;color:inherit}
   .gx-d.vac{background:none}
   .gx-d.pas{opacity:.45}   /* v479: los días pasados, con su casilla pero más tenues */
   .gx-d .n{position:absolute;left:10px;top:8px;font-size:12px;line-height:16px;font-weight:500;color:var(--ink2);font-variant-numeric:tabular-nums}
   .gx-d.fin .n{color:var(--ink3)}
   .gx-d.hoy .n{left:5px;top:4px;width:24px;height:24px;line-height:24px;text-align:center;border-radius:50%;background:var(--ink);color:var(--gx-bg)}
-  .gx-d .lr{display:flex;gap:8px;align-items:center}
-  .gx-dl{border:0;background:none;padding:2px;margin:-2px;border-radius:4px;cursor:pointer;display:flex}
+  .gx-d .lr{display:flex;gap:6px;align-items:center;justify-content:center;max-width:calc(100% - 16px);margin:0 auto}
+  .gx-dl{border:0;background:none;padding:2px;margin:-2px;border-radius:4px;cursor:pointer;display:flex;flex:0 1 auto;min-width:0;justify-content:center}
+  .gx-dl .gxl{max-width:100%}   /* v485: con varios el mismo día, los logos se encogen para caber en la casilla */
   .gx-dl:hover{background:color-mix(in srgb,currentColor 10%,transparent)}
   .gx3 svg.gx-hr{display:inline-block;overflow:visible}
   .gx-d .gx-hr{position:absolute;top:9px;right:10px;width:14px;height:14px;color:var(--ink2)}
+  .gx-hr.gx-q circle{fill:currentColor;stroke:none}
+  .gx-mas{flex:none;font-size:12px;font-weight:600;color:var(--ink2);font-variant-numeric:tabular-nums}
+  .gx-d.res .gx-mas{color:var(--gx-bg);opacity:.8}
   .gx-d.res .gx-hr{color:var(--gx-bg);opacity:.8}
   .gx-hr{fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round}
   .gx-hr path[d^="M9.6"]{fill:currentColor;stroke:none}
@@ -4098,7 +4102,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v484";   // la versión publicada, en el pie
+const VER="v485";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6049,17 +6053,17 @@ const GX_DIAS=["domingo","lunes","martes","miércoles","jueves","viernes","sába
 const gxCv=document.createElement("canvas").getContext("2d"), gxAncho=(t,f)=>{ gxCv.font=f; return gxCv.measureText(t).width; };
 const gxMed=a=>{ const s=a.slice().sort((x,y)=>x-y), n=s.length; return !n?0:n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2; };
 // los logos que son una forma rellena (un cuadrado de color con letras dentro) no se pueden pasar a silueta: van en gris
-const gxSolM=new Map(); let gxSolT=0;
-function gxSol(src){ if(!src) return false; if(gxSolM.has(src)) return gxSolM.get(src); gxSolM.set(src,false); const im=new Image();
+const gxSolM=new Map(); let gxSolT=0; const GX_SIL=new Set(["NYSE:BN","NYSE:BAM"]);   // v485: logos que van siempre como silueta (la barra de Brookfield)
+function gxSol(src,t){ if(!src||GX_SIL.has(t)) return false; if(gxSolM.has(src)) return gxSolM.get(src); gxSolM.set(src,false); const im=new Image();
   im.onload=()=>{ try{ const c=document.createElement("canvas"), w=c.width=48, h=c.height=48, x=c.getContext("2d"); x.drawImage(im,0,0,w,h); const d=x.getImageData(0,0,w,h).data;
     let x0=w,x1=-1,y0=h,y1=-1; for(let y=0;y<h;y++) for(let i=0;i<w;i++) if(d[(y*w+i)*4+3]>40){ if(i<x0)x0=i; if(i>x1)x1=i; if(y<y0)y0=y; if(y>y1)y1=y; }
     let op=0,tot=0,lum=0; for(let y=y0;y<=y1;y++) for(let i=x0;i<=x1;i++){ tot++; const q=(y*w+i)*4; if(d[q+3]>40){ op++; lum+=(.2126*d[q]+.7152*d[q+1]+.0722*d[q+2])/255; } }
     if(tot&&op/tot>0.62){ gxSolM.set(src,lum/op<.45?"d":"l");   // v481: relleno oscuro o claro
  clearTimeout(gxSolT); gxSolT=setTimeout(()=>gxPinta(),80); } }catch(e){} }; im.src=src; return false; }
 function gxLogo(t,w,h,{ancho=false,cls=""}={}){ const wide=ancho&&LOGO_ANCHO[t], src=wide||logoSrc(t); if(!src) return "";
-  const lf=wide?1:logoF(t); const so=gxSol(src); return `<span class="gxl ${so?"sol sol-"+so:""} ${cls}" style="width:${w}px;height:${h}px"><img src="${src}" alt="" style="transform:scale(${lf})"></span>`; }
+  const lf=wide?1:logoF(t); const so=gxSol(src,t); return `<span class="gxl ${so?"sol sol-"+so:""} ${cls}" style="width:${w}px;height:${h}px"><img src="${src}" alt="" style="transform:scale(${lf})"></span>`; }
 function gxSil(t,w,h){ const src=logoSrc(t); if(!src) return ""; const lf=logoF(t);   // el logo en el color del texto de su casilla, como en el mapa de Resumen
-  const so=gxSol(src); return so?`<img class="gxsol sol-${so}" src="${src}" alt="" style="width:${w}px;height:${h}px;transform:scale(${lf})">`:`<span class="gxsil" style="width:${w}px;height:${h}px;transform:scale(${lf});-webkit-mask-image:url('${src}');mask-image:url('${src}')"></span>`; }
+  const so=gxSol(src,t); return so?`<img class="gxsol sol-${so}" src="${src}" alt="" style="width:${w}px;height:${h}px;transform:scale(${lf})">`:`<span class="gxsil" style="width:${w}px;height:${h}px;transform:scale(${lf});-webkit-mask-image:url('${src}');mask-image:url('${src}')"></span>`; }
 function gxKw(id,txt,ops){ return `<span class="kwr"><button type="button" class="kw" data-kw="${id}" aria-haspopup="menu" aria-expanded="false">${txt}<i aria-hidden="true"></i></button><span class="kw-m" role="menu" hidden>${ops.map(o=>`<button type="button" role="menuitemradio" data-kw="${id}" data-o="${o.k}" aria-checked="${!!o.on}"${o.dis?" disabled":""}>${o.t}<em>${o.n??""}</em></button>`).join("")}</span></span>`; }
 const gxH=(l1,l2)=>`<h2 class="gx-t"><span class="l1">${l1}</span><span class="l2">${l2}</span></h2>`;   // v479: siempre dos líneas
 function gxSec(vid){ const v=$(vid); let s=v.querySelector(":scope > .gx3"); if(!s){ s=document.createElement("section"); s.className="gx3"; const mt=v.querySelector(":scope > .mtop"); if(mt) mt.after(s); else v.prepend(s); }
@@ -6134,7 +6138,11 @@ function gxMov(){ const s=gxSec("v-movimientos"), hoy=new Date(), divs=DATA.dv.f
   const fil=[]; notas.filter(n=>!n.abajo).sort((a,b)=>a.i-b.i).forEach(n=>{ const x=n.i*slot+slot/2, w=Math.max(gxAncho(n.t,"600 12px Inter"),gxAncho(txt(n.s),"12px Inter"))+16; let r=0; while(fil[r]!==undefined&&fil[r]>x) r++; fil[r]=x+w; n.r=r; });
   // v479: el dibujo mide siempre lo mismo (dos filas de notas arriba, 300 px de barras y la fila de notas de abajo); arriba y abajo se reparten
   // esos 300 px en proporción a su barra más alta, así que la escala es la misma a los dos lados
-  const BA=256, top=64+38,   /* v483: 256 px de barras, para que el lienzo mida lo mismo que el de Análisis */ mxd=Math.max(0,...arr.map(o=>o.dn)), mxu=Math.max(1,...arr.map(o=>o.up)), HU=BA/2, sc=v=>v/Math.max(mxu,mxd)*HU, mid=top+HU;   // v481: la línea del cero, siempre a la misma altura en todas las opciones
+  const BA=256, top=64+38,   /* v483: 256 px de barras, para que el lienzo mida lo mismo que el de Análisis */ mxd=Math.max(0,...arr.map(o=>o.dn)), mxu=Math.max(1,...arr.map(o=>o.up));
+  // v485: movimientos y transacciones comparten la línea del cero (la de movimientos); dividendos, aportaciones y ajustes la colocan según sus barras, como antes
+  let HU, sc; if(modo==="todo"||modo==="tx"){ const T=M.map(o=>({up:Math.max(0,o.ap)+o.vt+o.dv,dn:o.cp+Math.max(0,-o.ap)})), tu=Math.max(1,...T.map(o=>o.up)), td=Math.max(0,...T.map(o=>o.dn)); HU=BA*tu/(tu+td); const HD0=BA-HU, k=Math.min(HU/mxu,mxd>0?HD0/mxd:Infinity); sc=v=>v*k; }
+  else { sc=v=>v/(mxu+mxd)*BA; HU=sc(mxu); }
+  const mid=top+HU;
   const HD=BA-HU, NB=44, H=top+BA+6+NB+40, bw=Math.max(3,Math.round(slot*0.6));
   const cUp=modo==="dv"?"var(--accent)":"var(--gx-in)"; let g="";
   for(let i=0;i<NM;i++) if((m0+i)%12===0) g+=`<line x1="${(i*slot).toFixed(1)}" x2="${(i*slot).toFixed(1)}" y1="${top-8}" y2="${H-22}" stroke="var(--line)"/>`;
@@ -6142,10 +6150,7 @@ function gxMov(){ const s=gxSec("v-movimientos"), hoy=new Date(), divs=DATA.dv.f
     if(o.up>0){ const hh=Math.max(1.5,sc(o.up)); g+=`<rect x="${x}" y="${(mid-1-hh).toFixed(1)}" width="${bw}" height="${hh.toFixed(1)}" rx="2" fill="${cUp}"><title>${lbl(i)}</title></rect>`; }
     if(o.dn>0){ const hh=Math.max(1.5,sc(o.dn)); g+=`<rect x="${x}" y="${mid+1}" width="${bw}" height="${hh.toFixed(1)}" rx="2" fill="var(--gx-out)"><title>${lbl(i)}</title></rect>`; } });
   g+=`<line x1="0" x2="${W}" y1="${mid}" y2="${mid}" stroke="var(--ink)" stroke-opacity=".35"/>`;
-  // v481: la media mensual de cada lado, para tener una referencia sin eje (solo si se separa al menos 10 px del cero)
-  const mu=sum(arr,o=>o.up)/NM, md=sum(arr,o=>o.dn)/NM; let medH="";
-  if(mu>0&&sc(mu)>=10){ const y=mid-1-sc(mu); g+=`<line x1="0" x2="${W}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}" stroke="var(--ink)" stroke-dasharray="4 4" stroke-opacity=".45"/>`; medH+=`<span class="gx-med" style="right:0;top:${(y-18).toFixed(1)}px">media ${gxE(mu)} al mes</span>`; }
-  if(md>0&&sc(md)>=10){ const y=mid+1+sc(md); g+=`<line x1="0" x2="${W}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}" stroke="var(--ink)" stroke-dasharray="4 4" stroke-opacity=".45"/>`; medH+=`<span class="gx-med" style="right:0;top:${(y+3).toFixed(1)}px">media ${gxE(md)} al mes</span>`; }
+  let medH="";   // v485: sin líneas de media (las quitó Alfonso)
   let anos2="";
   for(let y=Math.floor(m0/12);y<=Math.floor(m1/12);y++){ const i0=Math.max(0,y*12-m0), x=i0*slot+(i0===0?0:6), tot=modo==="dv"?sum(divs.filter(r=>r.d instanceof Date&&r.d.getFullYear()===y),r=>r.gross||0):null;
     anos2+=`<span class="gx-ano" style="left:${x.toFixed(1)}px;top:${H-18}px">${y}${tot!=null?`<em>${gxE(tot)}</em>`:""}</span>`; }
@@ -6174,13 +6179,15 @@ function gxCal(){ const s=gxSec("v-calendario"), hoy=new Date(); hoy.setHours(12
     const resumen=[rm.length?`${rm.length} ${rm.length===1?"resultado":"resultados"}`:"",cm.length?`${cm.length} ${cm.length===1?"cobro":"cobros"} · ${gxE(sum(cm,c=>c.v))}`:""].filter(Boolean).join(" · ");
     html+=`<div><div class="gx-mh"><b>${GX_MESL[a.getMonth()][0].toUpperCase()+GX_MESL[a.getMonth()].slice(1)}</b><span>${resumen}</span></div><div class="gx-dw">${["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"].map(x=>`<span>${x}</span>`).join("")}</div><div class="gx-gr">`;
     for(let i=0;i<off;i++) html+=`<div class="gx-d vac"></div>`;
-    for(let d=1;d<=dim;d++){ const dt=new Date(y0,mo0+m,d,12), e=ev[key(dt)]||[], r=e.filter(x=>x.k==="r"), c=e.filter(x=>x.k==="c"), n=e.length, ve=e.slice(0,3), lw=[50,36,28][ve.length-1]||50, lh=Math.round(lw*.58);   // v479: como mucho tres logos (el resto, en el título de la casilla)
+    for(let d=1;d<=dim;d++){ const dt=new Date(y0,mo0+m,d,12), e=ev[key(dt)]||[], r=e.filter(x=>x.k==="r"), c=e.filter(x=>x.k==="c"), n=e.length, ve=e.slice(0,2), lw=[50,34][ve.length-1]||50, lh=Math.round(lw*.58);   // v485: como mucho dos logos; si hay más, «+N»   // v479: como mucho tres logos (el resto, en el título de la casilla)
       const cls=["gx-d",dt<hoy?"pas":"",dd(dt)===0?"hoy":"",dt.getDay()%6===0?"fin":"",r.length?"res":""].join(" ");
       // v483: sol si publica antes de la apertura y luna si es tras el cierre (v484: en la esquina, a la altura del número del día)
       const SOL='<svg class="gx-hr" viewBox="0 0 12 12" aria-label="antes de la apertura"><circle cx="6" cy="6" r="2.3"/><path d="M6 .9v1.3M6 9.8v1.3M.9 6h1.3M9.8 6h1.3M2.4 2.4l.9.9M8.7 8.7l.9.9M2.4 9.6l.9-.9M8.7 3.3l.9-.9"/></svg>', LUNA='<svg class="gx-hr" viewBox="0 0 12 12" aria-label="tras el cierre"><path d="M9.6 7.6A4.2 4.2 0 0 1 4.4 2.4a4.2 4.2 0 1 0 5.2 5.2z"/></svg>';
-      const hr=r.map(x=>/^antes/i.test(x.hora)?SOL:/^(desp|tras)/i.test(x.hora)?LUNA:"").find(Boolean)||"";
-      const lab=[r.length?`${r.some(x=>x.est)?"<i>≈ </i>":""}Resultados`:"",c.length?gxE(sum(c,x=>x.v)):""   /* v479: el total del día, no una suma escrita */].filter(Boolean).join(" · ");
-      html+=n?`<div class="${cls}"><span class="n">${d}</span>${hr}<span class="lr">${ve.map(x=>`<button type="button" class="gx-dl" data-t="${esc(x.t)}" aria-label="${esc(nm[x.t]||x.t)}">${gxLogo(x.t,lw,lh,{cls:r.length?"inv":""})}</button>`).join("")}</span><span class="lb">${lab}</span></div>`:`<div class="${cls}"><span class="n">${d}</span></div>`; }
+      const INT='<svg class="gx-hr gx-q" viewBox="0 0 12 12" aria-label="fecha estimada"><path d="M4.2 4.4a1.9 1.9 0 1 1 2.6 1.8c-.5.2-.8.6-.8 1.1v.5"/><circle cx="6" cy="9.6" r=".7"/></svg>';   // v485: fecha sin confirmar
+      const hr=r.some(x=>x.est)?INT:(r.map(x=>/^antes/i.test(x.hora)?SOL:/^(desp|tras)/i.test(x.hora)?LUNA:"").find(Boolean)||"");
+      const lab=[   // v485: sin la palabra «Resultados» (la casilla oscura ya lo dice); solo el cobro, si lo hay
+        c.length?gxE(sum(c,x=>x.v)):""   /* v479: el total del día, no una suma escrita */].filter(Boolean).join(" · ");
+      html+=n?`<div class="${cls}"><span class="n">${d}</span>${hr}<span class="lr">${ve.map(x=>`<button type="button" class="gx-dl" data-t="${esc(x.t)}" aria-label="${esc(nm[x.t]||x.t)}">${gxLogo(x.t,lw,lh,{cls:r.length?"inv":""})}</button>`).join("")}${e.length>2?`<span class="gx-mas" title="${esc(e.slice(2).map(x=>nm[x.t]||x.t).join(" · "))}">+${e.length-2}</span>`:""}</span>${lab?`<span class="lb">${lab}</span>`:""}</div>`:`<div class="${cls}"><span class="n">${d}</span></div>`; }
     for(let i=off+dim;i<42;i++) html+=`<div class="gx-d vac"></div>`;   // v479: seis semanas siempre, para que no cambie de alto de un mes a otro
     html+=`</div></div>`; }
   s.querySelector(".gx-cal").innerHTML=html; gxPega(s); gxAgenda(); }
