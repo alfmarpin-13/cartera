@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-3rhvy2LE7LB8vr7JHb0aZr6H5JUA1+NkqAKvhBzQkNc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-L8eVN14gPHD785UoShMSI8ycuPpDRpsFRYkEDLD9IDw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4115,7 +4115,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v495";   // la versión publicada, en el pie
+const VER="v496";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6310,7 +6310,7 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ const m=document.
 // dentro, una línea por día con cada cita (resultados del Universo y cobros de tu cartera)
 const GX_DS=["dom","lun","mar","mié","jue","vie","sáb"];
 function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=document.createElement("section"); A.id="gxag"; $("s-calm").after(A); }
-  A.className="gxag";   // v490: sobre el lienzo, sin recuadro
+  A.className="panel gxag";   // v496: dentro de un bloque, como el resto del detalle
   const D0=d=>{ const x=new Date(d); x.setHours(12,0,0,0); return x; }, hoy=D0(new Date()), fin=new Date(hoy.getFullYear(),hoy.getMonth()+2,0,12), lunes=d=>{ const x=D0(d); x.setDate(x.getDate()-((x.getDay()+6)%7)); return x; };
   const pf=new Set(DATA.pos.map(p=>p.ticker)), nm={}; DATA.pre.forEach(p=>nm[p.ticker]=p.name); DATA.pos.forEach(p=>nm[p.ticker]=p.name);
   const ev={}, add=(d,o)=>{ if(d>=hoy&&d<=fin){ (ev[+d]=ev[+d]||[]).push(o); } };
