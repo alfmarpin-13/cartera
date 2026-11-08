@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-L8eVN14gPHD785UoShMSI8ycuPpDRpsFRYkEDLD9IDw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-zMxKCb0EdDcP/dvX5jA6C7DQboqzhWqypqXEhOyv22E=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3426,6 +3426,11 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .foot .f-op{display:none}
 }
 @media (min-width:700.99px) and (prefers-color-scheme:dark){ :root:not([data-theme="light"]){--gx-pie:#0A0A09} }
+/* v497 · lo ya pasado se ve, pero atenuado: resultados pasados en gris en lugar de negro, y los días pasados de la agenda, más claros */
+@media (min-width:700.99px){
+  .gx-d.pas.res{background:color-mix(in srgb,var(--ink) 38%,var(--gx-tile))}
+  .gxag-d.pas{opacity:.5}
+}
 </style>
 
 <div class="wrap">
@@ -4115,7 +4120,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v496";   // la versión publicada, en el pie
+const VER="v497";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6183,21 +6188,22 @@ function gxMov(){ const s=gxSec("v-movimientos"), hoy=new Date(), divs=DATA.dv.f
 // ── Calendario · tu cartera hasta final del mes que viene, en dos meses con el logo en cada día
 function gxCal(){ const s=gxSec("v-calendario"), hoy=new Date(); hoy.setHours(12,0,0,0);
   const pf=new Set(DATA.pos.map(p=>p.ticker)), nm={}; DATA.pos.forEach(p=>nm[p.ticker]=p.name);
-  const y0=hoy.getFullYear(), mo0=hoy.getMonth(), fin=new Date(y0,mo0+2,0,12), key=d=>`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`, ev={}, add=(d,o)=>{ (ev[key(d)]=ev[key(d)]||[]).push(o); };
-  const res=(ACT&&ACT.ix&&ACT.ix.empresas||[]).filter(e=>e.proximos&&e.proximos.fecha&&pf.has(e.ticker)).map(e=>({t:e.ticker,d:new Date(e.proximos.fecha+"T12:00:00"),est:e.proximos.estado==="estimada",hora:e.proximos.hora||"",k:"r"})).filter(e=>e.d>=hoy&&e.d<=fin);
-  const cob=DATA.dv.filter(r=>!DATA.isPaid(r)&&r.d instanceof Date).map(r=>({t:r.ticker,d:new Date(new Date(r.d).setHours(12,0,0,0)),v:r.gross||0,k:"c"})).filter(e=>e.d>=hoy&&e.d<=fin);
+  const y0=hoy.getFullYear(), mo0=hoy.getMonth(), fin=new Date(y0,mo0+2,0,12), ini=new Date(y0,mo0,1,12), key=d=>`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`, ev={}, add=(d,o)=>{ (ev[key(d)]=ev[key(d)]||[]).push(o); };
+  const res=(ACT&&ACT.ix&&ACT.ix.empresas||[]).filter(e=>e.proximos&&e.proximos.fecha&&pf.has(e.ticker)).map(e=>({t:e.ticker,d:new Date(e.proximos.fecha+"T12:00:00"),est:e.proximos.estado==="estimada",hora:e.proximos.hora||"",k:"r"})).filter(e=>e.d>=ini&&e.d<=fin);
+  const cob=DATA.dv.filter(r=>r.d instanceof Date).map(r=>({t:r.ticker,d:new Date(new Date(r.d).setHours(12,0,0,0)),v:r.gross||0,k:"c"})).filter(e=>e.d>=ini&&e.d<=fin);
+  // v497: los dos meses enteros, también lo ya pasado (resultados publicados y cobros cobrados); el titular cuenta solo lo que queda por venir
+  const resF=res.filter(e=>e.d>=hoy), cobF=cob.filter(e=>e.d>=hoy);
   res.forEach(e=>add(e.d,e)); cob.forEach(e=>add(e.d,e));
-  const tot=sum(cob,c=>c.v), prim=res.slice().sort((a,b)=>a.d-b.d)[0], dd=d=>Math.round((d-hoy)/DIA_MS), cuando=d=>dd(d)===0?"hoy":dd(d)===1?"mañana":`el ${GX_DIAS[d.getDay()]} ${d.getDate()}`;
+  const tot=sum(cobF,c=>c.v), prim=resF.slice().sort((a,b)=>a.d-b.d)[0], dd=d=>Math.round((d-hoy)/DIA_MS), cuando=d=>dd(d)===0?"hoy":dd(d)===1?"mañana":`el ${GX_DIAS[d.getDay()]} ${d.getDate()}`;
   const hasta=fin.getMonth()===11?"Hasta fin de año":`Hasta final de ${GX_MESL[fin.getMonth()]}`;
-  const que=[res.length?`${res.length} ${res.length===1?"resultado":"resultados"}`:"",cob.length?`${cob.length} ${cob.length===1?"cobro":"cobros"}`:""].filter(Boolean).join(" y ")||"nada de tu cartera";
+  const que=[resF.length?`${resF.length} ${resF.length===1?"resultado":"resultados"}`:"",cobF.length?`${cobF.length} ${cobF.length===1?"cobro":"cobros"}`:""].filter(Boolean).join(" y ")||"nada de tu cartera";
   // v481: primero cuánto hay; después, lo que llega antes (resultados o cobro)
-  const pri=res.concat(cob).sort((a,b)=>a.d-b.d)[0], l1=`${hasta}, ${que}${cob.length?` por ${gxE(tot)} brutos`:""}.`;
+  const pri=resF.concat(cobF).sort((a,b)=>a.d-b.d)[0], l1=`${hasta}, ${que}${cobF.length?` por ${gxE(tot)} brutos`:""}.`;
   const l2=!pri?"Nada a la vista.":`Lo primero: ${pri.k==="r"?`resultados de ${esc(nm[pri.t]||pri.t)}`:`el cobro de ${esc(nm[pri.t]||pri.t)}, ${gxE(pri.v)}`}, ${cuando(pri.d)}.`;
   s.innerHTML=gxH(l1,l2)+`<div class="gx-cal"></div>`;
   let html="";
   for(let m=0;m<2;m++){ const a=new Date(y0,mo0+m,1,12), dim=new Date(y0,mo0+m+1,0).getDate(), off=(a.getDay()+6)%7, rm=res.filter(e=>e.d.getMonth()===a.getMonth()), cm=cob.filter(e=>e.d.getMonth()===a.getMonth());
-    const tot=cm.length?`<i>${gxE(sum(cm,c=>c.v))}</i>`:"";   // v486: solo el total de los cobros, al mismo tamaño que el mes (los resultados y cobros ya se cuentan en la cuadrícula)
-    html+=`<div><div class="gx-mh"><b>${GX_MESL[a.getMonth()][0].toUpperCase()+GX_MESL[a.getMonth()].slice(1)}${tot}</b></div><div class="gx-dw">${["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"].map(x=>`<span>${x}</span>`).join("")}</div><div class="gx-gr">`;
+    html+=`<div><div class="gx-mh"><b>${GX_MESL[a.getMonth()][0].toUpperCase()+GX_MESL[a.getMonth()].slice(1)}</b></div>`+`<div class="gx-dw">${["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"].map(x=>`<span>${x}</span>`).join("")}</div><div class="gx-gr">`;
     for(let i=0;i<off;i++) html+=`<div class="gx-d vac"></div>`;
     for(let d=1;d<=dim;d++){ const dt=new Date(y0,mo0+m,d,12), e=ev[key(dt)]||[], r=e.filter(x=>x.k==="r"), c=e.filter(x=>x.k==="c"), n=e.length, ve=e.slice(0,2), lw=[50,34][ve.length-1]||50, lh=Math.round(lw*.58);   // v485: como mucho dos logos; si hay más, «+N»   // v479: como mucho tres logos (el resto, en el título de la casilla)
       const cls=["gx-d",dt<hoy?"pas":"",dd(dt)===0?"hoy":"",dt.getDay()%6===0?"fin":"",r.length?"res":""].join(" ");
@@ -6313,7 +6319,7 @@ function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=docum
   A.className="panel gxag";   // v496: dentro de un bloque, como el resto del detalle
   const D0=d=>{ const x=new Date(d); x.setHours(12,0,0,0); return x; }, hoy=D0(new Date()), fin=new Date(hoy.getFullYear(),hoy.getMonth()+2,0,12), lunes=d=>{ const x=D0(d); x.setDate(x.getDate()-((x.getDay()+6)%7)); return x; };
   const pf=new Set(DATA.pos.map(p=>p.ticker)), nm={}; DATA.pre.forEach(p=>nm[p.ticker]=p.name); DATA.pos.forEach(p=>nm[p.ticker]=p.name);
-  const ev={}, add=(d,o)=>{ if(d>=hoy&&d<=fin){ (ev[+d]=ev[+d]||[]).push(o); } };
+  const ini=new Date(hoy.getFullYear(),hoy.getMonth(),1,12), ev={}, add=(d,o)=>{ if(d>=ini&&d<=fin){ (ev[+d]=ev[+d]||[]).push(o); } };   // v497: desde el día 1 del mes, también lo ya pasado
   // v492: solo las empresas de fuera de tu cartera (las tuyas, con sus cobros, ya están en los dos meses de arriba) y hasta el mismo día que ellos
   const pre={}; DATA.pre.forEach(r=>pre[r.ticker]=r);
   (ACT&&ACT.ix&&ACT.ix.empresas||[]).forEach(e=>{ const p=e.proximos||{}; if(p.fecha&&!pf.has(e.ticker)) add(D0(p.fecha+"T12:00:00"),{k:"r",t:e.ticker,n:e.nombre||nm[e.ticker]||e.ticker,mia:false,sube:!!(pre[e.ticker]&&pre[e.ticker].margin>0),per:p.periodo||"",est:p.estado==="estimada",hora:p.hora||""}); });
@@ -6331,7 +6337,7 @@ function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=docum
   h+=`<div class="gxag-cols">`;
   for(let m=0;m<2;m++){ const mes=new Date(hoy.getFullYear(),hoy.getMonth()+m,1,12), ks=dias.filter(k=>new Date(k).getMonth()===mes.getMonth());
     h+=`<div class="gxag-s"><div class="gxag-st">${GX_MESL[mes.getMonth()]}</div>`+(ks.length?ks.map(k=>{ const d=new Date(k), L=ev[k].slice().sort((x,y)=>String(x.n).localeCompare(y.n,"es"));
-      return `<div class="gxag-d"><div class="gxag-dn"><b>${d.getDate()}</b>${GX_DS[d.getDay()]}</div><div class="gxag-ev">${L.map(o=>`<div class="gxag-f" data-t="${esc(o.t)}">${gxLogo(o.t,30,16)}<span>${frase(o)}</span></div>`).join("")}</div></div>`; }).join(""):`<p class="gxag-nada">Ningún resultado.</p>`)+`</div>`; }
+      return `<div class="gxag-d${d<hoy?" pas":""}"><div class="gxag-dn"><b>${d.getDate()}</b>${GX_DS[d.getDay()]}</div><div class="gxag-ev">${L.map(o=>`<div class="gxag-f" data-t="${esc(o.t)}">${gxLogo(o.t,30,16)}<span>${frase(o)}</span></div>`).join("")}</div></div>`; }).join(""):`<p class="gxag-nada">Ningún resultado.</p>`)+`</div>`; }
   A.innerHTML=h+`</div>`; }
 document.addEventListener("click",e=>{ const c=e.target.closest("#gxag [data-t]"); if(!c) return; const t=c.dataset.t, l=[...document.querySelectorAll("#gxag [data-t]")].map(x=>x.dataset.t);
   openSheet(DATA.pos.some(p=>p.ticker===t)?"pos":"pre",t,[...new Set(l)]); });
