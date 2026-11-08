@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-bYMsAZfV0FhzODH7rAQ/0rl1zBi/XwVdyzbNrYDuGmo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Fl1gXvbzyP4/AppyHy1ECLmFT6nkGhsCOI7zwIX0jW0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4115,7 +4115,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v493";   // la versión publicada, en el pie
+const VER="v494";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6058,7 +6058,8 @@ const tabY={};   // cada pestaña recuerda hasta dónde habías bajado (pulsar l
 // lo ancho; debajo, el detalle en crema a 1200 px. La palabra subrayada del titular es el selector. En el móvil no cambia nada
 const GX_NEG={"NYSE:AXP":"logos/neg-AXP.webp"};   // v486: American Express, solo las letras (su recuadro azul, pasado a una tinta, quedaba como un bloque negro)
 const gxSrc=t=>GX_NEG[t]||logoSrc(t), gxF=t=>GX_NEG[t]?1:logoF(t);
-const LOGO_ANCHO={"BME:VID":"logos/ancho-VID.webp","VIE:NTO":"logos/ancho-NTO.webp","NASDAQ:AMZN":"logos/ancho-AMZN.webp","NYSE:SPGI":"logos/ancho-SPGI.webp"};
+const LOGO_R={"logos/ancho-AMZN.webp":3.32,"logos/ancho-ASML.webp":3.57,"logos/ancho-ASTS.webp":3.75,"logos/ancho-BBVA.webp":3.35,"logos/ancho-BN.webp":6.72,"logos/ancho-DGE.webp":4.66,"logos/ancho-GOOGL.webp":3.03,"logos/ancho-KO.webp":3.19,"logos/ancho-MC.webp":4.29,"logos/ancho-META.webp":4.97,"logos/ancho-NTO.webp":4.05,"logos/ancho-OR.webp":5.52,"logos/ancho-RMS.webp":1.72,"logos/ancho-SPGI.webp":4.62,"logos/ancho-TXN.webp":8.04,"logos/ancho-UBER.webp":2.88,"logos/ancho-VID.webp":4.31,"logos/ancho-VIS.webp":2.32};   // v494: proporción ancho/alto de cada logo ancho
+const LOGO_ANCHO={"BME:VID":"logos/ancho-VID.webp","VIE:NTO":"logos/ancho-NTO.webp","NASDAQ:AMZN":"logos/ancho-AMZN.webp","NYSE:SPGI":"logos/ancho-SPGI.webp","AMS:ASML":"logos/ancho-ASML.webp","NASDAQ:ASTS":"logos/ancho-ASTS.webp","BME:BBVA":"logos/ancho-BBVA.webp","NYSE:BN":"logos/ancho-BN.webp","NYSE:KO":"logos/ancho-KO.webp","LON:DGE":"logos/ancho-DGE.webp","NASDAQ:GOOGL":"logos/ancho-GOOGL.webp","EPA:MC":"logos/ancho-MC.webp","NASDAQ:META":"logos/ancho-META.webp","EPA:OR":"logos/ancho-OR.webp","EPA:RMS":"logos/ancho-RMS.webp","NASDAQ:TXN":"logos/ancho-TXN.webp","NYSE:UBER":"logos/ancho-UBER.webp","BME:VIS":"logos/ancho-VIS.webp"};   // v494: las versiones anchas del zip
 const GX={ana:"industria",uni:null,gap:null};
 const gxE=(v,d=0)=>`<span class="pv">${v<0?"−":""}${nf(d).format(Math.abs(v))} €</span>`;
 const gxP=(v,d=0)=>(v<0?"−":"")+nf(d).format(Math.abs(v)*100)+" %";
@@ -6109,7 +6110,7 @@ function gxAna(){ const s=gxSec("v-analisis"), pos=DATA.pos.filter(p=>!p.isOptio
   let html="";
   baldas.forEach((B,bi)=>{ let x=0; const y=bi*SH;
     B.forEach(G=>{ const x0=x, base=sum(G.ps,p=>wd(p,k)), fx=(gws(G,k)-(G.ps.length-1)*GT)/base;
-      G.ps.forEach((p,i)=>{ const w=wd(p,k)*fx, pc=gxP(p.weight/tw,1), wide=LOGO_ANCHO[p.ticker]&&w>=110, lw=wide?Math.min(150,Math.round(w*.62)):57, lh=wide?30:33;
+      G.ps.forEach((p,i)=>{ const w=wd(p,k)*fx, pc=gxP(p.weight/tw,1), lw0=Math.min(150,Math.round(w*.62)), lh0=/RMS/.test(p.ticker)?44:30, wide=LOGO_ANCHO[p.ticker]&&w>=110&&Math.min(lh0,lw0/(LOGO_R[LOGO_ANCHO[p.ticker]]||3))>=15, lw=wide?lw0:57, lh=wide?lh0:33;   // v494: el ancho solo si el logo queda con 15 px de alto o más (Hermès, apilado, algo más alto)
         html+=`<button type="button" class="gx-tile" data-t="${esc(p.ticker)}" title="${esc(p.name)} · ${pc}" style="left:${x.toFixed(1)}px;top:${y}px;width:${w.toFixed(1)}px;height:${TH}px">${gxLogo(p.ticker,lw,lh,{ancho:wide})}<em>${pc}</em></button>`;
         x+=w+(i<G.ps.length-1?GT:0); });
       html+=`<div class="gx-rule" style="left:${x0.toFixed(1)}px;top:${y+TH+10}px;width:${(x-x0).toFixed(1)}px"></div><div class="gx-grp" style="left:${x0.toFixed(1)}px;top:${y+TH+17}px;width:${Math.min(x-x0+GG,W-x0).toFixed(1)}px">${esc(G.k)}<span>${gxP(G.w,1)}</span></div>`;
