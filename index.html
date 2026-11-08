@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Q1geOkN6IBNuayFutE2TLZdyDAMKSKqlfjY/TkzUWZk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-bEGN9eW6FP5n0JvAJbB8C6cCFFq+FwtKDGgQwfL9md8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3278,19 +3278,23 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gxag-h h2{margin:0;font-size:17px;line-height:22px;font-weight:600;color:var(--ink)}
   .gxag-h span{font-size:13px;color:var(--ink3)}
   .gxag-nada{margin:0;color:var(--ink3);font-size:14px}
-  .gxag-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:72px;align-items:start}   /* v491: dos semanas por fila; se lee de izquierda a derecha y hacia abajo, sin volver arriba */
+  .gxag-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:56px;align-items:start}   /* v492: un mes en cada columna, como los dos meses de arriba */
   .gxag-s{padding:22px 0 8px;border-top:1px solid var(--line);break-inside:avoid}
   .gxag-st{font-size:13px;line-height:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
-  .gxag-d{display:grid;grid-template-columns:72px minmax(0,1fr);gap:0 24px;padding:10px 0}
+  .gxag-d{display:grid;grid-template-columns:52px minmax(0,1fr);gap:0 16px;padding:10px 0}
   .gxag-dn{font-size:13px;line-height:20px;color:var(--ink3)}
   .gxag-dn b{display:block;font-size:17px;line-height:22px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
-  .gxag-f{display:flex;align-items:center;gap:12px;min-height:30px;font-size:15px;line-height:22px;color:var(--ink);cursor:pointer}
+  .gxag-f{display:flex;align-items:center;gap:12px;min-height:30px;font-size:14px;line-height:20px;color:var(--ink);cursor:pointer}   /* v492: 14 px, para que ninguna frase se parta */
   .gxag-f .gxl{flex:none}
   .gxag-f:hover>span{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px}
   .gxag-f b{font-weight:600}
   .gxag-f .t3{color:var(--ink3)}
   .gxag-f.fuera{color:var(--ink3)}
   .gxag-f.fuera .gxl img{opacity:.5}
+  .gxag-v{flex:none;width:8px;height:8px;border-radius:50%;margin-right:-4px}   /* v492: el punto verde de las que rinden más de lo que les exiges */
+  .gxag-v.si{background:var(--gx-id);box-shadow:0 0 0 1.5px var(--ink)}
+  .gxag-ley{display:inline-flex;align-items:center;gap:7px;margin-left:auto;font-size:13px;color:var(--ink3)}
+  .gxag-ley i{width:8px;height:8px;border-radius:50%;background:var(--gx-id);box-shadow:0 0 0 1.5px var(--ink)}
   /* v480: el detalle vuelve a su ancho (el de la columna de la app, 1440 px como mucho), igual que la portada */
   .gx-t{margin:0 0 40px;font-size:clamp(26px,calc(10px + 1.95vw),38px);line-height:1.21;height:2.42em;overflow:visible;font-weight:600;letter-spacing:-.028em;max-width:none;color:var(--ink)}
   .gx-t .l1,.gx-t .l2{display:block;white-space:nowrap;line-height:1.21;height:1.21em}
@@ -3416,10 +3420,14 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   :root:not([data-theme="light"]) .gxl.inv.sol-d img{filter:grayscale(1) contrast(8)}
   :root:not([data-theme="light"]) .gxl.inv.sol-l img{filter:grayscale(1) contrast(8) invert(1)}
 }
-/* v491 · PC en claro: dos fondos, la portada blanca y todo lo demás (lienzo, barra de menú y bloques) en el crema claro de las tablas;
-   los recuadros se funden con el lienzo. Las casillas del calendario y del mosaico conservan el crema de antes */
-@media (min-width:700.99px){ :root[data-theme="light"]{--canvas:#FBFAF7;--gx-tile:#F3F1EC} }
-@media (min-width:700.99px) and (prefers-color-scheme:light){ :root:not([data-theme="dark"]){--canvas:#FBFAF7;--gx-tile:#F3F1EC} }
+/* v492 · PC: el pie, sobre una franja algo más oscura que el lienzo (un apéndice), y sin «Opciones» (ya está en el ··· de arriba) */
+@media (min-width:700.99px){
+  :root{--gx-pie:#EAE7E0}
+  :root[data-theme="dark"]{--gx-pie:#0A0A09}
+  .foot{background:var(--gx-pie);box-shadow:0 0 0 100vmax var(--gx-pie);clip-path:inset(0 -100vmax -100vmax);margin-top:48px;padding-block:22px}
+  .foot .f-op{display:none}
+}
+@media (min-width:700.99px) and (prefers-color-scheme:dark){ :root:not([data-theme="light"]){--gx-pie:#0A0A09} }
 </style>
 
 <div class="wrap">
@@ -4109,7 +4117,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v491";   // la versión publicada, en el pie
+const VER="v492";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4383,7 +4391,7 @@ function render(d){
   $("chk-tag").className="tag "+(bad.length?"warn":""); $("chk-tag").textContent=bad.length?`${bad.length} ${bad.length>1?"diferencias":"diferencia"}`:"✓ Todo cuadra";
   $("s-check").hidden=true;   // HI-01: el Cuadre ya no va en la portada; se abre desde Opciones o desde «Ver el cuadre»
   $("more").classList.toggle("aviso",bad.length>0); { const mt=$("mm-chk-t"); mt.className=$("chk-tag").className; mt.textContent=$("chk-tag").textContent; }
-  $("foot").innerHTML=`<span class="f-l">Datos de tu hoja<span id="f-h"></span> · versión ${VER.replace(/^v/,"")} · <button type="button" class="foot-b foot-m${bad.length?" aviso":""}" id="f-more" aria-haspopup="menu" aria-expanded="${$("more").getAttribute("aria-expanded")||"false"}">Opciones</button></span>`; footHora();   // v475 · SI-06 
+  $("foot").innerHTML=`<span class="f-l">Datos de tu hoja<span id="f-h"></span> · versión ${VER.replace(/^v/,"")}<span class="f-op"> · <button type="button" class="foot-b foot-m${bad.length?" aviso":""}" id="f-more" aria-haspopup="menu" aria-expanded="${$("more").getAttribute("aria-expanded")||"false"}">Opciones</button></span></span>`; footHora();   // v475 · SI-06 
   // tu hoja: lo que no tiene cotización (se valora a precio de compra) y lo que no cuadra, en un solo aviso, en una franja debajo del bloque oscuro
   { const n=d.noPx||[], bc=bad.filter(c=>!c.data), bd=bad.filter(c=>c.data), el=$("hoja-al");
     const yL=L=>L.length>1?L.slice(0,-1).join(", ")+" y "+L[L.length-1]:L[0]||"";
@@ -6252,7 +6260,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   const ys=v=>tp+(ymax-Math.max(ymin,Math.min(ymax,v)))/(ymax-ymin)*(bottom-tp), cw=(WU-PL)/reqs.length; let g=""; const TODOS=[], LB=[], T3=new Set(top3.map(r=>r.ticker));
   for(let v=Math.round(ymin*10);v<=Math.round(ymax*10);v++){ const y=ys(v/10); g+=`<line x1="${PL}" x2="${WU}" y1="${y}" y2="${y}" stroke="var(--line)" ${v===0?"":'stroke-dasharray="2 4"'}/><text x="${PL-10}" y="${y+4}" text-anchor="end" class="t3">${v<0?"−":""}${Math.abs(v*10)} %</text>`; }
   reqs.forEach((q,ci)=>{ const cx=PL+cw*ci+cw/2, yq=ys(q);
-    g+=`<rect x="${cx-cw/2+10}" y="${tp}" width="${cw-20}" height="${yq-tp}" fill="var(--pos)" opacity=".06" rx="4"/><line x1="${cx-cw/2+18}" x2="${cx+cw/2-18}" y1="${yq}" y2="${yq}" stroke="var(--ink)" stroke-width="2"/>`;
+    g+=`<rect x="${cx-cw/2+10}" y="${tp}" width="${cw-20}" height="${yq-tp}" fill="var(--pos)" opacity=".06" rx="4"/><line x1="${cx-cw/2+18}" x2="${cx+cw/2-18}" y1="${yq}" y2="${yq}" style="stroke:color-mix(in srgb,var(--ink) 55%,var(--canvas))" stroke-width="1.5"/>`;   /* v492: la raya de la exigencia, algo más clara */
     g+=`<text x="${cx}" y="${H-16}" text-anchor="middle" class="t1 b">${nf(q*100%1?1:0).format(q*100)} %</text><text x="${cx}" y="${H}" text-anchor="middle" class="t3" style="font-size:11px">exigida</text>`;
     const col=okr.filter(r=>Math.round(r.req*1000)/1000===q).sort((a,b)=>b.irrExp-a.irrExp), pl=[];
     // v486: cada bola, lo más cerca posible de su altura, pero siempre dentro de su columna: primero se abre a los lados y, cuando ya no cabe, se aparta un poco arriba o abajo
@@ -6302,11 +6310,12 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ const m=document.
 const GX_DS=["dom","lun","mar","mié","jue","vie","sáb"];
 function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=document.createElement("section"); A.id="gxag"; $("s-calm").after(A); }
   A.className="gxag";   // v490: sobre el lienzo, sin recuadro
-  const D0=d=>{ const x=new Date(d); x.setHours(12,0,0,0); return x; }, hoy=D0(new Date()), fin=new Date(hoy.getTime()+8*7*DIA_MS), lunes=d=>{ const x=D0(d); x.setDate(x.getDate()-((x.getDay()+6)%7)); return x; };
+  const D0=d=>{ const x=new Date(d); x.setHours(12,0,0,0); return x; }, hoy=D0(new Date()), fin=new Date(hoy.getFullYear(),hoy.getMonth()+2,0,12), lunes=d=>{ const x=D0(d); x.setDate(x.getDate()-((x.getDay()+6)%7)); return x; };
   const pf=new Set(DATA.pos.map(p=>p.ticker)), nm={}; DATA.pre.forEach(p=>nm[p.ticker]=p.name); DATA.pos.forEach(p=>nm[p.ticker]=p.name);
   const ev={}, add=(d,o)=>{ if(d>=hoy&&d<=fin){ (ev[+d]=ev[+d]||[]).push(o); } };
-  (ACT&&ACT.ix&&ACT.ix.empresas||[]).forEach(e=>{ const p=e.proximos||{}; if(p.fecha) add(D0(p.fecha+"T12:00:00"),{k:"r",t:e.ticker,n:e.nombre||nm[e.ticker]||e.ticker,mia:pf.has(e.ticker),per:p.periodo||"",est:p.estado==="estimada",hora:p.hora||""}); });
-  DATA.dv.filter(r=>!DATA.isPaid(r)&&r.d instanceof Date).forEach(r=>add(D0(r.d),{k:"d",t:r.ticker,n:nm[r.ticker]||r.name,v:r.gross||0,mia:true}));
+  // v492: solo las empresas de fuera de tu cartera (las tuyas, con sus cobros, ya están en los dos meses de arriba) y hasta el mismo día que ellos
+  const pre={}; DATA.pre.forEach(r=>pre[r.ticker]=r);
+  (ACT&&ACT.ix&&ACT.ix.empresas||[]).forEach(e=>{ const p=e.proximos||{}; if(p.fecha&&!pf.has(e.ticker)) add(D0(p.fecha+"T12:00:00"),{k:"r",t:e.ticker,n:e.nombre||nm[e.ticker]||e.ticker,mia:false,sube:!!(pre[e.ticker]&&pre[e.ticker].margin>0),per:p.periodo||"",est:p.estado==="estimada",hora:p.hora||""}); });
   const dias=Object.keys(ev).map(Number).sort((a,b)=>a-b), sem=new Map(); dias.forEach(k=>{ const l=+lunes(new Date(k)); (sem.get(l)||sem.set(l,[]).get(l)).push(k); });
   const nR=dias.reduce((s,k)=>s+ev[k].filter(o=>o.k==="r").length,0), nD=dias.reduce((s,k)=>s+ev[k].filter(o=>o.k==="d").length,0);
   const hora=h=>/^antes/i.test(h)?"antes de la apertura":/^(desp|tras)/i.test(h)?"tras el cierre":h;
@@ -6314,13 +6323,14 @@ function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=docum
   const frase=o=>{ if(o.k==="d") return `Cobras <b>${gxE(o.v)}</b> de ${esc(o.n)}.`;
     const per=o.per.trim(), anual=/^año\s+(\d{4})(.*)$/i.exec(per), h=hora(o.hora);
     return `${esc(o.n)} presenta ${anual?`las cuentas de ${anual[1]}${esc(anual[2])}`:per?`resultados del ${esc(per)}`:"resultados"}${/apertura|cierre/.test(h)?", "+h:""}.${o.est?' <span class="t3">Fecha estimada.</span>':""}`; };
-  let h=`<div class="gxag-h"><h2>Agenda</h2><span>${nR} ${nR===1?"resultado":"resultados"} y ${nD} ${nD===1?"cobro":"cobros"} en las próximas 8 semanas</span></div>`;
-  if(!dias.length) h+=`<p class="gxag-nada">Nada en las próximas 8 semanas.</p>`;
-  h+=`<div class="gxag-cols">`;   // v491: dos semanas por fila (izquierda y luego derecha), para que la agenda ocupe todo el ancho; y solo las próximas 8 semanas, para que no sea interminable
-  sem.forEach((ks,l)=>{ const a=new Date(l), b=new Date(l+6*DIA_MS), dd=Math.round((l-+lunes(hoy))/DIA_MS/7);
-    const tit=dd===0?"Esta semana":dd===1?"La semana que viene":`Del ${a.getDate()}${a.getMonth()!==b.getMonth()?" de "+GX_MESL[a.getMonth()]:""} al ${b.getDate()} de ${GX_MESL[b.getMonth()]}`;
-    h+=`<div class="gxag-s"><div class="gxag-st">${tit}</div>`+ks.map(k=>{ const d=new Date(k), L=ev[k].slice().sort((x,y)=>(x.k===y.k?0:x.k==="d"?-1:1)||(y.mia-x.mia)||String(x.n).localeCompare(y.n,"es"));
-      return `<div class="gxag-d"><div class="gxag-dn"><b>${d.getDate()}</b>${GX_DS[d.getDay()]}</div><div class="gxag-ev">${L.map(o=>`<div class="gxag-f ${o.mia?"":"fuera"}" data-t="${esc(o.t)}">${gxLogo(o.t,30,16)}<span>${frase(o)}</span></div>`).join("")}</div></div>`; }).join("")+`</div>`; });
+  const hasta=`hasta final de ${GX_MESL[fin.getMonth()]}`, nS=dias.reduce((s,k)=>s+ev[k].filter(o=>o.sube).length,0);
+  let h=`<div class="gxag-h"><h2>Fuera de tu cartera</h2><span>${nR} ${nR===1?"resultado":"resultados"} ${hasta}</span>${nS?`<span class="gxag-ley"><i></i>rinden más de lo que les exiges</span>`:""}</div>`;   // v492: el verde del logo, en las que rinden más de lo exigido
+  if(!dias.length) h+=`<p class="gxag-nada">Ningún resultado ${hasta}.</p>`;
+  // v492: dos columnas, los mismos meses que arriba: a la izquierda el primero y a la derecha el segundo, cada uno con sus días en orden
+  h+=`<div class="gxag-cols">`;
+  for(let m=0;m<2;m++){ const mes=new Date(hoy.getFullYear(),hoy.getMonth()+m,1,12), ks=dias.filter(k=>new Date(k).getMonth()===mes.getMonth());
+    h+=`<div class="gxag-s"><div class="gxag-st">${GX_MESL[mes.getMonth()]}</div>`+(ks.length?ks.map(k=>{ const d=new Date(k), L=ev[k].slice().sort((x,y)=>(y.sube-x.sube)||String(x.n).localeCompare(y.n,"es"));
+      return `<div class="gxag-d"><div class="gxag-dn"><b>${d.getDate()}</b>${GX_DS[d.getDay()]}</div><div class="gxag-ev">${L.map(o=>`<div class="gxag-f" data-t="${esc(o.t)}"><i class="gxag-v${o.sube?" si":""}"></i>${gxLogo(o.t,30,16)}<span>${frase(o)}</span></div>`).join("")}</div></div>`; }).join(""):`<p class="gxag-nada">Ningún resultado.</p>`)+`</div>`; }
   A.innerHTML=h+`</div>`; }
 document.addEventListener("click",e=>{ const c=e.target.closest("#gxag [data-t]"); if(!c) return; const t=c.dataset.t, l=[...document.querySelectorAll("#gxag [data-t]")].map(x=>x.dataset.t);
   openSheet(DATA.pos.some(p=>p.ticker===t)?"pos":"pre",t,[...new Set(l)]); });
