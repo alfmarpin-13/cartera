@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-9L4UTSfzELsFcRZK53xSbIwLz+2rQui2sBTHDNCtyOY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Dbr1ePH/AnI6pFygWpwhpfhXUfQiDWhQP3TNBJ9VLl8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4107,7 +4107,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v488";   // la versión publicada, en el pie
+const VER="v489";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6091,7 +6091,7 @@ function gxAna(){ const s=gxSec("v-analisis"), pos=DATA.pos.filter(p=>!p.isOptio
   const ops=[{k:"industria",t:"Industrias",n:n3("industria"),on:modo==="industria"},{k:"pais",t:"Países",n:n3("pais"),on:modo==="pais"},{k:"divisa",t:"Divisas",n:n3("divisa"),on:modo==="divisa"}];
   const seg=modo==="industria"?`Las cinco mayores pesan el ${gxP(t5)}; ${grupos[0].k.toLowerCase()}, el ${gxP(grupos[0].w)}.`
     :grupos.length>1?`${grupos[0].k} pesa el ${gxP(grupos[0].w)}; ${grupos[1].k}, el ${gxP(grupos[1].w)}.`:`${grupos[0].k}, el ${gxP(grupos[0].w)}.`;
-  s.innerHTML=gxH(`${pos.length} empresas en ${g.size} ${gxKw("ana",pal,ops)}.`,seg)+`<div class="gx-shelf"></div>`;
+  s.innerHTML=gxH(`En ${g.size} ${gxKw("ana",pal,ops)} caben tus ${pos.length} empresas.`,seg)+`<div class="gx-shelf"></div>`;
   const S=s.querySelector(".gx-shelf"), W=Math.round(S.getBoundingClientRect().width), GT=3, GG=16, TH=104, SH=TH+50, MIN=76;   // v479: ningún lomo por debajo de 76 px, para que todas lleven su logo
   grupos.forEach(G=>{ const pc=gxP(G.w,1), pal=String(G.k).split(/\s+/); G.need=Math.ceil(Math.max(gxAncho(G.k+"  "+pc,"13px Inter")/2+20,gxAncho(pal[pal.length-1]+"  "+pc,"13px Inter")+12,...pal.map(w=>gxAncho(w,"13px Inter")+12))); });   // v481: sitio para el letrero en dos líneas
   const gws=(G,k)=>Math.max(sum(G.ps,p=>wd(p,k))+(G.ps.length-1)*GT,G.need);
@@ -6121,24 +6121,25 @@ function gxMov(){ const s=gxSec("v-movimientos"), hoy=new Date(), divs=DATA.dv.f
   const arr=M.map(o=>modo==="todo"?{up:Math.max(0,o.ap)+o.vt+o.dv,dn:o.cp+Math.max(0,-o.ap)}:modo==="tx"?{up:o.vt,dn:o.cp}:modo==="dv"?{up:o.dv,dn:0}:modo==="ap"?{up:Math.max(0,o.ap),dn:Math.max(0,-o.ap)}:{up:Math.max(0,o.aj),dn:Math.max(0,-o.aj)});
   const lbl=i=>{ const a=m0+i; return `${GX_MES[a%12]} ${Math.floor(a/12)}`; }, apTot=sum(DATA.ap,r=>r.amt||0), anos=(hoy-t0)/(365.25*DIA_MS), ano=hoy.getFullYear();
   const ops=[{k:"todo",t:"Movimientos",n:nf(0).format(nMov),on:modo==="todo"},{k:"transacciones",t:"Transacciones",n:nf(0).format(nC+nV),on:modo==="tx"},{k:"dividendos",t:"Dividendos",n:nf(0).format(divs.length),on:modo==="dv"},{k:"aportaciones",t:"Aportaciones",n:nf(0).format(DATA.ap.length),on:modo==="ap"},{k:"ajustes",t:"Ajustes",n:nf(0).format(DATA.aj.length),on:modo==="aj"}];
+  // v489: detrás de la palabra que despliega el menú nunca va un signo (ni coma, ni dos puntos, ni punto)
   const kw=w=>gxKw("mov",w,ops); let t="", t2="", notas=[];
   if(modo==="todo"){ t=`${nf(0).format(nMov)} ${kw("movimientos")} en ${nf(1).format(anos)} años.`; t2=`Has aportado ${gxE(apTot)} y hoy la cartera vale ${gxE(DATA.kpi.value)}.`;
     notas.push({i:0,t:"Primer movimiento",s:lbl(0)}); let acc=0; const h2=new Set(); DATA.ap.filter(r=>r.d instanceof Date).slice().sort((a,b)=>a.d-b.d).forEach(r=>{ const a0=acc; acc+=r.amt||0; [25e3,5e4,75e3,1e5,15e4,2e5].forEach(m=>{ if(a0<m&&acc>=m&&!h2.has(m)){ h2.add(m); notas.push({i:mi(r.d),t:`${nf(0).format(m/1000)} mil aportados`,s:lbl(mi(r.d)),hito:1}); } }); }); }
   if(modo==="tx"){ const pnl=sum([...ventas.values()],o=>o.pnl);
-    t=`${nf(0).format(nC+nV)} ${kw("transacciones")}: ${nf(0).format(nC)} compras y ${nf(0).format(nV)} ventas.`; t2=`Las ventas dejaron un resultado de ${pnl>=0?"+":""}${gxE(pnl)}.`;
+    t=`${nf(0).format(nC+nV)} ${kw("transacciones")} en ${nf(1).format(anos)} años, ${nf(0).format(nC)} compras y ${nf(0).format(nV)} ventas.`; t2=`Las ventas dejaron un resultado de ${pnl>=0?"+":""}${gxE(pnl)}.`;
     const ic=arr.reduce((b,o,i)=>o.dn>arr[b].dn?i:b,0), iv=arr.reduce((b,o,i)=>o.up>arr[b].up?i:b,0);
     if(arr[iv].up>0) notas.push({i:iv,t:"El mes de más ventas",s:`${lbl(iv)} · ${gxE(arr[iv].up)}`}); if(arr[ic].dn>0) notas.push({i:ic,t:"El mes de más compras",s:`${lbl(ic)} · ${gxE(arr[ic].dn)}`,abajo:1}); }
   if(modo==="dv"){ const tot=sum(divs,r=>r.gross||0), ib=arr.reduce((b,o,i)=>o.up>arr[b].up?i:b,0), estea=sum(divs.filter(r=>r.d instanceof Date&&r.d.getFullYear()===ano),r=>r.gross||0), ip=arr.findIndex(o=>o.up>0);
-    t=`${nf(0).format(divs.length)} ${kw("dividendos")}, ${gxE(tot)} brutos.`; t2=`En ${ano} llevas ${gxE(estea)}.`;
+    t=`${nf(0).format(divs.length)} ${kw("dividendos")} cobrados por ${gxE(tot)} brutos.`; t2=`En ${ano} llevas ${gxE(estea)}.`;
     if(ip>=0) notas.push({i:ip,t:"Primer cobro",s:`${lbl(ip)} · ${gxE(arr[ip].up)}`}); if(arr[ib].up>0&&ib!==ip) notas.push({i:ib,t:"El mejor mes",s:`${lbl(ib)} · ${gxE(arr[ib].up)}`}); }
   if(modo==="ap"){ let acc=0; const h2=new Set(); DATA.ap.filter(r=>r.d instanceof Date).slice().sort((a,b)=>a.d-b.d).forEach(r=>{ const a0=acc; acc+=r.amt||0; [25e3,5e4,75e3,1e5,15e4,2e5].forEach(m=>{ if(a0<m&&acc>=m&&!h2.has(m)){ h2.add(m); notas.push({i:mi(r.d),t:`${nf(0).format(m/1000)} mil aportados`,s:lbl(mi(r.d)),hito:1}); } }); });
     const im=arr.reduce((b,o,i)=>o.up>arr[b].up?i:b,0); if(arr[im].up>0&&!notas.some(n=>n.i===im)) notas.push({i:im,t:"El mes de más aportación",s:`${lbl(im)} · ${gxE(arr[im].up)}`});
-    const estea=sum(DATA.ap.filter(r=>r.d instanceof Date&&r.d.getFullYear()===ano),r=>r.amt||0); t=`${nf(0).format(DATA.ap.length)} ${kw("aportaciones")}, ${gxE(apTot)} netos.`; t2=`En ${ano} llevas ${gxE(estea)}.`; }
+    const estea=sum(DATA.ap.filter(r=>r.d instanceof Date&&r.d.getFullYear()===ano),r=>r.amt||0); t=`${nf(0).format(DATA.ap.length)} ${kw("aportaciones")} por ${gxE(apTot)} netos.`; t2=`En ${ano} llevas ${gxE(estea)}.`; }
   if(modo==="aj"){ const AJ=DATA.aj, nota=r=>String(r.note||""), CAT=[[/conectividad/i,"conectividad"],[/comisi/i,"comisiones"],[/\bfx\b|cambio/i,"divisas"],[/inter[eé]s/i,"intereses"],[/redonde/i,"redondeos"]];
     const cats=CAT.filter(([re])=>AJ.some(r=>re.test(nota(r)))).map(c=>c[1]), may=AJ.slice().sort((a,b)=>Math.abs(b.amt||0)-Math.abs(a.amt||0))[0];
     const que=cats.length?`: ${cats.slice(0,3).join(", ").replace(/, ([^,]*)$/," y $1")}`:"";
     const desc=may?nota(may).split(/[:(]/)[0].trim():"", dsc=desc?desc[0].toLowerCase()+desc.slice(1):"", fm=may&&may.d instanceof Date?`${GX_MES[may.d.getMonth()]} ${may.d.getFullYear()}`:"";
-    t=`${nf(0).format(AJ.length)} ${kw("ajustes")}, ${gxE(sum(AJ,r=>r.amt||0))} netos${que}.`;
+    t=`${nf(0).format(AJ.length)} ${kw("ajustes")} por ${gxE(sum(AJ,r=>r.amt||0))} netos${que}.`;
     t2=may?`El mayor: ${dsc||"un ajuste"}, ${gxE(may.amt||0)} en ${fm}.`:`Ninguno destacado.`; }
   s.innerHTML=gxH(t,t2)+`<div class="gx-mb"></div>`;
   const B=s.querySelector(".gx-mb"), W=Math.round(B.getBoundingClientRect().width), slot=W/NM, txt=h=>h.replace(/<[^>]+>/g,"");
@@ -6207,10 +6208,10 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   let k=GX.uni; if(!k||(k==="today"&&!hayHoy)) k=hayHoy?"today":"last";
   const ok=DATA.pre.filter(r=>isNum(r[k])).sort((a,b)=>b[k]-a[k]), N=DATA.pre.length, up=ok.filter(r=>r[k]>0).length, dn=ok.filter(r=>r[k]<0).length;
   const ops=GX_PER.map(([q,t])=>({k:q,t:q==="ytd"?"En "+ano:t,on:q===k,dis:q==="today"&&!hayHoy}));
-  const pal={today:"Hoy",last:"última sesión",w1:"última semana",m1:"último mes",m3:"últimos tres meses",m6:"últimos seis meses",ytd:String(ano),y1:"último año",y3:"últimos tres años",dd:"Desde su máximo"}[k], kw=gxKw("uni",pal,ops);
+  const pal={today:"Hoy",last:"última sesión",w1:"última semana",m1:"último mes",m3:"últimos tres meses",m6:"últimos seis meses",ytd:String(ano),y1:"último año",y3:"últimos tres años",dd:"desde su máximo"}[k], kw=gxKw("uni",pal,ops);
   const pre={today:"",last:"En la ",w1:"En la ",m1:"En el ",m3:"En los ",m6:"En los ",ytd:"En ",y1:"En el ",y3:"En los ",dd:""}[k], pres=k==="today"||k==="ytd";
   const mej=ok[0], peo=ok[ok.length-1];
-  let t=k==="dd"?`${kw}, ${ok.filter(r=>r.dd<=-0.2).length} de ${N} empresas caen más de un 20 %.`:`${pre}${kw} ${pres?"suben":"subieron"} ${up} de ${N} empresas y ${pres?"bajan":"bajaron"} ${dn}.`;
+  let t=k==="dd"?`${ok.filter(r=>r.dd<=-0.2).length} de ${N} empresas caen ${kw} más de un 20 %.`:`${pre}${kw} ${pres?"suben":"subieron"} ${up} de ${N} empresas y ${pres?"bajan":"bajaron"} ${dn}.`;
   const t2=!ok.length?"Sin datos para este periodo.":k==="dd"?`Más lejos, ${esc(peo.name)} (${gxPS(peo.dd)}); más cerca, ${esc(mej.name)} (${gxPS(mej.dd)}).`:`Arriba, ${esc(mej.name)} (${gxPS(mej[k])}); abajo, ${esc(peo.name)} (${gxPS(peo[k])}).`;
   s.innerHTML=gxH(t,t2)+`<div class="gx-mos"></div>`;
   let s2=s.nextElementSibling; if(!s2||!s2.classList.contains("gx3b")){ s2=document.createElement("section"); s2.className="gx3 gx3b"; s.after(s2); }   // v479: la exigencia, en su propio lienzo
