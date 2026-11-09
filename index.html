@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-opz96pEiMDqZ/ORhxDko3pEnHg2YzP0SYrL1+1GIRf4=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-TJMCDqOP9XWOVgfsHKCFYX47vCIi7e7xH6GA/8cmUjA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3505,7 +3505,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 /* el lateral: cada cosa siempre en el mismo sitio, mida lo que mida el logo */
 .zf-lat{position:absolute;left:0;top:0;width:240px;height:980px}
 .zf-lgb{position:absolute;left:20px;top:40px;width:200px;height:80px;display:grid;place-items:center}
-.zf-lg{display:block;width:200px;height:80px;background:var(--ink);-webkit-mask:no-repeat center/contain;mask:no-repeat center/contain}
+.zf-lg{display:block;width:180px;height:72px;background:var(--ink);-webkit-mask:no-repeat center/contain;mask:no-repeat center/contain}
 .zf-lg0{width:56px;height:56px;border-radius:14px;background:var(--zc);display:grid;place-items:center;font-size:17px;font-weight:600;color:var(--ink2)}
 .zf-nav{position:absolute;left:0;top:176px;width:240px;display:flex;flex-direction:column}
 .zf-nav button{height:40px;padding:0 0 0 32px;text-align:left;font-size:14px;line-height:20px;font-weight:500;color:var(--ink2)}
@@ -4298,7 +4298,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v523";   // la versión publicada, en el pie
+const VER="v524";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6243,8 +6243,8 @@ const tabY={};   // cada pestaña recuerda hasta dónde habías bajado (pulsar l
 if(typeof LOGOS==="object"&&LOGOS){ LOGOS["T:NASDAQ:COST"]="logos/sq-COST.webp"; LOGOS["T:NYSE:UNP"]="logos/sq-UNP.webp"; }
 const GX_NEG={"NYSE:AXP":"logos/neg-AXP.webp"};   // v486: American Express, solo las letras (su recuadro azul, pasado a una tinta, quedaba como un bloque negro)
 const gxSrc=t=>GX_NEG[t]||logoSrc(t), gxF=t=>GX_NEG[t]?1:logoF(t);
-const LOGO_R={"logos/ancho-NESN.webp":0.97,"logos/ancho-ADBE.webp":3.98,"logos/ancho-AMZN.webp":3.32,"logos/ancho-ASML.webp":3.57,"logos/ancho-ASTS.webp":3.75,"logos/ancho-BBVA.webp":3.35,"logos/ancho-BN.webp":6.72,"logos/ancho-DGE.webp":4.66,"logos/ancho-GOOGL.webp":3.03,"logos/ancho-KO.webp":3.19,"logos/ancho-MC.webp":4.29,"logos/ancho-META.webp":4.97,"logos/ancho-NTO.webp":4.05,"logos/ancho-OR.webp":5.52,"logos/ancho-RMS.webp":1.72,"logos/ancho-SPGI.webp":4.62,"logos/ancho-TXN.webp":8.04,"logos/ancho-UBER.webp":2.88,"logos/ancho-VID.webp":4.31,"logos/ancho-VIS.webp":2.32};   // v494: proporción ancho/alto de cada logo ancho
-const LOGO_ANCHO={"SWX:NESN":"logos/ancho-NESN.webp","BME:VID":"logos/ancho-VID.webp","VIE:NTO":"logos/ancho-NTO.webp","NASDAQ:AMZN":"logos/ancho-AMZN.webp","NYSE:SPGI":"logos/ancho-SPGI.webp","AMS:ASML":"logos/ancho-ASML.webp","NASDAQ:ASTS":"logos/ancho-ASTS.webp","BME:BBVA":"logos/ancho-BBVA.webp","NYSE:BN":"logos/ancho-BN.webp","NYSE:KO":"logos/ancho-KO.webp","LON:DGE":"logos/ancho-DGE.webp","NASDAQ:GOOGL":"logos/ancho-GOOGL.webp","EPA:MC":"logos/ancho-MC.webp","NASDAQ:META":"logos/ancho-META.webp","EPA:OR":"logos/ancho-OR.webp","EPA:RMS":"logos/ancho-RMS.webp","NASDAQ:TXN":"logos/ancho-TXN.webp","NYSE:UBER":"logos/ancho-UBER.webp","BME:VIS":"logos/ancho-VIS.webp","NASDAQ:ADBE":"logos/ancho-ADBE.webp"};   // v494: las versiones anchas del zip
+const LOGO_R={"logos/ancho-NESN.webp":0.97,"logos/ancho-LSEG.webp":3.82,"logos/ancho-ADBE.webp":3.98,"logos/ancho-AMZN.webp":3.32,"logos/ancho-ASML.webp":3.57,"logos/ancho-ASTS.webp":3.75,"logos/ancho-BBVA.webp":3.35,"logos/ancho-BN.webp":6.72,"logos/ancho-DGE.webp":4.66,"logos/ancho-GOOGL.webp":3.03,"logos/ancho-KO.webp":3.19,"logos/ancho-MC.webp":4.29,"logos/ancho-META.webp":4.97,"logos/ancho-NTO.webp":4.05,"logos/ancho-OR.webp":5.52,"logos/ancho-RMS.webp":1.72,"logos/ancho-SPGI.webp":4.62,"logos/ancho-TXN.webp":8.04,"logos/ancho-UBER.webp":2.88,"logos/ancho-VID.webp":4.31,"logos/ancho-VIS.webp":2.32};   // v494: proporción ancho/alto de cada logo ancho
+const LOGO_ANCHO={"SWX:NESN":"logos/ancho-NESN.webp","LON:LSEG":"logos/ancho-LSEG.webp","BME:VID":"logos/ancho-VID.webp","VIE:NTO":"logos/ancho-NTO.webp","NASDAQ:AMZN":"logos/ancho-AMZN.webp","NYSE:SPGI":"logos/ancho-SPGI.webp","AMS:ASML":"logos/ancho-ASML.webp","NASDAQ:ASTS":"logos/ancho-ASTS.webp","BME:BBVA":"logos/ancho-BBVA.webp","NYSE:BN":"logos/ancho-BN.webp","NYSE:KO":"logos/ancho-KO.webp","LON:DGE":"logos/ancho-DGE.webp","NASDAQ:GOOGL":"logos/ancho-GOOGL.webp","EPA:MC":"logos/ancho-MC.webp","NASDAQ:META":"logos/ancho-META.webp","EPA:OR":"logos/ancho-OR.webp","EPA:RMS":"logos/ancho-RMS.webp","NASDAQ:TXN":"logos/ancho-TXN.webp","NYSE:UBER":"logos/ancho-UBER.webp","BME:VIS":"logos/ancho-VIS.webp","NASDAQ:ADBE":"logos/ancho-ADBE.webp"};   // v494: las versiones anchas del zip
 const GX={ana:"industria",uni:null,gap:null};
 const gxE=(v,d=0)=>`<span class="pv">${v<0?"−":""}${nf(d).format(Math.abs(v))} €</span>`;
 const gxP=(v,d=0)=>(v<0?"−":"")+nf(d).format(Math.abs(v)*100)+" %";
