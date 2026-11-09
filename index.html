@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-v0faRQJV/Up2DfM78FvFdUSWf3thRWEw3I1NlmaB7so=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-0tJfS1CAaFg1leq1UGQ9Hy7IwnfaizhQA8E7SbSe/aI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3625,7 +3625,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .zf-mx .c{border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 .zf-mx .c b{font-size:15px;line-height:20px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
 .zf-mx .c span{font-size:12px;line-height:16px;color:var(--ink2);font-variant-numeric:tabular-nums}
-.zf-mx .c.on{box-shadow:inset 0 0 0 3px var(--ink)} .zf-mx .c.on b{font-weight:700;color:var(--ink)} .zf-mx .c.on span{color:var(--ink);font-weight:600}
+.zf-mx .c.on{box-shadow:inset 0 0 0 3px var(--ink)} .zf-mx .c.on b{font-weight:700} .zf-mx .c.on span{font-weight:600}
 /* la cuenta del precio objetivo */
 .zf-eq{display:flex;align-items:flex-start;gap:28px}
 .zf-eq>em{flex:none;margin-top:18px;font-style:normal;font-size:20px;line-height:26px;color:var(--ink3)}
@@ -3810,6 +3810,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .zf-bb u{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:var(--gx-id)}
 .zf-bb u.n{background:color-mix(in srgb,var(--neg) 70%,var(--card))} .zf-bb u.g{background:color-mix(in srgb,var(--ink) 30%,var(--card))}
 .zf-bb b{text-align:right;font-size:calc(14px*var(--k,1));font-weight:600;font-variant-numeric:tabular-nums}
+.zf .zf-mx .c b,.zf .zf-mx .c span{color:inherit} .zf .zf-mx .c span{opacity:.82}
 </style>
 
 <div class="wrap">
@@ -4502,7 +4503,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v521";   // la versión publicada, en el pie
+const VER="v522";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6922,9 +6923,9 @@ function zfFicha(t,D){
   const MXH=(()=>{
     let MX=zfVacio("Sin tabla de valoración");
     if(F){ const d0=fvs.some(x=>x>=1000)?0:2, near=(a,b)=>isNum(a)&&isNum(b)&&Math.abs(a-b)<1e-6;
-      const cel=v=>{ if(!isNum(v)||!v||!isNum(price)) return {p:null,bg:"transparent"}; const p=v/price-1, k=Math.min(1,Math.sqrt(Math.abs(p)/.8)); return {p,bg:p>=0?`color-mix(in srgb,var(--gx-id) ${Math.round(10+k*62)}%,var(--card))`:`color-mix(in srgb,var(--neg) ${Math.round(5+k*38)}%,var(--card))`}; };   // el color dice lo lejos o cerca que está ese valor de la cotización (progresivo hasta el 80 %)
+      const cel=v=>{ if(!isNum(v)||!v||!isNum(price)) return {p:null,cl:"lv0"}; const p=v/price-1, m=Math.abs(p)*100; if(m<0.5) return {p,cl:"lv0"}; return {p,cl:(p>0?"lp":"ln")+Math.min(5,1+[5,10,20,35].filter(t=>m>=t).length)}; };   // la misma escala de cinco escalones que el mosaico de Universo, por distancia a la cotización
       MX=`<div class="zf-mx" style="--n:${F.rates.length};--m:${F.rows.length}"><span class="zf-mxe"></span>${F.rates.map(x=>`<span class="h">TIR ${tipoPct(x)}</span>`).join("")}${F.rows.map(o=>`<span class="r">${multiplo(o.m)}</span>`+o.v.map((v,j)=>{ const c=cel(v), on=near(o.m,mult)&&near(F.rates[j],req);
-        const dh=c.p==null?"":(pct(c.p,0,true)||"0 %")+" desde hoy"; return `<div class="c${on?" on":""}" style="background:${c.bg}"><b>${PX(v,d0)}</b><span>${on?`tu valoración${dh?` · ${dh}`:""}`:dh}</span></div>`; }).join("")).join("")}</div>`; }
+        const dh=c.p==null?"":(pct(c.p,0,true)||"0 %")+" desde hoy"; return `<div class="c ${c.cl}${on?" on":""}"><b>${PX(v,d0)}</b><span>${on?`tu valoración${dh?` · ${dh}`:""}`:dh}</span></div>`; }).join("")).join("")}</div>`; }
     return MX; })();
 
   const PVs=s=>s?`<tspan class="pv">${s}</tspan>`:"", minus1=s=>{ s=String(s||""); return s&&/^[A-ZÁÉÍÓÚ][a-záéíóúñ]/.test(s)?s.charAt(0).toLowerCase()+s.slice(1):s; };
