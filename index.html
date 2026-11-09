@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-wRURxnhTpvFqOHZGEhltIl2IdFgLq8LjX4NpIT10roM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Iuip9sEzh21OAXUPsjCe0XyiKniok3VKAVpsBkbgx4I=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4300,7 +4300,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v514";   // la versión publicada, en el pie
+const VER="v515";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6380,7 +6380,11 @@ function gxMov(){ const s=gxSec("v-movimientos"), hoy=new Date(), divs=DATA.dv.f
 function gxCal(){ const s=gxSec("v-calendario"), hoy=new Date(); hoy.setHours(12,0,0,0);
   const pf=new Set(DATA.pos.map(p=>p.ticker)), nm={}; DATA.pos.forEach(p=>nm[p.ticker]=p.name);
   const y0=hoy.getFullYear(), mo0=hoy.getMonth(), fin=new Date(y0,mo0+2,0,12), ini=new Date(y0,mo0,1,12), key=d=>`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`, ev={}, add=(d,o)=>{ (ev[key(d)]=ev[key(d)]||[]).push(o); };
-  const res=(ACT&&ACT.ix&&ACT.ix.empresas||[]).filter(e=>e.proximos&&e.proximos.fecha&&pf.has(e.ticker)).map(e=>({t:e.ticker,d:new Date(e.proximos.fecha+"T12:00:00"),est:e.proximos.estado==="estimada",hora:e.proximos.hora||"",k:"r"})).filter(e=>e.d>=ini&&e.d<=fin);
+  // v515: los resultados ya publicados (la fecha de «últimos» del índice) también salen; antes solo se pintaba la próxima fecha y, al
+  // actualizarse el índice tras unos resultados, esos resultados desaparecían del calendario en lugar de quedar como publicados
+  const res=[]; (ACT&&ACT.ix&&ACT.ix.empresas||[]).forEach(e=>{ if(!pf.has(e.ticker)) return; const u=e.ultimos||{}, p=e.proximos||{};
+    if(u.fecha){ const d=new Date(u.fecha+"T12:00:00"); if(d>=ini&&d<=fin) res.push({t:e.ticker,d,est:false,hora:"",k:"r",pub:1}); }
+    if(p.fecha&&p.fecha!==u.fecha){ const d=new Date(p.fecha+"T12:00:00"); if(d>=ini&&d<=fin) res.push({t:e.ticker,d,est:p.estado==="estimada",hora:p.hora||"",k:"r"}); } });
   const cob=DATA.dv.filter(r=>r.d instanceof Date).map(r=>({t:r.ticker,d:new Date(new Date(r.d).setHours(12,0,0,0)),v:r.gross||0,k:"c"})).filter(e=>e.d>=ini&&e.d<=fin);
   // v497: los dos meses enteros, también lo ya pasado (resultados publicados y cobros cobrados); el titular cuenta solo lo que queda por venir
   const resF=res.filter(e=>e.d>=hoy), cobF=cob.filter(e=>e.d>=hoy);
