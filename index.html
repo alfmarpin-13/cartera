@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-USJkG1YKkW9p74a1kaALcz3B2SkzEAnZgxm0GJWtUnQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-pRy9OrALBlxDcRHYYAQcg/fSEA5tnZZqrg5wpIHtPfQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4176,7 +4176,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v509";   // la versión publicada, en el pie
+const VER="v510";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6222,16 +6222,21 @@ function gxMov(){ const s=gxSec("v-movimientos"), hoy=new Date(), divs=DATA.dv.f
   const fil=[]; notas.filter(n=>!n.abajo).sort((a,b)=>a.i-b.i).forEach(n=>{ const x=n.i*slot+slot/2, w=Math.max(gxAncho(n.t,"600 12px Inter"),gxAncho(txt(n.s),"12px Inter"))+16; let r=0; while(fil[r]!==undefined&&fil[r]>x) r++; fil[r]=x+w; n.r=r; });
   // v479: el dibujo mide siempre lo mismo (dos filas de notas arriba, 300 px de barras y la fila de notas de abajo); arriba y abajo se reparten
   // esos 300 px en proporción a su barra más alta, así que la escala es la misma a los dos lados
-  const BA=256, top=64+38,   /* v483: 256 px de barras, para que el lienzo mida lo mismo que el de Análisis */ mxd=Math.max(0,...arr.map(o=>o.dn)), mxu=Math.max(1,...arr.map(o=>o.up));
+  // v510: en Aportaciones, los meses excepcionales (los que pasan de 2,5 veces el siguiente mes más alto) no marcan la escala: la escala llega al
+  // siguiente millar del resto y esas barras van cortadas, un poco más altas que la escala y con su importe encima
+  let cap=Infinity; if(modo==="ap"){ const u=arr.map(o=>o.up).filter(v=>v>0).sort((a,b)=>b-a); let k=0; for(let j=1;j<=Math.min(3,u.length-1);j++) if(u[j-1]>2.5*u[j]) k=j; if(k) cap=Math.ceil(u[k]/1000)*1000; }
+  const BA=256, top=64+38,   /* v483: 256 px de barras, para que el lienzo mida lo mismo que el de Análisis */ mxd=Math.max(0,...arr.map(o=>o.dn)), mxu=Math.max(1,...arr.map(o=>Math.min(o.up,cap)));
   // v485: movimientos y transacciones comparten la línea del cero (la de movimientos); dividendos, aportaciones y ajustes la colocan según sus barras, como antes
-  let HU, sc; if(modo==="todo"||modo==="tx"){ const T=M.map(o=>({up:Math.max(0,o.ap)+o.vt+o.dv,dn:o.cp+Math.max(0,-o.ap)})), tu=Math.max(1,...T.map(o=>o.up)), td=Math.max(0,...T.map(o=>o.dn)); HU=BA*tu/(tu+td); const HD0=BA-HU, k=Math.min(HU/mxu,mxd>0?HD0/mxd:Infinity); sc=v=>v*k; }
+  let HU, sc; if(modo==="todo"||modo==="tx"||modo==="aj"){   // v510: también Ajustes (positivos y negativos), con el cero a la misma altura que Movimientos
+  const T=M.map(o=>({up:Math.max(0,o.ap)+o.vt+o.dv,dn:o.cp+Math.max(0,-o.ap)})), tu=Math.max(1,...T.map(o=>o.up)), td=Math.max(0,...T.map(o=>o.dn)); HU=BA*tu/(tu+td); const HD0=BA-HU, k=Math.min(HU/mxu,mxd>0?HD0/mxd:Infinity); sc=v=>v*k; }
   else { sc=v=>v/(mxu+mxd)*BA; HU=sc(mxu); }
-  const mid=top+HU;
+  const mid=top+HU, hu=v=>v>cap?sc(cap)+14:sc(v), lab=v=>v>cap?18:0;
   const HD=BA-HU, NB=44, H=top+BA+6+NB+40, bw=Math.max(3,Math.round(slot*0.6));
   const cUp="var(--gx-in)"; let g="";   // v487: también los dividendos, con la tinta del logo
   for(let i=0;i<NM;i++) if((m0+i)%12===0) g+=`<line x1="${(i*slot).toFixed(1)}" x2="${(i*slot).toFixed(1)}" y1="${top-8}" y2="${H-22}" stroke="var(--line)"/>`;
   arr.forEach((o,i)=>{ const x=(i*slot+(slot-bw)/2).toFixed(1);
-    if(o.up>0){ const hh=Math.max(1.5,sc(o.up)); g+=`<rect x="${x}" y="${(mid-1-hh).toFixed(1)}" width="${bw}" height="${hh.toFixed(1)}" rx="2" fill="${cUp}"><title>${lbl(i)}</title></rect>`; }
+    if(o.up>0){ const hh=Math.max(1.5,hu(o.up)); g+=`<rect x="${x}" y="${(mid-1-hh).toFixed(1)}" width="${bw}" height="${hh.toFixed(1)}" rx="2" fill="${cUp}"><title>${lbl(i)}</title></rect>`;
+      if(o.up>cap){ const yc=mid-1-hh+12, xl=+x-2, xr=+x+bw+2; g+=`<path d="M${xl} ${yc+3}L${xr} ${yc-3}M${xl} ${yc+8}L${xr} ${yc+2}" stroke="var(--gx-bg)" stroke-width="2.5"/><text x="${(+x+bw/2).toFixed(1)}" y="${(mid-1-hh-6).toFixed(1)}" text-anchor="middle" font-size="12" fill="var(--ink2)">${txt(gxE(o.up))}</text>`; } }
     if(o.dn>0){ const hh=Math.max(1.5,sc(o.dn)); g+=`<rect x="${x}" y="${mid+1}" width="${bw}" height="${hh.toFixed(1)}" rx="2" fill="var(--gx-out)"><title>${lbl(i)}</title></rect>`; } });
   g+=`<line x1="0" x2="${W}" y1="${mid}" y2="${mid}" stroke="var(--ink)" stroke-opacity=".35"/>`;
   let medH="";   // v485: sin líneas de media (las quitó Alfonso)
@@ -6240,7 +6245,7 @@ function gxMov(){ const s=gxSec("v-movimientos"), hoy=new Date(), divs=DATA.dv.f
     anos2+=`<span class="gx-ano" style="left:${x.toFixed(1)}px;top:${H-18}px">${y}${tot!=null?`<em>${gxE(tot)}</em>`:""}</span>`; }
   let notasH="";
   // v486: los hitos alcanzados, con la bola del logo; v505: todas las notas la llevan
-  notas.forEach(n=>{ const x=n.i*slot+slot/2, o=arr[n.i], ty=16+(n.r||0)*38, yb=n.abajo?mid+1+sc(o.dn):mid-1-sc(o.up), izq=n.i===0?0:6;
+  notas.forEach(n=>{ const x=n.i*slot+slot/2, o=arr[n.i], ty=16+(n.r||0)*38, yb=n.abajo?mid+1+sc(o.dn):mid-1-hu(o.up)-lab(o.up), izq=n.i===0?0:6;
     if(n.abajo){ g+=`<line x1="${x}" x2="${x}" y1="${yb+12}" y2="${mid+HD+6+NB-4}" stroke="var(--ink)" stroke-dasharray="2 3" stroke-opacity=".55"/><circle cx="${x}" cy="${yb+7}" r="5.5" fill="var(--gx-id)"/>`;   /* v505: todas las notas con su bola */ notasH+=`<span class="gx-nota" style="left:${x+6}px;top:${mid+HD+6+NB-30}px"><b>${n.t}</b>${n.s}</span>`; }
     else { g+=`<line x1="${x}" x2="${x}" y1="${ty+26}" y2="${yb-12}" stroke="var(--ink)" stroke-dasharray="2 3" stroke-opacity=".55"/><circle cx="${x}" cy="${yb-7}" r="5.5" fill="var(--gx-id)"/>`; notasH+=`<span class="gx-nota" style="left:${x+izq}px;top:${ty-12}px"><b>${n.t}</b>${n.s}</span>`; } });
   B.style.height=H+"px"; B.innerHTML=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true">${g}</svg>${notasH}${anos2}${medH}`; gxPega(s); }
