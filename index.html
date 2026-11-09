@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-1/hPuN9skssUGQ/NDoCl08Rh7PEWAz5PN8AmAHDIFoE=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-USJkG1YKkW9p74a1kaALcz3B2SkzEAnZgxm0GJWtUnQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4116,11 +4116,14 @@ function drawEvo(){
   o.plugins.tooltip.itemSort=(a,b)=>a.datasetIndex-b.datasetIndex;
   const last=rows.map((_,i)=>i===rows.length-1?3.5:0);
   // HI-03 · la primera vez que el valor cruzó 50.000 € y 100.000 €: un punto hueco y la cifra en gris (si cae dentro del periodo)
-  const hitos=[50000,100000].map(T=>{ const i=all.findIndex((r,n)=>n>0&&r.v>=T&&all[n-1].v<T); const j=i>0?rows.indexOf(all[i]):-1; return j>=0?{j,t:(T/1000)+" mil\u202F€"}:null; }).filter(Boolean);
+  const hitos=[50000,100000].map(T=>{ const i=all.findIndex((r,n)=>n>0&&r.v>=T&&all[n-1].v<T); const j=i>0?rows.indexOf(all[i]):-1; return j>=0?{j,T,t:(T/1000)+" mil\u202F€"}:null; }).filter(Boolean);
+  // v509: dónde cruza de verdad la curva dibujada (la misma curva de Bézier que pinta Chart.js entre los dos cierres de mes) la altura de la cifra
+  const evoCruce=(p0,p1,yT)=>{ if(!p0) return p1; const c1x=p0.cp2x??p0.x, c1y=p0.cp2y??p0.y, c2x=p1.cp1x??p1.x, c2y=p1.cp1y??p1.y, B=(a,b,c,d,t)=>{ const u=1-t; return u*u*u*a+3*u*u*t*b+3*u*t*t*c+t*t*t*d; };
+    let ta=0, ya=p0.y; for(let k=1;k<=400;k++){ const t=k/400, y=B(p0.y,c1y,c2y,p1.y,t); if(y<=yT){ const f=ya===y?0:(ya-yT)/(ya-y), tt=ta+(t-ta)*f; return {x:B(p0.x,c1x,c2x,p1.x,tt),y:yT}; } ta=t; ya=y; } return p1; };
   const evoX={id:"evoX",
     beforeDatasetsDraw(c){ const p=c.$p??1; if(p>=1) return; const a=c.chartArea; c.ctx.save(); c.ctx.beginPath(); c.ctx.rect(0,0,a.left+(a.right-a.left+8)*p,c.height); c.ctx.clip(); },
     afterDatasetsDraw(c){ const m=c.getDatasetMeta(0), x=c.ctx, a=c.chartArea;
-      hitos.forEach(h=>{ const pt=m.data[h.j]; if(!pt) return; x.save(); x.beginPath(); x.arc(pt.x,pt.y,3.5,0,Math.PI*2); x.fillStyle=varCss("--panel"); x.fill(); x.lineWidth=1.5; x.strokeStyle=varCss("--ink3"); x.stroke();
+      hitos.forEach(h=>{ const p1=m.data[h.j]; if(!p1) return; const pt=evoCruce(m.data[h.j-1],p1,c.scales.y.getPixelForValue(h.T)); x.save(); x.beginPath(); x.arc(pt.x,pt.y,3.5,0,Math.PI*2); x.fillStyle=varCss("--panel"); x.fill(); x.lineWidth=1.5; x.strokeStyle=varCss("--ink3"); x.stroke();
         x.font=`500 11px ${FONT}`; x.fillStyle=varCss("--ink3"); const w=x.measureText(h.t).width;
         // arriba a la izquierda del punto (la línea llega desde abajo); si no cabe, encima y centrada
         if(pt.x-8-w>=a.left&&pt.y-16>=a.top){ x.textBaseline="bottom"; x.fillText(h.t,pt.x-8-w,pt.y-5); }
@@ -4173,7 +4176,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v508";   // la versión publicada, en el pie
+const VER="v509";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
