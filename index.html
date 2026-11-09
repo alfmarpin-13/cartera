@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-GPB967E5ytISCdU8XoJNs89yU+tzFRt3F0Kr2AbF6H0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-eUa12czzpbAAPcnpaZpVAmdCA+kIjylGpBt4+KAqrUs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3501,10 +3501,10 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .zf svg{display:block;overflow:visible} .zf svg text{font-family:inherit;font-variant-numeric:tabular-nums}
 /* barra lateral: siempre igual, cada cosa en su sitio */
 .zf-rail{position:relative;display:flex;flex-direction:column;min-height:0;padding:28px 20px 20px 24px}
-.zf-lgw{height:44px;display:flex;align-items:center;padding-right:40px}
-.zf-lg{display:block;max-width:100%;background:var(--ink);-webkit-mask:no-repeat left center/contain;mask:no-repeat left center/contain}
+.zf-lgt{height:104px;border-radius:16px;background:var(--card);display:grid;place-items:center;padding:0 22px}
+.zf-lg{display:block;max-width:100%;background:var(--ink);-webkit-mask:no-repeat center/contain;mask:no-repeat center/contain}
 .zf-lg0{width:44px;height:44px;border-radius:12px;background:var(--card);display:grid;place-items:center;font-size:17px;font-weight:600;color:var(--ink2)}
-.zf-idb{height:128px;margin-top:16px}
+.zf-idb{height:132px;margin-top:18px}
 .zf-rail h3{margin:0;font-size:17px;line-height:24px;font-weight:600;letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .zf-meta{margin-top:4px}
 .zf-meta p{margin:0;height:20px;display:flex;align-items:center;gap:6px;font-size:12.5px;line-height:20px;color:var(--ink3);white-space:nowrap;overflow:hidden}
@@ -3525,17 +3525,18 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .zf-pg button svg,.zf-x svg{width:16px;height:16px}
 .zf-pg button:hover:not(:disabled),.zf-x:hover{background:color-mix(in srgb,var(--ink) 6%,transparent);color:var(--ink)}
 .zf-pg button:disabled{opacity:.3;cursor:default}
-.zf-x{position:absolute;top:34px;left:220px}
+.zf-x{position:absolute;top:14px;right:14px;z-index:3}
 /* la sección: retícula de tres columnas */
 .zf-main{min-width:0;min-height:0;padding:28px 28px 28px 4px}
 .zf-s{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;height:100%;min-height:0}
 .zf-s[hidden]{display:none}
-.zf-s-res,.zf-s-op{grid-template-rows:52px 180px 228px minmax(0,1fr)}
-.zf-s-pos{grid-template-rows:140px minmax(0,1fr) 156px}
-.zf-s-val{grid-template-rows:140px minmax(0,1fr)}
-.zf-s-pj{grid-template-rows:minmax(0,1fr) 248px 156px}
-.zf-s-tes{grid-template-rows:minmax(0,1fr)}
-.zf-s-cot{grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
+.zf-s-res,.zf-s-op{grid-template-rows:88px 176px 228px minmax(0,1fr)}
+.zf-s-pos{grid-template-rows:88px minmax(0,1fr) 380px}
+.zf-s-val{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);grid-template-rows:88px minmax(0,1fr)}
+.zf-vmx{grid-column:1;grid-row:2}
+.zf-s-pj{grid-template-rows:88px auto minmax(0,1fr)}
+.zf-s-tes{grid-template-columns:minmax(0,1.15fr) minmax(0,1.15fr) minmax(0,.7fr);grid-template-rows:88px minmax(0,1fr)}
+.zf-s-cot{grid-template-rows:88px minmax(0,1fr) 280px}
 .zf-span3{grid-column:1/-1} .zf-span2{grid-column:span 2} .zf-r2{grid-row:span 2}
 .zf-tit{grid-column:1/-1;margin:0;height:52px;overflow:hidden;max-width:1080px;font-size:18px;line-height:26px;font-weight:500;letter-spacing:-.005em;color:var(--ink);text-wrap:pretty}
 /* tarjetas */
@@ -3613,18 +3614,18 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 /* gráficos */
 .zf-tv{font-size:12px;font-weight:500;fill:var(--ink2)} .zf-tx{font-size:12px;fill:var(--ink3)}
 .zf-ax{stroke:var(--line)}
-.zf-bc{fill:var(--gx-in,var(--ink))} .zf-bp{fill:color-mix(in srgb,var(--gx-in,var(--ink)) 30%,var(--card))}
+.zf-bc{fill:var(--gx-in,var(--ink))} .zf-bp{fill:var(--gx-id)}
 .zf-bl{fill:color-mix(in srgb,var(--ink) 16%,var(--card))} .zf-bf{fill:var(--ink)}
 .zf-sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin:0 2px 0 10px}
-.zf-sw.c{background:var(--gx-in,var(--ink))} .zf-sw.p{background:color-mix(in srgb,var(--gx-in,var(--ink)) 30%,var(--card))}
+.zf-sw.c{background:var(--gx-in,var(--ink))} .zf-sw.p{background:var(--gx-id)}
 /* la tabla de valoración */
 .zf-mx{display:grid;grid-template-columns:64px repeat(var(--n),minmax(0,1fr));gap:6px;align-items:center}
 .zf-mxe,.zf-mx .h,.zf-mx .r{font-size:12px;line-height:18px;color:var(--ink3);white-space:nowrap}
 .zf-mx .h{text-align:center;padding-bottom:2px}
-.zf-mx .c{height:92px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.zf-mx .c{border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 .zf-mx .c b{font-size:15px;line-height:20px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
 .zf-mx .c span{font-size:12px;line-height:16px;color:var(--ink2);font-variant-numeric:tabular-nums}
-.zf-mx .c.on{background:var(--ink)} .zf-mx .c.on b,.zf-mx .c.on span{color:var(--card)}
+.zf-mx .c.on{background:var(--gx-id);box-shadow:inset 0 0 0 2px var(--ink)} .zf-mx .c.on b,.zf-mx .c.on span{color:var(--gx-id-ink,#1A231E)}
 /* la cuenta del precio objetivo */
 .zf-eq{display:flex;align-items:flex-start;gap:28px}
 .zf-eq>em{flex:none;margin-top:18px;font-style:normal;font-size:20px;line-height:26px;color:var(--ink3)}
@@ -3641,11 +3642,109 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .zf-rd .v{text-align:right;font-size:13.5px;font-weight:600;font-variant-numeric:tabular-nums}
 .zf-rd .m{text-align:right;font-size:13px;color:var(--ink3);font-variant-numeric:tabular-nums}
 .zf-mkm{display:inline-block;width:2px;height:12px;margin-right:6px;border-radius:1px;background:var(--ink);vertical-align:-1px}
-.zf th,.zf td{border:0!important;box-shadow:none}
+.zf-tb th,.zf-tb td{border:0!important;box-shadow:none}
 .zf-chc{margin-bottom:24px}
 .zf-lh{stroke:var(--ink);stroke-width:1.5} .zf-la{stroke:var(--ink3);stroke-width:1.2;stroke-dasharray:4 4}
 .zf-tl1{font-size:12.5px;font-weight:600;fill:var(--ink)} .zf-tl2{font-size:12.5px;fill:var(--ink3)}
 .zf-du{fill:var(--gx-id)} .zf-dd{fill:color-mix(in srgb,var(--neg) 70%,var(--card))} .zf-dv{fill:none;stroke:var(--ink3);stroke-width:1.5}
+
+/* v519 · la barra lateral con historia */
+.zf-rail h3{font-size:17px;line-height:24px}
+.zf-est{margin:6px 0 0;display:flex;align-items:center;gap:8px;font-size:13px;line-height:20px;font-weight:500;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zf-est i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--ink3)}
+.zf-est.pf i,.zf-est.ok i{background:var(--gx-id)} .zf-est.ok i{background:none;box-shadow:inset 0 0 0 2px var(--gx-id)}
+.zf-meta{margin-top:6px} .zf-meta .tk{letter-spacing:.02em}
+.zf-pr span.zf-ses{display:inline-block;margin-top:6px;padding:1px 8px;border-radius:999px;font-size:12.5px;line-height:20px;font-weight:600;color:var(--ink2);background:color-mix(in srgb,var(--ink) 7%,transparent)}
+.zf-pr span.zf-ses.pos{color:var(--pos);background:color-mix(in srgb,var(--gx-id) 22%,transparent)} .zf-pr span.zf-ses.neg{color:var(--neg);background:color-mix(in srgb,var(--neg) 12%,transparent)}
+.zf-pr span.zf-sesk{display:inline;margin-left:8px;font-size:12.5px;color:var(--ink3)}
+.zf-nav{margin-top:24px}
+/* la cabecera de cada sección: qué es y su historia en dos líneas */
+.zf-hd{grid-column:1/-1;min-width:0;height:88px;padding-right:56px}
+.zf-hd>span{display:flex;align-items:center;gap:12px;height:20px;font-size:13px;font-weight:600;color:var(--ink3)}
+.zf-hd h2,.zf-hd p{margin:0;font-size:var(--fs,24px);line-height:32px;font-weight:600;letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zf-hd h2{margin-top:4px;color:var(--ink)} .zf-hd p{color:var(--ink3)}
+.zf-warn{font-style:normal;display:inline-flex;align-items:center;gap:6px;padding:1px 10px;border-radius:999px;font-size:12.5px;line-height:18px;font-weight:600;color:color-mix(in srgb,#B4690E 80%,var(--ink));background:color-mix(in srgb,#E3A33B 20%,var(--card))}
+.zf-warn::before{content:"";width:6px;height:6px;border-radius:50%;background:#D98E1F}
+.zf-rv{display:inline-block;padding:0 8px;border-radius:999px;font-size:12px;line-height:18px;font-weight:600;color:color-mix(in srgb,#B4690E 80%,var(--ink));background:color-mix(in srgb,#E3A33B 22%,var(--card))}
+/* tu valoración, distinta de los datos del mercado: es tu opinión */
+.zf-mine{background:color-mix(in srgb,var(--gx-id) 12%,var(--card))}
+.zf-nopos{height:100%;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.zf-nopos b{font-size:15px;line-height:22px;font-weight:600;color:var(--ink2)} .zf-nopos span{font-size:13px;color:var(--ink3)}
+.zf-g5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+/* Valoración: la tabla de calor manda */
+.zf-vmx .zf-cb{display:flex;flex-direction:column;gap:24px}
+.zf-vmx .zf-mx{flex:1;min-height:0;grid-template-rows:auto repeat(var(--m,3),minmax(0,1fr));gap:8px;grid-template-columns:72px repeat(var(--n),minmax(0,1fr))}
+.zf-mx .c{border-radius:12px;gap:4px}
+.zf-vmx .zf-mx .c b{font-size:19px;line-height:24px}
+.zf-vmx .zf-mx .c span{font-size:12.5px}
+.zf-vmx .zf-mx .r{font-size:13px;font-weight:600;color:var(--ink2)} .zf-vmx .zf-mx .h{font-size:13px;font-weight:600;color:var(--ink2)}
+.zf-mxe{white-space:normal!important;line-height:16px!important}
+.zf-q .zf-txt p{font-size:14px;line-height:23px}
+/* Proyección: una tabla de verdad, con su retícula */
+.zf-pjt{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:13.5px;font-variant-numeric:tabular-nums;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.zf-pjt col.c1{width:236px} .zf-pjt col.c2{width:92px}
+.zf .zf-pjt th,.zf .zf-pjt td{padding:0 14px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:0!important;border-bottom:1px solid var(--line)!important;border-left:1px solid var(--line)!important}
+.zf .zf-pjt th:first-child,.zf .zf-pjt td:first-child{border-left:0!important;text-align:left}
+.zf .zf-pjt th:nth-child(2),.zf .zf-pjt td.u{text-align:left}
+.zf-pjt thead th{height:54px;background:color-mix(in srgb,var(--ink) 5%,var(--card));font-size:13px;font-weight:600;color:var(--ink);line-height:17px;vertical-align:middle}
+.zf-pjt thead th i{display:block;font-style:normal;font-weight:400;font-size:11.5px;color:var(--ink3)}
+.zf-pjt td{height:38px;color:var(--ink)}
+.zf-pjt td.u{color:var(--ink3);font-size:12.5px}
+.zf-pjt tr.p td.l{font-weight:600}
+.zf-pjt tr.s td{height:32px;font-size:12.5px;color:var(--ink2);background:color-mix(in srgb,var(--ink) 2.5%,var(--card))}
+.zf .zf-pjt tr.s td.l{padding-left:30px;font-weight:400}
+.zf .zf-pjt tbody tr:last-child td{border-bottom:0!important}
+.zf-pjt td.ltm{background:color-mix(in srgb,var(--ink) 3.5%,var(--card))} .zf-pjt tr.s td.ltm{background:color-mix(in srgb,var(--ink) 5%,var(--card))}
+.zf-pjt td.cg{font-weight:600}
+.zf-fx{table-layout:fixed} .zf-fx td,.zf-fx th{overflow:hidden;text-overflow:ellipsis}
+/* Tesis: como un artículo, con los argumentos numerados */
+.zf-ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:20px}
+.zf-ol li{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:start}
+.zf-ol .n{font-size:13px;line-height:22px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--pos)} .zf-ol.con .n{color:var(--neg)}
+.zf-ol b{display:block;font-size:15px;line-height:22px;font-weight:600;color:var(--ink)}
+.zf-ol p{margin:3px 0 0;font-size:13.5px;line-height:21px;color:var(--ink2)}
+.zf-not{display:flex;flex-direction:column;min-width:0;min-height:0;padding:20px 8px 0 12px}
+.zf-not>header{flex:none;display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+.zf-not h4{margin:0;font-size:13px;line-height:20px;font-weight:600}
+.zf-not>header>span{font-size:12.5px;color:var(--ink3)}
+.zf-not .zf-cb{overflow-y:auto;scrollbar-width:thin}
+.zf-not .zf-txt p{font-size:13.5px;line-height:22px;color:var(--ink2);padding-left:14px;border-left:2px solid color-mix(in srgb,var(--ink) 12%,transparent)}
+/* Cotización: la escalera de precios */
+.zf-esc{position:relative}
+.zf-esc>i{position:absolute;display:block}
+.zf-esl{left:9px;width:2px;border-radius:1px;background:color-mix(in srgb,var(--ink) 14%,transparent)}
+.zf-esm{left:4px;width:12px;height:2px;border-radius:1px;background:var(--ink2)}
+.zf-esm.h{left:3px;width:14px;height:14px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px var(--card)}
+.zf-esk{position:absolute;left:34px;right:0}
+.zf-esk span{display:block;font-size:12.5px;line-height:18px;color:var(--ink3);white-space:nowrap}
+.zf-esk b{display:block;font-size:14px;line-height:20px;font-weight:600;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.zf-esk b em{font-style:normal;font-weight:400;font-size:12.5px;color:var(--ink3);margin-left:4px}
+.zf-esk.h b{font-size:16px}
+.zf-rd .br i{height:14px;margin-top:-7px}
+/* Posición: cómo se ha formado el resultado y la etiqueta de cada compra */
+.zf-wt{fill:color-mix(in srgb,var(--ink) 20%,var(--card))} .zf-wk{fill:var(--ink)} .zf-wp{fill:var(--gx-id)} .zf-wn{fill:color-mix(in srgb,var(--neg) 70%,var(--card))}
+.zf-wl{stroke:var(--ink3);stroke-width:1;stroke-dasharray:3 3}
+.zf-pie{margin:8px 0 0;font-size:12.5px;line-height:18px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zf-chc{margin:0}
+.zf circle[data-tip]{transition:r .12s} .zf circle[data-tip]:hover{stroke:var(--ink);stroke-width:2}
+.zf-tip{position:absolute;z-index:6;transform:translate(-50%,-100%);padding:6px 10px;border-radius:8px;background:var(--ink);color:var(--card);font-size:12.5px;line-height:18px;font-weight:500;white-space:nowrap;pointer-events:none;font-variant-numeric:tabular-nums;box-shadow:0 6px 18px -6px rgba(0,0,0,.3)}
+.zf-tip[hidden]{display:none}
+.zf-pq h5{margin:0 0 8px;font-size:13px;line-height:20px;font-weight:600;color:var(--ink)} .zf-pq h5:not(:first-child){margin-top:22px}
+.zf-q .zf-txt p{font-size:13.5px;line-height:22px}
+.zf-vmx .zf-g5{gap:12px}
+.zf-vmx .zf-mx{align-items:stretch} .zf-vmx .zf-mx .r,.zf-vmx .zf-mx .zf-mxe{align-self:center} .zf-vmx .zf-mx .h{align-self:end;padding-bottom:4px}
+.zf-tl li span.x2{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:13.5px;color:var(--ink)}
+.zf-bu{fill:var(--gx-id)} .zf-bd{fill:color-mix(in srgb,var(--ink) 16%,var(--card))}
+.zf-lh2{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:5 4}
+.zf-cad{display:flex;flex-direction:column}
+.zf-cad>div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:6px 0}
+.zf-cad>div span{font-size:13px;color:var(--ink3)} .zf-cad>div b{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.zf-cad>div.tot{border-top:1px solid var(--line);margin-top:2px;padding-top:9px} .zf-cad>div.tot span{color:var(--ink);font-weight:600} .zf-cad>div.tot b{font-size:18px}
+.zf-cad>p{margin:0 0 8px;text-align:right;font-size:12.5px;color:var(--ink3)}
+.zf-rd .br i.sale::after{content:"";position:absolute;right:-7px;top:0;border:7px solid transparent;border-left-color:inherit;border-left:7px solid var(--gx-id);border-right:0}
+.zf-rd .br i.neg.sale::after{left:-7px;right:auto;border-left:0;border-right:7px solid color-mix(in srgb,var(--neg) 70%,var(--card))}
+.zf-rd .br{overflow:visible}
+.zf-halo,.zf svg .zf-tv{paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round}
 </style>
 
 <div class="wrap">
@@ -4338,7 +4437,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v518";   // la versión publicada, en el pie
+const VER="v519";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6705,7 +6804,7 @@ const zfYa=new Set();
 function zfPrecarga(L){ (L||[]).forEach(t=>{ const op=zfOpcion(t), tk=op&&op.sub?op.sub.ticker:t, R=DATA.pre.find(x=>x.ticker===tk), c=R&&R.country;
   [LOGO_ANCHO[tk],gxSrc(tk),c&&LOGOS["P:"+c]].forEach(s=>{ if(s&&!zfYa.has(s)){ zfYa.add(s); const i=new Image(); i.decoding="async"; i.src=s; } }); }); }
 const zfLogo=t=>{ const aw=LOGO_ANCHO[t], src=aw||gxSrc(t); if(!src) return `<span class="zf-lg0">${esc(String(zfNom(t)||"?").charAt(0))}</span>`;
-  const w=aw?Math.min(176,Math.round(28*(LOGO_R[aw]||3.5))):44, h=aw?28:44; return `<span class="zf-lg" style="width:${w}px;height:${h}px;-webkit-mask-image:url('${src}');mask-image:url('${src}')"></span>`; };
+  const rr=aw?(LOGO_R[aw]||3.5):1, h=aw?Math.max(30,Math.min(46,Math.round(150/rr))):52, w=aw?Math.min(176,Math.round(h*rr)):150; return `<span class="zf-lg" style="width:${w}px;height:${h}px;-webkit-mask-image:url('${src}');mask-image:url('${src}')"></span>`; };
 
 // piezas comunes
 const zfFig=(k,v,s,vc="")=>`<div class="zf-fg"><span class="k">${k}</span><b class="v${vc?" "+vc:""}">${v==null||v===""?"—":v}</b><span class="s">${s||"&nbsp;"}</span></div>`;
@@ -6717,6 +6816,8 @@ const zfPartes=s=>{ const m=String(s).match(/^([^:.]{2,64})[:.]\s+(.*)$/); retur
 const zfLineas=s=>String(s||"").split("\n").map(x=>x.trim()).filter(Boolean);
 const zfFecha=d=>d instanceof Date?fdate(d,{day:"numeric",month:"short",year:"numeric"}):"";
 
+// la cabecera de cada sección: de qué sección se trata y su historia en dos líneas (negro y gris), como en las páginas de la app
+const zfHd=(k,l1,l2,D,aviso)=>{ const mx=D.CW-120; let fs=24; while(fs>18&&Math.max(zfMide(l1,fs,600),zfMide(l2||"",fs,600))>mx) fs--; return `<header class="zf-hd" style="--fs:${fs}px"><span>${k}${aviso?`<em class="zf-warn">${aviso}</em>`:""}</span><h2>${l1}</h2><p>${l2||"&nbsp;"}</p></header>`; };
 // el mapa de precios: una línea con el precio de hoy arriba y las referencias debajo, sin que ningún texto pise a otro
 function zfMapa(Wd,hoy,marks,band,seg){
   const ms=marks.filter(m=>m&&isNum(m.v)&&m.v>0), vals=[hoy.v,...ms.map(m=>m.v),...(band||[])].filter(isNum);
@@ -6750,127 +6851,166 @@ function zfFicha(t,D){
   const posN=DATA.pos.filter(x=>!x.isOption&&x.shares>0).sort((a,b)=>(b.value||0)-(a.value||0)), rk=P?posN.findIndex(x=>x.ticker===t)+1:0;
   const yrs=P&&isNum(P.years)?nf(1).format(Math.max(0.1,Math.floor(P.years*10)/10)):"";
   const pro=zfLineas(V.pro), con=zfLineas(V.con), notas=zfLineas(V.notes), notCab=notas.length&&/^actualizad/i.test(notas[0])?notas.shift():"";
-  const hay={res:1,pos:!!P,val:!!(R&&(fv||F)),pj:!!PJ,tes:!!(pro.length||con.length||notas.length),cot:!!R};
+  const rev=!!(R&&fv&&typeof stale==="function"&&stale(R)), porQue=rev?(typeof staleRes==="function"&&staleRes(R)&&typeof CALT!=="undefined"&&CALT.get(R.ticker)?`resultados del ${fdate(CALT.get(R.ticker).u)}, posteriores a tu valoración del ${fdate(R.fvDate)}`:"valorada hace más de un año"):"";
+  const hay={res:1,pos:!!P,val:!!(R&&(fv||F)),pj:!!(PJ&&(fv||F||Y2)&&PJ.rows.some(o=>o.v.some(x=>isNum(x)&&x!==0))),tes:!!(pro.length||con.length||notas.length),cot:!!R};
   const S={};
 
-  // ── Resumen
-  { const fr=[];
-    if(fv&&isNum(price)){ const d=price/fv-1; fr.push(Math.abs(d)<0.005?"Cotiza en tu valor razonable":`Cotiza un ${pct(Math.abs(d),1)} ${d>0?"por encima":"por debajo"} de tu valor razonable`); }
-    if(isNum(irrE)) fr.push(`${fr.length?"y a este precio":"A este precio"} esperas un ${pct(irrE,1)} al año${isNum(req)?`, frente al ${tipoPct(req)} que exiges`:""}`);
-    let tit=fr.length?fr.join(" ")+".":"";
-    if(P&&isNum(P.totalPct)) tit+=`${tit?" ":""}Tu posición ${P.totalEur>=0?"gana":"pierde"} un ${pct(Math.abs(P.totalPct),1)}${yrs?` en ${yrs} ${yrs==="1,0"?"año":"años"}`:""}, con dividendos.`;
-    if(!tit) tit=R?`${esc(co.name)} está en tu preselección, todavía sin valorar.`:esc(co.name);
+  const PVs=s=>s?`<tspan class="pv">${s}</tspan>`:"", minus1=s=>{ s=String(s||""); return s&&/^[A-ZÁÉÍÓÚ][a-záéíóúñ]/.test(s)?s.charAt(0).toLowerCase()+s.slice(1):s; };
+  const anos=a=>`${a} ${a==="1,0"?"año":"años"}`;
+
+  // ── Resumen: la foto de hoy
+  { let l1="", l2="";
+    const ganas=P&&isNum(P.totalPct)?`tu posición ${P.totalEur>=0?"gana":"pierde"} un ${pct(Math.abs(P.totalPct),1)}`:"";
+    if(fv&&isNum(price)){ l1=Math.abs(pot)<0.005?"Cotiza en tu valor razonable.":`Tu valor razonable está un ${pct(Math.abs(pot),1)} ${pot>0?"por encima":"por debajo"} de la cotización.`;
+      l2=[isNum(irrE)?`Esperas un ${pct(irrE,1)} al año${isNum(req)?` frente al ${tipoPct(req)} que exiges`:""}`:"",ganas].filter(Boolean).join(", y ")+"."; l2=l2.charAt(0).toUpperCase()+l2.slice(1); }
+    else if(P){ l1=`Tu posición ${P.totalEur>=0?"gana":"pierde"} un ${pct(Math.abs(P.totalPct),1)}${yrs?` en ${anos(yrs)}`:""}.`; l2=`Pesa un ${pct(P.weight,1)} de tu cartera${P.annual?` y te da ${PV(eur(P.annual))} al año en dividendos`:""}.`; }
+    else { l1="Está en tu preselección, todavía sin valorar."; l2=isNum(price)?`Cotiza a ${PX(price)}${isNum(R&&R.y1)?` y en un año ha hecho un ${pct(R.y1,1,true)}`:""}.`:""; }
     const mapa=zfMapa(Math.floor(D.CW-48),{v:price,t:"Hoy",s:PX(price)},[P&&isNum(P.avg)&&P.avg>0&&{v:P.avg,t:"Tu precio medio",s:PX(P.avg)},fv&&{v:fv,t:"Valor razonable",s:PX(fv)}],lo!=null&&hi>lo?[lo,hi]:null,P&&isNum(P.avg)&&P.avg>0&&isNum(price)?[P.avg,price]:null);
-    const cPos=P?zfCard("Tu posición",`<div class="zf-g2">${zfFig("Valor",PV(eur(P.value)),`${shares(P.shares)} ${P.shares===1?"acción":"acciones"}`)+zfFig("Resultado",PV(seur(P.totalEur)),`${pct(P.totalPct,1,true)} con dividendos`,zfCol(P.totalEur))
-        +zfFig("Tu TIR",pct(P.irr,1),yrs?`al año, en ${yrs} ${yrs==="1,0"?"año":"años"}`:"al año")+zfFig("Peso",pct(P.weight,1),rk===1?`la mayor de tus ${posN.length}`:`la ${rk}.ª de tus ${posN.length}`)}</div>`)
-      :Y2?zfCard(`En ${esc(Y2.year??"")}`,`<div class="zf-g2">${zfFig("Precio objetivo",PX(Y2.price),isNum(price)?`hoy ${PX(price)}`:"")+zfFig("TIR solo por precio",pct(Y2.irr,1),"al año")
-        +zfFig("Dividendos",PX(Y2.divs),"por acción")+zfFig("TIR con dividendos",pct(Y2.irrDiv,1),"al año")}</div>`,{meta:"no la tienes en cartera"}):zfCard("Tu posición",zfVacio("No la tienes en cartera."));
-    const cVal=zfCard("Valoración",`<div class="zf-g2">${zfFig("Valor razonable",PX(fv),lo!=null&&hi>lo?`entre ${PX(lo,0)} y ${PX(hi,0)}`:"")+zfFig("Potencial",pct(pot,1,true),fv?"hasta tu valor razonable":"",zfCol(pot))
-        +zfFig("TIR esperada",pct(irrE,1),isNum(req)&&isNum(irrE)?`exiges un ${tipoPct(req)}`:"")+zfFig("Múltiplo de salida",multiplo(mult),isNum(V.multNow)?`hoy cotiza a ${multiplo(V.multNow)}`:"")}</div>`,{meta:R&&R.fvDate instanceof Date?zfFecha(R.fvDate):""});
     const cCot=zfCard("Cotización",`<div class="zf-g2">${zfFig("Última sesión",pct(ses,1,true),PX(price),zfCol(ses))+zfFig("En 1 año",pct(R&&R.y1,1,true),isNum(R&&R.y3)?`${pct(R.y3,1,true)} en 3 años`:"",zfCol(R&&R.y1))
-        +zfFig("Desde el máximo",pct(R&&R.dd,1,true),"histórico",zfCol(R&&R.dd))+zfFig("Volatilidad",pct(R&&R.vol,1),"anualizada")}</div>`);
-    const nT=Math.max(2,Math.floor((D.BODY-52-180-228-48-74+12)/54)), titL=a=>a.length?`<ul class="zf-tl">${a.slice(0,nT).map(s=>{ const p=zfPartes(s); return `<li><b>${esc(p.t||p.x)}</b>${p.t?`<span>${esc(p.x)}</span>`:""}</li>`; }).join("")}</ul>`:zfVacio("Sin escribir");
-    const E=(typeof ACT!=="undefined"&&ACT&&ACT.ix&&ACT.ix.empresas||[]).find(e=>e.ticker===t), fe=s=>s?zfFecha(new Date(s+"T12:00:00")):"";
+        +zfFig("Desde el máximo",pct(R&&R.dd,1,true),"histórico",zfCol(R&&R.dd))+zfFig("Volatilidad",pct(R&&R.vol,1),"anualizada")}</div>`,{meta:"el mercado"});
+    const cPos=P?zfCard("Tu posición",`<div class="zf-g2">${zfFig("Valor",PV(eur(P.value)),`${shares(P.shares)} ${P.shares===1?"acción":"acciones"}`)+zfFig("Resultado",PV(seur(P.totalEur)),`${pct(P.totalPct,1,true)} con dividendos`,zfCol(P.totalEur))
+        +zfFig("Tu TIR",pct(P.irr,1),yrs?`al año, en ${anos(yrs)}`:"al año")+zfFig("Peso",pct(P.weight,1),rk===1?`la mayor de tus ${posN.length}`:`la ${rk}.ª de tus ${posN.length}`)}</div>`,{meta:"tu dinero"})
+      :zfCard("Tu posición",`<div class="zf-nopos"><b>No la tienes en cartera</b><span>${R&&R.inPf?"":"Está en tu preselección"}</span></div>`,{meta:"tu dinero"});
+    const cVal=zfCard("Tu valoración",fv?`<div class="zf-g2">${zfFig("Valor razonable",PX(fv),lo!=null&&hi>lo?`entre ${PX(lo,0)} y ${PX(hi,0)}`:"")+zfFig("Potencial",pct(pot,1,true),"hasta tu valor razonable",zfCol(pot))
+        +zfFig("TIR esperada",pct(irrE,1),isNum(req)&&isNum(irrE)?`exiges un ${tipoPct(req)}`:"",isNum(irrE)&&isNum(req)?zfCol(irrE-req):"")+zfFig(Y2?`Precio en ${esc(Y2.year??"")}`:"Precio objetivo",Y2?PX(Y2.price):"",Y2&&isNum(Y2.irr)?`un ${pct(Y2.irr,1)} al año`:"")}</div>`:`<div class="zf-nopos"><b>Sin valorar</b><span>${V.mult?`Múltiplo de salida ${multiplo(mult)}`:""}</span></div>`,
+      {meta:rev?'<span class="zf-rv">Por revisar</span>':R&&R.fvDate instanceof Date?`tu opinión · ${zfFecha(R.fvDate)}`:"tu opinión",cls:"zf-mine"});
+    const nT=Math.max(2,Math.floor((D.BODY-88-176-228-48-74+12)/54)), titL=a=>a.length?`<ul class="zf-tl">${a.slice(0,nT).map(s=>{ const p=zfPartes(s); return p.t?`<li><b>${esc(p.t)}</b><span>${esc(p.x)}</span></li>`:`<li><span class="x2">${esc(p.x)}</span></li>`; }).join("")}</ul>`:zfVacio("Sin escribir");
+    const E=(typeof ACT!=="undefined"&&ACT&&ACT.ix&&ACT.ix.empresas||[]).find(e=>e.ticker===t), fe=s=>s?zfFecha(new Date(s+"T00:00:00")):"";
     const pr=E&&E.proximos&&E.proximos.fecha&&E.proximos.fecha!==(E.ultimos||{}).fecha?E.proximos:null, ul=E&&E.ultimos&&E.ultimos.fecha?E.ultimos:null;
     const cAg=zfCard("Agenda",zfLista([["Próximos resultados",pr?`${fe(pr.fecha)}${pr.estado?` · ${pr.estado==="estimada"?"estimada":"confirmada"}`:""}`:""],["Últimos resultados",ul?`${fe(ul.fecha)}${ul.periodo?` · ${esc(ul.periodo)}`:""}`:""],
       ["Próximo dividendo",prv[0]?`${zfFecha(prv[0].d)} · ${PV(eur(prv[0].gross,2))}`:""],["Valoración",R&&R.fvDate instanceof Date?zfFecha(R.fvDate):""]]));
-    S.res=`<p class="zf-tit">${tit}</p>${zfCard("Precio",mapa,{cls:"zf-span3"})}${cPos}${cVal}${cCot}${zfCard("A favor",titL(pro),{meta:pro.length>nT?`${nT} de ${pro.length}`:pro.length?String(pro.length):"",cls:"zf-pro"})}${zfCard("En contra",titL(con),{meta:con.length>nT?`${nT} de ${con.length}`:con.length?String(con.length):"",cls:"zf-con"})}${cAg}`; }
+    S.res=zfHd("Resumen",l1,l2,D,rev?`Valoración por revisar: ${porQue}`:"")+zfCard("Precio",mapa,{cls:"zf-span3"})+cCot+cPos+cVal+zfCard("A favor",titL(pro),{meta:pro.length>nT?`${nT} de ${pro.length}`:pro.length?String(pro.length):"",cls:"zf-pro"})+zfCard("En contra",titL(con),{meta:con.length>nT?`${nT} de ${con.length}`:con.length?String(con.length):"",cls:"zf-con"})+cAg; }
 
-  // ── Posición
-  if(P){ const TX=DATA.tx.filter(x=>x.ticker===t&&x.bd instanceof Date).sort((a,b)=>a.bd-b.bd), abiertas=TX.filter(x=>!(x.sd instanceof Date)), tot=sum(cob,d=>d.gross);
-    const f6=zfFig("Invertido",PV(eur(P.invested)),`${shares(P.shares)} a ${money(P.avg,P.cur)}`)+zfFig("Valor",PV(eur(P.value)),`a ${PX(price)}`)+zfFig("Resultado",PV(seur(P.totalEur)),`${pct(P.totalPct,1,true)} con dividendos`,zfCol(P.totalEur))
-      +zfFig("Tu TIR",pct(P.irr,1),yrs?`al año, en ${yrs} ${yrs==="1,0"?"año":"años"}`:"al año")+zfFig("Dividendos cobrados",PV(eur(tot)),P.annual?`${PV(eur(P.annual))} al año ahora`:"no reparte")+zfFig("Peso",pct(P.weight,1),rk===1?`la mayor de tus ${posN.length}`:`la ${rk}.ª de tus ${posN.length}`);
-    const alto2=D.BODY-140-156-32-74, chH=Math.max(130,Math.min(230,alto2-72-36*6-24)), filas=Math.max(3,Math.floor((alto2-chH-24-72)/36)), ver=TX.length>filas?TX.slice(-(filas)):TX;
-    // el precio de cada compra frente al de hoy y a tu precio medio
-    let CH="";
-    if(TX.length&&isNum(price)){ const Wd=Math.floor(2*D.C3+16-48), Hd=chH, T0=+TX[0].bd, hoyT=Date.now(), t0=T0-(hoyT-T0)*.06-20*DIA_MS, t1=hoyT+(hoyT-T0)*.04+10*DIA_MS;
-      const ps=TX.map(x=>x.bp).filter(isNum), lo0=Math.min(...ps,price,P.avg||price), hi0=Math.max(...ps,price,P.avg||price), pad=(hi0-lo0||price*.2)*.18, y0=lo0-pad, y1=hi0+pad, top=8, base=Hd-26;
-      const X=t=>(t-t0)/(t1-t0)*Wd, Y=v=>base-(v-y0)/(y1-y0)*(base-top), mxN=Math.max(...TX.map(x=>x.shares||1));
-      let g=`<line x1="0" x2="${Wd}" y1="${base+.5}" y2="${base+.5}" class="zf-ax"/>`;
-      for(let y=new Date(t0).getFullYear()+1;y<=new Date(t1).getFullYear();y++){ const x=X(+new Date(y,0,1)); if(x>24&&x<Wd-24) g+=`<line x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="${base}" y2="${base+5}" class="zf-ax"/><text x="${x.toFixed(1)}" y="${base+19}" text-anchor="middle" class="zf-tx">${y}</text>`; }
-      const yh=Y(price), ya=isNum(P.avg)?Y(P.avg):null, lh=`Hoy ${PX(price)}`, la=`Tu precio medio ${money(P.avg,P.cur)}`, junto=ya!=null&&Math.abs(yh-ya)<22;
-      g+=`<line x1="0" x2="${Wd}" y1="${yh.toFixed(1)}" y2="${yh.toFixed(1)}" class="zf-lh"/><text x="${Wd}" y="${(yh-7).toFixed(1)}" text-anchor="end" class="zf-tl1">${lh}</text>`;
-      if(ya!=null) g+=`<line x1="0" x2="${Wd}" y1="${ya.toFixed(1)}" y2="${ya.toFixed(1)}" class="zf-la"/><text x="${junto?0:Wd}" y="${(junto?(ya>yh?ya+16:ya-7):ya>yh?ya+16:ya-7).toFixed(1)}" text-anchor="${junto?"start":"end"}" class="zf-tl2">${la}</text>`;
-      TX.forEach(x=>{ if(!isNum(x.bp)) return; const v=x.sd instanceof Date, rr=3.5+Math.sqrt((x.shares||1)/mxN)*5.5; g+=`<circle cx="${X(+x.bd).toFixed(1)}" cy="${Y(x.bp).toFixed(1)}" r="${rr.toFixed(1)}" class="${v?"zf-dv":x.bp<=price?"zf-du":"zf-dd"}"><title>${zfFecha(x.bd)} · ${shares(x.shares)} a ${money(x.bp,x.cur||P.cur)}${v?" · vendida":""}</title></circle>`; });
-      CH=`<svg class="zf-chc" width="${Wd}" height="${Hd}" viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="Precio de cada compra">${g}</svg>`; }
-    const tb=TX.length?`${CH}<table class="zf-tb"><thead><tr><th>Fecha</th><th>Acciones</th><th>Precio</th><th>Comisión</th><th>Importe</th></tr></thead><tbody>${ver.map(x=>{ const v=x.sd instanceof Date;
-        return `<tr${v?' class="q"':""}><td>${zfFecha(x.bd)}${v?` <i>vendida el ${zfFecha(x.sd)}</i>`:""}</td><td>${shares(x.shares)}</td><td>${money(x.bp,x.cur||P.cur)}</td><td>${isNum(x.bfee)?PV(eur(x.bfee,2)):""}</td><td>${isNum(x.bt)?PV(eur(x.bt,2)):""}</td></tr>`; }).join("")}</tbody>
-      <tfoot><tr><td>En cartera</td><td>${shares(P.shares)}</td><td>${money(P.avg,P.cur)}</td><td>${PV(eur(sum(abiertas,x=>x.bfee),2))}</td><td>${PV(eur(sum(abiertas,x=>x.bt),2))}</td></tr></tfoot></table>`:zfVacio("Sin compras");
-    // dividendos por año: cobrado y previsto
-    let DY=zfVacio("No ha repartido dividendos");
-    if(dvs.length){ const ys=[...new Set(dvs.map(d=>d.d.getFullYear()))].sort().slice(-6), Wd=Math.floor(D.IN), Hd=Math.max(150,Math.min(400,alto2-6)), base=Hd-24, top=24, slot=Wd/Math.max(4,ys.length), bw=Math.min(36,slot*.5);
+  // ── Posición: tu historia con la empresa
+  if(P){ const TX=DATA.tx.filter(x=>x.ticker===t&&x.bd instanceof Date).sort((a,b)=>a.bd-b.bd), tot=sum(cob,d=>d.gross), pd=isNum(P.paid)?P.paid:tot, iv=P.invested||0;
+    const mesA=d=>fdate(d,{month:"short",year:"numeric"}), b0=TX[0], bz=TX[TX.length-1];
+    const cuando=!b0?"":TX.length===1?`el ${zfFecha(b0.bd)}`:mesA(b0.bd)===mesA(bz.bd)?`en ${mesA(b0.bd)}`:`entre ${mesA(b0.bd)} y ${mesA(bz.bd)}`;
+    const l1=`Tienes ${shares(P.shares)} ${P.shares===1?"acción":"acciones"} que valen ${PV(eur(P.value))}.`;
+    const l2=`Invertiste ${PV(eur(iv))}${cuando?` ${cuando}`:""} y ${P.totalEur>=0?"ganas":"pierdes"} ${PV(eur(Math.abs(P.totalEur)))} (${pct(P.totalPct,1,true)})${isNum(P.irr)?`, un ${pct(P.irr,1)} al año`:""}.`;
+    const chH=Math.max(180,D.BODY-88-16-380-16-74), Wc=Math.floor(D.CW-48);
+    // el precio de cada compra, frente al de hoy y a tu precio medio (al pasar por una bola, qué compra es)
+    let CH=zfVacio("Sin compras");
+    if(TX.length&&isNum(price)){ const Hd=chH, T0=+TX[0].bd, hoyT=Date.now(), t0=T0-(hoyT-T0)*.05-25*DIA_MS, t1=hoyT+(hoyT-T0)*.03+15*DIA_MS;
+      const ps=TX.map(x=>x.bp).filter(x=>isNum(x)&&x>0), lo0=Math.min(...ps,price,P.avg||price), hi0=Math.max(...ps,price,P.avg||price), pad=(hi0-lo0||price*.2)*.16, y0=lo0-pad, y1=hi0+pad, top=12, base=Hd-28;
+      const X=v=>(v-t0)/(t1-t0)*Wc, Y=v=>base-(v-y0)/(y1-y0)*(base-top), mxN=Math.max(...TX.map(x=>x.shares||1));
+      let g=`<line x1="0" x2="${Wc}" y1="${base+.5}" y2="${base+.5}" class="zf-ax"/>`;
+      const meses=(t1-t0)/(30.44*DIA_MS), paso=meses<=9?1:meses<=30?3:meses<=72?6:12; let prim=true;
+      for(let d=new Date(new Date(t0).getFullYear(),new Date(t0).getMonth()+1,1);+d<=t1;d.setMonth(d.getMonth()+1)){ if(d.getMonth()%paso) continue; const x=X(+d); if(x<28||x>Wc-28) continue;
+        const lb=paso===12?String(d.getFullYear()):(d.getMonth()===0||prim)?`${MES[d.getMonth()].toLowerCase()} ${d.getFullYear()}`:MES[d.getMonth()].toLowerCase(); prim=false;
+        g+=`<line x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="${base}" y2="${base+5}" class="zf-ax"/><text x="${x.toFixed(1)}" y="${base+20}" text-anchor="middle" class="zf-tx">${lb}</text>`; }
+      const yh=Y(price), ya=isNum(P.avg)?Y(P.avg):null, junto=ya!=null&&Math.abs(yh-ya)<22;
+      g+=`<line x1="0" x2="${Wc}" y1="${yh.toFixed(1)}" y2="${yh.toFixed(1)}" class="zf-lh"/><text x="${Wc}" y="${(yh-8).toFixed(1)}" text-anchor="end" class="zf-tl1">Hoy ${PX(price)}</text>`;
+      if(ya!=null) g+=`<line x1="0" x2="${Wc}" y1="${ya.toFixed(1)}" y2="${ya.toFixed(1)}" class="zf-la"/><text x="${junto?0:Wc}" y="${(ya>yh?ya+17:ya-8).toFixed(1)}" text-anchor="${junto?"start":"end"}" class="zf-tl2">Tu precio medio ${money(P.avg,P.cur)}</text>`;
+      TX.forEach(x=>{ if(!isNum(x.bp)||!x.bp) return; const v=x.sd instanceof Date, rr=4+Math.sqrt((x.shares||1)/mxN)*6;
+        const tip=`${zfFecha(x.bd)} · ${shares(x.shares)} ${x.shares===1?"acción":"acciones"} a ${zfTx(money(x.bp,x.cur||P.cur))}${isNum(x.bt)?` · ${zfTx(eur(x.bt,2))}`:""}${v?` · vendida el ${zfFecha(x.sd)}`:""}`;
+        g+=`<circle cx="${X(+x.bd).toFixed(1)}" cy="${Y(x.bp).toFixed(1)}" r="${rr.toFixed(1)}" class="${v?"zf-dv":x.bp<=price?"zf-du":"zf-dd"}" data-tip="${esc(tip)}"/>`; });
+      CH=`<svg class="zf-chc" width="${Wc}" height="${Hd}" viewBox="0 0 ${Wc} ${Hd}" role="img" aria-label="Precio de cada compra">${g}</svg>`; }
+    // cómo se ha formado el resultado: invertido, lo que ha hecho el precio, la divisa, los dividendos y el total
+    const pl=isNum(P.price)?P.price:price, ext=P.cur&&P.cur!=="EUR", fxH=P.shares&&pl?P.value/(P.shares*pl):null, fxC=P.shares&&P.avg?iv/(P.shares*P.avg):null;
+    const rv=P.value-iv, pe=ext&&isNum(fxH)&&isNum(fxC)?(pl-P.avg)*P.shares*fxH:rv, fe=rv-pe, conFx=ext&&Math.abs(fe)>=1;
+    const NOMDIV={USD:"el dólar",GBP:"la libra",CHF:"el franco",CAD:"el dólar canadiense",DKK:"la corona danesa",SEK:"la corona sueca",NOK:"la corona noruega",PLN:"el esloti",JPY:"el yen",HKD:"el dólar de Hong Kong",MXN:"el peso"};
+    const pasos=[["Invertido",iv,"t"],[conFx?"Precio":"Revalorización",pe,"d"],...(conFx?[["Divisa",fe,"d"]]:[]),["Dividendos",pd,"d"],["Total",P.value+pd,"k"]];
+    const Ww=Math.floor(D.IN), Hw=380-74-28, top=22, baseW=Hw-26; let cum=0; const bars=pasos.map(([l,v,k])=>{ let a,b; if(k==="d"){ a=cum; b=cum+(v||0); cum=b; } else { a=0; b=v||0; cum=b; } return {l,v,k,a,b}; });
+    const wlo=Math.min(0,...bars.flatMap(o=>[o.a,o.b])), whi=Math.max(...bars.flatMap(o=>[o.a,o.b]),1), YW=v=>baseW-(v-wlo)/(whi-wlo)*(baseW-top), slot=Ww/bars.length, bw=Math.min(52,slot*.58);
+    let gw=`<line x1="0" x2="${Ww}" y1="${YW(0).toFixed(1)}" y2="${YW(0).toFixed(1)}" class="zf-ax"/>`;
+    bars.forEach((o,i)=>{ const x=i*slot+slot/2, y=Math.min(YW(o.a),YW(o.b)), h=Math.max(1.5,Math.abs(YW(o.b)-YW(o.a))), cl=o.k==="t"?"zf-wt":o.k==="k"?"zf-wk":o.v<0?"zf-wn":"zf-wp";
+      gw+=`<rect x="${(x-bw/2).toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="3" class="${cl}"/>`;
+      if(i<bars.length-1){ const yn=YW(o.b); gw+=`<line x1="${(x+bw/2).toFixed(1)}" x2="${(x+slot-bw/2).toFixed(1)}" y1="${yn.toFixed(1)}" y2="${yn.toFixed(1)}" class="zf-wl"/>`; }
+      gw+=`<text x="${x.toFixed(1)}" y="${(y-8).toFixed(1)}" text-anchor="middle" class="zf-tv">${PVs(o.k==="d"?seur(o.v)||eur(0):eur(o.v))}</text><text x="${x.toFixed(1)}" y="${Hw-6}" text-anchor="middle" class="zf-tx">${o.l}</text>`; });
+    const WF=`<svg width="${Ww}" height="${Hw}" viewBox="0 0 ${Ww} ${Hw}" role="img" aria-label="Cómo se ha formado el resultado">${gw}</svg><p class="zf-pie">${conFx?`${(s0=>s0.charAt(0).toUpperCase()+s0.slice(1))(NOMDIV[P.cur]||"la divisa")} te ${fe>=0?"suma":"resta"} ${PV(eur(Math.abs(fe)))}; el precio, en ${esc(curSym[P.cur]||P.cur)}, ${pe>=0?"suma":"resta"} ${PV(eur(Math.abs(pe)))}.`:`${pct(P.totalPct,1,true)} sobre lo invertido${isNum(P.irr)?`, un ${pct(P.irr,1)} al año`:""}.`}</p>`;
+    // las compras: las últimas que caben (todas se ven al pasar por las bolas)
+    const fil=Math.max(3,Math.floor((380-74-72)/36)), ver=TX.slice(-fil);
+    const TB=TX.length?`<table class="zf-tb zf-fx"><colgroup><col style="width:34%"><col><col><col style="width:28%"></colgroup><thead><tr><th>Fecha</th><th>Acciones</th><th>Precio (${esc(curSym[P.cur]||P.cur)})</th><th>Importe (€)</th></tr></thead><tbody>${ver.map(x=>{ const v=x.sd instanceof Date;
+        return `<tr${v?' class="q"':""}><td>${zfFecha(x.bd)}${v?" <i>vendida</i>":""}</td><td>${shares(x.shares)}</td><td>${x.bp?nf(2).format(x.bp):"liberadas"}</td><td>${x.bt?PV(nf(2).format(x.bt)):"—"}</td></tr>`; }).join("")}</tbody>
+      <tfoot><tr><td>En cartera</td><td>${shares(P.shares)}</td><td>${nf(2).format(P.avg)}</td><td>${PV(nf(2).format(iv))}</td></tr></tfoot></table>`:zfVacio("Sin compras");
+    // dividendos por año y el próximo cobro
+    let DY=zfVacio(P.annual?"Todavía sin cobros":"No reparte dividendos");
+    if(dvs.length){ const ys=[...new Set(dvs.map(d=>d.d.getFullYear()))].sort().slice(-5), Wd=Math.floor(D.IN), Hd=380-74-48, base=Hd-24, tp=22, slot2=Wd/Math.max(4,ys.length), bw2=Math.min(34,slot2*.5);
       const val=y=>({c:sum(cob.filter(d=>d.d.getFullYear()===y),d=>d.gross),p:sum(prv.filter(d=>d.d.getFullYear()===y),d=>d.gross)}), mx=Math.max(...ys.map(y=>{ const o=val(y); return o.c+o.p; }),0.01);
       let g=`<line x1="0" x2="${Wd}" y1="${base+.5}" y2="${base+.5}" class="zf-ax"/>`;
-      ys.forEach((y,i)=>{ const o=val(y), x=i*slot+slot/2, hc=o.c/mx*(base-top), hp=o.p/mx*(base-top);
-        if(o.c) g+=`<rect x="${(x-bw/2).toFixed(1)}" y="${(base-hc).toFixed(1)}" width="${bw.toFixed(1)}" height="${hc.toFixed(1)}" rx="3" class="zf-bc"/>`;
-        if(o.p) g+=`<rect x="${(x-bw/2).toFixed(1)}" y="${(base-hc-hp).toFixed(1)}" width="${bw.toFixed(1)}" height="${hp.toFixed(1)}" rx="3" class="zf-bp"/>`;
-        g+=`<text x="${x.toFixed(1)}" y="${(base-hc-hp-8).toFixed(1)}" text-anchor="middle" class="zf-tv">${eur(o.c+o.p)}</text><text x="${x.toFixed(1)}" y="${base+18}" text-anchor="middle" class="zf-tx">${y}</text>`; });
-      DY=`<svg width="${Wd}" height="${Hd}" viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="Dividendos por año">${g}</svg>`; }
-    const PR=prv.length?`<div class="zf-g2">${zfFig("Fecha",zfFecha(prv[0].d),prv.length>1?`y ${prv.length-1} más hasta el ${zfFecha(prv[prv.length-1].d)}`:"")+zfFig("Importe bruto",PV(eur(prv[0].gross,2)),`${shares(prv[0].shares||P.shares)} acciones`)}</div>`:zfVacio(P.annual?"Sin cobros previstos":"No reparte");
-    // de dónde sale el resultado: lo que ha subido el precio más los dividendos cobrados
-    const pd=isNum(P.paid)?P.paid:tot, rv=isNum(P.totalEur)?P.totalEur-pd:null, iv=P.invested||null;
-    const EQ=`<div class="zf-eq">${zfFig("Revalorización",PV(seur(rv)),iv&&isNum(rv)?`${pct(rv/iv,1,true)} por precio`:"",zfCol(rv))}<em>+</em>${zfFig("Dividendos cobrados",PV(seur(pd)||eur(0)),iv?`${pct(pd/iv,1,true)||"0,0 %"} por dividendos`:"",zfCol(pd))}<em>=</em>${zfFig("Resultado",PV(seur(P.totalEur)),`${pct(P.totalPct,1,true)} sobre ${PV(eur(P.invested))} invertidos`,zfCol(P.totalEur))}</div>`;
-    S.pos=zfCard("Tu posición",`<div class="zf-g6">${f6}</div>`,{cls:"zf-span3"})+zfCard("Compras",tb,{meta:TX.length>ver.length?`las ${ver.length} últimas de ${TX.length}`:TX.length?`${TX.length} ${TX.length===1?"compra":"compras"}`:"",cls:"zf-span2"})
-      +zfCard("Dividendos por año",DY,{meta:prv.length?'<i class="zf-sw c"></i>cobrado<i class="zf-sw p"></i>previsto':""})+zfCard("De dónde sale el resultado",EQ,{cls:"zf-span2"})+zfCard("Próximo cobro",PR); }
+      ys.forEach((y,i)=>{ const o=val(y), x=i*slot2+slot2/2, hc=o.c/mx*(base-tp), hp=o.p/mx*(base-tp);
+        if(o.c) g+=`<rect x="${(x-bw2/2).toFixed(1)}" y="${(base-hc).toFixed(1)}" width="${bw2.toFixed(1)}" height="${hc.toFixed(1)}" rx="3" class="zf-bc"/>`;
+        if(o.p) g+=`<rect x="${(x-bw2/2).toFixed(1)}" y="${(base-hc-hp).toFixed(1)}" width="${bw2.toFixed(1)}" height="${hp.toFixed(1)}" rx="3" class="zf-bp"/>`;
+        g+=`<text x="${x.toFixed(1)}" y="${(base-hc-hp-8).toFixed(1)}" text-anchor="middle" class="zf-tv">${PVs(eur(o.c+o.p))}</text><text x="${x.toFixed(1)}" y="${base+18}" text-anchor="middle" class="zf-tx">${y}</text>`; });
+      DY=`<svg width="${Wd}" height="${Hd}" viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="Dividendos por año">${g}</svg><p class="zf-pie">${prv[0]?`Próximo cobro, el ${zfFecha(prv[0].d)}: ${PV(eur(prv[0].gross,2))} brutos.`:`${PV(eur(tot))} cobrados en total.`}</p>`; }
+    S.pos=zfHd("Posición",l1,l2,D)+zfCard("Tus compras",CH,{meta:`${TX.length} ${TX.length===1?"compra":"compras"}`,cls:"zf-span3"})+zfCard("Cómo se ha formado el resultado",WF)
+      +zfCard("Compras",TB,{meta:TX.length>ver.length?`las ${ver.length} últimas de ${TX.length}`:""})+zfCard("Dividendos",DY,{meta:prv.length?'<i class="zf-sw c"></i>cobrado<i class="zf-sw p"></i>previsto':""}); }
 
-  // ── Valoración
+  // ── Valoración: ¿está barata? La tabla de calor manda
   if(hay.val){ const nz=x=>isNum(x)&&Math.abs(x)>0.0005, mil=v=>`${nf(0).format(Math.abs(v))} M${sym}`, mg=isNum(irrE)&&isNum(req)?irrE-req:null;
+    const l1=fv&&isNum(price)?`Para ti vale ${PX(fv)}, ${Math.abs(pot)<0.005?"justo lo que cotiza":`un ${pct(Math.abs(pot),1)} ${pot>0?"más":"menos"} de lo que cotiza`}.`:"Sin valor razonable.";
+    const l2=isNum(irrE)?`A este precio esperas un ${pct(irrE,1)} al año${isNum(mg)?`, ${nf(1).format(Math.abs(mg*100))} ${Math.abs(mg*100)>=0.95&&Math.abs(mg*100)<1.05?"punto":"puntos"} ${mg>=0?"más":"menos"} de lo que exiges`:""}.`:isNum(mult)?`Con un múltiplo de salida de ${multiplo(mult)}.`:"";
     const caja=nz(V.nd)?zfFig("Deuda neta",mil(V.nd),nz(V.ndps)?`${money(Math.abs(V.ndps),cur,2)} por acción`:""):nz(V.cash)?zfFig("Caja neta",mil(V.cash),nz(V.cashps)?`${money(Math.abs(V.cashps),cur,2)} por acción`:""):zfFig("Deuda neta","","");
-    const f6=zfFig("Valor razonable",PX(fv),lo!=null&&hi>lo?`entre ${PX(lo,0)} y ${PX(hi,0)}`:"")+zfFig("Potencial",pct(pot,1,true),isNum(price)?`desde ${PX(price)}`:"",zfCol(pot))+zfFig("TIR esperada",pct(irrE,1),"a precio de hoy")
-      +zfFig("TIR exigida",tipoPct(req),isNum(mg)?`<span class="${zfCol(mg)}">${mg>=0?"+":"−"}${nf(1).format(Math.abs(mg*100))} puntos de margen</span>`:"")+zfFig("Múltiplo de salida",multiplo(mult),isNum(V.multNow)?`hoy cotiza a ${multiplo(V.multNow)}`:"")+caja;
+    const f5=zfFig("Valor razonable",PX(fv),lo!=null&&hi>lo?`entre ${PX(lo,0)} y ${PX(hi,0)}`:"")+zfFig("Potencial",pct(pot,1,true),isNum(price)?`desde ${PX(price)}`:"",zfCol(pot))
+      +zfFig("TIR esperada",pct(irrE,1),isNum(req)?`exiges un ${tipoPct(req)}`:"",isNum(mg)?zfCol(mg):"")+zfFig("Múltiplo de salida",multiplo(mult),isNum(V.multNow)?`hoy cotiza a ${multiplo(V.multNow)}`:"")+caja;
     let MX=zfVacio("Sin tabla de valoración");
     if(F){ const d0=fvs.some(x=>x>=1000)?0:2, near=(a,b)=>isNum(a)&&isNum(b)&&Math.abs(a-b)<1e-6;
-      const cel=v=>{ if(!isNum(v)||!v||!isNum(price)) return {p:null,bg:"transparent"}; const p=v/price-1, k=Math.min(1,Math.abs(p)/.4); return {p,bg:p>=0?`color-mix(in srgb,var(--gx-id) ${Math.round(16+k*50)}%,var(--card))`:`color-mix(in srgb,var(--neg) ${Math.round(8+k*26)}%,var(--card))`}; };
-      MX=`<div class="zf-mx" style="--n:${F.rates.length}"><span class="zf-mxe">Múltiplo</span>${F.rates.map(x=>`<span class="h">TIR ${tipoPct(x)}</span>`).join("")}${F.rows.map(o=>`<span class="r">${multiplo(o.m)}</span>`+o.v.map((v,j)=>{ const c=cel(v), on=near(o.m,mult)&&near(F.rates[j],req);
-        return `<div class="c${on?" on":""}" style="${on?"":`background:${c.bg}`}"><b>${PX(v,d0)}</b><span>${on?"tu valoración":c.p==null?"":pct(c.p,0,true)||"0 %"}</span></div>`; }).join("")).join("")}</div>`; }
+      const cel=v=>{ if(!isNum(v)||!v||!isNum(price)) return {p:null,bg:"transparent"}; const p=v/price-1, k=Math.min(1,Math.abs(p)/.4); return {p,bg:p>=0?`color-mix(in srgb,var(--gx-id) ${Math.round(16+k*52)}%,var(--card))`:`color-mix(in srgb,var(--neg) ${Math.round(8+k*28)}%,var(--card))`}; };
+      MX=`<div class="zf-mx" style="--n:${F.rates.length};--m:${F.rows.length}"><span class="zf-mxe">Múltiplo · TIR exigida</span>${F.rates.map(x=>`<span class="h">${tipoPct(x)}</span>`).join("")}${F.rows.map(o=>`<span class="r">${multiplo(o.m)}</span>`+o.v.map((v,j)=>{ const c=cel(v), on=near(o.m,mult)&&near(F.rates[j],req);
+        return `<div class="c${on?" on":""}" style="${on?"":`background:${c.bg}`}"><b>${PX(v,d0)}</b><span>${on?"tu valoración":c.p==null?"":(pct(c.p,0,true)||"0 %")+" desde hoy"}</span></div>`; }).join("")).join("")}</div>`; }
     const txt=(s,v)=>s?`<div class="zf-txt">${zfLineas(s).map(p=>`<p>${esc(p)}</p>`).join("")}</div>`:zfVacio(v);
-    S.val=zfCard("Tu valoración",`<div class="zf-g6">${f6}</div>`,{meta:R.fvDate instanceof Date?`valorada el ${zfFecha(R.fvDate)}`:"",cls:"zf-span3"})
-      +zfCard("Según el múltiplo y la TIR exigida",MX)+zfCard(isNum(mult)?`Por qué un múltiplo de ${multiplo(mult)}`:"Por qué este múltiplo",txt(V.multTxt,"Sin escribir"),{cls:"zf-scroll"})
-      +zfCard(isNum(req)?`Por qué una TIR exigida del ${tipoPct(req)}`:"Por qué esta TIR exigida",txt(V.retTxt,"Sin escribir"),{cls:"zf-scroll"}); }
+    S.val=zfHd("Valoración",l1,l2,D,rev?`Por revisar: ${porQue}`:"")+zfCard("Valor razonable según el múltiplo y la TIR que exiges",`<div class="zf-g5">${f5}</div>${MX}`,{meta:R.fvDate instanceof Date?`valorada el ${zfFecha(R.fvDate)}`:"",cls:"zf-vmx"})
+      +zfCard("Por qué",`<div class="zf-pq"><h5>${isNum(mult)?`Un múltiplo de salida de ${multiplo(mult)}`:"El múltiplo"}</h5>${txt(V.multTxt,"Sin escribir")}<h5>${isNum(req)?`Una TIR exigida del ${tipoPct(req)}`:"La TIR exigida"}</h5>${txt(V.retTxt,"Sin escribir")}</div>`,{cls:"zf-scroll zf-q"}); }
 
-  // ── Proyección
-  if(PJ){ const C=PJ.cols, isC=i=>/^CAGR/i.test(C[i]), ly=Math.max(...C.map((h,i)=>isC(i)?-1:i)), yc=C.map((h,i)=>i).filter(i=>!isC(i));
-    const etq=l=>String(l).trim().replace(/^Free Cash Flow/i,"FCF").replace(/\s*\/\s*Acci[oó]n$/i," por acción").replace(/^Acciones en circulaci[oó]n$/i,"Acciones").replace(/^Crecimiento YoY$/i,"Crecimiento").replace(/^Dividendos Descontados$/i,"Dividendo descontado").replace(/^Dividendos$/i,"Dividendo por acción").replace(/^Margen Free Cash Flow$/i,"Margen FCF");
+  // ── Proyección: una tabla de verdad y la cuenta hasta el precio objetivo
+  if(hay.pj){ const C=PJ.cols, isC=i=>/^CAGR/i.test(C[i]), ly=Math.max(...C.map((h,i)=>isC(i)?-1:i));
+    const etq=l=>String(l).trim().replace(/^Free Cash Flow/i,"FCF").replace(/\s*\/\s*Acci[oó]n$/i," por acción").replace(/^Acciones en circulaci[oó]n$/i,"Acciones en circulación").replace(/^Crecimiento YoY$/i,"Crecimiento").replace(/^Dividendos Descontados$/i,"Dividendo descontado").replace(/^Dividendos$/i,"Dividendo por acción").replace(/^Margen Free Cash Flow$/i,"Margen FCF");
     const sec=l=>/^(crecimiento|margen|dividendos? descontad)/i.test(String(l).trim()), pctR=l=>/^(crecimiento|margen)/i.test(String(l).trim()), porAc=l=>/\/\s*acci[oó]n$|^dividendos?( descontados?)?$/i.test(String(l).trim());
-    const uni=l=>pctR(l)?"":/^acciones/i.test(String(l).trim())?"millones":porAc(l)?sym:"M"+sym;
-    const fm=(l,x,i)=>!isNum(x)?"":isC(i)||pctR(l)?pct(x,1):porAc(l)?numSigno(x,2):numSigno(x);
-    const cab=h=>{ const p=String(h).trim().split(/\s+/); return /^LTM$/i.test(p[0])&&p.length>1?`LTM<i>${esc(p.slice(1).join(" "))}</i>`:isC(C.indexOf(h))?"CAGR":esc(h); };
-    const tabla=`<table class="zf-pj"><thead><tr><th></th>${C.map((h,i)=>`<th class="${isC(i)?"cg":i===ly?"fin":""}">${cab(h)}</th>`).join("")}</tr></thead><tbody>${PJ.rows.map(o=>{ const s=sec(o.l);
-      return `<tr class="${s?"s":"p"}"><td class="l">${esc(etq(o.l))}${!s&&uni(o.l)?`<i>${uni(o.l)}</i>`:""}</td>${o.v.map((x,i)=>`<td class="${isC(i)?"cg":i===ly?"fin":""}">${isC(i)?(isNum(x)&&!s?`<span class="zf-pill ${x<0?"neg":""}">${pct(x,1,true)}</span>`:""):fm(o.l,x,i)}</td>`).join("")}</tr>`; }).join("")}</tbody></table>`;
-    // tres gráficos pequeños: ventas, la caja (o el beneficio) y la cifra por acción
-    const prim=PJ.rows.filter(o=>!sec(o.l)), ps=[...prim].reverse().find(o=>/\/\s*acci[oó]n$/i.test(o.l)), caja=prim.find(o=>o!==prim[0]&&!/^acciones/i.test(o.l)&&!porAc(o.l));
-    const mini=o=>{ if(!o) return zfVacio("—"); const vs=yc.map(i=>o.v[i]), ok=vs.filter(isNum); if(ok.length<2) return zfVacio("—"); const Wd=Math.floor(D.IN), Hd=150, mx=Math.max(...ok.map(Math.abs))||1, slot=Wd/vs.length, bw=Math.min(30,slot*.5), base=Hd-22;
-      let g=""; vs.forEach((v,k)=>{ if(!isNum(v)) return; const x=k*slot+slot/2, h=Math.max(2,Math.abs(v)/mx*(base-22)); g+=`<rect x="${(x-bw/2).toFixed(1)}" y="${(base-h).toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="3" class="${yc[k]===ly?"zf-bf":"zf-bl"}"/><text x="${x.toFixed(1)}" y="${base+16}" text-anchor="middle" class="zf-tx">${esc(String(C[yc[k]]).trim().split(/\s+/)[0])}</text>`;
-        if(k===0||yc[k]===ly) g+=`<text x="${x.toFixed(1)}" y="${(base-h-7).toFixed(1)}" text-anchor="middle" class="zf-tv">${porAc(o.l)?numSigno(v,2):numSigno(v)}</text>`; });
-      return `<svg width="${Wd}" height="${Hd}" viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="${esc(etq(o.l))}">${g}</svg>`; };
-    const cg=o=>{ if(!o) return ""; const i=C.findIndex((h,k)=>isC(k)); const v=i>=0?o.v[i]:null; return isNum(v)?`<span class="zf-pill ${v<0?"neg":""}">${pct(v,1,true)} al año</span>`:""; };
-    const mt=o=>o?`${esc(etq(o.l))}${uni(o.l)?` <i class="zf-u">${uni(o.l)}</i>`:""}`:"—";
-    // la cuenta que lleva al precio de 2030: cifra por acción × múltiplo de salida = precio
-    let EQ=zfVacio("Sin precio objetivo");
-    if(Y2){ const v=ps?ps.v[ly]:null, cuadra=isNum(v)&&isNum(mult)&&isNum(Y2.price)&&Math.abs(mult*v-Y2.price)/Math.abs(Y2.price)<0.03, yr=esc(Y2.year??"");
-      EQ=`<div class="zf-eq">${cuadra?`${zfFig(`${esc(etq(ps.l))} en ${yr}`,money(v,cur,2),"")}<em>×</em>${zfFig("Múltiplo de salida",multiplo(mult),"")}<em>=</em>`:""}${zfFig(`Precio en ${yr}`,PX(Y2.price),isNum(price)?`hoy ${PX(price)}`:"")}<em class="sep"></em>${zfFig("TIR solo por precio",pct(Y2.irr,1),"al año")}${zfFig("Dividendos hasta "+yr,PX(Y2.divs),"por acción")}${zfFig("TIR con dividendos",pct(Y2.irrDiv,1),"al año")}</div>`; }
-    S.pj=zfCard("Proyección",tabla,{cls:"zf-span3 zf-scroll"})+zfCard(mt(prim[0]),mini(prim[0]),{meta:cg(prim[0])})+zfCard(mt(caja),mini(caja),{meta:cg(caja)})+zfCard(mt(ps),mini(ps),{meta:cg(ps)})+zfCard("Hasta el precio objetivo",EQ,{cls:"zf-span3"}); }
+    const uni=l=>pctR(l)?"%":/^acciones/i.test(String(l).trim())?"millones":porAc(l)?sym:"M"+sym;
+    const fm=(l,x,i)=>!isNum(x)?"":isC(i)||pctR(l)?pct(x,1,isC(i)):porAc(l)?numSigno(x,2):numSigno(x);
+    const cab=(h,i)=>{ if(isC(i)) return `CAGR<i>${esc(String(h).replace(/^CAGR\s*/i,"").replace(/Y$/i," años"))||"anual"}</i>`; const p=String(h).trim().split(/\s+/); return /^LTM$/i.test(p[0])?`LTM<i>${p.length>1?esc(p.slice(1).join(" ")):"últimos 12 meses"}</i>`:`${esc(h)}<i>${i===ly?"objetivo":"estimado"}</i>`; };
+    const tabla=`<table class="zf-pjt"><colgroup><col class="c1"><col class="c2">${C.map(()=>"<col>").join("")}</colgroup><thead><tr><th>Concepto</th><th>Unidad</th>${C.map((h,i)=>`<th class="${isC(i)?"cg":i===0?"ltm":""}">${cab(h,i)}</th>`).join("")}</tr></thead><tbody>${PJ.rows.filter(o=>o.v.some((x,i)=>!isC(i)&&isNum(x)&&x!==0)).map(o=>{ const s=sec(o.l);
+      return `<tr class="${s?"s":"p"}"><td class="l">${esc(etq(o.l))}</td><td class="u">${uni(o.l)}</td>${o.v.map((x,i)=>`<td class="${isC(i)?"cg "+(s?"":zfCol(x)):i===0?"ltm":""}">${isC(i)&&s?"":fm(o.l,x,i)}</td>`).join("")}</tr>`; }).join("")}</tbody></table>`;
+    const prim=PJ.rows.filter(o=>!sec(o.l)), ps=[...prim].reverse().find(o=>/\/\s*acci[oó]n$/i.test(o.l)), vy=ps?ps.v[ly]:null, yr=Y2?esc(Y2.year??""):esc(C[ly]||"");
+    const cuadra=Y2&&isNum(vy)&&isNum(mult)&&isNum(Y2.price)&&Math.abs(mult*vy-Y2.price)/Math.abs(Y2.price)<0.03, up=Y2&&isNum(Y2.price)&&isNum(price)?Y2.price/price-1:null;
+    let l1, l2="";
+    if(Y2&&isNum(Y2.price)){ l1=`En ${yr} podría valer ${PX(Y2.price)}${isNum(up)?`, un ${pct(Math.abs(up),1)} ${up>=0?"más":"menos"} que hoy`:""}.`; l2=`${cuadra?`${esc(etq(ps.l))} de ${money(vy,cur,2)} por ${multiplo(mult)}: `:""}${isNum(Y2.irr)?`un ${pct(Y2.irr,1)} al año${isNum(Y2.irrDiv)?`, un ${pct(Y2.irrDiv,1)} con dividendos`:""}`:""}.`; l2=l2.charAt(0).toUpperCase()+l2.slice(1); }
+    else { const v0=prim[0]&&prim[0].v[0], v1=prim[0]&&prim[0].v[ly]; l1=isNum(v0)&&isNum(v1)?`${esc(etq(prim[0].l))}: de ${numSigno(v0)} a ${numSigno(v1)} ${uni(prim[0].l)} en ${yr}.`:"Proyección hasta "+yr+"."; }
+    const filas=PJ.rows.filter(o=>o.v.some((x,i)=>!isC(i)&&isNum(x)&&x!==0)), tH=74+54+filas.reduce((a,o)=>a+(sec(o.l)?33:39),0), hB=Math.max(150,D.BODY-88-16-tH-16-74-6);
+    const yc=C.map((h,i)=>i).filter(i=>!isC(i)), base0=ps&&isNum(mult)?ps:prim[0], imp=base0===ps;
+    let IM=zfVacio("—");
+    if(base0){ const vs=yc.map(i=>isNum(base0.v[i])?(imp?base0.v[i]*mult:base0.v[i]):null), ok=vs.filter(isNum);
+      if(ok.length>1){ const Wd=Math.floor(2*D.C3+16-48), Hd=hB, base=Hd-24, tp=24, mx=(Math.max(...ok,imp&&isNum(price)?price:0)*1.04)||1, mn=0, Yv=v=>base-(v-mn)/(mx-mn)*(base-tp), slot=Wd/vs.length, bw=Math.min(64,slot*.5);
+        let g=`<line x1="0" x2="${Wd}" y1="${base+.5}" y2="${base+.5}" class="zf-ax"/>`;
+        vs.forEach((v,k)=>{ if(!isNum(v)) return; const x=k*slot+slot/2, y=Yv(v), cl=!imp?(yc[k]===ly?"zf-bf":"zf-bl"):v>=price?"zf-bu":"zf-bd";
+          g+=`<rect x="${(x-bw/2).toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${(base-y).toFixed(1)}" rx="4" class="${cl}"/><text x="${x.toFixed(1)}" y="${(y-8).toFixed(1)}" text-anchor="middle" class="zf-tv">${imp?zfTx(PX(v,v>=1000?0:2)):numSigno(v)}</text><text x="${x.toFixed(1)}" y="${base+18}" text-anchor="middle" class="zf-tx">${esc(String(C[yc[k]]).trim().split(/\s+/)[0])}</text>`; });
+        if(imp&&isNum(price)){ const yh=Yv(price); g+=`<line x1="0" x2="${Wd}" y1="${yh.toFixed(1)}" y2="${yh.toFixed(1)}" class="zf-lh2"/><text x="${Wd}" y="${(yh-7).toFixed(1)}" text-anchor="end" class="zf-tl1 zf-halo">Hoy ${zfTx(PX(price))}</text>`; }
+        IM=`<svg width="${Wd}" height="${Hd}" viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="Precio implícito de cada año">${g}</svg>`; } }
+    const fila=(k,v,c="")=>`<div class="${c}"><span>${k}</span><b>${v||"—"}</b></div>`;
+    const CAD=Y2?`<div class="zf-cad">${cuadra?fila(`${esc(etq(ps.l))} en ${yr}`,money(vy,cur,2))+fila("× múltiplo de salida",multiplo(mult)):""}${fila(`= precio en ${yr}`,PX(Y2.price),"tot")}<p>${isNum(up)?`${pct(up,1,true)} desde los ${PX(price)} de hoy`:"&nbsp;"}</p>${fila("TIR solo por precio",pct(Y2.irr,1))}${fila(`+ dividendos hasta ${yr}`,PX(Y2.divs))}${fila("= TIR con dividendos",pct(Y2.irrDiv,1),"tot")}</div>`:zfVacio("Sin precio objetivo");
+    S.pj=zfHd("Proyección",l1,l2,D)+zfCard("Proyección",tabla,{meta:R.fvDate instanceof Date?`valorada el ${zfFecha(R.fvDate)}`:"",cls:"zf-span3"})+zfCard(imp?`Lo que valdría cada año a ${multiplo(mult)}`:esc(etq(base0?base0.l:"")),IM,{meta:imp?`${esc(etq(ps.l))} × ${multiplo(mult)}`:"",cls:"zf-span2"})+zfCard(`La cuenta hasta ${yr}`,CAD); }
 
-  // ── Tesis: a favor, en contra y notas
-  if(hay.tes){ const li=a=>a.length?`<ul class="zf-ul">${a.map(s=>{ const p=zfPartes(s); return `<li>${p.t?`<b>${esc(p.t)}.</b> `:""}${esc(p.x)}</li>`; }).join("")}</ul>`:zfVacio("Sin escribir");
-    S.tes=zfCard("A favor",li(pro),{meta:pro.length?String(pro.length):"",cls:"zf-pro zf-scroll"})+zfCard("En contra",li(con),{meta:con.length?String(con.length):"",cls:"zf-con zf-scroll"})
-      +zfCard("Notas",notas.length?`<div class="zf-txt">${notas.map(n=>`<p>${esc(n)}</p>`).join("")}</div>`:zfVacio("Sin notas"),{meta:notCab?esc(notCab.replace(/^actualizad[oa]\s*(a|el)?\s*/i,"")):"",cls:"zf-scroll"}); }
+  // ── Tesis: por qué sí y por qué no, como un artículo
+  if(hay.tes){ const li=(a,c)=>a.length?`<ol class="zf-ol ${c}">${a.map((s,i)=>{ const p=zfPartes(s); return `<li><span class="n">${String(i+1).padStart(2,"0")}</span><div>${p.t?`<b>${esc(p.t)}</b>`:""}<p>${esc(p.x)}</p></div></li>`; }).join("")}</ol>`:zfVacio("Sin escribir");
+    const t1=pro.length?zfPartes(pro[0]).t||"":"", t2=con.length?zfPartes(con[0]).t||"":"";
+    const l1=`${pro.length} ${pro.length===1?"razón":"razones"} a favor y ${con.length} en contra.`, l2=t1||t2?`${t1?`La principal, ${esc(minus1(t1))}`:""}${t1&&t2?"; ":""}${t2?`${t1?"el":"El"} mayor riesgo, ${esc(minus1(t2))}`:""}.`:"";
+    S.tes=zfHd("Tesis",l1,l2,D)+zfCard("A favor",li(pro,"pro"),{meta:pro.length?String(pro.length):"",cls:"zf-scroll"})+zfCard("En contra",li(con,"con"),{meta:con.length?String(con.length):"",cls:"zf-scroll"})
+      +`<section class="zf-not"><header><h4>Notas</h4>${notCab?`<span>${esc(notCab.replace(/^actualizad[oa]\s*(a|el)?\s*/i,""))}</span>`:""}</header><div class="zf-cb zf-txt">${notas.length?notas.map(n=>`<p>${esc(n)}</p>`).join(""):'<p class="zf-vac">Sin notas</p>'}</div></section>`; }
 
-  // ── Cotización
+  // ── Cotización: cómo se ha movido, frente a su industria
   if(R){ const ano=new Date().getFullYear(), per=[["1 semana","w1"],["1 mes","m1"],["3 meses","m3"],["6 meses","m6"],[`En ${ano}`,"ytd"],["1 año","y1"],["3 años","y3"]];
     const mem=DATA.pre.filter(x=>ind&&x.ind===ind), media=k=>{ const v=mem.map(x=>x[k]).filter(isNum); return v.length>1?v.reduce((a,b)=>a+b,0)/v.length:null; };
-    const own=per.map(([,k])=>R[k]).filter(isNum), ms=per.map(([,k])=>media(k)).filter(isNum), d0=Math.min(0,...own,...ms), d1=Math.max(0.0001,...own,...ms), RX=v=>(v-d0)/(d1-d0)*100;
-    const rows=per.map(([l,k])=>{ const v=R[k], m=media(k); return `<span class="l">${l}</span><span class="br">${isNum(v)?`<u style="left:${RX(0).toFixed(2)}%"></u><i class="${v<0?"neg":""}" style="left:${Math.min(RX(0),RX(v)).toFixed(2)}%;width:${Math.abs(RX(v)-RX(0)).toFixed(2)}%"></i>`:""}${isNum(m)?`<s style="left:calc(${RX(m).toFixed(2)}% - 1px)"></s>`:""}</span><span class="v ${zfCol(v)}">${isNum(v)?pct(v,1,true):"—"}</span><span class="m">${isNum(m)?pct(m,1,true):"—"}</span>`; }).join("");
+    const corto=per.filter(([,k])=>k!=="y3"), own=corto.map(([,k])=>R[k]).filter(isNum), ms=corto.map(([,k])=>media(k)).filter(isNum), d0=Math.min(0,...own,...ms)*1.1, d1=Math.max(0.0001,...own,...ms)*1.1, RX0=v=>(v-d0)/(d1-d0)*100, RX=v=>Math.max(0,Math.min(100,RX0(v)));
+    const rows=per.map(([l,k])=>{ const v=R[k], m=media(k), sale=isNum(v)&&(RX0(v)>100||RX0(v)<0); return `<span class="l">${l}</span><span class="br">${isNum(v)?`<u style="left:${RX(0).toFixed(2)}%"></u><i class="${v<0?"neg":""}${sale?" sale":""}" style="left:${Math.min(RX(0),RX(v)).toFixed(2)}%;width:${Math.abs(RX(v)-RX(0)).toFixed(2)}%"></i>`:""}${isNum(m)&&RX0(m)>=0&&RX0(m)<=100?`<s style="left:calc(${RX(m).toFixed(2)}% - 1px)"></s>`:""}</span><span class="v ${zfCol(v)}">${isNum(v)?pct(v,1,true):"—"}</span><span class="m">${isNum(m)?pct(m,1,true):"—"}</span>`; }).join("");
     const RD=`<div class="zf-rd"><span></span><span></span><span class="h">${esc(co.name)}</span><span class="h">${mem.length>1?'<i class="zf-mkm"></i>Media':""}</span>${rows}</div>`;
-    const mm=isNum(R.mm200)&&R.mm200>-1&&isNum(price)?price/(1+R.mm200):null, mx1=isNum(R.hi52)&&R.hi52>-1&&isNum(price)?price/(1+R.hi52):null;
-    const PRC=zfLista([["Última sesión",pct(ses,1,true),zfCol(ses)],["Media de 200 sesiones",mm?`${PX(mm)} · ${pct(R.mm200,1,true)}`:""],["Máximo de 1 año",mx1?`${PX(mx1)} · ${pct(R.hi52,1,true)}`:""],["Desde el máximo histórico",pct(R.dd,1,true),zfCol(R.dd)],["Volatilidad anualizada",pct(R.vol,1)]]);
-    const nPe=Math.max(3,Math.floor(((D.BODY-16)/2-40-34-36)/36)), ie=x=>isNum(x.irrExp)&&isNum(x.fv)&&x.fv>0?x.irrExp:-9, pe=[...mem].sort((a,b)=>ie(b)-ie(a)), yo=pe.findIndex(x=>x.ticker===t), verP=pe.length>nPe?(yo<nPe?pe.slice(0,nPe):[...pe.slice(0,nPe-1),pe[yo]]):pe;
-    const PE=mem.length>1?`<table class="zf-tb zf-pe"><thead><tr><th>Empresa</th><th>Última sesión</th><th>1 año</th><th>Desde el máximo</th><th>Potencial</th><th>TIR esperada</th></tr></thead><tbody>${verP.map(x=>{ const s=isNum(x.today)?x.today:x.last, pp=isNum(x.fv)&&x.fv>0&&isNum(x.price)?x.fv/x.price-1:null;
-        return `<tr${x.ticker===t?' class="yo"':""}><td>${esc(x.name)}${x.inPf?'<i class="zf-pf" title="En tu cartera"></i>':""}</td><td class="${zfCol(s)}">${pct(s,1,true)||"—"}</td><td class="${zfCol(x.y1)}">${pct(x.y1,1,true)||"—"}</td><td>${pct(x.dd,1,true)||"—"}</td><td class="${zfCol(pp)}">${pct(pp,1,true)||"—"}</td><td>${isNum(x.fv)&&x.fv>0?pct(x.irrExp,1)||"—":"—"}</td></tr>`; }).join("")}</tbody></table>`:zfVacio("Es la única de su industria en tu preselección.");
-    S.cot=zfCard(mem.length>1?`Rentabilidad frente a la media de ${esc(ind)}`:"Rentabilidad",RD,{cls:"zf-span2"})+zfCard("Precio",PRC)+zfCard(ind?esc(ind):"Su industria",PE,{meta:mem.length>verP.length?`${verP.length} de ${mem.length} · por TIR esperada`:mem.length>1?"por TIR esperada":"",cls:"zf-span3"}); }
+    const mm=isNum(R.mm200)&&R.mm200>-1&&isNum(price)?price/(1+R.mm200):null, mx1=isNum(R.hi52)&&R.hi52>-1&&isNum(price)?price/(1+R.hi52):null, my=media("y1");
+    const l1=isNum(R.y1)?`En un año, ${pct(R.y1,1,true)}${isNum(my)?`; su industria, ${pct(my,1,true)}`:""}.`:"Sin datos de un año.";
+    const l2=isNum(R.dd)?`${Math.abs(R.dd)<0.005?"Está en máximos históricos":`Está un ${pct(Math.abs(R.dd),1)} por debajo de su máximo histórico`}${isNum(R.mm200)?` y un ${pct(Math.abs(R.mm200),1)} ${R.mm200>=0?"por encima":"por debajo"} de su media de 200 sesiones`:""}.`:"";
+    // la escalera de precios: máximo de 1 año, media de 200 sesiones, valor razonable y hoy, a su altura
+    const Hl=D.BODY-88-16-280-16-74, esc0=[mx1&&{v:mx1,t:"Máximo de 1 año"},mm&&{v:mm,t:"Media de 200 sesiones"},fv&&{v:fv,t:"Valor razonable"},isNum(price)&&{v:price,t:"Hoy",hoy:1}].filter(Boolean);
+    let ES=zfVacio("Sin precios");
+    if(esc0.length>1){ const vs=esc0.map(o=>o.v), a0=Math.min(...vs), a1=Math.max(...vs), YL=v=>14+(a1-v)/((a1-a0)||1)*(Hl-40); const it=esc0.map(o=>({...o,y:YL(o.v)})).sort((a,b)=>a.y-b.y);
+      for(let k=1;k<it.length;k++) if(it[k].y<it[k-1].y+42) it[k].ly=Math.max(it[k].y,(it[k-1].ly??it[k-1].y)+42); it.forEach(o=>{ if(o.ly==null) o.ly=o.y; });
+      const sobra=it[it.length-1].ly-(Hl-30); if(sobra>0) it.forEach(o=>o.ly-=sobra);
+      ES=`<div class="zf-esc" style="height:${Hl}px"><i class="zf-esl" style="top:${it[0].y}px;height:${Math.max(1,it[it.length-1].y-it[0].y)}px"></i>${it.map(o=>`<i class="zf-esm${o.hoy?" h":""}" style="top:${(o.y-(o.hoy?6:1)).toFixed(1)}px"></i><div class="zf-esk${o.hoy?" h":""}" style="top:${(o.ly-10).toFixed(1)}px"><span>${o.t}</span><b>${PX(o.v)}${!o.hoy&&isNum(price)?` <em>${pct(o.v/price-1,1,true)}</em>`:""}</b></div>`).join("")}</div>`; }
+    const nPe=Math.max(3,Math.floor((280-74-36)/36)), ie=x=>isNum(x.irrExp)&&isNum(x.fv)&&x.fv>0?x.irrExp:-9, pe2=[...mem].sort((a,b)=>ie(b)-ie(a)), yo=pe2.findIndex(x=>x.ticker===t), verP=pe2.length>nPe?(yo<nPe?pe2.slice(0,nPe):[...pe2.slice(0,nPe-1),pe2[yo]]):pe2;
+    const PE=mem.length>1?`<table class="zf-tb zf-pe zf-fx"><colgroup><col style="width:26%">${"<col>".repeat(6)}</colgroup><thead><tr><th>Empresa</th><th>Última sesión</th><th>1 año</th><th>3 años</th><th>Desde el máximo</th><th>Potencial</th><th>TIR esperada</th></tr></thead><tbody>${verP.map(x=>{ const s=isNum(x.today)?x.today:x.last, pp=isNum(x.fv)&&x.fv>0&&isNum(x.price)?x.fv/x.price-1:null;
+        return `<tr${x.ticker===t?' class="yo"':""}><td>${esc(x.name)}${x.inPf?'<i class="zf-pf" title="En tu cartera"></i>':""}</td><td class="${zfCol(s)}">${pct(s,1,true)||"—"}</td><td class="${zfCol(x.y1)}">${pct(x.y1,1,true)||"—"}</td><td class="${zfCol(x.y3)}">${pct(x.y3,1,true)||"—"}</td><td>${pct(x.dd,1,true)||"—"}</td><td class="${zfCol(pp)}">${pct(pp,1,true)||"—"}</td><td>${isNum(x.fv)&&x.fv>0?pct(x.irrExp,1)||"—":"—"}</td></tr>`; }).join("")}</tbody></table>`:zfVacio("Es la única de su industria en tu preselección.");
+    S.cot=zfHd("Cotización",l1,l2,D)+zfCard(mem.length>1?`Rentabilidad frente a la media de ${esc(ind)}`:"Rentabilidad",RD,{cls:"zf-span2"})+zfCard("Escalera de precios",ES)+zfCard(ind?`${esc(ind)}: sus compañeras`:"Su industria",PE,{meta:mem.length>verP.length?`${verP.length} de ${mem.length} · por TIR esperada`:mem.length>1?"por TIR esperada":"",cls:"zf-span3"}); }
 
   if(!hay[zfSec]) zfSec="res";
-  return zfMarco(t,co.name,{logoT:t,price:PX(price),ses,meta:[ctry?`${flagHtml(ctry)}<span>${esc(ctryN(ctry))}</span>`:"",ind?`<span>${esc(ind)}</span>`:"",`<span>${esc(t)}</span>`],hay,S});
+  const est=P?{c:"pf",t:`En tu cartera · ${rk===1?`la mayor de ${posN.length}`:`la ${rk}.ª de ${posN.length}`}`}:!fv?{c:"no",t:"Candidata · sin valorar"}:isNum(irrE)&&isNum(req)&&irrE>=req?{c:"ok",t:"Candidata · rinde lo que exiges"}:{c:"no",t:"Candidata"};
+  return zfMarco(t,co.name,{est,logoT:t,price:PX(price),ses,meta:[ctry||ind?`${ctry?flagHtml(ctry):""}<span>${[ctry?esc(ctryN(ctry)):"",ind?esc(ind):""].filter(Boolean).join(" · ")}</span>`:"",`<span class="tk">${esc(t)}</span>`],hay,S});
 }
 
 // la opción: el mismo marco, con lo que importa de un contrato (precio de ejercicio, vencimiento, punto de equilibrio y qué valdría al vencer)
@@ -6879,28 +7019,28 @@ function zfFichaOpcion(t,op,D){
   const px=sub&&isNum(sub.price)?sub.price:null, K=op.strike, call=op.tipo!=="P", eq=isNum(K)&&isNum(o.avg)?(call?K+o.avg:K-o.avg):null, n=o.shares||100;
   const hoy0=new Date(); hoy0.setHours(0,0,0,0); const dias=op.vence?Math.round((op.vence-hoy0)/DIA_MS):null, fx=isNum(o.invested)&&isNum(o.avg)&&o.avg>0?o.invested/(o.avg*n):null;
   const dist=isNum(px)&&isNum(K)?px/K-1:null, sn=sub?sub.name:"el subyacente";
-  let tit=isNum(dist)?`${esc(sn)} cotiza a ${PX(px)}, un ${pct(Math.abs(dist),1)} ${dist>=0?"por encima":"por debajo"} del precio de ejercicio de ${PX(K,0)}.`:"";
-  if(op.vence) tit+=` ${dias>0?`Vence el ${fdate(op.vence)}, dentro de ${dias} ${dias===1?"día":"días"}`:dias===0?"Vence hoy":`Venció el ${fdate(op.vence)}`}${isNum(eq)&&dias>=0?`, y para no perder dinero ${esc(sn)} tiene que estar ${call?"por encima":"por debajo"} de ${PX(eq)}`:""}.`;
+  const l1=isNum(dist)?`${esc(sn)} cotiza a ${PX(px)}, un ${pct(Math.abs(dist),1)} ${dist>=0?"por encima":"por debajo"} del precio de ejercicio.`:"";
+  const l2=op.vence?`${dias>0?`Vence el ${fdate(op.vence)}, dentro de ${dias} ${dias===1?"día":"días"}`:dias===0?"Vence hoy":`Venció el ${fdate(op.vence)}`}${isNum(eq)&&dias>=0?`; para no perder dinero tiene que ${call?"superar":"bajar de"} ${PX(eq)}`:""}.`:"";
   const mapa=zfMapa(Math.floor(D.CW-48),{v:px,t:"Hoy",s:PX(px)},[isNum(K)&&{v:K,t:"Precio de ejercicio",s:PX(K)},isNum(eq)&&{v:eq,t:"Punto de equilibrio",s:PX(eq)},sub&&isNum(sub.fv)&&{v:sub.fv,t:"Valor razonable",s:PX(sub.fv)}],null,null);
   const cC=zfCard("Contrato",`<div class="zf-g2">${zfFig("Tipo",call?"Call":"Put",call?"derecho a comprar":"derecho a vender")+zfFig("Precio de ejercicio",PX(K),`${shares(n)} acciones`)+zfFig("Vencimiento",op.vence?zfFecha(op.vence):"",isNum(dias)&&dias>=0?`quedan ${dias} ${dias===1?"día":"días"}`:"")+zfFig("Punto de equilibrio",PX(eq),"precio más prima")}</div>`);
-  const cP=zfCard("Tu posición",`<div class="zf-g2">${zfFig("Prima pagada",PX(o.avg),"por acción")+zfFig("Invertido",PV(eur(o.invested,2)),"con comisiones")+zfFig("Valor",PV(eur(o.value,2)),o.atCost?"a precio de compra":"")+zfFig("Resultado",PV(seur(o.totalEur)),o.atCost?"sin cotización de la opción":pct(o.totalPct,1,true),zfCol(o.totalEur))}</div>`);
+  const cP=zfCard("Tu posición",`<div class="zf-g2">${zfFig("Prima pagada",PX(o.avg),"por acción")+zfFig("Invertido",PV(eur(o.invested,2)),"con comisiones")+(o.atCost&&isNum(px)&&isNum(K)&&isNum(fx)?(vi=>zfFig("Valor intrínseco",PV(eur(vi,2)),"si venciera hoy")+zfFig("Resultado",PV(seur(vi-o.invested,2)),`${pct((vi-o.invested)/o.invested,0,true)||"0 %"} si venciera hoy`,zfCol(vi-o.invested)))(Math.max(0,call?px-K:K-px)*n*fx):zfFig("Valor",PV(eur(o.value,2)),"")+zfFig("Resultado",PV(seur(o.totalEur)),pct(o.totalPct,1,true),zfCol(o.totalEur)))}</div>`);
   const cS=zfCard(esc(sn),`<div class="zf-g2">${zfFig("Cotización",PX(px),isNum(sub&&sub.today)?`${pct(sub.today,1,true)} última sesión`:"")+zfFig("Valor razonable",PX(sub&&sub.fv),"")+zfFig("En 1 año",pct(sub&&sub.y1,1,true),"",zfCol(sub&&sub.y1))+zfFig("Volatilidad",pct(sub&&sub.vol,1),"anualizada")}</div>`);
   let AV=zfVacio("—");
-  if(isNum(K)&&isNum(o.avg)){ const pts=[...new Set([K*.8,K*.9,K,eq,K*1.1,K*1.25,K*1.5].map(v=>Math.round(v*100)/100))].sort((a,b)=>a-b);
-    AV=`<table class="zf-tb zf-av"><thead><tr><th>Si ${esc(sn)} acaba en</th><th>La opción vale</th><th>Resultado</th><th>Sobre lo invertido</th></tr></thead><tbody>${pts.map(s=>{ const vu=Math.max(0,call?s-K:K-s)*n, ve=isNum(fx)?vu*fx:null, r=isNum(ve)?ve-o.invested:null;
-      return `<tr${Math.abs(s-eq)<0.005?' class="yo"':""}><td>${PX(s)}${Math.abs(s-K)<0.005?" <i>precio de ejercicio</i>":Math.abs(s-eq)<0.005?" <i>punto de equilibrio</i>":""}</td><td>${PX(vu)}</td><td class="${zfCol(r)}">${PV(seur(r,2))||"—"}</td><td class="${zfCol(r)}">${isNum(r)&&o.invested?pct(r/o.invested,0,true)||"0 %":"—"}</td></tr>`; }).join("")}</tbody></table>`; }
-  const S={res:`<p class="zf-tit">${tit}</p>${zfCard("Precio de "+esc(sn),mapa,{cls:"zf-span3"})}${cC}${cP}${cS}${zfCard("Al vencimiento",AV,{cls:"zf-span3"})}`};
+  if(isNum(K)&&isNum(o.avg)){ const pts=[...new Set([isNum(px)?px:K*.8,K*.9,K,eq,K*1.1,K*1.25,K*1.5].map(v=>Math.round(v*100)/100))].sort((a,b)=>a-b);
+    AV=`<table class="zf-tb zf-av"><thead><tr><th>Si ${esc(sn)} acaba en</th><th>La opción vale ($)</th><th>Resultado (€)</th><th>Sobre lo invertido</th></tr></thead><tbody>${pts.map(s=>{ const vu=Math.max(0,call?s-K:K-s)*n, ve=isNum(fx)?vu*fx:null, r=isNum(ve)?ve-o.invested:null;
+      return `<tr${Math.abs(s-eq)<0.005?' class="yo"':""}><td>${PX(s)}${Math.abs(s-K)<0.005?" <i>precio de ejercicio</i>":Math.abs(s-eq)<0.005?" <i>punto de equilibrio</i>":isNum(px)&&Math.abs(s-px)<0.005?" <i>precio de hoy</i>":""}</td><td>${nf(2).format(vu)}</td><td class="${zfCol(r)}">${isNum(r)?PV((r>0?"+":r<0?"−":"")+nf(2).format(Math.abs(r))):"—"}</td><td class="${zfCol(r)}">${isNum(r)&&o.invested?pct(r/o.invested,0,true)||"0 %":"—"}</td></tr>`; }).join("")}</tbody></table>`; }
+  const S={res:`${zfHd("Opción",l1,l2,D)}${zfCard("Precio de "+esc(sn),mapa,{cls:"zf-span3"})}${cC}${cP}${cS}${zfCard("Al vencimiento",AV,{cls:"zf-span3"})}`};
   zfSec="res";
-  return zfMarco(t,o.name,{logoT:sub?sub.ticker:t,price:PX(o.avg),sesTxt:"prima por acción",meta:[`<span>Opción ${call?"de compra":"de venta"}</span>`,sub?`<span>${esc(sub.ticker)}</span>`:"",`<span>${esc(t)}</span>`],hay:{res:1},S,opcion:true});
+  return zfMarco(t,o.name,{logoT:sub?sub.ticker:t,price:PX(o.avg),sesTxt:"prima por acción",est:{c:"pf",t:`${call?"Call":"Put"} · vence el ${op.vence?fdate(op.vence):"—"}`},meta:[sub?`<span>${esc(sub.name)}</span>`:"",`<span>${esc(t)}</span>`],hay:{res:1},S,opcion:true});
 }
 
 // el marco: barra lateral fija + la sección elegida
-function zfMarco(t,nombre,{logoT,price,ses,sesTxt,meta,hay,S,opcion}){
+function zfMarco(t,nombre,{est,logoT,price,ses,sesTxt,meta,hay,S,opcion}){
   const L=sheet.list||[], i=L.indexOf(t), pv=i>0?L[i-1]:null, nx=i>=0&&i<L.length-1?L[i+1]:null;
   const cs=isNum(ses)?(Math.abs(ses)<0.0005?"":ses<0?"neg":"pos"):"";
   const nav=opcion?"":`<nav class="zf-nav" aria-label="Secciones">${ZF_SEC.map(([k,n])=>`<button type="button" data-zf-s="${k}"${hay[k]?"":" disabled"}${k===zfSec?' aria-current="true"':""}>${n}</button>`).join("")}</nav>`;
-  return `<div class="zf"><aside class="zf-rail"><div class="zf-lgw">${zfLogo(logoT)}</div><div class="zf-idb"><h3>${esc(nombre)}</h3><div class="zf-meta">${meta.filter(Boolean).map(m=>`<p>${m}</p>`).join("")}</div></div>
-      <div class="zf-pr"><b>${price||"—"}</b><span class="${cs}">${isNum(ses)?`${Math.abs(ses)<0.0005?"0,0 %":pct(ses,1,true)} última sesión`:sesTxt||"&nbsp;"}</span></div>${nav}
+  return `<div class="zf"><aside class="zf-rail"><div class="zf-lgt">${zfLogo(logoT)}</div><div class="zf-idb"><h3>${esc(nombre)}</h3>${est?`<p class="zf-est ${est.c}"><i></i>${est.t}</p>`:""}<div class="zf-meta">${meta.filter(Boolean).map(m=>`<p>${m}</p>`).join("")}</div></div>
+      <div class="zf-pr"><b>${price||"—"}</b>${isNum(ses)?`<span class="zf-ses ${cs}">${Math.abs(ses)<0.0005?"0,0 %":pct(ses,1,true)}</span><span class="zf-sesk">última sesión</span>`:`<span class="zf-sesk">${sesTxt||"&nbsp;"}</span>`}</div>${nav}
       <div class="zf-pg">${L.length>1?`<button type="button" data-zf="prev"${pv?` title="${esc(zfNom(pv))}"`:" disabled"} aria-label="Anterior">${ZF_IC.l}</button><span>${i+1} de ${L.length}</span><button type="button" data-zf="next"${nx?` title="${esc(zfNom(nx))}"`:" disabled"} aria-label="Siguiente">${ZF_IC.r}</button>`:""}</div></aside>
     <main class="zf-main">${Object.entries(S).map(([k,h])=>`<div class="zf-s zf-s-${opcion?"op":k}" data-zf-p="${k}"${k===zfSec?"":" hidden"}>${h}</div>`).join("")}</main>
     <button type="button" class="zf-x" data-zf="cerrar" aria-label="Cerrar" title="Cerrar (Esc)">${ZF_IC.x}</button></div>`;
@@ -6921,6 +7061,15 @@ $("sheet").addEventListener("click",e=>{ const S=$("sheet"); if(!S.classList.con
   const a=e.target.closest("[data-zf]"); if(!a) return; e.preventDefault(); const k=a.dataset.zf; if(k==="cerrar") closeSheet(); else if(k==="prev") stepSheet(-1); else if(k==="next") stepSheet(1); });
 document.addEventListener("click",e=>{ const S=$("sheet"); if(!S.classList.contains("gxf")||S.hidden) return; if(e.target.closest(".sheet-bg")) closeSheet(); },true);
 { let zfT=0; addEventListener("resize",()=>{ clearTimeout(zfT); zfT=setTimeout(()=>{ const S=$("sheet"); if(sheet&&zfVale(sheet.t)&&(S.classList.contains("gxf")||ZF_PC())) renderSheet(); },120); }); }
+
+// al pasar de una empresa a otra con la ventana abierta, la página de detrás no se mueve
+{ const _st=stepSheet; stepSheet=function(d){ const S=$("sheet"); if(!S.classList.contains("gxf")) return _st(d); if(!sheet) return; const L=sheet.list||[], i=L.indexOf(sheet.t); if(i<0||!L[i+d]) return;
+    const x=scrollX, y=scrollY; sheet.t=L[i+d]; renderSheet(); if(scrollX!==x||scrollY!==y) scrollTo(x,y); }; }
+// al pasar por una bola (o lo que tenga etiqueta), qué es
+$("sheet").addEventListener("mouseover",e=>{ const S=$("sheet"), c=e.target.closest("[data-tip]"); if(!c||!S.classList.contains("gxf")) return; const z=S.querySelector(".zf"); if(!z) return;
+  let tp=z.querySelector(".zf-tip"); if(!tp){ tp=document.createElement("div"); tp.className="zf-tip"; z.appendChild(tp); } tp.textContent=c.dataset.tip; tp.hidden=false;
+  const r=c.getBoundingClientRect(), q=z.getBoundingClientRect(), w=tp.offsetWidth; tp.style.left=Math.max(8+w/2,Math.min(q.width-8-w/2,r.left+r.width/2-q.left))+"px"; tp.style.top=(r.top-q.top-10)+"px"; });
+$("sheet").addEventListener("mouseout",e=>{ if(!e.target.closest("[data-tip]")) return; const tp=$("sheet").querySelector(".zf-tip"); if(tp) tp.hidden=true; });
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
