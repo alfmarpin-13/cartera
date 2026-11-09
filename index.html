@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-eUa12czzpbAAPcnpaZpVAmdCA+kIjylGpBt4+KAqrUs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-f5Br/vcz9xHRj1tyuSCGaWaRPamfEh35sHbeFRGUhsg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3493,14 +3493,14 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 }
 @keyframes zf-in{from{opacity:0;transform:translate(-50%,calc(-50% + 8px))}to{opacity:1;transform:translate(-50%,-50%)}}
 @media (prefers-reduced-motion:reduce){#sheet.gxf{animation:none}}
-.zf{position:relative;display:grid;grid-template-columns:272px minmax(0,1fr);height:100%;color:var(--ink);font-size:13px;line-height:1.5;text-align:left}
+.zf{position:relative;display:grid;grid-template-columns:220px minmax(0,1fr);grid-template-rows:136px minmax(0,1fr);height:100%;color:var(--ink);font-size:13px;line-height:1.5;text-align:left}
 .zf *{box-sizing:border-box}
 .zf button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 .zf .pv{font:inherit;color:inherit;letter-spacing:inherit;display:inline}
 .zf .pos{color:var(--pos)} .zf .neg{color:var(--neg)}
 .zf svg{display:block;overflow:visible} .zf svg text{font-family:inherit;font-variant-numeric:tabular-nums}
 /* barra lateral: siempre igual, cada cosa en su sitio */
-.zf-rail{position:relative;display:flex;flex-direction:column;min-height:0;padding:28px 20px 20px 24px}
+.zf-rail{position:relative;display:flex;flex-direction:column;min-height:0;padding:24px 16px 20px 24px}
 .zf-lgt{height:104px;border-radius:16px;background:var(--card);display:grid;place-items:center;padding:0 22px}
 .zf-lg{display:block;max-width:100%;background:var(--ink);-webkit-mask:no-repeat center/contain;mask:no-repeat center/contain}
 .zf-lg0{width:44px;height:44px;border-radius:12px;background:var(--card);display:grid;place-items:center;font-size:17px;font-weight:600;color:var(--ink2)}
@@ -3527,16 +3527,16 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .zf-pg button:disabled{opacity:.3;cursor:default}
 .zf-x{position:absolute;top:14px;right:14px;z-index:3}
 /* la sección: retícula de tres columnas */
-.zf-main{min-width:0;min-height:0;padding:28px 28px 28px 4px}
+.zf-main{min-width:0;min-height:0;padding:24px 28px 24px 4px}
 .zf-s{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;height:100%;min-height:0}
 .zf-s[hidden]{display:none}
-.zf-s-res,.zf-s-op{grid-template-rows:88px 176px 228px minmax(0,1fr)}
-.zf-s-pos{grid-template-rows:88px minmax(0,1fr) 380px}
-.zf-s-val{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);grid-template-rows:88px minmax(0,1fr)}
-.zf-vmx{grid-column:1;grid-row:2}
+.zf-s-res,.zf-s-op{grid-template-rows:88px 228px minmax(0,1fr)}
+.zf-s-pos{grid-template-rows:88px minmax(0,1fr) 330px}
+.zf-pch{grid-column:1/3;grid-row:2} .zf-pcm{grid-column:3;grid-row:2/4}
+.zf-s-val{grid-template-rows:88px minmax(0,1fr) 340px}
 .zf-s-pj{grid-template-rows:88px auto minmax(0,1fr)}
-.zf-s-tes{grid-template-columns:minmax(0,1.15fr) minmax(0,1.15fr) minmax(0,.7fr);grid-template-rows:88px minmax(0,1fr)}
-.zf-s-cot{grid-template-rows:88px minmax(0,1fr) 280px}
+.zf-s-tes{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:88px minmax(0,1fr) auto}
+.zf-s-cot{grid-template-rows:88px minmax(0,1fr) auto}
 .zf-span3{grid-column:1/-1} .zf-span2{grid-column:span 2} .zf-r2{grid-row:span 2}
 .zf-tit{grid-column:1/-1;margin:0;height:52px;overflow:hidden;max-width:1080px;font-size:18px;line-height:26px;font-weight:500;letter-spacing:-.005em;color:var(--ink);text-wrap:pretty}
 /* tarjetas */
@@ -3657,7 +3657,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .zf-pr span.zf-ses{display:inline-block;margin-top:6px;padding:1px 8px;border-radius:999px;font-size:12.5px;line-height:20px;font-weight:600;color:var(--ink2);background:color-mix(in srgb,var(--ink) 7%,transparent)}
 .zf-pr span.zf-ses.pos{color:var(--pos);background:color-mix(in srgb,var(--gx-id) 22%,transparent)} .zf-pr span.zf-ses.neg{color:var(--neg);background:color-mix(in srgb,var(--neg) 12%,transparent)}
 .zf-pr span.zf-sesk{display:inline;margin-left:8px;font-size:12.5px;color:var(--ink3)}
-.zf-nav{margin-top:24px}
+.zf-nav{margin-top:0}
 /* la cabecera de cada sección: qué es y su historia en dos líneas */
 .zf-hd{grid-column:1/-1;min-width:0;height:88px;padding-right:56px}
 .zf-hd>span{display:flex;align-items:center;gap:12px;height:20px;font-size:13px;font-weight:600;color:var(--ink3)}
@@ -3688,10 +3688,10 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .zf .zf-pjt th:nth-child(2),.zf .zf-pjt td.u{text-align:left}
 .zf-pjt thead th{height:54px;background:color-mix(in srgb,var(--ink) 5%,var(--card));font-size:13px;font-weight:600;color:var(--ink);line-height:17px;vertical-align:middle}
 .zf-pjt thead th i{display:block;font-style:normal;font-weight:400;font-size:11.5px;color:var(--ink3)}
-.zf-pjt td{height:38px;color:var(--ink)}
+.zf-pjt td{height:36px;color:var(--ink)}
 .zf-pjt td.u{color:var(--ink3);font-size:12.5px}
 .zf-pjt tr.p td.l{font-weight:600}
-.zf-pjt tr.s td{height:32px;font-size:12.5px;color:var(--ink2);background:color-mix(in srgb,var(--ink) 2.5%,var(--card))}
+.zf-pjt tr.s td{height:30px;font-size:12.5px;color:var(--ink2);background:color-mix(in srgb,var(--ink) 2.5%,var(--card))}
 .zf .zf-pjt tr.s td.l{padding-left:30px;font-weight:400}
 .zf .zf-pjt tbody tr:last-child td{border-bottom:0!important}
 .zf-pjt td.ltm{background:color-mix(in srgb,var(--ink) 3.5%,var(--card))} .zf-pjt tr.s td.ltm{background:color-mix(in srgb,var(--ink) 5%,var(--card))}
@@ -3745,6 +3745,71 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .zf-rd .br i.neg.sale::after{left:-7px;right:auto;border-left:0;border-right:7px solid color-mix(in srgb,var(--neg) 70%,var(--card))}
 .zf-rd .br{overflow:visible}
 .zf-halo,.zf svg .zf-tv{paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round}
+
+/* v519b · la banda blanca de arriba, a todo el ancho: la empresa, su mapa de precios y su precio */
+.zf-top{grid-column:1/-1;position:relative;display:flex;align-items:center;gap:40px;padding:0 64px 0 28px;background:var(--gx-bg);--card:var(--gx-bg)}
+.zf-idn{flex:none;width:440px;display:flex;align-items:center;gap:20px;min-width:0}
+.zf-lgb{flex:none;width:132px;height:48px;display:grid;place-items:center}
+.zf-idt{min-width:0;flex:1}
+.zf-idt h3{margin:0;font-size:18px;line-height:24px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;overflow:hidden}
+.zf-idt .zf-est{margin:4px 0 0}
+.zf-idt .zf-meta{margin:3px 0 0;height:auto;display:flex;align-items:center;gap:6px;font-size:12.5px;line-height:20px;color:var(--ink3);white-space:nowrap;overflow:hidden}
+.zf-idt .zf-meta img{flex:none;width:14px;height:14px;margin:0;border-radius:50%}
+.zf-idt .zf-meta .sep{color:var(--ink3);opacity:.7}
+.zf-tmap{flex:1;min-width:0;display:flex;align-items:center;justify-content:center}
+.zf-tpx{flex:none;width:190px;text-align:right}
+.zf-tpx b{display:block;font-size:26px;line-height:32px;font-weight:600;letter-spacing:-.015em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.zf-tpx p{margin:6px 0 0;font-size:12.5px;line-height:20px;color:var(--ink3);white-space:nowrap}
+.zf-tpx .zf-ses{display:inline-block;margin-right:6px;padding:0 8px;border-radius:999px;font-size:12.5px;line-height:20px;font-weight:600;color:var(--ink2);background:color-mix(in srgb,var(--ink) 7%,transparent)}
+.zf-tpx .zf-ses.pos{color:var(--pos);background:color-mix(in srgb,var(--gx-id) 24%,transparent)} .zf-tpx .zf-ses.neg{color:var(--neg);background:color-mix(in srgb,var(--neg) 12%,transparent)}
+.zf-none{display:none}
+/* lo que se ajusta solo para caber (sin desplazamiento ni cortes) */
+.zf-cb:has(>.zf-fit){overflow:hidden}
+.zf-ol{gap:calc(20px*var(--k,1))}
+.zf-ol .n{font-size:calc(13px*var(--k,1));line-height:calc(22px*var(--k,1))}
+.zf-ol b{font-size:calc(15px*var(--k,1));line-height:calc(22px*var(--k,1))}
+.zf-ol p{font-size:calc(13.5px*var(--k,1));line-height:calc(21px*var(--k,1))}
+.zf-tl{gap:calc(10px*var(--k,1))}
+.zf-tl li b{white-space:normal;font-size:calc(14px*var(--k,1));line-height:calc(21px*var(--k,1))} .zf-tl li b.x{font-weight:400;color:var(--ink)}
+.zf-pq .zf-txt p{font-size:calc(13.5px*var(--k,1));line-height:calc(22px*var(--k,1))}
+.zf-pq h5{font-size:calc(13px*var(--k,1))}
+/* notas a todo el ancho, en columnas */
+.zf-notc{columns:3;column-gap:36px}
+.zf-notc p{break-inside:avoid;font-size:13.5px;line-height:21px;color:var(--ink2);margin:0 0 10px}
+/* compañeras y rentabilidad */
+.zf-pfk{font-style:normal;font-size:12px;color:var(--ink3);margin-left:6px}
+.zf-mm{stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+.zf svg .zf-tv.p{fill:var(--pos)} .zf svg .zf-tv.n{fill:var(--neg)} .zf-tk{fill:var(--ink2)!important;font-weight:500}
+.zf-mkm{width:12px;height:2px;vertical-align:middle}
+.zf-tpx p.zf-prox{margin-top:2px;font-size:12.5px;color:var(--ink2)}
+.zf-rmx .zf-mx{height:100%;grid-template-rows:auto repeat(var(--m,3),minmax(0,1fr));align-items:stretch;gap:8px;grid-template-columns:64px repeat(var(--n),minmax(0,1fr))}
+.zf-rmx .zf-mx .r,.zf-rmx .zf-mx .zf-mxe{align-self:center} .zf-rmx .zf-mx .h{align-self:end;font-size:13px;font-weight:600;color:var(--ink2)} .zf-rmx .zf-mx .r{font-size:13px;font-weight:600;color:var(--ink2)}
+.zf-rmx .zf-mx .c b{font-size:18px;line-height:24px}
+.zf-pc h5{display:flex;align-items:center;gap:8px;margin:0 0 calc(8px*var(--k,1));font-size:calc(13px*var(--k,1));font-weight:600;color:var(--ink)}
+.zf-pc h5 span{font-weight:400;color:var(--ink3)} .zf-pc h5::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gx-id)} .zf-pc h5.con::before{background:color-mix(in srgb,var(--neg) 75%,var(--card))}
+.zf-pc h5.con{margin-top:calc(18px*var(--k,1))}
+.zf-pc .zf-tl li::before{display:none} .zf-pc .zf-tl li{padding-left:15px}
+.zf-cad p.f{margin:0;text-align:left;font-size:calc(13px*var(--k,1));color:var(--ink3)}
+.zf-cad>div.tot2{border-top:1px solid var(--line);margin-top:2px;padding-top:9px} .zf-cad>div.tot2 span{color:var(--ink);font-weight:600} .zf-cad>div.tot2 b{font-size:18px}
+.zf-tip{white-space:pre-line;text-align:center}
+.zf-tight td{height:32px!important}
+.zf-cmp td{height:var(--rh,36px)!important}
+.zf-cif .zf-dl>div{flex:1 1 0;min-height:22px}
+.zf-pq2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+.zf-pq2 h5{margin:0 0 8px;font-size:calc(13px*var(--k,1));line-height:20px;font-weight:600;color:var(--ink)}
+.zf-pq2 .zf-txt p{font-size:calc(13.5px*var(--k,1));line-height:calc(22px*var(--k,1))}
+.zf-brk{stroke:var(--card);stroke-width:3;fill:none}
+.zf-bks{height:100%;display:flex;flex-direction:column;justify-content:space-between;gap:calc(14px*var(--k,1))}
+.zf-bk h5{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 calc(8px*var(--k,1));font-size:calc(13px*var(--k,1));line-height:18px;font-weight:600;color:var(--ink)}
+.zf-bk h5 em{font-style:normal;font-weight:500;font-size:calc(12.5px*var(--k,1));color:var(--ink2);white-space:nowrap}
+.zf-bk h5 em.pos{color:var(--pos)} .zf-bk h5 em.neg{color:var(--neg)}
+.zf-bk p{margin:0;font-size:calc(13.5px*var(--k,1));line-height:calc(21px*var(--k,1));color:var(--ink2)}
+.zf-bb{display:grid;grid-template-columns:64px minmax(0,1fr) 64px;align-items:center;gap:12px;height:calc(24px*var(--k,1))}
+.zf-bb span{font-size:calc(12.5px*var(--k,1));color:var(--ink3)}
+.zf-bb i{position:relative;height:10px;border-radius:5px;background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.zf-bb u{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:var(--gx-id)}
+.zf-bb u.n{background:color-mix(in srgb,var(--neg) 70%,var(--card))} .zf-bb u.g{background:color-mix(in srgb,var(--ink) 30%,var(--card))}
+.zf-bb b{text-align:right;font-size:calc(14px*var(--k,1));font-weight:600;font-variant-numeric:tabular-nums}
 </style>
 
 <div class="wrap">
@@ -4437,7 +4502,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v519";   // la versión publicada, en el pie
+const VER="v520";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6796,15 +6861,15 @@ const zfOpcion=t=>{ const o=DATA.pos.find(x=>x.ticker===t&&x.isOption); if(!o) r
   const sub=o.meta&&o.meta.ticker?DATA.pre.find(x=>x.ticker===o.meta.ticker)||o.meta:null;
   return {o,sub,tipo:m?m[2].toUpperCase():null,strike:m?parseFloat(m[3].replace(",",".")):null,vence:m?new Date(2000+ +m[6],MS.indexOf(m[5].toUpperCase())/3,+m[4]):null}; };
 // medidas: la ventana mide lo mismo para todas; los gráficos se dibujan al píxel con esas medidas (la letra no se estira nunca)
-const zfDim=()=>{ const tb=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--tbh"))||0, W=Math.round(Math.min(1600,innerWidth-48)), H=Math.round(Math.min(980,innerHeight-tb-48)), CW=W-272-32, C3=(CW-32)/3;
-  return {W,H,CW,C3,IN:C3-48,BODY:H-56}; };
+const zfDim=()=>{ const tb=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--tbh"))||0, W=Math.round(Math.min(1600,innerWidth-48)), H=Math.round(Math.min(980,innerHeight-tb-48)), CW=W-220-32, C3=(CW-32)/3;
+  return {W,H,CW,C3,IN:C3-48,BODY:H-136-48,MW:Math.max(360,W-830)}; };
 let zfCv=null; const zfMide=(s,px=13,w=400)=>{ zfCv=zfCv||document.createElement("canvas").getContext("2d"); zfCv.font=`${w} ${px}px ${getComputedStyle(document.body).fontFamily}`; return zfCv.measureText(zfTx(s)).width; };
 // logos y banderas: se piden todos al abrir la primera ficha, para que al pasar de una empresa a otra estén ya cargados
 const zfYa=new Set();
 function zfPrecarga(L){ (L||[]).forEach(t=>{ const op=zfOpcion(t), tk=op&&op.sub?op.sub.ticker:t, R=DATA.pre.find(x=>x.ticker===tk), c=R&&R.country;
   [LOGO_ANCHO[tk],gxSrc(tk),c&&LOGOS["P:"+c]].forEach(s=>{ if(s&&!zfYa.has(s)){ zfYa.add(s); const i=new Image(); i.decoding="async"; i.src=s; } }); }); }
 const zfLogo=t=>{ const aw=LOGO_ANCHO[t], src=aw||gxSrc(t); if(!src) return `<span class="zf-lg0">${esc(String(zfNom(t)||"?").charAt(0))}</span>`;
-  const rr=aw?(LOGO_R[aw]||3.5):1, h=aw?Math.max(30,Math.min(46,Math.round(150/rr))):52, w=aw?Math.min(176,Math.round(h*rr)):150; return `<span class="zf-lg" style="width:${w}px;height:${h}px;-webkit-mask-image:url('${src}');mask-image:url('${src}')"></span>`; };
+  const w=132, h=aw?Math.max(26,Math.min(44,Math.round(132/(LOGO_R[aw]||3.5)))):44; return `<span class="zf-lg" style="width:${w}px;height:${h}px;-webkit-mask-image:url('${src}');mask-image:url('${src}')"></span>`; };
 
 // piezas comunes
 const zfFig=(k,v,s,vc="")=>`<div class="zf-fg"><span class="k">${k}</span><b class="v${vc?" "+vc:""}">${v==null||v===""?"—":v}</b><span class="s">${s||"&nbsp;"}</span></div>`;
@@ -6853,7 +6918,14 @@ function zfFicha(t,D){
   const pro=zfLineas(V.pro), con=zfLineas(V.con), notas=zfLineas(V.notes), notCab=notas.length&&/^actualizad/i.test(notas[0])?notas.shift():"";
   const rev=!!(R&&fv&&typeof stale==="function"&&stale(R)), porQue=rev?(typeof staleRes==="function"&&staleRes(R)&&typeof CALT!=="undefined"&&CALT.get(R.ticker)?`resultados del ${fdate(CALT.get(R.ticker).u)}, posteriores a tu valoración del ${fdate(R.fvDate)}`:"valorada hace más de un año"):"";
   const hay={res:1,pos:!!P,val:!!(R&&(fv||F)),pj:!!(PJ&&(fv||F||Y2)&&PJ.rows.some(o=>o.v.some(x=>isNum(x)&&x!==0))),tes:!!(pro.length||con.length||notas.length),cot:!!R};
-  const S={};
+  const S={}; let mapaTop="", proxTxt="";
+  const MXH=(()=>{
+    let MX=zfVacio("Sin tabla de valoración");
+    if(F){ const d0=fvs.some(x=>x>=1000)?0:2, near=(a,b)=>isNum(a)&&isNum(b)&&Math.abs(a-b)<1e-6;
+      const cel=v=>{ if(!isNum(v)||!v||!isNum(price)) return {p:null,bg:"transparent"}; const p=v/price-1, k=Math.min(1,Math.abs(p)/.4); return {p,bg:p>=0?`color-mix(in srgb,var(--gx-id) ${Math.round(16+k*52)}%,var(--card))`:`color-mix(in srgb,var(--neg) ${Math.round(8+k*28)}%,var(--card))`}; };
+      MX=`<div class="zf-mx" style="--n:${F.rates.length};--m:${F.rows.length}"><span class="zf-mxe"></span>${F.rates.map(x=>`<span class="h">TIR ${tipoPct(x)}</span>`).join("")}${F.rows.map(o=>`<span class="r">${multiplo(o.m)}</span>`+o.v.map((v,j)=>{ const c=cel(v), on=near(o.m,mult)&&near(F.rates[j],req);
+        return `<div class="c${on?" on":""}" style="${on?"":`background:${c.bg}`}"><b>${PX(v,d0)}</b><span>${on?"tu valoración":c.p==null?"":(pct(c.p,0,true)||"0 %")+" desde hoy"}</span></div>`; }).join("")).join("")}</div>`; }
+    return MX; })();
 
   const PVs=s=>s?`<tspan class="pv">${s}</tspan>`:"", minus1=s=>{ s=String(s||""); return s&&/^[A-ZÁÉÍÓÚ][a-záéíóúñ]/.test(s)?s.charAt(0).toLowerCase()+s.slice(1):s; };
   const anos=a=>`${a} ${a==="1,0"?"año":"años"}`;
@@ -6865,21 +6937,23 @@ function zfFicha(t,D){
       l2=[isNum(irrE)?`Esperas un ${pct(irrE,1)} al año${isNum(req)?` frente al ${tipoPct(req)} que exiges`:""}`:"",ganas].filter(Boolean).join(", y ")+"."; l2=l2.charAt(0).toUpperCase()+l2.slice(1); }
     else if(P){ l1=`Tu posición ${P.totalEur>=0?"gana":"pierde"} un ${pct(Math.abs(P.totalPct),1)}${yrs?` en ${anos(yrs)}`:""}.`; l2=`Pesa un ${pct(P.weight,1)} de tu cartera${P.annual?` y te da ${PV(eur(P.annual))} al año en dividendos`:""}.`; }
     else { l1="Está en tu preselección, todavía sin valorar."; l2=isNum(price)?`Cotiza a ${PX(price)}${isNum(R&&R.y1)?` y en un año ha hecho un ${pct(R.y1,1,true)}`:""}.`:""; }
-    const mapa=zfMapa(Math.floor(D.CW-48),{v:price,t:"Hoy",s:PX(price)},[P&&isNum(P.avg)&&P.avg>0&&{v:P.avg,t:"Tu precio medio",s:PX(P.avg)},fv&&{v:fv,t:"Valor razonable",s:PX(fv)}],lo!=null&&hi>lo?[lo,hi]:null,P&&isNum(P.avg)&&P.avg>0&&isNum(price)?[P.avg,price]:null);
+    mapaTop=zfMapa(D.MW,{v:price,t:"Hoy",s:PX(price)},[P&&isNum(P.avg)&&P.avg>0&&{v:P.avg,t:"Tu precio medio",s:PX(P.avg)},fv&&{v:fv,t:"Valor razonable",s:PX(fv)}],lo!=null&&hi>lo?[lo,hi]:null,P&&isNum(P.avg)&&P.avg>0&&isNum(price)?[P.avg,price]:null);
     const cCot=zfCard("Cotización",`<div class="zf-g2">${zfFig("Última sesión",pct(ses,1,true),PX(price),zfCol(ses))+zfFig("En 1 año",pct(R&&R.y1,1,true),isNum(R&&R.y3)?`${pct(R.y3,1,true)} en 3 años`:"",zfCol(R&&R.y1))
-        +zfFig("Desde el máximo",pct(R&&R.dd,1,true),"histórico",zfCol(R&&R.dd))+zfFig("Volatilidad",pct(R&&R.vol,1),"anualizada")}</div>`,{meta:"el mercado"});
+        +zfFig("Desde el máximo",pct(R&&R.dd,1,true),"histórico",zfCol(R&&R.dd))+zfFig("Volatilidad",pct(R&&R.vol,1),"anualizada")}</div>`);
     const cPos=P?zfCard("Tu posición",`<div class="zf-g2">${zfFig("Valor",PV(eur(P.value)),`${shares(P.shares)} ${P.shares===1?"acción":"acciones"}`)+zfFig("Resultado",PV(seur(P.totalEur)),`${pct(P.totalPct,1,true)} con dividendos`,zfCol(P.totalEur))
-        +zfFig("Tu TIR",pct(P.irr,1),yrs?`al año, en ${anos(yrs)}`:"al año")+zfFig("Peso",pct(P.weight,1),rk===1?`la mayor de tus ${posN.length}`:`la ${rk}.ª de tus ${posN.length}`)}</div>`,{meta:"tu dinero"})
-      :zfCard("Tu posición",`<div class="zf-nopos"><b>No la tienes en cartera</b><span>${R&&R.inPf?"":"Está en tu preselección"}</span></div>`,{meta:"tu dinero"});
+        +zfFig("Tu TIR",pct(P.irr,1),yrs?`al año, en ${anos(yrs)}`:"al año")+zfFig("Peso",pct(P.weight,1),rk===1?`la mayor de tus ${posN.length}`:`la ${rk}.ª de tus ${posN.length}`)}</div>`)
+      :zfCard("Tu posición",`<div class="zf-nopos"><b>No la tienes en cartera</b><span>${R&&R.inPf?"":"Está en tu preselección"}</span></div>`);
     const cVal=zfCard("Tu valoración",fv?`<div class="zf-g2">${zfFig("Valor razonable",PX(fv),lo!=null&&hi>lo?`entre ${PX(lo,0)} y ${PX(hi,0)}`:"")+zfFig("Potencial",pct(pot,1,true),"hasta tu valor razonable",zfCol(pot))
         +zfFig("TIR esperada",pct(irrE,1),isNum(req)&&isNum(irrE)?`exiges un ${tipoPct(req)}`:"",isNum(irrE)&&isNum(req)?zfCol(irrE-req):"")+zfFig(Y2?`Precio en ${esc(Y2.year??"")}`:"Precio objetivo",Y2?PX(Y2.price):"",Y2&&isNum(Y2.irr)?`un ${pct(Y2.irr,1)} al año`:"")}</div>`:`<div class="zf-nopos"><b>Sin valorar</b><span>${V.mult?`Múltiplo de salida ${multiplo(mult)}`:""}</span></div>`,
-      {meta:rev?'<span class="zf-rv">Por revisar</span>':R&&R.fvDate instanceof Date?`tu opinión · ${zfFecha(R.fvDate)}`:"tu opinión",cls:"zf-mine"});
-    const nT=Math.max(2,Math.floor((D.BODY-88-176-228-48-74+12)/54)), titL=a=>a.length?`<ul class="zf-tl">${a.slice(0,nT).map(s=>{ const p=zfPartes(s); return p.t?`<li><b>${esc(p.t)}</b><span>${esc(p.x)}</span></li>`:`<li><span class="x2">${esc(p.x)}</span></li>`; }).join("")}</ul>`:zfVacio("Sin escribir");
+      {meta:rev?'<span class="zf-rv">Por revisar</span>':"",cls:"zf-mine"});
+    const nT=99, titL=a=>a.length?`<ul class="zf-tl">${a.map(s=>{ const p=zfPartes(s); const c0=p.t||(()=>{ const f=String(p.x).split(/[,;:—–(]/)[0].trim(); return f.length<=72?f:f.split(/\s+/).slice(0,9).join(" "); })(); return `<li><b>${esc(c0)}</b></li>`; }).join("")}</ul>`:zfVacio("Sin escribir");
     const E=(typeof ACT!=="undefined"&&ACT&&ACT.ix&&ACT.ix.empresas||[]).find(e=>e.ticker===t), fe=s=>s?zfFecha(new Date(s+"T00:00:00")):"";
     const pr=E&&E.proximos&&E.proximos.fecha&&E.proximos.fecha!==(E.ultimos||{}).fecha?E.proximos:null, ul=E&&E.ultimos&&E.ultimos.fecha?E.ultimos:null;
     const cAg=zfCard("Agenda",zfLista([["Próximos resultados",pr?`${fe(pr.fecha)}${pr.estado?` · ${pr.estado==="estimada"?"estimada":"confirmada"}`:""}`:""],["Últimos resultados",ul?`${fe(ul.fecha)}${ul.periodo?` · ${esc(ul.periodo)}`:""}`:""],
       ["Próximo dividendo",prv[0]?`${zfFecha(prv[0].d)} · ${PV(eur(prv[0].gross,2))}`:""],["Valoración",R&&R.fvDate instanceof Date?zfFecha(R.fvDate):""]]));
-    S.res=zfHd("Resumen",l1,l2,D,rev?`Valoración por revisar: ${porQue}`:"")+zfCard("Precio",mapa,{cls:"zf-span3"})+cCot+cPos+cVal+zfCard("A favor",titL(pro),{meta:pro.length>nT?`${nT} de ${pro.length}`:pro.length?String(pro.length):"",cls:"zf-pro"})+zfCard("En contra",titL(con),{meta:con.length>nT?`${nT} de ${con.length}`:con.length?String(con.length):"",cls:"zf-con"})+cAg; }
+    proxTxt=pr?`Resultados el ${fe(pr.fecha)}${pr.estado==="estimada"?" (estimada)":""}`:ul?`Últimos resultados, el ${fe(ul.fecha)}`:"";
+    const pc=`<div class="zf-pc zf-fit">${pro.length?`<h5 class="pro">A favor<span>${pro.length}</span></h5>${titL(pro)}`:""}${con.length?`<h5 class="con">En contra<span>${con.length}</span></h5>${titL(con)}`:""}${!pro.length&&!con.length?zfVacio("Sin tesis escrita"):""}</div>`;
+    S.res=zfHd("Resumen",l1,l2,D,rev?`Valoración por revisar: ${porQue}`:"")+cCot+cPos+cVal+zfCard("Valor razonable según el múltiplo y la TIR que exiges",MXH,{meta:R&&R.fvDate instanceof Date?`valorada el ${zfFecha(R.fvDate)}`:"",cls:"zf-span2 zf-rmx"})+zfCard("A favor y en contra",pc); }
 
   // ── Posición: tu historia con la empresa
   if(P){ const TX=DATA.tx.filter(x=>x.ticker===t&&x.bd instanceof Date).sort((a,b)=>a.bd-b.bd), tot=sum(cob,d=>d.gross), pd=isNum(P.paid)?P.paid:tot, iv=P.invested||0;
@@ -6887,7 +6961,7 @@ function zfFicha(t,D){
     const cuando=!b0?"":TX.length===1?`el ${zfFecha(b0.bd)}`:mesA(b0.bd)===mesA(bz.bd)?`en ${mesA(b0.bd)}`:`entre ${mesA(b0.bd)} y ${mesA(bz.bd)}`;
     const l1=`Tienes ${shares(P.shares)} ${P.shares===1?"acción":"acciones"} que valen ${PV(eur(P.value))}.`;
     const l2=`Invertiste ${PV(eur(iv))}${cuando?` ${cuando}`:""} y ${P.totalEur>=0?"ganas":"pierdes"} ${PV(eur(Math.abs(P.totalEur)))} (${pct(P.totalPct,1,true)})${isNum(P.irr)?`, un ${pct(P.irr,1)} al año`:""}.`;
-    const chH=Math.max(180,D.BODY-88-16-380-16-74), Wc=Math.floor(D.CW-48);
+    const chH=Math.max(170,D.BODY-88-16-330-16-74), Wc=Math.floor(2*D.C3+16-48);
     // el precio de cada compra, frente al de hoy y a tu precio medio (al pasar por una bola, qué compra es)
     let CH=zfVacio("Sin compras");
     if(TX.length&&isNum(price)){ const Hd=chH, T0=+TX[0].bd, hoyT=Date.now(), t0=T0-(hoyT-T0)*.05-25*DIA_MS, t1=hoyT+(hoyT-T0)*.03+15*DIA_MS;
@@ -6902,7 +6976,7 @@ function zfFicha(t,D){
       g+=`<line x1="0" x2="${Wc}" y1="${yh.toFixed(1)}" y2="${yh.toFixed(1)}" class="zf-lh"/><text x="${Wc}" y="${(yh-8).toFixed(1)}" text-anchor="end" class="zf-tl1">Hoy ${PX(price)}</text>`;
       if(ya!=null) g+=`<line x1="0" x2="${Wc}" y1="${ya.toFixed(1)}" y2="${ya.toFixed(1)}" class="zf-la"/><text x="${junto?0:Wc}" y="${(ya>yh?ya+17:ya-8).toFixed(1)}" text-anchor="${junto?"start":"end"}" class="zf-tl2">Tu precio medio ${money(P.avg,P.cur)}</text>`;
       TX.forEach(x=>{ if(!isNum(x.bp)||!x.bp) return; const v=x.sd instanceof Date, rr=4+Math.sqrt((x.shares||1)/mxN)*6;
-        const tip=`${zfFecha(x.bd)} · ${shares(x.shares)} ${x.shares===1?"acción":"acciones"} a ${zfTx(money(x.bp,x.cur||P.cur))}${isNum(x.bt)?` · ${zfTx(eur(x.bt,2))}`:""}${v?` · vendida el ${zfFecha(x.sd)}`:""}`;
+        const tip=`${zfFecha(x.bd)}${v?` · vendida el ${zfFecha(x.sd)}`:""}\n${shares(x.shares)} ${x.shares===1?"acción":"acciones"} a ${zfTx(money(x.bp,x.cur||P.cur))}`;
         g+=`<circle cx="${X(+x.bd).toFixed(1)}" cy="${Y(x.bp).toFixed(1)}" r="${rr.toFixed(1)}" class="${v?"zf-dv":x.bp<=price?"zf-du":"zf-dd"}" data-tip="${esc(tip)}"/>`; });
       CH=`<svg class="zf-chc" width="${Wc}" height="${Hd}" viewBox="0 0 ${Wc} ${Hd}" role="img" aria-label="Precio de cada compra">${g}</svg>`; }
     // cómo se ha formado el resultado: invertido, lo que ha hecho el precio, la divisa, los dividendos y el total
@@ -6910,7 +6984,7 @@ function zfFicha(t,D){
     const rv=P.value-iv, pe=ext&&isNum(fxH)&&isNum(fxC)?(pl-P.avg)*P.shares*fxH:rv, fe=rv-pe, conFx=ext&&Math.abs(fe)>=1;
     const NOMDIV={USD:"el dólar",GBP:"la libra",CHF:"el franco",CAD:"el dólar canadiense",DKK:"la corona danesa",SEK:"la corona sueca",NOK:"la corona noruega",PLN:"el esloti",JPY:"el yen",HKD:"el dólar de Hong Kong",MXN:"el peso"};
     const pasos=[["Invertido",iv,"t"],[conFx?"Precio":"Revalorización",pe,"d"],...(conFx?[["Divisa",fe,"d"]]:[]),["Dividendos",pd,"d"],["Total",P.value+pd,"k"]];
-    const Ww=Math.floor(D.IN), Hw=380-74-28, top=22, baseW=Hw-26; let cum=0; const bars=pasos.map(([l,v,k])=>{ let a,b; if(k==="d"){ a=cum; b=cum+(v||0); cum=b; } else { a=0; b=v||0; cum=b; } return {l,v,k,a,b}; });
+    const Ww=Math.floor(D.IN), Hw=330-74-28, top=22, baseW=Hw-26; let cum=0; const bars=pasos.map(([l,v,k])=>{ let a,b; if(k==="d"){ a=cum; b=cum+(v||0); cum=b; } else { a=0; b=v||0; cum=b; } return {l,v,k,a,b}; });
     const wlo=Math.min(0,...bars.flatMap(o=>[o.a,o.b])), whi=Math.max(...bars.flatMap(o=>[o.a,o.b]),1), YW=v=>baseW-(v-wlo)/(whi-wlo)*(baseW-top), slot=Ww/bars.length, bw=Math.min(52,slot*.58);
     let gw=`<line x1="0" x2="${Ww}" y1="${YW(0).toFixed(1)}" y2="${YW(0).toFixed(1)}" class="zf-ax"/>`;
     bars.forEach((o,i)=>{ const x=i*slot+slot/2, y=Math.min(YW(o.a),YW(o.b)), h=Math.max(1.5,Math.abs(YW(o.b)-YW(o.a))), cl=o.k==="t"?"zf-wt":o.k==="k"?"zf-wk":o.v<0?"zf-wn":"zf-wp";
@@ -6919,13 +6993,13 @@ function zfFicha(t,D){
       gw+=`<text x="${x.toFixed(1)}" y="${(y-8).toFixed(1)}" text-anchor="middle" class="zf-tv">${PVs(o.k==="d"?seur(o.v)||eur(0):eur(o.v))}</text><text x="${x.toFixed(1)}" y="${Hw-6}" text-anchor="middle" class="zf-tx">${o.l}</text>`; });
     const WF=`<svg width="${Ww}" height="${Hw}" viewBox="0 0 ${Ww} ${Hw}" role="img" aria-label="Cómo se ha formado el resultado">${gw}</svg><p class="zf-pie">${conFx?`${(s0=>s0.charAt(0).toUpperCase()+s0.slice(1))(NOMDIV[P.cur]||"la divisa")} te ${fe>=0?"suma":"resta"} ${PV(eur(Math.abs(fe)))}; el precio, en ${esc(curSym[P.cur]||P.cur)}, ${pe>=0?"suma":"resta"} ${PV(eur(Math.abs(pe)))}.`:`${pct(P.totalPct,1,true)} sobre lo invertido${isNum(P.irr)?`, un ${pct(P.irr,1)} al año`:""}.`}</p>`;
     // las compras: las últimas que caben (todas se ven al pasar por las bolas)
-    const fil=Math.max(3,Math.floor((380-74-72)/36)), ver=TX.slice(-fil);
-    const TB=TX.length?`<table class="zf-tb zf-fx"><colgroup><col style="width:34%"><col><col><col style="width:28%"></colgroup><thead><tr><th>Fecha</th><th>Acciones</th><th>Precio (${esc(curSym[P.cur]||P.cur)})</th><th>Importe (€)</th></tr></thead><tbody>${ver.map(x=>{ const v=x.sd instanceof Date;
+    const ver=TX, rhC=Math.max(24,Math.min(38,Math.floor((D.BODY-88-16-74-72)/Math.max(1,TX.length))));
+    const TB=TX.length?`<table class="zf-tb zf-fx zf-cmp" style="--rh:${rhC}px"><colgroup><col style="width:31%"><col style="width:17%"><col style="width:24%"><col style="width:28%"></colgroup><thead><tr><th>Fecha</th><th>Acciones</th><th>Precio (${esc(curSym[P.cur]||P.cur)})</th><th>Importe (€)</th></tr></thead><tbody>${ver.map(x=>{ const v=x.sd instanceof Date;
         return `<tr${v?' class="q"':""}><td>${zfFecha(x.bd)}${v?" <i>vendida</i>":""}</td><td>${shares(x.shares)}</td><td>${x.bp?nf(2).format(x.bp):"liberadas"}</td><td>${x.bt?PV(nf(2).format(x.bt)):"—"}</td></tr>`; }).join("")}</tbody>
       <tfoot><tr><td>En cartera</td><td>${shares(P.shares)}</td><td>${nf(2).format(P.avg)}</td><td>${PV(nf(2).format(iv))}</td></tr></tfoot></table>`:zfVacio("Sin compras");
     // dividendos por año y el próximo cobro
     let DY=zfVacio(P.annual?"Todavía sin cobros":"No reparte dividendos");
-    if(dvs.length){ const ys=[...new Set(dvs.map(d=>d.d.getFullYear()))].sort().slice(-5), Wd=Math.floor(D.IN), Hd=380-74-48, base=Hd-24, tp=22, slot2=Wd/Math.max(4,ys.length), bw2=Math.min(34,slot2*.5);
+    if(dvs.length){ const ys=[...new Set(dvs.map(d=>d.d.getFullYear()))].sort().slice(-5), Wd=Math.floor(D.IN), Hd=330-74-48, base=Hd-24, tp=22, slot2=Wd/Math.max(4,ys.length), bw2=Math.min(34,slot2*.5);
       const val=y=>({c:sum(cob.filter(d=>d.d.getFullYear()===y),d=>d.gross),p:sum(prv.filter(d=>d.d.getFullYear()===y),d=>d.gross)}), mx=Math.max(...ys.map(y=>{ const o=val(y); return o.c+o.p; }),0.01);
       let g=`<line x1="0" x2="${Wd}" y1="${base+.5}" y2="${base+.5}" class="zf-ax"/>`;
       ys.forEach((y,i)=>{ const o=val(y), x=i*slot2+slot2/2, hc=o.c/mx*(base-tp), hp=o.p/mx*(base-tp);
@@ -6933,24 +7007,28 @@ function zfFicha(t,D){
         if(o.p) g+=`<rect x="${(x-bw2/2).toFixed(1)}" y="${(base-hc-hp).toFixed(1)}" width="${bw2.toFixed(1)}" height="${hp.toFixed(1)}" rx="3" class="zf-bp"/>`;
         g+=`<text x="${x.toFixed(1)}" y="${(base-hc-hp-8).toFixed(1)}" text-anchor="middle" class="zf-tv">${PVs(eur(o.c+o.p))}</text><text x="${x.toFixed(1)}" y="${base+18}" text-anchor="middle" class="zf-tx">${y}</text>`; });
       DY=`<svg width="${Wd}" height="${Hd}" viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="Dividendos por año">${g}</svg><p class="zf-pie">${prv[0]?`Próximo cobro, el ${zfFecha(prv[0].d)}: ${PV(eur(prv[0].gross,2))} brutos.`:`${PV(eur(tot))} cobrados en total.`}</p>`; }
-    S.pos=zfHd("Posición",l1,l2,D)+zfCard("Tus compras",CH,{meta:`${TX.length} ${TX.length===1?"compra":"compras"}`,cls:"zf-span3"})+zfCard("Cómo se ha formado el resultado",WF)
-      +zfCard("Compras",TB,{meta:TX.length>ver.length?`las ${ver.length} últimas de ${TX.length}`:""})+zfCard("Dividendos",DY,{meta:prv.length?'<i class="zf-sw c"></i>cobrado<i class="zf-sw p"></i>previsto':""}); }
+    S.pos=zfHd("Posición",l1,l2,D)+zfCard("Tus compras en el tiempo",CH,{cls:"zf-pch"})+zfCard("Compras",TB,{meta:`${TX.length} ${TX.length===1?"compra":"compras"}`,cls:"zf-pcm"})+zfCard("Cómo se ha formado el resultado",WF)
+      +zfCard("Dividendos",DY,{meta:prv.length?'<i class="zf-sw c"></i>cobrado<i class="zf-sw p"></i>previsto':""}); }
 
   // ── Valoración: ¿está barata? La tabla de calor manda
   if(hay.val){ const nz=x=>isNum(x)&&Math.abs(x)>0.0005, mil=v=>`${nf(0).format(Math.abs(v))} M${sym}`, mg=isNum(irrE)&&isNum(req)?irrE-req:null;
     const l1=fv&&isNum(price)?`Para ti vale ${PX(fv)}, ${Math.abs(pot)<0.005?"justo lo que cotiza":`un ${pct(Math.abs(pot),1)} ${pot>0?"más":"menos"} de lo que cotiza`}.`:"Sin valor razonable.";
     const l2=isNum(irrE)?`A este precio esperas un ${pct(irrE,1)} al año${isNum(mg)?`, ${nf(1).format(Math.abs(mg*100))} ${Math.abs(mg*100)>=0.95&&Math.abs(mg*100)<1.05?"punto":"puntos"} ${mg>=0?"más":"menos"} de lo que exiges`:""}.`:isNum(mult)?`Con un múltiplo de salida de ${multiplo(mult)}.`:"";
+    const cajaL=nz(V.nd)?["Deuda neta",`${mil(V.nd)}${nz(V.ndps)?` · ${money(Math.abs(V.ndps),cur,2)} por acción`:""}`]:nz(V.cash)?["Caja neta",`${mil(V.cash)}${nz(V.cashps)?` · ${money(Math.abs(V.cashps),cur,2)} por acción`:""}`]:["Deuda neta",""];
+    // detrás de tu valoración: lo que esperas frente a lo que exiges, el múltiplo de hoy frente al de salida y el balance
+    const barra=(k,v,mx,txt,cl)=>`<div class="zf-bb"><span>${k}</span><i><u class="${cl}" style="width:${isNum(v)&&mx>0?Math.max(2,Math.min(100,v/mx*100)).toFixed(1):0}%"></u></i><b>${txt||"—"}</b></div>`;
+    const mxT=Math.max(isNum(irrE)?irrE:0,isNum(req)?req:0,0.0001), mxM=Math.max(isNum(mult)?mult:0,isNum(V.multNow)?V.multNow:0,0.0001), cm=isNum(mult)&&isNum(V.multNow)&&V.multNow>0?mult/V.multNow-1:null;
+    const bTir=`<div class="zf-bk"><h5>Rentabilidad${isNum(mg)?`<em class="${zfCol(mg)}">${Math.abs(mg)<0.0005?"justo lo que exiges":`${mg>0?"te sobran":"te faltan"} ${nf(1).format(Math.abs(mg*100))} puntos`}</em>`:""}</h5>${barra("Esperas",irrE,mxT,pct(irrE,1),isNum(mg)&&mg<0?"n":"p")}${barra("Exiges",req,mxT,tipoPct(req),"g")}</div>`;
+    const bMul=`<div class="zf-bk"><h5>Múltiplo${isNum(cm)?`<em>${Math.abs(cm)<0.005?"tu salida, igual que hoy":`tu salida, un ${pct(Math.abs(cm),0)} ${cm<0?"por debajo":"por encima"} del de hoy`}</em>`:""}</h5>${barra("Hoy",V.multNow,mxM,multiplo(V.multNow),"g")}${barra("Salida",mult,mxM,multiplo(mult),"p")}</div>`;
+    const bBal=`<div class="zf-bk"><h5>Balance</h5><p>${nz(V.nd)?`Debe ${mil(V.nd)} netos${nz(V.ndps)?`, ${money(Math.abs(V.ndps),cur,2)} por acción`:""}.`:nz(V.cash)?`Tiene ${mil(V.cash)} de caja neta${nz(V.cashps)?`, ${money(Math.abs(V.cashps),cur,2)} por acción`:""}.`:"Sin deuda ni caja neta en la valoración."}</p></div>`;
+    const CIF=`<div class="zf-bks zf-fit">${bTir}${bMul}${bBal}</div>`;
     const caja=nz(V.nd)?zfFig("Deuda neta",mil(V.nd),nz(V.ndps)?`${money(Math.abs(V.ndps),cur,2)} por acción`:""):nz(V.cash)?zfFig("Caja neta",mil(V.cash),nz(V.cashps)?`${money(Math.abs(V.cashps),cur,2)} por acción`:""):zfFig("Deuda neta","","");
     const f5=zfFig("Valor razonable",PX(fv),lo!=null&&hi>lo?`entre ${PX(lo,0)} y ${PX(hi,0)}`:"")+zfFig("Potencial",pct(pot,1,true),isNum(price)?`desde ${PX(price)}`:"",zfCol(pot))
       +zfFig("TIR esperada",pct(irrE,1),isNum(req)?`exiges un ${tipoPct(req)}`:"",isNum(mg)?zfCol(mg):"")+zfFig("Múltiplo de salida",multiplo(mult),isNum(V.multNow)?`hoy cotiza a ${multiplo(V.multNow)}`:"")+caja;
-    let MX=zfVacio("Sin tabla de valoración");
-    if(F){ const d0=fvs.some(x=>x>=1000)?0:2, near=(a,b)=>isNum(a)&&isNum(b)&&Math.abs(a-b)<1e-6;
-      const cel=v=>{ if(!isNum(v)||!v||!isNum(price)) return {p:null,bg:"transparent"}; const p=v/price-1, k=Math.min(1,Math.abs(p)/.4); return {p,bg:p>=0?`color-mix(in srgb,var(--gx-id) ${Math.round(16+k*52)}%,var(--card))`:`color-mix(in srgb,var(--neg) ${Math.round(8+k*28)}%,var(--card))`}; };
-      MX=`<div class="zf-mx" style="--n:${F.rates.length};--m:${F.rows.length}"><span class="zf-mxe">Múltiplo · TIR exigida</span>${F.rates.map(x=>`<span class="h">${tipoPct(x)}</span>`).join("")}${F.rows.map(o=>`<span class="r">${multiplo(o.m)}</span>`+o.v.map((v,j)=>{ const c=cel(v), on=near(o.m,mult)&&near(F.rates[j],req);
-        return `<div class="c${on?" on":""}" style="${on?"":`background:${c.bg}`}"><b>${PX(v,d0)}</b><span>${on?"tu valoración":c.p==null?"":(pct(c.p,0,true)||"0 %")+" desde hoy"}</span></div>`; }).join("")).join("")}</div>`; }
+    const MX=MXH;
     const txt=(s,v)=>s?`<div class="zf-txt">${zfLineas(s).map(p=>`<p>${esc(p)}</p>`).join("")}</div>`:zfVacio(v);
-    S.val=zfHd("Valoración",l1,l2,D,rev?`Por revisar: ${porQue}`:"")+zfCard("Valor razonable según el múltiplo y la TIR que exiges",`<div class="zf-g5">${f5}</div>${MX}`,{meta:R.fvDate instanceof Date?`valorada el ${zfFecha(R.fvDate)}`:"",cls:"zf-vmx"})
-      +zfCard("Por qué",`<div class="zf-pq"><h5>${isNum(mult)?`Un múltiplo de salida de ${multiplo(mult)}`:"El múltiplo"}</h5>${txt(V.multTxt,"Sin escribir")}<h5>${isNum(req)?`Una TIR exigida del ${tipoPct(req)}`:"La TIR exigida"}</h5>${txt(V.retTxt,"Sin escribir")}</div>`,{cls:"zf-scroll zf-q"}); }
+    S.val=zfHd("Valoración",l1,l2,D,rev?`Por revisar: ${porQue}`:"")+zfCard("Valor razonable según el múltiplo y la TIR que exiges",MX,{meta:R.fvDate instanceof Date?`valorada el ${zfFecha(R.fvDate)}`:"",cls:"zf-span2 zf-rmx"})+zfCard("Detrás de tu valoración",CIF,{cls:"zf-cif"})
+      +zfCard("Por qué",`<div class="zf-pq2 zf-fit"><div><h5>${isNum(mult)?`Un múltiplo de salida de ${multiplo(mult)}`:"El múltiplo"}</h5>${txt(V.multTxt,"Sin escribir")}</div><div><h5>${isNum(req)?`Una TIR exigida del ${tipoPct(req)}`:"La TIR exigida"}</h5>${txt(V.retTxt,"Sin escribir")}</div></div>`,{cls:"zf-span3 zf-q"}); }
 
   // ── Proyección: una tabla de verdad y la cuenta hasta el precio objetivo
   if(hay.pj){ const C=PJ.cols, isC=i=>/^CAGR/i.test(C[i]), ly=Math.max(...C.map((h,i)=>isC(i)?-1:i));
@@ -6966,7 +7044,7 @@ function zfFicha(t,D){
     let l1, l2="";
     if(Y2&&isNum(Y2.price)){ l1=`En ${yr} podría valer ${PX(Y2.price)}${isNum(up)?`, un ${pct(Math.abs(up),1)} ${up>=0?"más":"menos"} que hoy`:""}.`; l2=`${cuadra?`${esc(etq(ps.l))} de ${money(vy,cur,2)} por ${multiplo(mult)}: `:""}${isNum(Y2.irr)?`un ${pct(Y2.irr,1)} al año${isNum(Y2.irrDiv)?`, un ${pct(Y2.irrDiv,1)} con dividendos`:""}`:""}.`; l2=l2.charAt(0).toUpperCase()+l2.slice(1); }
     else { const v0=prim[0]&&prim[0].v[0], v1=prim[0]&&prim[0].v[ly]; l1=isNum(v0)&&isNum(v1)?`${esc(etq(prim[0].l))}: de ${numSigno(v0)} a ${numSigno(v1)} ${uni(prim[0].l)} en ${yr}.`:"Proyección hasta "+yr+"."; }
-    const filas=PJ.rows.filter(o=>o.v.some((x,i)=>!isC(i)&&isNum(x)&&x!==0)), tH=74+54+filas.reduce((a,o)=>a+(sec(o.l)?33:39),0), hB=Math.max(150,D.BODY-88-16-tH-16-74-6);
+    const filas=PJ.rows.filter(o=>o.v.some((x,i)=>!isC(i)&&isNum(x)&&x!==0)), tH=74+54+filas.reduce((a,o)=>a+(sec(o.l)?31:37),0), hB=Math.max(120,D.BODY-88-16-tH-16-74-6);
     const yc=C.map((h,i)=>i).filter(i=>!isC(i)), base0=ps&&isNum(mult)?ps:prim[0], imp=base0===ps;
     let IM=zfVacio("—");
     if(base0){ const vs=yc.map(i=>isNum(base0.v[i])?(imp?base0.v[i]*mult:base0.v[i]):null), ok=vs.filter(isNum);
@@ -6977,40 +7055,48 @@ function zfFicha(t,D){
         if(imp&&isNum(price)){ const yh=Yv(price); g+=`<line x1="0" x2="${Wd}" y1="${yh.toFixed(1)}" y2="${yh.toFixed(1)}" class="zf-lh2"/><text x="${Wd}" y="${(yh-7).toFixed(1)}" text-anchor="end" class="zf-tl1 zf-halo">Hoy ${zfTx(PX(price))}</text>`; }
         IM=`<svg width="${Wd}" height="${Hd}" viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="Precio implícito de cada año">${g}</svg>`; } }
     const fila=(k,v,c="")=>`<div class="${c}"><span>${k}</span><b>${v||"—"}</b></div>`;
-    const CAD=Y2?`<div class="zf-cad">${cuadra?fila(`${esc(etq(ps.l))} en ${yr}`,money(vy,cur,2))+fila("× múltiplo de salida",multiplo(mult)):""}${fila(`= precio en ${yr}`,PX(Y2.price),"tot")}<p>${isNum(up)?`${pct(up,1,true)} desde los ${PX(price)} de hoy`:"&nbsp;"}</p>${fila("TIR solo por precio",pct(Y2.irr,1))}${fila(`+ dividendos hasta ${yr}`,PX(Y2.divs))}${fila("= TIR con dividendos",pct(Y2.irrDiv,1),"tot")}</div>`:zfVacio("Sin precio objetivo");
+    const CAD=Y2?`<div class="zf-cad zf-fit">${cuadra?`<p class="f">${money(vy,cur,2)} de ${esc(etq(ps.l).toLowerCase().replace(/^fcf/,"FCF"))} × ${multiplo(mult)}</p>`:""}${fila(`Precio en ${yr}`,PX(Y2.price),"tot")}<p>${isNum(up)?`${pct(up,1,true)} desde los ${PX(price)} de hoy`:"&nbsp;"}</p>${fila("TIR solo por precio",pct(Y2.irr,1))}${fila(`Con ${PX(Y2.divs)} de dividendos`,pct(Y2.irrDiv,1),"tot2")}</div>`:zfVacio("Sin precio objetivo");
     S.pj=zfHd("Proyección",l1,l2,D)+zfCard("Proyección",tabla,{meta:R.fvDate instanceof Date?`valorada el ${zfFecha(R.fvDate)}`:"",cls:"zf-span3"})+zfCard(imp?`Lo que valdría cada año a ${multiplo(mult)}`:esc(etq(base0?base0.l:"")),IM,{meta:imp?`${esc(etq(ps.l))} × ${multiplo(mult)}`:"",cls:"zf-span2"})+zfCard(`La cuenta hasta ${yr}`,CAD); }
 
   // ── Tesis: por qué sí y por qué no, como un artículo
-  if(hay.tes){ const li=(a,c)=>a.length?`<ol class="zf-ol ${c}">${a.map((s,i)=>{ const p=zfPartes(s); return `<li><span class="n">${String(i+1).padStart(2,"0")}</span><div>${p.t?`<b>${esc(p.t)}</b>`:""}<p>${esc(p.x)}</p></div></li>`; }).join("")}</ol>`:zfVacio("Sin escribir");
+  if(hay.tes){ const li=(a,c)=>a.length?`<ol class="zf-ol zf-fit ${c}">${a.map((s,i)=>{ const p=zfPartes(s); return `<li><span class="n">${String(i+1).padStart(2,"0")}</span><div>${p.t?`<b>${esc(p.t)}</b>`:""}<p>${esc(p.x)}</p></div></li>`; }).join("")}</ol>`:zfVacio("Sin escribir");
     const t1=pro.length?zfPartes(pro[0]).t||"":"", t2=con.length?zfPartes(con[0]).t||"":"";
     const l1=`${pro.length} ${pro.length===1?"razón":"razones"} a favor y ${con.length} en contra.`, l2=t1||t2?`${t1?`La principal, ${esc(minus1(t1))}`:""}${t1&&t2?"; ":""}${t2?`${t1?"el":"El"} mayor riesgo, ${esc(minus1(t2))}`:""}.`:"";
-    S.tes=zfHd("Tesis",l1,l2,D)+zfCard("A favor",li(pro,"pro"),{meta:pro.length?String(pro.length):"",cls:"zf-scroll"})+zfCard("En contra",li(con,"con"),{meta:con.length?String(con.length):"",cls:"zf-scroll"})
-      +`<section class="zf-not"><header><h4>Notas</h4>${notCab?`<span>${esc(notCab.replace(/^actualizad[oa]\s*(a|el)?\s*/i,""))}</span>`:""}</header><div class="zf-cb zf-txt">${notas.length?notas.map(n=>`<p>${esc(n)}</p>`).join(""):'<p class="zf-vac">Sin notas</p>'}</div></section>`; }
+    S.tes=zfHd("Tesis",l1,l2,D)+zfCard("A favor",li(pro,"pro"),{meta:pro.length?String(pro.length):""})+zfCard("En contra",li(con,"con"),{meta:con.length?String(con.length):""})
+      +(notas.length?zfCard("Notas",`<div class="zf-notc zf-txt">${notas.map(n=>`<p>${esc(n)}</p>`).join("")}</div>`,{meta:notCab?esc(notCab.replace(/^actualizad[oa]\s*(a|el)?\s*/i,"")):"",cls:"zf-span2 zf-notw"}):""); }
 
   // ── Cotización: cómo se ha movido, frente a su industria
   if(R){ const ano=new Date().getFullYear(), per=[["1 semana","w1"],["1 mes","m1"],["3 meses","m3"],["6 meses","m6"],[`En ${ano}`,"ytd"],["1 año","y1"],["3 años","y3"]];
     const mem=DATA.pre.filter(x=>ind&&x.ind===ind), media=k=>{ const v=mem.map(x=>x[k]).filter(isNum); return v.length>1?v.reduce((a,b)=>a+b,0)/v.length:null; };
     const corto=per.filter(([,k])=>k!=="y3"), own=corto.map(([,k])=>R[k]).filter(isNum), ms=corto.map(([,k])=>media(k)).filter(isNum), d0=Math.min(0,...own,...ms)*1.1, d1=Math.max(0.0001,...own,...ms)*1.1, RX0=v=>(v-d0)/(d1-d0)*100, RX=v=>Math.max(0,Math.min(100,RX0(v)));
     const rows=per.map(([l,k])=>{ const v=R[k], m=media(k), sale=isNum(v)&&(RX0(v)>100||RX0(v)<0); return `<span class="l">${l}</span><span class="br">${isNum(v)?`<u style="left:${RX(0).toFixed(2)}%"></u><i class="${v<0?"neg":""}${sale?" sale":""}" style="left:${Math.min(RX(0),RX(v)).toFixed(2)}%;width:${Math.abs(RX(v)-RX(0)).toFixed(2)}%"></i>`:""}${isNum(m)&&RX0(m)>=0&&RX0(m)<=100?`<s style="left:calc(${RX(m).toFixed(2)}% - 1px)"></s>`:""}</span><span class="v ${zfCol(v)}">${isNum(v)?pct(v,1,true):"—"}</span><span class="m">${isNum(m)?pct(m,1,true):"—"}</span>`; }).join("");
-    const RD=`<div class="zf-rd"><span></span><span></span><span class="h">${esc(co.name)}</span><span class="h">${mem.length>1?'<i class="zf-mkm"></i>Media':""}</span>${rows}</div>`;
     const mm=isNum(R.mm200)&&R.mm200>-1&&isNum(price)?price/(1+R.mm200):null, mx1=isNum(R.hi52)&&R.hi52>-1&&isNum(price)?price/(1+R.hi52):null, my=media("y1");
     const l1=isNum(R.y1)?`En un año, ${pct(R.y1,1,true)}${isNum(my)?`; su industria, ${pct(my,1,true)}`:""}.`:"Sin datos de un año.";
     const l2=isNum(R.dd)?`${Math.abs(R.dd)<0.005?"Está en máximos históricos":`Está un ${pct(Math.abs(R.dd),1)} por debajo de su máximo histórico`}${isNum(R.mm200)?` y un ${pct(Math.abs(R.mm200),1)} ${R.mm200>=0?"por encima":"por debajo"} de su media de 200 sesiones`:""}.`:"";
     // la escalera de precios: máximo de 1 año, media de 200 sesiones, valor razonable y hoy, a su altura
-    const Hl=D.BODY-88-16-280-16-74, esc0=[mx1&&{v:mx1,t:"Máximo de 1 año"},mm&&{v:mm,t:"Media de 200 sesiones"},fv&&{v:fv,t:"Valor razonable"},isNum(price)&&{v:price,t:"Hoy",hoy:1}].filter(Boolean);
+    const pe2=[...mem].sort((a,b)=>(isNum(b.irrExp)&&isNum(b.fv)&&b.fv>0?b.irrExp:-9)-(isNum(a.irrExp)&&isNum(a.fv)&&a.fv>0?a.irrExp:-9)), rhP=mem.length>7?32:36, peH=mem.length>1?74+36+mem.length*rhP:0, Hl=Math.max(150,D.BODY-88-16-(peH?peH+16:0)-74-4), esc0=[mx1&&{v:mx1,t:"Máximo de 1 año"},mm&&{v:mm,t:"Media de 200 sesiones"},fv&&{v:fv,t:"Valor razonable"},isNum(price)&&{v:price,t:"Hoy",hoy:1}].filter(Boolean);
     let ES=zfVacio("Sin precios");
     if(esc0.length>1){ const vs=esc0.map(o=>o.v), a0=Math.min(...vs), a1=Math.max(...vs), YL=v=>14+(a1-v)/((a1-a0)||1)*(Hl-40); const it=esc0.map(o=>({...o,y:YL(o.v)})).sort((a,b)=>a.y-b.y);
       for(let k=1;k<it.length;k++) if(it[k].y<it[k-1].y+42) it[k].ly=Math.max(it[k].y,(it[k-1].ly??it[k-1].y)+42); it.forEach(o=>{ if(o.ly==null) o.ly=o.y; });
       const sobra=it[it.length-1].ly-(Hl-30); if(sobra>0) it.forEach(o=>o.ly-=sobra);
       ES=`<div class="zf-esc" style="height:${Hl}px"><i class="zf-esl" style="top:${it[0].y}px;height:${Math.max(1,it[it.length-1].y-it[0].y)}px"></i>${it.map(o=>`<i class="zf-esm${o.hoy?" h":""}" style="top:${(o.y-(o.hoy?6:1)).toFixed(1)}px"></i><div class="zf-esk${o.hoy?" h":""}" style="top:${(o.ly-10).toFixed(1)}px"><span>${o.t}</span><b>${PX(o.v)}${!o.hoy&&isNum(price)?` <em>${pct(o.v/price-1,1,true)}</em>`:""}</b></div>`).join("")}</div>`; }
-    const nPe=Math.max(3,Math.floor((280-74-36)/36)), ie=x=>isNum(x.irrExp)&&isNum(x.fv)&&x.fv>0?x.irrExp:-9, pe2=[...mem].sort((a,b)=>ie(b)-ie(a)), yo=pe2.findIndex(x=>x.ticker===t), verP=pe2.length>nPe?(yo<nPe?pe2.slice(0,nPe):[...pe2.slice(0,nPe-1),pe2[yo]]):pe2;
-    const PE=mem.length>1?`<table class="zf-tb zf-pe zf-fx"><colgroup><col style="width:26%">${"<col>".repeat(6)}</colgroup><thead><tr><th>Empresa</th><th>Última sesión</th><th>1 año</th><th>3 años</th><th>Desde el máximo</th><th>Potencial</th><th>TIR esperada</th></tr></thead><tbody>${verP.map(x=>{ const s=isNum(x.today)?x.today:x.last, pp=isNum(x.fv)&&x.fv>0&&isNum(x.price)?x.fv/x.price-1:null;
-        return `<tr${x.ticker===t?' class="yo"':""}><td>${esc(x.name)}${x.inPf?'<i class="zf-pf" title="En tu cartera"></i>':""}</td><td class="${zfCol(s)}">${pct(s,1,true)||"—"}</td><td class="${zfCol(x.y1)}">${pct(x.y1,1,true)||"—"}</td><td class="${zfCol(x.y3)}">${pct(x.y3,1,true)||"—"}</td><td>${pct(x.dd,1,true)||"—"}</td><td class="${zfCol(pp)}">${pct(pp,1,true)||"—"}</td><td>${isNum(x.fv)&&x.fv>0?pct(x.irrExp,1)||"—":"—"}</td></tr>`; }).join("")}</tbody></table>`:zfVacio("Es la única de su industria en tu preselección.");
-    S.cot=zfHd("Cotización",l1,l2,D)+zfCard(mem.length>1?`Rentabilidad frente a la media de ${esc(ind)}`:"Rentabilidad",RD,{cls:"zf-span2"})+zfCard("Escalera de precios",ES)+zfCard(ind?`${esc(ind)}: sus compañeras`:"Su industria",PE,{meta:mem.length>verP.length?`${verP.length} de ${mem.length} · por TIR esperada`:mem.length>1?"por TIR esperada":"",cls:"zf-span3"}); }
+    const verP=pe2;
+    // rentabilidad: una columna por plazo, la de la empresa y la marca de la media de su industria
+    let RC=zfVacio("Sin datos");
+    { const pv=per.map(([l,k])=>({l,v:R[k],m:media(k)})).filter(o=>isNum(o.v)); if(pv.length){ const Wd=Math.floor(2*D.C3+16-48), Hd=Hl, tp=30, bt=Hd-46, cortos=pv.filter(o=>o.l!=="3 años").flatMap(o=>[o.v,o.m]).filter(isNum), todos=pv.flatMap(o=>[o.v,o.m]).filter(isNum), mxc=Math.max(...cortos.map(Math.abs),0.0001), corta=todos.some(v=>Math.abs(v)>2.5*mxc), vals=corta?cortos:todos, lo2=Math.min(0,...vals)*1.08, hi2=Math.max(0.0001,...vals)*1.08, Yr0=v=>tp+(hi2-v)/(hi2-lo2)*(bt-tp), Yr=v=>Math.max(tp-6,Math.min(bt,Yr0(v))), slot=Wd/pv.length, bw=Math.min(54,slot*.42);
+      let g=`<line x1="0" x2="${Wd}" y1="${Yr(0).toFixed(1)}" y2="${Yr(0).toFixed(1)}" class="zf-ax"/>`;
+      pv.forEach((o,i)=>{ const x=i*slot+slot/2, y0=Yr(0), y=Yr(o.v); const sale=Yr0(o.v)<tp-6||Yr0(o.v)>bt; g+=`<rect x="${(x-bw/2).toFixed(1)}" y="${Math.min(y,y0).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1.5,Math.abs(y-y0)).toFixed(1)}" rx="3" class="${o.v<0?"zf-wn":"zf-wp"}"/>${sale?`<path d="M${(x-bw/2-3).toFixed(1)} ${(y+14).toFixed(1)}l${(bw+6).toFixed(1)} -6M${(x-bw/2-3).toFixed(1)} ${(y+20).toFixed(1)}l${(bw+6).toFixed(1)} -6" class="zf-brk"/>`:""}`;
+        if(isNum(o.m)&&Yr0(o.m)>=tp-6&&Yr0(o.m)<=bt){ const ym=Yr(o.m); g+=`<line x1="${(x-bw/2-6).toFixed(1)}" x2="${(x+bw/2+6).toFixed(1)}" y1="${ym.toFixed(1)}" y2="${ym.toFixed(1)}" class="zf-mm"/>`; }
+        g+=`<text x="${x.toFixed(1)}" y="${(o.v>=0?Math.min(y,isNum(o.m)?Yr(o.m):y)-8:Math.min(y0,isNum(o.m)?Yr(o.m):y0)-8).toFixed(1)}" text-anchor="middle" class="zf-tv ${o.v<0?"n":"p"}">${pct(o.v,1,true)}</text><text x="${x.toFixed(1)}" y="${Hd-20}" text-anchor="middle" class="zf-tx zf-tk">${o.l}</text><text x="${x.toFixed(1)}" y="${Hd-4}" text-anchor="middle" class="zf-tx">${isNum(o.m)?`media ${pct(o.m,1,true)}`:""}</text>`; });
+      RC=`<svg width="${Wd}" height="${Hd}" viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="Rentabilidad frente a su industria">${g}</svg>`; } }
+    const PE=mem.length>1?`<table class="zf-tb zf-pe zf-fx${rhP<36?" zf-tight":""}"><colgroup><col style="width:26%">${"<col>".repeat(6)}</colgroup><thead><tr><th>Empresa</th><th>Última sesión</th><th>1 año</th><th>3 años</th><th>Desde el máximo</th><th>Potencial</th><th>TIR esperada</th></tr></thead><tbody>${verP.map(x=>{ const s=isNum(x.today)?x.today:x.last, pp=isNum(x.fv)&&x.fv>0&&isNum(x.price)?x.fv/x.price-1:null;
+        return `<tr${x.ticker===t?' class="yo"':""}><td>${esc(x.name)}${x.inPf?'<i class="zf-pf"></i><em class="zf-pfk">en cartera</em>':""}</td><td class="${zfCol(s)}">${pct(s,1,true)||"—"}</td><td class="${zfCol(x.y1)}">${pct(x.y1,1,true)||"—"}</td><td class="${zfCol(x.y3)}">${pct(x.y3,1,true)||"—"}</td><td>${pct(x.dd,1,true)||"—"}</td><td class="${zfCol(pp)}">${pct(pp,1,true)||"—"}</td><td>${isNum(x.fv)&&x.fv>0?pct(x.irrExp,1)||"—":"—"}</td></tr>`; }).join("")}</tbody></table>`:zfVacio("Es la única de su industria en tu preselección.");
+    S.cot=zfHd("Cotización",l1,l2,D)+zfCard(mem.length>1?`Rentabilidad frente a la media de ${esc(ind)}`:"Rentabilidad",RC,{meta:mem.length>1?'<i class="zf-mkm"></i>media de la industria':"",cls:"zf-span2"})+zfCard("Escalera de precios",ES)+zfCard(ind?`${esc(ind)}: sus compañeras`:"Su industria",PE,{meta:mem.length>1?"por TIR esperada":"",cls:"zf-span3"+(mem.length>1?"":" zf-none")}); }
 
+  if(!(P&&isNum(P.avg))&&!fv&&R&&isNum(price)){ const mm0=isNum(R.mm200)&&R.mm200>-1?price/(1+R.mm200):null, mx0=isNum(R.hi52)&&R.hi52>-1?price/(1+R.hi52):null; mapaTop=zfMapa(D.MW,{v:price,t:"Hoy",s:PX(price)},[mm0&&{v:mm0,t:"Media de 200 sesiones",s:PX(mm0)},mx0&&{v:mx0,t:"Máximo de 1 año",s:PX(mx0)}],null,null); }
   if(!hay[zfSec]) zfSec="res";
   const est=P?{c:"pf",t:`En tu cartera · ${rk===1?`la mayor de ${posN.length}`:`la ${rk}.ª de ${posN.length}`}`}:!fv?{c:"no",t:"Candidata · sin valorar"}:isNum(irrE)&&isNum(req)&&irrE>=req?{c:"ok",t:"Candidata · rinde lo que exiges"}:{c:"no",t:"Candidata"};
-  return zfMarco(t,co.name,{est,logoT:t,price:PX(price),ses,meta:[ctry||ind?`${ctry?flagHtml(ctry):""}<span>${[ctry?esc(ctryN(ctry)):"",ind?esc(ind):""].filter(Boolean).join(" · ")}</span>`:"",`<span class="tk">${esc(t)}</span>`],hay,S});
+  return zfMarco(t,co.name,{mapa:mapaTop,prox:proxTxt,est,logoT:t,price:PX(price),ses,meta:[ctry?`${flagHtml(ctry)}<span>${esc(ctryN(ctry))}</span>`:"",ind?`<span>${esc(ind)}</span>`:"",`<span class="tk">${esc(t)}</span>`],hay,S});
 }
 
 // la opción: el mismo marco, con lo que importa de un contrato (precio de ejercicio, vencimiento, punto de equilibrio y qué valdría al vencer)
@@ -7021,7 +7107,7 @@ function zfFichaOpcion(t,op,D){
   const dist=isNum(px)&&isNum(K)?px/K-1:null, sn=sub?sub.name:"el subyacente";
   const l1=isNum(dist)?`${esc(sn)} cotiza a ${PX(px)}, un ${pct(Math.abs(dist),1)} ${dist>=0?"por encima":"por debajo"} del precio de ejercicio.`:"";
   const l2=op.vence?`${dias>0?`Vence el ${fdate(op.vence)}, dentro de ${dias} ${dias===1?"día":"días"}`:dias===0?"Vence hoy":`Venció el ${fdate(op.vence)}`}${isNum(eq)&&dias>=0?`; para no perder dinero tiene que ${call?"superar":"bajar de"} ${PX(eq)}`:""}.`:"";
-  const mapa=zfMapa(Math.floor(D.CW-48),{v:px,t:"Hoy",s:PX(px)},[isNum(K)&&{v:K,t:"Precio de ejercicio",s:PX(K)},isNum(eq)&&{v:eq,t:"Punto de equilibrio",s:PX(eq)},sub&&isNum(sub.fv)&&{v:sub.fv,t:"Valor razonable",s:PX(sub.fv)}],null,null);
+  const mapa=zfMapa(D.MW,{v:px,t:"Hoy",s:PX(px)},[isNum(K)&&{v:K,t:"Precio de ejercicio",s:PX(K)},isNum(eq)&&{v:eq,t:"Punto de equilibrio",s:PX(eq)},sub&&isNum(sub.fv)&&{v:sub.fv,t:"Valor razonable",s:PX(sub.fv)}],null,null);
   const cC=zfCard("Contrato",`<div class="zf-g2">${zfFig("Tipo",call?"Call":"Put",call?"derecho a comprar":"derecho a vender")+zfFig("Precio de ejercicio",PX(K),`${shares(n)} acciones`)+zfFig("Vencimiento",op.vence?zfFecha(op.vence):"",isNum(dias)&&dias>=0?`quedan ${dias} ${dias===1?"día":"días"}`:"")+zfFig("Punto de equilibrio",PX(eq),"precio más prima")}</div>`);
   const cP=zfCard("Tu posición",`<div class="zf-g2">${zfFig("Prima pagada",PX(o.avg),"por acción")+zfFig("Invertido",PV(eur(o.invested,2)),"con comisiones")+(o.atCost&&isNum(px)&&isNum(K)&&isNum(fx)?(vi=>zfFig("Valor intrínseco",PV(eur(vi,2)),"si venciera hoy")+zfFig("Resultado",PV(seur(vi-o.invested,2)),`${pct((vi-o.invested)/o.invested,0,true)||"0 %"} si venciera hoy`,zfCol(vi-o.invested)))(Math.max(0,call?px-K:K-px)*n*fx):zfFig("Valor",PV(eur(o.value,2)),"")+zfFig("Resultado",PV(seur(o.totalEur)),pct(o.totalPct,1,true),zfCol(o.totalEur)))}</div>`);
   const cS=zfCard(esc(sn),`<div class="zf-g2">${zfFig("Cotización",PX(px),isNum(sub&&sub.today)?`${pct(sub.today,1,true)} última sesión`:"")+zfFig("Valor razonable",PX(sub&&sub.fv),"")+zfFig("En 1 año",pct(sub&&sub.y1,1,true),"",zfCol(sub&&sub.y1))+zfFig("Volatilidad",pct(sub&&sub.vol,1),"anualizada")}</div>`);
@@ -7029,35 +7115,41 @@ function zfFichaOpcion(t,op,D){
   if(isNum(K)&&isNum(o.avg)){ const pts=[...new Set([isNum(px)?px:K*.8,K*.9,K,eq,K*1.1,K*1.25,K*1.5].map(v=>Math.round(v*100)/100))].sort((a,b)=>a-b);
     AV=`<table class="zf-tb zf-av"><thead><tr><th>Si ${esc(sn)} acaba en</th><th>La opción vale ($)</th><th>Resultado (€)</th><th>Sobre lo invertido</th></tr></thead><tbody>${pts.map(s=>{ const vu=Math.max(0,call?s-K:K-s)*n, ve=isNum(fx)?vu*fx:null, r=isNum(ve)?ve-o.invested:null;
       return `<tr${Math.abs(s-eq)<0.005?' class="yo"':""}><td>${PX(s)}${Math.abs(s-K)<0.005?" <i>precio de ejercicio</i>":Math.abs(s-eq)<0.005?" <i>punto de equilibrio</i>":isNum(px)&&Math.abs(s-px)<0.005?" <i>precio de hoy</i>":""}</td><td>${nf(2).format(vu)}</td><td class="${zfCol(r)}">${isNum(r)?PV((r>0?"+":r<0?"−":"")+nf(2).format(Math.abs(r))):"—"}</td><td class="${zfCol(r)}">${isNum(r)&&o.invested?pct(r/o.invested,0,true)||"0 %":"—"}</td></tr>`; }).join("")}</tbody></table>`; }
-  const S={res:`${zfHd("Opción",l1,l2,D)}${zfCard("Precio de "+esc(sn),mapa,{cls:"zf-span3"})}${cC}${cP}${cS}${zfCard("Al vencimiento",AV,{cls:"zf-span3"})}`};
+  const S={res:`${zfHd("Opción",l1,l2,D)}${cC}${cP}${cS}${zfCard("Al vencimiento",AV,{cls:"zf-span3"})}`};
   zfSec="res";
-  return zfMarco(t,o.name,{logoT:sub?sub.ticker:t,price:PX(o.avg),sesTxt:"prima por acción",est:{c:"pf",t:`${call?"Call":"Put"} · vence el ${op.vence?fdate(op.vence):"—"}`},meta:[sub?`<span>${esc(sub.name)}</span>`:"",`<span>${esc(t)}</span>`],hay:{res:1},S,opcion:true});
+  return zfMarco(t,o.name,{mapa,logoT:sub?sub.ticker:t,price:PX(o.avg),sesTxt:"prima por acción",est:{c:"pf",t:`${call?"Call":"Put"} · vence el ${op.vence?fdate(op.vence):"—"}`},meta:[sub?`<span>${esc(sub.name)}</span>`:"",`<span>${esc(t)}</span>`],hay:{res:1},S,opcion:true});
 }
 
 // el marco: barra lateral fija + la sección elegida
-function zfMarco(t,nombre,{est,logoT,price,ses,sesTxt,meta,hay,S,opcion}){
+function zfMarco(t,nombre,{mapa,prox,est,logoT,price,ses,sesTxt,meta,hay,S,opcion}){
   const L=sheet.list||[], i=L.indexOf(t), pv=i>0?L[i-1]:null, nx=i>=0&&i<L.length-1?L[i+1]:null;
   const cs=isNum(ses)?(Math.abs(ses)<0.0005?"":ses<0?"neg":"pos"):"";
   const nav=opcion?"":`<nav class="zf-nav" aria-label="Secciones">${ZF_SEC.map(([k,n])=>`<button type="button" data-zf-s="${k}"${hay[k]?"":" disabled"}${k===zfSec?' aria-current="true"':""}>${n}</button>`).join("")}</nav>`;
-  return `<div class="zf"><aside class="zf-rail"><div class="zf-lgt">${zfLogo(logoT)}</div><div class="zf-idb"><h3>${esc(nombre)}</h3>${est?`<p class="zf-est ${est.c}"><i></i>${est.t}</p>`:""}<div class="zf-meta">${meta.filter(Boolean).map(m=>`<p>${m}</p>`).join("")}</div></div>
-      <div class="zf-pr"><b>${price||"—"}</b>${isNum(ses)?`<span class="zf-ses ${cs}">${Math.abs(ses)<0.0005?"0,0 %":pct(ses,1,true)}</span><span class="zf-sesk">última sesión</span>`:`<span class="zf-sesk">${sesTxt||"&nbsp;"}</span>`}</div>${nav}
-      <div class="zf-pg">${L.length>1?`<button type="button" data-zf="prev"${pv?` title="${esc(zfNom(pv))}"`:" disabled"} aria-label="Anterior">${ZF_IC.l}</button><span>${i+1} de ${L.length}</span><button type="button" data-zf="next"${nx?` title="${esc(zfNom(nx))}"`:" disabled"} aria-label="Siguiente">${ZF_IC.r}</button>`:""}</div></aside>
-    <main class="zf-main">${Object.entries(S).map(([k,h])=>`<div class="zf-s zf-s-${opcion?"op":k}" data-zf-p="${k}"${k===zfSec?"":" hidden"}>${h}</div>`).join("")}</main>
-    <button type="button" class="zf-x" data-zf="cerrar" aria-label="Cerrar" title="Cerrar (Esc)">${ZF_IC.x}</button></div>`;
+  return `<div class="zf"><header class="zf-top"><div class="zf-idn"><div class="zf-lgb">${zfLogo(logoT)}</div><div class="zf-idt"><h3>${esc(nombre)}</h3>${est?`<p class="zf-est ${est.c}"><i></i>${est.t}</p>`:""}<p class="zf-meta">${meta.filter(Boolean).join('<span class="sep">·</span>')}</p></div></div>
+      <div class="zf-tmap">${mapa||""}</div>
+      <div class="zf-tpx"><b>${price||"—"}</b><p>${isNum(ses)?`<span class="zf-ses ${cs}">${Math.abs(ses)<0.0005?"0,0 %":pct(ses,1,true)}</span> última sesión`:sesTxt||"&nbsp;"}</p><p class="zf-prox">${prox||"&nbsp;"}</p></div>
+      <button type="button" class="zf-x" data-zf="cerrar" aria-label="Cerrar" title="Cerrar (Esc)">${ZF_IC.x}</button></header>
+    <aside class="zf-rail">${nav}<div class="zf-pg">${L.length>1?`<button type="button" data-zf="prev"${pv?` title="${esc(zfNom(pv))}"`:" disabled"} aria-label="Anterior">${ZF_IC.l}</button><span>${i+1} de ${L.length}</span><button type="button" data-zf="next"${nx?` title="${esc(zfNom(nx))}"`:" disabled"} aria-label="Siguiente">${ZF_IC.r}</button>`:""}</div></aside>
+    <main class="zf-main">${Object.entries(S).map(([k,h])=>`<div class="zf-s zf-s-${opcion?"op":k}" data-zf-p="${k}"${k===zfSec?"":" hidden"}>${h}</div>`).join("")}</main></div>`;
 }
+
+// nada se corta ni se desplaza: si un texto no cabe en su sitio, su letra baja un poco hasta que cabe
+function zfAjusta(root){ if(!root) return;
+  root.querySelectorAll(".zf-fit").forEach(e=>{ let k=1; e.style.setProperty("--k",1); const box=e.closest(".zf-cb")||e; while(box.scrollHeight>box.clientHeight+1&&k>.74){ k-=.02; e.style.setProperty("--k",k.toFixed(2)); } });
+  root.querySelectorAll(".zf-hd h2,.zf-hd p,.zf-fg .k,.zf-fg .v,.zf-fg .s,.zf-c h4,.zf-dl dd,.zf-dl dt,.zf-pie,.zf-tb td,.zf-tb th,.zf-pjt td,.zf-pjt th,.zf-est,.zf-meta,.zf-idt h3,.zf-cad span,.zf-cad b,.zf-esk span,.zf-esk b,.zf-nopos span").forEach(e=>{ if(e.scrollWidth<=e.clientWidth+1) return; let fs=parseFloat(getComputedStyle(e).fontSize); while(e.scrollWidth>e.clientWidth+1&&fs>10.5){ fs-=.5; e.style.fontSize=fs+"px"; } }); }
 
 let zfAgT=0;
 { const _r0=renderSheet0; renderSheet0=function(){ const S=$("sheet");
     if(ZF_PC()&&sheet&&zfVale(sheet.t)){ const D=zfDim(); S.classList.remove("sh-cq","sh-mv"); S.classList.add("gxf"); S.style.setProperty("--zfw",D.W+"px"); S.style.setProperty("--zfh",D.H+"px"); zfPrecarga(sheet.list);
       try{ $("sheet-b").innerHTML=zfFicha(sheet.t,D); }catch(e){ console.warn("Cartera · ficha:",e); S.classList.remove("gxf"); return _r0(); }
       S.setAttribute("aria-label",zfNom(sheet.t)); const L=sheet.list||[], i=L.indexOf(sheet.t); $("sh-prev").disabled=i<=0; $("sh-next").disabled=i<0||i>=L.length-1;
-      S.hidden=false; document.documentElement.classList.add("sh-open","zf-open"); markRows();
+      S.hidden=false; document.documentElement.classList.add("sh-open","zf-open"); markRows(); S.querySelectorAll(".zf-top,.zf-s:not([hidden])").forEach(zfAjusta);
       // si el calendario aún no ha llegado, la Agenda se rellena en cuanto llegue
       clearTimeout(zfAgT); if(!(typeof ACT!=="undefined"&&ACT&&ACT.ix)){ let n=0; const t0=sheet.t, re=()=>{ if(!sheet||sheet.t!==t0||S.hidden||!S.classList.contains("gxf")) return; if(typeof ACT!=="undefined"&&ACT&&ACT.ix) renderSheet(); else if(++n<30) zfAgT=setTimeout(re,2000); }; zfAgT=setTimeout(re,2000); }
       return; }
     S.classList.remove("gxf"); _r0(); if(!sheet||!S.classList.contains("gxf")) document.documentElement.classList.remove("zf-open"); }; }
 $("sheet").addEventListener("click",e=>{ const S=$("sheet"); if(!S.classList.contains("gxf")) return; const b=e.target.closest("[data-zf-s]");
-  if(b){ if(b.disabled) return; zfSec=b.dataset.zfS; S.querySelectorAll("[data-zf-s]").forEach(x=>x.toggleAttribute("aria-current",x===b)); S.querySelectorAll("[data-zf-p]").forEach(p=>p.hidden=p.dataset.zfP!==zfSec); return; }
+  if(b){ if(b.disabled) return; zfSec=b.dataset.zfS; S.querySelectorAll("[data-zf-s]").forEach(x=>x.toggleAttribute("aria-current",x===b)); S.querySelectorAll("[data-zf-p]").forEach(p=>p.hidden=p.dataset.zfP!==zfSec); zfAjusta(S.querySelector(`[data-zf-p="${zfSec}"]`)); return; }
   const a=e.target.closest("[data-zf]"); if(!a) return; e.preventDefault(); const k=a.dataset.zf; if(k==="cerrar") closeSheet(); else if(k==="prev") stepSheet(-1); else if(k==="next") stepSheet(1); });
 document.addEventListener("click",e=>{ const S=$("sheet"); if(!S.classList.contains("gxf")||S.hidden) return; if(e.target.closest(".sheet-bg")) closeSheet(); },true);
 { let zfT=0; addEventListener("resize",()=>{ clearTimeout(zfT); zfT=setTimeout(()=>{ const S=$("sheet"); if(sheet&&zfVale(sheet.t)&&(S.classList.contains("gxf")||ZF_PC())) renderSheet(); },120); }); }
