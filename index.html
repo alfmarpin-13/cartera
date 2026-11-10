@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-o1bmhfuYFmosY5KdW8GW0T3T+Nh9uWbQyx307epxQLc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-upcTgBJOOMqtbdCt2R+OvYqKS1iDUbCu4yN+1puuepo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3620,32 +3620,37 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 @media (min-width:761px){
   #v-universo > #s-plan{padding:40px 48px} #s-plan > .pl-full{display:none!important} #pl-open{display:inline-flex;align-items:center;gap:6px;margin-top:20px;height:auto;padding:0;border:0;background:none;box-shadow:none;font-size:13px;line-height:24px;font-weight:600;color:var(--ink)} #pl-open:hover{color:var(--ink2)} #pl-open svg{width:14px;height:14px}
 }
-/* v533 · la calculadora en el PC: panel vertical que flota a la derecha, bajo la barra de arriba (360 de ancho; alto según las operaciones) */
+/* v533–v534 · la calculadora en el PC: panel que flota (540 de ancho; alto según las operaciones); se arrastra por su barra de título */
 @media (max-width:760.98px){ .zcp{display:none!important} }
 @media (min-width:761px){
   .zcp{--zs:#1A231E;--zst:#EEECE6;--zs2:#A7AEA9;--zs3:#7F8882;--zsl:#4A564F;--zsr:#86D3AA;--zsn:#D88282;--zbt:#FFFFFF;--zbl:#DCD7CC;
-    position:fixed;top:calc(var(--tbh,0px) + 16px);right:16px;z-index:21;width:360px;max-height:calc(100vh - var(--tbh,0px) - 32px);display:flex;flex-direction:column;
-    padding:14px 20px 20px;border-radius:18px;background:var(--canvas);color:var(--ink);font-size:13px;line-height:1.5;
+    position:fixed;top:calc(var(--tbh,0px) + 16px);right:16px;z-index:21;width:540px;max-height:calc(100vh - var(--tbh,0px) - 32px);display:flex;flex-direction:column;
+    padding:14px 24px 24px;border-radius:18px;background:var(--canvas);color:var(--ink);font-size:13px;line-height:1.5;
     box-shadow:0 24px 64px -16px rgba(0,0,0,.30),0 0 0 1px color-mix(in srgb,var(--ink) 8%,transparent);animation:zcp-in .18s ease-out;font-variant-numeric:tabular-nums}
   .zcp[hidden]{display:none}
   .zcp *{box-sizing:border-box} .zcp button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-  .zcp-h{display:flex;align-items:center;justify-content:space-between;height:32px;margin-bottom:10px;flex:none}
+  .zcp-h{display:flex;align-items:center;justify-content:space-between;height:32px;margin-bottom:10px;flex:none;cursor:grab;user-select:none;touch-action:none} .zcp.zcp-mv .zcp-h{cursor:grabbing} .zcp.zcp-mv{box-shadow:0 30px 80px -16px rgba(0,0,0,.36),0 0 0 1px color-mix(in srgb,var(--ink) 10%,transparent)}
   .zcp-h b{font-size:13px;font-weight:600}
   .zcp-x{width:32px;height:32px;margin-right:-8px;border-radius:8px;display:grid;place-items:center;color:var(--ink3)} .zcp-x:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 6%,transparent)} .zcp-x svg{width:14px;height:14px}
-  .zcp .zc-scr{flex:none;background:var(--zs);color:var(--zst);border-radius:14px;padding:16px 18px 18px}
+  .zcp .zc-scr{flex:none;background:var(--zs);color:var(--zst);border-radius:14px;padding:18px 22px 20px}
   .zcp .zc-ln{display:grid;grid-template-columns:14px 1fr auto;column-gap:8px;align-items:center;height:28px;margin:0}
   .zcp .zc-s{color:var(--zs3);text-align:center} .zcp .zc-k{color:var(--zs2)} .zcp .zc-v{color:var(--zst);white-space:nowrap}
   .zcp .zc-ap{height:32px;margin-bottom:8px;cursor:text}
-  .zcp .zc-fd{display:inline-flex;align-items:center;justify-content:flex-end;gap:4px;height:32px;width:116px;padding:0 10px;border-radius:9px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+  .zcp .zc-fd{display:inline-flex;align-items:center;justify-content:flex-end;gap:4px;height:32px;width:140px;padding:0 10px;border-radius:9px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
   .zcp .zc-fd:focus-within{box-shadow:inset 0 0 0 1.5px var(--zsr)}
   .zcp input{min-width:0;border:0;background:none;outline:0;padding:0;font:inherit;text-align:right}
   .zcp .zc-fd input{width:100%;font-weight:500;color:var(--zst)} .zcp .zc-fd input::placeholder{color:var(--zs3)} .zcp .zc-fd i{font-style:normal;color:var(--zs2)}
   .zcp .zc-rule{border-top:1px solid var(--zsl);margin-top:10px}
   .zcp .zc-res{display:grid;grid-template-columns:14px 1fr auto;column-gap:8px;align-items:baseline;height:24px;margin-top:12px}
   .zcp .zc-res b{font-size:20px;line-height:24px;font-weight:600;color:var(--zsr);white-space:nowrap} .zcp .zc-res b.neg{color:var(--zsn)}
-  .zcp-ops{flex:1 1 auto;min-height:0;overflow:auto;margin:8px -20px 0;padding:0 20px;scrollbar-width:thin}
-  .zcp .zc-op{position:relative;display:grid;grid-template-columns:28px minmax(0,1fr) 88px;column-gap:10px;row-gap:2px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
-  .zcp .zc-lg{grid-row:1;width:28px;height:20px;display:flex;align-items:center;justify-content:center;color:var(--ink)}
+  .zcp-ops{flex:1 1 auto;min-height:0;overflow:auto;margin:6px -24px 0;padding:0 24px;scrollbar-width:thin}
+  .zcp .zc-op{position:relative;display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:14px;row-gap:4px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+  .zcp .zc-op>.zc-lg{grid-row:1}
+  .zcp .zc-l1{display:flex;align-items:center;justify-content:space-between;gap:24px;min-width:0}
+  .zcp .zc-l2{grid-column:2;display:flex;align-items:baseline;justify-content:space-between;gap:16px;min-width:0;font-size:12px;line-height:18px}
+  .zcp .zc-dt{display:flex;gap:20px;flex:none;white-space:nowrap}
+  .zcp .zc-d{white-space:nowrap} .zcp .zc-d:empty{display:none} .zcp .zc-d em{font-style:normal;color:var(--ink3);margin-right:6px} .zcp .zc-d small{font-size:12px;color:var(--ink3)}
+  .zcp .zc-lg{flex:none;width:32px;height:20px;display:flex;align-items:center;justify-content:center;color:var(--ink)}
   .zcp .gxsil{display:block;background:currentColor;-webkit-mask:no-repeat center/contain;mask:no-repeat center/contain} .zcp .gxsol{display:block;object-fit:contain}
   .zcp .gxsol.sol-d{filter:grayscale(1) contrast(8) opacity(.86)} .zcp .gxsol.sol-l{filter:grayscale(1) contrast(8) invert(1) opacity(.86)}
   .zcp .zc-sw{position:relative;display:flex;align-items:center;gap:4px;min-width:0;font-weight:500}
@@ -3654,14 +3659,12 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .zcp .zc-op:hover .zc-fl,.zcp .zc-sw:focus-within .zc-fl,.zcp .zc-t.zc-ph+.zc-fl{opacity:1}
   .zcp .zc-sel{position:absolute;inset:-4px -6px;width:calc(100% + 12px);height:calc(100% + 8px);opacity:0;cursor:pointer;font:inherit}
   .zcp .zc-sw:has(.zc-sel:focus-visible){outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
-  .zcp .zc-f{display:inline-flex;align-items:center;justify-content:flex-end;gap:4px;width:88px;padding:3px 1px;border-bottom:1px solid var(--ink3);line-height:18px;font-weight:500}
-  .zcp .zc-f:focus-within{border-bottom-color:var(--ink)} .zcp .zc-in{width:100%;color:var(--ink)} .zcp .zc-in::placeholder{color:var(--ink3);font-weight:400} .zcp .zc-f i{font-style:normal;font-weight:400;color:var(--ink3)}
-  .zcp .zc-x{position:absolute;right:-18px;top:16px;width:16px;height:16px;display:grid;place-items:center;color:var(--ink3);opacity:0}   /* quitar: en el margen derecho, solo al pasar el ratón */ .zcp .zc-x svg{width:12px;height:12px}
-  .zcp .zc-op:hover .zc-x,.zcp .zc-x:focus-visible{opacity:1} .zcp .zc-x:hover{color:var(--ink)}
-  .zcp .zc-sub{grid-column:2/4;font-size:12px;line-height:18px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .zcp .zc-vt .zc-sub{color:var(--neg)}
+  .zcp .zc-sub{min-width:0;font-size:12px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .zcp .zc-vt .zc-sub{color:var(--neg)}
   .zcp .zc-all{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
-  .zcp .zc-kv{grid-column:2/4;display:flex;justify-content:space-between;font-size:12px;line-height:18px;white-space:nowrap} .zcp .zc-kv:empty{display:none}
-  .zcp .zc-kv span:first-child{color:var(--ink3)} .zcp .zc-kv small{font-size:12px;color:var(--ink3)}
+  .zcp .zc-f{flex:none;display:inline-flex;align-items:center;justify-content:flex-end;gap:4px;width:96px;padding:3px 1px;border-bottom:1px solid var(--ink3);line-height:18px;font-weight:500}
+  .zcp .zc-f:focus-within{border-bottom-color:var(--ink)} .zcp .zc-in{width:100%;color:var(--ink)} .zcp .zc-in::placeholder{color:var(--ink3);font-weight:400} .zcp .zc-f i{font-style:normal;font-weight:400;color:var(--ink3)}
+  .zcp .zc-x{position:absolute;right:-20px;top:20px;width:16px;height:16px;display:grid;place-items:center;color:var(--ink3);opacity:0} .zcp .zc-x svg{width:12px;height:12px}   /* quitar: en el margen derecho, solo al pasar el ratón */
+  .zcp .zc-op:hover .zc-x,.zcp .zc-x:focus-visible{opacity:1} .zcp .zc-x:hover{color:var(--ink)}
   .zcp .zc-acts{flex:none;display:flex;align-items:center;gap:8px;padding-top:16px}
   .zcp .zc-b{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 14px;border-radius:999px;border:1px solid var(--zbl);background:var(--zbt);font-size:12px;font-weight:500;color:var(--ink)}
   .zcp .zc-b svg{width:12px;height:12px} .zcp .zc-b:hover:not(:disabled){border-color:var(--ink3)} .zcp .zc-b:disabled{opacity:.4;cursor:default}
@@ -4369,7 +4372,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v533";   // la versión publicada, en el pie
+const VER="v534";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7303,29 +7306,28 @@ function zfCuenta(){ const k=DATA.kpi, fx=DATA.fx||{EUR:1}, tot=k.value||0, liq=
 const zcFmt=v=>isNum(v)?nf(v%1?2:0).format(v):"", zcRaw=v=>isNum(v)?String(v).replace(".",","):"";
 function zfPanel(){ const ln=(s,k,id)=>`<div class="zc-ln"><span class="zc-s">${s}</span><span class="zc-k">${k}</span><span class="zc-v" id="${id}"></span></div>`;
   const P=document.createElement("aside"); P.id="zcp"; P.className="zcp"; P.hidden=true; P.setAttribute("aria-label","Calculadora de operaciones");
-  P.innerHTML=`<div class="zcp-h"><b>Calculadora</b><button type="button" class="zcp-x" id="zcp-x" aria-label="Cerrar la calculadora" title="Cerrar">${ZC_X}</button></div>
+  P.innerHTML=`<div class="zcp-h" title="Arrastra para moverla"><b>Calculadora</b><button type="button" class="zcp-x" id="zcp-x" aria-label="Cerrar la calculadora" title="Cerrar">${ZC_X}</button></div>
    <div class="zc-scr">
     <label class="zc-ln zc-ap"><span class="zc-s"></span><span class="zc-k">Aportación</span><span class="zc-fd"><input id="zc-ap" type="text" inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Aportación"><i>€</i></span></label>
     ${ln("+","Liquidez","zc-liq")}${ln("+","Ventas","zc-ven")}${ln("−","Compras","zc-com")}${ln("−","Comisiones","zc-fee")}
     <div class="zc-rule"></div><div class="zc-res"><span class="zc-s">=</span><span class="zc-k">Disponible</span><b id="zc-left"></b></div></div>
    <div class="zcp-ops" id="zc-tb"></div>
-   <div class="zc-acts"><button type="button" class="zc-b" id="zc-add">${ZC_MAS}Compra</button><button type="button" class="zc-b" id="zc-sell">${ZC_MENOS}Venta</button><button type="button" class="zc-clr" id="zc-clr">Vaciar todo</button></div>`;
-  document.body.appendChild(P); zfCalcEventos(); return P; }
+   <div class="zc-acts"><button type="button" class="zc-b" id="zc-add">${ZC_MAS}Añadir compra</button><button type="button" class="zc-b" id="zc-sell">${ZC_MENOS}Añadir venta</button><button type="button" class="zc-clr" id="zc-clr">Vaciar todo</button></div>`;
+  document.body.appendChild(P); zfCalcEventos(); zfCalcArrastre(); return P; }
 // las operaciones, una debajo de otra: empresa e importe en la primera línea; debajo, acciones y precio; y después precio medio y peso
 function zfCalcTabla(){ const T=document.getElementById("zc-tb"); if(!T) return;
-  T.innerHTML=plan.rows.map((o,i)=>`<div class="zc-op${o.sell?" zc-vt":""}" data-i="${i}">
-    <span class="zc-lg"></span><span class="zc-sw"><span class="zc-t"></span>${ZC_FL}<select class="zc-sel" data-i="${i}" aria-label="${o.sell?"Empresa que vendes":"Empresa que compras"}">${planOpts(o.t,o.sell)}</select></span>
-    <span class="zc-f"><input class="zc-in" data-i="${i}" type="text" inputmode="${o.sell?"numeric":"decimal"}" autocomplete="off" aria-label="${o.sell?"Acciones que vendes":"Importe"}" value="${zcFmt(o.sell?o.n:o.amt)}"><i>${o.sell?"acc.":"€"}</i></span>
-    <button type="button" class="zc-x" data-i="${i}" aria-label="Quitar" title="Quitar">${ZC_X}</button>
-    <small class="zc-sub"></small><span class="zc-kv" data-c="pm"></span><span class="zc-kv" data-c="w"></span></div>`).join("");
+  T.innerHTML=plan.rows.map((o,i)=>`<div class="zc-op${o.sell?" zc-vt":""}" data-i="${i}"><span class="zc-lg"></span>
+    <span class="zc-l1"><span class="zc-sw"><span class="zc-t"></span>${ZC_FL}<select class="zc-sel" data-i="${i}" aria-label="${o.sell?"Empresa que vendes":"Empresa que compras"}">${planOpts(o.t,o.sell)}</select></span>
+     <span class="zc-f"><input class="zc-in" data-i="${i}" type="text" inputmode="${o.sell?"numeric":"decimal"}" autocomplete="off" aria-label="${o.sell?"Acciones que vendes":"Importe"}" value="${zcFmt(o.sell?o.n:o.amt)}"><i>${o.sell?"acc.":"€"}</i></span></span>
+    <span class="zc-l2"><small class="zc-sub"></small><span class="zc-dt"><span class="zc-d" data-c="pm"></span><span class="zc-d" data-c="w"></span></span></span>
+    <button type="button" class="zc-x" data-i="${i}" aria-label="Quitar" title="Quitar">${ZC_X}</button></div>`).join("");
   zfCalcPinta(); }
 function zfCalcPinta(){ const Z=document.getElementById("zcp"); if(!Z||Z.hidden||!DATA) return; const C=zfCuenta(), e2=v=>eur(v,2), ap=$("zc-ap");
   if(document.activeElement!==ap) ap.value=zcFmt(plan.aport);
   $("zc-liq").textContent=e2(C.liq); $("zc-ven").textContent=e2(C.sells); $("zc-com").textContent=e2(C.buys); $("zc-fee").textContent=e2(C.fees);
   const L=$("zc-left"), neg=C.left<-0.005; L.textContent=neg?"−"+e2(-C.left):e2(Math.abs(C.left)); L.classList.toggle("neg",neg);
-  const kv=(k,v)=>v?`<span>${k}</span><span>${v}</span>`:"";
   C.rows.forEach((x,i)=>{ const R=Z.querySelector(`.zc-op[data-i="${i}"]`); if(!R) return; const o=x.o, r=x.r, mx=plShares(o.t), inp=R.querySelector(".zc-in");
-    R.querySelector(".zc-lg").innerHTML=r?gxSil(r.ticker,28,20,28,20):"";
+    R.querySelector(".zc-lg").innerHTML=r?gxSil(r.ticker,32,20,32,20):"";
     const t=R.querySelector(".zc-t"); t.textContent=r?r.name:(o.sell?"Qué vendes":"Qué compras"); t.classList.toggle("zc-ph",!r);
     inp.placeholder=o.sell&&mx?`máx. ${nf(0).format(mx)}`:"0"; if(document.activeElement!==inp) inp.value=zcFmt(o.sell?o.n:o.amt);
     let sub="";
@@ -7335,10 +7337,10 @@ function zfCalcPinta(){ const Z=document.getElementById("zcp"); if(!Z||Z.hidden|
     R.querySelector(".zc-sub").innerHTML=sub;
     const hay=r&&x.sh>0, pm=!r?"":hay?(x.pm0!=null?`<small>${nf(2).format(x.pm0)} → </small>`:"")+(x.pm1!=null?money(x.pm1,r.cur):"—"):x.pm0!=null?money(x.pm0,r.cur):"",
       w=!r?"":x.w1!=null?(x.w0>0.0005?`<small>${nf(1).format(x.w0*100)} → </small>`:"")+pct(x.w1):x.w0>0.0005?pct(x.w0):"";
-    R.querySelector('[data-c="pm"]').innerHTML=kv("Precio medio",pm); R.querySelector('[data-c="w"]').innerHTML=kv("Peso",w);
+    R.querySelector('[data-c="pm"]').innerHTML=pm?`<em>Precio medio</em>${pm}`:""; R.querySelector('[data-c="w"]').innerHTML=w?`<em>Peso</em>${w}`:"";
     const one=plan.rows.length===1; R.querySelector(".zc-x").hidden=one&&!(o.t||isNum(o.amt)||isNum(o.n)); });
   const ok=plan.rows.every(o=>o.t)||plRow0()!=null; ["zc-add","zc-sell"].forEach(id=>{ $(id).disabled=!ok; $(id).title=ok?"":"Elige la empresa de la operación anterior"; });
-  $("zc-clr").style.visibility=plHas()?"":"hidden"; }
+  $("zc-clr").style.visibility=plHas()?"":"hidden"; if(Z.style.left) zfCalcSitio(parseFloat(Z.style.left),parseFloat(Z.style.top)); }
 // tras cada cambio: se guarda y se recalcula la de Universo (su frase usa esas cifras)
 const zfCalcGuarda=()=>{ planSave(); renderPlan(); };
 function zfCalcEventos(){ const Z=document.getElementById("zcp");
@@ -7363,15 +7365,29 @@ function zfCalcEventos(){ const Z=document.getElementById("zcp");
       off(); plan={aport:null,rows:[{t:"",amt:null}]}; zfCalcGuarda(); zfCalcTabla(); }); }
   // Esc solo la cierra si estás dentro de ella (así no cierra a la vez una ficha abierta)
   Z.addEventListener("keydown",e=>{ if(e.key==="Escape"){ e.stopPropagation(); e.preventDefault(); zfCalcCierra(); } }); }
+// arrastrar por la barra del título, como una ventana: nunca se sale de la pantalla y recuerda dónde la dejaste (en este navegador)
+const ZC_POS="calc-pos";
+function zfCalcSitio(x,y){ const P=document.getElementById("zcp"); if(!P) return; const tb=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--tbh"))||0;
+  P.style.maxHeight=""; const w=P.offsetWidth, h=Math.min(P.offsetHeight,innerHeight-tb-16);   // el panel entero, siempre dentro de la pantalla
+  x=Math.min(Math.max(8,x),innerWidth-w-8); y=Math.min(Math.max(tb+8,y),innerHeight-h-8);
+  P.style.left=x+"px"; P.style.top=y+"px"; P.style.right="auto"; P.style.maxHeight=(innerHeight-y-8)+"px"; return {x,y}; }
+function zfCalcArrastre(){ const P=document.getElementById("zcp"), H=P.querySelector(".zcp-h");
+  H.addEventListener("pointerdown",e=>{ if(e.button!==0||e.target.closest("button")) return; e.preventDefault(); const r=P.getBoundingClientRect(), dx=e.clientX-r.left, dy=e.clientY-r.top;
+    H.setPointerCapture(e.pointerId); P.classList.add("zcp-mv");
+    const mv=ev=>zfCalcSitio(ev.clientX-dx,ev.clientY-dy), up=ev=>{ H.removeEventListener("pointermove",mv); H.removeEventListener("pointerup",up); H.removeEventListener("pointercancel",up); P.classList.remove("zcp-mv");
+      const q=P.getBoundingClientRect(); try{ localStorage.setItem(ZC_POS,JSON.stringify({x:Math.round(q.left),y:Math.round(q.top)})); }catch{} };
+    H.addEventListener("pointermove",mv); H.addEventListener("pointerup",up); H.addEventListener("pointercancel",up); }); }
+function zfCalcPon(){ const P=document.getElementById("zcp"); if(!P) return; let s=null; try{ s=JSON.parse(localStorage.getItem(ZC_POS)||"null"); }catch{}
+  if(s&&isNum(s.x)&&isNum(s.y)) zfCalcSitio(s.x,s.y); else { P.style.left=P.style.top=P.style.right=P.style.maxHeight=""; } }
 function zfCalcCierra(){ const P=document.getElementById("zcp"); if(!P||P.hidden) return; if(P.contains(document.activeElement)) document.activeElement.blur(); P.hidden=true; document.documentElement.classList.remove("zcp-on"); }
 // abrir (o cerrar si ya está abierta): desde Opciones o desde Universo
 const zfCalcAbre=()=>{ if(!DATA) return; $("more-m").hidden=true; $("more").setAttribute("aria-expanded","false");
   const P=document.getElementById("zcp")||zfPanel(); if(!P.hidden){ zfCalcCierra(); return; }
-  P.hidden=false; document.documentElement.classList.add("zcp-on"); zfCalcTabla(); };
+  P.hidden=false; document.documentElement.classList.add("zcp-on"); zfCalcTabla(); zfCalcPon(); };
 // si llegan datos nuevos con el panel abierto, se recalcula (sin rehacer la operación en la que escribes)
 { const _rp=renderPlan; renderPlan=function(){ _rp(); const P=document.getElementById("zcp"); if(P&&!P.hidden&&!P.contains(document.activeElement)) zfCalcTabla(); }; }
 // en el móvil la calculadora sigue en Universo: si la ventana se estrecha, el panel se cierra
-addEventListener("resize",()=>{ if(!ZF_PC()) zfCalcCierra(); });
+addEventListener("resize",()=>{ if(!ZF_PC()) zfCalcCierra(); else { const P=document.getElementById("zcp"); if(P&&!P.hidden) zfCalcPon(); } });
 // en Opciones (PC), debajo del Cuadre; y en Universo, donde estaba, su frase y el botón para abrirla
 { const c=$("mm-chk"); if(c&&!$("mm-calc")) c.insertAdjacentHTML("afterend",'<button type="button" id="mm-calc" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="1.75" width="10" height="12.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="5" y="3.75" width="6" height="2.5" rx=".6" fill="currentColor"/><circle cx="5.75" cy="8.75" r=".8" fill="currentColor"/><circle cx="8" cy="8.75" r=".8" fill="currentColor"/><circle cx="10.25" cy="8.75" r=".8" fill="currentColor"/><circle cx="5.75" cy="11.5" r=".8" fill="currentColor"/><circle cx="8" cy="11.5" r=".8" fill="currentColor"/><circle cx="10.25" cy="11.5" r=".8" fill="currentColor"/></svg><span>Calculadora de operaciones</span></button>'); }
 $("more-m").addEventListener("click",e=>{ if(e.target.closest("#mm-calc")) zfCalcAbre(); });
