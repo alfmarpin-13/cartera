@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-qaDnqvCaJZGkf6/xyuCKnsi127Mx/Ry19jCq73rYNIM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Wv7PND6a5WSzX2u+SnbfUrQaO1IG9VhZkthElffqg6w=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3615,6 +3615,29 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .zf.zfm{height:561px} .zfm .zf-lat,.zfm .zf-main{height:561px} .zfm .zf-idt{top:447px} .zfm .zf-pg{top:507px}
 .zmi{width:72px;height:72px;border-radius:18px;color:var(--ink2)} .zmi svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .zgo{display:flex;align-items:center;gap:4px;font-size:13px;line-height:24px;font-weight:600;color:var(--ink)} .zgo svg{width:14px;height:14px} .zgo:hover{color:var(--ink2)}
+/* v529 · la calculadora en ventana (PC): la misma calculadora, colocada en los bloques de la ficha */
+#pl-open{display:none}
+@media (min-width:761px){
+  #v-universo > #s-plan{padding:40px 48px} #s-plan > .pl-full{display:none!important} #pl-open{display:inline-flex;align-items:center;gap:6px;margin-top:20px;height:auto;padding:0;border:0;background:none;box-shadow:none;font-size:13px;line-height:24px;font-weight:600;color:var(--ink)} #pl-open:hover{color:var(--ink2)} #pl-open svg{width:14px;height:14px}
+  .zcalc #pl-full{position:absolute;inset:0;display:block!important;pointer-events:none;margin:0;padding:0}
+  .zcalc #pl-full>*{pointer-events:auto}
+  .zcalc .pl-mvb,.zcalc #pl-k{display:contents}
+  .zcalc .tablewrap{position:absolute;left:44px;top:192px;width:1272px;height:257px;overflow:auto;margin:0;scrollbar-width:thin}
+  .zcalc .pl-acts{position:absolute;left:60px;top:477px;width:1240px;margin:0;padding:0}
+  .zcalc .pl-ak{position:absolute;left:60px;top:617px;margin:0;padding:0;border:0;display:flex;flex-direction:column;gap:6px}
+  .zcalc .pl-ak .mk-k{font-size:12.5px;line-height:20px;color:var(--ink3)}
+  .zcalc #pl-k .mk{position:absolute;padding:0;border:0;margin:0;width:358px;display:flex;flex-direction:column;gap:4px}
+  .zcalc #pl-k .mk:nth-child(1){left:60px;top:723px}
+  .zcalc #pl-k .mk:nth-child(2){left:498px;top:617px}
+  .zcalc #pl-k .mk:nth-child(3){left:498px;top:723px}
+  .zcalc #pl-k .mk:nth-child(4){left:936px;top:617px;width:364px}
+  .zcalc #pl-k .mk-k{font-size:12.5px;line-height:20px;color:var(--ink3)}
+  .zcalc #pl-k .mk-v{font-size:17px;line-height:24px;font-weight:600;color:var(--ink)}
+  .zcalc #pl-k .mk-v.neg{color:var(--neg)}
+  .zcalc .rt.rt thead th{top:0!important;background:var(--zc)}
+  .zcalc .mk-sb i.s2,.zcalc .mk-sl i.s2{background:var(--pos)}
+}
+@media (max-width:760.98px){ #mm-calc{display:none} }
 </style>
 
 <div class="wrap">
@@ -4307,7 +4330,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v528";   // la versión publicada, en el pie
+const VER="v529";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6465,12 +6488,12 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   C.innerHTML=k==="dd"?bloque(ok.slice().sort((a,b)=>a.dd-b.dd),"Más lejos de su máximo")+bloque(ok.slice().sort((a,b)=>b.dd-a.dd),"Más cerca de su máximo",true)
     :bloque(ok.filter(r=>r[k]>=5e-4),"Suben")+bloque(ok.filter(r=>r[k]<=-5e-4).reverse(),"Bajan");   // v512: las que se quedan en 0,0 % no salen en ninguno de los dos
   // las columnas de la exigencia: cada empresa, a la altura de su TIR esperada y en la columna de lo que le exiges
-  const okr=DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0), reqs=[...new Set(okr.map(r=>Math.round(r.req*1000)/1000))].sort((a,b)=>a-b), sob=okr.filter(r=>r.margin>0);
+  const okr=DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0&&r.irrExp<=0.4)   /* v529: más de un 40 % es una excepción irreal: no sale */, reqs=[...new Set(okr.map(r=>Math.round(r.req*1000)/1000))].sort((a,b)=>a-b), sob=okr.filter(r=>r.margin>0);
   if(!reqs.length){ s2.remove(); gxPega(s); return; }
   const top3=sob.slice().sort((a,b)=>b.margin-a.margin).slice(0,3);
   okr.forEach(r=>gxSol(gxSrc(r.ticker),r.ticker));   // v488: los logos de los carteles, preparados ya (si se preparaban al pasar el ratón, la gráfica se redibujaba y el cartel desaparecía)
   s2.querySelector(".gx-c2").innerHTML=gxH(`${sob.length} de ${N} rinden más de lo que les exiges.`,top3.length?`Las que más: ${top3.map(r=>esc(r.name)).join(", ").replace(/, ([^,]*)$/," y $1")}.`:"Ninguna lo supera.");
-  const U=s2.querySelector(".gx-un"), WU=Math.round(U.getBoundingClientRect().width), H=340, PL=46, tp=16, bottom=H-44, ymin=-0.10, ymax=Math.max(0.4,Math.ceil(Math.max(...okr.map(r=>r.irrExp))*10)/10);
+  const U=s2.querySelector(".gx-un"), WU=Math.round(U.getBoundingClientRect().width), H=340, PL=46, tp=16, bottom=H-44, ymin=-0.10, ymax=0.4;
   const ys=v=>tp+(ymax-Math.max(ymin,Math.min(ymax,v)))/(ymax-ymin)*(bottom-tp), cw=(WU-PL)/reqs.length; let g=""; const TODOS=[], LB=[], T3=new Set(top3.map(r=>r.ticker));
   for(let v=Math.round(ymin*10);v<=Math.round(ymax*10);v++){ const y=ys(v/10); g+=`<line x1="${PL}" x2="${WU}" y1="${y}" y2="${y}" stroke="var(--line)" ${v===0?"":'stroke-dasharray="2 4"'}/><text x="${PL-10}" y="${y+4}" text-anchor="end" class="t3">${v<0?"−":""}${Math.abs(v*10)} %</text>`; }
   reqs.forEach((q,ci)=>{ const cx=PL+cw*ci+cw/2, yq=ys(q);
@@ -6490,7 +6513,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   const caja=[], ET=[]; LB.forEach(p=>{ const ci=reqs.indexOf(Math.round(p.r.req*1000)/1000), c0=PL+cw*ci+10, c1=PL+cw*(ci+1)-10, aw=LOGO_ANCHO[p.r.ticker], tw=aw?Math.min(92,Math.round(20*(LOGO_R[aw]||3.5))):40, h=22,   /* v503: logo ancho si lo hay */ cl=x=>Math.min(Math.max(x,c0),c1-tw);
     const cands=[{x0:p.x+12,y0:p.y-h/2},{x0:p.x-12-tw,y0:p.y-h/2},{x0:cl(p.x-tw/2),y0:p.y-h-10},{x0:cl(p.x-tw/2),y0:p.y+10},{x0:cl(p.x-tw/2),y0:p.y-h-32},{x0:cl(p.x-tw/2),y0:p.y+32}].map(c=>({...c,x1:c.x0+tw,y1:c.y0+h}));
     const fuera=c=>c.x0<c0-0.5||c.x1>c1+0.5||c.y0<tp-4||c.y1>bottom+4, choca=c=>TODOS.some(q=>q!==p&&q.x+7>c.x0&&q.x-7<c.x1&&q.y+7>c.y0&&q.y-7<c.y1)||caja.some(b=>b.x0<c.x1&&b.x1>c.x0&&b.y0<c.y1&&b.y1>c.y0);
-    const c=cands.find(c=>!fuera(c)&&!choca(c))||cands.find(c=>!fuera(c))||cands[2];
+    const c=cands.find(c=>!fuera(c)&&!choca(c))||cands.find(c=>!fuera(c)); if(!c) return;   /* v529: un logo nunca se sale de su columna: si no cabe dentro, no se pinta */
     caja.push(c); ET.push(`<span class="gx-et" style="left:${c.x0.toFixed(1)}px;top:${c.y0.toFixed(1)}px">${gxLogo(p.r.ticker,tw,h,{ancho:!!aw})}</span>`); });
   U.innerHTML=`<svg width="${WU}" height="${H+6}" viewBox="0 0 ${WU} ${H+6}" role="img" aria-label="TIR esperada frente a la exigida">${g}</svg>${ET.join("")}<span class="gx-tip" hidden></span>`;
   // al pasar el ratón por un punto, su cartel (logo, nombre y TIR); al pulsarlo, su ficha
@@ -7214,6 +7237,28 @@ function zfMov(o){
     <main class="zf-main"><div class="zf-s">${zFr(l1,l2)}${h}</div></main>
     <button type="button" class="zf-x" data-zf="cerrar" aria-label="Cerrar" title="Cerrar (Esc)">${ZF_IC.x}</button></div>`;
 }
+
+// ── v529 · la calculadora de operaciones en el PC: se abre en una ventana como el Cuadre (1360 × 980), desde Opciones o desde Universo.
+// Es la misma calculadora (se lleva a la ventana tal cual y vuelve a Universo al cerrar), así que hace exactamente lo mismo
+const zfCalcAbre=()=>{ if(!DATA) return; $("more-m").hidden=true; $("more").setAttribute("aria-expanded","false"); openSheet("calc","__calc",[]); };
+function zfCalcVuelve(){ const F=$("pl-full"), S=$("s-plan"); if(F&&S&&!S.contains(F)) S.appendChild(F); }
+function zfCalcFr(){ const box=document.getElementById("zcalc-fr"), T=$("gxpl-t"); if(!box||!T) return; const s=T.querySelectorAll(":scope > span"); box.innerHTML=zFr(s[0]?s[0].innerHTML:"",s[1]?s[1].innerHTML:""); }
+function zfCalc(){ const {LX0,X2,RX0,RW,T1,Y2,CW2,FW}=ZG;
+  const h=`<div id="zcalc-fr"></div>`+zC(LX0,T1,FW,395,"Operaciones")+zC(LX0,Y2,CW2,395,"Tu dinero")+zC(X2,Y2,CW2,395,"Lo que gastas")+zC(RX0,Y2,RW,395,"Lo que te queda");
+  return `<div class="zf zfq zcalc"><main class="zf-main"><div class="zf-s" id="zcalc-s">${h}</div></main><button type="button" class="zf-x" data-zf="cerrar" aria-label="Cerrar" title="Cerrar (Esc)">${ZF_IC.x}</button></div>`; }
+{ const _r1=renderSheet0; renderSheet0=function(){ const S=$("sheet");
+    if(!(sheet&&sheet.t==="__calc")) zfCalcVuelve();
+    if(ZF_PC()&&sheet&&sheet.t==="__calc"&&DATA){ const D=zfDim(); S.classList.remove("sh-cq","sh-mv"); S.classList.add("gxf"); S.style.setProperty("--zfw",Math.round(1360*D.z)+"px"); S.style.setProperty("--zfh",Math.round(980*D.z)+"px"); S.style.setProperty("--zfz",D.z);
+      if(!document.getElementById("zcalc-s")){ zfCalcVuelve(); $("sheet-b").innerHTML=zfCalc(); }
+      const box=document.getElementById("zcalc-s"), F=$("pl-full"); if(F&&!box.contains(F)) box.appendChild(F);
+      renderPlan(); zfCalcFr(); S.setAttribute("aria-label","Calculadora de operaciones"); $("sh-prev").disabled=$("sh-next").disabled=true; S.hidden=false; document.documentElement.classList.add("sh-open","zf-open"); markRows(); return; }
+    if(sheet&&sheet.t==="__calc"){ sheet=null; }   // en el móvil la calculadora sigue en Universo
+    return _r1(); }; }
+{ const _pc2=planCalc; planCalc=function(){ _pc2(); try{ zfCalcFr(); }catch(e){} }; }
+// en Opciones (PC), debajo del Cuadre; y en Universo, donde estaba, su frase y el botón para abrirla
+{ const c=$("mm-chk"); if(c&&!$("mm-calc")) c.insertAdjacentHTML("afterend",'<button type="button" id="mm-calc" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="10" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 5h5M5.5 8.5h1M7.5 8.5h1M9.5 8.5h1M5.5 11h1M7.5 11h1M9.5 11h1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Calculadora de operaciones</span></button>'); }
+$("more-m").addEventListener("click",e=>{ if(e.target.closest("#mm-calc")) zfCalcAbre(); });
+{ const S=$("s-plan"); if(S&&!$("pl-open")) S.insertAdjacentHTML("beforeend",'<button type="button" id="pl-open">Abrir la calculadora'+ZF_IC.r+'</button>'); $("pl-open").addEventListener("click",zfCalcAbre); }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
