@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-nJAn7XX+BFrvYpBSOFbiZgM6cGOZR5O7sIlC275hLuM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-gKacHfHu8RjSrkh2nkvX3YOjUWvlzNY1XiUdxQPd0y4=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3749,6 +3749,12 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 }
 /* v550 · mapa de Resumen: las que aún no cotizan llevan «—» en gris, como en la tabla de Posiciones */
 @media (min-width:701px){ #v-resumen .zr .gx-t2 b.zr-nd{color:var(--ink3)} }
+/* v552 · Posiciones (PC): la frase con datos en lugar del título y del dato pequeño de la derecha, como los demás bloques */
+@media (min-width:701px){
+  #s-pos > .chart-head{align-items:flex-start;margin-bottom:32px}
+  #s-pos > .chart-head .st,#s-pos > .chart-head .pos-age{display:none}
+  #s-pos > .chart-head .gxan-t{margin:0}
+}
 </style>
 
 <div class="wrap">
@@ -4441,7 +4447,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v551";   // la versión publicada, en el pie
+const VER="v552";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7520,6 +7526,12 @@ document.addEventListener("click",e=>{ const op=e.target.closest('.kw-m [data-kw
     if(mx>0){ y.max=Math.ceil(mx*1.04/1000)*1000; let st=0; if(mn>mx*.3){ y.min=Math.floor(mn*.96/1000)*1000; st=[10000,20000,25000,50000,100000].find(k=>(y.max-y.min)/k<=4)||0; }   // en «Último año», sin hueco debajo de la línea más baja
     y.afterBuildTicks=sc=>{ if(st){ const t=[]; for(let v=Math.ceil(sc.min/st)*st;v<sc.max;v+=st) t.push({value:v}); sc.ticks=t; } else sc.ticks=sc.ticks.filter(k=>k.value!==sc.max&&(k.value!==sc.min||sc.min===0)); }; } }catch(e){ console.warn("Cartera · eje de Evolución:",e); } }
   return _mk.apply(this,arguments); }; }
+// v552 · Posiciones (PC) abre con una frase con datos, como Dividendos, Trayectoria o la lista de Universo: «21 posiciones y 1 opción, / con una antigüedad media de 1,3 años.»
+function zfPosT(){ if(innerWidth<=MOVIL||!DATA) return; const S=$("s-pos"), h=S&&S.querySelector(".chart-head > div:first-child"), A=$("pos-age"); if(!h||!A) return;
+  const n=DATA.pos.filter(p=>!p.isOption&&p.shares>0).length, o=DATA.pos.filter(p=>p.isOption).length, bs=A.querySelectorAll("b"), edad=bs.length?bs[bs.length-1].textContent.trim():"";
+  let T=$("gxpos-t"); if(!T){ T=document.createElement("h2"); T.id="gxpos-t"; T.className="gxan-t gxan-x"; h.prepend(T); }
+  T.innerHTML=`<span>${n} ${n===1?"posición":"posiciones"}${o?` y ${o} ${o===1?"opción":"opciones"}`:""}${edad?",":"."}</span>${edad?`<span>con una antigüedad media de ${edad}.</span>`:""}`; }
+{ const _tm2=renderTreemap; renderTreemap=function(){ _tm2.apply(this,arguments); try{ zfPosT(); }catch(e){ console.warn("Cartera · Posiciones:",e); } }; }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
