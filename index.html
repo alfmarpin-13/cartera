@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-BADJaQDEBf5YFxItimz7t0OlBGA5uQLrwr5yRXqKEoY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-GxSXqAKkLwJuI4nigcz5psemwRrNkhuY3jnEsDB2HtI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4306,7 +4306,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v526";   // la versión publicada, en el pie
+const VER="v527";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7166,13 +7166,18 @@ function zfMov(o){
   const qty=(n,t)=>{ const c=contratos(n,t); return c?`${nf(0).format(c)} ${c===1?"contrato":"contratos"}`:mvQty(n); };
   // un bloque de filas: nombre a la izquierda, cifra a la derecha; «t» es el total (raya fina encima, en negrita)
   const filas=(X,W,rows)=>{ let y=T1+64, h=""; rows.filter(Boolean).forEach(([a,b,c])=>{ if(c==="t"){ h+=`<div class="zsep" style="left:${X+28}px;width:${W-56}px;top:${y+3}px"></div>`; y+=7; }
-      if(c==="g"){ y+=16; return; } h+=zT(X+28,y,a,"zr1 "+(c==="t"?"g1":"g"))+zT(X+28,y,b??"—","zr2 "+(c==="t"?"":"n"),`width:${W-56}px`); y+=28; }); return h; };
+      if(c==="g"){ y+=16; return; }
+      // si el rótulo y la cifra no caben en la misma línea (un comentario largo), el texto baja debajo del rótulo y ocupa las líneas que necesite
+      const wv=zfMide(zfTx(b??""),13), cab=zfMide(zfTx(a),13)+24+wv<=W-56;
+      if(cab){ h+=zT(X+28,y,a,"zr1 "+(c==="t"?"g1":"g"))+zT(X+28,y,b??"—","zr2 "+(c==="t"?"":"n"),`width:${W-56}px`); y+=28; return; }
+      let n=1, w=0; zfTx(b).split(/\s+/).forEach(p=>{ const d=zfMide(p+" ",13); if(w+d>W-56+3&&w>0){ n++; w=d; } else w+=d; });
+      h+=zT(X+28,y,a,"zr1 g")+`<div class="zq zlv3" style="left:${X+28}px;top:${y+26}px;width:${W-56}px;color:var(--ink)">${b}</div>`; y+=28+n*20+6; }); return h; };
   const blq=[]; let tk=null, name="", tipo="", l1="", l2="", ic=null;
   if(k==="buy"||k==="lot"){ const x=k==="lot"?r:s; tk=x.ticker; name=cname(x.ticker,x.name); tipo="Compra"; const n=qty(x.shares,tk), pl=x.shares===1&&!contratos(x.shares,tk)?"la":"las";
     l1=`Compraste ${n} de ${esc(name)} el ${F(x.bd)} por ${PV(eur(x.bt,2))}.`;
     l2=x.sd?`A ${money(x.bp,x.cur)} cada una; ${pl} vendiste ${mvTiempo(x.bd,x.sd)} después, ${x.pnl>=0?"ganando":"perdiendo"} ${PV(eur(Math.abs(x.pnl||0),2))}.`:`A ${money(x.bp,x.cur)} cada una, en ${esc(x.broker||"tu bróker")}; siguen en tu cartera.`;
     blq.push(["Desglose",[[`${esc(n)} × ${money(x.bp,x.cur)}`,PV(eur(x.bt-(x.bfee||0),2))],["Comisión",PV(eur(x.bfee||0,2))],["Total",PV(eur(x.bt,2)),"t"]]]);
-    blq.push(x.sd?["Después",[["Vendida",fechaCorta(x.sd)],["Precio de venta",money(x.sp,x.cur)],["Tiempo en cartera",mvTiempo(x.bd,x.sd)],["Resultado",`<span class="${cls(x.pnl)}">${PV(seur(x.pnl,2))}</span>`,"t"]]]:["Operación",[["Fecha",fechaCorta(x.bd)],["Bróker",esc(x.broker||"")],x.note?["Comentario",esc(x.note)]:null]]); }
+    blq.push(x.sd?["Después",[["Vendida",fechaCorta(x.sd)],["Precio de venta",money(x.sp,x.cur)],["Tiempo en cartera",mvTiempo(x.bd,x.sd)],["Resultado",`<span class="${cls(x.pnl)}">${PV(seur(x.pnl,2))}</span>`,"t"],x.note?["","","g"]:null,x.note?["Comentario",esc(x.note)]:null]]:["Operación",[["Fecha",fechaCorta(x.bd)],["Bróker",esc(x.broker||"")],x.note?["Comentario",esc(x.note)]:null]]); }
   else if(k==="sell"){ const L=r.lots||[], sf=sum(L,x=>x.sfee||0), bt=sum(L,x=>x.bt||0), b0=L.reduce((m,x)=>!m||x.bd<m?x.bd:m,null), n=sum(L,x=>x.shares||0); tk=r.ticker; name=r.name; tipo="Venta";
     l1=`Vendiste ${qty(n,tk)} de ${esc(name)} el ${F(r.d)} por ${PV(eur(r.v,2))}.`;
     l2=`${r.pnl>=0?"Ganaste":"Perdiste"} ${PV(eur(Math.abs(r.pnl||0),2))}${bt?`, un ${pct(Math.abs(r.pnl/bt),1)}`:""}${b0?`, tras ${mvTiempo(b0,r.d)} en cartera`:""}.`;
