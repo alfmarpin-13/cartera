@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-gKacHfHu8RjSrkh2nkvX3YOjUWvlzNY1XiUdxQPd0y4=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Bl+2IdCUjqcn/dski3wIcKG8D0HnN/TAVhNaPEw9M/g=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2934,6 +2934,7 @@ html body table th[aria-sort="ascending"][aria-sort]:not(#_)::after{content:"";d
 html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"";display:inline-block;box-sizing:border-box;width:6px;height:6px;margin:0 -11px 0 5px;position:relative;z-index:3;border:0 solid currentColor;border-right-width:1.5px;border-bottom-width:1.5px;vertical-align:.17em;transform:translateY(-.35px) rotate(45deg)}
 
 html body table th[aria-sort][aria-sort]:not(#_){z-index:3}
+@media (min-width:701px){html body table th[aria-sort="ascending"][aria-sort]:not(#_)>:is(button,span)::after{content:"";display:inline-block;box-sizing:border-box;width:6px;height:6px;margin:0 -11px 0 5px;position:relative;z-index:3;border:0 solid currentColor;border-right-width:1.5px;border-bottom-width:1.5px;vertical-align:-.08em;transform:rotate(-135deg)} html body table th[aria-sort="descending"][aria-sort]:not(#_)>:is(button,span)::after{content:"";display:inline-block;box-sizing:border-box;width:6px;height:6px;margin:0 -11px 0 5px;position:relative;z-index:3;border:0 solid currentColor;border-right-width:1.5px;border-bottom-width:1.5px;vertical-align:.17em;transform:translateY(-.35px) rotate(45deg)}}
 html body #t-p th[aria-sort][aria-sort]:not(#_):has(>.thl)::after{content:none}
 html body #t-p th[aria-sort="ascending"][aria-sort]:not(#_)>.thl::after{content:"";display:inline-block;box-sizing:border-box;width:6px;height:6px;margin:0 -11px 0 5px;position:relative;z-index:3;border:0 solid currentColor;border-right-width:1.5px;border-bottom-width:1.5px;vertical-align:-.08em;transform:rotate(-135deg)}
 html body #t-p th[aria-sort="descending"][aria-sort]:not(#_)>.thl::after{content:"";display:inline-block;box-sizing:border-box;width:6px;height:6px;margin:0 -11px 0 5px;position:relative;z-index:3;border:0 solid currentColor;border-right-width:1.5px;border-bottom-width:1.5px;vertical-align:.17em;transform:translateY(-.35px) rotate(45deg)}
@@ -3755,6 +3756,11 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   #s-pos > .chart-head .st,#s-pos > .chart-head .pos-age{display:none}
   #s-pos > .chart-head .gxan-t{margin:0}
 }
+/* v553 · tablas (PC): la flecha de ordenar va dentro del nombre de la columna, así se mueve con él al centrarlo sobre sus datos */
+@media (min-width:701px){
+  html body table th[aria-sort][aria-sort]:not(#_)::after,html body #t-p th[aria-sort][aria-sort]:not(#_):has(>.thl)::after{content:none}
+  html body table.rt thead th > :is(button,span){display:inline-block;position:relative}
+}
 </style>
 
 <div class="wrap">
@@ -4447,7 +4453,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v552";   // la versión publicada, en el pie
+const VER="v553";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7532,6 +7538,24 @@ function zfPosT(){ if(innerWidth<=MOVIL||!DATA) return; const S=$("s-pos"), h=S&
   let T=$("gxpos-t"); if(!T){ T=document.createElement("h2"); T.id="gxpos-t"; T.className="gxan-t gxan-x"; h.prepend(T); }
   T.innerHTML=`<span>${n} ${n===1?"posición":"posiciones"}${o?` y ${o} ${o===1?"opción":"opciones"}`:""}${edad?",":"."}</span>${edad?`<span>con una antigüedad media de ${edad}.</span>`:""}`; }
 { const _tm2=renderTreemap; renderTreemap=function(){ _tm2.apply(this,arguments); try{ zfPosT(); }catch(e){ console.warn("Cartera · Posiciones:",e); } }; }
+// v553 · tablas (PC): cada cabecera, en el centro de los datos que tiene debajo (de la primera a la última letra de la columna), y no alineada a un borde
+function zfCabeceras(){ const pc=innerWidth>MOVIL;
+  document.querySelectorAll("table.rt").forEach(t=>{ const ths=[...t.querySelectorAll("thead th")]; if(!ths.length) return;
+    const lab=th=>th.querySelector(":scope > button")||th.querySelector(":scope > span");
+    ths.forEach(th=>{ const l=lab(th); if(l) l.style.transform=""; });
+    if(!pc||!t.offsetParent) return;
+    const filas=[...t.querySelectorAll("tbody tr")].filter(r=>r.offsetParent&&r.children.length>1);
+    if(!filas.length) return; const rg=document.createRange();
+    ths.forEach((th,i)=>{ const l=lab(th); if(!l||!th.offsetWidth) return; let a=Infinity, b=-Infinity; const nom=th.textContent.trim();
+      // la celda de cada fila: la que lleva el mismo nombre de columna (data-l); si no lo lleva, la de la misma posición
+      filas.forEach(r=>{ const td=[...r.children].find(c=>c.dataset.l===nom&&c.offsetWidth)||(r.children.length===ths.length?r.children[i]:null); if(!td||!td.offsetWidth||!td.textContent.trim()&&!td.querySelector("img,i,b,span")) return; rg.selectNodeContents(td); const q=rg.getBoundingClientRect(); if(q.width>0){ a=Math.min(a,q.left); b=Math.max(b,q.right); } });
+      if(!isFinite(a)) return; const q=l.getBoundingClientRect(), R=th.getBoundingClientRect(), fl=th.hasAttribute("aria-sort")?13:0;
+      // centrada sobre sus datos, sin salirse de su celda (la flecha incluida): así nunca pisa ni se acerca a la columna de al lado
+      let d=Math.round((a+b)/2-(q.left+q.right)/2); d=Math.min(d,Math.floor(R.right-4-fl-q.right)); d=Math.max(d,Math.ceil(R.left+4-q.left));
+      if(Math.abs(d)>=1) l.style.transform=`translateX(${d}px)`; }); }); }
+{ let r=0; const pide=()=>{ cancelAnimationFrame(r); r=requestAnimationFrame(()=>requestAnimationFrame(()=>{ try{ zfCabeceras(); }catch(e){ console.warn("Cartera · cabeceras:",e); } })); };
+  new MutationObserver(ms=>{ if(ms.some(m=>m.target.closest&&m.target.closest("table.rt,.view,[id^='v-']")&&(m.target.closest("table.rt")||[...m.addedNodes].some(n=>n.nodeType===1&&(n.matches("table.rt")||n.querySelector&&n.querySelector("table.rt")))))) pide(); }).observe(document.body,{childList:true,subtree:true});
+  addEventListener("resize",pide); document.addEventListener("click",e=>{ if(e.target.closest("[data-v],thead,.seg,.kw-m")) pide(); }); if(document.fonts) document.fonts.ready.then(pide); pide(); }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
