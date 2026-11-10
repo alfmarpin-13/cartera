@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-GfPeRDQZ6nS3Td8prjVr4QeTL5nVZ197extLJWzg764=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-jRrHJQtE4WfaTgIv+WEyxvXzV08UCaYS2K2lWYrszzw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3743,6 +3743,8 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   /* Movimientos y Calendario, con el bloque de los demás (radio de 20 px y 48/48/44 px dentro) */
   #v-movimientos > #s-mov.panel,#v-calendario > #gxag.panel{border-radius:20px;padding:48px 48px 44px}
 }
+/* v550 · mapa de Resumen: las que aún no cotizan llevan «—» en gris, como en la tabla de Posiciones */
+@media (min-width:701px){ #v-resumen .zr .gx-t2 b.zr-nd{color:var(--ink3)} }
 </style>
 
 <div class="wrap">
@@ -4435,7 +4437,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v549";   // la versión publicada, en el pie
+const VER="v550";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7490,10 +7492,15 @@ function zfMapa(){ const T=$("tmap"); if(!T||!DATA||innerWidth<=MOVIL) return; c
   T.innerHTML=`<div class="gx-tr zr-tr" style="height:${H}px">${tl.map(z=>{ const w=z.w-G, h=z.h-G, pq=h<100, c=P1(z.ch);
     const st=`left:${(z.x+G/2).toFixed(1)}px;top:${(z.y+G/2).toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px${pq?";gap:4px":""}`, cls=`gx-t2 ${nivel(z.ch)}`;
     if(z.otras){ const nom=z.otras.map(o=>o.p.name).join(", "); return `<button type="button" class="${cls} zr-ot" style="${st}" title="${esc(nom)} · ${((z.a0??z.v)/tot*100).toFixed(1).replace(".",",")} % de la cartera" aria-label="Otras ${z.otras.length}: ${esc(nom)}"><span>Otras ${z.otras.length}</span>${c?`<b>${c}</b>`:""}</button>`; }
-    const p=z.p, tip=`${p.name} · ${c||"—"}${z.sin?" (aún no cotiza)":""} · ${((z.a0??z.v)/tot*100).toFixed(1).replace(".",",")} % de la cartera`, cabe=w>=84&&h>=64;
-    if(!cabe){ const lh=Math.min(36,h-(c?38:12)), lw=Math.min(96,w-12), logo=lh>=14?gxSil(p.ticker,lw,lh,lw,lh):""; return `<button type="button" class="${cls}" data-t="${esc(p.ticker)}" style="${st};gap:4px" title="${esc(tip)}" aria-label="${esc(tip)}">${logo}${c?`<b>${c}</b>`:""}</button>`; }
-    const lw0=Math.round(Math.max(30,Math.min(96,w*.5,(h-(pq?34:44))*1.6))), lw=Math.min(96,w<120?Math.max(lw0,Math.round(w-18)):lw0), lh=Math.min(36,Math.round(lw0*.5625));
-    return `<button type="button" class="${cls}" data-t="${esc(p.ticker)}" style="${st}" title="${esc(tip)}" aria-label="${esc(tip)}">${gxSil(p.ticker,lw,lh,Math.min(96,w-14),Math.min(36,h-(pq?36:46)))}${c?`<b>${c}</b>`:""}</button>`; }).join("")}</div>`;
+    // v550 · cada casilla con su cifra («—» si aún no cotiza), la cifra más pequeña en las casillas pequeñas y el logo con aire alrededor:
+    //   margen lateral de al menos 12 px (14 % del ancho), arriba y abajo de al menos 8 px; el logo, en la caja de siempre (96 × 36) a la escala de la casilla (de 18 a 36 px de alto);
+    //   en las casillas bajas y anchas, logo y cifra en fila
+    const p=z.p, tip=`${p.name} · ${c||"—"}${z.sin?" (aún no cotiza)":""} · ${((z.a0??z.v)/tot*100).toFixed(1).replace(".",",")} % de la cartera`, txt=c||"—";
+    const fs=(w>=110&&h>=96)?15:(w>=72&&h>=64)?13:12, nh=fs+5, gp=fs>=15?8:4, fila=h<64&&w>=100;
+    const px=Math.max(12,Math.round(w*.14)), py=Math.max(8,Math.round(h*.12)), tw=Math.ceil(txt.length*fs*.6), tgt=Math.max(18,Math.min(36,Math.round(Math.sqrt(w*h)*.22)));
+    const mw=Math.max(0,fila?w-2*px-gp-tw:w-2*px), mh=Math.max(0,fila?h-2*py:h-2*py-nh-gp), lh=fila?Math.min(mh,26):Math.min(tgt,mh), lw=Math.min(mw,Math.round(lh*96/36)), logo=lh>=10&&mw>=16?gxSil(p.ticker,lw,lh,mw,mh):"";
+    const st2=st.replace(/;gap:4px$/,"")+`;gap:${gp}px${fila?";flex-direction:row":""}`;
+    return `<button type="button" class="${cls}" data-t="${esc(p.ticker)}" style="${st2}" title="${esc(tip)}" aria-label="${esc(tip)}">${logo}<b class="${c?"":"zr-nd"}" style="font-size:${fs}px;line-height:${nh}px">${txt}</b></button>`; }).join("")}</div>`;
   const up=all.filter(z=>z.ch>0).length, dn=all.filter(z=>z.ch<0).length, sc=all.filter(z=>z.sin).length, lg=$("hy-leg");
   if(lg) lg.innerHTML=`<span><i class="up"></i><b>${up}</b> ${up===1?"sube":"suben"}</span><span><i class="dn"></i><b>${dn}</b> ${dn===1?"baja":"bajan"}</span>${sc?`<span><i class="zr-sc"></i><b>${sc}</b> sin cotizar</span>`:""}`; }
 { const _tm=renderTreemap; renderTreemap=function(){ _tm.apply(this,arguments); try{ zfResumen(); }catch(e){ console.warn("Cartera · Resumen:",e); } }; }
