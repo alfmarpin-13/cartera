@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-0+OROF7AMb3lXvAmjZKibXL8si+WwlHOzact4uzikAA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-opE4ck18wNVCkDBuBbg3NHai5LE9/gsP7zEJQa5AVxM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3624,7 +3624,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 @media (max-width:760.98px){ .zcp{display:none!important} }
 @media (min-width:761px){
   .zcp{--zs:#1A231E;--zst:#EEECE6;--zs2:#A7AEA9;--zs3:#7F8882;--zsl:#4A564F;--zsr:#86D3AA;--zsn:#D88282;--zbt:#FFFFFF;--zbl:#DCD7CC;
-    position:fixed;top:calc(var(--tbh,0px) + 16px);right:16px;z-index:21;width:540px;max-height:calc(100vh - var(--tbh,0px) - 32px);display:flex;flex-direction:column;
+    position:fixed;top:calc(var(--tbh,0px) + 16px);right:16px;z-index:21;width:590px;max-height:calc(100vh - var(--tbh,0px) - 32px);display:flex;flex-direction:column;
     padding:14px 24px 24px;border-radius:18px;background:var(--canvas);color:var(--ink);font-size:13px;line-height:1.5;
     box-shadow:0 24px 64px -16px rgba(0,0,0,.30),0 0 0 1px color-mix(in srgb,var(--ink) 8%,transparent);animation:zcp-in .18s ease-out;font-variant-numeric:tabular-nums}
   .zcp[hidden]{display:none}
@@ -3643,7 +3643,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .zcp .zc-rule{border-top:1px solid var(--zsl);margin-top:10px}
   .zcp .zc-res{display:grid;grid-template-columns:14px 1fr auto;column-gap:8px;align-items:baseline;height:24px;margin-top:12px}
   .zcp .zc-res b{font-size:20px;line-height:24px;font-weight:600;color:var(--zsr);white-space:nowrap} .zcp .zc-res b.neg{color:var(--zsn)}
-  .zcp-ops{flex:1 1 auto;min-height:0;overflow:auto;margin:6px -24px 0;padding:0 24px;scrollbar-width:thin;display:grid;grid-template-columns:minmax(0,1fr) 80px 92px 52px 16px;column-gap:20px;align-content:start}
+  .zcp-ops{flex:1 1 auto;min-height:0;overflow:auto;margin:6px -24px 0;padding:0 24px;scrollbar-width:thin;display:grid;grid-template-columns:minmax(0,1fr) 80px 84px 52px 16px;column-gap:16px;align-content:start}
   .zcp .zc-op{position:relative;grid-column:1/-1;display:grid;grid-template-columns:subgrid;align-items:start;padding:16px 0;border-bottom:1px solid var(--line);line-height:18px}
   .zcp .zc-hd{position:sticky;top:0;z-index:1;background:var(--canvas);padding:10px 0 8px;font-size:12px;line-height:16px;color:var(--ink3)} .zcp .zc-hd>span{text-align:right;white-space:nowrap} .zcp .zc-hd>span:nth-child(2){padding-right:10px}   /* «Importe», alineado con la cifra de dentro de la casilla */
   .zcp .zc-co{display:flex;align-items:center;gap:10px;min-width:0}
@@ -4371,7 +4371,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v539";   // la versión publicada, en el pie
+const VER="v540";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7332,8 +7332,8 @@ function zfCalcPinta(){ const Z=document.getElementById("zcp"); if(!Z||Z.hidden|
     inp.placeholder=o.sell&&mx?`máx. ${nf(0).format(mx)}`:"0"; if(document.activeElement!==inp) inp.value=zcFmt(o.sell?o.n:o.amt);
     let sub="";
     if(r&&!x.pxe) sub=`Sin tipo de cambio ${esc(r.cur)}`;
-    else if(r&&o.sell) sub=`Venta a ${money(r.price,r.cur)}`+(!x.sh&&mx?` · <button type="button" class="zc-all" data-i="${i}">todas (${nf(0).format(mx)})</button>`:"");
-    else if(r) sub=x.sh?`${nf(0).format(x.sh)} acc. a ${money(r.price,r.cur)}`:isNum(o.amt)&&o.amt>0?`No llega a 1 acc. (${money(r.price,r.cur)})`:`Cotiza a ${money(r.price,r.cur)}`;
+    else if(r&&o.sell) sub=!x.sh&&mx?`<button type="button" class="zc-all" data-i="${i}">Vender todas (${nf(0).format(mx)})</button>`:`Venta a ${money(r.price,r.cur)}`;
+    else if(r) sub=`${nf(0).format(x.sh)} acc. a ${money(r.price,r.cur)}`;   // también con 0 acciones: así se ve que el importe no llega a una
     R.querySelector(".zc-sub").innerHTML=sub;
     // precio medio y peso: arriba el valor tras la operación; debajo, en gris, el de antes (sin operación, solo el de ahora, en gris)
     const dos=(v,a)=>`<b>${v}</b><small>${a}</small>`, hay=r&&x.sh>0;
