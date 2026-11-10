@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-+suxDoFYY9B/GjWaEs0kNbBnghDA1CUoT9QfDTa5Brg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-/uPM7igYEtAuUenFb+O+T79k6ZmkGL8w2VWNaQ/vPSs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3619,24 +3619,59 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 #pl-open{display:none}
 @media (min-width:761px){
   #v-universo > #s-plan{padding:40px 48px} #s-plan > .pl-full{display:none!important} #pl-open{display:inline-flex;align-items:center;gap:6px;margin-top:20px;height:auto;padding:0;border:0;background:none;box-shadow:none;font-size:13px;line-height:24px;font-weight:600;color:var(--ink)} #pl-open:hover{color:var(--ink2)} #pl-open svg{width:14px;height:14px}
-  .zcalc #pl-full{position:absolute;inset:0;display:block!important;pointer-events:none;margin:0;padding:0}
-  .zcalc #pl-full>*{pointer-events:auto}
-  .zcalc .pl-mvb,.zcalc #pl-k{display:contents}
-  .zcalc .tablewrap{position:absolute;left:44px;top:192px;width:1272px;height:257px;overflow:auto;margin:0;scrollbar-width:thin}
-  .zcalc .pl-acts{position:absolute;left:60px;top:477px;width:1240px;margin:0;padding:0}
-  .zcalc .pl-ak{position:absolute;left:60px;top:617px;margin:0;padding:0;border:0;display:flex;flex-direction:column;gap:6px}
-  .zcalc .pl-ak .mk-k{font-size:12.5px;line-height:20px;color:var(--ink3)}
-  .zcalc #pl-k .mk{position:absolute;padding:0;border:0;margin:0;width:358px;display:flex;flex-direction:column;gap:4px}
-  .zcalc #pl-k .mk:nth-child(1){left:60px;top:723px}
-  .zcalc #pl-k .mk:nth-child(2){left:498px;top:617px}
-  .zcalc #pl-k .mk:nth-child(3){left:498px;top:723px}
-  .zcalc #pl-k .mk:nth-child(4){left:936px;top:617px;width:364px}
-  .zcalc #pl-k .mk-k{font-size:12.5px;line-height:20px;color:var(--ink3)}
-  .zcalc #pl-k .mk-v{font-size:17px;line-height:24px;font-weight:600;color:var(--ink)}
-  .zcalc #pl-k .mk-v.neg{color:var(--neg)}
-  .zcalc .rt.rt thead th{top:0!important;background:var(--zc)}
-  .zcalc .mk-sb i.s2,.zcalc .mk-sl i.s2{background:var(--pos)}
+  /* v531 · la calculadora nueva: 940 de ancho, alto según las filas; pantalla de 256 con la cuenta y, a 36 px, la tabla (columnas repartidas por igual) */
+  #sheet.gxf.sh-calc{border-radius:18px}
+  .zf.zcalc{--zs:#1A231E;--zst:#EEECE6;--zs2:#A7AEA9;--zs3:#7F8882;--zsl:#4A564F;--zsr:#86D3AA;--zsn:#D88282;--zbt:#FFFFFF;--zbl:#DCD7CC;
+    width:940px;height:auto;padding:24px;display:grid;grid-template-columns:256px 1fr;gap:36px;align-items:stretch;background:var(--canvas)}
+  .zcalc .zc-scr{background:var(--zs);color:var(--zst);border-radius:14px;padding:22px;display:flex;flex-direction:column}
+  .zcalc .zc-ln{display:grid;grid-template-columns:14px 1fr auto;column-gap:8px;align-items:center;height:30px;margin:0}
+  .zcalc .zc-s{color:var(--zs3);text-align:center} .zcalc .zc-k{color:var(--zs2)} .zcalc .zc-v{color:var(--zst);white-space:nowrap}
+  .zcalc .zc-ap{height:32px;margin-bottom:10px;cursor:text}
+  .zcalc .zc-fd{display:inline-flex;align-items:center;justify-content:flex-end;gap:4px;height:32px;width:110px;padding:0 10px;border-radius:9px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+  .zcalc .zc-fd:focus-within{box-shadow:inset 0 0 0 1.5px var(--zsr)}
+  .zcalc .zc-fd input{width:100%;min-width:0;border:0;background:none;outline:0;padding:0;font:inherit;font-weight:500;color:var(--zst);text-align:right;-moz-appearance:textfield;appearance:textfield}
+  .zcalc .zc-fd input::placeholder{color:var(--zs3)} .zcalc .zc-fd i{font-style:normal;color:var(--zs2)}
+  .zcalc input::-webkit-outer-spin-button,.zcalc input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .zcalc .zc-rule{border-top:1px solid var(--zsl);margin-top:auto;min-height:0} .zcalc .zc-scr>.zc-ln:last-of-type{margin-bottom:12px}
+  .zcalc .zc-res{display:grid;grid-template-columns:14px 1fr auto;column-gap:8px;align-items:baseline;height:24px;margin-top:14px}
+  .zcalc .zc-res b{font-size:20px;line-height:24px;font-weight:600;color:var(--zsr);white-space:nowrap} .zcalc .zc-res b.neg{color:var(--zsn)}
+  .zcalc .zc-rt{display:flex;flex-direction:column;min-width:0}
+  .zcalc .zc-tb{display:grid;grid-template-columns:repeat(4,max-content);justify-content:space-between;column-gap:0}
+  .zcalc .zc-r{grid-column:1/-1;display:grid;grid-template-columns:subgrid;align-items:center;height:56px;margin:0 -12px;padding:0 12px;border-radius:12px;position:relative}
+  .zcalc .zc-r:not(.zc-h):hover,.zcalc .zc-r:not(.zc-h):focus-within{background:color-mix(in srgb,var(--ink) 4%,transparent)}
+  .zcalc .zc-h{height:32px;align-items:start;font-size:12px;line-height:16px;color:var(--ink3);margin-top:-3px}
+  .zcalc .zc-h::after{content:"";position:absolute;left:12px;right:12px;top:26px;border-top:1px solid var(--line)}
+  .zcalc .zc-h>span{text-align:right}
+  .zcalc .zc-co{display:flex;align-items:center;gap:12px;padding-right:16px}
+  .zcalc .zc-lg{width:40px;height:22px;display:flex;align-items:center;justify-content:center;flex:none;color:var(--ink)}
+  .zcalc .gxsil{display:block;background:currentColor;-webkit-mask:no-repeat center/contain;mask:no-repeat center/contain} .zcalc .gxsol{display:block;object-fit:contain}
+  .zcalc .gxsol.sol-d{filter:grayscale(1) contrast(8) opacity(.86)} .zcalc .gxsol.sol-l{filter:grayscale(1) contrast(8) invert(1) opacity(.86)}
+  .zcalc .zc-nm{display:flex;flex-direction:column;line-height:18px;white-space:nowrap}
+  .zcalc .zc-sw{position:relative;display:inline-flex;align-items:center;gap:4px;align-self:flex-start;font-weight:500;color:var(--ink)}
+  .zcalc .zc-t.zc-ph{color:var(--ink3);font-weight:400}
+  .zcalc .zc-fl{width:12px;height:12px;color:var(--ink3);opacity:0}
+  .zcalc .zc-r:hover .zc-fl,.zcalc .zc-sw:focus-within .zc-fl,.zcalc .zc-t.zc-ph+.zc-fl{opacity:1}
+  .zcalc .zc-sel{position:absolute;inset:-4px -6px;width:calc(100% + 12px);height:calc(100% + 8px);opacity:0;cursor:pointer;font:inherit}
+  .zcalc .zc-sw:has(.zc-sel:focus-visible){outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
+  .zcalc .zc-sub{font-size:12px;color:var(--ink3);min-height:18px} .zcalc .zc-vt .zc-sub{color:var(--neg)}
+  .zcalc .zc-all{font:inherit;color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+  .zcalc .zc-f{display:inline-flex;align-items:center;justify-content:flex-end;gap:4px;width:88px;justify-self:end;padding:3px 1px;border-bottom:1px solid var(--ink3);line-height:18px;font-weight:500}
+  .zcalc .zc-f:focus-within{border-bottom-color:var(--ink)}
+  .zcalc .zc-in{width:100%;min-width:0;border:0;background:none;outline:0;padding:0;font:inherit;color:var(--ink);text-align:right;-moz-appearance:textfield;appearance:textfield}
+  .zcalc .zc-in::placeholder{color:var(--ink3);font-weight:400} .zcalc .zc-f i{font-style:normal;font-weight:400;color:var(--ink3)}
+  .zcalc .zc-d{text-align:right;white-space:nowrap;line-height:18px;padding-left:16px} .zcalc .zc-d small{font-size:13px;color:var(--ink3)}
+  .zcalc .zc-f{margin-left:16px}
+  .zcalc .zc-x{position:absolute;left:-14px;top:50%;transform:translateY(-50%);width:18px;height:18px;font-size:15px;line-height:18px;color:var(--ink3);opacity:0}   /* quitar: a la izquierda de la fila, en el hueco junto a la pantalla, solo al pasar el ratón */
+  .zcalc .zc-r:hover .zc-x,.zcalc .zc-x:focus-visible{opacity:1} .zcalc .zc-x:hover{color:var(--ink)}
+  .zcalc .zc-acts{display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:24px}
+  .zcalc .zc-b{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 14px;border-radius:999px;border:1px solid var(--zbl);background:var(--zbt);font-size:12px;font-weight:500;color:var(--ink)}
+  .zcalc .zc-b svg{width:12px;height:12px} .zcalc .zc-b:hover:not(:disabled){border-color:var(--ink3)} .zcalc .zc-b:disabled{opacity:.4;cursor:default}
+  .zcalc .zc-clr{margin-left:auto;font-size:12px;color:var(--ink3)} .zcalc .zc-clr:hover{color:var(--ink)} .zcalc .zc-clr.arm{color:var(--neg)}
 }
+@media (min-width:761px) and (prefers-color-scheme:dark){:root:not([data-theme="light"]) .zf.zcalc{--zs:#2C2C29;--zbt:#262624;--zbl:#3A3936}}
+@media (min-width:761px){:root[data-theme="dark"] .zf.zcalc{--zs:#2C2C29;--zbt:#262624;--zbl:#3A3936}}
+@media (min-width:761px) and (prefers-color-scheme:dark){:root:not([data-theme="light"]) .zcalc .gxsol.sol-d{filter:grayscale(1) contrast(8) invert(1) opacity(.9)} :root:not([data-theme="light"]) .zcalc .gxsol.sol-l{filter:grayscale(1) contrast(8) opacity(.9)}}
+@media (min-width:761px){:root[data-theme="dark"] .zcalc .gxsol.sol-d{filter:grayscale(1) contrast(8) invert(1) opacity(.9)} :root[data-theme="dark"] .zcalc .gxsol.sol-l{filter:grayscale(1) contrast(8) opacity(.9)}}
 @media (max-width:760.98px){ #mm-calc{display:none} }
 /* v530 · menú de Opciones (PC): todos los elementos en fila, con el icono y el texto centrados en vertical; ocultar importes y la apariencia, solo aquí */
 @media (min-width:761px){
@@ -4335,7 +4370,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v530";   // la versión publicada, en el pie
+const VER="v531";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6515,9 +6550,9 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
     pl.forEach(p=>{ const sube=p.r.margin>0, mine=p.r.inPf; p.i=TODOS.length; g+=`<circle data-i="${p.i}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6" style="fill:color-mix(in srgb,${sube?"var(--gx-id)":"var(--ink)"} ${sube?(mine?100:45):(mine?75:12)}%,var(--canvas))"/>` /* v502: tuyas llenas sin aro; candidatas al 45 % */; TODOS.push(p); if(T3.has(p.r.ticker)) LB.push(p); }); });
   // v481: cada cartel, dentro de la columna de su exigencia: a la derecha del punto, a la izquierda, encima o debajo, sin pisar puntos ni otros carteles
   // v481: las destacadas llevan solo su logo, junto al punto y dentro de la columna de su exigencia, sin pisar puntos ni otros logos
-  const caja=[], ET=[]; LB.forEach(p=>{ const ci=reqs.indexOf(Math.round(p.r.req*1000)/1000), c0=PL+cw*ci+10, c1=PL+cw*(ci+1)-10, aw=LOGO_ANCHO[p.r.ticker], tw=aw?Math.min(92,Math.round(20*(LOGO_R[aw]||3.5))):40, h=22,   /* v503: logo ancho si lo hay */ cl=x=>Math.min(Math.max(x,c0),c1-tw);
+  const caja=[], ET=[]; LB.forEach(p=>{ const ci=reqs.indexOf(Math.round(p.r.req*1000)/1000), c0=PL+cw*ci+18, c1=PL+cw*(ci+1)-18,   /* v531: dentro del sombreado, con 8 px de aire (antes tocaba su borde) */ aw=LOGO_ANCHO[p.r.ticker], tw=aw?Math.min(92,Math.round(20*(LOGO_R[aw]||3.5))):40, h=22,   /* v503: logo ancho si lo hay */ cl=x=>Math.min(Math.max(x,c0),c1-tw);
     const cands=[{x0:p.x+12,y0:p.y-h/2},{x0:p.x-12-tw,y0:p.y-h/2},{x0:cl(p.x-tw/2),y0:p.y-h-10},{x0:cl(p.x-tw/2),y0:p.y+10},{x0:cl(p.x-tw/2),y0:p.y-h-32},{x0:cl(p.x-tw/2),y0:p.y+32}].map(c=>({...c,x1:c.x0+tw,y1:c.y0+h}));
-    const fuera=c=>c.x0<c0-0.5||c.x1>c1+0.5||c.y0<tp-4||c.y1>bottom+4, choca=c=>TODOS.some(q=>q!==p&&q.x+7>c.x0&&q.x-7<c.x1&&q.y+7>c.y0&&q.y-7<c.y1)||caja.some(b=>b.x0<c.x1&&b.x1>c.x0&&b.y0<c.y1&&b.y1>c.y0);
+    const fuera=c=>c.x0<c0-0.5||c.x1>c1+0.5||c.y0<tp+8||c.y1>bottom+4, choca=c=>TODOS.some(q=>q!==p&&q.x+7>c.x0&&q.x-7<c.x1&&q.y+7>c.y0&&q.y-7<c.y1)||caja.some(b=>b.x0<c.x1&&b.x1>c.x0&&b.y0<c.y1&&b.y1>c.y0);
     const c=cands.find(c=>!fuera(c)&&!choca(c))||cands.find(c=>!fuera(c)); if(!c) return;   /* v529: un logo nunca se sale de su columna: si no cabe dentro, no se pinta */
     caja.push(c); ET.push(`<span class="gx-et" style="left:${c.x0.toFixed(1)}px;top:${c.y0.toFixed(1)}px">${gxLogo(p.r.ticker,tw,h,{ancho:!!aw})}</span>`); });
   U.innerHTML=`<svg width="${WU}" height="${H+6}" viewBox="0 0 ${WU} ${H+6}" role="img" aria-label="TIR esperada frente a la exigida">${g}</svg>${ET.join("")}<span class="gx-tip" hidden></span>`;
@@ -7243,23 +7278,98 @@ function zfMov(o){
     <button type="button" class="zf-x" data-zf="cerrar" aria-label="Cerrar" title="Cerrar (Esc)">${ZF_IC.x}</button></div>`;
 }
 
-// ── v529 · la calculadora de operaciones en el PC: se abre en una ventana como el Cuadre (1360 × 980), desde Opciones o desde Universo.
-// Es la misma calculadora (se lleva a la ventana tal cual y vuelve a Universo al cerrar), así que hace exactamente lo mismo
+// ── v531 · la calculadora de operaciones en el PC, con el diseño aprobado: a la izquierda, la pantalla con la cuenta (la aportación se escribe ahí);
+// a la derecha, las operaciones (empresa, importe, precio medio y peso). Hace lo mismo que la de Universo (mismo plan guardado y mismas cuentas)
 const zfCalcAbre=()=>{ if(!DATA) return; $("more-m").hidden=true; $("more").setAttribute("aria-expanded","false"); openSheet("calc","__calc",[]); };
-function zfCalcVuelve(){ const F=$("pl-full"), S=$("s-plan"); if(F&&S&&!S.contains(F)) S.appendChild(F); }
-function zfCalcFr(){ const box=document.getElementById("zcalc-fr"), T=$("gxpl-t"); if(!box||!T) return; const s=T.querySelectorAll(":scope > span"); box.innerHTML=zFr(s[0]?s[0].innerHTML:"",s[1]?s[1].innerHTML:""); }
-function zfCalc(){ const {LX0,X2,RX0,RW,T1,Y2,CW2,FW}=ZG;
-  const h=`<div id="zcalc-fr"></div>`+zC(LX0,T1,FW,395,"Operaciones")+zC(LX0,Y2,CW2,395,"Tu dinero")+zC(X2,Y2,CW2,395,"Lo que gastas")+zC(RX0,Y2,RW,395,"Lo que te queda");
-  return `<div class="zf zfq zcalc"><main class="zf-main"><div class="zf-s" id="zcalc-s">${h}</div></main><button type="button" class="zf-x" data-zf="cerrar" aria-label="Cerrar" title="Cerrar (Esc)">${ZF_IC.x}</button></div>`; }
+const ZC_MAS='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2v8M2 6h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+  ZC_MENOS='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+  ZC_FL='<svg class="zc-fl" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+// las cuentas de planCalc (v363), devueltas en vez de pintadas: acciones enteras, comisión por mercado, FIFO en las ventas
+function zfCuenta(){ const k=DATA.kpi, fx=DATA.fx||{EUR:1}, tot=k.value||0, liq=k.liquidez||0, ap=isNum(plan.aport)?plan.aport:0;
+  const rows=plan.rows.map(o=>{ const r=DATA.pre.find(x=>x.ticker===o.t); if(!r) return {o};
+    const rate=fx[r.cur], pxe=isNum(r.price)&&rate?r.price*rate:null, cm=(DATA.comm||{})[String(o.t).split(":")[0]], p=DATA.pos.find(x=>x.ticker===o.t&&!x.isOption), val=p?p.value:0;
+    if(o.sell){ const nAcc=pxe&&o.n>0?Math.min(Math.floor(o.n),plShares(o.t)):0, inc=nAcc*pxe||0, fee=inc>0&&cm?Math.max(cm.min,cm.fix+cm.pct*inc):0; return {o,r,pxe,sh:nAcc,cost:0,inc,fee,val}; }
+    const sh=pxe&&o.amt>0?Math.floor(o.amt/pxe):0, cost=sh&&pxe?sh*pxe:0, fee=cost>0&&cm?Math.max(cm.min,cm.fix+cm.pct*cost)+cm.tax*cost:0; return {o,r,pxe,sh,cost,inc:0,fee,val}; });
+  const pmFin={}; new Set(rows.filter(x=>x.r&&x.sh>0).map(x=>x.o.t)).forEach(t=>{ const p=DATA.pos.find(y=>y.ticker===t&&!y.isOption), de=rows.filter(x=>x.o.t===t&&x.sh>0);
+    const ls=(p?p.buys||[]:[]).filter(b=>!b.sold&&b.n>0).sort((a,b)=>a.d-b.d).map(b=>({n:b.n,pr:b.pr||0}));
+    de.filter(x=>!x.o.sell).forEach(x=>ls.push({n:x.sh,pr:x.r.price}));
+    let v=sum(de.filter(x=>x.o.sell),x=>x.sh); for(const l of ls){ if(v<=0) break; const q=Math.min(l.n,v); l.n-=q; v-=q; }
+    const n=sum(ls,l=>l.n); pmFin[t]=n>0?sum(ls,l=>l.n*l.pr)/n:null; });
+  const buys=sum(rows,x=>x.cost||0), sells=sum(rows,x=>x.inc||0), fees=sum(rows,x=>x.fee||0), left=ap+liq+sells-buys-fees, after=tot+buys-sells;
+  rows.forEach(x=>{ if(!x.r) return; const p=DATA.pos.find(y=>y.ticker===x.o.t&&!y.isOption), same=sum(rows.filter(y=>y.o.t===x.o.t),y=>(y.cost||0)-(y.inc||0));
+    x.pm0=p&&isNum(p.avg)&&p.avg>0?p.avg:null; x.pm1=x.sh>0&&isNum(pmFin[x.o.t])?pmFin[x.o.t]:null; x.w0=tot?x.val/tot:null; x.w1=x.cost||x.inc?(after>0?Math.max(x.val+same,0)/after:null):null; });
+  return {rows,liq,buys,sells,fees,left}; }
+// los importes, con punto de miles mientras no se escriben; al entrar en la casilla, la cifra tal cual (con coma decimal)
+const zcFmt=v=>isNum(v)?nf(v%1?2:0).format(v):"", zcRaw=v=>isNum(v)?String(v).replace(".",","):"";
+function zfCalc(){ const ln=(s,k,id)=>`<div class="zc-ln"><span class="zc-s">${s}</span><span class="zc-k">${k}</span><span class="zc-v" id="${id}"></span></div>`;
+  return `<div class="zf zcalc" id="zcalc"><div class="zc-scr">
+    <label class="zc-ln zc-ap"><span class="zc-s"></span><span class="zc-k">Aportación</span><span class="zc-fd"><input id="zc-ap" type="text" inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Aportación"><i>€</i></span></label>
+    ${ln("+","Liquidez","zc-liq")}${ln("+","Ventas","zc-ven")}${ln("−","Compras","zc-com")}${ln("−","Comisiones","zc-fee")}
+    <div class="zc-rule"></div><div class="zc-res"><span class="zc-s">=</span><span class="zc-k">Disponible</span><b id="zc-left"></b></div></div>
+   <div class="zc-rt"><div class="zc-tb" id="zc-tb"></div>
+    <div class="zc-acts"><button type="button" class="zc-b" id="zc-add">${ZC_MAS}Añadir compra</button><button type="button" class="zc-b" id="zc-sell">${ZC_MENOS}Añadir venta</button><button type="button" class="zc-clr" id="zc-clr">Vaciar todo</button></div></div></div>`; }
+// la tabla: se rehace al cambiar las filas; mientras escribes solo cambian las cifras (zfCalcPinta)
+function zfCalcTabla(){ const T=document.getElementById("zc-tb"); if(!T) return;
+  T.innerHTML=`<div class="zc-r zc-h"><span></span><span>Importe</span><span>Precio medio</span><span>Peso</span></div>`+plan.rows.map((o,i)=>`<div class="zc-r${o.sell?" zc-vt":""}" data-i="${i}">
+    <span class="zc-co"><span class="zc-lg"></span><span class="zc-nm"><span class="zc-sw"><span class="zc-t"></span>${ZC_FL}<select class="zc-sel" data-i="${i}" aria-label="${o.sell?"Empresa que vendes":"Empresa que compras"}">${planOpts(o.t,o.sell)}</select></span><small class="zc-sub"></small></span></span>
+    <span class="zc-f"><input class="zc-in" data-i="${i}" type="text" inputmode="${o.sell?"numeric":"decimal"}" autocomplete="off" aria-label="${o.sell?"Acciones que vendes":"Importe"}" value="${zcFmt(o.sell?o.n:o.amt)}"><i>${o.sell?"acc.":"€"}</i></span>
+    <span class="zc-d" data-c="pm"></span><span class="zc-d" data-c="w"></span><button type="button" class="zc-x" data-i="${i}" aria-label="Quitar">×</button></div>`).join("");
+  zfCalcPinta(); }
+function zfCalcPinta(){ const Z=document.getElementById("zcalc"); if(!Z||!DATA) return; const C=zfCuenta(), e2=v=>eur(v,2), ap=$("zc-ap");
+  if(document.activeElement!==ap) ap.value=zcFmt(plan.aport);
+  $("zc-liq").textContent=e2(C.liq); $("zc-ven").textContent=e2(C.sells); $("zc-com").textContent=e2(C.buys); $("zc-fee").textContent=e2(C.fees);
+  const L=$("zc-left"), neg=C.left<-0.005; L.textContent=neg?"−"+e2(-C.left):e2(Math.abs(C.left)); L.classList.toggle("neg",neg);
+  const ant=v=>nf(2).format(v)+" → ";   // el valor de antes, sin divisa: la lleva el de después
+  C.rows.forEach((x,i)=>{ const R=Z.querySelector(`.zc-r[data-i="${i}"]`); if(!R) return; const o=x.o, r=x.r, mx=plShares(o.t), inp=R.querySelector(".zc-in");
+    R.querySelector(".zc-lg").innerHTML=r?gxSil(r.ticker,40,22,40,22):"";
+    const t=R.querySelector(".zc-t"); t.textContent=r?r.name:(o.sell?"Qué vendes":"Qué compras"); t.classList.toggle("zc-ph",!r);
+    inp.placeholder=o.sell&&mx?`máx. ${nf(0).format(mx)}`:"0"; if(document.activeElement!==inp) inp.value=zcFmt(o.sell?o.n:o.amt);
+    let sub="";
+    if(r&&!x.pxe) sub=`Sin tipo de cambio ${esc(r.cur)}`;
+    else if(r&&o.sell) sub=`venta a ${money(r.price,r.cur)}`+(!x.sh&&mx?` · <button type="button" class="zc-all" data-i="${i}">todas (${nf(0).format(mx)})</button>`:"");
+    else if(r) sub=x.sh?`${nf(0).format(x.sh)} acc. a ${money(r.price,r.cur)}`:isNum(o.amt)&&o.amt>0?`no llega a 1 acc. (${money(r.price,r.cur)})`:`a ${money(r.price,r.cur)}`;
+    R.querySelector(".zc-sub").innerHTML=sub;
+    const pm=R.querySelector('[data-c="pm"]'), w=R.querySelector('[data-c="w"]');
+    if(!r){ pm.innerHTML=w.innerHTML=""; }
+    else{ const hay=x.sh>0;
+      pm.innerHTML=hay?(x.pm0!=null?`<small>${ant(x.pm0)}</small>`:"")+(x.pm1!=null?money(x.pm1,r.cur):"—"):x.pm0!=null?`<small>${money(x.pm0,r.cur)}</small>`:"";
+      w.innerHTML=x.w1!=null?(x.w0>0.0005?`<small>${nf(1).format(x.w0*100)} → </small>`:"")+pct(x.w1):x.w0>0.0005?`<small>${pct(x.w0)}</small>`:""; }
+    const one=plan.rows.length===1; R.querySelector(".zc-x").hidden=one&&!(o.t||isNum(o.amt)||isNum(o.n)); });
+  const ok=plan.rows.every(o=>o.t)||plRow0()!=null; ["zc-add","zc-sell"].forEach(id=>{ $(id).disabled=!ok; $(id).title=ok?"":"Elige la empresa de la fila anterior"; });
+  $("zc-clr").style.visibility=plHas()?"":"hidden"; zfCalcTam(); }
+// la ventana mide lo que su contenido (940 de ancho); en pantallas pequeñas se reduce entera, como las fichas
+function zfCalcTam(){ const S=$("sheet"), Z=document.getElementById("zcalc"); if(!Z) return; const tb=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--tbh"))||0, h=Z.offsetHeight;
+  const z=Math.max(.5,Math.min(1,(innerWidth-48)/940,(innerHeight-tb-48)/h)); S.style.setProperty("--zfz",z); S.style.setProperty("--zfw",Math.round(940*z)+"px"); S.style.setProperty("--zfh",Math.round(h*z)+"px"); }
+// tras cada cambio: se guarda y se recalcula la de Universo (su frase usa esas cifras)
+const zfCalcGuarda=()=>{ planSave(); renderPlan(); };
+function zfCalcEventos(){ const Z=document.getElementById("zcalc"); if(!Z||Z.dataset.ev) return; Z.dataset.ev="1";
+  Z.addEventListener("focusin",e=>{ const el=e.target, o=el.matches(".zc-in")?plan.rows[+el.dataset.i]:null; if(el.id==="zc-ap") el.value=zcRaw(plan.aport); else if(o) el.value=zcRaw(o.sell?o.n:o.amt); });
+  Z.addEventListener("focusout",e=>{ const el=e.target, o=el.matches(".zc-in")?plan.rows[+el.dataset.i]:null; if(el.id==="zc-ap") el.value=zcFmt(plan.aport); else if(o) el.value=zcFmt(o.sell?o.n:o.amt); });
+  $("zc-ap").addEventListener("input",e=>{ plan.aport=plNum(e.target); zfCalcGuarda(); zfCalcPinta(); });
+  Z.addEventListener("input",e=>{ const el=e.target; if(!el.matches(".zc-in")) return; const o=plan.rows[+el.dataset.i]; if(!o) return;
+    if(o.sell){ const v=plNum(el), mx=plShares(o.t); o.n=v==null?null:Math.floor(mx?Math.min(v,mx):v); if(v!=null&&o.n!==v) el.value=o.n; } else o.amt=plNum(el);
+    zfCalcGuarda(); zfCalcPinta(); });
+  Z.addEventListener("change",e=>{ const el=e.target; if(!el.matches(".zc-sel")) return; const o=plan.rows[+el.dataset.i]; if(!o) return; o.t=el.value;
+    if(o.sell){ const mx=plShares(o.t); if(mx&&o.n>mx) o.n=mx; } zfCalcGuarda(); zfCalcTabla(); });
+  Z.addEventListener("click",e=>{ const a=e.target.closest(".zc-all"), x=e.target.closest(".zc-x");
+    if(a){ const o=plan.rows[+a.dataset.i], mx=plShares(o&&o.t); if(!mx) return; o.n=mx; zfCalcGuarda(); zfCalcTabla(); return; }
+    if(x){ plan.rows.splice(+x.dataset.i,1); if(!plan.rows.length) plan.rows.push({t:"",amt:null}); zfCalcGuarda(); zfCalcTabla(); } });
+  const nueva=sell=>{ const f=sell?{t:"",amt:null,n:null,sell:true}:{t:"",amt:null}; if(plRow0()!=null) plan.rows[0]=f; else { if(!plan.rows.every(o=>o.t)) return; plan.rows.push(f); }
+    zfCalcGuarda(); zfCalcTabla(); const s=Z.querySelector(".zc-r:last-child .zc-sel"); if(s) s.focus(); };
+  $("zc-add").addEventListener("click",()=>nueva(false)); $("zc-sell").addEventListener("click",()=>nueva(true));
+  // vaciar: pide un segundo clic para no perder el plan por error (como en Universo)
+  { let armed=null; const b=$("zc-clr"), off=()=>{ clearTimeout(armed); armed=null; b.textContent="Vaciar todo"; b.classList.remove("arm"); };
+    b.addEventListener("click",()=>{ if(!armed){ b.textContent="¿Vaciar todo?"; b.classList.add("arm"); armed=setTimeout(off,3000); return; }
+      off(); plan={aport:null,rows:[{t:"",amt:null}]}; zfCalcGuarda(); zfCalcTabla(); }); } }
 { const _r1=renderSheet0; renderSheet0=function(){ const S=$("sheet");
-    if(!(sheet&&sheet.t==="__calc")) zfCalcVuelve();
-    if(ZF_PC()&&sheet&&sheet.t==="__calc"&&DATA){ const D=zfDim(); S.classList.remove("sh-cq","sh-mv"); S.classList.add("gxf"); S.style.setProperty("--zfw",Math.round(1360*D.z)+"px"); S.style.setProperty("--zfh",Math.round(980*D.z)+"px"); S.style.setProperty("--zfz",D.z);
-      if(!document.getElementById("zcalc-s")){ zfCalcVuelve(); $("sheet-b").innerHTML=zfCalc(); }
-      const box=document.getElementById("zcalc-s"), F=$("pl-full"); if(F&&!box.contains(F)) box.appendChild(F);
-      renderPlan(); zfCalcFr(); S.setAttribute("aria-label","Calculadora de operaciones"); $("sh-prev").disabled=$("sh-next").disabled=true; S.hidden=false; document.documentElement.classList.add("sh-open","zf-open"); markRows(); return; }
-    if(sheet&&sheet.t==="__calc"){ sheet=null; }   // en el móvil la calculadora sigue en Universo
+    if(ZF_PC()&&sheet&&sheet.t==="__calc"&&DATA){ S.classList.remove("sh-cq","sh-mv"); S.classList.add("gxf","sh-calc");
+      if(!document.getElementById("zcalc")){ $("sheet-b").innerHTML=zfCalc(); zfCalcEventos(); zfCalcTabla(); } else zfCalcPinta();
+      S.setAttribute("aria-label","Calculadora de operaciones"); $("sh-prev").disabled=$("sh-next").disabled=true; S.hidden=false; document.documentElement.classList.add("sh-open","zf-open"); zfCalcTam(); markRows(); return; }
+    S.classList.remove("sh-calc"); if(sheet&&sheet.t==="__calc"){ sheet=null; }   // en el móvil la calculadora sigue en Universo
     return _r1(); }; }
-{ const _pc2=planCalc; planCalc=function(){ _pc2(); try{ zfCalcFr(); }catch(e){} }; }
+// si llegan datos nuevos con la ventana abierta, se recalcula (sin rehacer la fila en la que escribes)
+{ const _rp=renderPlan; renderPlan=function(){ _rp(); const Z=document.getElementById("zcalc"); if(Z&&!Z.contains(document.activeElement)&&sheet&&sheet.t==="__calc") zfCalcTabla(); }; }
+addEventListener("resize",()=>{ if(document.getElementById("zcalc")) zfCalcTam(); });
 // en Opciones (PC), debajo del Cuadre; y en Universo, donde estaba, su frase y el botón para abrirla
 { const c=$("mm-chk"); if(c&&!$("mm-calc")) c.insertAdjacentHTML("afterend",'<button type="button" id="mm-calc" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="1.75" width="10" height="12.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="5" y="3.75" width="6" height="2.5" rx=".6" fill="currentColor"/><circle cx="5.75" cy="8.75" r=".8" fill="currentColor"/><circle cx="8" cy="8.75" r=".8" fill="currentColor"/><circle cx="10.25" cy="8.75" r=".8" fill="currentColor"/><circle cx="5.75" cy="11.5" r=".8" fill="currentColor"/><circle cx="8" cy="11.5" r=".8" fill="currentColor"/><circle cx="10.25" cy="11.5" r=".8" fill="currentColor"/></svg><span>Calculadora de operaciones</span></button>'); }
 $("more-m").addEventListener("click",e=>{ if(e.target.closest("#mm-calc")) zfCalcAbre(); });
