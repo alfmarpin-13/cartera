@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-JWSuu9T1K055xlXovASX0MYythKHhwNfCdLSRnNIP3o=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-brhfpAQa+HwbzjA71ULfzBhV5HbImqJ8e+CBu73I90I=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3722,6 +3722,8 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   #v-resumen > #s-pos{border-radius:20px;padding:48px 48px 44px}
 }
 @media (min-width:701px) and (max-width:1199.98px){ #v-resumen .zr .duo{grid-template-columns:1fr} }
+/* v546 · leyenda del mapa: las que aún no cotizan, con el color de su casilla */
+@media (min-width:701px){ #v-resumen .zr #hy-leg i.zr-sc{background:var(--lv0)} }
 </style>
 
 <div class="wrap">
@@ -4414,7 +4416,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v545";   // la versión publicada, en el pie
+const VER="v546";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7451,8 +7453,7 @@ function zfResumen(){ if(!DATA||innerWidth<=MOVIL) return; const V=$("v-resumen"
   [$("s-hero"),$("hoja-al"),V.querySelector(":scope > .duo")].forEach(e=>{ if(e&&e.parentElement!==s) s.append(e); });
   gxPega(s); zfMapa(); }
 function zfMapa(){ const T=$("tmap"); if(!T||!DATA||innerWidth<=MOVIL) return; const W=Math.round(T.clientWidth), H=516; if(W<200) return;
-  const last={}; (DATA.pre||[]).forEach(r=>{ if(isNum(r.last)) last[r.ticker]=r.last; });
-  const all=DATA.pos.filter(p=>!p.isOption&&p.shares>0&&p.value>0).sort((a,b)=>b.value-a.value).map(p=>{ const hoy=isNum(p.today); return {p,v:p.value,ch:hoy?p.today:last[p.ticker],ayer:!hoy}; });
+  const all=DATA.pos.filter(p=>!p.isOption&&p.shares>0&&p.value>0).sort((a,b)=>b.value-a.value).map(p=>{ const hoy=isNum(p.today); return {p,v:p.value,ch:hoy?p.today:null,sin:!hoy}; });   // v546: las que aún no cotizan, como antes (casilla neutra, sin cifra)
   if(!all.length) return;
   const nivel=v=>{ if(!isNum(v)||Math.abs(v)<5e-5) return "lv0"; const m=Math.abs(v)*100, n=1+[.5,1,2.5,5].filter(t=>m>=t).length; return (v>0?"lp":"ln")+Math.min(5,n); };
   const P1=v=>isNum(v)?(v>0?"+":v<0?"−":"")+Math.abs(v*100).toFixed(1).replace(".",",")+" %":"";
@@ -7460,19 +7461,22 @@ function zfMapa(){ const T=$("tmap"); if(!T||!DATA||innerWidth<=MOVIL) return; c
     while(rest.length){ const sh=Math.min(w,h); let row=[rest[0]], b=worst(row,sh); for(let i=1;i<rest.length;i++){ const r2=row.concat(rest[i]), w2=worst(r2,sh); if(w2<=b){ row=r2; b=w2; } else break; }
       const t2=su(row); if(w>=h){ const cw=t2/h; let yy=y; row.forEach(z=>{ const c=z.a/cw; out.push({...z,x,y:yy,w:cw,h:c}); yy+=c; }); x+=cw; w-=cw; } else { const rh=t2/w; let xx=x; row.forEach(z=>{ const c=z.a/rh; out.push({...z,x:xx,y,w:c,h:rh}); xx+=c; }); y+=rh; h-=rh; } rest=rest.slice(row.length); } return out; };
   const G=4, tot=all.reduce((t,z)=>t+z.v,0);
-  const lay=k=>{ const it=all.slice(0,k).map(z=>({...z,a:z.v/tot*W*H})), resto=all.slice(k);
-    if(resto.length){ const v=resto.reduce((t,z)=>t+z.v,0), con=resto.filter(z=>isNum(z.ch)), vc=con.reduce((t,z)=>t+z.v,0); it.push({otras:resto,v,ch:vc?con.reduce((t,z)=>t+z.ch*z.v,0)/vc:null,a:v/tot*W*H}); }
+  const lay=k=>{ const tt=all.reduce((t,z)=>t+z.v,0), it=all.slice(0,k).map(z=>({...z,a:z.v/tt*W*H})), resto=all.slice(k);
+    if(resto.length){ const v=resto.reduce((t,z)=>t+z.v,0), con=resto.filter(z=>isNum(z.ch)), vc=con.reduce((t,z)=>t+z.v,0); it.push({otras:resto,v,ch:vc?con.reduce((t,z)=>t+z.ch*z.v,0)/vc:null,a:v/tt*W*H}); }
     return sq(it,0,0,W,H); };
-  let k=all.length, tl=lay(k); while(k>1&&tl.some(z=>z.w-G<84||z.h-G<64)){ k--; tl=lay(k); }
+  const mx=all[0].v; let fl=0, tl=lay(all.length); const fina=t=>t.some(z=>z.w-G<40||z.h-G<34);
+  while(fina(tl)&&fl<.2){ fl+=.005; all.forEach(z=>{ z.a0=z.a0??z.v; z.v=Math.max(z.a0,mx*fl); }); tl=lay(all.length); }   // v546: todas, cada una de su peso; solo las diminutas crecen lo justo para no quedar en astilla
+  all.forEach(z=>{ if(z.a0!=null) z.v=z.a0; });
   T.style.height=H+"px";
   T.innerHTML=`<div class="gx-tr zr-tr" style="height:${H}px">${tl.map(z=>{ const w=z.w-G, h=z.h-G, pq=h<100, c=P1(z.ch);
-    const st=`left:${(z.x+G/2).toFixed(1)}px;top:${(z.y+G/2).toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px${pq?";gap:4px":""}`, cls=`gx-t2 ${nivel(z.ch)}${z.ayer?" zr-ayer":""}`;
-    if(z.otras){ const nom=z.otras.map(o=>o.p.name).join(", "); return `<button type="button" class="${cls} zr-ot" style="${st}" title="${esc(nom)} · ${(z.v/tot*100).toFixed(1).replace(".",",")} % de la cartera" aria-label="Otras ${z.otras.length}: ${esc(nom)}"><span>Otras ${z.otras.length}</span>${c?`<b>${c}</b>`:""}</button>`; }
-    const lw0=Math.round(Math.max(30,Math.min(96,w*.5,(h-(pq?34:44))*1.6))), lw=Math.min(96,w<120?Math.max(lw0,Math.round(w-18)):lw0), lh=Math.min(36,Math.round(lw0*.5625)), p=z.p;
-    const tip=`${p.name} · ${c||"—"}${z.ayer?" (última sesión)":""} · ${(z.v/tot*100).toFixed(1).replace(".",",")} % de la cartera`;
+    const st=`left:${(z.x+G/2).toFixed(1)}px;top:${(z.y+G/2).toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px${pq?";gap:4px":""}`, cls=`gx-t2 ${nivel(z.ch)}`;
+    if(z.otras){ const nom=z.otras.map(o=>o.p.name).join(", "); return `<button type="button" class="${cls} zr-ot" style="${st}" title="${esc(nom)} · ${((z.a0??z.v)/tot*100).toFixed(1).replace(".",",")} % de la cartera" aria-label="Otras ${z.otras.length}: ${esc(nom)}"><span>Otras ${z.otras.length}</span>${c?`<b>${c}</b>`:""}</button>`; }
+    const p=z.p, tip=`${p.name} · ${c||"—"}${z.sin?" (aún no cotiza)":""} · ${((z.a0??z.v)/tot*100).toFixed(1).replace(".",",")} % de la cartera`, cabe=w>=84&&h>=64, solo=!cabe&&w>=36&&h>=26;
+    if(!cabe){ const lw=Math.min(96,w-10), lh=Math.min(36,h-10); return `<button type="button" class="${cls}" data-t="${esc(p.ticker)}" style="${st}" title="${esc(tip)}" aria-label="${esc(tip)}">${solo?gxSil(p.ticker,lw,lh,lw,lh):""}</button>`; }
+    const lw0=Math.round(Math.max(30,Math.min(96,w*.5,(h-(pq?34:44))*1.6))), lw=Math.min(96,w<120?Math.max(lw0,Math.round(w-18)):lw0), lh=Math.min(36,Math.round(lw0*.5625));
     return `<button type="button" class="${cls}" data-t="${esc(p.ticker)}" style="${st}" title="${esc(tip)}" aria-label="${esc(tip)}">${gxSil(p.ticker,lw,lh,Math.min(96,w-14),Math.min(36,h-(pq?36:46)))}${c?`<b>${c}</b>`:""}</button>`; }).join("")}</div>`;
-  const up=all.filter(z=>!z.ayer&&z.ch>0).length, dn=all.filter(z=>!z.ayer&&z.ch<0).length, ay=all.filter(z=>z.ayer).length, lg=$("hy-leg");
-  if(lg) lg.innerHTML=`<span><i class="up"></i><b>${up}</b> ${up===1?"sube":"suben"}</span><span><i class="dn"></i><b>${dn}</b> ${dn===1?"baja":"bajan"}</span>${ay?`<span><i class="zr-ay"></i><b>${ay}</b> con la última sesión</span>`:""}`; }
+  const up=all.filter(z=>z.ch>0).length, dn=all.filter(z=>z.ch<0).length, sc=all.filter(z=>z.sin).length, lg=$("hy-leg");
+  if(lg) lg.innerHTML=`<span><i class="up"></i><b>${up}</b> ${up===1?"sube":"suben"}</span><span><i class="dn"></i><b>${dn}</b> ${dn===1?"baja":"bajan"}</span>${sc?`<span><i class="zr-sc"></i><b>${sc}</b> sin cotizar</span>`:""}`; }
 { const _tm=renderTreemap; renderTreemap=function(){ _tm.apply(this,arguments); try{ zfResumen(); }catch(e){ console.warn("Cartera · Resumen:",e); } }; }
 document.addEventListener("click",e=>{ const b=e.target.closest("#tmap .gx-t2[data-t]"); if(b) openSheet("pos",b.dataset.t,listOf($("pos-body").firstElementChild)); });
 
