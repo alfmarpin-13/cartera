@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-opE4ck18wNVCkDBuBbg3NHai5LE9/gsP7zEJQa5AVxM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-jo9coK6h3YB3tQUQCx8n5jBKZUtXaTHOpz8BX7foiQQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3648,7 +3648,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .zcp .zc-hd{position:sticky;top:0;z-index:1;background:var(--canvas);padding:10px 0 8px;font-size:12px;line-height:16px;color:var(--ink3)} .zcp .zc-hd>span{text-align:right;white-space:nowrap} .zcp .zc-hd>span:nth-child(2){padding-right:10px}   /* «Importe», alineado con la cifra de dentro de la casilla */
   .zcp .zc-co{display:flex;align-items:center;gap:10px;min-width:0}
   .zcp .zc-nm{display:flex;flex-direction:column;min-width:0}
-  .zcp .zc-d{display:flex;flex-direction:column;align-items:flex-end;white-space:nowrap} .zcp .zc-d b{font-weight:400} .zcp .zc-d small{font-size:12px;color:var(--ink3);min-height:18px} .zcp .zc-g{color:var(--ink3)}
+  .zcp .zc-d{display:flex;flex-direction:column;align-items:flex-end;white-space:nowrap} .zcp .zc-d b{font-weight:400} .zcp .zc-d small{font-size:12px;color:var(--ink3);min-height:18px;text-decoration:line-through;text-decoration-thickness:1px}   /* el valor de antes, tachado */ .zcp .zc-g{color:var(--ink3)}
   .zcp .zc-lg{flex:none;width:32px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--ink)}   /* el alto de las dos líneas de la fila */
   .zcp .gxsil{display:block;background:currentColor;-webkit-mask:no-repeat center/contain;mask:no-repeat center/contain} .zcp .gxsol{display:block;object-fit:contain}
   .zcp .gxsol.sol-d{filter:grayscale(1) contrast(8) opacity(.86)} .zcp .gxsol.sol-l{filter:grayscale(1) contrast(8) invert(1) opacity(.86)}
@@ -4371,7 +4371,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v540";   // la versión publicada, en el pie
+const VER="v541";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
