@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-GxSXqAKkLwJuI4nigcz5psemwRrNkhuY3jnEsDB2HtI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-qaDnqvCaJZGkf6/xyuCKnsi127Mx/Ry19jCq73rYNIM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3564,7 +3564,8 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .zmc i{position:absolute;inset:0;border-radius:10px}
 .zmc i.p{background:var(--zv)} .zmc i.n{background:var(--zr)}
 .zmc b{position:relative;font-size:13px;font-weight:500;color:var(--ink);white-space:nowrap}
-.zmc.on b{font-size:15px;font-weight:600}
+.zmc.on b{font-size:16px;font-weight:600} .zmc.on span{font-size:13px;font-weight:600}
+.zcr{background:var(--zb);border-radius:12px}   /* v528: la cruz de tu fila y tu columna */
 .zmc span{position:relative;font-size:12px;white-space:nowrap;color:var(--ink3)}
 .zmc.l0{background:var(--lv0);color:var(--ink2)} .zmc.lp1{background:var(--lp1);color:var(--lp1t)} .zmc.ln1{background:var(--ln1);color:var(--ln1t)} .zmc.lp2{background:var(--lp2);color:var(--lp2t)} .zmc.ln2{background:var(--ln2);color:var(--ln2t)} .zmc.lp3{background:var(--lp3);color:var(--lp3t)} .zmc.ln3{background:var(--ln3);color:var(--ln3t)} .zmc.lp4{background:var(--lp4);color:var(--lp4t)} .zmc.ln4{background:var(--ln4);color:var(--ln4t)} .zmc.lp5{background:var(--lp5);color:var(--lp5t)} .zmc.ln5{background:var(--ln5);color:var(--ln5t)} 
 .zmc[class*=" l"] b,.zmc[class*=" l"] span{color:inherit}
@@ -4306,7 +4307,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v527";   // la versión publicada, en el pie
+const VER="v528";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6764,6 +6765,9 @@ function zfMatriz(X,Y,F,{price,mult,req,PX,fvDate,rev}){
   const near=(a,b)=>isNum(a)&&isNum(b)&&Math.abs(a-b)<1e-6, n=F.rates.length, m=F.rows.length, vs=F.rows.flatMap(o=>o.v).filter(v=>isNum(v)&&v>0), d0=vs.some(v=>v>=1000)?0:2;
   RL=40, GAP=6, x0=X+28, cw=(ZG.CW2-56-RL-(n-1)*GAP)/n, yc=Y+92, ch=(Y+395-28-yc-(m-1)*GAP)/m;
   const cS=F.rates.findIndex(r=>near(r,req)), rS=F.rows.findIndex(o=>near(o.m,mult));
+  // tu casilla: una cruz muy suave recorre tu fila (múltiplo) y tu columna (TIR) hasta ella, como al seleccionar una celda
+  if(cS>=0&&rS>=0){ const cx=x0+RL+cS*(cw+GAP), cy=yc+rS*(ch+GAP), xr=x0+RL+n*cw+(n-1)*GAP, yb=yc+m*ch+(m-1)*GAP;
+    h+=`<div class="zq zcr" style="left:${zr(x0-6)}px;top:${zr(cy-4)}px;width:${zr(xr-x0+10)}px;height:${zr(ch+8)}px"></div><div class="zq zcr" style="left:${zr(cx-4)}px;top:${zr(yc-34)}px;width:${zr(cw+8)}px;height:${zr(yb-yc+38)}px"></div>`; }
   F.rates.forEach((r,k)=>{ h+=zT(x0+RL+k*(cw+GAP),Y+64,`TIR ${tipoPct(r)}`,"zmx"+(k===cS?" on":""),`width:${zr(cw)}px`); });
   F.rows.forEach((o,ri)=>{ const y=yc+ri*(ch+GAP); h+=zT(x0,y,multiplo(o.m),"zmx"+(ri===rS?" on":""),`height:${zr(ch)}px;line-height:${zr(ch)}px;text-align:left`);
     o.v.forEach((v,k)=>{ const ok=isNum(v)&&v>0, p=ok&&isNum(price)?v/price-1:null, on=ri===rS&&k===cS, pr=isNum(p)?Math.round(p*100):null;
