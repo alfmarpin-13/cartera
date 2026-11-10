@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-jRrHJQtE4WfaTgIv+WEyxvXzV08UCaYS2K2lWYrszzw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-nJAn7XX+BFrvYpBSOFbiZgM6cGOZR5O7sIlC275hLuM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -2930,9 +2930,13 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
 body[data-view="resumen"]:has(#s-check:not([hidden])) #foot #chk-show{display:none}
 /* v431 · RES-03: la flecha de orden siempre detrás del nombre y con espacio fino («Valor ↓»), sin ocupar sitio */
 html body table th[aria-sort][aria-sort]:not(#_)::before,html body #t-p th[aria-sort][aria-sort]>.thl::before{content:none}
-html body table th[aria-sort="ascending"][aria-sort]:not(#_)::after{content:"\202F↑";display:inline-block;width:1em;margin-right:-1em;text-align:left}
-html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"\202F↓";display:inline-block;width:1em;margin-right:-1em;text-align:left}
+html body table th[aria-sort="ascending"][aria-sort]:not(#_)::after{content:"";display:inline-block;box-sizing:border-box;width:6px;height:6px;margin:0 -11px 0 5px;position:relative;z-index:3;border:0 solid currentColor;border-right-width:1.5px;border-bottom-width:1.5px;vertical-align:-.08em;transform:rotate(-135deg)}
+html body table th[aria-sort="descending"][aria-sort]:not(#_)::after{content:"";display:inline-block;box-sizing:border-box;width:6px;height:6px;margin:0 -11px 0 5px;position:relative;z-index:3;border:0 solid currentColor;border-right-width:1.5px;border-bottom-width:1.5px;vertical-align:.17em;transform:translateY(-.35px) rotate(45deg)}
 
+html body table th[aria-sort][aria-sort]:not(#_){z-index:3}
+html body #t-p th[aria-sort][aria-sort]:not(#_):has(>.thl)::after{content:none}
+html body #t-p th[aria-sort="ascending"][aria-sort]:not(#_)>.thl::after{content:"";display:inline-block;box-sizing:border-box;width:6px;height:6px;margin:0 -11px 0 5px;position:relative;z-index:3;border:0 solid currentColor;border-right-width:1.5px;border-bottom-width:1.5px;vertical-align:-.08em;transform:rotate(-135deg)}
+html body #t-p th[aria-sort="descending"][aria-sort]:not(#_)>.thl::after{content:"";display:inline-block;box-sizing:border-box;width:6px;height:6px;margin:0 -11px 0 5px;position:relative;z-index:3;border:0 solid currentColor;border-right-width:1.5px;border-bottom-width:1.5px;vertical-align:.17em;transform:translateY(-.35px) rotate(45deg)}
 /* v432 · ANA-04: Dividendos de Análisis en el móvil, dos filas de dos (Año y Rentabilidad; Crecimiento y Cobrado total) */
 .dv-mo{display:none}
 @media (max-width:700.98px){
@@ -4437,7 +4441,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v550";   // la versión publicada, en el pie
+const VER="v551";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
