@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-BOPl85IRUTfC1OlDWAVm+7Zzr/9zf7hleByMrg2VfL4=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Tl0sxSkP/1VRSHI8Ab9Tn2ouc+gn97qaK136kzEZr4A=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3643,9 +3643,9 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .zcp .zc-rule{border-top:1px solid var(--zsl);margin-top:10px}
   .zcp .zc-res{display:grid;grid-template-columns:14px 1fr auto;column-gap:8px;align-items:baseline;height:24px;margin-top:12px}
   .zcp .zc-res b{font-size:20px;line-height:24px;font-weight:600;color:var(--zsr);white-space:nowrap} .zcp .zc-res b.neg{color:var(--zsn)}
-  .zcp-ops{flex:1 1 auto;min-height:0;overflow:auto;margin:6px -24px 0;padding:0 24px;scrollbar-width:thin;display:grid;grid-template-columns:minmax(0,1fr) 80px max-content max-content 16px;column-gap:20px;align-content:start}
+  .zcp-ops{flex:1 1 auto;min-height:0;overflow:auto;margin:6px -24px 0;padding:0 24px;scrollbar-width:thin;display:grid;grid-template-columns:minmax(0,1fr) 80px 92px 52px 16px;column-gap:20px;align-content:start}
   .zcp .zc-op{position:relative;grid-column:1/-1;display:grid;grid-template-columns:subgrid;align-items:start;padding:16px 0;border-bottom:1px solid var(--line);line-height:18px}
-  .zcp .zc-hd{position:sticky;top:0;z-index:1;background:var(--canvas);padding:10px 0 8px;font-size:12px;line-height:16px;color:var(--ink3)} .zcp .zc-hd>span{text-align:right;white-space:nowrap}
+  .zcp .zc-hd{position:sticky;top:0;z-index:1;background:var(--canvas);padding:10px 0 8px;font-size:12px;line-height:16px;color:var(--ink3)} .zcp .zc-hd>span{text-align:right;white-space:nowrap} .zcp .zc-hd>span:nth-child(2){padding-right:10px}   /* «Importe», alineado con la cifra de dentro de la casilla */
   .zcp .zc-co{display:flex;align-items:center;gap:10px;min-width:0}
   .zcp .zc-nm{display:flex;flex-direction:column;min-width:0}
   .zcp .zc-d{display:flex;flex-direction:column;align-items:flex-end;white-space:nowrap} .zcp .zc-d b{font-weight:400} .zcp .zc-d small{font-size:12px;color:var(--ink3);min-height:18px} .zcp .zc-g{color:var(--ink3)}
@@ -4370,7 +4370,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v537";   // la versión publicada, en el pie
+const VER="v538";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7336,8 +7336,8 @@ function zfCalcPinta(){ const Z=document.getElementById("zcp"); if(!Z||Z.hidden|
     R.querySelector(".zc-sub").innerHTML=sub;
     // precio medio y peso: arriba el valor tras la operación; debajo, en gris, el de antes (sin operación, solo el de ahora, en gris)
     const dos=(v,a)=>`<b>${v}</b><small>${a}</small>`, hay=r&&x.sh>0;
-    R.querySelector('[data-c="pm"]').innerHTML=!r?"":hay?dos(x.pm1!=null?money(x.pm1,r.cur):"—",x.pm0!=null?nf(2).format(x.pm0):""):x.pm0!=null?dos(`<span class="zc-g">${money(x.pm0,r.cur)}</span>`,""):"";
-    R.querySelector('[data-c="w"]').innerHTML=!r?"":x.w1!=null?dos(pct(x.w1),x.w0>0.0005?nf(1).format(x.w0*100):""):x.w0>0.0005?dos(`<span class="zc-g">${pct(x.w0)}</span>`,""):"";
+    R.querySelector('[data-c="pm"]').innerHTML=!r?"":hay?dos(x.pm1!=null?money(x.pm1,r.cur):"—",x.pm0!=null?money(x.pm0,r.cur):""):x.pm0!=null?dos(`<span class="zc-g">${money(x.pm0,r.cur)}</span>`,""):"";
+    R.querySelector('[data-c="w"]').innerHTML=!r?"":x.w1!=null?dos(pct(x.w1),x.w0>0.0005?pct(x.w0):""):x.w0>0.0005?dos(`<span class="zc-g">${pct(x.w0)}</span>`,""):"";
     const one=plan.rows.length===1; R.querySelector(".zc-x").hidden=one&&!(o.t||isNum(o.amt)||isNum(o.n)); });
   const ok=plan.rows.every(o=>o.t)||plRow0()!=null; ["zc-add","zc-sell"].forEach(id=>{ $(id).disabled=!ok; $(id).title=ok?"":"Elige la empresa de la operación anterior"; });
   $("zc-clr").style.visibility=plHas()?"":"hidden"; if(Z.style.left) zfCalcSitio(parseFloat(Z.style.left),parseFloat(Z.style.top)); }
