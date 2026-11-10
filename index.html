@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-brhfpAQa+HwbzjA71ULfzBhV5HbImqJ8e+CBu73I90I=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-hKUcWJZO0bIMvo3sKTR4Fd/Zn4/PZldHGMwD/uVe2dE=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4416,7 +4416,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v546";   // la versión publicada, en el pie
+const VER="v547";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7464,15 +7464,15 @@ function zfMapa(){ const T=$("tmap"); if(!T||!DATA||innerWidth<=MOVIL) return; c
   const lay=k=>{ const tt=all.reduce((t,z)=>t+z.v,0), it=all.slice(0,k).map(z=>({...z,a:z.v/tt*W*H})), resto=all.slice(k);
     if(resto.length){ const v=resto.reduce((t,z)=>t+z.v,0), con=resto.filter(z=>isNum(z.ch)), vc=con.reduce((t,z)=>t+z.v,0); it.push({otras:resto,v,ch:vc?con.reduce((t,z)=>t+z.ch*z.v,0)/vc:null,a:v/tt*W*H}); }
     return sq(it,0,0,W,H); };
-  const mx=all[0].v; let fl=0, tl=lay(all.length); const fina=t=>t.some(z=>z.w-G<40||z.h-G<34);
+  const mx=all[0].v; let fl=0, tl=lay(all.length); const fina=t=>t.some(z=>z.w-G<60||z.h-G<48);   // v547: lo justo para que en todas quepa su porcentaje
   while(fina(tl)&&fl<.2){ fl+=.005; all.forEach(z=>{ z.a0=z.a0??z.v; z.v=Math.max(z.a0,mx*fl); }); tl=lay(all.length); }   // v546: todas, cada una de su peso; solo las diminutas crecen lo justo para no quedar en astilla
   all.forEach(z=>{ if(z.a0!=null) z.v=z.a0; });
   T.style.height=H+"px";
   T.innerHTML=`<div class="gx-tr zr-tr" style="height:${H}px">${tl.map(z=>{ const w=z.w-G, h=z.h-G, pq=h<100, c=P1(z.ch);
     const st=`left:${(z.x+G/2).toFixed(1)}px;top:${(z.y+G/2).toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px${pq?";gap:4px":""}`, cls=`gx-t2 ${nivel(z.ch)}`;
     if(z.otras){ const nom=z.otras.map(o=>o.p.name).join(", "); return `<button type="button" class="${cls} zr-ot" style="${st}" title="${esc(nom)} · ${((z.a0??z.v)/tot*100).toFixed(1).replace(".",",")} % de la cartera" aria-label="Otras ${z.otras.length}: ${esc(nom)}"><span>Otras ${z.otras.length}</span>${c?`<b>${c}</b>`:""}</button>`; }
-    const p=z.p, tip=`${p.name} · ${c||"—"}${z.sin?" (aún no cotiza)":""} · ${((z.a0??z.v)/tot*100).toFixed(1).replace(".",",")} % de la cartera`, cabe=w>=84&&h>=64, solo=!cabe&&w>=36&&h>=26;
-    if(!cabe){ const lw=Math.min(96,w-10), lh=Math.min(36,h-10); return `<button type="button" class="${cls}" data-t="${esc(p.ticker)}" style="${st}" title="${esc(tip)}" aria-label="${esc(tip)}">${solo?gxSil(p.ticker,lw,lh,lw,lh):""}</button>`; }
+    const p=z.p, tip=`${p.name} · ${c||"—"}${z.sin?" (aún no cotiza)":""} · ${((z.a0??z.v)/tot*100).toFixed(1).replace(".",",")} % de la cartera`, cabe=w>=84&&h>=64;
+    if(!cabe){ const lh=Math.min(36,h-(c?38:12)), lw=Math.min(96,w-12), logo=lh>=14?gxSil(p.ticker,lw,lh,lw,lh):""; return `<button type="button" class="${cls}" data-t="${esc(p.ticker)}" style="${st};gap:4px" title="${esc(tip)}" aria-label="${esc(tip)}">${logo}${c?`<b>${c}</b>`:""}</button>`; }
     const lw0=Math.round(Math.max(30,Math.min(96,w*.5,(h-(pq?34:44))*1.6))), lw=Math.min(96,w<120?Math.max(lw0,Math.round(w-18)):lw0), lh=Math.min(36,Math.round(lw0*.5625));
     return `<button type="button" class="${cls}" data-t="${esc(p.ticker)}" style="${st}" title="${esc(tip)}" aria-label="${esc(tip)}">${gxSil(p.ticker,lw,lh,Math.min(96,w-14),Math.min(36,h-(pq?36:46)))}${c?`<b>${c}</b>`:""}</button>`; }).join("")}</div>`;
   const up=all.filter(z=>z.ch>0).length, dn=all.filter(z=>z.ch<0).length, sc=all.filter(z=>z.sin).length, lg=$("hy-leg");
