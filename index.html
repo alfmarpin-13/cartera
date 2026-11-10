@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-weq2bmIlCFMK+iVfimumCGd+2eTaDwhwJgyiHpu3Dhk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-0ASrnlEt5E8D/U0aUCvlaX9VCXWNLC0Y/I/FAh5ObHo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3696,6 +3696,8 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 /* v542 · en oscuro, la opción elegida del selector de Apariencia se distingue de las otras */
 @media (min-width:761px) and (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mm-th .seg button[aria-pressed=true]{background:color-mix(in srgb,var(--ink) 16%,transparent);box-shadow:none}}
 @media (min-width:761px){:root[data-theme="dark"] .mm-th .seg button[aria-pressed=true]{background:color-mix(in srgb,var(--ink) 16%,transparent);box-shadow:none}}
+/* v543 · en el PC la calculadora está solo en el menú de Opciones: fuera de Universo */
+@media (min-width:761px){#v-universo > #s-plan{display:none!important}}
 </style>
 
 <div class="wrap">
@@ -4388,7 +4390,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v542";   // la versión publicada, en el pie
+const VER="v543";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7413,6 +7415,7 @@ addEventListener("resize",()=>{ if(!ZF_PC()) zfCalcCierra(); else { const P=docu
 { const c=$("mm-chk"); if(c&&!$("mm-calc")) c.insertAdjacentHTML("afterend",'<button type="button" id="mm-calc" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="1.75" width="10" height="12.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="5" y="3.75" width="6" height="2.5" rx=".6" fill="currentColor"/><circle cx="5.75" cy="8.75" r=".8" fill="currentColor"/><circle cx="8" cy="8.75" r=".8" fill="currentColor"/><circle cx="10.25" cy="8.75" r=".8" fill="currentColor"/><circle cx="5.75" cy="11.5" r=".8" fill="currentColor"/><circle cx="8" cy="11.5" r=".8" fill="currentColor"/><circle cx="10.25" cy="11.5" r=".8" fill="currentColor"/></svg><span>Calculadora de operaciones</span></button>'); }
 $("more-m").addEventListener("click",e=>{ if(e.target.closest("#mm-calc")) zfCalcAbre(); });
 { const c=$("mm-calc"), p=$("mm-priv"); if(c&&p) c.after(p); }   // v530: en el PC, ocultar importes y la apariencia van solo en el menú
+// v543: Universo ya no la muestra en el PC (el bloque se oculta en zf.css)
 { const S=$("s-plan"); if(S&&!$("pl-open")) S.insertAdjacentHTML("beforeend",'<button type="button" id="pl-open">Abrir la calculadora'+ZF_IC.r+'</button>'); $("pl-open").addEventListener("click",zfCalcAbre); }
 
 function navega(token,push){
