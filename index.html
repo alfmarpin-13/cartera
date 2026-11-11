@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-/8LVfkIEolml6rkyRa3Ds7w5acV2tLTK2w3cFyEaQTQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Eg/RfWSxtKDPJ6viv8PFOqve7FXj4LxyDi4FQuXFvJw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4532,7 +4532,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v574";   // la versión publicada, en el pie
+const VER="v575";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6660,12 +6660,14 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   const mej=ok[0], peo=ok[ok.length-1];
   // v574: hoy solo cuentan las que ya cotizan («Hoy cotizan 49 de 117 empresas: suben 27 y bajan 22.»); las que se quedan en 0,0 %, al final («…y 2 siguen igual»)
   const vb=(c,p1,p2,s1,s2)=>pres?(c===1?p1:p2):(c===1?s1:s2), sb=vb(up,"sube","suben","subió","subieron"), bj=vb(dn,"baja","bajan","bajó","bajaron"), ig=vb(igu,"sigue igual","siguen igual","siguió igual","siguieron igual"), cola=n=>igu?`${sb} ${up}, ${bj} ${dn} y ${igu} ${ig}`:`${sb} ${up}${n?` de ${N} empresas`:""} y ${bj} ${dn}`;
-  let t=k==="dd"?`${ok.filter(r=>r.dd<=-0.2).length} de ${N} empresas caen ${kw} más de un 20 %.`
+  let t=k==="dd"?(()=>{ const x=ok.filter(r=>r.dd<=-0.2).length; return `De tus ${N} empresas, ${x?`${x} ${x===1?"cae":"caen"}`:"ninguna cae"} más de un 20 % ${kw}.`; })()   /* v575: sin número delante */
     :k==="today"&&!ok.length?`${kw} aún no cotiza ninguna de tus ${N} empresas.`
     :k==="today"&&ok.length<N?`${kw} cotizan ${ok.length} de ${N} empresas: ${cola(false)}.`
     :igu?`${pre}${kw}${pre?",":""} de ${N} empresas, ${cola(false)}.`
     :`${pre}${kw}${pre?",":""} ${cola(true)}.`;
-  const t2=!ok.length?(k==="today"?"Lo verás en cuanto abran las bolsas.":"Sin datos para este periodo."):k==="dd"?`Más lejos, ${esc(peo.name)} (${gxPS(peo.dd)}); más cerca, ${esc(mej.name)} (${gxPS(mej.dd)}).`:`Arriba, ${esc(mej.name)} (${gxPS(mej[k])}); abajo, ${esc(peo.name)} (${gxPS(peo[k])}).`;
+  const t2=!ok.length?(k==="today"?"Lo verás en cuanto abran las bolsas.":"Sin datos para este periodo."):k==="dd"?`Más lejos, ${esc(peo.name)} (${gxPS(peo.dd)}); más cerca, ${esc(mej.name)} (${gxPS(mej.dd)}).`:(()=>{ const v1=pres?["sube","baja"]:["subió","bajó"];   /* v575: «La que más sube…; la que más baja…» (si todas bajan o todas suben, «la que menos…») */
+      const a=mej[k]>0?`La que más ${v1[0]}`:`La que menos ${v1[1]}`, b=peo[k]<0?`la que más ${v1[1]}`:`la que menos ${v1[0]}`;
+      return `${a}, ${esc(mej.name)} (${gxPS(mej[k])}); ${b}, ${esc(peo.name)} (${gxPS(peo[k])}).`; })();
   s.innerHTML=gxH(t,t2)+`<div class="gx-mos"></div>`;
   let s2=s.nextElementSibling; if(!s2||!s2.classList.contains("gx3b")){ s2=document.createElement("section"); s2.className="gx3 gx3b"; s.after(s2); }   // v479: la exigencia, en su propio lienzo
   ["marginLeft","marginRight","paddingLeft","paddingRight"].forEach(p=>s2.style[p]=s.style[p]);
