@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-yGXeBolDNS/UZ1DcCpmSifZgx3sEuUYMl/oCbGJ/2As=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Z6DPvKTcO3V2pzqiaFjaG8Jo5LgXwD96XghJVMOsov8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3895,9 +3895,9 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
    la activa subrayada en menta (como las palabras que se pueden elegir en los titulares), y a la derecha el valor y el día (solo
    cuando la tarjeta de cifras no se ve), la hora de los datos, actualizar, buscar y opciones */
 @media (min-width:1000px){
-  html body .top{height:48px;min-height:48px;padding-block:0!important;background:var(--canvas)!important;box-shadow:0 0 0 100vmax var(--canvas)!important;
+  html body .top{height:52px;min-height:52px;padding-block:0!important;background:var(--canvas)!important;box-shadow:0 0 0 100vmax var(--canvas)!important;
     grid-template-columns:auto auto minmax(0,1fr)!important;column-gap:30px!important}
-  html body .top .nav{min-height:48px!important;margin-block:0!important;align-self:stretch}
+  html body .top .nav{min-height:52px!important;margin-block:0!important;align-self:stretch}
   html body .top .nav a[aria-current="page"]::after{background:var(--gx-id)}
   html body .top .tools{justify-self:end;margin-right:-12px}   /* las tres rayas acaban a ras del borde derecho del contenido */
   #more.aviso::after{top:10.5px;right:10px;width:5px;height:5px;box-shadow:none}   /* el aviso del cuadre: un punto al final de la raya de arriba, que se acorta para dejarle sitio */
@@ -3940,6 +3940,8 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   #more.aviso::after{right:0}
   html body .top :is(.btn.ic,.kbar,#refresh):focus-visible{outline:none;color:var(--ink)}   /* sin recuadro de foco (también se salía); el icono se oscurece, como en las pestañas desde la v539 */
 }
+
+/* v589 · la barra del PC, de 52 px (antes 48): 8,5 px de aire bajo el subrayado de la sección activa */
 </style>
 
 <div class="wrap">
@@ -4632,7 +4634,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v588";   // la versión publicada, en el pie
+const VER="v589";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
