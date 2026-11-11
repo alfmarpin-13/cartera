@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-MRbXHRu3hXkSYiYGf8V+/M7vYp8/9RCHOjR/tuHRa4Y=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-YWPwnx+3hhp8IpcifvIhIfz9K+sj2JTv7Gl0TjPHLfI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3781,9 +3781,12 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 @media (min-width:701px){
   /* v566: el sombreado, como imagen encima del fondo de cada celda (la cabecera fija sigue opaca) y centrado sobre sus datos:
      empieza 16 px antes de la píldora de Rentabilidad y acaba 16 px después de la última cifra de Dividendo */
-  #t-pos :is(th,td).zp-va{--zs:color-mix(in srgb,var(--ink) 3.5%,transparent);background-image:linear-gradient(to right,transparent var(--zo,0px),var(--zs) var(--zo,0px))}
+  #t-pos :is(th,td):is(.zp-va,.zp-vh){--zs:color-mix(in srgb,var(--ink) 3.5%,transparent);background-image:linear-gradient(to right,transparent var(--zo,0px),var(--zs) var(--zo,0px))}
   #t-pos :is(th,td).zp-va.zp-gi{--zo:var(--zog,0px)}
   #t-pos tr > .zp-va:last-child{padding-right:16px!important}
+  /* v573: el bloque de «hoy» empieza 16 px antes de la cifra de Hoy más a la izquierda y acaba 16 px después de la de Cotización */
+  #t-pos :is(th,td).zp-vh.zp-gi{--zo:var(--zoh,0px)}
+  #t-pos :is(th,td).zp-vh:is([data-k="price"],[data-l="Cotización"]){padding-right:16px!important}
 }
 /* v571 · Posiciones (PC): columnas que respiran. Con --ex = 260 (columna de 1.440 px) cada cabecera cabe con su flecha de ordenar y 8 px de aire;
    de 0 a 260 crecen poco a poco desde los anchos de siempre. Sale de TIR (le sobraban 28 px), de Empresa (sin bajar del nombre más largo)
@@ -3792,7 +3795,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   #t-pos th[data-k="name"]{width:calc(211px + var(--ex)*.012)}
   #t-pos th[data-k="today"]{width:calc(62px + var(--ex)*.023)}
   #t-pos th[data-k="todayEur"]{width:calc(62px + var(--ex)*.027)}
-  #t-pos th[data-k="price"]{width:calc(87px + var(--ex)*.027)}
+  #t-pos th[data-k="price"]{width:calc(95px + var(--ex)*.027)}   /* v573: +8 px para los 16 px de aire a la derecha del bloque de «hoy» */
   #t-pos th[data-k="shares"]{width:calc(65px + var(--ex)*.081)}
   #t-pos th[data-k="avg"]{width:calc(87px + var(--ex)*.073)}
   #t-pos th[data-k="value"]{width:calc(75px + var(--ex)*.023)}
@@ -3823,7 +3826,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   /* Universo: si la última fila es de tu cartera, su verde sigue debajo del sombreado redondeado */
   #t-p tr.inpf > td:is(.zq-bl,.zq-br){background-color:color-mix(in srgb,var(--gx-id) 14%,transparent)!important}
   /* v568: la opción (debajo de «Otros instrumentos»), sin sombreado */
-  #t-pos tr.grp-row ~ tr > .zp-va{background-image:none!important}
+  #t-pos tr.grp-row ~ tr > :is(.zp-va,.zp-vh){background-image:none!important}
 }
 
 /* v570 · Universo (PC): el filtro con el selector de palabra, en la misma línea base que la primera línea del titular; el menú se abre hacia la izquierda para no salirse de la tarjeta */
@@ -4529,7 +4532,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v572";   // la versión publicada, en el pie
+const VER="v573";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7665,10 +7668,10 @@ function zfUniOrden(){ const pc=innerWidth>MOVIL, L=zfPcolsBase.slice();
 const ZF_POS_L={"Empresa":"name","Cotización":"price","Pr. medio":"avg","Acciones":"shares","Hoy":"today","Hoy €":"todayEur","Valor":"value","Peso":"weight","Rentab.":"totalPct","Resultado":"totalEur","TIR":"irr","Años":"years","Dividendo":"yov"};
 const ZF_POS_PC=["name","today","todayEur","price","shares","avg","value","weight","totalPct","totalEur","irr","years","yov"];   // v569: hoy (Hoy, Hoy €, Cotización) · lo que tienes (Acciones, Precio medio, Valor, Peso) · cómo te va
 const ZF_POS_BASE=["name","price","avg","shares","today","todayEur","value","weight","totalPct","totalEur","irr","years","yov"];
-const ZF_POS_GRUPO={today:"g1",shares:"g2",totalPct:"g3"}, ZF_POS_VA=new Set(["totalPct","totalEur","irr","years","yov"]);
+const ZF_POS_GRUPO={today:"g1",shares:"g2",totalPct:"g3"}, ZF_POS_VA=new Set(["totalPct","totalEur","irr","years","yov"]), ZF_POS_VH=new Set(["today","todayEur","price"]);   // v573: también «hoy» con sombra
 function zfPosOrden(){ const t=$("t-pos"); if(!t) return; const pc=innerWidth>MOVIL, ord=pc?ZF_POS_PC:ZF_POS_BASE;
   const pon=(tr,kOf)=>{ const cs=[...tr.children], m=new Map(); cs.forEach(c=>{ const k=kOf(c); if(k) m.set(k,c); }); if(m.size!==ord.length) return;
-    m.forEach((c,k)=>{ c.classList.toggle("zp-va",pc&&ZF_POS_VA.has(k)); c.classList.toggle("zp-gi",pc&&!!ZF_POS_GRUPO[k]); });
+    m.forEach((c,k)=>{ c.classList.toggle("zp-va",pc&&ZF_POS_VA.has(k)); c.classList.toggle("zp-vh",pc&&ZF_POS_VH.has(k)); c.classList.toggle("zp-gi",pc&&!!ZF_POS_GRUPO[k]); });
     if(ord.every((k,i)=>cs[i]===m.get(k))) return; tr.append(...ord.map(k=>m.get(k))); };
   t.querySelectorAll("thead tr").forEach(tr=>pon(tr,c=>c.dataset.k));
   t.querySelectorAll("tbody tr.pr").forEach(tr=>pon(tr,c=>ZF_POS_L[c.dataset.l])); }
@@ -7680,13 +7683,16 @@ function zfPosOrden(){ const t=$("t-pos"); if(!t) return; const pc=innerWidth>MO
 const ZF_UNI_VA=["fv","mult","req","irrExp","margin","vd"];
 function zfEsquinas(t,esSomb){ if(!t) return; t.querySelectorAll(".zq-tl,.zq-tr,.zq-bl,.zq-br").forEach(c=>c.classList.remove("zq-tl","zq-tr","zq-bl","zq-br"));
   if(innerWidth<=MOVIL) return;
-  const marca=(cs,a,b)=>{ const s=cs.filter(esSomb); if(!s.length) return null; s[0].classList.add(a); s[s.length-1].classList.add(b); return s; };
+  // v573: puede haber varios bloques en una fila (tramos seguidos de celdas sombreadas): se marcan los extremos de cada uno
+  const marca=(cs,a,b)=>{ const s=cs.filter(esSomb); if(!s.length) return null; cs.forEach((c,i)=>{ if(!esSomb(c)) return; if(!cs[i-1]||!esSomb(cs[i-1])) c.classList.add(a); if(!cs[i+1]||!esSomb(cs[i+1])) c.classList.add(b); }); return s; };
   // v568: en Posiciones, el bloque acaba en la última empresa: la fila de «Otros instrumentos» y la opción quedan fuera
   const h=t.querySelector("thead tr"), filas=[...t.querySelectorAll("tbody tr.pr")].filter(tr=>!tr.matches("tr.grp-row ~ tr")), u=filas[filas.length-1];
   const sh=h?marca([...h.children],"zq-tl","zq-tr"):null; if(u) marca([...u.children],"zq-bl","zq-br");
   t.querySelectorAll(".zq-g").forEach(c=>c.classList.remove("zq-g")); }
-function zfEsqPos(){ const t=$("t-pos"); zfEsquinas(t,c=>c.classList.contains("zp-va"));
+function zfEsqPos(){ const t=$("t-pos"); zfEsquinas(t,c=>c.classList.contains("zp-va")||c.classList.contains("zp-vh"));
   // v571: el sombreado empieza 16 px antes de la píldora de Rentabilidad, medido sobre la píldora de verdad
+  if(t&&innerWidth>MOVIL){ let L=Infinity, c0=null; t.querySelectorAll("tbody tr.pr > td.zp-gi.zp-vh").forEach(td=>{ if(td.closest("tr.grp-row ~ tr")) return; const w=document.createTreeWalker(td,NodeFilter.SHOW_TEXT); let n; while((n=w.nextNode())){ if(!n.textContent.trim()) continue; const r=document.createRange(); r.selectNodeContents(n); for(const q of r.getClientRects()) if(q.width>0&&q.left-td.getBoundingClientRect().left<L){ L=q.left-td.getBoundingClientRect().left; c0=td; } } });
+    if(c0) t.style.setProperty("--zoh",Math.max(0,L-16).toFixed(1)+"px"); }
   if(t&&innerWidth>MOVIL){ const p=t.querySelector("tbody tr.pr > td.zp-gi.zp-va .rlv"); if(p){ const td=p.closest("td"); t.style.setProperty("--zog",Math.max(0,p.getBoundingClientRect().left-td.getBoundingClientRect().left-16).toFixed(1)+"px"); } } }
 function zfEsqUni(){ zfEsquinas($("t-p"),c=>ZF_UNI_VA.includes(c.dataset.k)); }
 { const _rpos2=renderPositions; renderPositions=function(){ const r=_rpos2.apply(this,arguments); try{ zfEsqPos(); }catch(e){ console.warn("Cartera · Posiciones:",e); } return r; }; }
