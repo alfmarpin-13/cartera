@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-JGSXMz30AdoF2ep12U9pshg9rElg5B6b6S7dRSR5KvU=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-tocjuFKqRNN2KoAyFypK6gXgFCn9B5MjXSMFwGKr4bg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v598">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v598">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v598">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v599">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v599">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v599">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3999,6 +3999,9 @@ body:has(#dot.busy) .zf-logo circle{transform-box:fill-box;transform-origin:cent
   h2.gx-t,h2.gxan-t{font-family:"Inter Display",Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-variation-settings:'opsz' 32;letter-spacing:-.012em}
   h2.gx-t *,h2.gxan-t *{letter-spacing:inherit}
 }
+
+/* v599 · el valor de la cartera, fuera de la barra del PC */
+html body .top .zf-nbv{display:none!important}
 </style>
 
 <div class="wrap">
@@ -4691,7 +4694,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v598";   // la versión publicada, en el pie
+const VER="v599";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
