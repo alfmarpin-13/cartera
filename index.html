@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-2gBtd1WRMoxTch6hh0/IbY4Wzcb80DDziUIetytDOv8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-PYF257bStlvsVb5hss7457PrxERbUJ8x7TpJ3eioOFM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3774,6 +3774,27 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   #t-p tr.inpf .co b{font-weight:600}
   #t-p tr.inpf .co b::after{display:none!important}
 }
+
+/* v565 · Resumen › Posiciones (PC): «cómo te va» con fondo propio (como la valoración en Universo) y aire al empezar cada grupo */
+@media (min-width:701px){
+  #t-pos :is(th,td).zp-va{background-color:color-mix(in srgb,var(--ink) 3.5%,transparent)}
+}
+/* el espacio que sobra al ensanchar (--ex) ya no se reparte a partes iguales entre las 11 columnas de cifras (4,6 % cada una):
+   va entero al hueco que abre cada grupo (Valor, Hoy, Cotización, Rentabilidad: 12,65 % cada uno). Empresa y Peso, igual que antes */
+@media (min-width:1201px){
+  #t-pos th:is([data-k="avg"],[data-k="price"]){width:87px}
+  #t-pos th[data-k="shares"]{width:65px}
+  #t-pos th:is([data-k="today"],[data-k="todayEur"]){width:62px}
+  #t-pos th:is([data-k="value"],[data-k="totalEur"],[data-k="irr"]){width:75px}
+  #t-pos th[data-k="totalPct"]{width:89px}
+  #t-pos th[data-k="years"]{width:50px}
+  #t-pos th[data-k="yov"]{width:69px}
+  #t-pos th.zp-gi[data-k="value"]{width:calc(75px + var(--ex)*.1265)}
+  #t-pos th.zp-gi[data-k="today"]{width:calc(62px + var(--ex)*.1265)}
+  #t-pos th.zp-gi[data-k="price"]{width:calc(87px + var(--ex)*.1265)}
+  #t-pos th.zp-gi[data-k="totalPct"]{width:calc(89px + var(--ex)*.1265)}
+  #t-pos :is(th,td).zp-gi{padding-left:calc(8px + var(--ex)*.1265)!important}
+}
 </style>
 
 <div class="wrap">
@@ -4466,7 +4487,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v564";   // la versión publicada, en el pie
+const VER="v565";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7595,6 +7616,22 @@ function zfUniOrden(){ const pc=innerWidth>MOVIL, L=zfPcolsBase.slice();
   if(L.some((c,i)=>PCOLS[i]!==c)){ PCOLS.splice(0,PCOLS.length,...L); pRowsFor=null; } }
 { const _rp2=renderPre; renderPre=function(){ try{ zfUniOrden(); }catch(e){ console.warn("Cartera · Universo:",e); } return _rp2.apply(this,arguments); }; }
 { const _rpt=renderPreTable; renderPreTable=function(){ try{ zfUniOrden(); }catch(e){ console.warn("Cartera · Universo:",e); } return _rpt.apply(this,arguments); }; }
+
+/* v565 · Resumen › Posiciones (PC): columnas en grupos que cuentan algo, de lo que tienes a cómo te va
+   qué tienes (Empresa, Valor, Peso) · qué pasa hoy (Hoy, Hoy €) · cómo entraste (Cotización, Precio medio, Acciones) · cómo te va (Rentabilidad, Resultado, TIR, Años, Dividendo)
+   En el móvil, el orden de siempre */
+const ZF_POS_L={"Empresa":"name","Cotización":"price","Pr. medio":"avg","Acciones":"shares","Hoy":"today","Hoy €":"todayEur","Valor":"value","Peso":"weight","Rentab.":"totalPct","Resultado":"totalEur","TIR":"irr","Años":"years","Dividendo":"yov"};
+const ZF_POS_PC=["name","value","weight","today","todayEur","price","avg","shares","totalPct","totalEur","irr","years","yov"];
+const ZF_POS_BASE=["name","price","avg","shares","today","todayEur","value","weight","totalPct","totalEur","irr","years","yov"];
+const ZF_POS_GRUPO={value:"g1",today:"g2",price:"g3",totalPct:"g4"}, ZF_POS_VA=new Set(["totalPct","totalEur","irr","years","yov"]);
+function zfPosOrden(){ const t=$("t-pos"); if(!t) return; const pc=innerWidth>MOVIL, ord=pc?ZF_POS_PC:ZF_POS_BASE;
+  const pon=(tr,kOf)=>{ const cs=[...tr.children], m=new Map(); cs.forEach(c=>{ const k=kOf(c); if(k) m.set(k,c); }); if(m.size!==ord.length) return;
+    m.forEach((c,k)=>{ c.classList.toggle("zp-va",pc&&ZF_POS_VA.has(k)); c.classList.toggle("zp-gi",pc&&!!ZF_POS_GRUPO[k]); });
+    if(ord.every((k,i)=>cs[i]===m.get(k))) return; tr.append(...ord.map(k=>m.get(k))); };
+  t.querySelectorAll("thead tr").forEach(tr=>pon(tr,c=>c.dataset.k));
+  t.querySelectorAll("tbody tr.pr").forEach(tr=>pon(tr,c=>ZF_POS_L[c.dataset.l])); }
+{ const _rpos=renderPositions; renderPositions=function(){ const r=_rpos.apply(this,arguments); try{ zfPosOrden(); }catch(e){ console.warn("Cartera · Posiciones:",e); } return r; }; }
+{ let w=innerWidth>MOVIL; addEventListener("resize",()=>{ const n=innerWidth>MOVIL; if(n!==w){ w=n; try{ zfPosOrden(); }catch(e){} } }); }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
