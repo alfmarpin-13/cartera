@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-IBCHT6zpwDH7nsDH6duX0yRE+seB7HuKfaDoFjRrDPk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-9gbCZdKT3Zm6Mw9V08H2IysU012fxpoTpNJfAUzGnQc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3761,6 +3761,20 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   html body table th[aria-sort][aria-sort]:not(#_)::after,html body #t-p th[aria-sort][aria-sort]:not(#_):has(>.thl)::after{content:none}
   html body table.rt thead th > :is(button,span){display:inline-block;position:relative}
 }
+/* v556 · Posiciones: las casillas de Rentabilidad, en el verde de la marca si gana y en el arena de Transacciones si pierde (5 escalones cada una, más intenso cuanto más);
+   la cifra en la tinta oscura de la marca (el blanco sobre este verde no se lee: contraste 1,8 a 1); en oscuro, en claro sobre los escalones flojos */
+#t-pos .rlv.rp1{background:color-mix(in srgb,var(--gx-id) 25%,transparent);color:var(--gx-id-ink)}
+#t-pos .rlv.rp2{background:color-mix(in srgb,var(--gx-id) 42%,transparent);color:var(--gx-id-ink)}
+#t-pos .rlv.rp3{background:color-mix(in srgb,var(--gx-id) 60%,transparent);color:var(--gx-id-ink)}
+#t-pos .rlv.rp4{background:color-mix(in srgb,var(--gx-id) 80%,transparent);color:var(--gx-id-ink)}
+#t-pos .rlv.rp5{background:color-mix(in srgb,var(--gx-id) 100%,transparent);color:var(--gx-id-ink)}
+#t-pos .rlv.rn1{background:color-mix(in srgb,var(--gx-out) 35%,transparent);color:var(--ink)}
+#t-pos .rlv.rn2{background:color-mix(in srgb,var(--gx-out) 52%,transparent);color:var(--ink)}
+#t-pos .rlv.rn3{background:color-mix(in srgb,var(--gx-out) 68%,transparent);color:var(--ink)}
+#t-pos .rlv.rn4{background:color-mix(in srgb,var(--gx-out) 84%,transparent);color:var(--ink)}
+#t-pos .rlv.rn5{background:color-mix(in srgb,var(--gx-out) 100%,transparent);color:var(--ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #t-pos .rlv:is(.rp1,.rp2){color:var(--ink)}}
+:root[data-theme="dark"] #t-pos .rlv:is(.rp1,.rp2){color:var(--ink)}
 </style>
 
 <div class="wrap">
@@ -4453,7 +4467,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v555";   // la versión publicada, en el pie
+const VER="v556";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
