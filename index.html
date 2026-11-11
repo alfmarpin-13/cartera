@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-b/6nNQ5XHdrT4F1PPzoILU008j+Trtst7vQeylZk+yk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-rhBn/5DpwivDJTOnDUL/HOx5WdaD8NZWamil+ItDscQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v601">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v601">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v601">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v602">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v602">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v602">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4751,7 +4751,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v601";   // la versión publicada, en el pie
+const VER="v602";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -8004,11 +8004,27 @@ function zfR1(){ const T=$("s-today"), E=$("s-evo"), H=$("s-hero"); if(!T||!E||!
   if(!T.querySelector(".r1-k")){ const a=document.createElement("div"); a.className="r1-k"; a.innerHTML=f("Valor de cartera",["h-val","g"],"h-sub")+f("#hk-ren-l",["hk-ren"],"hk-ren-s",1); ($("l1-side")||T.firstElementChild).after(a); }
   if(!E.querySelector(".r1-k")){ const b=document.createElement("div"); b.className="r1-k"; b.innerHTML=f("Retorno total",["hk-ret"],"hk-ret-s")+f("TIR",["hk-tir"],"hk-tir-s"); (E.querySelector(".chart-head")||E.firstElementChild).after(b); }
   const copia=()=>{ document.querySelectorAll("#v-resumen .r1-k [data-c]").forEach(el=>{ const o=$(el.dataset.c); if(!o) return;
-      if(el.dataset.c==="hk-ren-l") el.textContent=o.textContent.trim();
+      if(el.dataset.c==="hk-ren-l") el.textContent=((o.querySelector(".lg")||o).textContent||"").trim();   /* v602: con la bolsa cerrada, «Última sesión» (antes salía «Última sesiónSesión») */
       else if(el.dataset.c==="hk-ren-s"){ const p=o.querySelector("span"); el.innerHTML=p?p.outerHTML:o.innerHTML; }   /* solo el porcentaje del día */
       else el.innerHTML=o.innerHTML;
-      ["pos","neg"].forEach(c=>el.classList.toggle(c,o.classList.contains(c))); }); };
+      ["pos","neg"].forEach(c=>el.classList.toggle(c,o.classList.contains(c))); }); zfR1Frase(); };
   copia(); if(!zfR1.mo){ zfR1.mo=new MutationObserver(copia); zfR1.mo.observe(H,{subtree:true,childList:true,characterData:true,attributes:true}); } }
+
+// v602 · G-01: Resumen abre con su frase, como las otras cuatro pestañas (titular de 38 px y, en gris, la segunda frase).
+// Primera frase, lo de hoy: cuántas empresas suben o bajan y cuánto se mueve la cartera. Segunda, lo de siempre: lo ganado y su porcentaje sobre lo aportado
+function zfR1Frase(){ const S=document.querySelector("#v-resumen > section.gx3"); if(!S||!DATA||innerWidth<=MOVIL) return;
+  let h=S.querySelector(":scope > h2.r1-h"); if(!h){ h=document.createElement("h2"); h.className="gx-t r1-h"; S.prepend(h); }
+  const all=DATA.pos.filter(p=>!p.isOption&&p.shares>0&&p.value>0), cot=all.filter(p=>isNum(p.today)), up=cot.filter(p=>p.today>0).length, dn=cot.filter(p=>p.today<0).length, N=all.length;
+  const cerr=!!$("hk-ren-l").querySelector(".lg");   // con la bolsa cerrada, la franja habla de la última sesión
+  const pd=(($("hk-ren-s").querySelector("span")||{}).textContent||"").trim(), neg=/^[−-]/.test(pd), sinS=pd.replace(/^[+−-]\s*/,""), cero=!pd||/^0(,0+)?\s*%$/.test(sinS);
+  const de=cot.length===N?`de tus ${N} empresas`:`de las ${cot.length} empresas que ya cotizan`;
+  const vb=cerr?["subieron","bajaron"]:["suben","bajan"];
+  const mov=dn>up?`${vb[1]} ${dn}`:up>dn?`${vb[0]} ${up}`:`${vb[0]} ${up} y ${vb[1]} ${dn}`;
+  const car=cero?(cerr?"la cartera se quedó igual":"la cartera se queda igual"):neg?(cerr?`la cartera cedió un ${sinS}`:`la cartera cede un ${sinS}`):(cerr?`la cartera ganó un ${sinS}`:`la cartera gana un ${sinS}`);
+  const l1=!cot.length?`Hoy aún no cotiza ninguna de tus ${N} empresas.`:`${cerr?"En la última sesión":"Hoy"} ${mov} ${de} y ${car}.`;
+  const rt=($("hk-ret").textContent||"").trim(), rneg=/^[−-]/.test(rt), rabs=rt.replace(/^[+−-]\s*/,""), rp=(($("hk-ret-s").querySelector("span")||{}).textContent||"").trim().replace(/^[+−-]\s*/,"");
+  const l2=!rt?"":rneg?`Desde el inicio pierdes <span class="pv">${esc(rabs)}</span>, un ${esc(rp)} menos de lo aportado.`:`Desde el inicio ganas <span class="pv">${esc(rabs)}</span>, un ${esc(rp)} sobre lo aportado.`;
+  const html=`<span class="l1">${esc(l1)}</span>${l2?`<span class="l2">${l2}</span>`:""}`; if(h.innerHTML!==html) h.innerHTML=html; }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
