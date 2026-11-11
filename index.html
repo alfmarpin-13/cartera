@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-e0no4QA1BI+LvdmLfyxgXBFd8hhd28c2Rr1ZfK2PdzU=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-cOIe/9kxekCc3vYJBmJEiamwjYeNDo8o3aN2YWL8vYQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3816,13 +3816,13 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   :is(#t-pos,#t-p,#s-mov .rt) :is(.zq-tl,.zq-tr,.zq-bl,.zq-br){--zr:8px;--zs:color-mix(in srgb,var(--ink) 3.5%,transparent);background-repeat:no-repeat!important}
   :is(#t-pos,#t-p,#s-mov .rt) td:is(.zq-bl,.zq-br){background-color:transparent!important}
   :is(#t-pos,#t-p,#s-mov .rt) .zq-tl{background-image:radial-gradient(circle at 100% 100%,var(--zs) var(--zr),transparent calc(var(--zr) + .5px)),linear-gradient(var(--zs),var(--zs)),linear-gradient(var(--zs),var(--zs))!important;
-    background-position:var(--zo,0px) 0,calc(var(--zo,0px) + var(--zr)) 0,var(--zo,0px) var(--zr)!important;background-size:var(--zr) var(--zr),calc(100% - var(--zo,0px) - var(--zr)) var(--zr),calc(100% - var(--zo,0px)) calc(100% - var(--zr))!important}
+    background-position:var(--zo,0px) 0,calc(var(--zo,0px) + var(--zr)) 0,var(--zo,0px) var(--zr)!important;background-size:var(--zr) var(--zr),calc(100% - var(--zo,0px) - var(--zr) + 1px) var(--zr),calc(100% - var(--zo,0px) + 1px) calc(100% - var(--zr))!important}
   :is(#t-pos,#t-p,#s-mov .rt) .zq-tr{background-image:radial-gradient(circle at 0 100%,var(--zs) var(--zr),transparent calc(var(--zr) + .5px)),linear-gradient(var(--zs),var(--zs)),linear-gradient(var(--zs),var(--zs))!important;
-    background-position:100% 0,0 0,0 var(--zr)!important;background-size:var(--zr) var(--zr),calc(100% - var(--zr)) var(--zr),100% calc(100% - var(--zr))!important}
+    background-position:100% 0,-1px 0,-1px var(--zr)!important;background-size:var(--zr) var(--zr),calc(100% - var(--zr) + 1px) var(--zr),calc(100% + 1px) calc(100% - var(--zr))!important}
   :is(#t-pos,#t-p,#s-mov .rt) .zq-bl{background-image:radial-gradient(circle at 100% 0,var(--zs) var(--zr),transparent calc(var(--zr) + .5px)),linear-gradient(var(--zs),var(--zs)),linear-gradient(var(--zs),var(--zs))!important;
-    background-position:var(--zo,0px) 100%,calc(var(--zo,0px) + var(--zr)) 100%,var(--zo,0px) 0!important;background-size:var(--zr) var(--zr),calc(100% - var(--zo,0px) - var(--zr)) var(--zr),calc(100% - var(--zo,0px)) calc(100% - var(--zr))!important}
+    background-position:var(--zo,0px) 100%,calc(var(--zo,0px) + var(--zr)) 100%,var(--zo,0px) 0!important;background-size:var(--zr) var(--zr),calc(100% - var(--zo,0px) - var(--zr) + 1px) var(--zr),calc(100% - var(--zo,0px) + 1px) calc(100% - var(--zr))!important}
   :is(#t-pos,#t-p,#s-mov .rt) .zq-br{background-image:radial-gradient(circle at 0 0,var(--zs) var(--zr),transparent calc(var(--zr) + .5px)),linear-gradient(var(--zs),var(--zs)),linear-gradient(var(--zs),var(--zs))!important;
-    background-position:100% 100%,0 100%,0 0!important;background-size:var(--zr) var(--zr),calc(100% - var(--zr)) var(--zr),100% calc(100% - var(--zr))!important}
+    background-position:100% 100%,-1px 100%,-1px 0!important;background-size:var(--zr) var(--zr),calc(100% - var(--zr) + 1px) var(--zr),calc(100% + 1px) calc(100% - var(--zr))!important}
   /* Universo: si la última fila es de tu cartera, su verde sigue debajo del sombreado redondeado */
   #t-p tr.inpf > td:is(.zq-bl,.zq-br){background-color:color-mix(in srgb,var(--gx-id) 14%,transparent)!important}
   /* v568: la opción (debajo de «Otros instrumentos»), sin sombreado */
@@ -3845,13 +3845,17 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 /* los meses, sin totales: solo el nombre del mes y cuántos movimientos */
 #s-mov .grp-row .gx{display:none}
 /* «Dividendo», en el verde del dinero que entra (antes un azul que solo salía aquí y en oscuro se volvía lila) */
-.mt-div,#s-mov .tag.mt-div,.tag.mt-div{color:var(--pos)}
+/* v579: sin colores fuera de los importes: los tipos y estados, en el gris de siempre */
+#s-mov .tag:is(.mt-div,.mt-sell,.acc),.tag.mt-div{color:var(--ink2)}
 @media (min-width:701px){
-  /* Importe y Resultado, en un bloque sombreado como «cómo te va»: 8 px antes del importe más ancho y 16 px después del resultado */
-  #s-mov[data-t="todo"] .rt :is(th,td).zm-va{--zs:color-mix(in srgb,var(--ink) 3.5%,transparent);background-image:linear-gradient(to right,transparent var(--zo,0px),var(--zs) var(--zo,0px))}
-  #s-mov[data-t="todo"] .rt :is(th,td).zm-va[data-k="amt"]{--zo:var(--zom,0px)}
-  #s-mov[data-t="todo"] .rt :is(th,td).zm-va[data-k="pnl"]{padding-right:16px!important}
-  #s-mov[data-t="todo"] .rt tr.grp-row > td.zq-g{--zs:color-mix(in srgb,var(--ink) 3.5%,transparent);background-image:linear-gradient(var(--zs),var(--zs));background-repeat:no-repeat;background-position:var(--zx) 0;background-size:var(--zw) 100%}
+  /* las cifras de cada pestaña, en un bloque sombreado: 8 px antes de la cifra más ancha de la primera columna y 16 px tras la última */
+  #s-mov .rt :is(th,td).zm-va{--zs:color-mix(in srgb,var(--ink) 3.5%,transparent);background-image:linear-gradient(to right,transparent var(--zo,0px),var(--zs) var(--zo,0px))}
+  #s-mov .rt :is(th,td).zm-va.zm-a{--zo:var(--zom,0px)}
+  #s-mov .rt :is(th,td).zm-va.zm-z{padding-right:16px!important}
+  #s-mov .rt tbody tr.grp-row > td.zq-g{--zs:color-mix(in srgb,var(--ink) 3.5%,transparent);background-image:linear-gradient(var(--zs),var(--zs))!important;background-repeat:no-repeat!important;background-position:var(--zx) 0!important;background-size:var(--zw) 100%!important}   /* v579: !important, porque una regla antigua quitaba el fondo a los meses a partir del segundo */
+  /* v579: con los bordes fundidos, el borde que separa los meses nunca lleva fondo: se cambia por un relleno del mismo alto para que la sombra no se corte */
+  #s-mov .rt tbody tr.grp-row:not(:first-child) > td.zq-g{border-top-width:0!important;padding-top:33px!important}
+  #s-mov .rt tbody tr.grp-row:first-child > td.zq-g{border-top-width:0!important;padding-top:14px!important}
 }
 /* anchos: Detalle se queda con lo que pide su texto más largo y algo de aire; lo que sobraba va a Empresa, Tipo, Bróker y al bloque del dinero */
 @media (min-width:1241px){
@@ -4554,7 +4558,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v578";   // la versión publicada, en el pie
+const VER="v579";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5208,14 +5212,15 @@ const MOV = {
         {k:"Ventas con ganancia",v:os.length?pct(win/os.length,1):"",gl:1,nolg:1,split:os.length?[{v:win},{v:os.length-win}]:null,sub:os.length?`${nf(0).format(win)} de ${nf(0).format(os.length)} ${os.length===1?"venta":"ventas"}`:"sin ventas"}]; } },
   dividendos:{ rows:()=>DATA?DATA.dv:[], date:r=>r.d, years:r=>[yr(r.d)], text:r=>[r.name,r.ticker,r.type].join(" "), sort:["d",-1],
     states:[["","Estado"],["paid","Cobrados"],["sched","Previstos"]], stateFn:(r,s)=>s==="paid"?DATA.isPaid(r):!DATA.isPaid(r),
-    cols:[ {k:"d",l:"Fecha",r:"sub",f:r=>sdate(r.d)}, {k:"name",l:"Empresa",r:"main",left:1,f:r=>coCell(r.name,r.ticker,r.type&&r.type!=="Dividendo"?`<span class="tag acc">${esc(r.type)}</span>`:"")},
+    cols:[ {k:"d",l:"Fecha",r:"sub",f:r=>sdate(r.d)}, {k:"name",l:"Empresa",r:"main",left:1,f:r=>coCell(r.name,r.ticker,"")},
       {k:"broker",l:"Bróker",left:1,hs:1,sec:1,f:r=>esc(r.broker||"")},
-      {k:"st",l:"Estado",nl:1,sv:r=>DATA.isPaid(r)?0:1,f:r=>DATA.isPaid(r)?`<span class="tag acc">Cobrado</span>`:`<span class="tag">Previsto</span>`},
+      {k:"ty",l:"Tipo",left:1,hs:1,sec:1,sv:r=>r.type||"Dividendo",f:r=>esc(r.type||"Dividendo")},
       {k:"shares",l:"Acciones",hs:1,sec:1,f:r=>{ const s=shares(r.shares); return s?`<span class="pv pvn">${s}</span>`:""; }},
       {k:"dps",l:"Por acción",hs:1,sec:1,f:r=>dpsF(r.dps,r.cur)},
+      {k:"gross",l:"Bruto",r:"amt",f:r=>DATA.isPaid(r)?`<b class="fw500">${seur(r.gross,2)}</b>`:`<span class="pd-amt">${seur(r.gross,2)}</span>`},
       {k:"ret",l:"Retención",hs:1,sv:r=>(r.gross||0)-(r.net||0),f:r=>{const x=(r.gross||0)-(r.net||0); return x>0.005?`<span class="neg">−${nf(2).format(x)}\u202F€</span>`:"";}},
       {k:"net",l:"En bróker",hs:1,sec:1,f:r=>seur(r.net,2)},   // solo para cuadrar lo que queda en el bróker: los dividendos se cuentan siempre en bruto
-      {k:"gross",l:"Bruto",r:"amt",f:r=>DATA.isPaid(r)?`<b class="fw500">${seur(r.gross,2)}</b>`:`<span class="pd-amt">${seur(r.gross,2)}</span>`} ],
+      {k:"st",l:"Estado",nl:1,sv:r=>DATA.isPaid(r)?0:1,f:r=>DATA.isPaid(r)?`<span class="tag acc">Cobrado</span>`:`<span class="tag">Previsto</span>`} ],
     // lo que cobras en bruto en el año elegido (o el actual): lo cobrado, lo que te llega al mes, frente al año anterior
     // (el actual, hasta la misma fecha) y cada año, con lo apuntado encima; el total ya está en la pestaña
     kpis:(all,ys)=>{ const cy=new Date().getFullYear(), y=ys||cy, now=new Date(), p=all.filter(DATA.isPaid), sc=all.filter(r=>!DATA.isPaid(r)),
@@ -7743,19 +7748,20 @@ function zfUniKw(){ const seg=$("p-f"), S=$("s-plist"); if(!seg||!S) return; let
 document.addEventListener("click",e=>{ const op=e.target.closest('.kw-m [data-kw="unif"]'); if(!op||op.disabled) return; const b=$("p-f")&&$("p-f").querySelector(`button[data-f="${op.dataset.o}"]`); if(b) b.click(); });
 { const _rpt3=renderPreTable; renderPreTable=function(){ const r=_rpt3.apply(this,arguments); try{ zfUniKw(); }catch(e){ console.warn("Cartera · Universo:",e); } return r; }; }
 
-/* v578 · Movimientos (PC, «Todos los movimientos»): Importe y Resultado como un bloque sombreado con esquinas redondeadas.
+/* v578–v579 · Movimientos (PC): las columnas de cifras de cada pestaña, en un bloque sombreado con esquinas redondeadas (como en Resumen).
+   Todos: Importe y Resultado · Transacciones: Acciones, Precio de compra e Importe · Dividendos: Acciones, Por acción y Bruto. Aportaciones y Ajustes, sin sombra.
    La sombra cruza también las cabeceras de mes, para que el bloque no se corte */
+const ZF_MOV_SOMB={todo:["amt","pnl"],transacciones:["shares","bp","bt"],dividendos:["shares","dps","gross"]};
 function zfMovSombra(){ const h=$("m-head"); if(!h) return; const t=h.closest("table"), S=$("s-mov"); if(!t||!S) return;
-  t.querySelectorAll(".zm-va,.zq-tl,.zq-tr,.zq-bl,.zq-br,.zq-g").forEach(c=>c.classList.remove("zm-va","zq-tl","zq-tr","zq-bl","zq-br","zq-g"));
-  if(innerWidth<=MOVIL||S.dataset.t!=="todo"||!t.getClientRects().length) return;
-  const ks=["amt","pnl"], es=c=>ks.includes(c.dataset.k);
-  const a=h.querySelector('th[data-k="amt"]'), z=h.querySelector('th[data-k="pnl"]'); if(!a||!z) return;
-  t.querySelectorAll("thead th, tbody tr.mr > td").forEach(c=>{ if(es(c)) c.classList.add("zm-va"); });
+  t.querySelectorAll(".zm-va,.zm-a,.zm-z,.zq-tl,.zq-tr,.zq-bl,.zq-br,.zq-g").forEach(c=>c.classList.remove("zm-va","zm-a","zm-z","zq-tl","zq-tr","zq-bl","zq-br","zq-g"));
+  const ks=ZF_MOV_SOMB[S.dataset.t]; if(innerWidth<=MOVIL||!ks||!t.getClientRects().length) return;
+  const a=h.querySelector(`th[data-k="${ks[0]}"]`), z=h.querySelector(`th[data-k="${ks[ks.length-1]}"]`); if(!a||!z||!a.getClientRects().length) return;
+  t.querySelectorAll("thead th, tbody tr:not(.grp-row) > td").forEach(c=>{ const k=c.dataset.k; if(!ks.includes(k)) return; c.classList.add("zm-va"); if(k===ks[0]) c.classList.add("zm-a"); if(k===ks[ks.length-1]) c.classList.add("zm-z"); });
   a.classList.add("zq-tl"); z.classList.add("zq-tr");
-  const filas=[...t.querySelectorAll("tbody tr.mr")].filter(r=>r.getClientRects().length), u=filas[filas.length-1];
-  if(u){ const ua=u.querySelector('td[data-k="amt"]'), uz=u.querySelector('td[data-k="pnl"]'); if(ua) ua.classList.add("zq-bl"); if(uz) uz.classList.add("zq-br"); }
-  // dónde empieza: 8 px antes del importe que más ocupa
-  let L=Infinity; filas.forEach(r=>{ const td=r.querySelector('td[data-k="amt"]'); if(!td) return; const rg=document.createRange(); rg.selectNodeContents(td); const q=rg.getBoundingClientRect(); if(q.width>0) L=Math.min(L,q.left-td.getBoundingClientRect().left); });
+  const filas=[...t.querySelectorAll("tbody tr:not(.grp-row)")].filter(r=>r.children.length>2&&r.getClientRects().length), u=filas[filas.length-1];
+  if(u){ const ua=u.querySelector(`td[data-k="${ks[0]}"]`), uz=u.querySelector(`td[data-k="${ks[ks.length-1]}"]`); if(ua) ua.classList.add("zq-bl"); if(uz) uz.classList.add("zq-br"); }
+  // dónde empieza: 8 px antes de la cifra que más ocupa en la primera columna del bloque
+  let L=Infinity; filas.forEach(r=>{ const td=r.querySelector(`td[data-k="${ks[0]}"]`); if(!td) return; const rg=document.createRange(); rg.selectNodeContents(td); const q=rg.getBoundingClientRect(); if(q.width>0) L=Math.min(L,q.left-td.getBoundingClientRect().left); });
   const zo=isFinite(L)?Math.max(0,L-8):0; t.style.setProperty("--zom",zo.toFixed(1)+"px");
   const tl=t.getBoundingClientRect().left, ra=a.getBoundingClientRect(), rz=z.getBoundingClientRect();
   t.querySelectorAll("tbody tr.grp-row > td").forEach(g=>{ g.style.setProperty("--zx",(ra.left-tl+zo).toFixed(1)+"px"); g.style.setProperty("--zw",(rz.right-ra.left-zo).toFixed(1)+"px"); g.classList.add("zq-g"); }); }
