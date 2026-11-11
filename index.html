@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-QEGcsej6XEiqKbN4mKhGmAdQ0qFyK083pIRBt/DAKeg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-kPwBiI5NooZb61Vj4OdJNnxXEa6vbIlGVWfws9xYmDA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4608,7 +4608,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v585";   // la versión publicada, en el pie
+const VER="v586";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7826,12 +7826,12 @@ function zfMovSombra(){ const h=$("m-head"); if(!h) return; const t=h.closest("t
 /* v583 · la raya de debajo de la barra, solo cuando has bajado y hay contenido por detrás */
 { const tb=document.querySelector(".top"), f=()=>{ if(tb) tb.classList.toggle("zf-scr",scrollY>0); }; addEventListener("scroll",f,{passive:true}); f(); }
 
-/* v584 · en la barra del PC, el valor de la cartera y lo que va hoy, solo cuando la tarjeta de cifras de Resumen no se ve
+/* v584 · en la barra del PC, el valor de la cartera (v586: sin lo que va hoy), solo cuando la tarjeta de cifras de Resumen no se ve
    (al bajar en Resumen y siempre en las demás pestañas). Se copia de la propia tarjeta, así que en modo privado sale «••••» */
 { const tl=document.querySelector(".top .tools"), hora=tl&&tl.querySelector(".status.hora");
-  if(tl&&hora){ const nb=document.createElement("span"); nb.className="zf-nbv"; nb.setAttribute("aria-hidden","true"); nb.innerHTML='<b class="pv"></b><span></span>'; tl.insertBefore(nb,hora);
-    const hero=$("s-hero"), val=$("h-val"), ren=$("hk-ren-s"), b=nb.querySelector("b"), s=nb.querySelector("span");
-    const copia=()=>{ b.textContent=val?val.textContent.trim():""; const p=ren&&ren.querySelector(".pos,.neg"); s.innerHTML=p?p.outerHTML+" hoy":""; };
+  if(tl&&hora){ const nb=document.createElement("span"); nb.className="zf-nbv"; nb.setAttribute("aria-hidden","true"); nb.innerHTML='<b class="pv"></b>'; tl.insertBefore(nb,hora);
+    const hero=$("s-hero"), val=$("h-val"), b=nb.querySelector("b");
+    const copia=()=>{ b.textContent=val?val.textContent.trim():""; };   // v586: solo el valor, sin la variación del día
     const mira=()=>{ const tb=document.querySelector(".top"), alto=tb?tb.getBoundingClientRect().bottom:48;
       const visible=hero&&hero.getClientRects().length&&hero.getBoundingClientRect().bottom>alto;
       nb.classList.toggle("on",!visible&&!!b.textContent&&!(val&&val.querySelector(".skel"))); };
