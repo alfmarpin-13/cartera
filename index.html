@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-+6x1K+P7p67VRtpPfvtmHy521eGo+4Hpge+SrVva53A=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-LNeZyeXNuq9lJ8z5a8s43/sbbl58jFnYd93fWitImjc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3877,6 +3877,19 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 
 /* v582 · Universo: 8 px de aire como mínimo entre el borde de la sombra y «Valor razonable» (a 1.280 px quedaba a 6) */
 @media (min-width:701px){ #t-p :is(th,td)[data-k="fv"]{padding-left:12px!important} }
+
+/* v583 · Barra de menú (PC) */
+@media (min-width:1000px){
+  .top .tools{margin-right:-10px}   /* el «···» acaba a ras del borde derecho del contenido, como el logo por la izquierda */
+  .top .status #refresh{width:36px;height:36px;margin-left:-9px;color:var(--ink2)}   /* «Actualizar», del mismo tamaño y gris que «Buscar» y «···» */
+  .top .status #refresh svg{width:16px;height:16px}
+  .dot.live{background:var(--gx-id);box-shadow:0 0 0 3px color-mix(in srgb,var(--gx-id) 28%,transparent)}   /* el punto «en vivo», en el verde de la marca, como el del logo */
+  .top .tools .status.hora{border-right:0!important;padding-right:0!important;margin-right:18px!important}   /* sin raya vertical: lo separa el espacio */
+  #more.aviso::after{background:var(--ink)}   /* el aviso del cuadre, en tinta */
+  .marca-l{width:28px!important;height:28px!important}   /* el logo, algo más presente */
+  .top:not(.zf-scr)::after{opacity:0}   /* la raya de debajo de la barra, solo cuando hay contenido por detrás */
+  .top{clip-path:inset(0 -100vmax 0)!important}   /* la raya es el borde exacto de la barra (antes quedaba 1 px de crema debajo) */
+}
 </style>
 
 <div class="wrap">
@@ -4569,7 +4582,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v582";   // la versión publicada, en el pie
+const VER="v583";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4842,7 +4855,7 @@ function render(d){
   const bad=d.check.filter(c=>c.ok===false);
   $("chk-tag").className="tag "+(bad.length?"warn":""); $("chk-tag").textContent=bad.length?`${bad.length} ${bad.length>1?"diferencias":"diferencia"}`:"✓ Todo cuadra";
   $("s-check").hidden=true;   // HI-01: el Cuadre ya no va en la portada; se abre desde Opciones o desde «Ver el cuadre»
-  $("more").classList.toggle("aviso",bad.length>0); { const mt=$("mm-chk-t"); mt.className=$("chk-tag").className; mt.textContent=$("chk-tag").textContent; }
+  $("more").classList.toggle("aviso",bad.length>0); $("more").title=bad.length?`El cuadre tiene ${bad.length} ${bad.length>1?"diferencias":"diferencia"}`:""; { const mt=$("mm-chk-t"); mt.className=$("chk-tag").className; mt.textContent=$("chk-tag").textContent; }
   $("foot").innerHTML=`<span class="f-l">Datos de tu hoja<span id="f-h"></span> · versión ${VER.replace(/^v/,"")}<span class="f-op"> · <button type="button" class="foot-b foot-m${bad.length?" aviso":""}" id="f-more" aria-haspopup="menu" aria-expanded="${$("more").getAttribute("aria-expanded")||"false"}">Opciones</button></span></span>`; footHora();   // v475 · SI-06 
   // tu hoja: lo que no tiene cotización (se valora a precio de compra) y lo que no cuadra, en un solo aviso, en una franja debajo del bloque oscuro
   { const n=d.noPx||[], bc=bad.filter(c=>!c.data), bd=bad.filter(c=>c.data), el=$("hoja-al");
@@ -7783,6 +7796,9 @@ function zfMovSombra(){ const h=$("m-head"); if(!h) return; const t=h.closest("t
 { const _rm=renderMov; renderMov=function(){ const r=_rm.apply(this,arguments); try{ zfMovSombra(); }catch(e){ console.warn("Cartera · Movimientos:",e); } return r; }; }
 { let r2=0; const pide=()=>{ cancelAnimationFrame(r2); r2=requestAnimationFrame(()=>{ try{ zfMovSombra(); }catch(e){} }); };
   const b=$("m-body"); if(b) new MutationObserver(pide).observe(b,{childList:true}); addEventListener("resize",pide); document.addEventListener("click",e=>{ if(e.target.closest('[data-v="movimientos"],.kw-m [data-kw="mov"]')) setTimeout(pide,60); }); }
+
+/* v583 · la raya de debajo de la barra, solo cuando has bajado y hay contenido por detrás */
+{ const tb=document.querySelector(".top"), f=()=>{ if(tb) tb.classList.toggle("zf-scr",scrollY>0); }; addEventListener("scroll",f,{passive:true}); f(); }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
