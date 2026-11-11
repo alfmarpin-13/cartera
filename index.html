@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-UgS1rnYI/w7VlRrJgyyrp5e9H9gsIPA6F0q2RjVFuis=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-8tH7xFGPKxsD9FSseTFbACzWRWnpmqfFmF4xzqJZBAU=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3792,22 +3792,22 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
    de 0 a 260 crecen poco a poco desde los anchos de siempre. Sale de TIR (le sobraban 28 px), de Empresa (sin bajar del nombre más largo)
    y de parte del hueco entre grupos (11 % de --ex cada uno, en Hoy, Acciones y Rentabilidad); Peso se lleva lo que queda */
 @media (min-width:1201px){
-  #t-pos th[data-k="name"]{width:calc(211px + var(--ex)*.012)}
-  #t-pos th[data-k="today"]{width:calc(62px + var(--ex)*.023)}
-  #t-pos th[data-k="todayEur"]{width:calc(62px + var(--ex)*.027)}
-  #t-pos th[data-k="price"]{width:calc(95px + var(--ex)*.027)}   /* v573: +8 px para los 16 px de aire a la derecha del bloque de «hoy» */
-  #t-pos th[data-k="shares"]{width:calc(65px + var(--ex)*.081)}
-  #t-pos th[data-k="avg"]{width:calc(87px + var(--ex)*.073)}
-  #t-pos th[data-k="value"]{width:calc(75px + var(--ex)*.023)}
-  #t-pos th[data-k="totalPct"]{width:calc(89px + var(--ex)*.054)}
-  #t-pos th[data-k="totalEur"]{width:calc(75px + var(--ex)*.058)}
-  #t-pos th[data-k="irr"]{width:calc(75px - var(--ex)*.077)}
-  #t-pos th[data-k="years"]{width:calc(50px + var(--ex)*.054)}
-  #t-pos th[data-k="yov"]{width:calc(69px + var(--ex)*.115)}
-  #t-pos th.zp-gi[data-k="today"]{width:calc(62px + var(--ex)*.133)}
-  #t-pos th.zp-gi[data-k="shares"]{width:calc(65px + var(--ex)*.191)}
-  #t-pos th.zp-gi[data-k="totalPct"]{width:calc(89px + var(--ex)*.164)}
-  #t-pos :is(th,td).zp-gi{padding-left:calc(8px + var(--ex)*.11)!important}
+  #t-pos th[data-k="name"]{width:calc(211px + var(--ex)*.089)}   /* v577: unos 20 px más de aire tras Empresa */
+  #t-pos th[data-k="today"]{width:calc(62px + var(--ex)*.031)}
+  #t-pos th[data-k="todayEur"]{width:calc(62px + var(--ex)*.035)}
+  #t-pos th[data-k="price"]{width:calc(95px + var(--ex)*.035)}   /* v573: +8 px para los 16 px de aire a la derecha del bloque de «hoy» */
+  #t-pos th[data-k="shares"]{width:calc(65px + var(--ex)*.089)}
+  #t-pos th[data-k="avg"]{width:calc(87px + var(--ex)*.081)}
+  #t-pos th[data-k="value"]{width:calc(75px + var(--ex)*.031)}
+  #t-pos th[data-k="totalPct"]{width:calc(89px + var(--ex)*.062)}
+  #t-pos th[data-k="totalEur"]{width:calc(75px + var(--ex)*.066)}
+  #t-pos th[data-k="irr"]{width:calc(75px - var(--ex)*.069)}
+  #t-pos th[data-k="years"]{width:calc(50px + var(--ex)*.062)}
+  #t-pos th[data-k="yov"]{width:calc(69px + var(--ex)*.123)}
+  #t-pos th.zp-gi[data-k="today"]{width:calc(62px + var(--ex)*.086)}
+  #t-pos th.zp-gi[data-k="shares"]{width:calc(65px + var(--ex)*.144)}
+  #t-pos th.zp-gi[data-k="totalPct"]{width:calc(89px + var(--ex)*.117)}
+  #t-pos :is(th,td).zp-gi{padding-left:calc(8px + var(--ex)*.055)!important}   /* v577: la mitad de hueco entre grupos (la sombra ya los separa) */
 }
 
 /* v567 · esquinas redondeadas del sombreado (8 px). Las tablas tienen los bordes fundidos, así que el redondeo se dibuja con el propio fondo:
@@ -4532,7 +4532,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v576";   // la versión publicada, en el pie
+const VER="v577";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
