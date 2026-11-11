@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-cOIe/9kxekCc3vYJBmJEiamwjYeNDo8o3aN2YWL8vYQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-DXiBnmi2HMtohp/mJCkyGNPTRh2PuSZKdVcRZdgKkqw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3844,6 +3844,8 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 /* v578 · Movimientos */
 /* los meses, sin totales: solo el nombre del mes y cuántos movimientos */
 #s-mov .grp-row .gx{display:none}
+/* v580: tampoco «N movimientos»: la cabecera de mes, solo con el mes */
+#s-mov .grp-row .gn{display:none}
 /* «Dividendo», en el verde del dinero que entra (antes un azul que solo salía aquí y en oscuro se volvía lila) */
 /* v579: sin colores fuera de los importes: los tipos y estados, en el gris de siempre */
 #s-mov .tag:is(.mt-div,.mt-sell,.acc),.tag.mt-div{color:var(--ink2)}
@@ -4558,7 +4560,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v579";   // la versión publicada, en el pie
+const VER="v580";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6802,7 +6804,7 @@ function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=docum
     return `${esc(o.n)} ${vb} ${anual?`las cuentas de ${anual[1]}${esc(anual[2])}`:per?`resultados del ${esc(per)}`:"resultados"}${!pas&&/apertura|cierre/.test(h)?", "+h:""}.${o.est?' <span class="t3">Fecha estimada.</span>':""}`; };
   const hasta=`hasta final de ${GX_MESL[fin.getMonth()]}`;
   let h=`<div class="gxag-h"><h2>Fuera de tu cartera</h2><span>${nR} ${nR===1?"resultado":"resultados"} ${hasta}</span></div>`;   // v493: sin leyenda ni bolas verdes
-  if(!dias.length) h+=`<p class="gxag-nada">Ningún resultado ${hasta}.</p>`;
+  if(!dias.length){ A.innerHTML=`<div class="gxag-h"><h2>Fuera de tu cartera</h2><span>Ningún resultado ${hasta}</span></div>`; return; }   // v580: sin resultados, solo la cabecera con una frase (antes, el mismo aviso tres veces y dos columnas vacías)
   // v492: dos columnas, los mismos meses que arriba: a la izquierda el primero y a la derecha el segundo, cada uno con sus días en orden
   h+=`<div class="gxag-cols">`;
   for(let m=0;m<2;m++){ const mes=new Date(hoy.getFullYear(),hoy.getMonth()+m,1,12), ks=dias.filter(k=>new Date(k).getMonth()===mes.getMonth());
