@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-zSniW76aBboqge9TE6KXULGgcD0O/B1RyuPL681/9/g=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-2gBtd1WRMoxTch6hh0/IbY4Wzcb80DDziUIetytDOv8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4466,7 +4466,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v563";   // la versión publicada, en el pie
+const VER="v564";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6624,7 +6624,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   C.innerHTML=k==="dd"?bloque(ok.slice().sort((a,b)=>a.dd-b.dd),"Más lejos de su máximo")+bloque(ok.slice().sort((a,b)=>b.dd-a.dd),"Más cerca de su máximo",true)
     :bloque(ok.filter(r=>r[k]>=5e-4),"Suben")+bloque(ok.filter(r=>r[k]<=-5e-4).reverse(),"Bajan");   // v512: las que se quedan en 0,0 % no salen en ninguno de los dos
   // las columnas de la exigencia: cada empresa, a la altura de su TIR esperada y en la columna de lo que le exiges
-  const okr=DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0&&r.irrExp<=0.4)   /* v529: más de un 40 % es una excepción irreal: no sale */, reqs=[...new Set(DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0).map(r=>Math.round(r.req*1000)/1000))].sort((a,b)=>a-b)   /* v563: una columna por cada exigida, aunque sus empresas pasen del 40 % y no salgan (antes, si AST pasaba del 40 %, desaparecía la del 20 %) */, sob=okr.filter(r=>r.margin>0);
+  const okr=DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0)   /* v564: todas salen; las de más de un 40 %, en el tope de la gráfica, sin salirse de ella (al pasar el ratón, su TIR real) */, reqs=[...new Set(DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0).map(r=>Math.round(r.req*1000)/1000))].sort((a,b)=>a-b)   /* v563: una columna por cada exigida, aunque sus empresas pasen del 40 % y no salgan (antes, si AST pasaba del 40 %, desaparecía la del 20 %) */, sob=okr.filter(r=>r.margin>0);
   if(!reqs.length){ s2.remove(); gxPega(s); return; }
   const top3=sob.slice().sort((a,b)=>b.margin-a.margin).slice(0,3);
   okr.forEach(r=>gxSol(gxSrc(r.ticker),r.ticker));   // v488: los logos de los carteles, preparados ya (si se preparaban al pasar el ratón, la gráfica se redibujaba y el cartel desaparecía)
@@ -6640,8 +6640,8 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
     const R=6.5, half=Math.max(R,cw/2-10-R-2), PASO=R/2, cand=[];
     for(let i=-Math.floor(half/PASO);i<=Math.floor(half/PASO);i++) for(let j=-12;j<=12;j++) cand.push({dx:i*PASO,dy:j*PASO,c:Math.abs(i*PASO)+20*Math.abs(j*PASO)});
     cand.sort((a,b)=>a.c-b.c);
-    col.forEach(r=>{ const y0=ys(r.irrExp); const k=cand.find(c=>{ const x=cx+c.dx, y=Math.min(bottom,Math.max(tp,y0+c.dy)); return !pl.some(p=>Math.hypot(p.x-x,p.y-y)<R*2); })||{dx:0,dy:0};
-      pl.push({x:cx+k.dx,y:Math.min(bottom,Math.max(tp,y0+k.dy)),r}); });
+    col.forEach(r=>{ const y0=ys(r.irrExp); const k=cand.find(c=>{ const x=cx+c.dx, y=Math.min(bottom,Math.max(tp+7,y0+c.dy)); return !pl.some(p=>Math.hypot(p.x-x,p.y-y)<R*2); })||{dx:0,dy:0};
+      pl.push({x:cx+k.dx,y:Math.min(bottom,Math.max(tp+7,y0+k.dy)),r}); });
     // v486: las que rinden más de lo exigido, con el verde del logo; v490: colores opacos (mezclados con el fondo), para que la raya no se vea a través de las bolas
     pl.forEach(p=>{ const sube=p.r.margin>0, mine=p.r.inPf; p.i=TODOS.length; g+=`<circle data-i="${p.i}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6" style="fill:color-mix(in srgb,${sube?"var(--gx-id)":"var(--ink)"} ${sube?(mine?100:45):(mine?75:12)}%,var(--canvas))"/>` /* v502: tuyas llenas sin aro; candidatas al 45 % */; TODOS.push(p); if(T3.has(p.r.ticker)) LB.push(p); }); });
   // v481: cada cartel, dentro de la columna de su exigencia: a la derecha del punto, a la izquierda, encima o debajo, sin pisar puntos ni otros carteles
