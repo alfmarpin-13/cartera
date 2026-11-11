@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-QJInBWCKU5KaVQOuOJ7JFCg+5qHUjcvk7rG9Ug7hio8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-M8uoxSQEuWGtT/nyhmK0PEesod7mNdA5NTWz9krFVqk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3820,6 +3820,15 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   /* v568: la opción (debajo de «Otros instrumentos»), sin sombreado */
   #t-pos tr.grp-row ~ tr > .zp-va{background-image:none!important}
 }
+
+/* v570 · Universo (PC): el filtro con el selector de palabra, en la misma línea base que la primera línea del titular; el menú se abre hacia la izquierda para no salirse de la tarjeta */
+@media (min-width:701px){
+  #s-plist.zr-kwon #p-f{display:none}
+  #zf-unikw{margin-top:15px;font-size:15px;line-height:22px;font-weight:500;color:var(--ink)}
+  #zf-unikw .kw{text-decoration-thickness:2px;text-underline-offset:5px}
+  #zf-unikw .kw i{border-right-width:2px;border-bottom-width:2px}
+  #zf-unikw .kw-m{left:auto;right:-12px;top:calc(100% + 10px)}
+}
 </style>
 
 <div class="wrap">
@@ -4512,7 +4521,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v569";   // la versión publicada, en el pie
+const VER="v570";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6674,7 +6683,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   if(!reqs.length){ s2.remove(); gxPega(s); return; }
   const top3=sob.slice().sort((a,b)=>b.margin-a.margin).slice(0,3);
   okr.forEach(r=>gxSol(gxSrc(r.ticker),r.ticker));   // v488: los logos de los carteles, preparados ya (si se preparaban al pasar el ratón, la gráfica se redibujaba y el cartel desaparecía)
-  s2.querySelector(".gx-c2").innerHTML=gxH(`${sob.length} de ${N} rinden más de lo que les exiges.`,top3.length?`Las que más: ${top3.map(r=>esc(r.name)).join(", ").replace(/, ([^,]*)$/," y $1")}.`:"Ninguna lo supera.");
+  s2.querySelector(".gx-c2").innerHTML=gxH(`De tus ${N} empresas, ${sob.length} ${sob.length===1?"rinde":"rinden"} más de lo que les exiges.`,top3.length?`Las que más: ${top3.map(r=>esc(r.name)).join(", ").replace(/, ([^,]*)$/," y $1")}.`:"Ninguna lo supera.");
   const U=s2.querySelector(".gx-un"), WU=Math.round(U.getBoundingClientRect().width), H=340, PL=46, tp=16, bottom=H-44, ymin=-0.10, ymax=0.4;
   const ys=v=>tp+(ymax-Math.max(ymin,Math.min(ymax,v)))/(ymax-ymin)*(bottom-tp), cw=(WU-PL)/reqs.length; let g=""; const TODOS=[], LB=[], T3=new Set(top3.map(r=>r.ticker));
   for(let v=Math.round(ymin*10);v<=Math.round(ymax*10);v++){ const y=ys(v/10); g+=`<line x1="${PL}" x2="${WU}" y1="${y}" y2="${y}" stroke="var(--line)" ${v===0?"":'stroke-dasharray="2 4"'}/><text x="${PL-10}" y="${y+4}" text-anchor="end" class="t3">${v<0?"−":""}${Math.abs(v*10)} %</text>`; }
@@ -6853,7 +6862,7 @@ function gxPlanT(){ if(innerWidth<=MOVIL) return; const S=$("s-plan"), K=$("pl-k
 function gxRadarT(){ if(innerWidth<=MOVIL||!DATA||!DATA.pre) return; const S=$("s-plist"); if(!S) return; const h=S.querySelector(".chart-head > div:first-child"); if(!h) return;
   const all=DATA.pre, n=all.length, pf=all.filter(r=>r.inPf).length, sob=all.filter(r=>r.margin>0).length, rev=typeof stale==="function"?all.filter(stale).length:0;
   let T=$("gxpx-t"); if(!T){ T=document.createElement("h2"); T.id="gxpx-t"; T.className="gxan-t gxan-x"; h.prepend(T); }
-  T.innerHTML=`<span>${gxMil(n)} empresas en tu radar, ${gxMil(pf)} en tu cartera.</span><span>${gxMil(sob)} ${sob===1?"rinde":"rinden"} más de lo que les exiges; ${rev?`${gxMil(rev)} ${rev===1?"está":"están"} por revisar`:"ninguna está por revisar"}.</span>`; }
+  T.innerHTML=`<span>En tu radar tienes ${gxMil(n)} empresas; en tu cartera, ${gxMil(pf)}.</span><span>De ellas, ${gxMil(sob)} ${sob===1?"rinde":"rinden"} más de lo que les exiges y ${rev?`${gxMil(rev)} ${rev===1?"está":"están"} por revisar`:"ninguna está por revisar"}.</span>`; }   /* v570: ninguna frase empieza por número */
 { const _pc=planCalc; planCalc=function(){ _pc(); try{ gxPlanT(); }catch(e){ console.warn("Cartera · calculadora:",e); } }; }
 { const _rp=renderPre; renderPre=function(){ _rp(); try{ gxRadarT(); gxPlanT(); }catch(e){ console.warn("Cartera · Universo:",e); } }; }
 
@@ -7673,6 +7682,18 @@ function zfEsqUni(){ zfEsquinas($("t-p"),c=>ZF_UNI_VA.includes(c.dataset.k)); }
 { const _rpos2=renderPositions; renderPositions=function(){ const r=_rpos2.apply(this,arguments); try{ zfEsqPos(); }catch(e){ console.warn("Cartera · Posiciones:",e); } return r; }; }
 { const _rpt2=renderPreTable; renderPreTable=function(){ const r=_rpt2.apply(this,arguments); try{ zfEsqUni(); }catch(e){ console.warn("Cartera · Universo:",e); } return r; }; }
 { let tm; addEventListener("resize",()=>{ clearTimeout(tm); tm=setTimeout(()=>{ try{ zfPosOrden(); zfEsqPos(); zfEsqUni(); }catch(e){} },120); }); }
+
+/* v570 · Universo (PC): el filtro de la tabla (Todas, En cartera, Candidatas, Sobre lo exigido, Por revisar), con el selector de palabra
+   de la web en lugar de la fila de botones; se ve la opción elegida y, al pulsarla, las cinco con su número */
+function zfUniKw(){ const seg=$("p-f"), S=$("s-plist"); if(!seg||!S) return; let w=$("zf-unikw");
+  if(innerWidth<=MOVIL){ if(w) w.remove(); S.classList.remove("zr-kwon"); return; }
+  const bs=[...seg.querySelectorAll("button")], on=bs.find(b=>b.getAttribute("aria-pressed")==="true")||bs[0], nom=b=>b.firstChild.textContent.trim(), num=b=>(b.querySelector(".segn")||{}).textContent||"";
+  if(!w){ w=document.createElement("span"); w.id="zf-unikw"; }
+  if(w.previousElementSibling!==seg) seg.after(w);
+  w.innerHTML=gxKw("unif",nom(on),bs.map(b=>({k:b.dataset.f,t:nom(b),n:num(b),on:b===on})));
+  S.classList.add("zr-kwon"); }
+document.addEventListener("click",e=>{ const op=e.target.closest('.kw-m [data-kw="unif"]'); if(!op||op.disabled) return; const b=$("p-f")&&$("p-f").querySelector(`button[data-f="${op.dataset.o}"]`); if(b) b.click(); });
+{ const _rpt3=renderPreTable; renderPreTable=function(){ const r=_rpt3.apply(this,arguments); try{ zfUniKw(); }catch(e){ console.warn("Cartera · Universo:",e); } return r; }; }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
