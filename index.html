@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-2et6OReAzQYUhNMNH5ZjiYCZh3SS+7pufeN69oaruaQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-b/6nNQ5XHdrT4F1PPzoILU008j+Trtst7vQeylZk+yk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v600">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v600">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v600">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v601">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v601">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v601">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4045,6 +4045,20 @@ html body .top .zf-nbv{display:none!important}
 }
 /* v600 · tableta pequeña (701–760 px): si se ve el aviso del cuadre, 16 px entre el aviso y la tarjeta (antes iba pegado debajo de la franja) */
 @media (min-width:701px) and (max-width:760.98px){ #v-resumen .zr #hoja-al:not([hidden]) + .duo{margin-top:16px!important} }
+
+/* v601 · Revisión V */
+@media (min-width:761px){
+  /* UN-02 · el titular «De tus 116 empresas…» es de bloque: 28 px, como los demás titulares de bloque (no 38 como el de la pestaña) */
+  #v-universo .gx3b h2.gx-t{font-size:28px;line-height:35px}
+  /* UN-03 · el bloque de la exigencia, separado del mapa como cualquier bloque: 72 px al acabar la banda y 56 al empezar (antes 18 px) */
+  #v-universo .gx3:has(+ .gx3b){padding-bottom:56px!important}   /* + los 16 px que ya deja el mapa debajo = 72 */
+  #v-universo .gx3b{padding-top:72px!important}   /* sigue el margen de −16 px que tapa la franja crema entre los dos lienzos: 56 + 16 − 16 + 72 = 128 px del mapa a la tarjeta */
+  #v-universo .gx3b::before{top:72px!important}
+  /* CA-01 · sin el bloque «Fuera de tu cartera», el lienzo del calendario no deja debajo su margen de 40 px */
+  #v-calendario .gx3:has(~ #gxag[hidden]){margin-bottom:0!important}
+  /* GL-05 · los importes del calendario, en tinta (antes en el azul pizarra --accent, que no se usa en ningún otro texto) */
+  .gx-d .lb{color:var(--ink)}
+}
 </style>
 
 <div class="wrap">
@@ -4737,7 +4751,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v600";   // la versión publicada, en el pie
+const VER="v601";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6493,10 +6507,15 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
     ["Anatomía del retorno","Análisis","analisis","s-ret"],["Dividendos","Análisis","analisis","s-divs"],["Mayores pagadores al año","Análisis · Dividendos","analisis","b-payers"],["Próximos cobros","Análisis · Dividendos","analisis","pays"],
     ["Historial por año","Análisis · Dividendos","analisis","c-year"],["Trayectoria","Análisis","analisis","s-tray"],
     ["Movimientos","Pestaña","movimientos"],["Todos los movimientos","Movimientos","todo"],["Transacciones","Movimientos","transacciones"],["Dividendos cobrados","Movimientos","dividendos"],["Aportaciones","Movimientos","aportaciones"],["Ajustes","Movimientos","ajustes"],
-    ["Universo","Pestaña","universo"],["Calculadora de operaciones","Universo","universo","s-plan"],["Rendimiento","Universo","universo","s-perf"],["Todas las empresas","Universo","universo","s-plist"],
-    ["Calendario","Pestaña","calendario"],["Resultados y cobros del mes","Calendario","calendario","s-calm"]];
+    ["Calendario","Pestaña","calendario"],["Resultados y cobros del mes","Calendario","calendario","s-calm"],
+    ["Universo","Pestaña","universo"],["Calculadora de operaciones","Universo","universo","s-plan"],["Rendimiento","Universo","universo","s-perf"],["Todas las empresas","Universo","universo","s-plist"]];
   const ACTS=[["priv","Modo privado",["privado","importes","ocultar","mostrar"]],["theme","Apariencia",["oscuro","claro","tema","apariencia","noche"]],["refresh","Volver a leer tu hoja",["actualizar","recargar","leer","hoja"]]];
   const icA=id=>id==="theme"&&/claro/i.test($(id).getAttribute("aria-label"))?IC.sun:IC[id];
+  const actList=()=>{ const L=[]; ACTS.forEach(a=>{ const b=$(a[0]); if(!b||b.disabled) return;
+      if(a[0]==="theme"&&innerWidth>MOVIL&&document.querySelector('.mm-th [data-th]')){ const cur=document.documentElement.dataset.theme||"auto";
+        [["auto","Automática",["automatica","auto","sistema"]],["light","Clara",["clara","claro","dia"]],["dark","Oscura",["oscura","oscuro","noche"]]].forEach(([k,t,w])=>L.push({ic:k==="light"?IC.sun:IC.theme,t,s:"Apariencia"+(cur===k?" · la elegida":""),kw:w.concat(["apariencia","tema"]),fn:()=>{ const x=document.querySelector(`.mm-th [data-th="${k}"]`); if(x) x.click(); }})); return; }
+      L.push({ic:icA(a[0]),t:b.getAttribute("aria-label"),s:a[1],kw:a[2],fn:()=>b.click()}); }); return L; };
+  const actHtml=x=>`${x.ic}<span class="kx-t"><b>${esc(x.t)}</b><small>${x.s}</small></span><span class="kx-m"></span>`;
   const goTo=g=>{ navega(g[2],true); if(!g[3]) return; requestAnimationFrame(()=>requestAnimationFrame(()=>{ const el=$(g[3]); if(!el) return; const t=el.closest(".dv3>div,.panel")||el; t.scrollIntoView({block:"start"}); })); };
   function kxRender(){ const Q=fo(q.value.trim()), it=[]; let h="";
     const add=(group,html,fn)=>{ if(!h.includes(`data-g="${group}"`)) h+=`<div class="kx-g" data-g="${group}">${group}</div>`; const i=it.length; it.push(fn);
@@ -6511,9 +6530,9 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
       movAll().filter(e=>e.ticker&&ts.has(e.ticker)).slice(0,3).forEach(e=>add("Movimientos",`${logoBare(e.name,e.ticker)}<span class="kx-t"><b>${esc(e.ty)} · ${esc(e.name)}</b><small>${sdate(e.d)} · ${esc(e.det)}</small></span><span class="kx-m">${e.amt}</span>`,
         ()=>{ navega("todo",true); $("m-q").value=e.name; mshow=MSTEP; renderMov(false); }));
       GO.filter(g=>hit(g[0],Q)).slice(0,4).forEach(g=>add("Ir a",`${IC.go}<span class="kx-t"><b>${g[0]}</b><small>${g[1]}</small></span><span class="kx-m"></span>`,()=>goTo(g)));
-      ACTS.filter(a=>!$(a[0]).disabled&&(hit($(a[0]).getAttribute("aria-label"),Q)||a[2].some(w=>w.startsWith(Q)))).forEach(a=>add("Opciones",`${icA(a[0])}<span class="kx-t"><b>${esc($(a[0]).getAttribute("aria-label"))}</b><small>${a[1]}</small></span><span class="kx-m"></span>`,()=>$(a[0]).click()));
+      actList().filter(x=>hit(x.t,Q)||x.kw.some(w=>w.startsWith(Q))).forEach(x=>add("Opciones",actHtml(x),x.fn));
     } else { GO.filter(g=>g[1]==="Pestaña").forEach(g=>add("Ir a",`${IC.go}<span class="kx-t"><b>${g[0]}</b><small>${g[1]}</small></span><span class="kx-m"></span>`,()=>goTo(g)));
-      ACTS.filter(a=>!$(a[0]).disabled).forEach(a=>add("Opciones",`${icA(a[0])}<span class="kx-t"><b>${esc($(a[0]).getAttribute("aria-label"))}</b><small>${a[1]}</small></span><span class="kx-m"></span>`,()=>$(a[0]).click())); }
+      actList().forEach(x=>add("Opciones",actHtml(x),x.fn)); }
     run=it; act=0; R.innerHTML=h||`<div class="kx-e">Nada coincide con «${esc(q.value.trim())}»</div>`; kxMark(); }
   function kxMark(){ R.querySelectorAll(".kx-i").forEach(x=>{ const on=+x.dataset.i===act; x.classList.toggle("on",on); x.setAttribute("aria-selected",on); });
     const o=$("kx-o"+act); q.setAttribute("aria-activedescendant",o?o.id:""); if(o) o.scrollIntoView({block:"nearest"}); }
@@ -6872,7 +6891,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
     :igu?`${pre}${kw}${pre?",":""} de ${N} empresas, ${cola(false)}.`
     :`${pre}${kw}${pre?",":""} ${cola(true)}.`;
   const t2=!ok.length?(k==="today"?"Lo verás en cuanto abran las bolsas.":"Sin datos para este periodo."):k==="dd"?`Más lejos, ${esc(peo.name)} (${gxPS(peo.dd)}); más cerca, ${esc(mej.name)} (${gxPS(mej.dd)}).`:(()=>{ const v1=pres?["sube","baja"]:["subió","bajó"];   /* v575: «La que más sube…; la que más baja…» (si todas bajan o todas suben, «la que menos…») */
-      const a=mej[k]>0?`La que más ${v1[0]}`:`La que menos ${v1[1]}`, b=peo[k]<0?`la que más ${v1[1]}`:`la que menos ${v1[0]}`;
+      const a=mej[k]>0?"Arriba":`La que menos ${v1[1]}`, b=peo[k]<0?"abajo":`la que menos ${v1[0]}`;   /* v601 · UN-01: «Arriba…; abajo…» en lugar de «La que más sube…; la que más baja…» */
       return `${a}, ${esc(mej.name)} (${gxPS(mej[k])}); ${b}, ${esc(peo.name)} (${gxPS(peo[k])}).`; })();
   s.innerHTML=gxH(t,t2)+`<div class="gx-mos"></div>`;
   let s2=s.nextElementSibling; if(!s2||!s2.classList.contains("gx3b")){ s2=document.createElement("section"); s2.className="gx3 gx3b"; s.after(s2); }   // v479: la exigencia, en su propio lienzo
@@ -6964,7 +6983,7 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ const m=document.
 // dentro, una línea por día con cada cita (resultados del Universo y cobros de tu cartera)
 const GX_DS=["dom","lun","mar","mié","jue","vie","sáb"];
 function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=document.createElement("section"); A.id="gxag"; $("s-calm").after(A); }
-  A.className="panel gxag";   // v496: dentro de un bloque, como el resto del detalle
+  A.className="panel gxag"; A.hidden=false;   // v496: dentro de un bloque, como el resto del detalle
   const D0=d=>{ const x=new Date(d); x.setHours(12,0,0,0); return x; }, hoy=D0(new Date()), fin=new Date(hoy.getFullYear(),hoy.getMonth()+2,0,12), lunes=d=>{ const x=D0(d); x.setDate(x.getDate()-((x.getDay()+6)%7)); return x; };
   const pf=new Set(DATA.pos.map(p=>p.ticker)), nm={}; DATA.pre.forEach(p=>nm[p.ticker]=p.name); DATA.pos.forEach(p=>nm[p.ticker]=p.name);
   const ini=new Date(hoy.getFullYear(),hoy.getMonth(),1,12), ev={}, add=(d,o)=>{ if(d>=ini&&d<=fin){ (ev[+d]=ev[+d]||[]).push(o); } };   // v497: desde el día 1 del mes, también lo ya pasado
@@ -6981,7 +7000,7 @@ function gxAgenda(){ const v=$("v-calendario"); let A=$("gxag"); if(!A){ A=docum
     return `${esc(o.n)} ${vb} ${anual?`las cuentas de ${anual[1]}${esc(anual[2])}`:per?`resultados del ${esc(per)}`:"resultados"}${!pas&&/apertura|cierre/.test(h)?", "+h:""}.${o.est?' <span class="t3">Fecha estimada.</span>':""}`; };
   const hasta=`hasta final de ${GX_MESL[fin.getMonth()]}`;
   let h=`<div class="gxag-h"><h2>Fuera de tu cartera</h2><span>${nR} ${nR===1?"resultado":"resultados"} ${hasta}</span></div>`;   // v493: sin leyenda ni bolas verdes
-  if(!dias.length){ A.innerHTML=`<div class="gxag-h"><h2>Fuera de tu cartera</h2><span>Ningún resultado ${hasta}</span></div>`; return; }   // v580: sin resultados, solo la cabecera con una frase (antes, el mismo aviso tres veces y dos columnas vacías)
+  if(!dias.length){ A.innerHTML=""; A.hidden=true; return; }   /* v601 · CA-01: sin resultados fuera de tu cartera, el bloque no se enseña (antes, una tarjeta entera para decir «Ningún resultado») */   // v580: sin resultados, solo la cabecera con una frase (antes, el mismo aviso tres veces y dos columnas vacías)
   // v492: dos columnas, los mismos meses que arriba: a la izquierda el primero y a la derecha el segundo, cada uno con sus días en orden
   h+=`<div class="gxag-cols">`;
   for(let m=0;m<2;m++){ const mes=new Date(hoy.getFullYear(),hoy.getMonth()+m,1,12), ks=dias.filter(k=>new Date(k).getMonth()===mes.getMonth());
