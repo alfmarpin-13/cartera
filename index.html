@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-Z6DPvKTcO3V2pzqiaFjaG8Jo5LgXwD96XghJVMOsov8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-JYjoshbRgXuKe91Q/kvC4sUya+xs4KWhmJDM3Z4IzwQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3942,6 +3942,10 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 }
 
 /* v589 · la barra del PC, de 52 px (antes 48): 8,5 px de aire bajo el subrayado de la sección activa */
+
+/* v590 · Posiciones (PC): Rentabilidad, fuera de la sombra; la sombra de «cómo te va» empieza 8 px antes de la cifra más ancha de Resultado */
+#t-pos :is(th,td).zp-va.zp-v0{--zo:var(--zog,0px)}   /* la clase solo se pone en el PC */
+@media (min-width:1201px){ #t-pos th[data-k="totalEur"]{width:75px} }   /* v590 · Resultado sin el ancho extra de las pantallas grandes: con la sombra 8 px antes de su cifra, el hueco con Rentabilidad quedaba de 37 px a 3.008 */
 </style>
 
 <div class="wrap">
@@ -4634,7 +4638,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v589";   // la versión publicada, en el pie
+const VER="v590";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7783,10 +7787,10 @@ function zfUniOrden(){ const pc=innerWidth>MOVIL, L=zfPcolsBase.slice();
 const ZF_POS_L={"Empresa":"name","Cotización":"price","Pr. medio":"avg","Acciones":"shares","Hoy":"today","Hoy €":"todayEur","Valor":"value","Peso":"weight","Rentab.":"totalPct","Resultado":"totalEur","TIR":"irr","Años":"years","Dividendo":"yov"};
 const ZF_POS_PC=["name","today","todayEur","price","shares","avg","value","weight","totalPct","totalEur","irr","years","yov"];   // v569: hoy (Hoy, Hoy €, Cotización) · lo que tienes (Acciones, Precio medio, Valor, Peso) · cómo te va
 const ZF_POS_BASE=["name","price","avg","shares","today","todayEur","value","weight","totalPct","totalEur","irr","years","yov"];
-const ZF_POS_GRUPO={today:"g1",shares:"g2",totalPct:"g3"}, ZF_POS_VA=new Set(["totalPct","totalEur","irr","years","yov"]), ZF_POS_VH=new Set(["today","todayEur","price"]);   // v573: también «hoy» con sombra
+const ZF_POS_GRUPO={today:"g1",shares:"g2",totalPct:"g3"}, ZF_POS_VA=new Set(["totalEur","irr","years","yov"]), ZF_POS_VH=new Set(["today","todayEur","price"]);   // v573: también «hoy» con sombra · v590: Rentabilidad, fuera de la sombra (sus recuadros de color ya tienen fondo)
 function zfPosOrden(){ const t=$("t-pos"); if(!t) return; const pc=innerWidth>MOVIL, ord=pc?ZF_POS_PC:ZF_POS_BASE;
   const pon=(tr,kOf)=>{ const cs=[...tr.children], m=new Map(); cs.forEach(c=>{ const k=kOf(c); if(k) m.set(k,c); }); if(m.size!==ord.length) return;
-    m.forEach((c,k)=>{ c.classList.toggle("zp-va",pc&&ZF_POS_VA.has(k)); c.classList.toggle("zp-vh",pc&&ZF_POS_VH.has(k)); c.classList.toggle("zp-gi",pc&&!!ZF_POS_GRUPO[k]); });
+    m.forEach((c,k)=>{ c.classList.toggle("zp-va",pc&&ZF_POS_VA.has(k)); c.classList.toggle("zp-vh",pc&&ZF_POS_VH.has(k)); c.classList.toggle("zp-gi",pc&&!!ZF_POS_GRUPO[k]); c.classList.toggle("zp-v0",pc&&k==="totalEur"); });   // v590: la sombra de «cómo te va» empieza en Resultado
     if(ord.every((k,i)=>cs[i]===m.get(k))) return; tr.append(...ord.map(k=>m.get(k))); };
   t.querySelectorAll("thead tr").forEach(tr=>pon(tr,c=>c.dataset.k));
   t.querySelectorAll("tbody tr.pr").forEach(tr=>pon(tr,c=>ZF_POS_L[c.dataset.l])); }
@@ -7809,7 +7813,9 @@ function zfEsqPos(){ const t=$("t-pos"); zfEsquinas(t,c=>c.classList.contains("z
   if(t&&innerWidth>MOVIL){ let L=Infinity, c0=null; t.querySelectorAll("tbody tr.pr > td.zp-gi.zp-vh").forEach(td=>{ if(td.closest("tr.grp-row ~ tr")) return; const w=document.createTreeWalker(td,NodeFilter.SHOW_TEXT); let n; while((n=w.nextNode())){ if(!n.textContent.trim()) continue; const r=document.createRange(); r.selectNodeContents(n); for(const q of r.getClientRects()) if(q.width>0&&q.left-td.getBoundingClientRect().left<L){ L=q.left-td.getBoundingClientRect().left; c0=td; } } });
     { const th=t.querySelector("thead th.zp-gi.zp-vh"), lb=th&&th.querySelector("button,span"); if(lb){ const q=lb.getBoundingClientRect(); if(q.width>0){ L=Math.min(L,q.left-th.getBoundingClientRect().left); c0=c0||th; } } }   // v582: también la cabecera
     if(c0) t.style.setProperty("--zoh",Math.max(0,L-8).toFixed(1)+"px");   /* v576: 8 px por la izquierda (16 se veía ancho) */ }
-  if(t&&innerWidth>MOVIL){ const p=t.querySelector("tbody tr.pr > td.zp-gi.zp-va .rlv"); if(p){ const td=p.closest("td"); let L2=p.getBoundingClientRect().left-td.getBoundingClientRect().left; const th=t.querySelector("thead th.zp-gi.zp-va"), lb=th&&th.querySelector("button,span"); if(lb){ const q=lb.getBoundingClientRect(); if(q.width>0) L2=Math.min(L2,q.left-th.getBoundingClientRect().left); } t.style.setProperty("--zog",Math.max(0,L2-8).toFixed(1)+"px"); }   /* v582: también la cabecera */ } }
+  if(t&&innerWidth>MOVIL){ let L2=Infinity; t.querySelectorAll("tbody tr.pr > td.zp-v0").forEach(td=>{ if(td.closest("tr.grp-row ~ tr")||!td.getClientRects().length) return; const rg=document.createRange(); rg.selectNodeContents(td); const q=rg.getBoundingClientRect(); if(q.width>0) L2=Math.min(L2,q.left-td.getBoundingClientRect().left); });
+    const th=t.querySelector("thead th.zp-v0"), lb=th&&th.querySelector("button,span"); if(lb){ const q=lb.getBoundingClientRect(); if(q.width>0) L2=Math.min(L2,q.left-th.getBoundingClientRect().left); }
+    if(isFinite(L2)) t.style.setProperty("--zog",Math.max(0,L2-8).toFixed(1)+"px"); }   /* v590: 8 px antes de la cifra o la cabecera que más ocupa en Resultado (antes, del recuadro de Rentabilidad) */ }
 function zfEsqUni(){ zfEsquinas($("t-p"),c=>ZF_UNI_VA.includes(c.dataset.k)); }
 { const _rpos2=renderPositions; renderPositions=function(){ const r=_rpos2.apply(this,arguments); try{ zfEsqPos(); }catch(e){ console.warn("Cartera · Posiciones:",e); } return r; }; }
 { const _rpt2=renderPreTable; renderPreTable=function(){ const r=_rpt2.apply(this,arguments); try{ zfEsqUni(); }catch(e){ console.warn("Cartera · Universo:",e); } return r; }; }
