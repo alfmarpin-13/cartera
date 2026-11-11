@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-IrMKF9mqDzvVLTd7LYF0Gm8EKNz25eR5EvL8HqLZNrI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-MRbXHRu3hXkSYiYGf8V+/M7vYp8/9RCHOjR/tuHRa4Y=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -4529,7 +4529,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v571";   // la versión publicada, en el pie
+const VER="v572";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7643,7 +7643,7 @@ function zfCabeceras(){ const pc=innerWidth>MOVIL;
       let tx=0, nc=0;
       filas.forEach(r=>{ const td=[...r.children].find(c=>c.dataset.l===nom&&c.offsetWidth)||(r.children.length===ths.length?r.children[i]:null); if(!td||!td.offsetWidth||!td.textContent.trim()&&!td.querySelector("img,i,b,span")) return; nc++; if(/[A-Za-zÁÉÍÓÚÑáéíóúñü]{3,}/.test(td.innerText)) tx++;   /* v571: solo el texto visible (la celda de Hoy lleva escondido el texto del móvil) */ rg.selectNodeContents(td); const q=rg.getBoundingClientRect(); if(q.width>0){ a=Math.min(a,q.left); b=Math.max(b,q.right); } });
       // v554 · solo cifras y barras: las columnas de texto (empresa, industria, tipo, detalle, bróker, fecha) se quedan con su alineación de siempre
-      if(!isFinite(a)||nc&&tx/nc>.5){ if(th.hasAttribute("aria-sort")){ const q0=l.getBoundingClientRect(), R0=th.getBoundingClientRect(), d0=Math.floor(R0.right-14-13-q0.right); if(d0<0) l.style.transform=`translateX(${Math.max(d0,Math.ceil(R0.left+4-q0.left))}px)`; } return; }   /* v571: en las de texto, la flecha tampoco se acerca a la columna de al lado */ const q=l.getBoundingClientRect(), R=th.getBoundingClientRect(), fl=th.hasAttribute("aria-sort")?13:0;
+      if(!isFinite(a)||nc&&tx/nc>.5) return;   /* v572: las columnas de texto (y País) no se desplazan al ordenar */ const q=l.getBoundingClientRect(), R=th.getBoundingClientRect(), fl=th.hasAttribute("aria-sort")?13:0;
       // centrada sobre sus datos, sin salirse de su celda (la flecha incluida): así nunca pisa ni se acerca a la columna de al lado
       let d=Math.round((a+b)/2-(q.left+q.right)/2); d=Math.min(d,Math.floor(R.right-(fl?14:4)-fl-q.right));   /* v571: con flecha, 14 px hasta el borde de su celda (antes 4: en País quedaba pegada a Industria) */ d=Math.max(d,Math.ceil(R.left+4-q.left));
       if(Math.abs(d)>=1) l.style.transform=`translateX(${d}px)`; }); }); }
