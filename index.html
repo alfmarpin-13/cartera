@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-MAbvlAa5+YIVJlIuR/3E5rhj6PmahsDXJtU6QY5unUk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-CnMwPaj6TKKkz90jdB+yedL3e+cb70ts/4AylsVboJs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3817,8 +3817,8 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
     background-position:100% 100%,0 100%,0 0!important;background-size:var(--zr) var(--zr),calc(100% - var(--zr)) var(--zr),100% calc(100% - var(--zr))!important}
   /* Universo: si la última fila es de tu cartera, su verde sigue debajo del sombreado redondeado */
   #t-p tr.inpf > td:is(.zq-bl,.zq-br){background-color:color-mix(in srgb,var(--gx-id) 14%,transparent)!important}
-  /* Posiciones: la fila de «Otros instrumentos · opciones», con el sombreado en el mismo tramo que el bloque */
-  #t-pos tr.grp-row > td.zq-g{--zs:color-mix(in srgb,var(--ink) 3.5%,transparent);background-image:linear-gradient(var(--zs),var(--zs));background-repeat:no-repeat;background-position:var(--zx) 0;background-size:var(--zw) 100%}
+  /* v568: la opción (debajo de «Otros instrumentos»), sin sombreado */
+  #t-pos tr.grp-row ~ tr > .zp-va{background-image:none!important}
 }
 </style>
 
@@ -4512,7 +4512,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v567";   // la versión publicada, en el pie
+const VER="v568";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7664,12 +7664,10 @@ const ZF_UNI_VA=["fv","mult","req","irrExp","margin","vd"];
 function zfEsquinas(t,esSomb){ if(!t) return; t.querySelectorAll(".zq-tl,.zq-tr,.zq-bl,.zq-br").forEach(c=>c.classList.remove("zq-tl","zq-tr","zq-bl","zq-br"));
   if(innerWidth<=MOVIL) return;
   const marca=(cs,a,b)=>{ const s=cs.filter(esSomb); if(!s.length) return null; s[0].classList.add(a); s[s.length-1].classList.add(b); return s; };
-  const h=t.querySelector("thead tr"), filas=[...t.querySelectorAll("tbody tr.pr")], u=filas[filas.length-1];
+  // v568: en Posiciones, el bloque acaba en la última empresa: la fila de «Otros instrumentos» y la opción quedan fuera
+  const h=t.querySelector("thead tr"), filas=[...t.querySelectorAll("tbody tr.pr")].filter(tr=>!tr.matches("tr.grp-row ~ tr")), u=filas[filas.length-1];
   const sh=h?marca([...h.children],"zq-tl","zq-tr"):null; if(u) marca([...u.children],"zq-bl","zq-br");
-  // Posiciones: la fila de «Otros instrumentos · opciones» también lleva el sombreado, para que el bloque no se corte
-  const g=t.querySelector("tbody tr.grp-row > td"); if(g){ if(sh){ const tl=t.getBoundingClientRect().left, a=sh[0].getBoundingClientRect(), b=sh[sh.length-1].getBoundingClientRect();
-      const ex=innerWidth>1200?Math.max(0,Math.min(260,innerWidth-1212)):0, zo=innerWidth>1200?Math.max(0,ex*.1265-8):0;
-      g.style.setProperty("--zx",(a.left-tl+zo).toFixed(1)+"px"); g.style.setProperty("--zw",(b.right-a.left-zo).toFixed(1)+"px"); g.classList.add("zq-g"); } else g.classList.remove("zq-g"); } }
+  t.querySelectorAll(".zq-g").forEach(c=>c.classList.remove("zq-g")); }
 function zfEsqPos(){ zfEsquinas($("t-pos"),c=>c.classList.contains("zp-va")); }
 function zfEsqUni(){ zfEsquinas($("t-p"),c=>ZF_UNI_VA.includes(c.dataset.k)); }
 { const _rpos2=renderPositions; renderPositions=function(){ const r=_rpos2.apply(this,arguments); try{ zfEsqPos(); }catch(e){ console.warn("Cartera · Posiciones:",e); } return r; }; }
