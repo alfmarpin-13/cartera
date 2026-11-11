@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-hdCOUiZJN2bVJPvnwEvsdJkZrZUp5MTuxmbgfAF0Bxs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-H8imw8ZuXbPh0gl+uPgnH140LeOkx655e3XaSJFVKJI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3764,6 +3764,16 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 /* v559 · leyenda de Evolución con los colores del logo, como la gráfica */
 #s-evo .evo-leg span:first-child{--c:var(--gx-in)!important}
 #s-evo .evo-leg i.area{background:color-mix(in srgb,var(--gx-id) 33%,transparent)!important}
+/* v560 · Universo (PC): la valoración, con fondo propio de arriba abajo; más aire tras Industria; tus empresas, con el verde de la marca (fondo suave, franja a la izquierda y nombre en seminegrita) en lugar del punto */
+@media (min-width:701px){
+  #t-p :is(th,td):is([data-k="fv"],[data-k="irrExp"],[data-k="req"],[data-k="margin"],[data-k="mult"],[data-k="vd"]){background-color:color-mix(in srgb,var(--ink) 3.5%,transparent)}
+  #t-p :is(th,td)[data-k="ind"]{padding-right:48px!important}
+  #t-p tr.inpf > td{background-image:linear-gradient(color-mix(in srgb,var(--gx-id) 14%,transparent),color-mix(in srgb,var(--gx-id) 14%,transparent))}
+  #t-p tr.inpf > td:first-child{position:relative}
+  #t-p tr.inpf > td:first-child::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:4px;border-radius:2px;background:var(--gx-id)}
+  #t-p tr.inpf .co b{font-weight:600}
+  #t-p tr.inpf .co b::after{display:none!important}
+}
 </style>
 
 <div class="wrap">
@@ -4456,7 +4466,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v559";   // la versión publicada, en el pie
+const VER="v560";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7558,7 +7568,7 @@ function zfPosT(diaPrueba){ if(innerWidth<=MOVIL||!DATA) return; const S=$("s-po
   T.innerHTML=`<span>${f[0]}</span>${f[1]?`<span>${f[1]}</span>`:""}`; }
 { const _tm2=renderTreemap; renderTreemap=function(){ _tm2.apply(this,arguments); try{ zfPosT(); }catch(e){ console.warn("Cartera · Posiciones:",e); } }; }
 // v553 · tablas (PC): la cabecera de cada columna de cifras o barras, en el centro de los datos que tiene debajo, y no alineada a un borde
-function zfCabeceras(){ const pc=innerWidth>MOVIL;
+function zfCabeceras(){ const pc=innerWidth>MOVIL; 
   document.querySelectorAll("table.rt").forEach(t=>{ const ths=[...t.querySelectorAll("thead th")]; if(!ths.length) return;
     const lab=th=>th.querySelector(":scope > button")||th.querySelector(":scope > span");
     ths.forEach(th=>{ const l=lab(th); if(l) l.style.transform=""; });
@@ -7577,6 +7587,14 @@ function zfCabeceras(){ const pc=innerWidth>MOVIL;
 { let r=0; const pide=()=>{ cancelAnimationFrame(r); r=requestAnimationFrame(()=>requestAnimationFrame(()=>{ try{ zfCabeceras(); }catch(e){ console.warn("Cartera · cabeceras:",e); } })); };
   new MutationObserver(ms=>{ if(ms.some(m=>m.target.closest&&m.target.closest("table.rt,.view,[id^='v-']")&&(m.target.closest("table.rt")||[...m.addedNodes].some(n=>n.nodeType===1&&(n.matches("table.rt")||n.querySelector&&n.querySelector("table.rt")))))) pide(); }).observe(document.body,{childList:true,subtree:true});
   addEventListener("resize",pide); document.addEventListener("click",e=>{ if(e.target.closest("[data-v],thead,.seg,.kw-m")) pide(); }); if(document.fonts) document.fonts.ready.then(pide); pide(); }
+// v560 · Universo (PC): el Múltiplo, justo después del Valor razonable (es el supuesto del que sale); se recoloca tras cada pintado de la tabla
+const zfPcolsBase=PCOLS.slice();
+function zfUniOrden(){ const pc=innerWidth>MOVIL, L=zfPcolsBase.slice();
+  if(pc){ const mv=(k,tras,antes)=>{ const i=L.findIndex(c=>c.k===k); if(i<0) return; const c=L.splice(i,1)[0], j=L.findIndex(x=>x.k===(tras||antes)); if(j<0){ L.splice(i,0,c); return; } L.splice(tras?j+1:j,0,c); };
+    mv("today",null,"price"); mv("mult","fv",null); }
+  if(L.some((c,i)=>PCOLS[i]!==c)) PCOLS.splice(0,PCOLS.length,...L); }
+{ const _rp2=renderPre; renderPre=function(){ try{ zfUniOrden(); }catch(e){ console.warn("Cartera · Universo:",e); } return _rp2.apply(this,arguments); }; }
+{ const _rpt=renderPreTable; renderPreTable=function(){ try{ zfUniOrden(); }catch(e){ console.warn("Cartera · Universo:",e); } return _rpt.apply(this,arguments); }; }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
