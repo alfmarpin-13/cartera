@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-JYjoshbRgXuKe91Q/kvC4sUya+xs4KWhmJDM3Z4IzwQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-XdL6x9SXW4UkZ3FKP9e81fn++KyYE31cF8dWACMzJZA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -3879,7 +3879,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 @media (min-width:701px){ #t-p :is(th,td)[data-k="fv"]{padding-left:12px!important} }
 
 /* v583 · Barra de menú (PC) */
-@media (min-width:1000px){
+@media (min-width:761px){
   .top .tools{margin-right:-10px}   /* el «···» acaba a ras del borde derecho del contenido, como el logo por la izquierda */
   .top .status #refresh{width:36px;height:36px;margin-left:-9px;color:var(--ink2)}   /* «Actualizar», del mismo tamaño y gris que «Buscar» y «···» */
   .top .status #refresh svg{width:16px;height:16px}
@@ -3894,7 +3894,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 /* v584 · Barra del PC nueva: 48 px de alto, del mismo color que la franja con la que empieza cada pestaña, secciones junto al logo,
    la activa subrayada en menta (como las palabras que se pueden elegir en los titulares), y a la derecha el valor y el día (solo
    cuando la tarjeta de cifras no se ve), la hora de los datos, actualizar, buscar y opciones */
-@media (min-width:1000px){
+@media (min-width:761px){
   html body .top{height:52px;min-height:52px;padding-block:0!important;background:var(--canvas)!important;box-shadow:0 0 0 100vmax var(--canvas)!important;
     grid-template-columns:auto auto minmax(0,1fr)!important;column-gap:30px!important}
   html body .top .nav{min-height:52px!important;margin-block:0!important;align-self:stretch}
@@ -3912,25 +3912,25 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 
 /* v585 · la barra del PC, en crema (el fondo de la web) en lugar del blanco de la primera franja */
 /* v585 · la sección activa, subrayada justo debajo de la palabra (2 px, a 5 px, como las palabras que se eligen en los titulares), no en el borde de la barra */
-@media (min-width:1000px){
+@media (min-width:761px){
   html body .top .nav a[aria-current="page"]::after{display:none}
   html body .top .nav a[aria-current="page"] span{text-decoration:underline;text-decoration-color:var(--gx-id);text-decoration-thickness:2px;text-underline-offset:5px}
 }
 
 /* v587 · Menú de opciones (PC): una hoja blanca sobre la página, con raya fina, sombra corta y las esquinas de las tarjetas (20 px) */
-@media (min-width:1000px){
+@media (min-width:761px){
   html body .more-m:not([hidden]){background:var(--card);border-radius:20px;box-shadow:0 0 0 1px var(--line),0 12px 28px -12px rgba(0,0,0,.18)}
 }
 /* v587 · las tres rayas acaban a ras del contenido contando el redondeo del trazo (antes sobresalían 0,75 px), y los iconos de la barra sin cuadro gris
    al pasar el ratón o con el menú abierto: el cuadro sobresalía 12 px por la derecha del borde del contenido. Al pasar, el icono se oscurece */
-@media (min-width:1000px){
+@media (min-width:761px){
   html body .top .btn.ic:hover:not(:disabled),html body .top .tools .kbar.kbar.kbar:hover:not(:disabled),html body .top .status #refresh:hover:not(:disabled),html body .top #more[aria-expanded="true"]{background:none;color:var(--ink)}
 }
-@media (min-width:1000px){ #more.aviso::after{right:12px} #more.aviso svg .r1{stroke-dasharray:3 20} }   /* v587 · el punto del aviso, también a ras del borde (antes 2 px fuera) */
+@media (min-width:761px){ #more.aviso::after{right:12px} #more.aviso svg .r1{stroke-dasharray:3 20} }   /* v587 · el punto del aviso, también a ras del borde (antes 2 px fuera) */
 
 /* v588 · los botones de icono de la barra, del tamaño de su icono: el de opciones medía 36 px y se salía 12 px del borde del contenido
    (se veía al pasar el ratón, con el menú abierto o con el foco). Ahora la caja del botón acaba donde acaba el trazo de las tres rayas */
-@media (min-width:1000px){
+@media (min-width:761px){
   html body .top .tools{margin-right:0;gap:24px}
   html body .top .btn.ic,html body .top .tools .kbar.kbar{width:16px;min-width:0;height:36px;padding:0;margin:0;border:0;justify-content:flex-start;overflow:visible;border-radius:0}
   html body .top .status #refresh{width:16px;height:36px;margin:0 0 0 1px;border:0;padding:0;overflow:visible;border-radius:0}
@@ -3946,6 +3946,33 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 /* v590 · Posiciones (PC): Rentabilidad, fuera de la sombra; la sombra de «cómo te va» empieza 8 px antes de la cifra más ancha de Resultado */
 #t-pos :is(th,td).zp-va.zp-v0{--zo:var(--zog,0px)}   /* la clase solo se pone en el PC */
 @media (min-width:1201px){ #t-pos th[data-k="totalEur"]{width:75px} }   /* v590 · Resultado sin el ancho extra de las pantallas grandes: con la sombra 8 px antes de su cifra, el hueco con Rentabilidad quedaba de 37 px a 3.008 */
+
+/* v591 · la barra nueva también en tableta (de 761 a 999 px); ahí sin el valor de la cartera, que no cabe */
+/* v591 · ocultar importes y modo oscuro, como iconos en la barra (antes solo dentro del menú de opciones), entre buscar y opciones */
+@media (min-width:761px){
+  html body .top .tools #priv,html body .top .tools #theme{display:inline-flex!important;align-items:center}
+  html body .top #priv svg{width:16px;height:16px} html body .top #theme svg{width:16px;height:16px}
+}
+/* v591 · menú de opciones sin píldoras: las diferencias del cuadre, en texto gris; la apariencia, tres palabras con la elegida subrayada en menta (como las secciones de la barra) */
+@media (min-width:761px){
+  .more-m #mm-chk-t.tag{background:none;padding:0;border-radius:0;font-size:var(--fs-12);font-weight:500;color:var(--ink2)}
+  .more-m .mm-th .seg{background:none;padding:0;gap:20px;border-radius:0}
+  .more-m .mm-th .seg button{height:28px;padding:0;border-radius:0;background:none!important;box-shadow:none!important;color:var(--ink3);font-size:var(--fs-13)}
+  .more-m .mm-th .seg button:hover{color:var(--ink)}
+  .more-m .mm-th .seg button[aria-pressed="true"]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--gx-id);text-decoration-thickness:2px;text-underline-offset:5px}
+}
+/* v591 · tableta: la misma rejilla que en el PC (logo, secciones y herramientas a la derecha); allí la barra antigua repartía la rejilla de otra forma */
+@media (min-width:761px) and (max-width:999.98px){
+  html body .top{grid-template-areas:none!important;grid-template-columns:auto auto minmax(0,1fr)!important}
+  html body .top>.status,html body .top>.nav,html body .top>.tools{grid-area:auto!important;grid-row:1!important}
+  html body .top>.status{display:flex!important}
+  html body .top>.tools{justify-self:end!important}
+}
+@media (min-width:761px){ .more-m .mm-th .seg{justify-content:flex-start} .more-m .mm-th .seg button{flex:none} }   /* v591 · las tres palabras de la apariencia, seguidas a 20 px, no repartidas */
+@media (min-width:761px) and (max-width:999.98px){ html body .top .marca{display:flex!important;align-items:center} html body .top .marca-l{width:28px!important;height:28px!important} }   /* v591 · el logo también en tableta */
+@media (min-width:761px){ html body .more-m .mm-th .seg{display:flex!important;gap:20px} }   /* v591 · la apariencia era una rejilla de 3 columnas iguales */
+@media (min-width:761px) and (max-width:999.98px){ html body .top{column-gap:24px!important} html body .top .nav{gap:20px!important} }   /* v591 · tableta: secciones más juntas para que nada choque con la hora a 761 px */
+@media (min-width:761px) and (max-width:819.98px){ html body .top{column-gap:20px!important} html body .top .nav{gap:16px!important} }   /* v591 · tableta muy estrecha: un poco más juntas aún */
 </style>
 
 <div class="wrap">
@@ -4638,7 +4665,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v590";   // la versión publicada, en el pie
+const VER="v591";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7873,7 +7900,7 @@ function zfMovSombra(){ const h=$("m-head"); if(!h) return; const t=h.closest("t
     copia(); mira(); } }
 
 /* v587 · el menú de opciones (PC) sale 8 px por debajo de la barra y con el borde derecho a ras del contenido (antes, 2 px bajo la barra y 12 px fuera de la columna) */
-{ const mb=$("more"); if(mb) mb.addEventListener("click",()=>requestAnimationFrame(()=>{ const M=$("more-m"); if(!M||M.hidden||innerWidth<1000) return;   // tras el código que lo coloca por defecto
+{ const mb=$("more"); if(mb) mb.addEventListener("click",()=>requestAnimationFrame(()=>{ const M=$("more-m"); if(!M||M.hidden||innerWidth<761) return;   // tras el código que lo coloca por defecto
     const tb=document.querySelector(".top"), w=document.querySelector(".wrap"); if(!tb||!w) return;
     const cs=getComputedStyle(w), der=w.getBoundingClientRect().right-parseFloat(cs.paddingRight||0);
     M.style.setProperty("--mm-x",(der-M.offsetWidth).toFixed(2)+"px"); M.style.setProperty("--mm-y",Math.round(tb.getBoundingClientRect().bottom+8)+"px"); })); }
