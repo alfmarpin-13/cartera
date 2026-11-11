@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-tocjuFKqRNN2KoAyFypK6gXgFCn9B5MjXSMFwGKr4bg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-2et6OReAzQYUhNMNH5ZjiYCZh3SS+7pufeN69oaruaQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v599">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v599">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v599">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v600">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v600">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v600">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4002,6 +4002,49 @@ body:has(#dot.busy) .zf-logo circle{transform-box:fill-box;transform-origin:cent
 
 /* v599 · el valor de la cartera, fuera de la barra del PC */
 html body .top .zf-nbv{display:none!important}
+
+/* v600 · Resumen (PC): dos tarjetas en lugar de la franja negra y los dos bloques.
+   «Tu cartera hoy», oscura (el color de la barra): el valor de la cartera con la liquidez, lo de hoy y el mapa.
+   «Evolución», arena: el retorno total, la TIR y el gráfico. Los rótulos, en la misma línea; las cifras, sobre la misma base */
+@media (min-width:701px){
+  #v-resumen .zr #s-hero{display:none!important}
+  #v-resumen .zr .duo{margin-top:0!important;gap:24px!important;align-items:stretch}
+  #v-resumen .zr .duo>.panel{padding:32px 36px 28px!important;border-radius:20px!important}
+  #v-resumen .zr .duo>#s-today{background:var(--h-bg)!important;color:var(--h-fg)}
+  #v-resumen .zr .duo>#s-evo{background:var(--gx-tile)!important}
+  #v-resumen .zr .duo .chart-head,#v-resumen .zr #l1-side{height:32px!important;margin:0 0 24px!important}
+  #v-resumen .zr #s-today #l1-side .st{color:var(--h-fg)}
+  #v-resumen .zr .r1-k{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin:0 0 24px;padding:0 0 24px;border-bottom:1px solid var(--h-line)}
+  #v-resumen .zr #s-evo .r1-k{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;border-bottom-color:var(--line)}
+  #v-resumen .zr .r1-k .f{display:grid;grid-template-rows:18px 2px 38px 6px 17px;min-width:0}
+  #v-resumen .zr .r1-k .f.d>*{justify-self:end;text-align:right}
+  #v-resumen .zr .r1-k .r1-lab{grid-row:1;font-size:13px;line-height:18px;white-space:nowrap}
+  #v-resumen .zr .r1-k .r1-num{grid-row:3;align-self:end;font:600 28px/1 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:-.02em;white-space:nowrap}
+  #v-resumen .zr .r1-k .r1-num.g{font:600 38px/1 "Inter Display",Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-variation-settings:'opsz' 32;letter-spacing:-.012em;position:relative;top:1px}   /* 1 px abajo: así comparte línea base con las de 28 px */
+  #v-resumen .zr .r1-k .r1-sub{grid-row:5;font-size:12px;line-height:17px;white-space:nowrap}
+  #v-resumen .zr .r1-k .r1-sub b{font-weight:500}
+  #v-resumen .zr #s-today .r1-lab,#v-resumen .zr #s-today .r1-sub{color:var(--h-fg2)}
+  #v-resumen .zr #s-today .r1-num,#v-resumen .zr #s-today .r1-sub b{color:var(--h-fg)}
+  #v-resumen .zr #s-today .r1-k .neg{color:var(--h-neg)} #v-resumen .zr #s-today .r1-k .pos{color:var(--h-pos)}
+  #v-resumen .zr #s-evo .r1-lab,#v-resumen .zr #s-evo .r1-sub{color:var(--ink3)}
+  #v-resumen .zr #s-evo .r1-num{color:var(--ink)} #v-resumen .zr #s-evo .r1-sub b{color:var(--ink2)}
+  #v-resumen .zr #s-evo .r1-k .pos{color:var(--pos)} #v-resumen .zr #s-evo .r1-k .neg{color:var(--neg)}
+  #v-resumen .zr #s-today #tmap{margin:0!important}
+  #v-resumen .zr #s-today #hy-leg{margin-top:16px!important;color:var(--h-fg2)} #v-resumen .zr #s-today #hy-leg b{color:var(--h-fg)}
+  #v-resumen .zr #s-evo .chartbox{height:390px!important;min-height:0!important;margin:0!important}   /* 4 px más que el mapa: las fechas acaban a la altura de los cuadrados, como antes */
+  #v-resumen .zr #s-evo .evo-leg{margin-top:12px!important}
+}
+@media (min-width:1200px){ #v-resumen .zr .duo{grid-template-columns:minmax(0,5fr) minmax(0,7fr)!important} }
+@media (min-width:701px) and (prefers-color-scheme:dark){ :root:not([data-theme="light"]) #v-resumen .zr .duo>#s-today{background:var(--gx-tile)!important} }
+@media (min-width:701px){ :root[data-theme="dark"] #v-resumen .zr .duo>#s-today{background:var(--gx-tile)!important} }
+
+/* v600 · las secciones de la barra, centradas en la barra (PC) */
+@media (min-width:1000px){
+  html body header.top.top .nav{position:absolute!important;left:50%;top:0;transform:translateX(-50%)}
+  html body header.top.top>.tools{grid-column:3!important}   /* sin esto, al salir las secciones de la rejilla, las herramientas se iban junto al logo */
+}
+/* v600 · tableta pequeña (701–760 px): si se ve el aviso del cuadre, 16 px entre el aviso y la tarjeta (antes iba pegado debajo de la franja) */
+@media (min-width:701px) and (max-width:760.98px){ #v-resumen .zr #hoja-al:not([hidden]) + .duo{margin-top:16px!important} }
 </style>
 
 <div class="wrap">
@@ -4694,7 +4737,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v599";   // la versión publicada, en el pie
+const VER="v600";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7741,8 +7784,8 @@ $("more-m").addEventListener("click",e=>{ if(e.target.closest("#mm-calc")) zfCal
 function zfResumen(){ if(!DATA||innerWidth<=MOVIL) return; const V=$("v-resumen"); if(!V) return;
   const s=gxSec("v-resumen"); s.classList.add("zr");
   [$("s-hero"),$("hoja-al"),V.querySelector(":scope > .duo")].forEach(e=>{ if(e&&e.parentElement!==s) s.append(e); });
-  gxPega(s); zfMapa(); zfEvoKw(); }
-function zfMapa(){ const T=$("tmap"); if(!T||!DATA||innerWidth<=MOVIL) return; const W=Math.round(T.clientWidth), H=516; if(W<200) return;
+  gxPega(s); zfMapa(); zfEvoKw(); zfR1(); }
+function zfMapa(){ const T=$("tmap"); if(!T||!DATA||innerWidth<=MOVIL) return; const W=Math.round(T.clientWidth), H=386;   /* v600: el mapa, más bajo, dentro de la tarjeta «Tu cartera hoy» (antes 516) */ if(W<200) return;
   const all=DATA.pos.filter(p=>!p.isOption&&p.shares>0&&p.value>0).sort((a,b)=>b.value-a.value).map(p=>{ const hoy=isNum(p.today); return {p,v:p.value,ch:hoy?p.today:null,sin:!hoy}; });   // v546: las que aún no cotizan, como antes (casilla neutra, sin cifra)
   if(!all.length) return;
   const nivel=v=>{ if(!isNum(v)||Math.abs(v)<5e-5) return "lv0"; const m=Math.abs(v)*100, n=1+[.5,1,2.5,5].filter(t=>m>=t).length; return (v>0?"lp":"ln")+Math.min(5,n); };
@@ -7777,8 +7820,8 @@ document.addEventListener("click",e=>{ const b=e.target.closest("#tmap .gx-t2[da
 // v549 · Evolución (PC): el periodo, con la palabra del título y su menú, como en las demás pestañas (los botones de antes quedan ocultos y siguen mandando)
 function zfEvoKw(){ const R=$("range"), S=$("s-evo"), H=S&&S.querySelector(".chart-head .st"); if(!R||!H||innerWidth<=MOVIL) return;
   const n=+((R.querySelector('[aria-pressed="true"]')||{}).dataset||{n:0}).n||0, y0=DATA&&DATA.evo&&DATA.evo.length?day(DATA.evo[0].d).getFullYear():"";
-  const T={0:`desde ${y0}`,12:"del último año",36:"de los últimos 3 años"};
-  H.innerHTML=`Evolución ${gxKw("evo",T[n]||T[0],[{k:"12",t:"Último año",on:n===12},{k:"36",t:"Últimos 3 años",on:n===36},{k:"0",t:`Desde ${y0}`,on:!n}])}`; S.classList.add("zr-kwon"); }
+  const T={0:"desde el inicio",12:"del último año",36:"de los últimos 3 años"};   /* v600: «desde el inicio» en lugar del año */
+  H.innerHTML=`Evolución ${gxKw("evo",T[n]||T[0],[{k:"12",t:"Último año",on:n===12},{k:"36",t:"Últimos 3 años",on:n===36},{k:"0",t:"Desde el inicio",on:!n}])}`; S.classList.add("zr-kwon"); }
 document.addEventListener("click",e=>{ const op=e.target.closest('.kw-m [data-kw="evo"]'); if(!op||op.disabled) return; const b=$("range")&&$("range").querySelector(`[data-n="${op.dataset.o}"]`); if(b) b.click(); zfEvoKw(); });
 // v549 · el eje de Evolución (PC) se ajusta al dato y no al siguiente escalón redondo (antes, hasta 150 mil con la cartera en 110 mil); solo se rotulan las marcas redondas
 { const _mk=make; make=function(id,cfg){
@@ -7933,6 +7976,20 @@ function zfMovSombra(){ const h=$("m-head"); if(!h) return; const t=h.closest("t
     const tb=document.querySelector(".top"), w=document.querySelector(".wrap"); if(!tb||!w) return;
     const cs=getComputedStyle(w), der=w.getBoundingClientRect().right-parseFloat(cs.paddingRight||0);
     M.style.setProperty("--mm-x",(der-M.offsetWidth).toFixed(2)+"px"); M.style.setProperty("--mm-y",Math.round(tb.getBoundingClientRect().bottom+8)+"px"); })); }
+
+// v600 · Resumen (PC): las cifras de la franja pasan a las dos tarjetas. A la izquierda, en «Tu cartera hoy», el valor de la cartera
+// (con la liquidez) y lo de hoy; a la derecha, en «Evolución», el retorno total y la TIR. La franja sigue existiendo (oculta en el PC)
+// y es la que se rellena con los datos: aquí solo se copian sus cifras cada vez que cambian, con sus colores y el modo privado
+function zfR1(){ const T=$("s-today"), E=$("s-evo"), H=$("s-hero"); if(!T||!E||!H||innerWidth<=MOVIL) return;
+  const f=(l,n,s,d)=>`<div class="f${d?" d":""}"><div class="r1-lab"${l[0]==="#"?` data-c="${l.slice(1)}"`:""}>${l[0]==="#"?"":l}</div><div class="r1-num${n[1]?" "+n[1]:""}" data-c="${n[0]}"></div><div class="r1-sub" data-c="${s}"></div></div>`;
+  if(!T.querySelector(".r1-k")){ const a=document.createElement("div"); a.className="r1-k"; a.innerHTML=f("Valor de cartera",["h-val","g"],"h-sub")+f("#hk-ren-l",["hk-ren"],"hk-ren-s",1); ($("l1-side")||T.firstElementChild).after(a); }
+  if(!E.querySelector(".r1-k")){ const b=document.createElement("div"); b.className="r1-k"; b.innerHTML=f("Retorno total",["hk-ret"],"hk-ret-s")+f("TIR",["hk-tir"],"hk-tir-s"); (E.querySelector(".chart-head")||E.firstElementChild).after(b); }
+  const copia=()=>{ document.querySelectorAll("#v-resumen .r1-k [data-c]").forEach(el=>{ const o=$(el.dataset.c); if(!o) return;
+      if(el.dataset.c==="hk-ren-l") el.textContent=o.textContent.trim();
+      else if(el.dataset.c==="hk-ren-s"){ const p=o.querySelector("span"); el.innerHTML=p?p.outerHTML:o.innerHTML; }   /* solo el porcentaje del día */
+      else el.innerHTML=o.innerHTML;
+      ["pos","neg"].forEach(c=>el.classList.toggle(c,o.classList.contains(c))); }); };
+  copia(); if(!zfR1.mo){ zfR1.mo=new MutationObserver(copia); zfR1.mo.observe(H,{subtree:true,childList:true,characterData:true,attributes:true}); } }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
