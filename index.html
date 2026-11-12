@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-1WXdP5aJq34th50sbuaYp/+vmzocz/KBxAns1kL5m+Y=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-wOW4SBzkH7IPwKrIhP6nxNu9XFCNTbY14/6sLpieAWM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v627">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v627">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v627">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v628">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v628">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v628">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -830,7 +830,6 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 /* misma altura exacta: la de la franja de Universo en cada ancho */
 /* fichas enlazadas */
 /* ficha de la posición: el porcentaje bajo «Resultado», centrado en su pastilla (como en la ficha de Universo) */
-.ficha:not(.fpu) .rlv,.ficha:not(.fpu) .tpill{text-align:center}
 /* ===== Menú principal ===== */
 /* escritorio: navegación en texto, la activa subrayada (distinta de los filtros de periodo) */
 .nav-i{display:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
@@ -1066,7 +1065,6 @@ kbd{font:500 11px/1 var(--f-sans);line-height:1;line-height:round(nearest,calc(1
    /* Mayores pagadores: los logos no se tocan */
 /* ---------- Actualidad: un periódico ---------- */
 /* una hoja; la jerarquía la marcan la letra y las rayas: sin cajas, sin fondos, sin pastillas */
-:where(.paper) button{font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
 /* ---------- la portada ---------- */
 /* la cabecera: fecha a la izquierda, el nombre en el centro, tu cartera a la derecha; dos rayas */
 /* la noticia de portada: titular y resumen; con foto, la foto a la derecha con su pie */
@@ -1610,19 +1608,19 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
    color; lo que no cambia, en gris y sin color */
 
 /* los logos, en negro como en las listas de la web (con el mismo interruptor) */
-html.lmono :is(#paper.rvp,#s-calm) .lgb:not(.gr) img{filter:brightness(0) opacity(.82)}
-html.lmono :is(#paper.rvp,#s-calm) .lgb.gr img{filter:grayscale(1) brightness(.8)}
+html.lmono #s-calm .lgb:not(.gr) img{filter:brightness(0) opacity(.82)}
+html.lmono #s-calm .lgb.gr img{filter:grayscale(1) brightness(.8)}
 @media (prefers-color-scheme:dark){
-  html.lmono:not([data-theme="light"]) :is(#paper.rvp,#s-calm) .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
-  html.lmono:not([data-theme="light"]) :is(#paper.rvp,#s-calm) .lgb.fino img{filter:brightness(0) invert(1)}
-  html.lmono:not([data-theme="light"]) :is(#paper.rvp,#s-calm) .lgb.gr img{filter:grayscale(1) brightness(1.15)}
-  html.lmono:not([data-theme="light"]) :is(#paper.rvp,#s-calm) .lgb.kv img{display:block}
-  html.lmono:not([data-theme="light"]) :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:none}}
-html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
-html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.fino img{filter:brightness(0) invert(1)}
-html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.gr img{filter:grayscale(1) brightness(1.15)}
-html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img{display:block}
-html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:none}
+  html.lmono:not([data-theme="light"]) #s-calm .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
+  html.lmono:not([data-theme="light"]) #s-calm .lgb.fino img{filter:brightness(0) invert(1)}
+  html.lmono:not([data-theme="light"]) #s-calm .lgb.gr img{filter:grayscale(1) brightness(1.15)}
+  html.lmono:not([data-theme="light"]) #s-calm .lgb.kv img{display:block}
+  html.lmono:not([data-theme="light"]) #s-calm .lgb.kv img.kd{display:none}}
+html.lmono[data-theme="dark"] #s-calm .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
+html.lmono[data-theme="dark"] #s-calm .lgb.fino img{filter:brightness(0) invert(1)}
+html.lmono[data-theme="dark"] #s-calm .lgb.gr img{filter:grayscale(1) brightness(1.15)}
+html.lmono[data-theme="dark"] #s-calm .lgb.kv img{display:block}
+html.lmono[data-theme="dark"] #s-calm .lgb.kv img.kd{display:none}
 /* ======================= CALENDARIO (v367) =======================
    Mes de pared con el lenguaje de «Próximos cobros» (Análisis): sin casillas, una raya fina encima de cada día, fin de semana con
    el fondo suave de siempre, el día de hoy en su pastilla oscura y las letras de los días como en aquel. Cada día lleva sus tarjetas:
@@ -2202,7 +2200,6 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gx3 svg{display:block;overflow:visible}
   .gx3 svg text{font-family:inherit;fill:var(--ink2);font-size:12px;font-variant-numeric:tabular-nums}
   .gx3 svg .t3{fill:var(--ink3)} .gx3 svg .t1{fill:var(--ink)} .gx3 svg .b{font-weight:600}
-  .gx3 svg image.mono{filter:brightness(0) opacity(.82)}
   .gxl{display:flex;align-items:center;justify-content:center;flex:none}
   .gxl img{display:block;width:100%;height:100%;object-fit:contain;filter:brightness(0) opacity(.82)}
   .gxl.inv img{filter:brightness(0) invert(1)}
@@ -2227,7 +2224,6 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gx-nota b{display:block;font-weight:600;color:var(--ink)}
   .gx-ano{position:absolute;font-size:12px;line-height:16px;color:var(--ink3);white-space:nowrap;font-variant-numeric:tabular-nums}
   .gx-ano em{font-style:normal;margin-left:8px}
-  .gx-med{position:absolute;font-size:12px;line-height:16px;color:var(--ink2);white-space:nowrap;background:var(--gx-bg);padding:0 0 0 6px;font-variant-numeric:tabular-nums}
   /* Calendario · dos meses */
   .gx-cal{display:grid;grid-template-columns:1fr 1fr;gap:56px}
   .gx-mh{display:flex;align-items:baseline;gap:12px;margin:0 0 16px;font-size:13px;color:var(--ink3)}
@@ -2278,7 +2274,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gx-t2.mia::before{content:"";position:absolute;top:9px;right:9px;width:8px;height:8px;border-radius:50%;background:currentColor;z-index:2}   
 }
 @media (min-width:700.99px){
-  :root[data-theme="dark"] :is(.gx3 svg image.mono,.gxl img){filter:brightness(0) invert(.9)}
+  :root[data-theme="dark"] .gxl img{filter:brightness(0) invert(.9)}
   :root[data-theme="dark"] .gxl.inv img{filter:brightness(0)}
   :root[data-theme="dark"] :is(.gxl.sol-d img,.gx-t2 .gxsol.sol-d){filter:grayscale(1) contrast(8) invert(1) opacity(.9)}
   :root[data-theme="dark"] :is(.gxl.sol-l img,.gx-t2 .gxsol.sol-l){filter:grayscale(1) contrast(8) opacity(.9)}
@@ -2286,7 +2282,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   :root[data-theme="dark"] .gxl.inv.sol-l img{filter:grayscale(1) contrast(8) invert(1)}
 }
 @media (min-width:700.99px) and (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) :is(.gx3 svg image.mono,.gxl img){filter:brightness(0) invert(.9)}
+  :root:not([data-theme="light"]) .gxl img{filter:brightness(0) invert(.9)}
   :root:not([data-theme="light"]) .gxl.inv img{filter:brightness(0)}
   :root:not([data-theme="light"]) :is(.gxl.sol-d img,.gx-t2 .gxsol.sol-d){filter:grayscale(1) contrast(8) invert(1) opacity(.9)}
   :root:not([data-theme="light"]) :is(.gxl.sol-l img,.gx-t2 .gxsol.sol-l){filter:grayscale(1) contrast(8) opacity(.9)}
@@ -2589,11 +2585,8 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   #v-resumen .zr #tmap{height:516px;background:none}
   #v-resumen .zr .zr-tr{position:relative}
   /* la última sesión, apagada: el mismo color, rebajado sobre el blanco, y el texto en gris */
-  #v-resumen .zr .gx-t2.zr-ayer.lv0{background:color-mix(in srgb,var(--lv0) 40%,var(--gx-bg))} #v-resumen .zr .gx-t2.zr-ayer.lp1{background:color-mix(in srgb,var(--lp1) 40%,var(--gx-bg))} #v-resumen .zr .gx-t2.zr-ayer.lp2{background:color-mix(in srgb,var(--lp2) 40%,var(--gx-bg))} #v-resumen .zr .gx-t2.zr-ayer.lp3{background:color-mix(in srgb,var(--lp3) 40%,var(--gx-bg))} #v-resumen .zr .gx-t2.zr-ayer.lp4{background:color-mix(in srgb,var(--lp4) 40%,var(--gx-bg))} #v-resumen .zr .gx-t2.zr-ayer.lp5{background:color-mix(in srgb,var(--lp5) 40%,var(--gx-bg))} #v-resumen .zr .gx-t2.zr-ayer.ln1{background:color-mix(in srgb,var(--ln1) 40%,var(--gx-bg))} #v-resumen .zr .gx-t2.zr-ayer.ln2{background:color-mix(in srgb,var(--ln2) 40%,var(--gx-bg))} #v-resumen .zr .gx-t2.zr-ayer.ln3{background:color-mix(in srgb,var(--ln3) 40%,var(--gx-bg))} #v-resumen .zr .gx-t2.zr-ayer.ln4{background:color-mix(in srgb,var(--ln4) 40%,var(--gx-bg))} #v-resumen .zr .gx-t2.zr-ayer.ln5{background:color-mix(in srgb,var(--ln5) 40%,var(--gx-bg))}
-  #v-resumen .zr .gx-t2.zr-ayer{color:var(--ink3)}
   #v-resumen .zr .zr-ot span{font-size:15px;line-height:20px;font-weight:600}
   #v-resumen .zr #hy-leg{justify-content:center;margin-top:16px}
-  #v-resumen .zr #hy-leg i.zr-ay{background:color-mix(in srgb,var(--ink3) 35%,transparent)}
   #v-resumen .zr #s-evo .chartbox{height:482px}
   #v-resumen > #s-pos{border-radius:20px;padding:48px 48px 44px}
 }
@@ -3719,7 +3712,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v627";   // la versión publicada, en el pie
+const VER="v628";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4522,13 +4515,6 @@ let perfK="today", perfAuto=true;   // abre en «Hoy»; si hoy aún no ha cotiza
 function pfRow(r,max){ const v=perfK==="dd"&&Math.abs(r.dd)<0.0005?0:r[perfK], w=Math.min(Math.abs(v)/max,1)*100;
   return `<button type="button" class="pf-row ri-go${r.inPf?" inpf":""}" aria-haspopup="dialog" data-t="${esc(r.ticker)}">${coCell(r.name,r.ticker).replace(/^<div/,"<span").replace(/<\/div>$/,"</span>")}<span class="pf-px num">${precioVisible(r.price,r.cur)}</span>
     <span class="pf-bar"><span style="width:${w.toFixed(1)}%;background:var(${v>=0?"--sbar":"--tbar"})"></span></span><span class="c ${cls(v)}">${pct(v,Math.abs(v)>=10?0:1,true)}</span></button>`; }
-// un guion blando en los nombres de una sola palabra larga (12 letras o más), en la sílaba más cercana a la mitad, para que «Semiconductores» pueda partirse en su casilla («Semicon-ductores»)
-const cortaPalabra=t=>t.replace(/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{12,}$/,w=>{ const l=w.toLowerCase(), V="aeiouáéíóúü", F="aeoáéíóú", isV=c=>V.includes(c), G=["pr","br","tr","dr","cr","gr","fr","pl","bl","cl","gl","fl","kr","kl","ch","ll","rr"], cut=[];
-  let i=0; const nuc=[]; while(i<l.length){ if(isV(l[i])){ let j=i+1; while(j<l.length&&isV(l[j])&&!(F.includes(l[j-1])&&F.includes(l[j]))&&!"íú".includes(l[j])&&!"íú".includes(l[j-1])) j++; nuc.push([i,j]); i=j; } else i++; }
-  for(let k=0;k+1<nuc.length;k++){ const a=nuc[k][1], b=nuc[k+1][0], c=l.slice(a,b), n=c.length; let p;
-    if(n===0) p=a; else if(n===1) p=a; else if(n===2) p=G.includes(c)?a:a+1; else if(n===3) p=G.includes(c.slice(1))?a+1:a+2; else p=a+2;
-    if(p>=3&&l.length-p>=3) cut.push(p); }
-  if(!cut.length) return w; const m=cut.reduce((a,p)=>Math.abs(p-w.length/2)<Math.abs(a-w.length/2)?p:a); return w.slice(0,m)+"\u00ad"+w.slice(m); });
 function renderPerf(){
   document.querySelectorAll("#perf-k .cy").forEach(e=>e.textContent=new Date().getFullYear());   // COD-19
   // «Hoy» = lo que ya ha cotizado hoy; «Última sesión» = la sesión más reciente de cada empresa (por la mañana, EE. UU. es la de ayer).
@@ -4818,32 +4804,19 @@ function closeSheet(){ if(!sheet) return; const was=sheet, back=sheetFrom; sheet
 const toggleSheet=(tab,t,list)=>sheet&&sheet.t===t?closeSheet():openSheet(tab,t,list);
 function stepSheet(d){ if(!sheet) return; const L=sheet.list||[], i=L.indexOf(sheet.t); if(i<0||!L[i+d]) return; sheet.t=L[i+d]; renderSheet(); $("sheet").scrollTop=0;
   const B=sheet.box, tr=B&&B.isConnected&&B.matches("tbody")?[...B.querySelectorAll("tr.pr")].find(x=>x.dataset.t===sheet.t&&x.offsetParent):null; if(tr) tr.scrollIntoView({block:"nearest"}); }
-/* ---------- Actualidad: el periódico de la semana ---------- */
-// tu tarea de los lunes deja en Drive (Inversiones › Informes › AAAA-MM-DD) un índice y una ficha por empresa. Aquí se maqueta como el
-// periódico de la semana: una portada (la semana, los resultados si los hay, las noticias y la agenda) y una página por empresa.
-// Los textos llegan con <b>, <i>, &amp; y &nbsp;: eso se respeta y todo lo demás se escapa
-let ACT=null;   // {ix: el índice, emp: {id: ficha}}
-// de dónde sale: en Claude, con el conector de Google Drive (la subcarpeta más reciente, su índice y las fichas); en tu web de GitHub,
-// tu script de Google lo entrega todo de una vez, con tu clave
+/* ---------- el índice semanal de resultados (para el Calendario y la ficha) ---------- */
+// tu tarea de los lunes deja en Drive (Inversiones › Informes › AAAA-MM-DD) un índice con las fechas de resultados de cada empresa
+let ACT=null;   // {ix: el índice}
+// de dónde sale: en Claude, con el conector de Google Drive (la subcarpeta más reciente y su índice); en tu web de GitHub, tu script de
+// Google lo entrega, con tu clave
 const INF_ID="";   // Inversiones › Informes
-let actSt="", actAt=0, actBusy=false, actIds={}, actIntentadas={}, actFirma=""; const actPendientes={};
-let actAbierta=null, actNueva=null, actPestana=null;   // la empresa abierta (null: la portada), una edición nueva que espera a que la pidas y la pestaña preferida («res» o «nws»)
-// SEG-01 y SEG-07 · la edición llega de fuera (Drive o tu script) y se guarda en este dispositivo: se comprueba antes de usarla.
-// Cada empresa necesita un id sencillo (letras, cifras, guion y guion bajo: acaba en la dirección y en selectores) y los recuentos
-// han de ser números (se pintan tal cual); lo que no cumpla se descarta
-const actNum=v=>{ const x=Number(v); return Number.isFinite(x)&&x>=0?Math.floor(x):0; };
-const actIdOk=id=>typeof id==="string"&&/^[a-z0-9_-]{1,40}$/i.test(id);
+let actSt="", actAt=0, actBusy=false;
 // v367 · el archivo del calendario: cada empresa con su ticker, nombre, últimos y próximos resultados; fechas AAAA-MM-DD; lo demás se descarta
 const calF=s=>typeof s==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(s)?s:null, calT=s=>typeof s==="string"?s.slice(0,80):"";
 const calSanea=x=>({ix:{tipo:"calendario",semana:calF(x.ix.semana)||"",generado:typeof x.ix.generado==="string"?x.ix.generado.slice(0,40):"",
   empresas:x.ix.empresas.filter(e=>e&&typeof e==="object"&&typeof e.ticker==="string"&&e.ticker).map(e=>{ const u=e.ultimos&&typeof e.ultimos==="object"?e.ultimos:{}, p=e.proximos&&typeof e.proximos==="object"?e.proximos:{};
-    return {ticker:calT(e.ticker),nombre:calT(e.nombre),ultimos:{fecha:calF(u.fecha),periodo:calT(u.periodo)},proximos:{fecha:calF(p.fecha),periodo:calT(p.periodo),estado:p.estado==="confirmada"?"confirmada":"estimada",hora:p.hora==="antes de la apertura"||p.hora==="tras el cierre"?p.hora:""}}; })},emp:{}});
-const actSanea=x=>{ if(!x||typeof x!=="object"||!x.ix||typeof x.ix!=="object"||!Array.isArray(x.ix.empresas)) return null;
-  if(x.ix.tipo==="calendario") return calSanea(x);
-  const empresas=x.ix.empresas.filter(e=>e&&typeof e==="object"&&actIdOk(e.id)).map(e=>{ const z=e.noticias_por_nivel;
-    return {...e,num_noticias:actNum(e.num_noticias),noticias_por_nivel:z&&typeof z==="object"?{empresa:actNum(z.empresa),sector:actNum(z.sector),segundo_grado:actNum(z.segundo_grado??z["segundo grado"])}:null}; });
-  const emp={}; Object.entries(x.emp&&typeof x.emp==="object"?x.emp:{}).forEach(([k,v])=>{ if(actIdOk(k)&&v&&typeof v==="object") emp[k]=v; });
-  return {...x,ix:{...x.ix,empresas},emp}; };
+    return {ticker:calT(e.ticker),nombre:calT(e.nombre),ultimos:{fecha:calF(u.fecha),periodo:calT(u.periodo)},proximos:{fecha:calF(p.fecha),periodo:calT(p.periodo),estado:p.estado==="confirmada"?"confirmada":"estimada",hora:p.hora==="antes de la apertura"||p.hora==="tras el cierre"?p.hora:""}}; })}});
+const actSanea=x=>x&&typeof x==="object"&&x.ix&&typeof x.ix==="object"&&Array.isArray(x.ix.empresas)&&x.ix.tipo==="calendario"?calSanea(x):null;   // v628: solo el formato «calendario» (el del periódico ya no se usa)
 // la última edición se guarda en este dispositivo: al abrir se ve al momento y, por detrás, se comprueba si ha llegado otra
 try{ const c=actSanea(JSON.parse(localStorage.getItem("actEd")||"null")); if(c) ACT=c; }catch{}
 let actGuardaT=0; const actGuarda=()=>{ clearTimeout(actGuardaT); actGuardaT=setTimeout(()=>{ try{ if(ACT) localStorage.setItem("actEd",JSON.stringify(ACT)); }catch{} },1500); };
@@ -4864,103 +4837,31 @@ async function loadAct(force){
       for(const w of ws.slice(0,3)){ const ids={};   // si una semana está a medias (sin índice todavía), vale la anterior
         (await actLista(`parentId = '${w.id}'`)).filter(f=>/\.json$/i.test(f.title)).sort((a,b)=>String(a.createdTime).localeCompare(String(b.createdTime))).forEach(f=>ids[f.title]=f.id);   // con nombres repetidos, el más reciente
         if(!ids["indice.json"]) continue;
-        got={ix:await actDescarga(ids["indice.json"]),emp:{}}; actIds=ids; break; } }
+        got={ix:await actDescarga(ids["indice.json"])}; break; } }
     else { const r=await remPide("informe"), j=r.ok?await r.json():null;
       if(!j||!j.ok) throw {code:"rem_error"};
       if(!("ix" in j)){ ACT=null; actSt="script"; return; }   // tu script todavía no entrega los informes
-      got=j.ix?{ix:j.ix,emp:j.emp||{}}:null; }
+      got=j.ix?{ix:j.ix}:null; }
     if(got) got=actSanea(got);
-    const same=got&&ACT&&ACT.ix.semana===got.ix.semana&&ACT.ix.generado===got.ix.generado;
-    if(same) got.emp={...ACT.emp,...got.emp};   // la misma edición: lo ya guardado sigue valiendo
-    if(force) actIntentadas={};
-    if(got&&ACT&&!same&&actAbierta&&view==="calendario") actNueva=got;   // estás leyendo: la nueva espera a que la pidas
-    else { if(got&&!same) actAbierta=null; ACT=got; actNueva=null; actSt=got?"":"vacío"; actGuarda(); }
+    ACT=got; actSt=got?"":"vacío"; actGuarda();
   }catch(e){ console.warn("Cartera · Actualidad:",e); const c=e&&e.code; if(!ACT) actSt=["approval_required","consent_required","not_granted"].includes(c)?"permiso":"error"; }
-  finally{ actBusy=false; actAt=Date.now(); renderAct(); if(ACT&&mcp&&!actNueva) actCargaTodas(); } }
-// en Claude las fichas se leen de tres en tres; cada artículo se rellena en cuanto llega la suya
-function actCargaEmpresa(e){ if(!ACT||ACT.emp[e.id]||!mcp) return Promise.resolve(); const id=actIds[e.archivo], w=ACT.ix.semana, g=ACT.ix.generado; actIntentadas[e.id]=true;
-  if(!id){ actRellena(e); return Promise.resolve(); }
-  return actPendientes[e.id]||(actPendientes[e.id]=actDescarga(id).then(f=>{ if(ACT&&ACT.ix.semana===w&&ACT.ix.generado===g&&(!f||!f.semana||f.semana===w)) ACT.emp[e.id]=f; }).catch(err=>console.warn("Cartera · Actualidad, "+e.id+":",err)).finally(()=>{ delete actPendientes[e.id]; actRellena(e); actGuarda(); })); }
-async function actCargaTodas(){ if(ACT&&ACT.ix.tipo==="calendario") return; const q=actNavegables().filter(e=>e.archivo&&!ACT.emp[e.id]&&!actIntentadas[e.id]); let i=0; const run=async()=>{ while(ACT&&i<q.length) await actCargaEmpresa(q[i++]); }; await Promise.all([run(),run(),run()]); }
+  finally{ actBusy=false; actAt=Date.now(); renderAct(); } }
 
-const actHtml=s=>esc(s).replace(/&lt;(\/?)(b|i)&gt;/g,"<$1$2>").replace(/&amp;(amp|nbsp);/g,"&$1;").replace(/(\d)(?:[ \u00A0]|&nbsp;)?%/g,"$1\u202F%");   // TXT-02: «20 %» con espacio fino
-const actTexto=s=>String(s??"").replace(/<\/?[bi]>/g,"").replace(/&nbsp;/g," ").replace(/&amp;/g,"&").replace(/(\d)(?:[ \u00A0]|&nbsp;)?%/g,"$1\u202F%");
-const actParrafos=xs=>(xs||[]).map(s=>`<p>${actHtml(s)}</p>`).join("");
-const actVariacion=e=>isNum(e.variacion)&&actEnCartera(e)?e.variacion/100:null;   // la de las empresas fuera de tu cartera no se enseña
-const actNombre=e=>{ const r=DATA&&(DATA.pos.find(p=>p.ticker===e.ticker&&!p.isOption)||DATA.pre.find(p=>p.ticker===e.ticker)); return cname(e.ticker,r?r.name:actTexto(e.nombre)); };
-const actEnCartera=e=>!DATA||!e||DATA.pos.some(p=>p.ticker===e.ticker&&!p.isOption);   // ¿la tienes en cartera? (mientras no llega la hoja, se da por hecho que sí)
-const actOrdenadas=()=>ACT?ACT.ix.empresas.slice().sort((a,b)=>(actEnCartera(b)-actEnCartera(a))||actNombre(a).localeCompare(actNombre(b),"es")):[];   // por nombre; las que no tienes en cartera, al final
-// tiene página si trae resultados, una noticia a fondo o alguna noticia; las demás salen en la portada con «Sin noticias» y no se abren
-const actConPagina=e=>!!(actTipo(e)||e.num_noticias>0||e.primera_noticia_titular||((ACT.emp[e.id]||{}).noticias||[]).length);
-const actNavegables=()=>actOrdenadas().filter(actConPagina);   // anterior y siguiente: solo las que tienen página
-// Resultados y Noticias van en dos pestañas cuando la empresa tiene las dos; si no, la página es solo lo que tenga
-const actConNoticias=e=>!!(e.num_noticias>0||e.primera_noticia_titular||((ACT.emp[e.id]||{}).noticias||[]).length);
-const actConAmbas=e=>!!(actTipo(e)&&actConNoticias(e));
-const actPestanaDe=e=>actConAmbas(e)?(actPestana==="nws"?"nws":"res"):actTipo(e)?"res":"nws";
-const actRuta=()=>{ const e=actAbierta&&ACT&&ACT.ix.empresas.find(x=>x.id===actAbierta); return "actualidad"+(e?"/"+e.id+(actConAmbas(e)&&actPestanaDe(e)==="nws"?"/noticias":""):""); };
-// ir arriba de algo: si la web está dentro de un marco que se estira con ella (la de Claude en el ordenador), la página no se desplaza; entonces lo hace el marco
-const actVeA=(el,off,blk="start")=>{ const y=Math.max(0,el.getBoundingClientRect().top+scrollY-off); scrollTo({top:y});
-  if(document.documentElement.scrollHeight<=innerHeight+2) try{ el.scrollIntoView({block:blk}); }catch{} };
-// leídas: se recuerda en este dispositivo, por semana
-let actLeidas={}; try{ actLeidas=JSON.parse(localStorage.getItem("actLeidas")||"{}")||{}; }catch{}
-const actEsLeida=id=>!!ACT&&(actLeidas[ACT.ix.semana]||[]).includes(id);
-function actMarcaLeida(id,on){ const w=ACT.ix.semana, L=new Set(actLeidas[w]||[]); on?L.add(id):L.delete(id); actLeidas={[w]:[...L]}; try{ localStorage.setItem("actLeidas",JSON.stringify(actLeidas)); }catch{} }
-const actIcono=p=>`<svg class="ai" viewBox="0 0 16 16" aria-hidden="true">${p}</svg>`;
-const actIconos={res:actIcono('<path d="M3.5 13.5v-4M8 13.5v-9M12.5 13.5v-6"/>'),nr:actIcono('<path d="M2.5 6.5v3h2l5 3v-9l-5 3zM12 6a2.5 2.5 0 0 1 0 4"/>'),
-  alr:actIcono('<path d="M8 2.6 14.2 13.4H1.8z"/><path d="M8 6.6v3.2M8 11.6v.1"/>'),mov:actIcono('<path d="M2 11.5 6 7.5l2.5 2.5L14 4.5M10.5 4.5H14V8"/>'),
-  book:actIcono('<path d="M2 3.5h4.2A1.8 1.8 0 0 1 8 5.3v8a1.6 1.6 0 0 0-1.6-1.6H2zM14 3.5H9.8A1.8 1.8 0 0 0 8 5.3v8a1.6 1.6 0 0 1 1.6-1.6H14z"/>'),
-  cal:actIcono('<rect x="2.5" y="3.5" width="11" height="10" rx="1.5"/><path d="M2.5 7h11M5.5 2v3M10.5 2v3"/>'),lay:actIcono('<path d="M8 2.5 14 5.5 8 8.5 2 5.5z"/><path d="M2 8.5l6 3 6-3M2 11.2l6 3 6-3"/>'),
-  msg:actIcono('<path d="M2.5 3h11v8H7.5L4.5 13.5V11h-2z"/>'),qa:actIcono('<circle cx="8" cy="8" r="6"/><path d="M6.2 6.3a1.9 1.9 0 1 1 2.5 1.8c-.4.2-.7.5-.7 1v.4M8 11.3v.1"/>'),
-  per:actIcono('<path d="M2 12.5h12M4 10l3-3 2 2 4-4.5M10 4.5h3v3"/>'),lst:actIcono('<path d="M6 4.5h7.5M6 8h7.5M6 11.5h7.5M2.6 4.5h.1M2.6 8h.1M2.6 11.5h.1"/>'),
-  tab:actIcono('<rect x="2.5" y="3" width="11" height="10" rx="1.5"/><path d="M2.5 6.5h11M6.5 6.5V13"/>'),tes:actIcono('<circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="3"/><circle cx="8" cy="8" r=".5"/>'),
-  hoj:actIcono('<rect x="2.5" y="2.5" width="11" height="11" rx="1.5"/><path d="M2.5 6.2h11M2.5 9.8h11M6.5 6.2v7.3"/>'),lnk:actIcono('<path d="M6.8 9.2 9.2 6.8M7.2 4.8l.9-.9a2.6 2.6 0 0 1 3.7 3.7l-.9.9M8.8 11.2l-.9.9a2.6 2.6 0 0 1-3.7-3.7l.9-.9"/>'),
-  nws:actIcono('<path d="M3 3.5h8v9.5H4.2A1.2 1.2 0 0 1 3 11.8zM11 6.5h2v5.8a.8.8 0 0 1-1.6 0M5 6.5h4M5 9h4M5 11.5h2.5"/>'),up:actIcono('<path d="M8 13V3.5M4 7.5l4-4 4 4"/>'),dn:actIcono('<path d="M8 3v9.5M4 8.5l4 4 4-4"/>'),pv:actIcono('<path d="M10 3.5 5.5 8l4.5 4.5"/>'),nx:actIcono('<path d="M6 3.5 10.5 8 6 12.5"/>'),
-  chk:actIcono('<path d="M3.5 8.4 6.6 11.4 12.5 4.8"/>'),cir:actIcono('<circle cx="8" cy="8" r="5.5"/>'),idx:actIcono('<path d="M5.5 4.5h8M5.5 8h8M5.5 11.5h8M2.5 4.5h.1M2.5 8h.1M2.5 11.5h.1"/>')};
-// las notas de trabajo de la tarea (qué leyó y si lo leyó entero, lo que no encontró, lo que ya está en otro apartado) no son noticia: no se enseñan
-const actRelleno=/le[ií]d[oa]s? complet|no consta|no se ha (localizado|podido)|no se pudo|no se deja leer|ya est[aá]n? en (el|la|los|las) (an[aá]lisis|apartado)/i;
-const actLimpia=s=>String(s||"").replace(/([.;])\s+/g,"$1\u0001").split("\u0001").filter(x=>x.trim()&&!actRelleno.test(x)).join(" ").trim().replace(/;$/,".");
-const actUrl=u=>{ const x=String(u||"").trim(); return /^https?:\/\//i.test(x)?x:""; };   // solo direcciones web: nada de «javascript:» ni otros protocolos
-const actSinLeido=s=>String(s||"").replace(/,?\s*le[ií]d[oa]s? complet[oa]s?(:[^.;]*)?/gi,"").trim();
-const actActos=f=>(f.actos||[]).filter(a=>!/^otros actos/i.test(actTexto(a.tipo))&&!actRelleno.test(actTexto(a.fecha))&&(actLimpia(a.detalle)||actUrl(a.url)));
+// la de las empresas fuera de tu cartera no se enseña
+// ¿la tienes en cartera? (mientras no llega la hoja, se da por hecho que sí)
+// por nombre; las que no tienes en cartera, al final
+// anterior y siguiente: solo las que tienen página
+// solo direcciones web: nada de «javascript:» ni otros protocolos
 
-// tu cartera en la semana: lo que se movió cada empresa, por lo que pesa en tu cartera; se guarda con la edición para verla sin esperar a la hoja
-function actPesos(){ if(DATA){ const ps=actOrdenadas().map(e=>[e,DATA.pos.find(p=>p.ticker===e.ticker&&!p.isOption)]).filter(([e,p])=>p&&p.value>0&&actVariacion(e)!=null), W=sum(ps,x=>x[1].value);
-    const w=W?sum(ps,([e,p])=>p.value*actVariacion(e))/W:null; if(w!==ACT.wk){ ACT.wk=w; actGuarda(); } }
-  return ACT.wk??null; }
 
-// Actualidad: estas funciones se definen una sola vez, más abajo, en su bloque (junto a lo que usan)
-let renderAct, actPinta, actAbre, actPortada, actAgenda, actArticulo, actMarca, actCambiaPestana;
-let actAntes=null;
-const actArriba=()=>{ scrollTo(0,0); if(document.documentElement.scrollHeight<=innerHeight+2) try{ document.body.scrollIntoView({block:"start"}); }catch{} };
+let renderAct;   // la define el Calendario, más abajo
 
 /* ---------- Actualidad: los datos de cada empresa ---------- */
-// qué hay en cada empresa: un informe de resultados (o una noticia a fondo), sus noticias y, si se movió más de un 5%, por qué
-const actTipo=e=>e.tipo==="resultados"?"res":e.tipo==="noticia_relevante"?"nr":"";
-const actCorto=e=>(DATA&&cname(e.ticker,""))||actTexto(e.corto||e.nombre)||actNombre(e);
-const actPublicacion=e=>{ const p=actTexto(e.publicacion||""), m=p.match(/^(.*?)\s*·\s*([^·]+)$/); return m?{que:m[1],cuando:m[2]}:{que:p,cuando:""}; };
-// la primera frase de un texto (titular de un informe mientras la tarea no escriba uno)
-const actPrimeraFrase=s=>{ const t=actTexto(s).replace(/<[^>]+>/g,""); for(let i=0;i<t.length;i++){ if(t[i]==="."&&(i===t.length-1||t[i+1]===" ")){ const w=t.slice(0,i).split(" ").pop(); if(!/^[A-ZÁÉÍÓÚ]{1,3}$/.test(w)) return t.slice(0,i+1); } } return t; };
-const actNiveles=e=>{ const f=ACT.emp[e.id]; if(f&&f.noticias){ const c={}; f.noticias.forEach(x=>c[x.nivel]=(c[x.nivel]||0)+1); return c; }
-  const z=e.noticias_por_nivel; return z?{empresa:actNum(z.empresa),sector:actNum(z.sector),"segundo grado":actNum(z.segundo_grado??z["segundo grado"])}:null; };
-// todas tus empresas: las de tu cartera (sin las opciones) y las que traiga la edición, cada una una vez, por nombre
-function actTodas(){ const E=ACT.ix.empresas, out=new Map();
-  E.forEach(e=>out.set(e.ticker,{e,n:actCorto(e),tk:e.ticker}));
-  if(DATA) DATA.pos.filter(p=>!p.isOption&&!out.has(p.ticker)).forEach(p=>out.set(p.ticker,{e:null,n:cname(p.ticker,p.name),tk:p.ticker}));
-  return [...out.values()].sort((a,b)=>(actEnCartera(b.e)-actEnCartera(a.e))||a.n.localeCompare(b.n,"es")); }   // las que no tienes en cartera, al final
+// las que no tienes en cartera, al final
 
-// cuando llega la ficha de una empresa: su página, si está abierta; y la portada, una sola vez, cuando ya están todas (sus noticias salen de ahí)
-function actRellena(e){ if(!ACT) return; if(actAbierta===e.id) actPinta(true); else if(!actAbierta&&ACT.ix.empresas.every(x=>!x.archivo||ACT.emp[x.id]||(actIntentadas[x.id]&&!actPendientes[x.id]))) actPinta(true); }   // las que no tienen ficha no se esperan
-// saltos: a una empresa (o a la portada), a un apartado del artículo, y la edición nueva cuando la pidas
-document.addEventListener("click",e=>{ if(e.target.id==="act-allow"){ loadAct(true); return; }
-  if(e.target.closest("#v-calendario [data-anew]")){ const k=actAbierta, w=ACT.ix.semana; ACT=actNueva; actNueva=null; actAbierta=ACT.ix.semana===w&&ACT.ix.empresas.some(x=>x.id===k)?k:null;   // la misma semana, rehecha: sigues en la empresa
-    actGuarda(); actFirma=""; renderAct(); if(mcp) actCargaTodas(); actAbre(actAbierta,false); try{ history.replaceState(null,"","#"+actRuta()); }catch{} return; }
-  const tb=e.target.closest("#pa-main .atabs [data-tab]"); if(tb){ actCambiaPestana(tb.dataset.tab); return; }
-  const a=e.target.closest("#v-calendario [data-art]"); if(a){ actAbre(a.dataset.art,true,a.dataset.nw!=null?a.dataset.nw:null,a.dataset.tab||(actAbierta?null:"res")); return; }
-  const g=e.target.closest("#v-calendario [data-goto]"); if(g){ const t=$(g.dataset.goto); if(t) t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"}); return; }
-  const b=e.target.closest("#paper [data-ard]"); if(b){ actMarcaLeida(b.dataset.ard,b.getAttribute("aria-pressed")!=="true"); actMarca(b.dataset.ard); } });
-// en el PC, ← y → pasan a la empresa anterior o a la siguiente
-addEventListener("keydown",e=>{ if(view!=="calendario"||!ACT||ACT.ix.tipo==="calendario"||sheet||e.metaKey||e.ctrlKey||e.altKey||!$("kx").hidden||e.target.closest("input,textarea,select")||(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")) return;
-  const L=actNavegables(), i=actAbierta?L.findIndex(x=>x.id===actAbierta):-1, n=e.key==="ArrowRight"?(i<0?L[0]:L[i+1]):(i>0?L[i-1]:i===0?{id:""}:null); if(!n) return; e.preventDefault(); actAbre(n.id); });
+// las que no tienen ficha no se esperan
+// «Permitir»: leer la carpeta Informes
+document.addEventListener("click",e=>{ if(e.target.id==="act-allow") loadAct(true); });
 
 // la barra de desplazamiento de la ficha en el PC: fina, flotante y arrastrable (la del navegador ocupaba un hueco a la derecha)
 { const sh=$("sheet"), sb=document.createElement("div"); sb.className="sh-sb"; sb.hidden=true; sb.setAttribute("aria-hidden","true"); document.body.append(sb);
@@ -5037,83 +4938,6 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   if(document.fonts) document.fonts.ready.then(later); later(); }
 
 
-// lo de arriba (Anterior/Siguiente, pestañas) no mueve la pantalla aunque lo nuevo sea más corto: si la página ya no llega a donde
-// estabas, se alarga por abajo lo justo (hasta el siguiente cambio) en vez de dejar que el navegador la suba
-const acFree=()=>{ const m=$("pa-main"); if(m) m.style.minHeight=""; };
-const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.documentElement.scrollHeight-innerHeight;
-  if(max<y0) m.style.minHeight=(m.offsetHeight+Math.ceil(y0-max))+"px"; if(Math.abs(scrollY-y0)>0.5) scrollTo({top:y0,behavior:"instant"}); };
-// Actualidad: la versión que funciona, con lo pedido después:
-//  - Próximos resultados como un calendario: dos semanas como mínimo (lo que no tiene a nadie, vacío), cabecera con los días, una casilla
-//    por día con su número y quién presenta; hoy, con el número en un círculo; no se pulsa (es solo para mirar)
-//  - anterior / siguiente de arriba: si ya estás en una empresa y en su cabecera, la pantalla no se mueve; los del pie suben al principio
-{ const FIc={IR:"Confirmado",CAL:"Según calendario",EST:"Estimado"}, up=s=>s?s[0].toUpperCase()+s.slice(1):"";
-  actAgenda=function(ix){ if(!ix.agenda||!ix.agenda.length) return "";
-    const byN=new Map(ix.empresas.flatMap(e=>[[actTexto(e.nombre),e],[actTexto(e.corto),e]])), iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`, at=s=>new Date(s+"T12:00:00");
-    const MESES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-    const ev=new Map(ix.agenda.map(d=>[d.fecha_iso,d.eventos||[]])), fs=[...ev.keys()].sort(), f0=at(fs[0]);
-    // desde el lunes en que empieza el periodo de la edición (si no se entiende, el del primer día con resultados) hasta su final o el
-    // último día con resultados; y siempre, al menos, dos semanas
-    const pm=String(ix.periodo_proximos||"").match(/(\d+)(?: de (\w+))? al (\d+) de (\w+)/i);
-    const fecha=(d,mn)=>{ const mi=MESES.indexOf(String(mn||"").toLowerCase()); if(mi<0) return null; let y=f0.getFullYear(); if(mi<f0.getMonth()-6) y++; else if(mi>f0.getMonth()+6) y--; return new Date(y,mi,+d,12); };
-    let ini=f0, end=at(fs[fs.length-1]);
-    if(pm){ const a=fecha(pm[1],pm[2]||pm[4]), z=fecha(pm[3],pm[4]); if(a&&a<ini) ini=a; if(z&&z>end) end=z; }
-    const mon=new Date(ini); mon.setDate(mon.getDate()-((mon.getDay()+6)%7));
-    const dos=new Date(mon); dos.setDate(dos.getDate()+11); if(end<dos) end=dos;
-    const we=fs.some(k=>{ const g=at(k).getDay(); return (g===0||g===6)&&(ev.get(k)||[]).length; }), nC=we?7:5, hoy=iso(new Date());
-    const D=[]; for(const w=new Date(mon); w<=end; w.setDate(w.getDate()+7)) for(let k=0;k<nC;k++){ const d=new Date(w); d.setDate(d.getDate()+k); D.push(d); }
-    const corto=h=>/antes de la apertura/i.test(h)?"Apertura":/(tras|después de) el cierre/i.test(h)?"Cierre":h;
-    const one=x=>{ const e=byN.get(actTexto(x.empresa)), n=e?actCorto(e):actTexto(x.empresa), h=actTexto(x.hora), m=h.match(/^(.*?)\s*\((.*)\)$/), q=x.fiabilidad&&x.fiabilidad!=="IR"?(FIc[x.fiabilidad]||actTexto(x.fiabilidad)):"";
-      return `<div class="acg-e${q?" q":""}">${logoBare(n,e&&e.ticker)}<b>${esc(n)}</b><span class="acg-t">${esc(up(corto(m?m[1]:h)))}</span><span class="acg-x">${esc(up(m?m[1]:h))}</span>${m&&m[2]?`<span class="acg-x">${esc(up(m[2]))}</span>`:""}${q?`<span class="acg-q">${esc(q)}</span>`:""}</div>`; };
-    const sq=ix.agenda.some(d=>(d.eventos||[]).some(x=>x.fiabilidad&&x.fiabilidad!=="IR"));
-    const WD=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
-    const g0=D[0], g1=D[D.length-1], gm=d=>MESES[d.getMonth()].slice(0,3), rango=g0.getMonth()===g1.getMonth()?`${g0.getDate()}–${g1.getDate()} ${gm(g1)}`:`${g0.getDate()} ${gm(g0)} – ${g1.getDate()} ${gm(g1)}`;
-    return `<h2 class="asec" id="a-prox">Calendario de resultados<small>${rango}</small></h2>`
-      +`<div class="acg" style="--c:${nC}">${WD.slice(0,nC).map(w=>`<span class="acg-w">${w}</span>`).join("")}`
-      +D.map((d,i)=>{ const k=iso(d), E=ev.get(k)||[], nm=i===0||(i>0&&D[i-1].getMonth()!==d.getMonth());
-        return `<div class="acg-d${k===hoy?" hoy":k<hoy?" pas":""}${i%nC===0?" c1":""}${i>=nC?" f2":""}"><p class="acg-n"><b>${d.getDate()}</b>${nm?`<span>${MESES[d.getMonth()].slice(0,3)}</span>`:""}</p>${E.map(one).join("")}</div>`; }).join("")
-      +`</div><p class="acg-f">Horas de España.<span class="acg-fm"> Apertura: antes de que abra su bolsa; cierre: después de que cierre.</span>${sq?" En ocre, lo que no ha confirmado la empresa.":""}</p>`; };
-  // Anterior y Siguiente de arriba no mueven la pantalla NUNCA (antes, con la página algo bajada, te devolvían al principio de la
-  // empresa). Al entrar en una empresa, o con los del pie, sí se sube al principio
-  const acOff=()=>84;
-  let acArriba=false; document.addEventListener("click",e=>{ acArriba=!!(e.target.closest&&e.target.closest("#pa-main .pa-pn")); },true);
-  actAbre=function(id,push=true,nw=null,tab){ const was=actAbierta, keep=acArriba&&!!was, y0=scrollY; acArriba=false; acFree(); actAbierta=id||null; if(tab) actPestana=tab; actPinta();
-    if(push){ try{ history.pushState(null,"","#"+actRuta()); }catch{} }
-    if(!actAbierta) return;
-    const P=$("paper"), t=nw!=null&&$(`a-${actAbierta}-n${nw}`), off=acOff(), y=P.getBoundingClientRect().top+scrollY-off;
-    if(t) actVeA(t,off+8); else if(keep){ acHold(y0); return; } else if(!(was&&scrollY<=y+1)) actVeA(P,off); };
-}
-
-// ACTUALIDAD, UNA REVISTA SOBRE EL CHASIS DE LA APP. La misma estructura de siempre (portada: Resultados, Noticias y Próximos
-// resultados; cada empresa: cabecera, por qué se movió, pestañas Resultados y Noticias, sus apartados y el pie), pero:
-//  - todo lo que no es lectura es exactamente la web: sus tarjetas, colores, rayas y esquinas, sus títulos de sección, la fila de empresa
-//    de Posiciones, las pestañas de la ficha, las tablas con filas alternas y las cifras en su letra (nunca más de 17 px en el móvil)
-//  - lo que se lee (titulares, entradilla y texto) va con serifa y aire, y para no ser un muro de texto: un índice de los temas al
-//    empezar, las cifras clave en una franja (la primera de cada tema) y los temas numerados, con el resto de sus cifras en una línea
-//  - el porqué del movimiento, en una nota corta (la primera frase) que se abre entera, después del titular y antes de las pestañas
-{ const NVt={empresa:"De la empresa",sector:"Del sector","segundo grado":"De segundo grado",segundo_grado:"De segundo grado"};
-  const up=s=>s?s[0].toUpperCase()+s.slice(1):"";
-  const ES={refuerza:["Refuerza","refuerzan"],matiza:["Matiza","matizan"],debilita:["Debilita","debilitan"],contradice:["Contradice","contradicen"],neutro:["Sin efecto","sin efecto"]};
-  const pars=x=>Array.isArray(x)?x:String(x||"").split(/\n\s*\n/);
-  // para leer sin perderse: las cifras del texto resaltadas (con su unidad: %, pp, M USD, € ...; no los años ni «3T» ni «9M»)
-  // y el arranque en negrita de un párrafo («<b>El matiz.</b> ...») convertido en una etiqueta encima del párrafo
-  const rvSp="(?:[\\s\\u00a0]|&nbsp;)", rvCu="(?:USD|EUR|CHF|GBP|JPY|DKK|SEK|€|\\$|£|dólares|euros|francos|libras)";
-  const rvFR=new RegExp(`(^|[^\\p{L}\\d.,&#])([+−-]?\\d{1,3}(?:\\.\\d{3})*(?:,\\d+)?(?:[–-]\\d{1,3}(?:\\.\\d{3})*(?:,\\d+)?)?)(${rvSp}?%|${rvSp}(?:pp|pb|p\\.${rvSp}?b\\.|puntos básicos|puntos porcentuales|veces|mil millones|millones|M|bn)(?:${rvSp}(?:de${rvSp})?${rvCu})?(?![\\p{L}])|${rvSp}${rvCu}(?![\\p{L}])|x(?![\\p{L}]))?`,"gu");
-  const rvF=h=>String(h).split(/(<[^>]+>)/).map(z=>z[0]==="<"?z:z.replace(rvFR,(m,p,n,u)=>{ const c=m.slice(p.length); return p+(u||/,\d/.test(n)?`<span class="rv-f">${c}</span>`:c); })).join("");
-  const rvLb=h=>String(h).replace(/<p><b>([^<]{2,60}?)[.:]<\/b>\s*/g,'<p><span class="rv-lbl">$1</span>');
-  const rvP=xs=>rvF(rvLb(actParrafos(xs)));
-  // lo publicado, en corto: «tercer trimestre de 2026» → «3T 2026», «nueve primeros meses» → «9M», «22 de octubre» → «22 oct»
-  const rvQ=s=>String(s||"").replace(/\b(primer|segundo|tercer|cuarto) trimestre\b/gi,(_,o)=>({primer:1,segundo:2,tercer:3,cuarto:4})[o.toLowerCase()]+"T")
-    .replace(/\b(primer|segundo) semestre\b/gi,(_,o)=>(o.toLowerCase()==="primer"?1:2)+"S").replace(/\b(tres|seis|nueve) (?:primeros )?meses\b/gi,(_,o)=>({tres:3,seis:6,nueve:9})[o.toLowerCase()]+"M")
-    .replace(/\b(\d[TSM]) de (\d{4})\b/g,"$1 $2").replace(/\b(\d{1,2}) de ([a-záéíóú]{3})[a-záéíóú]*\b/gi,"$1 $2");
-  // la fila de una empresa, la de Posiciones: logo, nombre y, debajo, una línea; a la derecha, la semana (o «Fuera de tu cartera»)
-  const rvRow=(e,n,tk,sub,tag="div",attr="")=>{ const v=e?actVariacion(e):null, rd=!!(e&&actEsLeida(e.id));
-    const r=e&&!actEnCartera(e)?`<span class="rv-out">Fuera de tu cartera</span>`:v==null?"":`<span class="rv-v num ${cls(v)}">${pct(v,1,true)}</span>`;
-    return `<${tag} class="rv-row${rd?" rd":""}"${attr}>${logoBare(n,tk)}<b>${esc(n)}${rd?`<i class="rv-rd" title="Leída">${actIconos.chk}</i>`:""}</b><span class="rv-rs">${sub}</span>${r}</${tag}>`; };
-
-  /* COD-01 (v430) · el periódico de Actualidad ya no se pinta (la pestaña es el Calendario): quedan vacías las funciones a las
-   que aún llaman los datos de cada empresa */
-  actPortada=actArticulo=()=>""; actPinta=actMarca=actCambiaPestana=()=>{};
-}
 /* ---------- F · búsqueda rápida (⌘K, Ctrl+K en Windows) ---------- */
 // empresas (las tuyas primero), sus últimos movimientos, las secciones y las acciones de la barra; sin tildes ni mayúsculas
 { const kx=$("kx"), q=$("kx-q"), R=$("kx-r"), mac=/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent); let act=0, run=[], prev=null;
@@ -5298,7 +5122,6 @@ const gxPS=(v,d=1)=>(v>0?"+":v<0?"−":"")+nf(d).format(Math.abs(v)*100)+" %";
 const GX_MES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"], GX_MESL=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 const GX_DIAS=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
 const gxCv=document.createElement("canvas").getContext("2d"), gxAncho=(t,f)=>{ gxCv.font=f; return gxCv.measureText(t).width; };
-const gxMed=a=>{ const s=a.slice().sort((x,y)=>x-y), n=s.length; return !n?0:n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2; };
 // los logos que son una forma rellena (un cuadrado de color con letras dentro) no se pueden pasar a silueta: van en gris
 const gxSolM=new Map(); let gxSolT=0; const GX_SIL=new Set(["NYSE:BN","NYSE:BAM"]);   // v485: logos que van siempre como silueta (la barra de Brookfield)
 function gxSol(src,t){ if(!src||GX_SIL.has(t)) return false; if(gxSolM.has(src)) return gxSolM.get(src); gxSolM.set(src,false); const im=new Image();
@@ -6690,8 +6513,7 @@ document.addEventListener("click",e=>{ const op=e.target.closest('.kw-m [data-kw
 { let tm; addEventListener("resize",()=>{ clearTimeout(tm); tm=setTimeout(()=>{ try{ zfMovPal(); }catch(_){} },120); }); }
 
 function navega(token,push){
-  if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
-  if(token==="actualidad") token="calendario";   // COD-04: las direcciones antiguas siguen valiendo
+  if(typeof token==="string"&&(token==="actualidad"||token.startsWith("actualidad/"))) token="calendario";   // COD-04: las direcciones antiguas siguen valiendo
   const sub=Object.keys(MOV).includes(token);
   if(token==="preseleccion") token="universo";
   const v = sub ? "movimientos" : (["resumen","analisis","movimientos","universo","calendario"].includes(token)?token:"resumen");
@@ -6720,10 +6542,10 @@ addEventListener("hashchange",()=>{ const c=remCfg(location.hash);
 // después, mientras está activo) y el CSS lo emborrona; al quitarlo, las envolturas se quedan pero ya no se nota nada
 { const R=document.documentElement, btn=$("priv"), AM=/[+−-]?\d[\d.]*(?:,\d+)?\s?(?:€|\$|£|CHF|Fr|¥|C\$)|\d[\d.]*\s(?:acciones|acción|contratos?)\b/g;
   const mask=()=>{ if(!R.classList.contains("priv")) return; const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT), list=[]; let n;
-    while(n=w.nextNode()){ const e=n.parentElement; if(!e||e.closest(".pv,.npv,.co>b,.cn>b,.kx-t>b,#paper,svg,script,style,option,select,textarea,#nav,.tools,.seg,th")) continue; AM.lastIndex=0; if(AM.test(n.textContent)) list.push(n); }
+    while(n=w.nextNode()){ const e=n.parentElement; if(!e||e.closest(".pv,.npv,.co>b,.cn>b,.kx-t>b,svg,script,style,option,select,textarea,#nav,.tools,.seg,th")) continue; AM.lastIndex=0; if(AM.test(n.textContent)) list.push(n); }
     list.forEach(nodo=>{ const t=nodo.textContent, f=document.createDocumentFragment(); let last=0; AM.lastIndex=0; t.replace(AM,(m,off)=>{ if(off>last) f.append(t.slice(last,off)); const sp=document.createElement("span"); sp.className="pv"; sp.textContent=m; f.append(sp); last=off+m.length; return m; }); if(last<t.length) f.append(t.slice(last)); nodo.replaceWith(f); }); };
   // lo nuevo se oculta al momento: el observador corre antes de que la pantalla se pinte, y solo mira lo que ha cambiado
-  const skip=e=>!e||!!e.closest(".pv,.npv,.co>b,.cn>b,.kx-t>b,#paper,svg,script,style,option,select,textarea,#nav,.tools,.seg,th");
+  const skip=e=>!e||!!e.closest(".pv,.npv,.co>b,.cn>b,.kx-t>b,svg,script,style,option,select,textarea,#nav,.tools,.seg,th");
   const wrap=n=>{ const t=n.textContent; AM.lastIndex=0; if(!AM.test(t)) return; const f=document.createDocumentFragment(); let last=0; AM.lastIndex=0;
     t.replace(AM,(m,off)=>{ if(off>last) f.append(t.slice(last,off)); const sp=document.createElement("span"); sp.className="pv"; sp.textContent=m; f.append(sp); last=off+m.length; return m; }); if(last<t.length) f.append(t.slice(last)); n.replaceWith(f); };
   const maskIn=r=>{ if(r.nodeType===3){ if(r.parentNode&&!skip(r.parentElement)) wrap(r); return; } if(r.nodeType!==1||!r.isConnected||skip(r)) return;
