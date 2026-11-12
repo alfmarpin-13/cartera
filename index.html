@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-mnVufE9iizYQ8R4qLwjEtW1cc+i3mPvGzgqenJ+ojYk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-i4CihtgoeBKX2y2x2JVTrxskiqVRP91HWOAoUgvFjM4=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v619">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v619">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v619">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v620">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v620">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v620">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4145,6 +4145,148 @@ html body .top .zf-nbv{display:none!important}
   #zf-movpal .zf-mpd{color:var(--ink3);font-weight:400}
 }
 
+
+/* v620 · Móvil: la app, hecha de cero. Solo en pantallas de móvil y cuando está montada (html.zm-on); la web de siempre se oculta.
+   Colores: los de la web (fondo de página, tarjeta --gx-bg, tinta, grises, la paleta verde/roja y el negro de la tarjeta de Resumen del PC). */
+#zm{display:none}
+@media (max-width:700.98px){
+  html.zm-on .wrap{display:none!important}
+  html.zm-on #zm{display:block;--zm-g:16px;--zm-r:16px;--zm-hero:var(--h-bg,#18211C);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);
+    font-variant-numeric:tabular-nums;-webkit-tap-highlight-color:transparent;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  html.zm-on,html.zm-on body{padding:0!important;margin:0!important;scrollbar-width:none} html.zm-on::-webkit-scrollbar{display:none}
+  #zm *{box-sizing:border-box} :where(#zm) button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:inherit}
+  #zm svg{display:block}
+  /* barra de arriba: transparente al principio; al bajar, título pequeño, fondo translúcido y raya fina */
+  .zm-nav{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top,0px);transition:background .2s,box-shadow .2s}
+  .zm-nav.zm-borde{background:color-mix(in srgb,var(--canvas,#F3F1EC) 82%,transparent);-webkit-backdrop-filter:saturate(1.6) blur(18px);backdrop-filter:saturate(1.6) blur(18px);box-shadow:0 .5px 0 var(--line)}
+  .zm-nav-in{height:48px;display:flex;align-items:center;justify-content:center;position:relative;padding:0 var(--zm-g)}
+  .zm-nt{font-size:17px;line-height:22px;font-weight:600;opacity:0;transform:translateY(4px);transition:opacity .18s,transform .18s}
+  .zm-nav.zm-plegada .zm-nt{opacity:1;transform:none}
+  .zm-act{position:absolute;right:8px;top:4px;display:flex;gap:2px}
+  .zm-ib{width:40px;height:40px;border-radius:20px;display:grid;place-items:center;color:var(--ink)}
+  .zm-ib svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  #zm-mas svg{fill:currentColor;stroke:none}
+  .zm-ib:active{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+  /* título grande */
+  .zm-lt{padding:0 var(--zm-g) 14px}
+  .zm-lt p{margin:0;font-size:13px;line-height:18px;color:var(--ink3);font-weight:500}
+  .zm-lt h1{margin:2px 0 0;font:700 32px/38px "Inter Display",Inter,system-ui,-apple-system,sans-serif;letter-spacing:-.01em;color:var(--ink)}
+  .zm-main{padding:0 0 8px}
+  /* barra de pestañas */
+  .zm-tab{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--gx-bg) 84%,transparent);-webkit-backdrop-filter:saturate(1.6) blur(20px);backdrop-filter:saturate(1.6) blur(20px);box-shadow:0 -.5px 0 var(--line)}
+  .zm-tab button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0 2px;color:var(--ink3);text-align:center}
+  .zm-tab svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .zm-tab span{font-size:10px;line-height:12px;font-weight:500;letter-spacing:.01em}
+  .zm-tab button.on{color:var(--ink)}
+  .zm-tab button.on svg{stroke-width:2.1}
+  .zm-tab button.on span{font-weight:600}
+  .zm-tab button.on::after{content:"";width:4px;height:4px;border-radius:2px;background:var(--gx-id);margin-top:1px}
+  .zm-tab button:not(.on)::after{content:"";width:4px;height:4px;margin-top:1px}
+  /* bloques */
+  .zm-sec{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px var(--zm-g) 10px}
+  .zm-sec h2{margin:0;font:600 20px/26px "Inter Display",Inter,system-ui,sans-serif;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .zm-card{margin:0 var(--zm-g);background:var(--gx-bg);border-radius:var(--zm-r);overflow:hidden}
+  .zm-pad{padding:16px}
+  .zm-nota{margin:-2px var(--zm-g) 10px;font-size:13px;line-height:18px;color:var(--ink3)}
+  .zm-nota-in{margin:10px 0 0}
+  .zm-vacio{padding:28px 16px;text-align:center;color:var(--ink3);font-size:15px}
+  .zm-pie{padding:28px var(--zm-g) 8px;text-align:center;font-size:12px;color:var(--ink3)}
+  /* control segmentado y fichas */
+  .zm-seg{display:inline-flex;padding:2px;border-radius:9px;background:color-mix(in srgb,var(--ink) 7%,transparent);flex:none}
+  .zm-seg button{min-width:64px;height:30px;padding:0 12px;border-radius:7px;font-size:13px;font-weight:500;color:var(--ink2);text-align:center}
+  .zm-seg button.on{background:var(--gx-bg);color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.08),0 0 0 .5px rgba(0,0,0,.04)}
+  .zm-seg-w{display:flex;margin:0 var(--zm-g) 12px} .zm-seg-w button{flex:1}
+  .zm-chips{display:flex;gap:8px;overflow-x:auto;padding:2px var(--zm-g) 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .zm-chips::-webkit-scrollbar{display:none}
+  .zm-chips button{flex:none;height:34px;padding:0 14px;border-radius:17px;background:var(--gx-bg);font-size:14px;font-weight:500;color:var(--ink2);white-space:nowrap;box-shadow:inset 0 0 0 .5px var(--line)}
+  .zm-chips button.on{background:var(--zm-hero);color:#EEECE6;box-shadow:none}
+  .zm-q{display:flex;align-items:center;gap:8px;height:38px;margin:0 var(--zm-g) 14px;padding:0 12px;border-radius:11px;background:color-mix(in srgb,var(--ink) 7%,transparent);color:var(--ink3)}
+  .zm-q svg{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+  .zm-q input{flex:1;min-width:0;height:100%;border:0;background:none;font:inherit;font-size:16px;color:var(--ink);outline:none;-webkit-appearance:none;appearance:none}
+  .zm-q input::placeholder{color:var(--ink3)}
+  /* listas */
+  .zm-list{padding:0}
+  .zm-row{display:flex;align-items:center;gap:12px;width:100%;min-height:62px;padding:10px 16px 10px 14px;position:relative}
+  .zm-row+.zm-row::before{content:"";position:absolute;top:0;left:72px;right:0;height:.5px;background:var(--line)}
+  button.zm-row:active{background:color-mix(in srgb,var(--ink) 5%,transparent)}
+  .zm-lg{width:46px;height:30px;flex:none;display:flex;align-items:center;justify-content:center}
+  .zm-lg .lgb{width:44px;height:26px}
+  html.lmono #zm .lgb:not(.gr) img{filter:brightness(0) opacity(.82)} html.lmono #zm .lgb.gr img{filter:grayscale(1) brightness(.8)}
+  html.lmono[data-theme="dark"] #zm .lgb:not(.gr) img{filter:brightness(0) invert(.86)} html.lmono[data-theme="dark"] #zm .lgb.fino img{filter:brightness(0) invert(1)} html.lmono[data-theme="dark"] #zm .lgb.gr img{filter:grayscale(1) brightness(1.15)}
+  .zm-ic{width:34px;height:34px;margin:0 6px;border-radius:17px;background:color-mix(in srgb,var(--ink) 7%,transparent);color:var(--ink2)}
+  .zm-ic svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .zm-rt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+  .zm-rt b{font-size:16px;line-height:21px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:6px}
+  .zm-rt small{font-size:13px;line-height:17px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .zm-rv{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:3px;text-align:right}
+  .zm-rv small{font-size:13px;line-height:17px;color:var(--ink3);white-space:nowrap}
+  .zm-rv small.zm-fuerte{font-size:15px;line-height:20px;color:var(--ink);font-weight:500}
+  .zm-rv small.up,.zm-hd.up,#zm i.up,#zm b.up{color:var(--pos)} .zm-rv small.dn,#zm i.dn,#zm b.dn{color:var(--neg)}
+  .zm-tenue .zm-rt b{color:var(--ink2)}
+  .zm-mia{width:6px;height:6px;border-radius:3px;background:var(--gx-id);flex:none}
+  .zm-tag{font-size:12px;line-height:22px;padding:0 8px;border-radius:11px;background:color-mix(in srgb,var(--ink) 7%,transparent);color:var(--ink2);font-weight:500}
+  .zm-mes{padding:20px calc(var(--zm-g) + 4px) 8px;font-size:13px;line-height:18px;font-weight:600;color:var(--ink3);letter-spacing:.02em}
+  .zm-mes:first-child{padding-top:4px}
+  .zm-mas{padding:18px;text-align:center;font-size:13px;color:var(--ink3)}
+  /* pastillas de cambio, con la paleta del mapa */
+  .zm-pl{min-width:72px;height:26px;padding:0 8px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;background:color-mix(in srgb,var(--ink) 6%,transparent);color:var(--ink2);white-space:nowrap}
+  .zm-pl.lp1{background:var(--lp1);color:var(--lp1t)} .zm-pl.lp2{background:var(--lp2);color:var(--lp2t)} .zm-pl.lp3{background:var(--lp3);color:var(--lp3t)} .zm-pl.lp4{background:var(--lp5);color:var(--lp5t)}
+  .zm-pl.ln1{background:var(--ln1);color:var(--ln1t)} .zm-pl.ln2{background:var(--ln2);color:var(--ln2t)} .zm-pl.ln3{background:var(--ln3);color:var(--ln3t)} .zm-pl.ln4{background:var(--ln5);color:var(--ln5t)}
+  /* tarjeta principal (el negro de la tarjeta de cifras del PC) */
+  .zm-hero{margin:0 var(--zm-g);padding:18px 18px 16px;border-radius:20px;background:var(--zm-hero);color:#EEECE6;display:flex;flex-direction:column;overflow:hidden}
+  .zm-hl{font-size:13px;line-height:18px;color:#B4B3AD;font-weight:500}
+  .zm-hv{font-size:17px;line-height:24px;font-weight:600;margin-top:2px;letter-spacing:.005em}
+  .zm-hd{font-size:15px;line-height:20px;margin-top:2px;color:#B4B3AD} .zm-hd em{font-style:normal;color:#979690}
+  .zm-hd.up{color:#86D3AA} .zm-hd.dn{color:#D88282}
+  .zm-sp{width:calc(100% + 36px);height:64px;margin:14px -18px 12px}
+  .zm-sp .l{fill:none;stroke:#86D3AA;stroke-width:2;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+  .zm-sp .a{fill:color-mix(in srgb,#86D3AA 16%,transparent);stroke:none}
+  .zm-hg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding-top:12px;border-top:.5px solid rgba(238,236,230,.14);font-size:15px;line-height:20px;font-weight:500}
+  .zm-hg span{display:flex;flex-direction:column;gap:2px;min-width:0} .zm-hg em{font-style:normal;font-size:12px;line-height:16px;color:#979690;font-weight:500}
+  .zm-hg i{font-style:normal} #zm .zm-hg i.up{color:#86D3AA} #zm .zm-hg i.dn{color:#D88282}
+  /* evolución */
+  .zm-evo{padding:14px 16px 12px}
+  .zm-ev-f{margin:0 0 8px;font-size:12px;line-height:16px;color:var(--ink3)}
+  .zm-ev-h{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:15px;line-height:20px;font-weight:500;margin-bottom:12px}
+  .zm-ev-h span{display:flex;flex-direction:column;gap:2px} .zm-ev-h em{font-style:normal;font-size:12px;line-height:16px;color:var(--ink3)} .zm-ev-h i{font-style:normal}
+  .zm-ev{width:100%;height:170px}
+  .zm-ev .v{fill:none;stroke:var(--ink);stroke-width:2;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+  .zm-ev .a{fill:none;stroke:var(--ink3);stroke-width:1.5;stroke-dasharray:4 4;vector-effect:non-scaling-stroke}
+  .zm-ev .g{fill:color-mix(in srgb,var(--gx-id) 30%,transparent);stroke:none}
+  .zm-ev-x{display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-top:6px}
+  /* análisis */
+  .zm-big{margin:0 0 12px;font-size:17px;line-height:24px;font-weight:600;color:var(--ink)} .zm-big em{font-style:normal;font-weight:400;color:var(--ink3);font-size:15px} .zm-big i{font-style:normal}
+  .zm-bar{height:8px;border-radius:4px;background:color-mix(in srgb,var(--gx-id) 45%,transparent);overflow:hidden;margin-bottom:12px}
+  .zm-bar i{display:block;height:100%;border-radius:4px;background:var(--ink)}
+  .zm-kv{display:flex;justify-content:space-between;gap:12px;font-size:15px;line-height:20px;padding:6px 0;color:var(--ink2)} .zm-kv b{font-weight:500;color:var(--ink)}
+  .zm-meses{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:96px;margin-top:14px}
+  .zm-mb{display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;height:100%;gap:0}
+  .zm-mb i{display:block;border-radius:3px 3px 0 0;min-height:0} .zm-mb i.p{background:var(--ink)} .zm-mb i.s{background:color-mix(in srgb,var(--gx-id) 70%,transparent)}
+  .zm-mb i.p+i,.zm-mb i.s+i.p{border-radius:0}
+  .zm-mb em{font-style:normal;font-size:11px;line-height:16px;text-align:center;color:var(--ink3);margin-top:4px} .zm-mb.now em{color:var(--ink);font-weight:600}
+  .zm-ley{display:flex;gap:16px;margin-top:10px;font-size:12px;color:var(--ink3)} .zm-ley span{display:flex;align-items:center;gap:6px}
+  .zm-ley i{width:10px;height:10px;border-radius:2px} .zm-ley i.p{background:var(--ink)} .zm-ley i.s{background:color-mix(in srgb,var(--gx-id) 70%,transparent)}
+  .zm-wf,.zm-in{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:7px 0;font-size:15px;line-height:20px;color:var(--ink2)}
+  .zm-wf b,.zm-in b{font-weight:500;color:var(--ink)}
+  .zm-wf i,.zm-in i{grid-column:1/-1;height:4px;border-radius:2px;background:var(--ink)} .zm-wf i.up{background:var(--lp3)} .zm-wf i.dn{background:var(--ln3)} .zm-in i{background:var(--lp3)}
+  /* hoja de opciones */
+  .zm-sh-bg{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.32);opacity:0;transition:opacity .2s}
+  .zm-sh-bg.on{opacity:1}
+  .zm-sh{position:fixed;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom,0px));z-index:61;transform:translateY(110%);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+  .zm-sh.on{transform:none}
+  .zm-sh-g{background:var(--gx-pop);border-radius:14px;overflow:hidden;margin-top:8px}
+  .zm-sh-g button{display:block;width:100%;height:56px;font-size:17px;color:var(--ink);text-align:center}
+  .zm-sh-g button+button{box-shadow:inset 0 .5px 0 var(--line)}
+  .zm-sh-g button:active{background:color-mix(in srgb,var(--ink) 6%,transparent)}
+  .zm-sh-x{font-weight:600!important}
+  .zm-sh-v{margin:10px 0 0;text-align:center;font-size:12px;color:#EEECE6;opacity:.8}
+  .zm-sub{margin:16px 0 0;font-size:13px;line-height:18px;color:var(--ink3);font-weight:500}
+  html.zm-on #sheet-bg{z-index:68!important} html.zm-on #sheet{z-index:69!important} html.zm-on .kx{z-index:80!important}   /* la ficha y el buscador, por encima de la barra de pestañas */
+}
+@media (max-width:700.98px) and (prefers-color-scheme:dark){
+  html.lmono:not([data-theme="light"]) #zm .lgb:not(.gr) img{filter:brightness(0) invert(.86)} html.lmono:not([data-theme="light"]) #zm .lgb.fino img{filter:brightness(0) invert(1)} html.lmono:not([data-theme="light"]) #zm .lgb.gr img{filter:grayscale(1) brightness(1.15)}
+}
 </style>
 
 <div class="wrap">
@@ -4837,7 +4979,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v619";   // la versión publicada, en el pie
+const VER="v620";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -8192,6 +8334,197 @@ document.addEventListener("click",e=>{ const op=e.target.closest('.kw-m [data-kw
   const s=$({mvs:"m-state",mvy:"m-year",mvb:"m-broker"}[op.dataset.kw]); if(!s) return; s.value=op.dataset.o==="_"?"":op.dataset.o; s.dispatchEvent(new Event("input",{bubbles:true})); });
 { const _rm4=renderMov; renderMov=function(){ const r=_rm4.apply(this,arguments); try{ zfMovPal(); }catch(e){ console.warn("Cartera · Movimientos:",e); } return r; }; }
 { let tm; addEventListener("resize",()=>{ clearTimeout(tm); tm=setTimeout(()=>{ try{ zfMovPal(); }catch(_){} },120); }); }
+
+/* v620 · Móvil: la app, hecha de cero sobre el diseño del PC.
+   En pantallas de hasta MOVIL px la web de siempre se oculta y se pinta esta: barra de pestañas abajo, título grande que se recoge al bajar,
+   tarjetas y listas. Reutiliza los datos (DATA), los logos, la ficha (openSheet), el buscador y las opciones del menú. Ninguna cifra pasa de 17 px. */
+const ZM={tab:"resumen",scroll:{},res:"hoy",evo:"todo",mov:"todo",movQ:"",movN:80,uni:"today",uniF:"todas",uniQ:"",ok:false};
+const ZM_TABS=[["resumen","Resumen"],["analisis","Análisis"],["movimientos","Movimientos"],["calendario","Calendario"],["universo","Universo"]];
+const ZM_IC={
+  resumen:'<svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><path d="M7.5 15l3-3.5 2.5 2 3.5-4.5"/></svg>',
+  analisis:'<svg viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12z"/><path d="M15 3.9A8.5 8.5 0 0 1 20.1 9H15z"/></svg>',
+  movimientos:'<svg viewBox="0 0 24 24"><path d="M4 8h14.5M15 4.5 18.5 8 15 11.5"/><path d="M20 16H5.5M9 12.5 5.5 16 9 19.5"/></svg>',
+  calendario:'<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
+  universo:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c-2.6 2.4-3.8 5.2-3.8 8.5s1.2 6.1 3.8 8.5c2.6-2.4 3.8-5.2 3.8-8.5S14.6 5.9 12 3.5z"/></svg>',
+  buscar:'<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>',
+  mas:'<svg viewBox="0 0 24 24"><circle cx="5.5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18.5" cy="12" r="1.6"/></svg>',
+  flecha:'<svg viewBox="0 0 24 24"><path d="m9 5.5 6.5 6.5L9 18.5"/></svg>',
+  entra:'<svg viewBox="0 0 24 24"><path d="M12 4.5v13M6.5 12l5.5 5.5 5.5-5.5"/></svg>',
+  sale:'<svg viewBox="0 0 24 24"><path d="M12 19.5v-13M6.5 12 12 6.5l5.5 5.5"/></svg>',
+  ajuste:'<svg viewBox="0 0 24 24"><path d="M6 9h12M12 3v12M6 20h12"/></svg>' };
+const zmOn=()=>innerWidth<=MOVIL;
+const zmE=(v,d=0)=>`<span class="pv">${eur(v,d)}</span>`, zmSE=(v,d=0)=>`<span class="pv">${seur(v,d)||eur(0,d)}</span>`;
+const zmP=(v,d=1)=>isNum(v)&&isFinite(v)?gxPS(v,d):"—";
+const zmC=v=>!isNum(v)||Math.abs(v)<5e-5?"":v>0?"up":"dn";
+const zmMil=v=>{ const a=Math.abs(v); return a>=1e6?nf(1).format(v/1e6)+" M€":a>=1e4?nf(0).format(v/1000)+" mil €":eur(v); };
+// pastilla de cambio: el tono, por escalones (como el mapa del PC)
+const zmPill=(v,esc)=>{ if(!isNum(v)||!isFinite(v)) return `<span class="zm-pl">—</span>`; const a=Math.abs(v); let n=1; esc.forEach(t=>{ if(a>=t) n++; }); n=Math.min(4,n); return `<span class="zm-pl ${v>0?"lp":v<0?"ln":""}${n}">${gxPS(v,1)}</span>`; };
+const ZM_EH=[.01,.025,.05], ZM_ET=[.1,.3,.6];
+const zmLogo=(t,n)=>`<span class="zm-lg">${logoBare(n,t)}</span>`;
+const zmDia=d=>{ const h=new Date(); h.setHours(0,0,0,0); const x=new Date(d); x.setHours(0,0,0,0); const k=Math.round((x-h)/864e5);
+  if(k===0) return "Hoy"; if(k===1) return "Mañana"; if(k===-1) return "Ayer";
+  const w=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"][x.getDay()]; return `${w[0].toUpperCase()+w.slice(1)} ${x.getDate()} de ${GX_MESL[x.getMonth()]}${x.getFullYear()!==h.getFullYear()?" de "+x.getFullYear():""}`; };
+
+// ── armazón: barra de arriba, título grande, contenido y barra de pestañas
+function zmMonta(){ let A=$("zm"); if(A) return A;
+  A=document.createElement("div"); A.id="zm";
+  A.innerHTML=`<header class="zm-nav" id="zm-nav"><div class="zm-nav-in"><span class="zm-nt" id="zm-nt"></span>
+      <div class="zm-act"><button type="button" class="zm-ib" id="zm-bus" aria-label="Buscar">${ZM_IC.buscar}</button><button type="button" class="zm-ib" id="zm-mas" aria-label="Opciones">${ZM_IC.mas}</button></div></div></header>
+    <main class="zm-main" id="zm-main"></main>
+    <nav class="zm-tab" id="zm-tab" aria-label="Secciones">${ZM_TABS.map(([k,l])=>`<button type="button" data-zt="${k}">${ZM_IC[k]}<span>${l}</span></button>`).join("")}</nav>
+    <div class="zm-sh-bg" id="zm-sh-bg" hidden></div><div class="zm-sh" id="zm-sh" role="menu" hidden></div>`;
+  document.body.appendChild(A);
+  A.querySelector("#zm-tab").addEventListener("click",e=>{ const b=e.target.closest("[data-zt]"); if(!b) return; const k=b.dataset.zt;
+    if(k===ZM.tab){ scrollTo({top:0,behavior:"smooth"}); return; } ZM.scroll[ZM.tab]=scrollY; ZM.tab=k; zmPinta(); scrollTo(0,ZM.scroll[k]||0); zmNav(); });
+  $("zm-bus").addEventListener("click",()=>{ const b=$("kbtn"); if(b) b.click(); });
+  $("zm-mas").addEventListener("click",zmMenu);
+  $("zm-sh-bg").addEventListener("click",zmMenuCierra);
+  A.addEventListener("click",zmClic);
+  A.addEventListener("input",zmEntrada);
+  addEventListener("scroll",zmNav,{passive:true});
+  return A; }
+function zmNav(){ const N=$("zm-nav"), T=document.querySelector("#zm-main .zm-lt h1"); if(!N||!T) return; const r=T.getBoundingClientRect(), nb=N.getBoundingClientRect().bottom;
+  N.classList.toggle("zm-plegada",r.bottom<nb+2); N.classList.toggle("zm-borde",scrollY>4); }
+
+// ── menú de opciones (hoja de acciones): reutiliza los botones del menú de siempre
+function zmMenu(){ const S=$("zm-sh"), B=$("zm-sh-bg"); const osc=document.documentElement.dataset.theme==="dark"||(!document.documentElement.dataset.theme&&matchMedia("(prefers-color-scheme: dark)").matches), priv=document.documentElement.classList.contains("priv");
+  const it=[["mm-priv",priv?"Mostrar importes":"Ocultar importes"],["mm-tema",osc?"Modo claro":"Modo noche"],["mm-ref","Volver a leer la hoja"],["mm-chk","Cuadre con tu hoja"]].filter(([id])=>$(id));
+  const ver=($("mm-ver")||{}).textContent||"";
+  S.innerHTML=`<div class="zm-sh-g">${it.map(([id,l])=>`<button type="button" role="menuitem" data-mm="${id}">${l}</button>`).join("")}</div>${ver?`<p class="zm-sh-v">${esc(ver)}</p>`:""}<div class="zm-sh-g"><button type="button" class="zm-sh-x" data-mm="">Cancelar</button></div>`;
+  S.hidden=B.hidden=false; requestAnimationFrame(()=>{ S.classList.add("on"); B.classList.add("on"); }); }
+function zmMenuCierra(){ const S=$("zm-sh"), B=$("zm-sh-bg"); if(!S||S.hidden) return; S.classList.remove("on"); B.classList.remove("on"); setTimeout(()=>{ S.hidden=B.hidden=true; },220); }
+
+// ── clics dentro de la app
+function zmClic(e){ const t=e.target;
+  const mm=t.closest("[data-mm]"); if(mm){ const id=mm.dataset.mm; zmMenuCierra(); if(id) setTimeout(()=>{ const b=$(id); if(b) b.click(); },60); return; }
+  const sg=t.closest("[data-zs]"); if(sg){ const [k,v]=sg.dataset.zs.split(":"); ZM[k]=v; if(k==="mov") ZM.movN=80; zmPinta(); return; }
+  const f=t.closest("[data-zf]"); if(f){ const l=JSON.parse(f.closest("[data-zl]")?.dataset.zl||"[]"); openSheet(f.dataset.zk||"pos",f.dataset.zf,l.length?l:undefined); return; }
+  const go=t.closest("[data-zgo]"); if(go){ ZM.scroll[ZM.tab]=scrollY; ZM.tab=go.dataset.zgo; zmPinta(); scrollTo(0,0); zmNav(); return; } }
+let zmTm=0;
+function zmEntrada(e){ const q=e.target.closest("[data-zq]"); if(!q) return; ZM[q.dataset.zq]=q.value; clearTimeout(zmTm); zmTm=setTimeout(()=>{ if(q.dataset.zq==="movQ"){ ZM.movN=80; zmMovLista(); } else zmUniLista(); },120); }
+
+// ── pintar la pestaña activa
+function zmPinta(){ if(!zmOn()||!DATA) return; const A=zmMonta(), M=$("zm-main"); document.documentElement.classList.add("zm-on");
+  const tit=(ZM_TABS.find(x=>x[0]===ZM.tab)||ZM_TABS[0])[1]; $("zm-nt").textContent=tit;
+  A.querySelectorAll("#zm-tab [data-zt]").forEach(b=>{ const on=b.dataset.zt===ZM.tab; b.classList.toggle("on",on); b.setAttribute("aria-current",on?"page":"false"); });
+  const h=new Date(), fecha=`${["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"][h.getDay()]}, ${h.getDate()} de ${GX_MESL[h.getMonth()]}`;
+  let c=""; try{ c=({resumen:zmResumen,analisis:zmAnalisis,movimientos:zmMovimientos,calendario:zmCalendario,universo:zmUniverso})[ZM.tab](); }catch(err){ console.warn("Cartera · app:",err); c=`<div class="zm-card zm-vacio">No se ha podido pintar esta pestaña.</div>`; }
+  M.innerHTML=`<div class="zm-lt"><p>${fecha}</p><h1>${tit}</h1></div>${c}<div class="zm-pie" id="zm-pie">${zmPieT()}</div>`;
+  if(ZM.tab==="movimientos") zmMovLista(); if(ZM.tab==="universo") zmUniLista();
+  zmNav(); }
+
+// pie: de cuándo son los datos (lo mismo que el pie de la web) y la versión
+const zmPieT=()=>esc(`Datos de la hoja${(($("f-h")||{}).textContent||"")}${($("mm-ver")||{}).textContent?" · "+$("mm-ver").textContent.toLowerCase():""}`);
+{ const f=$("f-h"); if(f) new MutationObserver(()=>{ const p=$("zm-pie"); if(p) p.textContent=zmPieT().replace(/&amp;/g,"&"); }).observe(f,{childList:true,characterData:true,subtree:true}); }
+// ── Resumen
+function zmResumen(){ const k=DATA.kpi, P=DATA.pos.filter(p=>!p.isOption), O=DATA.pos.filter(p=>p.isOption), hoy=ZM.res==="hoy";
+  const sube=P.filter(p=>isNum(p.today)&&p.today>0).length, baja=P.filter(p=>isNum(p.today)&&p.today<0).length;
+  const L=P.slice().sort((a,b)=>hoy?((isNum(b.today)?b.today:-9)-(isNum(a.today)?a.today:-9)):(b.totalPct-a.totalPct));
+  const fila=p=>`<button type="button" class="zm-row" data-zf="${esc(p.ticker)}">${zmLogo(p.ticker,p.name)}<span class="zm-rt"><b>${esc(p.name)}</b><small>${nf(1).format(p.weight*100)} % · ${zmE(p.value)}</small></span>
+      <span class="zm-rv">${hoy?zmPill(p.today,ZM_EH):zmPill(p.totalPct,ZM_ET)}<small class="${zmC(hoy?p.todayEur:p.totalEur)}">${hoy?(isNum(p.todayEur)&&isNum(p.today)?zmSE(p.todayEur):"sin cotizar"):zmSE(p.totalEur)}</small></span></button>`;
+  return `<section class="zm-hero"><span class="zm-hl">Tu cartera</span><b class="zm-hv">${zmE(k.value)}</b>
+      <span class="zm-hd ${zmC(k.today)}">${zmSE(k.today)} · ${zmP(k.todayPct)} <em>hoy</em></span>
+      ${zmSpark(DATA.evo)}
+      <div class="zm-hg"><span><em>Aportado</em>${zmE(k.aport)}</span><span><em>Resultado</em><i class="${zmC(k.ret)}">${zmSE(k.ret)}</i></span><span><em>TIR</em>${zmP(k.tir).replace("+","")}</span></div></section>
+    <div class="zm-sec"><h2>Posiciones</h2><div class="zm-seg" role="group">${[["hoy","Hoy"],["total","Total"]].map(([v,l])=>`<button type="button" data-zs="res:${v}" class="${ZM.res===v?"on":""}">${l}</button>`).join("")}</div></div>
+    ${hoy?`<p class="zm-nota">Hoy suben ${sube} y bajan ${baja} de tus ${P.length} empresas.</p>`:""}
+    <div class="zm-card zm-list" data-zl='${esc(JSON.stringify(L.map(p=>p.ticker)))}'>${L.map(fila).join("")}</div>
+    ${O.length?`<div class="zm-sec"><h2>Otros instrumentos</h2></div><div class="zm-card zm-list">${O.map(p=>`<div class="zm-row">${zmLogo(p.ticker,p.name)}<span class="zm-rt"><b>${esc(p.name)}</b><small>${nf(0).format(p.shares)} ${p.shares===1?"contrato":"contratos"}</small></span><span class="zm-rv"><small>${zmE(p.value)}</small></span></div>`).join("")}</div>`:""}
+    <div class="zm-sec"><h2>Evolución</h2><div class="zm-seg" role="group">${[["1a","1 año"],["3a","3 años"],["todo","Todo"]].map(([v,l])=>`<button type="button" data-zs="evo:${v}" class="${ZM.evo===v?"on":""}">${l}</button>`).join("")}</div></div>
+    <div class="zm-card zm-evo">${zmEvo()}</div>`; }
+function zmSpark(E){ if(!E||E.length<2) return ""; const W=360,H=64, v=E.map(e=>e.v), mn=Math.min(...v), mx=Math.max(...v), x=i=>(i/(E.length-1)*W).toFixed(1), y=s=>(H-4-(s-mn)/(mx-mn||1)*(H-8)).toFixed(1);
+  const d=E.map((e,i)=>(i?"L":"M")+x(i)+" "+y(e.v)).join("");
+  return `<svg class="zm-sp" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><path d="${d}L${W} ${H}L0 ${H}Z" class="a"/><path d="${d}" class="l"/></svg>`; }
+function zmEvo(){ let E=DATA.evo||[]; const fin=E.length?new Date(E[E.length-1].d):new Date(), cut=ZM.evo==="1a"?12:ZM.evo==="3a"?36:0;
+  if(cut){ const lim=new Date(fin); lim.setMonth(lim.getMonth()-cut); E=E.filter(e=>new Date(e.d)>=lim); } if(E.length<2) return `<p class="zm-vacio">Sin datos suficientes.</p>`;
+  const W=360,H=170, all=E.flatMap(e=>[e.v,e.a]), mn=Math.min(...all)*.96, mx=Math.max(...all)*1.02, x=i=>(i/(E.length-1)*W).toFixed(1), y=s=>(H-(s-mn)/(mx-mn)*H).toFixed(1);
+  const lv=E.map((e,i)=>(i?"L":"M")+x(i)+" "+y(e.v)).join(""), la=E.map((e,i)=>(i?"L":"M")+x(i)+" "+y(e.a)).join("");
+  const u=E[E.length-1], p=E[0], dif=u.v-u.a, f=d=>{ const z=new Date(d); return `${GX_MES[z.getMonth()]} ${z.getFullYear()}`; };
+  const fu=new Date(u.d); return `<p class="zm-ev-f">Último dato del gráfico: ${fu.getDate()} de ${GX_MESL[fu.getMonth()]}</p><div class="zm-ev-h"><span><em>Valor</em>${zmE(u.v)}</span><span><em>Aportado</em>${zmE(u.a)}</span><span><em>Ganancia</em><i class="${zmC(dif)}">${zmSE(dif)}</i></span></div>
+    <svg class="zm-ev" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><path d="${lv}L${W} ${y(u.a)}${E.slice().reverse().map((e,i)=>"L"+x(E.length-1-i)+" "+y(e.a)).join("")}Z" class="g"/><path d="${la}" class="a"/><path d="${lv}" class="v"/></svg>
+    <div class="zm-ev-x"><span>${f(p.d)}</span><span>${f(u.d)}</span></div>`; }
+
+// ── Análisis
+function zmAnalisis(){ const V=DATA.dvm, k=DATA.kpi, mx=Math.max(1,...V.months.map(m=>m.paid+m.sched)), y=V.curY;
+  const prev=V.paidY+V.schedY, pct=prev?V.paidY/prev:0;
+  const meses=V.months.map(m=>{ const hp=m.paid/mx*72, hs=m.sched/mx*72; return `<span class="zm-mb${m.now?" now":""}"><i class="s" style="height:${hs.toFixed(1)}px"></i><i class="p" style="height:${hp.toFixed(1)}px"></i><em>${m.l[0].toUpperCase()}</em></span>`; }).join("");
+  const wf=DATA.wf||[], wmx=Math.max(1,...wf.map(w=>Math.abs(w.v)));
+  const ind=(DATA.ind||[]).slice().sort((a,b)=>b.val-a.val), imx=Math.max(.01,...ind.map(i=>i.val));
+  const H=DATA.horizon||{};
+  return `<div class="zm-sec"><h2>Dividendos</h2></div>
+    <section class="zm-card zm-pad"><p class="zm-big">${zmE(V.paidY)} <em>cobrados en ${y}</em></p>
+      <div class="zm-bar"><i style="width:${(pct*100).toFixed(1)}%"></i></div>
+      <div class="zm-kv"><span>Faltan por cobrar</span><b>${zmE(V.schedY)}</b></div>
+      <div class="zm-kv"><span>Previsto para ${y+1}</span><b>${zmE(V.nextY)}</b></div>
+      <p class="zm-sub">Los próximos doce meses</p><div class="zm-meses">${meses}</div>
+      <div class="zm-ley"><span><i class="p"></i>Cobrado</span><span><i class="s"></i>Previsto</span></div></section>
+    ${(V.payers||[]).length?`<div class="zm-sec"><h2>Quién te paga más</h2></div><div class="zm-card zm-list">${V.payers.slice(0,5).map(p=>`<div class="zm-row"><span class="zm-lg">${p.icon||""}</span><span class="zm-rt"><b>${esc(p.name)}</b></span><span class="zm-rv"><small class="zm-fuerte">${zmE(p.val)}</small></span></div>`).join("")}</div>`:""}
+    <div class="zm-sec"><h2>De dónde sale tu resultado</h2></div>
+    <section class="zm-card zm-pad"><p class="zm-big"><i class="${zmC(k.ret)}">${zmSE(k.ret)}</i> <em>sobre ${zmE(k.aport)} aportados</em></p>
+      ${wf.map(w=>`<div class="zm-wf"><span>${esc(w.l)}</span><b class="${zmC(w.v)}">${zmSE(w.v)}</b><i class="${w.v<0?"dn":"up"}" style="width:${(Math.abs(w.v)/wmx*100).toFixed(1)}%"></i></div>`).join("")}</section>
+    <div class="zm-sec"><h2>Industrias</h2></div>
+    <section class="zm-card zm-pad">${ind.slice(0,8).map(i=>`<div class="zm-in"><span>${esc(i.name)}</span><b>${nf(1).format(i.val*100)} %</b><i style="width:${(i.val/imx*100).toFixed(1)}%"></i></div>`).join("")}${ind.length>8?`<p class="zm-nota zm-nota-in">Y ${ind.length-8} industrias más.</p>`:""}</section>
+    ${H.wealth?`<div class="zm-sec"><h2>Proyección</h2></div>
+    <section class="zm-card zm-pad"><p class="zm-big">${zmMil(H.wealth)} <em>en ${esc(String(H.title||"").replace(/^Horizonte\s*/,""))}, a los ${H.age} años</em></p>
+      <div class="zm-kv"><span>Habrás aportado</span><b>${zmE(H.contributed)}</b></div>
+      <div class="zm-kv"><span>Renta al mes, sin vender</span><b>${zmE(H.monthly)}</b></div>
+      <div class="zm-kv"><span>Crecimiento supuesto</span><b>${nf(1).format((H.growth||0)*100)} % al año</b></div></section>`:""}`; }
+
+// ── Movimientos
+function zmMovItems(){ const it=[], T=ZM.mov;
+  if(T==="todo"||T==="tx"){ DATA.tx.forEach(r=>{ if(r.bd instanceof Date) it.push({d:r.bd,t:r.ticker,n:r.name,s:`Compra · ${nf(0).format(r.shares)} ${r.shares===1?"acción":"acciones"}`,v:-(+r.bt||0),k:"c"});
+      if(r.sd instanceof Date) it.push({d:r.sd,t:r.ticker,n:r.name,s:`Venta · resultado ${seur(r.pnl)}`,v:+r.st||0,k:"v",pnl:r.pnl}); }); }
+  if(T==="todo"||T==="dv") DATA.dv.filter(DATA.isPaid).forEach(r=>{ if(r.d instanceof Date) it.push({d:r.d,t:r.ticker,n:r.name,s:"Dividendo",v:+r.gross||0,k:"d"}); });
+  if(T==="todo"||T==="ap") DATA.ap.forEach(r=>{ if(r.d instanceof Date) it.push({d:r.d,n:r.broker||"Cuenta",s:(r.amt||0)<0?"Retirada":"Aportación",v:+r.amt||0,k:"a"}); });
+  if(T==="todo"||T==="aj") DATA.aj.forEach(r=>{ if(r.d instanceof Date) it.push({d:r.d,n:r.broker||"Cuenta",s:String(r.note||"Ajuste").split(/[:(]/)[0].trim(),v:+r.amt||0,k:"j"}); });
+  const q=fold((ZM.movQ||"").trim()); return it.filter(x=>!q||fold([x.n,x.t,x.s].join(" ")).includes(q)).sort((a,b)=>b.d-a.d); }
+function zmMovimientos(){ const T=[["todo","Todo"],["tx","Compras y ventas"],["dv","Dividendos"],["ap","Aportaciones"],["aj","Ajustes"]];
+  return `<div class="zm-chips" role="group">${T.map(([v,l])=>`<button type="button" data-zs="mov:${v}" class="${ZM.mov===v?"on":""}">${l}</button>`).join("")}</div>
+    <label class="zm-q">${ZM_IC.buscar}<input type="search" data-zq="movQ" value="${esc(ZM.movQ)}" placeholder="Buscar empresa o cuenta" autocomplete="off"></label>
+    <div id="zm-movl"></div>`; }
+function zmMovLista(){ const C=$("zm-movl"); if(!C) return; const it=zmMovItems(), vis=it.slice(0,ZM.movN); if(!it.length){ C.innerHTML=`<div class="zm-card zm-vacio">Ningún movimiento.</div>`; return; }
+  const g=[]; vis.forEach(x=>{ const k=x.d.getFullYear()*12+x.d.getMonth(); let G=g[g.length-1]; if(!G||G.k!==k){ G={k,d:x.d,l:[]}; g.push(G); } G.l.push(x); });
+  const ic=x=>x.t?zmLogo(x.t,x.n):`<span class="zm-lg zm-ic">${x.k==="a"?(x.v<0?ZM_IC.sale:ZM_IC.entra):ZM_IC.ajuste}</span>`;
+  C.innerHTML=g.map(G=>`<div class="zm-mes">${GX_MESL[G.d.getMonth()][0].toUpperCase()+GX_MESL[G.d.getMonth()].slice(1)} ${G.d.getFullYear()}</div>
+    <div class="zm-card zm-list">${G.l.map(x=>`<${x.t?`button type="button" data-zf="${esc(x.t)}" data-zk="${DATA.pos.some(p=>p.ticker===x.t)?"pos":"pre"}"`:"div"} class="zm-row">${ic(x)}<span class="zm-rt"><b>${esc(x.n)}</b><small>${esc(x.s)} · ${x.d.getDate()} ${GX_MES[x.d.getMonth()]}</small></span><span class="zm-rv"><small class="zm-fuerte ${x.v>0?"up":""}">${zmSE(x.v,2)}</small></span></${x.t?"button":"div"}>`).join("")}</div>`).join("")
+    +(it.length>vis.length?`<div class="zm-mas" id="zm-mov-mas">Cargando más…</div>`:"");
+  const s=$("zm-mov-mas"); if(s&&"IntersectionObserver" in window){ const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); ZM.movN+=80; zmMovLista(); } },{rootMargin:"600px"}); io.observe(s); } }
+
+// ── Calendario
+function zmCalendario(){ let ev=[]; try{ ev=calEventos(); }catch(_){}
+  const h=new Date(); h.setHours(0,0,0,0); const lim=new Date(h); lim.setDate(lim.getDate()+75);
+  const fut=ev.filter(e=>e.d>=h&&e.d<=lim&&(e.k==="d"||e.pf||e.ok));
+  const cobro=((DATA.dvm&&DATA.dvm.pays)||[]).filter(p=>p.d instanceof Date&&p.d>=h&&p.d.getFullYear()===h.getFullYear()), tot=sum(cobro,p=>p.v||0);
+  const g=[]; fut.forEach(e=>{ const k=+e.d; let G=g[g.length-1]; if(!G||G.k!==k){ G={k,d:e.d,l:[]}; g.push(G); } G.l.push(e); });
+  const fila=e=>{ const div=e.k==="d", sub=div?"Dividendo":`Resultados${e.per?" · "+esc(e.per):""}${e.hora?" · "+(/pre|antes|am/i.test(e.hora)?"antes de la apertura":"tras el cierre"):""}${e.est?" · fecha estimada":""}`;
+    return `<button type="button" class="zm-row${!div&&!e.pf?" zm-tenue":""}" data-zf="${esc(e.t)}" data-zk="${DATA.pos.some(p=>p.ticker===e.t)?"pos":"pre"}">${zmLogo(e.t,e.n)}<span class="zm-rt"><b>${esc(e.n)}</b><small>${sub}${!div&&!e.pf?" · fuera de tu cartera":""}</small></span><span class="zm-rv">${div?`<small class="zm-fuerte up">${zmSE(e.v,2)}</small>`:`<span class="zm-tag">Resultados</span>`}</span></button>`; };
+  return `${cobro.length?`<section class="zm-card zm-pad"><p class="zm-big">${zmE(tot)} <em>por cobrar hasta fin de año</em></p><p class="zm-nota zm-nota-in">${cobro.length} ${cobro.length===1?"cobro":"cobros"} de dividendos.</p></section>`:""}
+    ${g.length?g.map(G=>`<div class="zm-mes">${zmDia(G.d)}</div><div class="zm-card zm-list">${G.l.map(fila).join("")}</div>`).join(""):`<div class="zm-card zm-vacio">Nada en los próximos días.</div>`}`; }
+
+// ── Universo
+const ZM_UP=[["today","Hoy"],["w1","1 semana"],["m1","1 mes"],["m3","3 meses"],["y1","1 año"],["y3","3 años"]];
+function zmUniverso(){ return `<div class="zm-chips" role="group">${ZM_UP.map(([v,l])=>`<button type="button" data-zs="uni:${v}" class="${ZM.uni===v?"on":""}">${l}</button>`).join("")}</div>
+    <div class="zm-seg zm-seg-w" role="group">${[["todas","Todas"],["mias","En cartera"],["fuera","Fuera"]].map(([v,l])=>`<button type="button" data-zs="uniF:${v}" class="${ZM.uniF===v?"on":""}">${l}</button>`).join("")}</div>
+    <label class="zm-q">${ZM_IC.buscar}<input type="search" data-zq="uniQ" value="${esc(ZM.uniQ)}" placeholder="Buscar empresa o industria" autocomplete="off"></label>
+    <div id="zm-unil"></div>`; }
+function zmUniLista(){ const C=$("zm-unil"); if(!C) return; let cerr=false; try{ cerr=ZM.uni==="today"&&!!lastSession().closed; }catch(_){}
+  const k=ZM.uni, q=fold((ZM.uniQ||"").trim());   // con la bolsa cerrada, «Hoy» enseña la última sesión (como el PC); abierta, solo lo de hoy
+  const val=r=>{ const v=cerr?r.last:r[k]; return isNum(v)&&isFinite(v)?v:null; };
+  let L=DATA.pre.filter(r=>ZM.uniF==="todas"||(ZM.uniF==="mias"?r.inPf:!r.inPf)).filter(r=>!q||fold([r.name,r.ticker,r.ind].join(" ")).includes(q));
+  L=L.slice().sort((a,b)=>(val(b)??-99)-(val(a)??-99));
+  const up=L.filter(r=>(val(r)||0)>0).length, dn=L.filter(r=>(val(r)||0)<0).length, esc2=k==="today"?ZM_EH:k==="w1"?[.02,.05,.1]:k==="m1"?[.05,.1,.2]:ZM_ET;
+  if(!L.length){ C.innerHTML=`<div class="zm-card zm-vacio">Ninguna empresa.</div>`; return; }
+  C.innerHTML=`<p class="zm-nota">${cerr?"Última sesión. ":""}${L.length} ${L.length===1?"empresa":"empresas"}: suben ${up} y bajan ${dn}.</p>
+    <div class="zm-card zm-list" data-zl='${esc(JSON.stringify(L.map(r=>r.ticker)))}'>${L.map(r=>`<button type="button" class="zm-row" data-zf="${esc(r.ticker)}" data-zk="pre">${zmLogo(r.ticker,r.name)}<span class="zm-rt"><b>${esc(r.name)}${r.inPf?'<i class="zm-mia" aria-label="En tu cartera"></i>':""}</b><small>${esc(r.ind||"")}</small></span><span class="zm-rv">${zmPill(val(r),esc2)}</span></button>`).join("")}</div>`; }
+
+// ── enganches: al llegar datos, al cambiar de tamaño y al volver al PC
+{ const _r=render; render=function(){ const o=_r.apply(this,arguments); try{ if(zmOn()) zmPinta(); }catch(e){ console.warn("Cartera · app:",e); } return o; }; }
+{ let tm; addEventListener("resize",()=>{ clearTimeout(tm); tm=setTimeout(()=>{ if(zmOn()){ if(DATA) zmPinta(); } else { document.documentElement.classList.remove("zm-on"); } },120); }); }
+// el tema y el modo privado se ven al momento (son estilos); el menú se rehace al abrirlo
+// el buscador y los enlaces de siempre cambian de pestaña con navega(): la app los sigue (y abre Movimientos en su tipo)
+{ const _nv=navega; navega=function(token){ const o=_nv.apply(this,arguments); try{ if(zmOn()&&DATA){ const v=typeof view!=="undefined"?view:"resumen", M={todo:"todo",transacciones:"tx",dividendos:"dv",aportaciones:"ap",ajustes:"aj"};
+    if(v==="movimientos"&&M[token]){ ZM.mov=M[token]; ZM.movN=80; const q=$("m-q"); ZM.movQ=q?q.value:""; }
+    if(ZM_TABS.some(x=>x[0]===v)&&v!==ZM.tab){ ZM.scroll[ZM.tab]=scrollY; ZM.tab=v; zmPinta(); scrollTo(0,0); } else if(v==="movimientos") zmPinta(); } }catch(e){ console.warn("Cartera · app:",e); } return o; }; }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
