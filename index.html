@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-iD8piU/QaXlgkaCLfhlW0borGaU3Zoy8Lq0cgW/VSvw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-DXaztaY0dcgmmAZEK6XFFOuoxCh5KMRf8G56Qghwy4k=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v610">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v610">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v610">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v611">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v611">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v611">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4116,6 +4116,17 @@ html body .top .zf-nbv{display:none!important}
   #gxind .gxi-c.ln1{background:var(--ln1);color:var(--ln1t)} #gxind .gxi-c.ln2{background:var(--ln2);color:var(--ln2t)} #gxind .gxi-c.ln3{background:var(--ln3);color:var(--ln3t)} #gxind .gxi-c.ln4{background:var(--ln4);color:var(--ln4t)} #gxind .gxi-c.ln5{background:var(--ln5);color:var(--ln5t)}
   #gxind .gxi-n{margin:20px 0 0;font-size:12px;color:var(--ink3)}
 }
+
+/* v611 · Movimientos (PC): sin el sombreado gris de «Importe» y «Resultado» (cruzaba también las cabeceras de cada mes) */
+@media (min-width:701px){
+  #s-mov .rt *{--zs:transparent!important}
+  #s-mov .rt td.zq-g{background-image:none!important}
+}
+
+/* v611 · Movimientos › Dividendos (PC): la retención, sin rojo (del color de su columna, como «En bróker») */
+@media (min-width:701px){ #s-mov .rt td[data-k="ret"]{color:var(--ink2)} #s-mov .rt td[data-k="ret"] .neg{color:inherit} }
+/* v611 · el botón del modo (luna o sol), como los demás del menú: icono y texto en fila, con su hueco */
+.more-m>#mm-tema{display:flex;align-items:center}
 </style>
 
 <div class="wrap">
@@ -4808,7 +4819,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v610";   // la versión publicada, en el pie
+const VER="v611";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6570,7 +6581,7 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
   const icA=id=>id==="theme"&&/claro/i.test($(id).getAttribute("aria-label"))?IC.sun:IC[id];
   const actList=()=>{ const L=[]; ACTS.forEach(a=>{ const b=$(a[0]); if(!b||b.disabled) return;
       if(a[0]==="theme"&&innerWidth>MOVIL&&document.querySelector('.mm-th [data-th]')){ const cur=document.documentElement.dataset.theme||"auto";
-        [["auto","Automática",["automatica","auto","sistema"]],["light","Clara",["clara","claro","dia"]],["dark","Oscura",["oscura","oscuro","noche"]]].forEach(([k,t,w])=>L.push({ic:k==="light"?IC.sun:IC.theme,t,s:"Apariencia"+(cur===k?" · la elegida":""),kw:w.concat(["apariencia","tema"]),fn:()=>{ const x=document.querySelector(`.mm-th [data-th="${k}"]`); if(x) x.click(); }})); return; }
+        { const osc=cur==="auto"?matchMedia("(prefers-color-scheme: dark)").matches:cur==="dark", k=osc?"light":"dark"; L.push({ic:osc?IC.sun:IC.theme,t:osc?"Modo claro":"Modo noche",s:"Apariencia",kw:["modo","noche","oscuro","oscura","claro","clara","dia","apariencia","tema"],fn:()=>{ const x=document.querySelector(`.mm-th [data-th="${k}"]`); if(x) x.click(); }}); } return; }   /* v611: un solo cambio de modo, como en el menú (sin «Automática») */
       L.push({ic:icA(a[0]),t:b.getAttribute("aria-label"),s:a[1],kw:a[2],fn:()=>b.click()}); }); return L; };
   const actHtml=x=>`${x.ic}<span class="kx-t"><b>${esc(x.t)}</b><small>${x.s}</small></span><span class="kx-m"></span>`;
   const goTo=g=>{ navega(g[2],true); if(!g[3]) return; requestAnimationFrame(()=>requestAnimationFrame(()=>{ const el=$(g[3]); if(!el) return; const t=el.closest(".dv3>div,.panel")||el; t.scrollIntoView({block:"start"}); })); };
@@ -7853,6 +7864,18 @@ addEventListener("resize",()=>{ if(!ZF_PC()) zfCalcCierra(); else { const P=docu
 { const c=$("mm-chk"); if(c&&!$("mm-calc")) c.insertAdjacentHTML("afterend",'<button type="button" id="mm-calc" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="1.75" width="10" height="12.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="5" y="3.75" width="6" height="2.5" rx=".6" fill="currentColor"/><circle cx="5.75" cy="8.75" r=".8" fill="currentColor"/><circle cx="8" cy="8.75" r=".8" fill="currentColor"/><circle cx="10.25" cy="8.75" r=".8" fill="currentColor"/><circle cx="5.75" cy="11.5" r=".8" fill="currentColor"/><circle cx="8" cy="11.5" r=".8" fill="currentColor"/><circle cx="10.25" cy="11.5" r=".8" fill="currentColor"/></svg><span>Calculadora de operaciones</span></button>'); }
 $("more-m").addEventListener("click",e=>{ if(e.target.closest("#mm-calc")) zfCalcAbre(); });
 { const c=$("mm-calc"), p=$("mm-priv"); if(c&&p) c.after(p); }   // v530: en el PC, ocultar importes y la apariencia van solo en el menú
+// v611 · menú «···»: primero la calculadora, después el cuadre y ocultar importes; y en lugar de «Apariencia» (Automática · Clara · Oscura),
+// un solo botón que cambia de modo: «Modo noche» con la luna si está en claro, «Modo claro» con el sol si está en oscuro
+{ const M=$("more-m"), c=$("mm-calc"), k=$("mm-chk"), p=$("mm-priv"), g=M&&M.querySelector(".mm-th");
+  if(M&&c){ M.prepend(c); if(k) c.after(k); if(k&&p) k.after(p); }
+  if(g&&!$("mm-tema")){ g.style.display="none"; g.insertAdjacentHTML("beforebegin",'<button type="button" id="mm-tema" role="menuitem"></button>'); }
+  const R=document.documentElement, osc=()=>R.dataset.theme?R.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+  const LUNA='<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M13.2 9.6A5.6 5.6 0 0 1 6.4 2.8a5.6 5.6 0 1 0 6.8 6.8z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+  const SOL='<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>';
+  const pinta=()=>{ const b=$("mm-tema"); if(b) b.innerHTML=osc()?SOL+"<span>Modo claro</span>":LUNA+"<span>Modo noche</span>"; };
+  pinta(); const mb=$("more"); if(mb) mb.addEventListener("click",pinta);
+  if(M) M.addEventListener("click",e=>{ if(!e.target.closest("#mm-tema")) return; const x=M.querySelector(`.mm-th [data-th="${osc()?"light":"dark"}"]`); if(x) x.click(); pinta(); });
+  new MutationObserver(pinta).observe(R,{attributes:true,attributeFilter:["data-theme"]}); }
 // v543: Universo ya no la muestra en el PC (el bloque se oculta en zf.css)
 { const S=$("s-plan"); if(S&&!$("pl-open")) S.insertAdjacentHTML("beforeend",'<button type="button" id="pl-open">Abrir la calculadora'+ZF_IC.r+'</button>'); $("pl-open").addEventListener("click",zfCalcAbre); }
 
@@ -7948,14 +7971,15 @@ function zfCabeceras(){ const pc=innerWidth>MOVIL;
       let tx=0, nc=0;
       filas.forEach(r=>{ const td=[...r.children].find(c=>c.dataset.l===nom&&c.offsetWidth)||(r.children.length===ths.length?r.children[i]:null); if(!td||!td.offsetWidth||!td.textContent.trim()&&!td.querySelector("img,i,b,span")) return; nc++; if(/[A-Za-zÁÉÍÓÚÑáéíóúñü]{3,}/.test(td.innerText)) tx++;   /* v571: solo el texto visible (la celda de Hoy lleva escondido el texto del móvil) */ rg.selectNodeContents(td); const q=rg.getBoundingClientRect(); if(q.width>0){ a=Math.min(a,q.left); b=Math.max(b,q.right); } });
       // v554 · solo cifras y barras: las columnas de texto (empresa, industria, tipo, detalle, bróker, fecha) se quedan con su alineación de siempre
-      if(!isFinite(a)||nc&&tx/nc>.5) return;   /* v572: las columnas de texto (y País) no se desplazan al ordenar */ const q=l.getBoundingClientRect(), R=th.getBoundingClientRect(), fl=th.hasAttribute("aria-sort")?13:0;
+      if(!isFinite(a)||nc&&tx/nc>.5||th.dataset.k==="d"||th.dataset.k==="bd") return;   /* v611: la Fecha, siempre en su sitio (en «todo» lleva «12 nov» y en el resto «15/10/26»: se movía al cambiar de vista) */    /* v572: las columnas de texto (y País) no se desplazan al ordenar */ const q=l.getBoundingClientRect(), R=th.getBoundingClientRect(), fl=th.hasAttribute("aria-sort")?13:0;
       // centrada sobre sus datos, sin salirse de su celda (la flecha incluida): así nunca pisa ni se acerca a la columna de al lado
       let d=Math.round((a+b)/2-(q.left+q.right)/2); d=Math.min(d,Math.floor(R.right-(fl?14:4)-fl-q.right));   /* v571: con flecha, 14 px hasta el borde de su celda (antes 4: en País quedaba pegada a Industria) */ d=Math.max(d,Math.ceil(R.left+4-q.left));
       if(Math.abs(d)>=1) l.style.transform=`translateX(${d}px)`; }); });
   try{ if(pc){ zfEsqPos(); zfMovSombra(); } }catch(e){} }   /* v582: las sombras se recolocan después de centrar las cabeceras */
 { let r=0; const pide=()=>{ cancelAnimationFrame(r); r=requestAnimationFrame(()=>requestAnimationFrame(()=>{ try{ zfCabeceras(); }catch(e){ console.warn("Cartera · cabeceras:",e); } })); };
-  new MutationObserver(ms=>{ if(ms.some(m=>m.target.closest&&m.target.closest("table.rt,.view,[id^='v-']")&&(m.target.closest("table.rt")||[...m.addedNodes].some(n=>n.nodeType===1&&(n.matches("table.rt")||n.querySelector&&n.querySelector("table.rt")))))) pide(); }).observe(document.body,{childList:true,subtree:true});
-  addEventListener("resize",pide); document.addEventListener("click",e=>{ if(e.target.closest("[data-v],thead,.seg,.kw-m")) pide(); }); if(document.fonts) document.fonts.ready.then(pide); pide(); }
+  new MutationObserver(ms=>{ if(ms.some(m=>m.target.closest&&m.target.closest("table.rt,.view,[id^='v-']")&&(m.target.closest("table.rt")||[...m.addedNodes].some(n=>n.nodeType===1&&(n.matches("table.rt")||n.querySelector&&n.querySelector("table.rt")))))){ try{ zfCabeceras(); }catch(e){} pide(); } }).observe(document.body,{childList:true,subtree:true});   /* v611: también en el momento, antes de pintar (si no, al cambiar de vista la cabecera se veía un instante en su sitio por defecto y luego saltaba) */
+  document.querySelectorAll(".view,[id^='v-']").forEach(v=>new MutationObserver(()=>{ try{ zfCabeceras(); }catch(_){} }).observe(v,{attributes:true,attributeFilter:["hidden","class","style"]}));   /* v611: en cuanto una pestaña se muestra, sus cabeceras ya colocadas */
+  addEventListener("resize",pide); document.addEventListener("click",e=>{ if(e.target.closest("[data-v],thead,.seg,.kw-m")){ try{ zfCabeceras(); }catch(_){} pide(); } });   /* v611: al cambiar de pestaña, en el momento (la tabla ya estaba hecha y oculta; si no, se recolocaba a la vista) */ if(document.fonts) document.fonts.ready.then(pide); pide(); }
 // v560 · Universo (PC): el Múltiplo, justo después del Valor razonable (es el supuesto del que sale); se recoloca tras cada pintado de la tabla
 const zfPcolsBase=PCOLS.slice();
 function zfUniOrden(){ const pc=innerWidth>MOVIL, L=zfPcolsBase.slice();
@@ -8121,6 +8145,15 @@ function zfInd(){ const V=$("v-universo"); if(!V||!DATA||innerWidth<=MOVIL) retu
   S.innerHTML=`<h2 class="gxan-t"><span>${l1}</span><span>${l2}</span></h2><div class="gxi-g"><div>${cab}${I.slice(0,m).map(fila).join("")}</div><div>${cab}${I.slice(m).map(fila).join("")}</div></div><p class="gxi-n">Media de las empresas de cada industria, ordenadas por cómo van en un año</p>`; }
 // gxUni rehace el bloque de las exigidas si no lo encuentra justo detrás de la portada: la tarjeta se aparta antes y se vuelve a poner después
 { const _gu=gxUni; gxUni=function(){ const S=$("gxind"); if(S) S.remove(); _gu.apply(this,arguments); try{ zfInd(); }catch(e){ console.warn("Cartera · industrias:",e); } }; }
+// v611 · al mostrar Resumen (si la web se cargó en otra pestaña, se preparó oculto y sin poder medirse): el mapa y el gráfico de Evolución,
+// a su tamaño en ese mismo instante, antes de pintar (si no, el gráfico salía 130 px más alto, encogía y todo lo de debajo subía a la vista)
+{ const V=$("v-resumen"); if(V) new MutationObserver(()=>{ if(V.hidden||!V.offsetParent||innerWidth<=MOVIL) return;
+    try{ if(!$("tmap")||!$("tmap").querySelector(".gx-t2")) zfMapa(); }catch(_){}
+    try{ if(window.Chart&&Chart.getChart) V.querySelectorAll("canvas").forEach(cv=>{ const ch=Chart.getChart(cv); if(ch) ch.resize(); }); }catch(_){}
+    try{ zfCabeceras(); }catch(_){} }).observe(V,{attributes:true,attributeFilter:["hidden","class","style"]}); }
+// v611 · los logos «macizos» del mosaico de Universo (se pintan como imagen y no como silueta) se comprueban en cuanto llegan los datos,
+// y no al abrir Universo: así ya salen bien a la primera, sin verse un instante como silueta y cambiar después
+{ const _tm3=renderTreemap; renderTreemap=function(){ _tm3.apply(this,arguments); try{ if(innerWidth>MOVIL&&DATA&&DATA.pre) DATA.pre.forEach(r=>{ const s=gxSrc(r.ticker); if(s) gxSol(s,r.ticker); }); }catch(_){} }; }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
