@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-UbKVp8F+Q1oabmFd6GJlytokQ02vsPOMyP8Or/4Y4WQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-iD8piU/QaXlgkaCLfhlW0borGaU3Zoy8Lq0cgW/VSvw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v609">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v609">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v609">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v610">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v610">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v610">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4808,7 +4808,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v609";   // la versión publicada, en el pie
+const VER="v610";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6942,11 +6942,10 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   const mej=ok[0], peo=ok[ok.length-1];
   // v574: hoy solo cuentan las que ya cotizan («Hoy cotizan 49 de 117 empresas: suben 27 y bajan 22.»); las que se quedan en 0,0 %, al final («…y 2 siguen igual»)
   const vb=(c,p1,p2,s1,s2)=>pres?(c===1?p1:p2):(c===1?s1:s2), sb=vb(up,"sube","suben","subió","subieron"), bj=vb(dn,"baja","bajan","bajó","bajaron"), ig=vb(igu,"sigue igual","siguen igual","siguió igual","siguieron igual"), cola=n=>igu?`${sb} ${up}, ${bj} ${dn} y ${igu} ${ig}`:`${sb} ${up}${n?` de ${N} empresas`:""} y ${bj} ${dn}`;
-  let t=k==="dd"?(()=>{ const x=ok.filter(r=>r.dd<=-0.2).length; return `De tus ${N} empresas, ${x?`${x} ${x===1?"cae":"caen"}`:"ninguna cae"} más de un 20 % ${kw}.`; })()   /* v575: sin número delante */
-    :k==="today"&&!ok.length?`${kw} aún no cotiza ninguna de tus ${N} empresas.`
-    :k==="today"&&ok.length<N?`${kw} cotizan ${ok.length} de ${N} empresas: ${cola(false)}.`
-    :igu?`${pre}${kw}${pre?",":""} de ${N} empresas, ${cola(false)}.`
-    :`${pre}${kw}${pre?",":""} ${cola(true)}.`;
+  let t=k==="dd"?(()=>{ const x=ok.filter(r=>r.dd<=-0.2).length; return `${x?`Hay ${x} ${x===1?"empresa que cae":"empresas que caen"}`:"Ninguna cae"} más de un 20 % ${kw}.`; })()   /* v610: el total de empresas, solo en el titular de la lista */   /* v575: sin número delante */
+    :k==="today"&&!ok.length?`${kw} aún no cotiza ninguna de tus empresas.`
+    :k==="today"&&ok.length<N?`${kw} cotizan ${ok.length} ${ok.length===1?"empresa":"empresas"}: ${cola(false)}.`
+    :`${pre}${kw}${pre?",":""} ${cola(false)}.`;
   const t2=!ok.length?(k==="today"?"Lo verás en cuanto abran las bolsas.":"Sin datos para este periodo."):k==="dd"?`Más lejos, ${esc(peo.name)} (${gxPS(peo.dd)}); más cerca, ${esc(mej.name)} (${gxPS(mej.dd)}).`:(()=>{ const v1=pres?["sube","baja"]:["subió","bajó"];   /* v575: «La que más sube…; la que más baja…» (si todas bajan o todas suben, «la que menos…») */
       const a=mej[k]>0?"Arriba":`La que menos ${v1[1]}`, b=peo[k]<0?"abajo":`la que menos ${v1[0]}`;   /* v601 · UN-01: «Arriba…; abajo…» en lugar de «La que más sube…; la que más baja…» */
       return `${a}, ${esc(mej.name)} (${gxPS(mej[k])}); ${b}, ${esc(peo.name)} (${gxPS(peo[k])}).`; })();
@@ -6986,7 +6985,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   if(!reqs.length){ s2.remove(); gxPega(s); return; }
   const top3=sob.slice().sort((a,b)=>b.margin-a.margin).slice(0,3);
   okr.forEach(r=>gxSol(gxSrc(r.ticker),r.ticker));   // v488: los logos de los carteles, preparados ya (si se preparaban al pasar el ratón, la gráfica se redibujaba y el cartel desaparecía)
-  s2.querySelector(".gx-c2").innerHTML=gxH(`De tus ${N} empresas, ${sob.length} ${sob.length===1?"rinde":"rinden"} más de lo que les exiges.`,top3.length?`Las que más: ${top3.map(r=>esc(r.name)).join(", ").replace(/, ([^,]*)$/," y $1")}.`:"Ninguna lo supera.");
+  s2.querySelector(".gx-c2").innerHTML=gxH(sob.length?`Hay ${sob.length} ${sob.length===1?"empresa que rinde más de lo que le exiges":"empresas que rinden más de lo que les exiges"}.`:"Ninguna empresa rinde más de lo que le exiges.",top3.length?`Las que más: ${top3.map(r=>esc(r.name)).join(", ").replace(/, ([^,]*)$/," y $1")}.`:"Ninguna lo supera.");
   const U=s2.querySelector(".gx-un"), WU=Math.round(U.getBoundingClientRect().width), H=340, PL=46, tp=16, bottom=H-44, ymin=-0.10, ymax=0.4;
   const ys=v=>tp+(ymax-Math.max(ymin,Math.min(ymax,v)))/(ymax-ymin)*(bottom-tp), cw=(WU-PL)/reqs.length; let g=""; const TODOS=[], LB=[], T3=new Set(top3.map(r=>r.ticker));
   for(let v=Math.round(ymin*10);v<=Math.round(ymax*10);v++){ const y=ys(v/10); g+=`<line x1="${PL}" x2="${WU}" y1="${y}" y2="${y}" stroke="var(--line)" ${v===0?"":'stroke-dasharray="2 4"'}/><text x="${PL-10}" y="${y+4}" text-anchor="end" class="t3">${v<0?"−":""}${Math.abs(v*10)} %</text>`; }
@@ -7164,9 +7163,9 @@ function gxPlanT(){ if(innerWidth<=MOVIL) return; const S=$("s-plan"), K=$("pl-k
   if(!nC&&!nV) T.innerHTML=`<span>Tienes ${sp(D.v)} para invertir.</span><span>${D.s.join(" y ")||"&nbsp;"}.</span>`;
   else T.innerHTML=`<span>${nC?`Compras ${nC} ${nC===1?"empresa":"empresas"} por ${sp(C.v)}`:""}${nC&&nV?" y vendes ":nV?"Vendes ":""}${nV?`${nV}`:""}${nV&&!nC?` ${nV===1?"empresa":"empresas"}`:""}.</span><span>Comisiones de ${sp(F.v)}; ${falta?`te faltan ${sp(L.v.replace(/^−/,""))}`:`te sobran ${sp(L.v)}`}.</span>`; }
 function gxRadarT(){ if(innerWidth<=MOVIL||!DATA||!DATA.pre) return; const S=$("s-plist"); if(!S) return; const h=S.querySelector(".chart-head > div:first-child"); if(!h) return;
-  const all=DATA.pre, n=all.length, pf=all.filter(r=>r.inPf).length, sob=all.filter(r=>r.margin>0).length, rev=typeof stale==="function"?all.filter(stale).length:0;
+  const all=DATA.pre, n=all.length, pf=all.filter(r=>r.inPf).length, sob=all.filter(r=>r.inPf&&r.margin>0).length, rev=typeof stale==="function"?all.filter(stale).length:0;
   let T=$("gxpx-t"); if(!T){ T=document.createElement("h2"); T.id="gxpx-t"; T.className="gxan-t gxan-x"; h.prepend(T); }
-  T.innerHTML=`<span>En tu radar tienes ${gxMil(n)} empresas; en tu cartera, ${gxMil(pf)}.</span><span>De ellas, ${gxMil(sob)} ${sob===1?"rinde":"rinden"} más de lo que les exiges y ${rev?`${gxMil(rev)} ${rev===1?"está":"están"} por revisar`:"ninguna está por revisar"}.</span>`; }   /* v570: ninguna frase empieza por número */
+  T.innerHTML=`<span>En tu radar tienes ${gxMil(n)} empresas; en tu cartera, ${gxMil(pf)}.</span><span>De las de tu cartera, ${sob?`${gxMil(sob)} ${sob===1?"rinde":"rinden"}`:"ninguna rinde"} más de lo que les exiges; ${rev?`${gxMil(rev)} ${rev===1?"está":"están"} por revisar`:"ninguna está por revisar"}.</span>`; }   /* v570: ninguna frase empieza por número */
 { const _pc=planCalc; planCalc=function(){ _pc(); try{ gxPlanT(); }catch(e){ console.warn("Cartera · calculadora:",e); } }; }
 { const _rp=renderPre; renderPre=function(){ _rp(); try{ gxRadarT(); gxPlanT(); }catch(e){ console.warn("Cartera · Universo:",e); } }; }
 
