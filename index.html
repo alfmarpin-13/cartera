@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-I5TPtFe5KWMGu7PiRVteZGkxhKPZuG1pZm+BKNhYWm0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-smTOqAcFDqeQdgvNmgIEOaYXKxE85QMTXjTj2++XTdY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v616">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v616">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v616">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v617">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v617">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v617">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4837,7 +4837,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v616";   // la versión publicada, en el pie
+const VER="v617";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6959,6 +6959,7 @@ function gxCal(){ const s=gxSec("v-calendario"), hoy=new Date(); hoy.setHours(12
 // ── Universo · el mosaico del día (las quince que más suben y las quince que más bajan, del tamaño de su movimiento, con los colores del mapa
 // de Resumen) y las columnas de la exigencia. La palabra del titular elige el periodo; sustituye a la lista de Rendimiento del PC
 const GX_PER=[["today","Hoy"],["last","Última sesión"],["w1","1 semana"],["m1","1 mes"],["m3","3 meses"],["m6","6 meses"],["ytd",""],["y1","1 año"],["y3","3 años"],["dd","Desde máximo"]];
+const GX_NMOS=20;   // v617: hasta 20 empresas por lado en el mosaico de Universo (antes 15)
 function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayHoy=!closed&&DATA.pre.some(r=>isNum(r.today)), ano=new Date().getFullYear();
   let k=GX.uni; if(!k||(k==="today"&&!hayHoy)) k=hayHoy?"today":"last";
   // v574: «Hoy» se puede elegir siempre; si aún no ha abierto ninguna bolsa (o es fin de semana), no hay datos de hoy
@@ -6993,22 +6994,28 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
     m3:{u:[17,20,25,40],d:[15,18,22,30]},m6:{u:[32,40,47,60],d:[12,17,22,28]},ytd:{u:[33,40,55,80],d:[22,28,33,38]},y1:{u:[35,45,60,100],d:[20,28,35,42]},
     y3:{u:[115,150,270,400],d:[20,35,45,55]},dd:{u:[10,30,55,70],d:[10,30,55,70]}}[k];
   const nivel=v=>{ if(!isNum(v)||Math.abs(v)<5e-5) return "lv0"; const m=Math.abs(v)*100, n=1+(v>0?ESC.u:ESC.d).filter(t=>m>=t).length; return (v>0?"lp":"ln")+Math.min(5,n); };
-  const bloque=(lst,tit,igual)=>{ let it=lst.slice(0,15), Wb=(W-24)/2, Hb=420, G=4;
-    if(!it.length) return `<div><div class="gx-mh"><b>${tit}</b></div><div class="gx-tr gx-vacio">Ninguna</div></div>`;
+  const bloque=(lst,tit,igual,Wb,Hb)=>{ let it=lst.slice(0,GX_NMOS), G=4;
+    if(!it.length) return `<div><div class="gx-mh"><b>${tit}</b></div><div class="gx-tr gx-vacio" style="height:${Hb}px">Ninguna</div></div>`;
     // v512: cada casilla, del tamaño de su movimiento, pero nunca por debajo de un quinto de la mayor (con un día de poco movimiento, las pequeñas quedaban en una tira sin sitio para el logo ni la cifra)
     // y si aun así alguna casilla no llega a 84 × 64 px (lo justo para el logo y la cifra; v513, antes 92 × 80), se quitan las del final, las que menos se mueven, hasta que todas caben
     // (primero se sube poco a poco ese mínimo, de un octavo hasta un tercio de la mayor; solo si ni así caben se quitan las del final)
-    const mxa=Math.max(...it.map(r=>Math.abs(r[k]))); let fl=.12; const a=r=>igual?1:Math.max(Math.abs(r[k]),mxa*fl,1e-4), lay=L=>{ const tot=sum(L,a); return sq(L.map(r=>({r,a:a(r)/tot*Wb*Hb})),0,0,Wb,Hb); }, chica=t=>t.some(z=>z.w-G<84||z.h-G<64);
-    let tl=lay(it); while(chica(tl)&&fl<.34){ fl+=.02; tl=lay(it); } while(it.length>6&&chica(tl)){ it.pop(); tl=lay(it); }
-    return `<div><div class="gx-mh"><b>${tit}</b></div><div class="gx-tr">${tl.map(z=>{ const r=z.r, lv=nivel(r[k]), w=z.w-G, h=z.h-G, pq=h<100, lw0=Math.round(Math.max(30,Math.min(96,w*.5,(h-(pq?34:44))*1.6))), lw=Math.min(96,w<120?Math.max(lw0,Math.round(w-18)):lw0), lh=Math.min(36,Math.round(lw0*.5625));   /* v545: tope de 96 × 36 px, para que manden el color y la cifra (antes hasta 150 px) */   /* v513: en las casillas estrechas, los logos alargados (como L'Oréal) pueden ocupar casi todo el ancho; el alto sigue igual, así que los cuadrados no crecen */
+    const mxa=Math.max(...it.map(r=>Math.abs(r[k]))); let fl=.12; const a=r=>igual?1:Math.max(Math.sqrt(Math.abs(r[k])),Math.sqrt(mxa)*fl,1e-4), lay=L=>{ const tot=sum(L,a); return sq(L.map(r=>({r,a:a(r)/tot*Wb*Hb})),0,0,Wb,Hb); }, chica=t=>t.some(z=>z.w-G<84||z.h-G<64);
+    let tl=lay(it); while(chica(tl)&&fl<.6){ fl+=.02; tl=lay(it); } while(it.length>6&&chica(tl)){ it.pop(); tl=lay(it); }
+    return `<div><div class="gx-mh"><b>${tit}</b></div><div class="gx-tr" style="height:${Hb}px">${tl.map(z=>{ const r=z.r, lv=nivel(r[k]), w=z.w-G, h=z.h-G, pq=h<100, lw0=Math.round(Math.max(30,Math.min(96,w*.5,(h-(pq?34:44))*1.6))), lw=Math.min(96,w<120?Math.max(lw0,Math.round(w-18)):lw0), lh=Math.min(36,Math.round(lw0*.5625));   /* v545: tope de 96 × 36 px, para que manden el color y la cifra (antes hasta 150 px) */   /* v513: en las casillas estrechas, los logos alargados (como L'Oréal) pueden ocupar casi todo el ancho; el alto sigue igual, así que los cuadrados no crecen */
       return `<button type="button" class="gx-t2 ${lv} ${r.inPf?"mia":""}" data-t="${esc(r.ticker)}" data-n="${esc(r.name)}" aria-label="${esc(r.name)} · ${gxPS(r[k])}" style="left:${(z.x+G/2).toFixed(1)}px;top:${(z.y+G/2).toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px${pq?";gap:4px":""}">${gxSil(r.ticker,lw,lh,Math.min(96,w-14),Math.min(36,h-(pq?36:46)))}<b>${gxPS(r[k])}</b></button>`; }).join("")}</div></div>`; };
   C.dataset.l=JSON.stringify(lista);
   // v481: al pasar el ratón por una casilla, su nombre al momento
   C.onmouseover=e=>{ const b=e.target.closest(".gx-t2"); let t=C.querySelector(".gx-tip2"); if(!b){ if(t) t.hidden=true; return; } if(!t){ t=document.createElement("span"); t.className="gx-tip2"; C.append(t); }
     t.textContent=b.dataset.n; t.hidden=false; const cr=C.getBoundingClientRect(), br=b.getBoundingClientRect(); t.style.left=Math.min(Math.max(0,br.left-cr.left+br.width/2-t.offsetWidth/2),cr.width-t.offsetWidth)+"px"; t.style.top=(br.top-cr.top-t.offsetHeight-6)+"px"; };
   C.onmouseleave=()=>{ const t=C.querySelector(".gx-tip2"); if(t) t.hidden=true; };
-  C.innerHTML=k==="dd"?bloque(ok.slice().sort((a,b)=>a.dd-b.dd),"Más lejos de su máximo")+bloque(ok.slice().sort((a,b)=>b.dd-a.dd),"Más cerca de su máximo",true)
-    :bloque(ok.filter(r=>r[k]>=5e-4),"Suben")+bloque(ok.filter(r=>r[k]<=-5e-4).reverse(),"Bajan");   // v512: las que se quedan en 0,0 % no salen en ninguno de los dos
+  // v617: el alto del mosaico sale de cuántas casillas hay (unos 110 × 100 px cada una, entre 120 y 300 px), y el ancho de cada lado, de cuántas
+  // empresas tiene (nunca menos de una cuarta parte); cada casilla crece con la raíz de su movimiento, para que la que más se mueve no aplaste al resto
+  const L0=k==="dd"?ok.slice().sort((a,b)=>a.dd-b.dd):ok.filter(r=>r[k]>=5e-4), L1=k==="dd"?ok.slice().sort((a,b)=>b.dd-a.dd):ok.filter(r=>r[k]<=-5e-4).reverse();
+  const n0=Math.min(GX_NMOS,L0.length), n1=Math.min(GX_NMOS,L1.length), Wd=W-24, f=k==="dd"||!(n0+n1)?.5:Math.min(.75,Math.max(.25,n0/(n0+n1))),
+    W0=Math.round(Wd*f), W1=Wd-W0, Hm=Math.round(Math.min(300,Math.max(120,(Math.max(1,n0)+Math.max(1,n1))*110*100/Wd)));
+  C.style.gridTemplateColumns=`${W0}px ${W1}px`;
+  C.innerHTML=k==="dd"?bloque(L0,"Más lejos de su máximo",false,W0,Hm)+bloque(L1,"Más cerca de su máximo",true,W1,Hm)
+    :bloque(L0,"Suben",false,W0,Hm)+bloque(L1,"Bajan",false,W1,Hm);   // v512: las que se quedan en 0,0 % no salen en ninguno de los dos
   // las columnas de la exigencia: cada empresa, a la altura de su TIR esperada y en la columna de lo que le exiges
   const okr=DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0)   /* v564: todas salen; las de más de un 40 %, en el tope de la gráfica, sin salirse de ella (al pasar el ratón, su TIR real) */, reqs=[...new Set(DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0).map(r=>Math.round(r.req*1000)/1000))].sort((a,b)=>a-b)   /* v563: una columna por cada exigida, aunque sus empresas pasen del 40 % y no salgan (antes, si AST pasaba del 40 %, desaparecía la del 20 %) */, sob=okr.filter(r=>r.margin>0);
   if(!reqs.length){ s2.remove(); gxPega(s); return; }
