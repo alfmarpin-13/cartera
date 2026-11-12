@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-ThTuYBrGJ3DlVQSEzwemHTI6QYIefMLTAehe2Fwfkic=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-7+KfZubDRsRT4glhHSLzz1G2xJX+o/exzaQQqqRohgA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v613">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v613">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v613">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v614">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v614">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v614">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4126,6 +4126,24 @@ html body .top .zf-nbv{display:none!important}
 @media (min-width:701px){ #s-mov .rt td[data-k="ret"]{color:var(--ink2)} #s-mov .rt td[data-k="ret"] .neg{color:inherit} }
 /* v611 · el botón del modo (luna o sol), como los demás del menú: icono y texto en fila, con su hueco */
 .more-m>#mm-tema{display:flex;align-items:center}
+
+/* v614 · G-05 · Movimientos (PC): filtros como palabras, buscador sin caja */
+@media (min-width:701px){
+  #s-mov .toolbar.zf-pal{height:22px;align-items:center;gap:0}
+  #s-mov .toolbar.zf-pal > select,#s-mov .toolbar.zf-pal > .ftg{display:none!important}
+  #s-mov .toolbar.zf-pal .search{flex:0 1 420px;order:0}
+  #s-mov .toolbar.zf-pal .search svg{left:0;width:16px;height:16px}
+  #s-mov .toolbar.zf-pal .search .inp{height:22px;padding:0 0 0 26px;background:none;box-shadow:none;border-radius:0;font-size:17px;line-height:22px;color:var(--ink)}
+  #s-mov .toolbar.zf-pal .search .inp:focus{box-shadow:none}
+  #s-mov .toolbar.zf-pal .m-rst{order:1;margin-left:auto;margin-right:24px;height:22px;padding:0;border:0;background:none;font-size:13px;color:var(--ink3)}
+  #s-mov .toolbar.zf-pal .m-rst:hover{color:var(--ink)}
+  #zf-movpal{order:2;display:flex;align-items:center;gap:10px;font-size:17px;line-height:22px;font-weight:500;color:var(--ink);white-space:nowrap}
+  #zf-movpal .kwr,#zf-movpal .kw{font-size:17px;line-height:22px}
+  #zf-movpal .kw{text-decoration-thickness:2px;text-underline-offset:5px}
+  #zf-movpal .kw i{border-right-width:2px;border-bottom-width:2px}
+  #zf-movpal .kw-m{left:auto;right:-12px;top:calc(100% + 10px)}
+  #zf-movpal .zf-mpd{color:var(--ink3);font-weight:400}
+}
 </style>
 
 <div class="wrap">
@@ -4818,7 +4836,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v613";   // la versión publicada, en el pie
+const VER="v614";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -8154,6 +8172,25 @@ function zfInd(){ const V=$("v-universo"); if(!V||!DATA||innerWidth<=MOVIL) retu
 // v611 · los logos «macizos» del mosaico de Universo (se pintan como imagen y no como silueta) se comprueban en cuanto llegan los datos,
 // y no al abrir Universo: así ya salen bien a la primera, sin verse un instante como silueta y cambiar después
 { const _tm3=renderTreemap; renderTreemap=function(){ _tm3.apply(this,arguments); try{ if(innerWidth>MOVIL&&DATA&&DATA.pre) DATA.pre.forEach(r=>{ const s=gxSrc(r.ticker); if(s) gxSol(s,r.ticker); }); }catch(_){} }; }
+
+/* v614 · G-05 · Movimientos (PC): los filtros de la tabla, como palabras («solo abiertas ▾ · en todos los años ▾ · en todos los brókeres ▾»)
+   en lugar de cajas; el buscador, sin caja. Los selectores de siempre siguen debajo (ocultos) y son los que filtran. El móvil no cambia. */
+function zfMovPal(){ const S=$("s-mov"), T=S&&S.querySelector(".toolbar"); if(!T) return; let w=$("zf-movpal"); const R=$("m-rst"), Rs=R&&R.querySelector("span");
+  const Q=$("m-q"), LARGO="Buscar empresa, ticker o comentario";
+  if(innerWidth<=MOVIL){ if(w) w.remove(); T.classList.remove("zf-pal"); if(Rs) Rs.textContent="Restablecer"; if(Q) Q.placeholder=innerWidth<=600?"Buscar":LARGO; return; }
+  if(!w){ w=document.createElement("span"); w.id="zf-movpal"; } if(w.parentNode!==T) T.appendChild(w);
+  if(Rs) Rs.textContent="Quitar filtros";
+  const tab=S.dataset.t||"todo", ST={"":tab==="dividendos"?"cobrados y previstos":"abiertas y cerradas",open:"solo abiertas",closed:"solo cerradas",paid:"solo cobrados",sched:"solo previstos"},
+    MS={"":tab==="dividendos"?"Cobrados y previstos":"Abiertas y cerradas",open:"Abiertas",closed:"Cerradas",paid:"Cobrados",sched:"Previstos"},
+    F=[["m-state","mvs",v=>ST[v]||v,v=>MS[v]||v],["m-year","mvy",v=>v?"en "+v:"en todos los años",v=>v||"Todos los años"],["m-broker","mvb",v=>v?"en "+esc(v):"en todos los brókeres",v=>v?esc(v):"Todos los brókeres"]];
+  w.innerHTML=F.filter(([id])=>{ const s=$(id); return s&&!s.hidden&&s.options.length>1; }).map(([id,k,pal,men])=>{ const s=$(id);
+    return gxKw(k,pal(s.value),[...s.options].map(o=>({k:o.value===""?"_":esc(o.value),t:men(o.value),on:o.value===s.value}))); }).join('<span class="zf-mpd" aria-hidden="true">·</span>');
+  T.classList.add("zf-pal");
+  if(Q){ const sb=T.querySelector(".search"); Q.placeholder=sb&&sb.getBoundingClientRect().width<340?"Buscar":LARGO; } }   // sin cortar el texto cuando el buscador se estrecha
+document.addEventListener("click",e=>{ const op=e.target.closest('.kw-m [data-kw="mvs"],.kw-m [data-kw="mvy"],.kw-m [data-kw="mvb"]'); if(!op||op.disabled) return;
+  const s=$({mvs:"m-state",mvy:"m-year",mvb:"m-broker"}[op.dataset.kw]); if(!s) return; s.value=op.dataset.o==="_"?"":op.dataset.o; s.dispatchEvent(new Event("input",{bubbles:true})); });
+{ const _rm4=renderMov; renderMov=function(){ const r=_rm4.apply(this,arguments); try{ zfMovPal(); }catch(e){ console.warn("Cartera · Movimientos:",e); } return r; }; }
+{ let tm; addEventListener("resize",()=>{ clearTimeout(tm); tm=setTimeout(()=>{ try{ zfMovPal(); }catch(_){} },120); }); }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
