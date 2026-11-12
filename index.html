@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-gbevX1uuiQRb0VYMx5+Z4vtTpi7RGNtiD8qrVU912ks=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-kfnTsAOWfBxG6XEwUwSYF5o+aY+TujhX6WMjVihMSig=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v607">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v607">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v607">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v608">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v608">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v608">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4101,6 +4101,21 @@ html body .top .zf-nbv{display:none!important}
   #v-universo .gx3b .gx-c2{margin:0;padding-top:0}              /* el titular, a 128 px del mapa (donde empezaba la tarjeta) y alineado con el de arriba */
   #v-universo .gx3b .gx-un{margin:0;padding-bottom:0}
 }
+
+/* v608 · Universo (PC): «Cómo van las industrias», tarjeta sobre crema entre las cotizaciones y las exigidas */
+@media (min-width:701px){
+  #v-universo #gxind{margin-bottom:48px}                      /* + los 16 px de abajo = 64 de crema, como en Análisis */
+  #v-universo #gxind + .gx3b{margin-top:0!important;padding-top:56px!important}
+  #gxind .gxi-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:64px}
+  #gxind .gxi-f{display:grid;grid-template-columns:190px repeat(4,minmax(0,1fr));height:34px;align-items:center}
+  #gxind .gxi-f > b{font-weight:400;font-size:13px;color:var(--ink);white-space:nowrap}
+  #gxind .gxi-h{height:28px;font-size:12px;color:var(--ink3)}
+  #gxind .gxi-h > span{text-align:center;white-space:nowrap}
+  #gxind .gxi-c{margin:2px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap;background:var(--gx-tile);color:var(--ink2)}
+  #gxind .gxi-c.lp1{background:var(--lp1);color:var(--lp1t)} #gxind .gxi-c.lp2{background:var(--lp2);color:var(--lp2t)} #gxind .gxi-c.lp3{background:var(--lp3);color:var(--lp3t)} #gxind .gxi-c.lp4{background:var(--lp4);color:var(--lp4t)} #gxind .gxi-c.lp5{background:var(--lp5);color:var(--lp5t)}
+  #gxind .gxi-c.ln1{background:var(--ln1);color:var(--ln1t)} #gxind .gxi-c.ln2{background:var(--ln2);color:var(--ln2t)} #gxind .gxi-c.ln3{background:var(--ln3);color:var(--ln3t)} #gxind .gxi-c.ln4{background:var(--ln4);color:var(--ln4t)} #gxind .gxi-c.ln5{background:var(--ln5);color:var(--ln5t)}
+  #gxind .gxi-n{margin:20px 0 0;font-size:12px;color:var(--ink3)}
+}
 </style>
 
 <div class="wrap">
@@ -4793,7 +4808,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v607";   // la versión publicada, en el pie
+const VER="v608";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -8084,6 +8099,29 @@ function zfR1Frase(){ const S=document.querySelector("#v-resumen > section.gx3")
 
 // v603 · ¿hay algún cambio del día? Si ninguna empresa trae una variación distinta de cero, no hay datos (antes de las 9 la hoja pone «-» en «Hoy»)
 function zfSinDia(){ if(!DATA) return false; return !DATA.pos.some(p=>!p.isOption&&p.shares>0&&p.value>0&&isNum(p.today)&&p.today!==0); }
+
+// v608 · Universo (PC): «Cómo van las industrias», en tarjeta sobre crema entre las cotizaciones de hoy y las exigidas.
+// Cada industria, con la media de lo que han hecho sus empresas hoy, en 1 mes, en 3 meses y en 1 año; ordenadas por cómo van en un año.
+// Cada casilla, con el mismo verde y rojo (y los mismos escalones) que el mosaico; en dos columnas.
+const ZFI_P=[["today","Hoy",[.005,.01,.02,.03]],["m1","1 mes",[.02,.04,.08,.12]],["m3","3 meses",[.03,.06,.12,.18]],["y1","1 año",[.08,.15,.3,.45]]];
+function zfInd(){ const V=$("v-universo"); if(!V||!DATA||innerWidth<=MOVIL) return; const s=V.querySelector(":scope > .gx3:not(.gx3b)"); if(!s) return;
+  let S=$("gxind"); if(!S){ S=document.createElement("section"); S.id="gxind"; S.className="gxan"; } s.after(S);
+  const g={}; DATA.pre.forEach(p=>{ const k=p.ind||"Otras"; (g[k]=g[k]||[]).push(p); });
+  const media=(v,k)=>{ const a=v.map(p=>p[k]).filter(r=>isNum(r)&&isFinite(r)); return a.length?a.reduce((x,y)=>x+y,0)/a.length:null; };
+  const I=Object.entries(g).map(([k,v])=>{ const o={k}; ZFI_P.forEach(([c])=>o[c]=media(v,c)); return o; }).sort((a,b)=>(isNum(b.y1)?b.y1:-9)-(isNum(a.y1)?a.y1:-9)||a.k.localeCompare(b.k,"es"));
+  if(I.length<2){ S.remove(); return; }
+  const P=v=>isNum(v)?gxPS(v):"—", lv=(v,st)=>{ if(!isNum(v)||Math.abs(v)<5e-4) return "lv0"; const a=Math.abs(v); let L=1; st.forEach((t,i)=>{ if(a>=t) L=i+2; }); return (v>0?"lp":"ln")+Math.min(5,L); };
+  const conA=I.filter(x=>isNum(x.y1)), up=conA.filter(x=>x.y1>0).length, t=conA[0], w=conA[conA.length-1];
+  const closed=lastSession().closed, conH=I.filter(x=>isNum(x.today)), upH=conH.filter(x=>x.today>0).length, N=I.length;
+  const hoy=!conH.length?"":closed?` En la última sesión ${upH===1?"subió":"subieron"} ${upH} de ${conH.length}.`:` Hoy ${upH===1?"sube":"suben"} ${upH} de las ${conH.length} que ya cotizan.`;
+  const l1=t?`En un año ${up===1?"sube":"suben"} ${up} de las ${N} industrias; la que mejor va, ${esc(t.k)} (${P(t.y1)}).`:`Tus ${N} industrias, de hoy a un año.`;
+  const l2=w&&w!==t?`La que peor, ${esc(w.k)} (${P(w.y1)}).${hoy}`:hoy.trim();
+  const cab=`<div class="gxi-f gxi-h"><span></span>${ZFI_P.map(([k,n])=>`<span>${k==="today"&&closed?"Última sesión":n}</span>`).join("")}</div>`;
+  const fila=x=>`<div class="gxi-f"><b>${esc(x.k)}</b>${ZFI_P.map(([k,,st])=>`<span class="gxi-c ${lv(x[k],st)}">${P(x[k])}</span>`).join("")}</div>`;
+  const m=Math.ceil(I.length/2);
+  S.innerHTML=`<h2 class="gxan-t"><span>${l1}</span><span>${l2}</span></h2><div class="gxi-g"><div>${cab}${I.slice(0,m).map(fila).join("")}</div><div>${cab}${I.slice(m).map(fila).join("")}</div></div><p class="gxi-n">Media de las empresas de cada industria, ordenadas por cómo van en un año</p>`; }
+// gxUni rehace el bloque de las exigidas si no lo encuentra justo detrás de la portada: la tarjeta se aparta antes y se vuelve a poner después
+{ const _gu=gxUni; gxUni=function(){ const S=$("gxind"); if(S) S.remove(); _gu.apply(this,arguments); try{ zfInd(); }catch(e){ console.warn("Cartera · industrias:",e); } }; }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
