@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-QkEkgTHkQhJ8DhPEKzpDtWA9OJ3uzR3mcIHuSbkcHKA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-PO4z8E8v31/2r+gK4694wWijZUpn+OUQ1Lmkiill5GA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v603">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v603">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v603">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v604">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v604">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v604">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4059,6 +4059,11 @@ html body .top .zf-nbv{display:none!important}
   /* GL-05 · los importes del calendario, en tinta (antes en el azul pizarra --accent, que no se usa en ningún otro texto) */
   .gx-d .lb{color:var(--ink)}
 }
+
+/* v604 · FI-01 y FI-02: la ficha, con la escala de letra de las pestañas */
+.zfr{font-family:"Inter Display",Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-variation-settings:'opsz' 32;letter-spacing:-.012em}
+.zfr *{letter-spacing:inherit}
+.zk{font-size:17px}   /* títulos de tarjeta a 17 px, como «Tu cartera hoy» o «Fuera de tu cartera» (antes 13) */
 </style>
 
 <div class="wrap">
@@ -4751,7 +4756,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v603";   // la versión publicada, en el pie
+const VER="v604";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7173,7 +7178,8 @@ const zC=(x,y,w,h,tit,meta="",o={})=>`<div class="zq zc${o.w?" zw":""}" style="l
 const zT=(x,y,html,cls,st="")=>`<div class="zq ${cls}" style="left:${zr(x)}px;top:${zr(y)}px;${st}">${html}</div>`;
 const zVac=(x,y,s)=>zT(x+28,y+66,s,"zvac");
 // la frase de cada sección: dos líneas de 24 px, la primera en negro y la segunda en gris (la primera no llega al botón de cerrar)
-const zFr=(l1,l2)=>{ let fs=24; while(fs>18&&(zfMide(l1,fs,600)*.99>1262||zfMide(l2||"",fs,600)*.99>1290)) fs--; return `<div class="zq zfr" style="left:32px;top:32px;width:1296px;font-size:${fs}px;line-height:${Math.round(fs*4/3)}px">${l1}<br><span>${l2||"&nbsp;"}</span></div>`; };
+const zFr=(l1,l2)=>{ const mD=(t,px)=>{ zfCv=zfCv||document.createElement("canvas").getContext("2d"); zfCv.font=`600 ${px}px "Inter Display",Inter,sans-serif`; const x=zfTx(t).replace(/&nbsp;/g," "); return zfCv.measureText(x).width-x.length*px*.012; };   /* se mide con la letra que se pinta (Inter Display, con su espaciado) */
+  let fs=28; while(fs>20&&(mD(l1,fs)>1262||mD(l2||"",fs)>1290)) fs--; return `<div class="zq zfr" style="left:32px;top:32px;width:1296px;font-size:${fs}px;line-height:${Math.round(fs*1.25)}px">${l1}<br><span>${l2||"&nbsp;"}</span></div>`; };   /* v604 · FI-01: 28 px como los titulares de bloque de las pestañas (antes 24); si no cabe, baja de punto en punto */
 const zSvg=g=>`<svg class="zg" width="1360" height="980" viewBox="0 0 1360 980" aria-hidden="true">${g}</svg>`;
 const zL=(x1,y1,x2,y2,c,st="")=>`<line x1="${zr(x1)}" y1="${zr(y1)}" x2="${zr(x2)}" y2="${zr(y2)}" class="${c}"${st?" "+st:""}/>`;
 const zTx=(x,y,s,c,o="")=>`<text x="${zr(x)}" y="${zr(y)}" class="${c}" ${o}>${s}</text>`;
