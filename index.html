@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-wOW4SBzkH7IPwKrIhP6nxNu9XFCNTbY14/6sLpieAWM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-kI8YFVjm48yagiA9GH+r6rxewKkjtK/UWP49bphH8sY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v628">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v628">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v628">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v629">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v629">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v629">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3712,7 +3712,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v628";   // la versión publicada, en el pie
+const VER="v629";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6433,7 +6433,7 @@ function zfR1(){ const T=$("s-today"), E=$("s-evo"), H=$("s-hero"); if(!T||!E||!
   if(!E.querySelector(".r1-k")){ const b=document.createElement("div"); b.className="r1-k"; b.innerHTML=f("Retorno total",["hk-ret"],"hk-ret-s")+f("TIR",["hk-tir"],"hk-tir-s"); (E.querySelector(".chart-head")||E.firstElementChild).after(b); }
   const copia=()=>{ document.querySelectorAll("#v-resumen .r1-k [data-c]").forEach(el=>{ const o=$(el.dataset.c); if(!o) return;
       if(el.dataset.c==="hk-ren-l") el.textContent=((o.querySelector(".lg")||o).textContent||"").trim();   /* v602: con la bolsa cerrada, «Última sesión» (antes salía «Última sesiónSesión») */
-      else if(el.dataset.c==="hk-ren-s"){ const p=o.querySelector("span"); el.innerHTML=p?p.outerHTML:o.innerHTML; }   /* solo el porcentaje del día */
+      else if(el.dataset.c==="hk-ren-s"){ const p=o.querySelector("span"); el.innerHTML=p?p.outerHTML+" sobre el cierre anterior":o.innerHTML; }   /* v629: el porcentaje del día con su frase (con la bolsa cerrada, la última sesión frente a su cierre anterior) */
       else el.innerHTML=o.innerHTML;
       ["pos","neg"].forEach(c=>el.classList.toggle(c,o.classList.contains(c))); });
     if(zfSinDia()){ const n=document.querySelector('#v-resumen .r1-k [data-c="hk-ren"]'), u=document.querySelector('#v-resumen .r1-k [data-c="hk-ren-s"]');   /* v603: sin datos del día, «—» en vez de 0 € y 0,0 % */
