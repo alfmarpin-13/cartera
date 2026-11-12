@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-PO4z8E8v31/2r+gK4694wWijZUpn+OUQ1Lmkiill5GA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-hAmO5mKOghMccXFHnvNWNjCy3SHas1MRtUCHRdQtJO0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v604">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v604">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v604">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v605">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v605">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v605">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4064,6 +4064,34 @@ html body .top .zf-nbv{display:none!important}
 .zfr{font-family:"Inter Display",Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-variation-settings:'opsz' 32;letter-spacing:-.012em}
 .zfr *{letter-spacing:inherit}
 .zk{font-size:17px}   /* títulos de tarjeta a 17 px, como «Tu cartera hoy» o «Fuera de tu cartera» (antes 13) */
+
+/* v605 · G-02: en el PC solo los tamaños de la escala (38 · 28 · 17 · 13 · 12); lo que estaba entre medias va al más cercano por su papel */
+@media (min-width:701px){
+  .top .nav a{font-size:13px}                                   /* 14 → 13: secciones de la barra */
+  .zf-nav button{font-size:13px}                                /* 14 → 13: pestañas de la ficha */
+  th{font-size:12px;line-height:16px}                           /* 11 → 12: cabeceras de las tablas (mismo alto que antes) */
+  .gx-dw,.gx-dw span{font-size:12px;line-height:16px}                      /* 11 → 12: días de la semana del calendario (mismo alto) */
+  .gx3 svg text.t3{font-size:12px!important}                    /* 11 → 12: rótulos bajo las barras de Universo */
+  .zf-idt,.zf-pg,.zf .zpj td.u,.zgr .h,.zlv1,.zm,.zpj th div,.zpq1{font-size:13px}   /* 12,5 → 13: ficha */
+  #sheet svg text[font-size="12.5"]{font-size:13px}             /* 12,5 → 13: rótulos de los gráficos de la ficha */
+  .zmc.on b{font-size:17px}                                     /* 16 → 17 */
+  .ts-v{font-size:17px}                                         /* 20 → 17: cifras de los deslizadores de Análisis */
+  #s-mov .rt tr.grp-row .gm{font-size:17px;line-height:22px}    /* 15 → 17: cabecera del mes en Movimientos (mismo alto) */
+  .gxan-h{font-size:17px}                                       /* 15 → 17: subtítulos de Análisis */
+  .gxan-pg b{font-size:13px}                                    /* 15 → 13: importes de «Quién te paga más» */
+  .gx-t2 b{font-size:17px}                                      /* 15 → 17: cifra de las casillas del mosaico */
+  #zf-unikw,#zf-unikw > .kwr,#zf-unikw > .kwr > .kw{font-size:17px;line-height:22px}    /* 15 → 17: filtro de Universo, como los demás filtros */
+  #v-analisis svg text[font-size="15"]{font-size:13px}          /* 15 → 13: cifras sobre las barras, como las demás */
+  #v-resumen .zr .zr-ot span{font-size:17px}                    /* 15 → 17: casilla «Otras» del mapa */
+  .kw-m,.kw-m button,.kw-m em{font-size:13px}                   /* 15 → 13: menús de las palabras-filtro */
+  .zf-tip{font-size:13px}                                       /* 12,5 → 13: carteles de la ficha */
+  .kx .kx-g,.kx kbd,.kx .kx-m .tag{font-size:12px}              /* 11 → 12: buscador */
+  .kx .kx-in input{font-size:17px}                              /* 16 → 17: lo que se escribe en el buscador */
+  .zcp .zc-res b{font-size:17px}                                /* 20 → 17: resultado de la calculadora */
+  .ts-o{font-size:12px}                                         /* 11 → 12: nota bajo el resultado del simulador */
+  .hoja-al .nt-k{font-size:12px}                                /* 11 → 12: aviso del cuadre */
+  .gxag-nada,.gxag-f{font-size:13px}                            /* 14 → 13: calendario sin resultados */
+}
 </style>
 
 <div class="wrap">
@@ -4756,7 +4784,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v604";   // la versión publicada, en el pie
+const VER="v605";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7342,9 +7370,10 @@ function zfFicha(t,D){
     const tr=[...grupos.entries()].map(([k,ts])=>{ const ab=k==="a", ini=new Date(Math.min(...ts.map(x=>+x.bd))), fn=ab?hoy:new Date(k); let res=ab?P.value-(P.invested||0):sum(ts,x=>isNum(x.pnl)?x.pnl:0);
       res+=sum(cob.filter(d=>d.d>=ini&&d.d<=fn),d=>d.gross); return {ini,fin:fn,ab,res}; }).sort((a,b)=>a.ini-b.ini);
     const abT=tr.find(o=>o.ab), desde=abT?abT.ini:(P.first instanceof Date?P.first:null), ORD=["","primera","segunda","tercera","cuarta","quinta","sexta","séptima","octava","novena","décima"];
-    const l1=`Tienes ${shares(P.shares)} ${P.shares===1?"acción":"acciones"} de ${nom} que hoy valen ${PV(eur(P.value))}; ${P.totalEur>=0?"ganas":"pierdes"} ${PV(eur(Math.abs(P.totalEur)))}, un ${pct(Math.abs(P.totalPct),1)||"0,0 %"}${desde?`, desde ${zfMesL(desde)}${desde.getFullYear()!==hoy.getFullYear()?` de ${desde.getFullYear()}`:""}`:""}.`;
-    const vez=tr.length>1?`Es tu ${ORD[tr.length]||`${tr.length}.ª`} vez; ${tr.length===2?"la anterior está":"las anteriores están"} en tu historia.`:"";
-    const l2=[P.annual>=.5?`Aportan ${PV(eur(P.annual))} al año en dividendos.`:"No reparte dividendos.",vez].filter(Boolean).join(" ");
+    const l1=`Tienes ${shares(P.shares)} ${P.shares===1?"acción":"acciones"} de ${nom} que hoy valen ${PV(eur(P.value))}; ${P.totalEur>=0?"ganas":"pierdes"} ${PV(eur(Math.abs(P.totalEur)))}, un ${pct(Math.abs(P.totalPct),1)||"0,0 %"}.`;   // v605 · G-02: el «desde» pasa a la segunda línea para que el titular quepa a 28 px
+    const cuando=desde?`${zfMesL(desde)}${desde.getFullYear()!==hoy.getFullYear()?` de ${desde.getFullYear()}`:""}`:"";
+    const vez=tr.length>1?`Es tu ${ORD[tr.length]||`${tr.length}.ª`} vez${cuando?`; volviste en ${cuando}`:""}.`:cuando?(P.shares===1?`La compraste en ${cuando}.`:`Compraste las primeras en ${cuando}.`):"";
+    const l2=[vez,P.annual>=.5?`Aportan ${PV(eur(P.annual))} al año en dividendos.`:"No reparte dividendos."].filter(Boolean).join(" ");
     // tus compras en el tiempo: cada compra a su precio, frente al de hoy y a tu precio medio; las estancias pasadas, en gris
     h+=zC(LX0,T1,LW,H1,"Tus compras en el tiempo");
     if(TX.length&&isNum(price)){ const X0=LX0+68, X1=LX0+LW-28, Y0=T1+70+(tr.length>1?44:24), Y1=T1+H1-68, DD=DIA_MS;
@@ -7833,7 +7862,7 @@ function zfMapa(){ const T=$("tmap"); if(!T||!DATA||innerWidth<=MOVIL) return; c
     //   margen lateral de al menos 12 px (14 % del ancho), arriba y abajo de al menos 8 px; el logo, en la caja de siempre (96 × 36) a la escala de la casilla (de 18 a 36 px de alto);
     //   en las casillas bajas y anchas, logo y cifra en fila
     const p=z.p, tip=`${p.name} · ${c||"—"}${z.sin?" (aún no cotiza)":""} · ${((z.a0??z.v)/tot*100).toFixed(1).replace(".",",")} % de la cartera`, txt=c||"—";
-    const fs=(w>=110&&h>=96)?15:(w>=72&&h>=64)?13:12, nh=fs+5, gp=fs>=15?8:4, fila=h<64&&w>=100;
+    const fs=(w>=110&&h>=96)?17:(w>=72&&h>=64)?13:12, nh=fs+5, gp=fs>=15?8:4, fila=h<64&&w>=100;
     const px=Math.max(12,Math.round(w*.14)), py=Math.max(8,Math.round(h*.12)), tw=Math.ceil(txt.length*fs*.6), tgt=Math.max(18,Math.min(36,Math.round(Math.sqrt(w*h)*.22)));
     const mw=Math.max(0,fila?w-2*px-gp-tw:w-2*px), mh=Math.max(0,fila?h-2*py:h-2*py-nh-gp), lh=fila?Math.min(mh,26):Math.min(tgt,mh), lw=Math.min(mw,Math.round(lh*96/36)), logo=lh>=10&&mw>=16?gxSil(p.ticker,lw,lh,mw,mh):"";
     const st2=st.replace(/;gap:4px$/,"")+`;gap:${gp}px${fila?";flex-direction:row":""}`;
