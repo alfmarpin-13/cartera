@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-hAmO5mKOghMccXFHnvNWNjCy3SHas1MRtUCHRdQtJO0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-xmoPahzvTMQqWZQ1//j8WlA/cxSbfreFxrr+VfnrMKs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v605">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v605">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v605">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v606">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v606">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v606">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4784,7 +4784,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v605";   // la versión publicada, en el pie
+const VER="v606";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7481,8 +7481,10 @@ function zfFicha(t,D){
         if(te>tp&&X(te)-X(tp)>=56) g+=zTx(X(te)-8,BY+16.5,pct(te,1),"kb",'text-anchor="end" font-size="12" font-weight="500"');
         if(isNum(tx)){ g+=zL(X(tx),BY-4,X(tx),BY+BH+4,"l3",'stroke-width="1.2" stroke-dasharray="3 3"')+zTx(cx1,BY-12,`Tu TIR exigida ${tipoPct(tx)}`,"k3",'text-anchor="end" font-size="12"'); }
         g+=zTx(cx0,BY-12,"TIR esperada","k3",'font-size="12.5"')+zTx(cx0,BY+BH+20,"por precio","k3",'font-size="12"');
-        if(te>tp) g+=zTx(X(te)-8,BY+BH+20,"con dividendos","k3",'text-anchor="end" font-size="12"');
-        if(isNum(tx)&&Math.abs(te-tx)>=.0005){ const s=`${te<tx?"−":"+"}${ptos(te-tx)}`, ws=zfMide(s,12,500), xe=Math.min(cx1,Math.max(te<tx?X(tx):cx1,cx0+ws)), fin2=te>tp?X(te)-8:cx0+zfMide("por precio",12);
+        // v606 · «con dividendos» acaba bajo el final del tramo verde; si ahí pisaría «por precio» (tramos cortos), va justo detrás, a 12 px
+        const wPor=zfMide("por precio",12), wDiv=zfMide("con dividendos",12); let fin2=cx0+wPor;
+        if(te>tp){ const xd=X(te)-8; if(xd-wDiv>=cx0+wPor+12){ g+=zTx(xd,BY+BH+20,"con dividendos","k3",'text-anchor="end" font-size="12"'); fin2=xd; } else { g+=zTx(cx0+wPor+12,BY+BH+20,"con dividendos","k3",'font-size="12"'); fin2=cx0+wPor+12+wDiv; } }
+        if(isNum(tx)&&Math.abs(te-tx)>=.0005){ const s=`${te<tx?"−":"+"}${ptos(te-tx)}`, ws=zfMide(s,12,500), xe=Math.min(cx1,Math.max(te<tx?X(tx):cx1,cx0+ws));
           g+=zTx(xe,xe-ws>fin2+12?BY+BH+20:BY+BH+40,s,te<tx?"kn":"kp",'text-anchor="end" font-size="12" font-weight="500"'); } } }
     else h+=zVac(RX0,Y2,"Sin precio objetivo");
     S.pj=zFr(l1,l2)+h+zSvg(g); }
