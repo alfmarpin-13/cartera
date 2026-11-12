@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-kfnTsAOWfBxG6XEwUwSYF5o+aY+TujhX6WMjVihMSig=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-UbKVp8F+Q1oabmFd6GJlytokQ02vsPOMyP8Or/4Y4WQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v608">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v608">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v608">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v609">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v609">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v609">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4107,7 +4107,7 @@ html body .top .zf-nbv{display:none!important}
   #v-universo #gxind{margin-bottom:48px}                      /* + los 16 px de abajo = 64 de crema, como en Análisis */
   #v-universo #gxind + .gx3b{margin-top:0!important;padding-top:56px!important}
   #gxind .gxi-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:64px}
-  #gxind .gxi-f{display:grid;grid-template-columns:190px repeat(4,minmax(0,1fr));height:34px;align-items:center}
+  #gxind .gxi-f{display:grid;grid-template-columns:190px repeat(5,minmax(0,1fr));height:34px;align-items:center}
   #gxind .gxi-f > b{font-weight:400;font-size:13px;color:var(--ink);white-space:nowrap}
   #gxind .gxi-h{height:28px;font-size:12px;color:var(--ink3)}
   #gxind .gxi-h > span{text-align:center;white-space:nowrap}
@@ -4808,7 +4808,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v608";   // la versión publicada, en el pie
+const VER="v609";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -8103,7 +8103,7 @@ function zfSinDia(){ if(!DATA) return false; return !DATA.pos.some(p=>!p.isOptio
 // v608 · Universo (PC): «Cómo van las industrias», en tarjeta sobre crema entre las cotizaciones de hoy y las exigidas.
 // Cada industria, con la media de lo que han hecho sus empresas hoy, en 1 mes, en 3 meses y en 1 año; ordenadas por cómo van en un año.
 // Cada casilla, con el mismo verde y rojo (y los mismos escalones) que el mosaico; en dos columnas.
-const ZFI_P=[["today","Hoy",[.005,.01,.02,.03]],["m1","1 mes",[.02,.04,.08,.12]],["m3","3 meses",[.03,.06,.12,.18]],["y1","1 año",[.08,.15,.3,.45]]];
+const ZFI_P=[["today","Hoy",[.005,.01,.02,.03]],["m1","1 mes",[.02,.04,.08,.12]],["m3","3 meses",[.03,.06,.12,.18]],["y1","1 año",[.08,.15,.3,.45]],["y3","3 años",[.15,.3,.6,1]]];   // v609: 3 años, con escalones más amplios (sus cifras van de −50 % a +270 %)
 function zfInd(){ const V=$("v-universo"); if(!V||!DATA||innerWidth<=MOVIL) return; const s=V.querySelector(":scope > .gx3:not(.gx3b)"); if(!s) return;
   let S=$("gxind"); if(!S){ S=document.createElement("section"); S.id="gxind"; S.className="gxan"; } s.after(S);
   const g={}; DATA.pre.forEach(p=>{ const k=p.ind||"Otras"; (g[k]=g[k]||[]).push(p); });
