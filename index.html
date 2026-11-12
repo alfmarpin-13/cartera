@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-54e8Ktej8vgCi5QZIRPzDFNDenXD0Ar/MrvbNYn5PLQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-t7QrFaZNE3M+ST5JhGyb8oaYfmMXV5sZ4IKuxMDARfM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v621">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v621">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v621">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v622">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v622">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v622">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3618,6 +3618,18 @@ html body .top .zf-nbv{display:none!important}
 }
 
 
+
+/* v622 · Sin versión móvil, el iPhone pinta la web a 980 px: que no agrande la letra por su cuenta (Safari lo hace en las webs sin versión
+   móvil y los títulos se salían de sus celdas) y que, en pantallas estrechas, nada se salga ni quede cortado */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media (min-width:701px) and (max-width:1240px){
+  #gxind .gxi-g{grid-template-columns:minmax(0,1fr)}
+  #gxind .gxi-g > div + div .gxi-h{display:none}
+}
+@media (min-width:701px) and (max-width:1100px){
+  #t-p :is(th,td)[data-k="ind"]{padding-right:16px!important}
+  .tablewrap:has(> #t-p){overflow-x:auto}
+}
 </style>
 
 <div class="wrap">
@@ -4310,7 +4322,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v621";   // la versión publicada, en el pie
+const VER="v622";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7634,7 +7646,8 @@ function zfInd(){ const V=$("v-universo"); if(!V||!DATA||innerWidth<=MOVIL) retu
   const cab=`<div class="gxi-f gxi-h"><span></span>${ZFI_P.map(([k,n])=>`<span>${k==="today"&&closed?"Última sesión":n}</span>`).join("")}</div>`;
   const fila=x=>`<div class="gxi-f"><b>${esc(x.k)}</b>${ZFI_P.map(([k,,st])=>`<span class="gxi-c ${lv(x[k],st)}">${P(x[k])}</span>`).join("")}</div>`;
   const m=Math.ceil(I.length/2);
-  S.innerHTML=`<h2 class="gxan-t"><span>${l1}</span><span>${l2}</span></h2><div class="gxi-g"><div>${cab}${I.slice(0,m).map(fila).join("")}</div><div>${cab}${I.slice(m).map(fila).join("")}</div></div>`; }
+  const IA=I.slice().sort((p,q)=>p.k.localeCompare(q.k,"es"));   // v622: las filas, por orden alfabético (el titular sigue con la mejor y la peor del año)
+  S.innerHTML=`<h2 class="gxan-t"><span>${l1}</span><span>${l2}</span></h2><div class="gxi-g"><div>${cab}${IA.slice(0,m).map(fila).join("")}</div><div>${cab}${IA.slice(m).map(fila).join("")}</div></div>`; }
 // gxUni rehace el bloque de las exigidas si no lo encuentra justo detrás de la portada: la tarjeta se aparta antes y se vuelve a poner después
 { const _gu=gxUni; gxUni=function(){ const S=$("gxind"); if(S) S.remove(); _gu.apply(this,arguments); try{ zfInd(); }catch(e){ console.warn("Cartera · industrias:",e); } }; }
 // v611 · al mostrar Resumen (si la web se cargó en otra pestaña, se preparó oculto y sin poder medirse): el mapa y el gráfico de Evolución,
