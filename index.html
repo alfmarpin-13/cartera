@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-t7QrFaZNE3M+ST5JhGyb8oaYfmMXV5sZ4IKuxMDARfM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-wPT4yWsTk5GDla1p4JBjViwJQ9uSEaeub5YvBh1VR2I=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v622">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v622">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v622">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v623">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v623">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v623">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1296,23 +1296,7 @@ html{-webkit-tap-highlight-color:transparent;scrollbar-gutter:stable;background:
   .rt thead th:last-child,.rt tbody td:last-child,.rt tbody td:has(+ td.mline:last-child),#t-pos thead th:last-child,#t-pos tbody td:last-child{padding-right:6px}
 }
 /* 28 · en pantallas táctiles, cada control tiene al menos 44 pt de zona para el dedo; el dibujo no cambia */
-@media (pointer:coarse){
-  .btn.ic,.seg button,.ts-rst,.foot-b,.info,.m-more,.pf-mas,.pl-bar,.pf-row,.sh-b2,.fp-go,.mc-l{position:relative}
-  .btn.ic::before,.seg button::before,.ts-rst::before,.foot-b::before,.info::before,.m-more::before,.pf-mas::before,.pl-bar::before,.pf-row::before,.sh-b2::before,.fp-go::before,.mc-l::before,.fq-d::before{content:"";position:absolute;z-index:var(--z-dentro)}
-  .btn.ic::before{inset:-6px}
-  .seg button::before{inset:-9px 0}
-  .ts-rst::before,.m-more::before,.pf-mas::before{inset:-7px 0}
-  .foot-b::before{inset:-10px 0}
-  .info::before{inset:-14px}
-  .pl-bar::before{inset:-16px 0}
-  .pf-row::before{inset:-4px 0}
-  .sh-b2::before{inset:-7px}
-  .fp-go::before{inset:-13px 0}
-  .mc-l::before{inset:-16px -11px}
-  .fq-d::before{inset:-14px}
-  .inp,.ftg{min-height:44px}
-  .tsc input[type=range]{height:44px;margin-top:-12px;margin-bottom:-12px}
-}
+
 /* modo privado: los importes (en euros, en divisa y las acciones) se emborronan; los porcentajes y los colores se siguen viendo */
 #priv .eye-x{display:none}.priv #priv .eye{display:none}.priv #priv .eye-x{display:block}
 
@@ -1908,26 +1892,15 @@ html.sh-open:not(#_) body #topcap{background:var(--panel)}
 
 /* el móvil, más fino al tacto */
 /* lo que se queda «pasado por encima» tras tocar (en el iPhone el :hover se queda puesto): fuera; al pulsar, un instante de respuesta */
-@media (hover:none){
-  tbody tr.pr:not(.open):not(.inpf):hover,.pf-row:not(.inpf):hover,.pl-del:hover{background:transparent}
-  tbody tr.pr.inpf:hover,#t-p tbody tr.pr.inpf:hover,.pf-row.inpf:hover{background:var(--pf-bg)}
-  .tile:hover{filter:none}
-  .ih:hover{box-shadow:none}
-  tbody tr.pr:active,.pf-row:active{background:var(--row)}
-  tbody tr.pr.inpf:active,.pf-row.inpf:active{background:var(--pf-bg-h)}
-  .tile:active{filter:brightness(.94)}
-}
+
 /* tocar y mantener no selecciona texto ni saca el menú del iPhone en lo que se pulsa; sin zoom por doble toque */
-@media (pointer:coarse){
-  html{overscroll-behavior-y:contain;touch-action:manipulation}
-  button,a,.tile,tr.pr,.pf-row,.nav a,#mtabs a,.seg,.ih{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-}
+
 /* la ficha entra por la derecha y sale por la derecha (como pasar a una pantalla y volver en el iPhone) */
 @keyframes sh-push{from{transform:translateX(100%);box-shadow:-12px 0 32px rgba(0,0,0,.16)}}
 
 
 /* buscador en el móvil: sin los atajos de teclado, con «Cancelar» */
-@media (pointer:coarse){#kx .kx-in kbd,#kx .kx-f{display:none}#kx .kx-cancel{display:block;flex:none;border:0;background:none;font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;font-size:var(--fs-15);color:var(--ink2);padding:0 0 0 12px;cursor:pointer}}
+
 /* Movimientos en el móvil: una nota larga sigue desde el principio de la línea, sin sangría */
    /* solo con nota; sin nota, la línea se parte sin empezar por «·» */
 /* móvil: menos aire entre la hora del iPhone y lo primero de cada pestaña (la primera letra, a 10 px; antes, 17–22) */
@@ -3627,8 +3600,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   #gxind .gxi-g > div + div .gxi-h{display:none}
 }
 @media (min-width:701px) and (max-width:1100px){
-  #t-p :is(th,td)[data-k="ind"]{padding-right:16px!important}
   .tablewrap:has(> #t-p){overflow-x:auto}
+  #t-p td[data-k="name"] .co{min-width:0;overflow:hidden} #t-p td[data-k="name"] .co b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #t-p td[data-k="ind"]{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #t-p :is(th,td)[data-k="ind"]{padding-right:16px!important}
 }
 </style>
 
@@ -4322,7 +4297,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v622";   // la versión publicada, en el pie
+const VER="v623";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5228,9 +5203,9 @@ function anchosPre(){
   const an=e=>e.getBoundingClientRect().width, txt=e=>{ const r=document.createRange(); r.selectNodeContents(e); return r.getBoundingClientRect().width; };
   const n=Math.ceil(Math.max(0,...[...t.querySelectorAll('td[data-k="margin"] .mg-n')].map(an)));
   if(n) st.textContent=`@media (min-width:701px){#t-p td[data-k="margin"] .mg-n{min-width:${n}px}}`;
-  const tw=an(t), cols=vis.map(th=>{ const k=th.dataset.k, x=PCOLS.find(c=>c.k===k), cs=getComputedStyle(th), pad=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight);
+  const tw=innerWidth<=1100?Math.min(an(t),t.parentElement.clientWidth||an(t)):an(t), cols=vis.map(th=>{ const k=th.dataset.k, x=PCOLS.find(c=>c.k===k), cs=getComputedStyle(th), pad=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight);
     if(x.left||x.ctr){ // texto: lo que pide su cifra o nombre más largo (sin partirse)
-      const fin=td=>{ let R=0; const w=document.createTreeWalker(td,NodeFilter.SHOW_TEXT); let x; while((x=w.nextNode())){ if(!x.textContent.trim()) continue; const r=document.createRange(); r.selectNodeContents(x); for(const q of r.getClientRects()) if(q.width>0) R=Math.max(R,q.right); }
+      const fin=td=>{ let R=0; const w=document.createTreeWalker(td,NodeFilter.SHOW_TEXT); let x; while((x=w.nextNode())){ if(!x.textContent.trim()) continue; if(innerWidth<=1100&&x.parentElement&&x.parentElement.closest(".vh")) continue; const r=document.createRange(); r.selectNodeContents(x); for(const q of r.getClientRects()) if(q.width>0) R=Math.max(R,q.right); }
         td.querySelectorAll("img,svg").forEach(e=>{ const q=e.getBoundingClientRect(); if(q.width>0) R=Math.max(R,q.right); }); return R; };
       const need=Math.max(txt(th),...[...t.querySelectorAll(`td[data-k="${k}"]`)].map(td=>{ const R=fin(td); return R?R-td.getBoundingClientRect().left-parseFloat(getComputedStyle(td).paddingLeft):0; }));
       return {k,txt:1,need:Math.ceil(need)+pad}; }
@@ -6110,7 +6085,7 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
   const open=()=>{ if(!kx.hidden) return; prev=document.activeElement; kx.hidden=false; q.value=""; kxRender(); q.focus(); };
   const close=back=>{ if(kx.hidden) return; kx.hidden=true; if(back&&prev&&prev.focus) prev.focus({preventScroll:true}); };
   const exec=i=>{ const fn=run[i]; if(!fn) return; close(false); fn(); };
-  if(matchMedia("(pointer:coarse)").matches){ const c=document.createElement("button"); c.type="button"; c.className="kx-cancel"; c.textContent="Cancelar"; q.placeholder="Buscar"; kx.querySelector(".kx-in").append(c); c.addEventListener("click",e=>{ e.preventDefault(); close(true); }); }   // móvil: sin teclado no hay «esc»
+     // móvil: sin teclado no hay «esc»
   $("kbtn").addEventListener("click",open);
   addEventListener("keydown",e=>{ if((e.metaKey||e.ctrlKey)&&!e.altKey&&e.key.toLowerCase()==="k"){ e.preventDefault(); kx.hidden?open():close(true); } });
   q.addEventListener("input",kxRender);
@@ -6150,19 +6125,7 @@ new MutationObserver(()=>{ const S=$("sheet");
   else { S.style.transform=""; S.classList.remove("sh-drag","sh-anim"); } }).observe($("sheet"),{attributes:true,attributeFilter:["hidden"]});
 // móvil: deslizar la ficha hacia la derecha la cierra, como «atrás» en el iPhone; la ficha sigue al dedo y, si no llega, vuelve a su sitio.
 // Desde el borde izquierdo vale siempre; desde dentro, salvo sobre un gráfico o una tabla que se mueve de lado
-if(matchMedia("(pointer:coarse)").matches){ const S=$("sheet"); let g=null;
-  const lado=el=>{ for(let e=el;e&&e!==S;e=e.parentElement){ if(e.matches("canvas,input,select,textarea")||(e.matches("svg")&&e.getBoundingClientRect().width>=120)) return true;
-    if(e.scrollWidth>e.clientWidth+1&&e.scrollLeft>0&&/auto|scroll/.test(getComputedStyle(e).overflowX)) return true; } return false; };
-  S.addEventListener("touchstart",e=>{ if(!sheet||e.touches.length!==1||S.classList.contains("sh-anim")){ g=null; return; } const t=e.touches[0], x=t.clientX-S.getBoundingClientRect().left;
-    g={x:t.clientX,y:t.clientY,dx:0,ok:x>24&&lado(e.target)?false:null,s:[[t.clientX,e.timeStamp]]}; },{passive:true});
-  S.addEventListener("touchmove",e=>{ if(!g||g.ok===false) return; const t=e.touches[0], dx=t.clientX-g.x, dy=t.clientY-g.y;
-    if(g.ok===null){ if(Math.abs(dx)<8&&Math.abs(dy)<8) return; if(dx>0&&Math.abs(dx)>Math.abs(dy)*1.3){ g.ok=true; S.classList.add("sh-drag"); } else { g.ok=false; return; } }
-    g.dx=Math.max(0,dx); g.s.push([t.clientX,e.timeStamp]); if(g.s.length>4) g.s.shift(); S.style.transform=`translateX(${g.dx}px)`; },{passive:true});   // pasiva: el desplazamiento de la ficha no espera a la web (la ficha solo se desplaza en vertical: touch-action)
-  const fin=e=>{ if(!g) return; const G=g; g=null; if(!G.ok) return; S.classList.remove("sh-drag");
-    const a=G.s[0], b=G.s[G.s.length-1], v=b[1]>a[1]?(b[0]-a[0])/(b[1]-a[1]):0, w=S.offsetWidth, out=e.type==="touchend"&&(G.dx>w*.33||(v>.3&&G.dx>30));
-    S.classList.add("sh-anim"); S.style.transform=out?`translateX(${w}px)`:"";
-    setTimeout(()=>{ S.classList.remove("sh-anim"); if(!out) return; closeUI(true); },230); };
-  S.addEventListener("touchend",fin,{passive:true}); S.addEventListener("touchcancel",fin,{passive:true}); }
+
 $("sheet-x").addEventListener("click",()=>closeUI());
 $("sheet-bg").addEventListener("click",()=>closeUI());   // pulsar fuera de la ficha la cierra
 addEventListener("keydown",e=>{ if(!sheet) return; if(e.key==="Escape") closeUI();
@@ -7946,30 +7909,7 @@ document.addEventListener("click",e=>{ const b=e.target.closest(".info"), pop=$(
 
 $("refresh").addEventListener("click",()=>{ archivoLocal=false; load(true); loadAct(true); });
 // móvil: tirar hacia abajo desde arriba del todo lee la hoja de nuevo, igual que el botón Actualizar (en la app de la pantalla de inicio no hay otro gesto)
-if(matchMedia("(pointer:coarse)").matches){ let C=document.createElement("div"); C.id="topcap"; C.setAttribute("aria-hidden","true"); document.body.prepend(C);
-  const sat=()=>C.classList.toggle("sat",C.offsetHeight>10); sat(); addEventListener("resize",sat);   // zona del reloj: la tapa, por encima
-  let raf=0; const past=()=>{ raf=0; const b=document.querySelector(".view:not([hidden]) > :is(#s-hero,#s-aidx,#s-uni,#s-cal,#mtabs)");
-    // en el móvil la franja va por encima de la tira: la barra cambia cuando la franja ha salido del todo (si no, quedaría una raya de su color bajo la barra)
-    document.body.classList.toggle("past-band",!b||scrollY>=b.offsetTop+b.offsetHeight-(+getComputedStyle(b).zIndex>+getComputedStyle(C).zIndex?0:C.offsetHeight));
-    // el fondo de la página (lo que asoma al tirar hacia abajo) cambia cuando el desplazamiento se para: repintarlo en mitad del gesto daba tirones
-    if(document.body.dataset.view==="resumen"&&scrollY<400) document.body.classList.add("bg-top");   // Resumen: oscuro antes de llegar arriba (rebote con impulso)
-    clearTimeout(tb); tb=setTimeout(()=>{ document.body.classList.toggle("bg-top",!document.body.classList.contains("past-band")||document.body.dataset.view==="resumen"&&scrollY<400); if(scrollY<=0&&enMarcha) otra(); },140); };
-  let tb=0, enMarcha=false; addEventListener("scroll",()=>{ enMarcha=true; },{passive:true,once:true});
-  // el iPhone pinta la barra de la hora con el color de lo que hay arriba, pero no siempre lo vuelve a mirar cuando cambia (al pasar a
-  // modo oscuro, por ejemplo): cada vez que la tapa cambia de color por otra pestaña, la ficha o el tema se pone una
-  // tapa nueva, y el color de la ventana (theme-color) la acompaña
-  let last="", rq=0, f=false;
-  const pinta=()=>{ rq=0; const c=getComputedStyle(C).backgroundColor; if(c===last&&!f) return; last=c; f=false;
-    const nC=C.cloneNode(); C.replaceWith(nC); C=nC;
-    let M=[...document.querySelectorAll('meta[name="theme-color"]')]; if(!M.length){ const m=document.createElement("meta"); m.name="theme-color"; document.head.append(m); M=[m]; }
-    M.forEach(m=>{ m.removeAttribute("media"); m.content=c; }); };
-  const bar=()=>{ if(!rq) rq=requestAnimationFrame(pinta); }, otra=()=>{ f=true; bar(); };   // otra: al volver a la app, tapa nueva aunque no cambie
-  new MutationObserver(bar).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
-  new MutationObserver(bar).observe(document.body,{attributes:true,attributeFilter:["data-view","class"]});   // también al desplazarse (el iPhone no siempre vuelve a mirar el color de arriba y la hora se quedaba oscura al subir)
-  new MutationObserver(bar).observe($("sheet"),{attributes:true,attributeFilter:["hidden"]});
-  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",otra); addEventListener("pageshow",otra); document.addEventListener("tapa",otra);
-  document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") otra(); });
-  addEventListener("scroll",()=>{ if(!raf) raf=requestAnimationFrame(past); },{passive:true}); addEventListener("hashchange",()=>setTimeout(past,50)); document.addEventListener("click",()=>setTimeout(past,50)); past(); }
+
 $("mm-ver").textContent="Versión "+VER.slice(1);
 // en GitHub: la app de la pantalla de inicio se queda con la página que abrió (el iPhone la guarda hasta 10 minutos).
 // Al abrirla y al volver a ella se mira si hay una versión publicada más nueva y, si la hay, se carga (como mucho, una vez cada 2 minutos)
@@ -7985,31 +7925,7 @@ $("more").addEventListener("click",()=>{ const M=$("more-m"), b=$("more"); if(M.
   M.style.setProperty("--mm-x",Math.round(Math.min(Math.max(8,r.right-w),innerWidth-w-8))+"px"); M.style.setProperty("--mm-y",Math.round(r.bottom+8)+"px"); });
 // en el PC, el menú se cierra al desplazarse o al cambiar el tamaño de la ventana (se quedaría lejos de su botón)
 ["scroll","resize"].forEach(ev=>addEventListener(ev,()=>{ const M=$("more-m"); if(M&&!M.hidden&&innerWidth>760) $("more").click(); },{passive:true}));   // móvil: «Ajustes», al pie de la página   // iPhone: la zona del reloj, de color liso y sin difuminar
-if(matchMedia("(pointer:coarse)").matches){ const P=document.createElement("div"); P.className="ptr"; P.setAttribute("role","status"); P.setAttribute("aria-live","polite");
-  P.innerHTML='<span class="ptr-i"><svg viewBox="0 0 16 16" aria-hidden="true"><path class="ptr-fl" d="M8 3v9M4.5 8.5 8 12l3.5-3.5"/><path class="ptr-gi" d="M13 8a5 5 0 1 1-1.5-3.6M13 2.5v2.4h-2.4"/><path class="ptr-ok" d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></span><span class="ptr-t"></span>'; document.body.append(P);
-  const T=P.querySelector(".ptr-t"), GO=56, MAX=96, ARR=.6; let y0=null, d=0, on=false, fase="";
-  const hora=()=>{ const m=($("stat").textContent||"").match(/\b(\d{1,2}:\d{2})\b/); return m?m[1]:""; };
-  const texto=t=>{ if(T.textContent!==t) T.textContent=t; };
-  const modo=m=>{ if(fase===m) return; fase=m; P.dataset.m=m; };
-  const set=v=>{ d=v; P.style.transform=`translate(-50%,${Math.round(Math.min(v*2.5,44)-44)}px)`; P.style.opacity=String(Math.min(1,v/12));
-    const hm=hora(), pre=hm?`Datos de las ${hm} · `:"";
-    if(v>=GO){ modo("go"); texto(pre+(pre?"suelta":"Suelta")+" para actualizar"); } else { modo("tira"); texto(pre+(pre?"tira":"Tira")+" para actualizar"); } };
-  const esconde=()=>{ P.classList.remove("pull","run","fin"); P.style.transform=""; P.style.opacity=""; modo(""); };
-  const arriba=()=>scrollY<=1;
-  const quieto=()=>!$("sheet").hidden||!$("kx").hidden||!canRead()||P.classList.contains("run")||P.classList.contains("fin");   // con la ficha o el buscador abiertos, no; v459: si ya está leyendo, sí (se espera a esa lectura)
-  addEventListener("touchstart",e=>{ y0=arriba()&&e.touches.length===1&&!quieto()?e.touches[0].clientY:null; on=false; },{passive:true});
-  addEventListener("touchmove",e=>{ if(y0===null) return; const dy=e.touches[0].clientY-y0;
-    if(dy<=0||!arriba()){ if(on){ P.classList.remove("pull"); esconde(); } on=false; return; }
-    on=true; P.classList.add("pull"); set(Math.min(dy*ARR,MAX)); },{passive:true});
-  const fin=()=>{ if(y0===null) return; y0=null; if(!on) return; on=false; P.classList.remove("pull");
-    if(d<GO){ esconde(); return; }
-    P.classList.add("run"); P.style.transform=""; P.style.opacity=""; modo("run"); texto("Actualizando…");
-    if(!busy){ archivoLocal=false; load(true); loadAct(true); }   // v459: si ya estaba leyendo, no se lanza otra lectura; se espera a la que va
-    const t0=performance.now(), w=setInterval(()=>{ if(busy||performance.now()-t0<700) return; clearInterval(w);
-      const err=$("dot").classList.contains("err"), hm=hora(); P.classList.remove("run"); P.classList.add("fin"); modo(err?"err":"ok");
-      texto(err?($("stat").textContent||"No se ha podido actualizar"):hm?`Actualizado · ${hm}`:"Actualizado");
-      setTimeout(esconde,1600); },150); };
-  addEventListener("touchend",fin,{passive:true}); addEventListener("touchcancel",()=>{ if(y0===null) return; y0=null; on=false; P.classList.remove("pull"); esconde(); },{passive:true}); }
+
 // móvil: Hoy (cotización y variación de la sesión) o Total (valor y rentabilidad); se recuerda en cada dispositivo
 { let m="hoy"; try{ m=localStorage.getItem("pos-mode")==="tot"?"tot":"hoy"; }catch{}
   const setM=v=>{ m=v; $("t-pos").classList.toggle("pm-tot",v==="tot"); $("pos-mode").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.m===v))); try{ localStorage.setItem("pos-mode",v); }catch{} };
