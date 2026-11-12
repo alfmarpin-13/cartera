@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-rhBn/5DpwivDJTOnDUL/HOx5WdaD8NZWamil+ItDscQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-QkEkgTHkQhJ8DhPEKzpDtWA9OJ3uzR3mcIHuSbkcHKA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v602">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v602">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v602">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v603">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v603">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v603">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4751,7 +4751,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v602";   // la versión publicada, en el pie
+const VER="v603";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -8007,7 +8007,10 @@ function zfR1(){ const T=$("s-today"), E=$("s-evo"), H=$("s-hero"); if(!T||!E||!
       if(el.dataset.c==="hk-ren-l") el.textContent=((o.querySelector(".lg")||o).textContent||"").trim();   /* v602: con la bolsa cerrada, «Última sesión» (antes salía «Última sesiónSesión») */
       else if(el.dataset.c==="hk-ren-s"){ const p=o.querySelector("span"); el.innerHTML=p?p.outerHTML:o.innerHTML; }   /* solo el porcentaje del día */
       else el.innerHTML=o.innerHTML;
-      ["pos","neg"].forEach(c=>el.classList.toggle(c,o.classList.contains(c))); }); zfR1Frase(); };
+      ["pos","neg"].forEach(c=>el.classList.toggle(c,o.classList.contains(c))); });
+    if(zfSinDia()){ const n=document.querySelector('#v-resumen .r1-k [data-c="hk-ren"]'), u=document.querySelector('#v-resumen .r1-k [data-c="hk-ren-s"]');   /* v603: sin datos del día, «—» en vez de 0 € y 0,0 % */
+      if(n){ n.textContent="—"; n.classList.remove("pos","neg"); } if(u) u.textContent=""; }
+    zfR1Frase(); };
   copia(); if(!zfR1.mo){ zfR1.mo=new MutationObserver(copia); zfR1.mo.observe(H,{subtree:true,childList:true,characterData:true,attributes:true}); } }
 
 // v602 · G-01: Resumen abre con su frase, como las otras cuatro pestañas (titular de 38 px y, en gris, la segunda frase).
@@ -8021,10 +8024,14 @@ function zfR1Frase(){ const S=document.querySelector("#v-resumen > section.gx3")
   const vb=cerr?["subieron","bajaron"]:["suben","bajan"];
   const mov=dn>up?`${vb[1]} ${dn}`:up>dn?`${vb[0]} ${up}`:`${vb[0]} ${up} y ${vb[1]} ${dn}`;
   const car=cero?(cerr?"la cartera se quedó igual":"la cartera se queda igual"):neg?(cerr?`la cartera cedió un ${sinS}`:`la cartera cede un ${sinS}`):(cerr?`la cartera ganó un ${sinS}`:`la cartera gana un ${sinS}`);
-  const l1=!cot.length?`Hoy aún no cotiza ninguna de tus ${N} empresas.`:`${cerr?"En la última sesión":"Hoy"} ${mov} ${de} y ${car}.`;
+  const wd=new Date().getDay();   /* v603: sin ningún cambio del día (antes de las 9, la hoja trae «-»), no se inventa: se dice que no ha abierto */
+  const l1=zfSinDia()?(wd===0||wd===6?"Las bolsas no abren hasta el lunes.":cerr?"Las bolsas aún no han abierto.":`Aún no cotiza ninguna de tus ${N} empresas.`):`${cerr?"En la última sesión":"Hoy"} ${mov} ${de} y ${car}.`;
   const rt=($("hk-ret").textContent||"").trim(), rneg=/^[−-]/.test(rt), rabs=rt.replace(/^[+−-]\s*/,""), rp=(($("hk-ret-s").querySelector("span")||{}).textContent||"").trim().replace(/^[+−-]\s*/,"");
   const l2=!rt?"":rneg?`Desde el inicio pierdes <span class="pv">${esc(rabs)}</span>, un ${esc(rp)} menos de lo aportado.`:`Desde el inicio ganas <span class="pv">${esc(rabs)}</span>, un ${esc(rp)} sobre lo aportado.`;
   const html=`<span class="l1">${esc(l1)}</span>${l2?`<span class="l2">${l2}</span>`:""}`; if(h.innerHTML!==html) h.innerHTML=html; }
+
+// v603 · ¿hay algún cambio del día? Si ninguna empresa trae una variación distinta de cero, no hay datos (antes de las 9 la hoja pone «-» en «Hoy»)
+function zfSinDia(){ if(!DATA) return false; return !DATA.pos.some(p=>!p.isOption&&p.shares>0&&p.value>0&&isNum(p.today)&&p.today!==0); }
 
 function navega(token,push){
   if(typeof token==="string"&&token.startsWith("actualidad/")){ const q=token.slice(11).split("/"); actAbierta=q[0]||null; actPestana=q[1]==="noticias"?"nws":q[0]?"res":actPestana; token="calendario"; } else if(token==="calendario"&&push&&view==="calendario") actAbierta=null;
