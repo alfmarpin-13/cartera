@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-mHqmogYs/0Si4W4i45IoJiTLkhksKeJVKStawWFE0MI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-1WXdP5aJq34th50sbuaYp/+vmzocz/KBxAns1kL5m+Y=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v626">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v626">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v626">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v627">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v627">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v627">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -398,15 +398,9 @@ details.chk[open]>summary{margin-bottom:12px}
 .tmap .tile .tp,.tmap .tile.lg .tp,.tmap .tile.md .tp,.tmap .tile.sm .tp,.tmap .tile.xs .tp{display:block;margin-top:auto;font-size:var(--fs-12);font-weight:400;letter-spacing:0;line-height:1.2;line-height:round(nearest,calc(1.2*1em - .01px),1px);--lhx:1.2;--lhp:initial}
 
 /* ===== Ficha de empresa (compacta) ===== */
-.fq-tl{position:relative;height:var(--h,34px);}
-.fq-ax{position:absolute;left:0;right:0;top:calc(var(--h,34px) - 22px);height:1px;background:var(--g4);opacity:.5}
-.fq-d{position:absolute;top:12px;transform:translate(-50%,-50%);border-radius:50%;}
-.fq-d.sold{background:var(--panel);box-shadow:inset 0 0 0 1.5px var(--g4)}
-.fq-l{position:absolute;top:calc(var(--h,34px) - 12px);font-size:var(--fs-11);color:var(--ink3)}.fq-l.l{left:0}.fq-l.r{right:0}
 /* ===== Paso 2: año a año y concentración ===== */
 .evo-leg{justify-content:center;margin-top:12px}
    /* MOB-01 */
-.yl{flex:1 1 auto;display:flex;flex-direction:column}
 .yb{position:relative;display:block;height:5px}
 .yb::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line)}
 .yb>span{position:absolute;top:0;bottom:0;border-radius:var(--r-2)}
@@ -422,8 +416,8 @@ details.chk[open]>summary{margin-bottom:12px}
 :root[data-theme="dark"] .rlv.rn5{background:var(--rlv-rn5-fondo-noche);color:var(--blanco)}:root[data-theme="dark"] .rlv.rn4{background:var(--rlv-rn4-fondo-noche);color:var(--rlv-rn4-texto-noche)}:root[data-theme="dark"] .rlv.rn3{background:var(--rlv-rn3-fondo-noche);color:var(--rlv-rn3-texto-noche)}
 
 /* ficha en oscuro: su propia superficie, un punto más clara que la página, con tarjetas más claras aún y borde suave */
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet{--canvas:#191918;--panel:#242422;--card:#2C2C29;box-shadow:-28px 0 56px -16px var(--sombra-70-noche)}:root:not([data-theme="light"]) .fp-c,:root:not([data-theme="light"]) .fp-calc{border-color:var(--fp-c-borde-noche)}}
-:root[data-theme="dark"] .sheet{--canvas:#191918;--panel:#242422;--card:#2C2C29;box-shadow:-28px 0 56px -16px var(--sombra-70-noche)}:root[data-theme="dark"] .fp-c,:root[data-theme="dark"] .fp-calc{border-color:var(--fp-c-borde-noche)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet{--canvas:#191918;--panel:#242422;--card:#2C2C29;box-shadow:-28px 0 56px -16px var(--sombra-70-noche)}}
+:root[data-theme="dark"] .sheet{--canvas:#191918;--panel:#242422;--card:#2C2C29;box-shadow:-28px 0 56px -16px var(--sombra-70-noche)}
 /* logos negros: en modo oscuro se pintan en gris claro, sin fondo */
 /* logos con versión para el oscuro: se cambia una imagen por la otra */
 .lgb .kd{display:none}
@@ -835,8 +829,6 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 .mvt-s{margin-top:2px}
 /* misma altura exacta: la de la franja de Universo en cada ancho */
 /* fichas enlazadas */
-.fh-go{padding:0;border:0;background:none;font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;font-size:var(--fs-13);font-weight:500;color:var(--ink);cursor:pointer}
-.fh-go:hover{text-decoration:underline;text-underline-offset:3px}
 /* ficha de la posición: el porcentaje bajo «Resultado», centrado en su pastilla (como en la ficha de Universo) */
 .ficha:not(.fpu) .rlv,.ficha:not(.fpu) .tpill{text-align:center}
 /* ===== Menú principal ===== */
@@ -851,135 +843,23 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 }
 
 /* ===== Ficha de la posición (Resumen) ===== */
-.ficha.fpx{padding:16px 20px 20px;display:flex;flex-direction:column;gap:16px}
-.fp-h{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:12px 0;padding:0 16px}
-.fp-id .lgb.xl img{object-position:center;transform-origin:center}
-.fp-id{display:flex;align-items:center;gap:12px;min-width:0;padding-right:24px}
-.fp-id .lgb.xl{width:56px;height:32px}
-.fp-t{min-width:0}
-.fp-t h3{margin:0 0 2px;font-size:var(--fs-17);line-height:1.25;line-height:round(nearest,calc(1.25*1em - .01px),1px);--lhx:1.25;--lhp:initial;font-weight:500;letter-spacing:-.01em}
-.fp-t .sub{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:var(--fs-13)}
-.fp-t .sub .flag{width:16px;height:16px;margin:0}
-.fp-t .fh-go{margin-top:4px}
-.fp-t h3 .tag{margin-left:8px;vertical-align:2px}
-.fp-m{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);grid-template-rows:auto auto auto;align-items:start}
-.fp-b{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:4px;justify-items:center;padding:0 12px;border-left:1px solid var(--line);min-width:0}
-.fp-k{font-size:var(--fs-12);color:var(--ink2);white-space:nowrap}
-.fp-b b{font-weight:300;line-height:1.1;line-height:round(nearest,calc(1.1*1em - .01px),1px);--lhx:1.1;--lhp:initial;letter-spacing:-.01em;white-space:nowrap;color:var(--ink)}
-.fp-b b.pos{color:var(--pos)}.fp-b b.neg{color:var(--neg)}
-.fp-b.main b{font-size:var(--fs-24)}
-.fp-b small{font-size:var(--fs-12);color:var(--ink3);white-space:nowrap}
-.fp-b small:empty{visibility:hidden}
-.fp-cards{align-items:stretch}
-.fp-c{display:flex;flex-direction:column;min-width:0}
-.fp-v{flex:1 0 auto;display:flex;flex-direction:column;justify-content:center}
-.fp-ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 8px;margin-bottom:12px}
-
-.fp-ch h4{white-space:nowrap;margin:0;}
-.fp-ch>span{font-size:var(--fs-12);color:var(--ink2);text-align:right}
 /* tu posición: de dónde sale el resultado */
-.fp-dec{display:grid;align-items:center;gap:8px 12px;font-size:var(--fs-12)}
-.fp-dec>.t{font-size:var(--fs-12);font-weight:600;color:var(--ink)}
-.fp-dec .tr i.t.neg{background:var(--neg)}.fp-dec .tr i.t.pos{background:var(--pos)}
-.fp-dec .v.t.pos{color:var(--pos)}.fp-dec .v.t.neg{color:var(--neg)}
 /* datos de cada tarjeta: un bloque sombreado, sin líneas */
-.fp-f{display:grid;column-gap:8px;}
-.fp-f>div{display:grid;min-width:0}
-.fp-f span{font-size:var(--fs-12);color:var(--ink2);line-height:1.25;line-height:round(nearest,calc(1.25*1em - .01px),1px);--lhx:1.25;--lhp:initial}
-.fp-f b{font-size:var(--fs-12);font-weight:500;color:var(--ink);white-space:nowrap}
-.fp-f small{font-size:var(--fs-11);color:var(--ink3);line-height:1.2;line-height:round(nearest,calc(1.2*1em - .01px),1px);--lhx:1.2;--lhp:initial}
-.fp-dec .l{color:var(--ink2)}
-.fp-dec .tr{position:relative;height:8px}
-.fp-dec .tr::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--g4);opacity:.5}
-.fp-dec .tr i{position:absolute;top:0;height:8px;min-width:4px;border-radius:var(--r-2)}
-.fp-dec .v.dv,#anat-l .v.acc{color:var(--accent)}.fp-dec .tr i.neg{background:var(--neg-mid)}.fp-dec .tr i.pos{background:var(--pos-mid)}.fp-dec .tr i.dv{background:var(--accent)}
-.fp-dec .v{min-width:52px}
+#anat-l .v.acc{color:var(--accent)}
 /* compras */
-.fp-c .fq-tl{margin:6px 8px 4px}
-.fp-c .fq-d{background:var(--ink2);box-shadow:0 0 0 1.5px var(--panel)}
-.fp-c .fq-d.sold{background:var(--panel);box-shadow:inset 0 0 0 1.5px var(--g4),0 0 0 1.5px var(--panel)}
 /* dividendos por año */
-.fp-yb{display:flex;justify-content:center;align-items:flex-end;gap:8px;margin:0 0 4px}
-.fp-yb .y{flex:0 1 72px;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
-.fp-yb .bar{display:flex;flex-direction:column;gap:0;width:100%;max-width:30px;border-radius:var(--r-2) var(--r-2) 0 0;overflow:hidden}
-.fp-yb .bar i{display:block;width:100%}
-.fp-yb .bar i.c{background:var(--accent)}.fp-yb .bar i.a{background:var(--acc-pd)}
-.fp-yb .v{font-size:var(--fs-11);color:var(--ink2);white-space:nowrap}
-.fp-yb .yl{font-size:var(--fs-11);color:var(--ink3)}
-.fp-none{margin:0;text-align:center;font-size:var(--fs-13);color:var(--ink3)}
-.fp-lg{display:flex;justify-content:center;gap:12px;font-size:var(--fs-11);color:var(--ink3);margin:0}
-.fp-lg i{display:inline-block;width:14px;height:9px;border-radius:var(--r-2);margin-right:6px;vertical-align:-1px}
-.fp-lg i.c{background:var(--accent)}.fp-lg i.a{background:var(--acc-pd)}
-@container ficha (max-width:1004.98px){.fp-h{grid-template-columns:minmax(0,1fr)}.fp-id{padding-right:0}.fp-cards{grid-template-columns:minmax(0,1fr)}.fpp .fp-c{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,34%);grid-template-rows:auto 1fr;column-gap:24px}.fpp .fp-ch{grid-column:1/-1}.fpp .fp-v{grid-column:1;grid-row:2}.fpp .fp-c:not(:has(.fp-f)) .fp-v{grid-column:1/-1}.fpp .fp-f{grid-column:2;grid-row:2;align-self:stretch;align-content:start;margin:0;padding:0 0 0 20px;border-top:0;border-left:1px solid var(--line);grid-template-columns:minmax(0,1fr);grid-template-rows:none;}.fpp .fp-f>div{grid-row:auto;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:8px;row-gap:0;align-items:baseline;justify-items:stretch;text-align:left}.fpp .fp-f span{grid-column:1;grid-row:1}.fpp .fp-f b{grid-column:2;grid-row:1;justify-self:end;align-self:baseline}.fpp .fp-f small{grid-column:2;grid-row:2;text-align:right}.fpp .fp-f small:empty{display:none}}
 /* ===== Ficha de empresa (Universo): el mismo sistema que la de posición ===== */
-.fp-in{margin-top:2px;font-size:var(--fs-13);color:var(--ink3)}
-.fpu .fp-cards.u3{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr)}
-.fpu .fp-c{justify-content:flex-start}
 /* listas de datos: etiqueta a la izquierda, cifra a la derecha, sin líneas */
-.fp-kl{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-auto-rows:minmax(22px,auto);align-items:center;gap:8px 12px;font-size:var(--fs-13)}
-.fp-kl>span{color:var(--ink2)}
-.fp-kl>b{justify-self:end;font-size:var(--fs-13);font-weight:500;color:var(--ink);white-space:nowrap}
 /* proyección */
-.fp-pj{display:grid;grid-template-columns:minmax(120px,1.7fr) repeat(var(--n),minmax(max-content,1fr));align-items:stretch;font-size:var(--fs-13);font-variant-numeric:tabular-nums}
-.fp-pj>span{padding:6px 0 6px 12px;text-align:right;white-space:nowrap;color:var(--ink)}
-.fp-pj>.l{text-align:left;padding-left:8px;color:var(--ink2);white-space:normal}
-.fp-pj>.h{padding-top:0;font-size:var(--fs-11);color:var(--ink3)}
-.fp-pj>.e{padding-right:8px}
-.fp-pj>.cg{padding-left:20px}
-.fp-pj>.cg:not(.h){font-weight:500}
-.fp-pj .pjs{display:none}
-.fp-pj>.z{background:color-mix(in srgb,var(--ink) 3.5%,transparent)}
-.fp-pj>.z.l{border-radius:var(--r-4) 0 0 var(--r-4)}.fp-pj>.z.e{border-radius:0 var(--r-4) var(--r-4) 0}
-.fp-f b.pos{color:var(--pos)}.fp-f b.neg{color:var(--neg)}
 /* tus textos */
-.fp-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch}
-.fp-pair.one{grid-template-columns:minmax(0,1fr)}
-.fp-p p{margin:0 0 8px;font-size:var(--fs-13);line-height:1.6;line-height:round(nearest,calc(1.6*1em - .01px),1px);--lhx:1.6;--lhp:initial;color:var(--ink)}
-.fp-p p:last-child{margin-bottom:0}
-.fp-p b{font-weight:600;color:var(--ink)}
-.fp-ul{margin:0;padding:0;list-style:none}
-.fp-ul li{position:relative;font-size:var(--fs-13);line-height:1.6;line-height:round(nearest,calc(1.6*1em - .01px),1px);--lhx:1.6;--lhp:initial;color:var(--ink)}
-.fp-ul li::before{position:absolute;color:var(--pos);font-size:var(--fs-12);font-weight:600;text-align:center}
-.fp-ul.con li::before{color:var(--neg)}
-.fp-ul li b{color:var(--ink)}
-.fp-c.pro{box-shadow:inset 0 3px 0 var(--pos)}.fp-c.con{box-shadow:inset 0 3px 0 var(--neg)}
-@container ficha (max-width:1004.98px){.fpu .fp-cards.u3{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:dense}.fpu .fp-cards.u3>.mx{grid-column:1/-1}.fpu .fp-cards.u1,.fpu .fp-cards.u2{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@container ficha (max-width:1104px){.fp-pj .pjl{display:none}.fp-pj .pjs{display:inline}}
 /* tablets: la proyección entera cabe en la ficha (cifras de 7 dígitos incluidas) */
-@container ficha (min-width:621px) and (max-width:904px){.fp-pj{grid-template-columns:minmax(92px,1.5fr) repeat(var(--n),minmax(max-content,1fr));font-size:var(--fs-12)}.fp-pj>span{padding-left:6px}.fp-pj>.l{padding-left:8px}.fp-pj>.cg{padding-left:12px}}
 /* ficha de Universo: «Tu valoración» y su tabla de valor razonable */
-.fp-vm .fp-b:first-child{border-left:0}
-.fp-vm .fp-b b{font-size:var(--fs-20)}
 /* mapa de calor del valor razonable */
-.fpu{--hm-0:color-mix(in srgb,var(--ink) 5%,var(--panel))}
-.fp-hm{display:grid;grid-template-columns:auto repeat(var(--n),minmax(0,1fr));gap:2px;align-items:stretch;font-variant-numeric:tabular-nums}
-.fp-hm>.h,.fp-hm>.m,.fp-hm>.k,.fp-hm>.cap{display:flex;align-items:center;justify-content:center;padding:6px 12px;background:color-mix(in srgb,var(--ink) 8%,var(--panel));font-size:var(--fs-12);font-weight:500;color:var(--ink2);white-space:nowrap}
-.fp-hm>.k{grid-column:1;grid-row:1/span 2}
-.fp-hm>.cap{grid-column:2/-1;grid-row:1;padding:6px 12px}
-.fp-hm>.k,.fp-hm>.cap{font-size:var(--fs-12);font-weight:400;color:var(--ink3)}
-.fp-hm>.sel{color:var(--ink);font-weight:600}
-.fp-hm>.c{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:46px;padding:6px 4px;background:var(--hm-0)}
-.fp-hm>.c b{font-size:var(--fs-13);font-weight:500;color:var(--ink);white-space:nowrap}
-.fp-hm>.c small{font-size:var(--fs-11);color:var(--ink2);white-space:nowrap}
-.fp-hm>.c.on{box-shadow:inset 0 0 0 2px var(--ink)}
-.fp-hm>.tl{border-top-left-radius:var(--r-8)}.fp-hm>.tr{border-top-right-radius:var(--r-8)}.fp-hm>.bl{border-bottom-left-radius:var(--r-8)}.fp-hm>.br{border-bottom-right-radius:var(--r-8)}
-.fp-c.mx .fp-hm{width:100%;max-width:600px;margin:0 auto}
-.fp-hm .cu{font-style:normal}
-@container ficha (min-width:1005px){.fpu .fp-cards.u3{grid-template-columns:minmax(0,1fr) minmax(0,1.45fr) minmax(0,1fr)}}
 /* tablets estrechas (701-760): sin la divisa en las celdas y la proyección sin los años intermedios, como en móvil, para que todo quepa */
-@container ficha (min-width:621px) and (max-width:679px){.fp-hm .cu{display:none}.fp-pj{grid-template-columns:minmax(92px,1fr) repeat(var(--nm),max-content)}.fp-pj>.mid{display:none}}
 /* cabecera de Universo: la empresa y, a su derecha, rendimiento y técnico en casillas */
-.fp-vc .fp-vm{padding:4px 0 2px}
 /* misma altura en todas las empresas: el recuadro de la TIR no alarga su fila y, si falta un subtítulo, queda su hueco (Margen nunca lleva) */
-.fp-vm .fp-b .rlv{margin:-2px 0}
-.fp-vc .fp-vm .fp-b:not(.ns) small:empty{display:block}.fp-vc .fp-vm .fp-b:not(.ns) small:empty::before{content:"\00a0"}
 /* «Tu valoración» con cinco cifras: los dos precios (cotización y valor razonable) llevan más ancho */
-@container ficha (min-width:621px){.fp-vc .fp-vm{grid-template-columns:repeat(2,minmax(0,1.3fr)) minmax(0,1.05fr) repeat(2,minmax(0,1fr))}.fp-vc .fp-vm .fp-b{padding:0 8px}.fp-vc .fp-vm .fp-b b{font-size:var(--fs-20)}}
-@container ficha (min-width:621px) and (max-width:679px){.fp-vc .fp-vm .fp-b{padding:0 6px}.fp-vc .fp-vm .fp-b small{font-size:var(--fs-11)}}
-.fp-ch h4 .vd{margin-left:8px;font-size:var(--fs-12);font-weight:400;color:var(--ink3)}
-.fp-ch h4 .vrv{margin-left:8px;vertical-align:1px}
 /* la pastilla del resultado se ajusta a su texto (en la tabla de Posiciones tiene ancho fijo) */
-.fpx .rlv{width:auto;}
 /* bloque oscuro de Universo: tres cifras iguales en todos los anchos */
 .bg.ug .c0{grid-column:1;padding-left:0;padding-right:12px}.bg.ug .c1{grid-column:2;}.bg.ug .c2{padding-right:12px}
 .bg.ug .r1{padding-top:0;}.bg.ug .r3{grid-row:3;}
@@ -1030,54 +910,17 @@ tr.grp-row td{border-bottom:1px solid var(--line);cursor:default;background:none
 .pl-kk .mk-v{line-height:var(--lh-28);--lhp:var(--lh-28)}   /* si la cifra se encoge para caber, la fila no cambia de alto */
 
 /* el cálculo de la valoración, plegado */
-.fp-calc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px}
-.fp-calc>summary::-webkit-details-marker{display:none}
-.fp-calc>summary h4{margin:0;font-size:var(--fs-13);font-weight:600}
-.fp-calc .pl-tg .c,.fp-calc[open] .pl-tg .o{display:none}.fp-calc[open] .pl-tg .c{display:inline}
-.fp-calc[open] .pl-tg svg{transform:rotate(180deg)}
-.fp-calc>summary:hover .pl-tg{color:var(--ink)}
-.fp-calc[open]{background:none;border-color:transparent}
-.fp-calc[open]>summary{padding:16px 16px 12px}
-.fp-cb{display:flex;flex-direction:column;gap:16px}
 /* ===== Ficha en panel lateral: no empuja la tabla; en móvil ocupa la pantalla ===== */
 .sheet{position:fixed;top:var(--tbh,0px);right:0;bottom:0;z-index:var(--z-ficha);width:min(760px,calc(100vw - 64px));border-left:1px solid var(--line);box-shadow:-24px 0 48px -24px var(--sombra-22);overflow-y:auto;overscroll-behavior:contain;font-size:var(--fs-13);text-align:left;outline:0;animation:sh-in .18s ease-out}
-.sh-b{container:ficha / inline-size}
+
 /* barra de arriba: ‹ › para pasar de empresa, su nombre al bajar y cerrar */
-.sh-top{position:sticky;top:0;z-index:var(--z-flota);display:flex;align-items:center;gap:6px;height:52px;border-bottom:1px solid transparent;transition:border-color .15s}
-.sheet.scrolled .sh-top{border-bottom-color:var(--line)}
-.sh-b2{width:32px;height:32px;flex:none;border:1px solid var(--line);color:var(--ink2);display:grid;place-items:center;cursor:pointer;padding:0}
-.sh-b2:hover:not(:disabled){color:var(--ink)}
-.sh-b2:disabled{opacity:.35;cursor:default}
-.sh-b2 svg{width:14px;height:14px}
-.sh-top .sh-x{margin-left:auto}
-.sh-tt{display:flex;align-items:center;gap:8px;min-width:0;margin-left:8px;font-size:var(--fs-13);opacity:0;transition:opacity .15s;pointer-events:none}
-.sheet.scrolled .sh-tt{opacity:1}
-.sh-tt b{font-weight:500;white-space:nowrap}
-.sh-tt .lgb{width:30px;height:18px}
-.sheet .ficha.fpx{padding-top:2px}
 /* pestañas de la ficha */
 /* pestañas como la barra principal: texto y una raya debajo de la activa, sobre una línea a todo el ancho */
-.sh-tabw{position:sticky;top:52px;z-index:var(--z-cabecera);margin:-4px -20px 0;padding:0 40px;border-bottom:1px solid var(--line)}
-.sh-tabs{display:flex;gap:32px}
-.sh-tabs button{position:relative;padding:12px 0 12px;border:0;background:none;font:inherit;line-height:var(--lhp,round(nearest,calc(var(--lhx,1.5)*1em - .01px),1px));--lhx:inherit;--lhp:inherit;font-size:var(--fs-13);font-weight:500;color:var(--ink2);cursor:pointer}
-.sh-tabs button:hover{color:var(--ink)}
-.sh-tabs button[aria-selected="true"]{color:var(--ink)}
-.sh-tabs button[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:var(--r-2);background:var(--ink)}
 /* tarjeta de cifras de la posición (y de la opción) */
-.sh-pane{display:flex;flex-direction:column;}
 /* opción: sus seis cifras en dos filas de tres */
 /* opción: cinco cifras, tres arriba y dos centradas abajo */
 
-/* pestaña Movimientos: compras y ventas, y dividendos, de esta empresa */
-.fp-mvs{gap:16px}   /* sin margen: el primer bloque de cada pestaña empieza a la misma altura */
-.fp-ml{display:grid;font-size:var(--fs-13)}
-.fp-ml.tx.ns{grid-template-columns:72px repeat(3,minmax(0,1fr))}
-.fp-ml.dv{grid-template-columns:72px minmax(0,1fr) 92px}.fp-ml .tag{vertical-align:top}
-.fp-ml>span{padding:8px 0 8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
-.fp-ml>.c0{padding-left:0}
-.fp-ml>.h{padding-top:0;font-size:var(--fs-11);color:var(--ink3)}
-.fp-ml>.r{text-align:right}
-.fp-mv .fp-go{display:block;margin:12px 0 0 auto}
+/* pestaña Movimientos: compras y ventas, y dividendos, de esta empresa */   /* sin margen: el primer bloque de cada pestaña empieza a la misma altura */
 /* cuatro pestañas en el móvil más estrecho: un poco más juntas y de letra algo menor, sin salirse */
 @keyframes sh-in{from{transform:translateX(32px);opacity:0}}
 @keyframes sh-up{from{transform:translateY(32px);opacity:0}}
@@ -1089,17 +932,12 @@ html{-webkit-tap-highlight-color:transparent;scrollbar-gutter:stable;background:
 .sheet{scrollbar-gutter:stable}
 /* Valoración empieza, como Posición y Movimientos, con una tarjeta: rendimiento y técnico como fila de cifras, sin casillas dentro */
 /* fichas de Posición: todas las tarjetas del mismo alto en todas las empresas, tengan o no dividendos o fila «Divisa» */
-@container ficha (max-width:1004.98px){.fpp .fp-cards{grid-auto-rows:minmax(168px,1fr)}}
 /* etiquetas propias al pasar el ratón o tocar (al momento, sin esperar al aviso del navegador); en los bordes se alinean hacia dentro */
 [data-tip]{outline:0}
 [data-tip]:hover,[data-tip]:focus{z-index:var(--z-flota)}
 [data-tip]::after{content:attr(data-tip);display:none;position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);padding:4px 8px;border-radius:var(--r-4);background:var(--ink);color:var(--canvas);font-size:var(--fs-12);font-weight:400;line-height:1.35;line-height:round(nearest,calc(1.35*1em - .01px),1px);--lhx:1.35;--lhp:initial;white-space:pre;text-align:left;pointer-events:none}
-[data-tip].tip-l::after{left:-3px;transform:none}
-[data-tip].tip-r::after{left:auto;right:-3px;transform:none}
 [data-tip]:hover::after,[data-tip]:focus::after{display:block}
 /* compras: la bola señalada, en oscuro */
-.fp-c .fq-d:hover,.fp-c .fq-d:focus{background:var(--ink)}
-.fp-c .fq-d.sold:hover,.fp-c .fq-d.sold:focus{background:var(--panel);box-shadow:inset 0 0 0 1.5px var(--ink),0 0 0 1.5px var(--panel)}
 /* calendario de cobros: la etiqueta sale del logo */
 .mc-l[data-tip]{position:relative;cursor:default}
 /* luna y Actualizar: solo el icono, sin fondo (aparece un fondo suave al pasar el ratón); el dibujo queda alineado con el borde de los bloques */
@@ -1112,8 +950,6 @@ html{-webkit-tap-highlight-color:transparent;scrollbar-gutter:stable;background:
 /* botones sin fondo: el blanco queda para donde escribes o eliges; al pasar el ratón, un fondo suave */
 .btn:not(.primary):not(.filelbl){background:none;border-color:transparent;color:var(--ink2);border-radius:var(--r-8)}
 .btn:not(.primary):not(.filelbl):hover:not(:disabled){background:color-mix(in srgb,var(--ink) 6%,transparent);color:var(--ink)}
-.sheet .sh-b2{background:none;border-color:transparent;border-radius:var(--r-8)}
-.sheet .sh-b2:hover:not(:disabled){background:color-mix(in srgb,var(--ink) 6%,transparent)}
 /* «Ver más» con su flecha (hacia arriba en «Ver menos») y «Añadir empresa» con su + */
 .pf-mas{display:inline-flex;align-items:center;gap:6px}
 #m-more{display:flex;width:max-content;align-items:center;gap:6px}
@@ -1151,58 +987,15 @@ html{-webkit-tap-highlight-color:transparent;scrollbar-gutter:stable;background:
   .tsc.ts-out{grid-column:1/-1;padding:20px 0 0;border-top:1px solid var(--line)}.tsc.ts-out::before{display:none}}
 
 /* A favor / En contra: una tarjeta, dos columnas; un punto de color en cada punto y sin rayas */
-.fp-c.fp-pc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px;}
-.fp-pc.one{grid-template-columns:minmax(0,1fr)}
-.fp-pc .pc-col{min-width:0}
-.fp-pc h4{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0 0 6px;}
-.fp-pc h4 span{font-weight:400;color:var(--ink3);font-size:var(--fs-12)}
-.fp-pc .fp-ul li{padding:6px 0 6px 16px}
-.fp-pc .fp-ul li::before,.fp-pc .fp-ul.con li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pos);top:calc(6px + .8em - 3px);left:2px;line-height:0;line-height:round(nearest,calc(0*1em - .01px),1px);--lhx:0;--lhp:initial}
-.fp-pc .fp-ul.con li::before{background:var(--neg)}
-.fp-pc .fp-ul li b{font-weight:500}
 .ver{color:var(--ink3)}
 /* pestaña «Cotización»: precio y su escalera de referencias; rendimiento en barras con la media de su industria */
-.fp-c.fp-cot,.fp-c.fp-rd{display:block;}
-.fp-cot .fp-ch>span{font-size:var(--fs-13);color:var(--ink2)}
-.cot-l{list-style:none;margin:0;padding:0 0 0 16px;position:relative}
-.cot-l::before{content:"";position:absolute;left:4px;top:12px;bottom:12px;width:1px;background:var(--line)}
-.cot-l li{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto 64px;gap:12px;align-items:center;height:32px;font-size:var(--fs-13);color:var(--ink2)}
-.cot-l li::before{content:"";position:absolute;left:-17px;top:50%;width:7px;height:7px;margin-top:-4px;border-radius:50%;background:var(--panel);box-shadow:inset 0 0 0 1.5px var(--g3)}
-.cot-l li b{font-weight:400;color:var(--ink);text-align:right}
-.cot-l li em{font-style:normal;text-align:right;color:var(--ink3);font-size:var(--fs-13)}
-.cot-l li.me{color:var(--ink);font-weight:600}
-.cot-l li.me b{font-weight:600}
-.fp-rd .fp-ch .hid{visibility:hidden}
-.cot-l li.me::before{left:-18px;width:9px;height:9px;margin-top:-4px;background:var(--ink);box-shadow:0 0 0 3px var(--panel)}
-.cot-f{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 8px;align-items:baseline;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:var(--fs-12);color:var(--ink2)}
-.cot-f b{font-size:var(--fs-13);font-weight:500;color:var(--ink);text-align:right}
-.fp-rd .fp-ch>span{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-12);color:var(--ink3)}
-.rd-k{display:inline-block;width:2px;height:11px;border-radius:var(--r-2);background:var(--ink2)}
-.rd-g{display:grid;column-gap:12px;align-items:center}
-.rd-l{font-size:var(--fs-13);color:var(--ink2);line-height:var(--lh-32);--lhp:var(--lh-32)}
-.rd-t{position:relative;height:8px;margin-right:8px}
-.rd-t::before{content:"";position:absolute;left:var(--z,50%);top:-6px;bottom:-6px;width:1px;background:var(--line)}
-.rd-t i{position:absolute;top:0;height:8px;min-width:2px;border-radius:var(--r-2)}
-.rd-t i.p{background:var(--pos-mid)}.rd-t i.n{background:var(--neg-mid)}
-.rd-t i.m{top:-3px;width:2px;height:14px;border-radius:var(--r-2);background:var(--ink2)}
-.rd-g>b{font-size:var(--fs-13);font-weight:400;text-align:right;white-space:nowrap}
 /* 25 · un solo espaciado para las etiquetas en mayúsculas, el mismo en toda la pantalla; más ceñido donde no cabe */
 
 /* 30 · ficha: pestañas, ‹ y × en la misma línea que el logo, la cifra y el contenido de las tarjetas */
-.sh-top{padding:0 24px 0 24px}
 
 /* 31 · «Tu posición»: un solo ritmo de filas, una sola etiqueta, «Total» en negro y el mismo hueco entre tarjetas */
-.fp-dec{grid-auto-rows:28px;row-gap:0}
-.fp-dec>.t{margin-top:0}
-.fp-dec .l{font-size:var(--fs-12)}.fp-dec .l.t{color:var(--ink)}
-.fp-cards{gap:16px}
-.fpp .fp-f{row-gap:0}.fpp .fp-f>div{min-height:28px;align-content:center}.fpp .fp-f>div>small{margin-top:1px}
 /* 33 · rejillas de cifras: cada casilla ocupa toda la altura de su fila, así los divisores van de arriba abajo */
-.fp-m>.fp-b,.fp-m.fp-vm>.fp-b.fp-b{align-self:stretch}
 /* las cifras de la ficha alineadas a la izquierda, como el resto de bloques de cifras (la primera columna, a ras del borde) */
-.ficha .fp-m>.fp-b.fp-b{justify-items:start;align-items:flex-start;text-align:left;padding-left:16px;padding-right:8px}
-.ficha .fp-m>.fp-b.fp-b>*{align-self:auto;justify-self:start}.ficha .fp-m>.fp-b.fp-b small{text-align:left}
-.ficha .fp-m>.fp-b.fp-b:first-child{padding-left:0}
 
 /* 29 · tablas en PC: título, cabecera, textos y logos en la misma vertical que el resto del panel; las rayas sobresalen lo justo para el resaltado */
 @media (min-width:701px){
@@ -1365,14 +1158,9 @@ html.sh-open:not(#_) body .sheet-bg{display:block}
 .ih.ih3,.ih.ih2,.ih.ih1{color:var(--rlv-rp4-texto)}.ih.il3{color:var(--ih-il3-texto)}.ih.il2,.ih.il1{color:var(--ih-il2-texto)}
 /* Revisión · 52: en oscuro, el bloque de arriba en gris carbón (no en verde) */
 /* ficha › Rendimiento: los periodos con palabras («3 meses», «En 2026») en una sola línea */
-.rd-g{grid-template-columns:max-content minmax(0,1fr) minmax(64px,max-content)}.rd-l{white-space:nowrap}
 /* Tu posición: la columna de las cifras con ancho fijo (las barras no cambian de una empresa a otra) y la fila de reserva invisible */
-.fp-dec{grid-template-columns:auto minmax(0,1fr) 64px}.fp-dec>.v{text-align:right}
-.fp-dec>.ph{visibility:hidden}
 /* Ficha › Dividendos: fecha larga en la ficha ancha y corta en la estrecha */
 /* Revisión · 6: dos niveles de título: el de bloque (mayúsculas espaciadas, como «DIVIDENDOS») y el subtítulo; también en las tarjetas de la ficha */
-#sheet .fp-ch h4,#sheet .fp-pc h4{font-size:var(--fs-11);font-weight:600;letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--ink);line-height:1.3;line-height:round(nearest,calc(1.3*1em - .01px),1px);--lhx:1.3;--lhp:initial}
-#sheet .fp-ch h4 *,#sheet .fp-pc h4 *{text-transform:none;letter-spacing:0}
 /* Revisión · 53: en oscuro, los logos de trazo fino (Hermès, Nestlé) en blanco puro */
 /* Revisión · 38: la leyenda de la TIR esperada bajo el título */
 /* Revisión · 21: Próximos 12 meses: barras sin cápsula con su cifra encima y, al pasar por un mes, sus cobros */
@@ -1478,21 +1266,21 @@ body{font-feature-settings:"cv11"}
 /* ===== Logos de un solo color en las listas (Posiciones, Movimientos, Dividendos y su tarjeta de «Próximos 12 meses», Radar, Rendimiento, Todas las empresas, Plan y buscador).
    Los logos a color siguen intactos en la página: esto solo los pinta. Para volver al color, poner LOGOS_UN_COLOR=false en el código (o borrar este bloque).
    La ficha, Actualidad y el mapa de Hoy no cambian. Los logos de dos tonos (LOGO_GRIS) van en gris para no perder su dibujo ===== */
-html.lmono :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb:not(.gr) img{filter:brightness(0) opacity(.82)}
-html.lmono :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.gr img{filter:grayscale(1) brightness(.8)}
+html.lmono :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf) .lgb:not(.gr) img{filter:brightness(0) opacity(.82)}
+html.lmono :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf) .lgb.gr img{filter:grayscale(1) brightness(.8)}
 @media (prefers-color-scheme:dark){
-  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
-  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.fino img{filter:brightness(0) invert(1)}
-  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.gr img{filter:grayscale(1) brightness(1.15)}}
-html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
-html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.fino img{filter:brightness(0) invert(1)}
-html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.gr img{filter:grayscale(1) brightness(1.15)}
+  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf) .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
+  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf) .lgb.fino img{filter:brightness(0) invert(1)}
+  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf) .lgb.gr img{filter:grayscale(1) brightness(1.15)}}
+html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf) .lgb:not(.gr) img{filter:brightness(0) invert(.86)}
+html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf) .lgb.fino img{filter:brightness(0) invert(1)}
+html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf) .lgb.gr img{filter:grayscale(1) brightness(1.15)}
 /* en oscuro, de un solo color se usa siempre el logo normal: las versiones para fondo oscuro (Starbucks, Pepsi, Danone…) rellenan su dibujo y serían una mancha */
 @media (prefers-color-scheme:dark){
-  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img{display:block}
-  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img.kd{display:none}}
-html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img{display:block}
-html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf,#sheet .fp-id,#sh-tt) .lgb.kv img.kd{display:none}
+  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf) .lgb.kv img{display:block}
+  html.lmono:not([data-theme="light"]) :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf) .lgb.kv img.kd{display:none}}
+html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf) .lgb.kv img{display:block}
+html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#pl-body,#b-payers,#cal,#pays,#kx-r,.cpopf) .lgb.kv img.kd{display:none}
 /* ===== Paleta «marfil» (modo claro): el mismo tono cálido de la hoja, con más luz. Lienzo más claro y bloques casi blancos, rayas más suaves.
    El modo oscuro no cambia. Para volver a la paleta anterior (lienzo #E4E2DC, bloques #F0EEE8), basta con borrar este bloque ===== */
 
@@ -1574,37 +1362,12 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 /* ===== Ficha: arriba, la franja con cinco cifras (igual en todas las pestañas); debajo, un solo fondo y cada bloque separado por una raya fina ===== */
 .sheet{--fxb:#E9E3D7;--fxl:#D3CABA;--fx3:var(--ink3);--fxs:var(--panel);background:var(--fxs)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet{--fxb:#2E2820;--fxl:#463E33;--fx3:var(--ink3);--fxs:var(--canvas)}}
-
-.sheet .sh-top,.sheet .sh-tabw{background:var(--fxs)}
-.fx-band{display:flex;background:var(--fxb);margin:0 -20px;padding:16px 20px}
-#sheet .fx-band .fp-b{display:block;flex:1 1 0;min-width:0;padding:0 12px;border-left:1px solid var(--fxl);text-align:left;grid-row:auto}
-#sheet .fx-band .fp-b:first-child{padding-left:0;border-left:0}
-#sheet .fx-band .fp-b>*{text-align:left;justify-self:start;align-self:auto}
-#sheet .fx-band .fp-k{display:block;font-size:var(--fs-11);font-weight:600;line-height:var(--lh-14);--lhp:var(--lh-14);letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--fx3);margin-bottom:8px;white-space:nowrap}
-#sheet .fx-band .fp-b>b{display:block;font-size:var(--fs-20);font-weight:300;line-height:var(--lh-26);--lhp:var(--lh-26);white-space:nowrap}
-#sheet .fx-band .fp-b>small{display:block;font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);color:var(--fx3);margin-top:6px;white-space:nowrap}
-.sheet .sh-pane{gap:0}
-.sheet .fp-cards,.sheet .fp-mvs{display:block}
-.sheet .fp-c,.sheet .fp-calc{background:none;border:0;border-top:1px solid var(--line);border-radius:0;box-shadow:none;min-height:0;margin:20px 0 0;padding:20px 16px 4px}
-.sheet .sh-pane>.fp-c:first-child,.sheet .sh-pane>:first-child>.fp-c:first-child{border-top:0;margin-top:0;padding-top:8px}
-.sheet .fp-calc summary{padding-left:0;padding-right:0}
-.sheet .fp-c1 .fp-ch{margin-bottom:0}
 /* en la ficha, la TIR y la rentabilidad van como texto de color, sin píldora */
 .sheet .rlv{background:none!important;padding:0!important;min-width:0!important;border-radius:0;font-weight:inherit;color:inherit!important}
 .sheet .rlv[class*="rp"]{color:var(--pos)!important}.sheet .rlv[class*="rn"]{color:var(--neg)!important}
 /* cotización: la lista, sin la raya y los puntos de la izquierda (los de fuera de la ficha) */
-.sheet .cot-l::before,.sheet .cot-l li::before{display:none}
 /* v364 · Precio: nombre, puntos, cifra y distancia, en las mismas cuatro columnas en todas las filas. Cada punto, en su fila y en la
-   misma escala; la línea discontinua es la cotización (el punto grande) */
-.sheet .cot-l{padding-left:0;display:grid;grid-template-columns:max-content minmax(48px,1fr) minmax(84px,max-content) 64px;column-gap:12px}   /* v365: la cifra, 84 px en todas las fichas */
-.sheet .cot-l li{grid-column:1/-1;grid-template-columns:subgrid;column-gap:inherit}
-.cot-l .tk{position:relative;align-self:stretch}
-.cot-l .tk .bl{position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line)}
-.cot-l .tk .ref{position:absolute;top:0;bottom:0;width:0;margin-left:-.5px;border-left:1px dashed var(--g3)}
-.cot-l .tk .ref.t0{top:50%}.cot-l .tk .ref.t1{bottom:50%}
-.cot-l .tk .dt{position:absolute;top:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:var(--ink2)}
-.cot-l li.me .tk .dt{width:11px;height:11px;margin:-5.5px 0 0 -5.5px;background:var(--ink);box-shadow:0 0 0 3px var(--panel)}
-.cot-l li.na,.cot-l li.na b{color:var(--ink3)}
+   misma escala; la línea discontinua es la cotización (el punto grande) */   /* v365: la cifra, 84 px en todas las fichas */
 /* ===== Análisis, Universo y Actualidad: cinco cifras, en las mismas cinco columnas que Movimientos ===== */
 @media (min-width:701px){
   :is(#s-aidx,#s-uni,#s-cal) .bg.bg5{grid-template-columns:repeat(5,minmax(0,1fr))}
@@ -1801,16 +1564,11 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 
 /* las pestañas de la ficha (Posición, Movimientos, Cotización, Valoración), centradas en la ficha también en el PC; el mismo margen
    a los dos lados. Con márgenes automáticos: si en una pantalla muy estrecha no caben, empiezan en el borde en vez de cortarse */
-.sheet .sh-tabw{padding-right:var(--tabp,24px);padding-left:var(--tabp,24px)}
-.sheet .sh-tabs>:first-child{margin-left:auto}
-.sheet .sh-tabs>:last-child{margin-right:auto}
 
 /* Movimientos: la casilla elegida lleva debajo una barra oscura como la del menú de arriba (se ve que se puede elegir) */
 #mtabs.mvt a{position:relative}
 #mtabs.mvt a[aria-current="page"]::after{content:"";position:absolute;left:var(--ul,0px);bottom:var(--ub,0px);width:var(--uw,40px);height:2px;border-radius:var(--r-1);background:var(--h-fg);pointer-events:none}
 /* ficha › Compras: la línea llega siempre hasta hoy; desde la última compra, discontinua, y una marca en «hoy» */
-.fp-c .fq-gap{position:absolute;right:0;top:calc(var(--h,34px) - 22px);height:0;border-top:1px dashed var(--g4)}
-.fp-c .fq-hoy{position:absolute;right:0;top:calc(var(--h,34px) - 26px);width:1px;height:9px;background:var(--ink3)}
 
 /* MÓVIL: la franja de Resumen también en Análisis, Movimientos, Universo y Actualidad. La barra clara de arriba en todas las
    pestañas; debajo, la franja oscura con las cinco cifras centradas, tres arriba y dos abajo (mismos colores, letras y aire que Resumen) */
@@ -1831,7 +1589,6 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#perf-up,#perf-dn,#p-body,#p
 
 /* ficha: la TIR de las listas («En 2030»…) acaba donde las demás cifras. Su margen de −8 px era para la pastilla, que en la
    ficha ya no lleva fondo ni relleno, y la sacaba 8 px por la derecha */
-#sheet .fp-kl>b>.rlv{margin-right:0}
 /* mapa de «Tu cartera hoy»: la cifra, mayor en las posiciones de más del 6 % de la cartera (15 px en el PC y 13 en el móvil) */
 .tmap .tile.big.big .tp{font-size:var(--fs-15)}
 
@@ -2036,7 +1793,6 @@ html.lmono[data-theme="dark"] :is(#paper.rvp,#s-calm) .lgb.kv img.kd{display:non
 
 /* CG-10 · la «i» del comentario, de línea como el resto de iconos */
 .info svg{width:12px;height:12px;display:block}
-.fp-go .chev{width:11px;height:11px;margin-left:4px;vertical-align:-1px}
 /* CG-11 · Movimientos en PC: filas en píxeles enteros (25 px de hueco y 1 px más de banda en vez de 26 + 0) */
 @media (min-width:701px){ #s-mov .rt tbody tr.grp-row:not(:first-child) td{border-top-width:25px;border-bottom:1px solid color-mix(in srgb,var(--ink) 7%,var(--panel))}
   #s-mov .rt tbody tr:last-child td{border-bottom-width:0;box-shadow:inset 0 -1px 0 var(--line)} }
@@ -2072,7 +1828,7 @@ img{-webkit-user-drag:none}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--warn-tx:var(--warn)}}
 :root[data-theme="dark"]{--warn-tx:var(--warn)}
 /* CO-15 · foco visible (solo con teclado) en los puntos de Compras, los cobros del calendario y los meses de dividendos */
-.mc-l[data-tip]:focus-visible,.fq-d[data-tip]:focus-visible,.cm.cm2:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:var(--r-4)}
+.mc-l[data-tip]:focus-visible, .cm.cm2:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:var(--r-4)}
 
 /* CG-04 · los dos calendarios, con el mismo lenguaje */
 /* cabecera de días: tres letras en versalitas, como las etiquetas de la web (el sangrado compensa el espaciado y la deja centrada) */
@@ -2111,8 +1867,6 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
 .legend i.barra{height:9px;border-radius:var(--r-2)}
 /* ficha: en cada fila, etiqueta y cifra del mismo tamaño; todas las cifras con el mismo peso (el total, destacado);
    la cotización, como las demás cifras de su lista */
-.fp-dec .v:not(.t){font-weight:500}
-.fp-f .npv{color:var(--ink)}
 /* Universo: el margen con su barra (la de Radar) y la fecha de la última valoración; en ámbar si tiene más de un año */
 .mg-c{display:inline-flex;align-items:center;justify-content:flex-end;gap:10px}
 .mg-b{position:relative;display:block;flex:none;width:64px;height:6px;border-radius:var(--r-2);background:var(--line)}
@@ -2158,7 +1912,6 @@ details.chk>summary>.chk-fin{display:flex;align-items:center;gap:8px}
 :root[data-theme="dark"] .nav-i.nav-logo{box-shadow:0 0 0 .5px rgba(255,255,255,.22)}
 
 /* v425 · el cartel «Por revisar» no hace más alta la cabecera de «Tu valoración» */
-.fp-ch h4 .vrv{line-height:14px;padding:1px 7px;margin:-1px 0 -1px 8px;vertical-align:1px}
 
 /* v431 · RES-02: en Resumen, con el Cuadre a la vista, el pie no repite las diferencias */
 body[data-view="resumen"]:has(#s-check:not([hidden])) #foot #chk-show{display:none}
@@ -2190,7 +1943,6 @@ html body #t-p th[aria-sort="descending"][aria-sort]:not(#_)>.thl::after{content
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .marca-l{box-shadow:0 0 0 .5px rgba(255,255,255,.22)}}
 :root[data-theme="dark"] .marca-l{box-shadow:0 0 0 .5px rgba(255,255,255,.22)}
 /* el punto de «ahora» en Compras: el mismo de «En vivo» (verde con su halo) */
-.fp-c .fq-hoy{top:calc(var(--h,34px) - 25.5px);right:-3.5px;width:7px;height:7px;border-radius:50%;background:var(--pos);box-shadow:0 0 0 3px var(--pos-bg)}
 /* los iconos del menú: el punto relleno; en la pestaña abierta, verde como el del logo */
 .nav-i .nd{fill:currentColor;stroke:none}
 .top .nav a[aria-current="page"] .nav-i .nd{fill:var(--pos)}
@@ -2203,10 +1955,7 @@ html body #t-p th[aria-sort="descending"][aria-sort]:not(#_)>.thl::after{content
 #more{position:relative}
 #more.aviso::after{content:"";position:absolute;top:7px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--warn);box-shadow:0 0 0 2px var(--canvas);pointer-events:none}
 .foot-m.aviso::after{content:"";display:inline-block;width:7px;height:7px;margin-left:7px;border-radius:50%;background:var(--warn);vertical-align:1px}
-.sheet.sh-cq #sh-prev,.sheet.sh-cq #sh-next{visibility:hidden}
 .cq{padding:8px 36px 40px}
-.cq-h{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin:8px 0 14px}
-.cq-h h3{margin:0;font-size:var(--fs-20);line-height:var(--lh-26,1.3);font-weight:600;letter-spacing:-.01em}
 
 /* v444 · ID-02: mientras lee la hoja, el punto verde del logo late despacio (como una respiración); con movimiento reducido, quieto */
 @keyframes latir{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.62);opacity:.5}}
@@ -2215,17 +1964,14 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 @media (prefers-reduced-motion:reduce){body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{animation:none}}
 
 /* v446 · CO-02, v451: lo previsto, en un azul liso algo más apagado que lo cobrado (sin rayas ni filo) */
-.prog .ps,.cm .cb .ps,.fp-yb .bar i.a,.fp-lg i.a,.mk.acc .mk-yr b.pd,.mk.acc .mk-yr span.now b.pd,.legend span[style*="--acc-pd"] i{background:var(--acc-pd);box-shadow:none;opacity:1}
+.prog .ps, .cm .cb .ps, .mk.acc .mk-yr b.pd, .mk.acc .mk-yr span.now b.pd, .legend span[style*="--acc-pd"] i{background:var(--acc-pd);box-shadow:none;opacity:1}
 
 /* v447 · CM-01: la ficha del móvil abre con la tarjeta de 3 cifras de las pestañas (Valor · Resultado · Peso); TIR y Dividendo, en «Tu posición» */
-.fp-mov{display:none}
 
 /* v448 · LE-01: la primera cifra de cada tarjeta de 3, un punto más firme (500); las otras dos, 400 */
 
 /* v449 · (1) candidata en el móvil: tarjeta de 3 (Valor razonable · TIR esperada · Múltiplo) y el Margen en «Tu valoración»;
    (2) tarjeta estrecha de Resumen con LE-01; (3) la llave del menú del PC, centrada con su texto */
-.fp-mgc{display:none}
-.fp-mgc>b.pos{color:var(--pos)}.fp-mgc>b.neg{color:var(--neg)}
 
 @media (min-width:761px){.more-m>#mm-key{display:flex;align-items:center}.more-m>#mm-key[hidden]{display:none}}
 
@@ -2351,22 +2097,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   #s-mov .rt tr.grp-row .gx .pos{color:var(--pos)} #s-mov .rt tr.grp-row .gx .o{color:var(--ink)}
   #m-body tr[data-mi]{cursor:pointer}
   #m-body tr[data-mi].open td{background:var(--row-open)}
-  .sheet.sh-mv{width:min(480px,calc(100vw - 64px))}
 }
-
-.mvd{padding-bottom:32px}
-.mvd .fp-id .lgb.mvg svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.mvd-tg{margin:4px 0 0}
-.mvd-imp{font-size:28px;font-weight:300;letter-spacing:-.01em;line-height:1.15;margin:22px 0 2px;font-variant-numeric:tabular-nums;color:var(--ink)}
-.mvd-s{color:var(--ink3);font-size:var(--fs-13)}
-.mvd .fp-c{margin-top:0}
-.mvd .fp-ch{margin-bottom:4px}
-.mvd-r{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line);font-size:var(--fs-13)}
-.mvd-r>span:first-child{color:var(--ink2)} .mvd-r>span:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
-.mvd-r.t{font-weight:600} .mvd-r.t>span:first-child{color:var(--ink)}
-.mvd-r.w>span:last-child{max-width:68%;white-space:normal}
-.mvd-n{color:var(--ink3);font-size:var(--fs-13);margin:8px 0 0}
-.mvd .fp-go{margin-top:24px}
 
 /* v472 · con las franjas de vuelta, fuera lo que las sustituía en el PC (la línea de medias de Universo, los próximos del Calendario,
    el título y el selector de Movimientos y los números de los filtros) */
@@ -2392,7 +2123,6 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 
 /* v474 · SI-02: un solo estilo de rótulo por nivel. Las mayúsculas espaciadas, solo para los rótulos de las franjas; los subapartados
    de la ficha (Tu posición, Compras, Dividendos, Precio…) como los de las páginas («Próximos 12 meses»): 13 px, peso 500, en minúscula */
-#sheet .fp-ch h4,#sheet .fp-pc h4{font-size:var(--fs-13);font-weight:500;letter-spacing:0;text-transform:none;color:var(--ink2);line-height:var(--lh-18);--lhp:var(--lh-18)}
 
 /* v475 · SI-06: la línea de cierre, en PC y móvil; «Opciones» es un enlace más de la línea, sin forma de botón */
 .foot-m{display:inline}
@@ -2545,7 +2275,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gx-t2 .gxsil{display:block;background:currentColor;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center}
   .gx-t2 .gxsol{display:block;object-fit:contain}
   .gx-t2 b{font-size:15px;line-height:20px;font-weight:400;font-variant-numeric:tabular-nums}   /* v500: sin negrita */
-  .gx-t2.mia::before{content:"";position:absolute;top:9px;right:9px;width:8px;height:8px;border-radius:50%;background:currentColor;z-index:2}   /* v501: punto en lugar del recuadro */
+  .gx-t2.mia::before{content:"";position:absolute;top:9px;right:9px;width:8px;height:8px;border-radius:50%;background:currentColor;z-index:2}   
 }
 @media (min-width:700.99px){
   :root[data-theme="dark"] :is(.gx3 svg image.mono,.gxl img){filter:brightness(0) invert(.9)}
@@ -2636,7 +2366,6 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
    de tamaños fijos (852, 414 y 420 de ancho; 395 u 814 de alto), en la misma retícula para todas las empresas */
 @media (min-width:761px){
   #sheet.gxf{top:50%;left:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);width:var(--zfw,1600px);height:var(--zfh,980px);max-height:none;margin-top:calc(var(--tbh,0px) / 2);border:0;border-radius:18px;box-shadow:0 24px 64px -16px rgba(0,0,0,.28),0 0 0 1px color-mix(in srgb,var(--ink) 6%,transparent);background:var(--canvas);overflow:hidden;padding:0;scrollbar-gutter:auto;animation:zf-in .16s ease-out}
-  #sheet.gxf .sh-top{display:none}
   #sheet.gxf #sheet-b{height:100%;margin:0;padding:0}
 }
 @keyframes zf-in{from{opacity:0;transform:translate(-50%,calc(-50% + 8px))}to{opacity:1;transform:translate(-50%,-50%)}}
@@ -2880,7 +2609,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 @media (min-width:1200px){
   #v-resumen .zr .duo{margin-top:40px}
   #v-resumen .zr .duo>.panel{padding:48px 48px 44px}
-  #v-resumen .zr .duo .chart-head,#v-resumen .zr #l1-side{height:22px}   /* sin los botones, el título arriba del todo, como Posiciones */
+  #v-resumen .zr .duo .chart-head,#v-resumen .zr #l1-side{height:22px}   
 }
 @media (min-width:701px){
   #s-evo.zr-kwon #range{display:none}
@@ -2949,7 +2678,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   #t-pos th.zp-gi[data-k="today"]{width:calc(62px + var(--ex)*.086)}
   #t-pos th.zp-gi[data-k="shares"]{width:calc(65px + var(--ex)*.144)}
   #t-pos th.zp-gi[data-k="totalPct"]{width:calc(89px + var(--ex)*.117)}
-  #t-pos :is(th,td).zp-gi{padding-left:calc(8px + var(--ex)*.055)!important}   /* v577: la mitad de hueco entre grupos (la sombra ya los separa) */
+  #t-pos :is(th,td).zp-gi{padding-left:calc(8px + var(--ex)*.055)!important}   
 }
 
 /* v567 · esquinas redondeadas del sombreado (8 px). Las tablas tienen los bordes fundidos, así que el redondeo se dibuja con el propio fondo:
@@ -3030,7 +2759,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   #more.aviso::after{background:var(--ink)}   /* el aviso del cuadre, en tinta */
   .marca-l{width:28px!important;height:28px!important}   /* el logo, algo más presente */
   .top:not(.zf-scr)::after{opacity:0}   /* la raya de debajo de la barra, solo cuando hay contenido por detrás */
-  .top{clip-path:inset(0 -100vmax 0)!important}   /* la raya es el borde exacto de la barra (antes quedaba 1 px de crema debajo) */
+  .top{clip-path:inset(0 -100vmax 0)!important}   
 }
 
 /* v584 · Barra del PC nueva: 48 px de alto, del mismo color que la franja con la que empieza cada pestaña, secciones junto al logo,
@@ -3080,7 +2809,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   html body .top :is(.btn.ic,.kbar,#refresh) svg{flex:none;width:16px;height:16px}
   html body .top .tools .zf-nbv{margin-right:0}
   #more.aviso::after{right:0}
-  html body .top :is(.btn.ic,.kbar,#refresh):focus-visible{outline:none;color:var(--ink)}   /* sin recuadro de foco (también se salía); el icono se oscurece, como en las pestañas desde la v539 */
+  html body .top :is(.btn.ic,.kbar,#refresh):focus-visible{outline:none;color:var(--ink)}   
 }
 
 /* v589 · la barra del PC, de 52 px (antes 48): 8,5 px de aire bajo el subrayado de la sección activa */
@@ -3183,7 +2912,7 @@ html body .top .zf-nbv{display:none!important}
 /* v600 · las secciones de la barra, centradas en la barra (PC) */
 @media (min-width:1000px){
   html body header.top.top .nav{position:absolute!important;left:50%;top:0;transform:translateX(-50%)}
-  html body header.top.top>.tools{grid-column:3!important}   /* sin esto, al salir las secciones de la rejilla, las herramientas se iban junto al logo */
+  html body header.top.top>.tools{grid-column:3!important}   
 }
 /* v600 · tableta pequeña (701–760 px): si se ve el aviso del cuadre, 16 px entre el aviso y la tarjeta (antes iba pegado debajo de la franja) */
 @media (min-width:701px) and (max-width:760.98px){ #v-resumen .zr #hoja-al:not([hidden]) + .duo{margin-top:16px!important} }
@@ -3232,7 +2961,7 @@ html body .top .zf-nbv{display:none!important}
   .zcp .zc-res b{font-size:17px}                                /* 20 → 17: resultado de la calculadora */
   .ts-o{font-size:12px}                                         /* 11 → 12: nota bajo el resultado del simulador */
   .hoja-al .nt-k{font-size:12px}                                /* 11 → 12: aviso del cuadre */
-  .gxag-nada,.gxag-f{font-size:13px}                            /* 14 → 13: calendario sin resultados */
+  .gxag-nada,.gxag-f{font-size:13px}                            
 }
 
 /* v607 · G-03: una regla para los fondos. En franja blanca, el contenido va suelto; en franja crema, en tarjeta clara;
@@ -3509,7 +3238,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <div class="kx-f"><span><kbd>↑</kbd><kbd>↓</kbd> moverte</span><span><kbd>↵</kbd> abrir</span><span><kbd>Esc</kbd> cerrar</span></div>
 </div></div>
 <div class="sheet-bg" id="sheet-bg" aria-hidden="true"></div>
-  <aside class="sheet" id="sheet" role="dialog" aria-label="Ficha" tabindex="-1" hidden><div class="sh-top"><button type="button" class="sh-b2" id="sh-prev" aria-label="Empresa anterior" title="Anterior (←)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="sh-b2" id="sh-next" aria-label="Empresa siguiente" title="Siguiente (→)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="sh-tt" id="sh-tt"></span><button type="button" class="sh-b2 sh-x" id="sheet-x" aria-label="Cerrar ficha" title="Cerrar (Esc)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div><div class="sh-b" id="sheet-b"></div></aside>
+  <aside class="sheet" id="sheet" role="dialog" aria-label="Ficha" tabindex="-1" hidden><div class="sh-b" id="sheet-b"></div></aside>
 
 <script type="application/json" id="logos">{"T:NYSE:KO":"logos/1e11830438f5.webp","T:EPA:BN":"logos/dcb87f1aebe6.webp","T:BME:EBRO":"logos/0e4cb272f393.webp","T:NYSE:HSY":"logos/a057ed487945.webp","T:EBR:LOTB":"logos/727c62e4af18.webp","T:AMS:MICC":"logos/9d26ac595a2e.webp","T:NASDAQ:MDLZ":"logos/4f20e279f6cf.webp","T:SWX:NESN":"logos/c2f45ffba07a.webp","T:NASDAQ:PEP":"logos/e6db5d035dfd.webp","T:ETR:HEN3":"logos/47b1b1ef90d6.webp","T:NYSE:PG":"logos/b3f56a8adc04.webp","T:NYSE:EL":"logos/2022ef883a1c.webp","T:EPA:OR":"logos/5ab2308ecacd.webp","T:BME:PUIG":"logos/c5e93a8453ba.webp","T:LON:DGE":"logos/0a9e2aef7488.webp","T:LON:BATS":"logos/b110c3373d4d.webp","T:BIT:BC":"logos/337ea1cab9be.webp","T:LON:BRBY":"logos/4185096ac872.webp","T:EPA:KER":"logos/8e229cfdc220.webp","T:EPA:MC":"logos/3194bb2b0f2b.webp","T:NASDAQ:COST":"logos/ff018cfa2de0.webp","T:BME:LOG":"logos/791e1eb0352b.webp","T:NASDAQ:POOL":"logos/f012b875ca4d.webp","T:LON:WOSG":"logos/3d40d6dd0bb3.webp","T:ETR:ADS":"logos/bf1b16a78311.webp","T:EPA:EL":"logos/ccc4f6785cee.webp","T:BME:ITX":"logos/a7efd850a899.webp","T:NYSE:NKE":"logos/ac1d5c57bbef.webp","T:NYSE:ONON":"logos/611f24405493.webp","T:NASDAQ:SBUX":"logos/12bf4448e10b.webp","T:NYSE:UBER":"logos/a9646beb1f5d.webp","T:VIE:NTO":"logos/9a5da31e3d6a.webp","T:NYSE:SPOT":"logos/721f83985043.webp","T:NASDAQ:NFLX":"logos/ce3c76e41b14.webp","T:NASDAQ:MELI":"logos/8e14510f9cf4.webp","T:BME:AMS":"logos/4634a2927059.webp","T:NASDAQ:MSFT":"logos/39d5591f09e1.webp","T:AMS:WKL":"logos/61fec9b335ce.webp","T:NYSE:AXP":"logos/6d831c8ffe51.webp","T:NYSE:MA":"logos/0d2f78558a6d.webp","T:NYSE:V":"logos/deb3457fbfd7.webp","T:NASDAQ:CME":"logos/c419836bdfff.webp","T:ETR:DB1":"logos/7b3f06610643.webp","T:LON:LSEG":"logos/5df854bc66b2.webp","T:NASDAQ:IBKR":"logos/a4a8a95b5625.webp","T:ETR:ALV":"logos/0a627498a79c.webp","T:TSE:FFH":"logos/ab1ab139005e.webp","T:ETR:MUV2":"logos/f99095a1ad40.webp","T:HEL:SAMPO":"logos/ef90196f07cb.webp","T:BME:AENA":"logos/4b0a846608d2.webp","T:TSE:CNR":"logos/afd1a1002c64.webp","T:TSE:CP":"logos/5b3334e87a46.webp","T:BME:FER":"logos/77a6d76d6dee.webp","T:NYSE:UNP":"logos/2e956780e8f3.webp","T:ELI:COR":"logos/f45b0260ea13.webp","T:BME:VIS":"logos/3bbfde36672e.webp","T:BME:ENG":"logos/8d265e779db1.webp","T:BME:RED":"logos/b6757ba0c86f.webp","T:EPA:AI":"logos/16bb32682118.webp","T:NASDAQ:LIN":"logos/e1ebc722a418.webp","T:EPA:ERF":"logos/62ac829960fd.webp","T:NASDAQ:ISRG":"logos/1445d00f882f.webp","T:NYSE:MTD":"logos/de17ad06d167.webp","T:NYSE:STVN":"logos/e8e8bfe007f5.webp","T:NYSE:TMO":"logos/faf3ea90314b.webp","T:NYSE:ITW":"logos/f90a2264b437.webp","T:NYSE:OTIS":"logos/fcb2b5bbe25b.webp","T:EPA:SU":"logos/bbaeb0f3b9a2.webp","T:AMS:ASML":"logos/246947a33cae.webp","T:NYSE:TSM":"logos/f3bd6a175394.webp","T:NASDAQ:TSLA":"logos/d95967eb4130.webp","T:EPA:AIR":"logos/ae1ac412db7c.webp","T:NYSE:BA":"logos/7259aab6d645.webp","T:NYSE:GE":"logos/b5be0260d8bf.webp","T:NYSE:HEI":"logos/3f22a666025e.webp","T:LON:RR":"logos/f6ab955a9d7f.webp","T:EPA:SAF":"logos/517f8a96be67.webp","T:NASDAQ:SPCX":"logos/40647de24ecc.webp","P:Alemania":"logos/9a7f9cf2d5af.webp","P:Argentina":"logos/dcc54734078b.webp","P:Bélgica":"logos/e7da1b46b255.webp","P:Brasil":"logos/0f2062126ed6.webp","P:Canadá":"logos/9bf189915157.webp","P:China":"logos/4ade51f94282.webp","P:Dinamarca":"logos/8a32ba1c0b8c.webp","P:España":"logos/e3f67c4691c6.webp","P:Francia":"logos/15a6dc903e11.webp","P:Finlandia":"logos/09664bca1e6c.webp","P:Georgia":"logos/b6df58828e0b.webp","P:Italia":"logos/9e247cfa91f2.webp","P:Japón":"logos/ee47081382a9.webp","P:Países Bajos":"logos/8ab2d09b4140.webp","P:Polonia":"logos/cdf5bc857479.webp","P:Portugal":"logos/6b5c17f506d4.webp","P:Reino Unido":"logos/11827b727589.webp","P:Suecia":"logos/378cb9e169a0.webp","P:Suiza":"logos/ea1290063b6f.webp","P:USA":"logos/1da3f33ea28c.webp","P:Taiwán":"logos/91e9046bcb2b.webp","P:Otros":"logos/48330bd22560.webp","T:AMS:UNA":"logos/a49a6d6d11c4.webp","T:BIT:CPR":"logos/f4197fefa20b.webp","T:EPA:RI":"logos/c5478139ef32.webp","T:NYSE:PM":"logos/5f86912cfb20.webp","T:BIT:RACE":"logos/9ab7a33a9447.webp","T:EPA:RMS":"logos/5844434a5016.webp","T:WSE:DNP":"logos/fab2a01e5679.webp","T:NASDAQ:BKNG":"logos/916be738246a.webp","T:NASDAQ:AMZN":"logos/6f9d344f7688.webp","T:NASDAQ:GOOGL":"logos/92b99165a6d7.webp","T:NASDAQ:AAPL":"logos/88bdf9ca6887.webp","T:NASDAQ:META":"logos/38f4c61a63bb.webp","T:NASDAQ:ADBE":"logos/ebb0f6f02665.webp","T:NASDAQ:ADP":"logos/4c54784c0457.webp","T:TSE:CSU":"logos/986cbd75d46a.webp","T:NYSE:MCO":"logos/0a78d4606207.webp","T:NYSE:MSCI":"logos/27cd4998cf21.webp","T:NYSE:SPGI":"logos/d819ee781fe5.webp","T:BME:BBVA":"logos/b2f8dbb46a49.webp","T:NYSE:MKL":"logos/7d2795ac47cc.webp","T:NYSE:BN":"logos/4169a0152ef5.webp","T:NYSE:BAM":"logos/4169a0152ef5.webp","T:BME:VID":"logos/10ade4ebeb8a.webp","T:BME:IBE":"logos/5dec220032ed.webp","T:NYSE:DHR":"logos/2a91ee1d1b65.webp","T:NYSE:JNJ":"logos/50057b2fd6fe.webp","T:NYSE:MMM":"logos/2fadb7c2ec11.webp","T:HEL:KNEBV":"logos/588dcf8599b7.webp","T:NASDAQ:NVDA":"logos/e2446b12107d.webp","T:NASDAQ:TXN":"logos/b1bfa2c58d0e.webp","T:NASDAQ:ASTS":"logos/85635c1b4f63.webp","T:NYSE:LMT":"logos/5a003a5215e5.webp","T:NYSE:TDG":"logos/d79977beafe1.webp","T:NYSE:DE":"logos/f527f3e07b16.webp","R:T:NYSE:KO":3.048,"R:T:EPA:BN":1.024,"R:T:BME:EBRO":2.51,"R:T:NYSE:HSY":2.783,"R:T:EBR:LOTB":1.542,"R:T:AMS:MICC":1.803,"R:T:NASDAQ:MDLZ":1.58,"R:T:SWX:NESN":"1.391","R:T:NASDAQ:PEP":1.0,"R:T:ETR:HEN3":1.803,"R:T:NYSE:PG":1.0,"R:T:NYSE:EL":1.939,"R:T:EPA:OR":5.565,"R:T:BME:PUIG":3.459,"R:T:LON:DGE":4.741,"R:T:LON:BATS":2.909,"R:T:BIT:BC":0.609,"R:T:LON:BRBY":1.471,"R:T:EPA:KER":1.829,"R:T:EPA:MC":4.267,"R:T:NASDAQ:COST":1.032,"R:T:BME:LOG":0.797,"R:T:NASDAQ:POOL":1.438,"R:T:LON:WOSG":"1.461","R:T:ETR:ADS":1.58,"R:T:EPA:EL":2.246,"R:T:BME:ITX":1.882,"R:T:NYSE:NKE":2.783,"R:T:NYSE:ONON":0.516,"R:T:NASDAQ:SBUX":1.008,"R:T:NYSE:UBER":2.909,"R:T:VIE:NTO":1.293,"R:T:NYSE:SPOT":1.0,"R:T:NASDAQ:NFLX":0.555,"R:T:NASDAQ:MELI":1.455,"R:T:BME:AMS":0.812,"R:T:NASDAQ:MSFT":1.0,"R:T:AMS:WKL":1.0,"R:T:NYSE:AXP":1.0,"R:T:NYSE:MA":1.62,"R:T:NYSE:V":3.122,"R:T:NASDAQ:CME":1.0,"R:T:ETR:DB1":2.723,"R:T:LON:LSEG":3.286,"R:T:NASDAQ:IBKR":0.516,"R:T:ETR:ALV":1.0,"R:T:TSE:FFH":1.28,"R:T:ETR:MUV2":0.992,"R:T:HEL:SAMPO":1.267,"R:T:BME:AENA":1.0,"R:T:TSE:CNR":2.667,"R:T:TSE:CP":2.37,"R:T:BME:FER":0.484,"R:T:NYSE:UNP":0.875,"R:T:ELI:COR":1.008,"R:T:BME:VIS":0.523,"R:T:BME:ENG":1.28,"R:T:BME:RED":1.753,"R:T:EPA:AI":1.0,"R:T:NASDAQ:LIN":2.462,"R:T:EPA:ERF":1.024,"R:T:NASDAQ:ISRG":3.765,"R:T:NYSE:MTD":"1.609","R:T:NYSE:STVN":"0.977","R:T:NYSE:TMO":0.836,"R:T:NYSE:ITW":"2.93","R:T:NYSE:OTIS":3.048,"R:T:EPA:SU":1.024,"R:T:AMS:ASML":3.556,"R:T:NYSE:TSM":1.267,"R:T:NASDAQ:TSLA":1.008,"R:T:EPA:AIR":1.231,"R:T:NYSE:BA":1.219,"R:T:NYSE:GE":1.0,"R:T:NYSE:HEI":1.488,"R:T:LON:RR":0.836,"R:T:EPA:SAF":0.906,"R:T:NASDAQ:SPCX":1.753,"R:P:Alemania":1.0,"R:P:Argentina":1.0,"R:P:Bélgica":1.0,"R:P:Brasil":1.0,"R:P:Canadá":1.0,"R:P:China":1.0,"R:P:Dinamarca":1.0,"R:P:España":1.0,"R:P:Francia":1.0,"R:P:Finlandia":1.0,"R:P:Georgia":1.0,"R:P:Italia":1.0,"R:P:Japón":1.0,"R:P:Países Bajos":1.0,"R:P:Polonia":1.0,"R:P:Portugal":1.0,"R:P:Reino Unido":1.0,"R:P:Suecia":1.0,"R:P:Suiza":1.0,"R:P:USA":1.0,"R:P:Taiwán":1.0,"R:P:Otros":1.371,"R:T:AMS:UNA":0.961,"R:T:BIT:CPR":2.032,"R:T:EPA:RI":1.058,"R:T:NYSE:PM":1.362,"R:T:BIT:RACE":0.719,"R:T:EPA:RMS":1.73,"R:T:WSE:DNP":2.844,"R:T:NASDAQ:BKNG":1.024,"R:T:NASDAQ:AMZN":1.174,"R:T:NASDAQ:GOOGL":0.977,"R:T:NASDAQ:AAPL":0.844,"R:T:NASDAQ:META":1.506,"R:T:NASDAQ:ADBE":1.133,"R:T:NASDAQ:ADP":2.207,"R:T:TSE:CSU":1.0,"R:T:NYSE:MCO":1.471,"R:T:NYSE:MSCI":"3.375","R:T:NYSE:SPGI":1.778,"R:T:BME:BBVA":3.368,"R:T:NYSE:MKL":1.0,"R:T:NYSE:BN":0.641,"R:T:NYSE:BAM":0.641,"R:T:BME:VID":0.743,"R:T:BME:IBE":1.085,"R:T:NYSE:DHR":0.867,"R:T:NYSE:JNJ":2.327,"R:T:NYSE:MMM":1.91,"R:T:HEL:KNEBV":2.56,"R:T:NASDAQ:NVDA":1.506,"R:T:NASDAQ:TXN":1.032,"R:T:NASDAQ:ASTS":3.765,"R:T:NYSE:LMT":1.219,"R:T:NYSE:TDG":1.662,"R:T:NYSE:DE":1.103,"D:T:EPA:OR":1,"D:T:BME:PUIG":1,"D:T:LON:DGE":1,"D:T:BIT:BC":1,"D:T:EPA:KER":1,"D:T:NASDAQ:POOL":1,"D:T:ETR:ADS":1,"D:T:EPA:EL":1,"D:T:BME:ITX":1,"D:T:NYSE:NKE":1,"D:T:NYSE:ONON":1,"D:T:NYSE:UBER":1,"D:T:TSE:FFH":1,"D:T:HEL:SAMPO":1,"D:T:ELI:COR":1,"D:T:NASDAQ:ISRG":1,"D:T:NYSE:ITW":1,"D:T:NASDAQ:SPCX":1,"D:T:BIT:RACE":1,"D:T:EPA:RMS":1,"D:T:NASDAQ:AMZN":1,"D:T:NASDAQ:AAPL":1,"D:T:NYSE:MCO":1,"T:NASDAQ:ABNB":"logos/7f4b4acce6c9.webp","R:T:NASDAQ:ABNB":"0.922","T:NYSE:MCD":"logos/9d1b2b77f29b.webp","R:T:NYSE:MCD":"1.148","D:T:BME:AMS":1,"D:T:NYSE:HSY":1,"D:T:EPA:AIR":1,"D:T:EPA:RI":1,"D:T:BIT:CPR":1,"D:T:LON:RR":1,"D:T:AMS:UNA":1,"D:T:LON:BRBY":1,"D:T:NYSE:HEI":1,"D:T:AMS:ASML":1,"D:T:NYSE:BAM":1,"D:T:NYSE:BN":1,"D:T:NYSE:EL":1,"D:T:LON:BATS":1,"D:T:NASDAQ:LIN":1,"D:T:NASDAQ:MDLZ":1,"D:T:ETR:ALV":1,"D:T:BME:RED":1,"D:T:NYSE:MSCI":1,"D:T:NYSE:LMT":1,"D:T:ETR:DB1":1,"D:T:NYSE:BA":1,"D:T:BME:BBVA":1,"D:T:BME:EBRO":1,"D:T:BME:LOG":1,"D:T:LON:LSEG":1,"D:T:ETR:MUV2":1,"D:T:LON:WOSG":1,"D:T:NYSE:MTD":1,"D:T:NYSE:PM":1,"T:NYSE:MO":"logos/52ccdb7f4d18.webp","R:T:NYSE:MO":1.0,"T:NYSE:ZTS":"logos/0c59b881cede.webp","R:T:NYSE:ZTS":1.438,"T:ETR:BAS":"logos/e08d1b5f10e1.webp","R:T:ETR:BAS":1.684,"D:T:ETR:BAS":1,"T:NYSE:BMY":"logos/e8c6748757f1.webp","R:T:NYSE:BMY":0.664,"T:NASDAQ:CELH":"logos/9dbc38bfa84a.webp","R:T:NASDAQ:CELH":1.058,"D:T:NASDAQ:CELH":1,"T:BME:FAE":"logos/35baba7bc1d0.webp","R:T:BME:FAE":1.0,"T:OTCMKTS:NSRGY":"logos/c2f45ffba07a.webp","R:T:OTCMKTS:NSRGY":"1.391","T:NYSE:PBR":"logos/0940429155e1.webp","R:T:NYSE:PBR":1.0,"T:NYSE:VZ":"logos/9d0cdc81596d.webp","R:T:NYSE:VZ":1.103,"T:BME:GCO":"logos/652f02f8c883.webp","R:T:BME:GCO":1.0,"T:NYSE:GEO":"logos/84ddf8a1ce41.webp","R:T:NYSE:GEO":1.333,"T:NYSE:KVUE":"logos/32652e05099c.webp","R:T:NYSE:KVUE":1.041,"D:T:NYSE:KVUE":1,"T:NASDAQ:KHC":"logos/f66a80bb03ba.webp","R:T:NASDAQ:KHC":2.133,"T:NYSE:PBR.A":"logos/0940429155e1.webp","R:T:NYSE:PBR.A":1.0,"T:NYSE:CVS":"logos/031910e96139.webp","R:T:NYSE:CVS":1.208,"T:NYSE:IIPR":"logos/b66b3bc7862e.webp","R:T:NYSE:IIPR":1.0,"D:T:NYSE:IIPR":1,"T:NASDAQ:TROW":"logos/8e5e44f01d2b.webp","R:T:NASDAQ:TROW":1.0,"T:LON:PSN":"logos/3f16ce3473b4.webp","R:T:LON:PSN":1.024,"T:HKG:0144":"logos/386e6c3a4ff1.webp","R:T:HKG:0144":0.992,"T:HKG:0257":"logos/fc81ba4c484a.webp","R:T:HKG:0257":0.773,"T:HKG:0288":"logos/d928895a9dd1.webp","R:T:HKG:0288":0.922,"T:HKG:2678":"logos/f18c9958ca4e.webp","R:T:HKG:2678":0.992,"T:HKG:1052":"logos/5779ea5085c8.webp","R:T:HKG:1052":1.58,"T:NYSE:MBGL":"logos/80db081edd37.webp","R:T:NYSE:MBGL":0.984,"D:T:NYSE:MBGL":1,"D:T:EPA:MC":1,"D:T:SWX:NESN":1,"K:T:NYSE:SPGI":"logos/cd345ea811c7.webp","K:T:NYSE:STVN":"logos/f71f872de816.webp","K:T:NYSE:TDG":"logos/34b8f3a39fb4.webp","K:T:BME:VIS":"logos/f45e4f4d90e8.webp","K:T:BME:ENG":"logos/6af349317bbe.webp","K:T:NASDAQ:SBUX":"logos/c55e03581d18.webp","K:T:NASDAQ:PEP":"logos/8a1529f324db.webp","K:T:EPA:BN":"logos/01bb72b9cc57.webp","T:NYSE:TBBB":"logos/ab93cfd17856.webp","R:T:NYSE:TBBB":1,"P:México":"logos/6f7abc985cf5.webp"}</script>
 <script async id="lib-xlsx" src="lib/xlsx-0.20.3.full.min.js" integrity="sha384-EnyY0/GSHQGSxSgMwaIPzSESbqoOLSexfnSMN2AP+39Ckmn92stwABZynq1JyzdT" crossorigin="anonymous"></script>
@@ -3533,8 +3262,7 @@ const DIA_MS=864e5;   // COD-27: un día en milisegundos
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const day = d => d instanceof Date ? new Date(d.getTime()+12*3600e3) : null;
 const fdate = (d,o={day:"numeric",month:"short"}) => d ? day(d).toLocaleDateString("es-ES",o).replace(".","").replace(/\bsept\b/i,m=>m[0]+"ep") : "";
-// fecha en un texto: «4 nov» si es de este año; «17 jul 2025» si es de otro
-const flong = d => d ? day(d).toLocaleDateString("es-ES",esteAno(d)?{day:"numeric",month:"long"}:{day:"numeric",month:"long",year:"numeric"}) : "";   // fecha dentro de un texto
+// fecha dentro de un texto
 const esteAno = d => day(d).getFullYear()===new Date().getFullYear();   // TX-08: el año solo si no es el actual
 const fechaCorta = d => d ? fdate(d,esteAno(d)?{day:"numeric",month:"short"}:{day:"numeric",month:"short",year:"numeric"}) : "";   // fecha corta con año: «17 jul 2025»
 // fecha en un eje: «jul 2025»
@@ -3991,7 +3719,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v626";   // la versión publicada, en el pie
+const VER="v627";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4092,63 +3820,6 @@ function bars(el,list,clase="",head=1){ const max=Math.max(...list.map(x=>Math.a
   $(el).innerHTML = list.length ? list.map(x=>`<div class="bar${x.icon?" bi":""}">${x.icon||""}<span class="bn"><span>${esc(x.name)}</span></span><span class="num">${x.fmt?x.fmt:pct(x.val)}</span><div class="track"><div class="fill ${clase} ${x.cls||""}" style="width:${(Math.abs(x.val)/max*100).toFixed(1)}%"></div></div></div>`).join("")
     : `<span class="sub">Sin datos en la hoja</span>`; }
 
-const optSub=t=>{ const k=String(t).match(/\s([CP])\d/), e=optExpiry(t); return [k?(k[1]==="C"?"De compra":"De venta"):"", e?`vence el ${flong(e)}`:""].filter(Boolean).join(" · "); };
-const optExpiry=t=>{ const m=String(t).match(/(\d{1,2})([A-Z]{3})(\d{2})$/); if(!m) return null; const mm=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"].indexOf(m[2]); return mm<0?null:new Date(2000+ +m[3],mm,+m[1]); };
-function fichaPos(p){
-  const m=p.meta;
-  const mb=(k,v,sub,c="",x="")=>`<div class="fp-b${x}"><span class="fp-k">${k}</span><b class="num ${c}">${v===""?"&nbsp;":v}</b><small>${sub||""}</small></div>`;
-  if(p.isOption){ const exp=optExpiry(p.ticker), nc=(p.shares||0)/100;
-    // días hasta el vencimiento y valor intrínseco: lo que vale ejercerla hoy con el subyacente a su precio (sin la prima)
-    const km=String(p.ticker).match(/\s([CP])(\d+(?:[.,]\d+)?)\s/), K=km?+km[2].replace(",","."):null, call=!km||km[1]==="C", S=m.price, rate=DATA.fx[m.cur||p.cur];
-    const dl=exp?Math.round((exp-new Date(new Date().toDateString()))/DIA_MS):null, iv=isNum(S)&&isNum(K)&&rate?Math.max(0,call?S-K:K-S)*(p.shares||0)*rate:null;
-    return {band:`${mb("Valor",eur(p.value),"a coste")}${mb("Contratos",`<span class="pv pvn">${nf(0).format(nc)}</span>`,`${shares(p.shares)} acciones`)}${mb("Vencimiento",exp?fdate(exp):"",exp?[day(exp).getFullYear(),dl==null?"":dl>1?`en ${dl} días`:dl===1?"mañana":dl===0?"hoy":"vencida"].filter(x=>x!=="").join(" · "):"")}${mb("Subyacente",precioVisible(S,m.cur),esc(m.name||""))}${mb("Valor intrínseco",isNum(iv)?eur(iv):"",isNum(K)?`ejercicio ${precioVisible(K,m.cur||p.cur)}`:"")}`,
-      body:`<section class="fp-c"><div class="fp-ch"><h4>Tu opción</h4><span>${nf(0).format(nc)} ${nc===1?"contrato":"contratos"}</span></div><div class="fp-kl"><span>Prima pagada</span><b class="num">${money(p.avg,p.cur)}</b><span>Invertido</span><b class="num">${eur(p.invested)}</b>${isNum(K)?`<span>Ejercicio</span><b class="num">${precioVisible(K,m.cur||p.cur)}</b>`:""}</div></section>`}; }
-  // compras: todas las de esta empresa (también las ya vendidas), en una mini línea de tiempo
-  const buys=(p.buys||[]).filter(b=>b.d instanceof Date).sort((a,b)=>a.d-b.d);
-  let tl="";
-  // tiempo desde un día hasta hoy: «hoy», «ayer», «10 días», «8 meses», «1 año y 2 meses»
-  const hace=d=>{ const a=new Date(new Date().toDateString()), b=new Date(day(d).toDateString()), dd=Math.round((a-b)/DIA_MS); if(dd<=0) return "hoy"; if(dd===1) return "ayer"; if(dd<45) return `${dd} días`;
-    let meses=(a.getFullYear()-b.getFullYear())*12+a.getMonth()-b.getMonth()-(a.getDate()<b.getDate()?1:0); const y=Math.floor(meses/12); meses%=12; return y?`${y} ${y>1?"años":"año"}${meses?` y ${meses} ${meses>1?"meses":"mes"}`:""}`:`${meses} ${meses>1?"meses":"mes"}`; };
-  if(buys.length){ const t0=+buys[0].d, tz=+buys[buys.length-1].d, now=+new Date(), t1=Math.max(now,t0+DIA_MS), mx=Math.max(...buys.map(b=>b.a||0),1);
-    // compras muy juntas: se apilan hacia arriba en vez de taparse (calculado para la línea más estrecha, 200 px)
-    const pl=[]; buys.forEach(b=>{ const r=Math.round(4+Math.sqrt((b.a||0)/mx)*5), x=((+b.d)-t0)/(t1-t0)*200; let y=0; while(pl.some(o=>Math.hypot(o.x-x,o.y-y)<o.r+r+1.5)) y--; pl.push({b,r,x,y}); });
-    // el alto es siempre el mismo (el bloque de Dividendos no se mueve al pasar de empresa): si la pila no cabe, se aprieta hacia abajo
-    const H=64, ax=H-22, k=Math.min(1,...pl.filter(q=>q.y<0).map(q=>(q.r-ax+2)/q.y)); pl.forEach(q=>q.y*=k);
-    // la raya llega hasta la última compra; de ahí a hoy, discontinua
-    const xz=(tz-t0)/(t1-t0)*100;
-    tl=`<div class="fq-tl" style="--h:${H}px"><i class="fq-ax" style="right:${(100-xz).toFixed(2)}%"></i><i class="fq-gap" style="left:${xz.toFixed(2)}%"></i><i class="fq-hoy"></i>${pl.map(({b,r,y})=>{
-        // la etiqueta: fecha, acciones y precio; en los extremos se alinea hacia dentro para no salirse del panel
-        const xp=((+b.d)-t0)/(t1-t0)*100, tip=`${flong(b.d)}${isNum(b.n)?` · ${shares(b.n)} ${b.n===1?"acción":"acciones"}${isNum(b.pr)?` a ${money(b.pr,p.cur)}`:""}`:""}${b.sold?" · vendida":""}`;
-        return `<span class="fq-d${b.sold?" sold":""}${xp<25?" tip-l":xp>75?" tip-r":""}" style="left:${xp.toFixed(2)}%;top:${ax+y}px;width:${2*r}px;height:${2*r}px" tabindex="0" role="img" aria-label="${tip}" data-tip="${tip}"></span>`; }).join("")}
-      <span class="fq-l l">${mesAno(buys[0].d)}</span><span class="fq-l r">hoy</span></div>`; }
-  const nSold=buys.filter(b=>b.sold).length, conAno=buys.length&&(!esteAno(buys[0].d)||!esteAno(buys[buys.length-1].d)), fd=d=>conAno?fdate(d,{day:"numeric",month:"short",year:"numeric"}):fechaCorta(d);   // TXT-03 (v431): las dos con año o ninguna
-  const facts=xs=>`<div class="fp-f" style="--n:${xs.length}">${xs.map(([l,v,sb])=>`<div><span>${l}</span><b class="num">${v===""?"&nbsp;":v}</b><small>${sb||""}</small></div>`).join("")}</div>`;
-  // la franja de arriba: valor, resultado, TIR, peso y dividendo (iguales en todas las pestañas)
-  const band=`${mb("Valor",eur(p.value),`invertido ${eur(p.invested)}`)}${mb("Resultado",seur(p.totalEur),`<span class="${cls(p.totalPct)}">${pct(p.totalPct,1,true)}</span>`,cls(p.totalEur))}${mb("TIR",pct(p.irr,1),isNum(p.years)?`en ${nf(1).format(Math.max(0.1,Math.floor(p.years*10)/10))} años`:"",cls(p.irr))}${mb("Peso",pct(p.weight),`${shares(p.shares)} ${p.shares===1?"acción":"acciones"}`)}${mb("Dividendo",p.annual?eur(p.annual):"—",p.annual?(p.yov?`rinde ${pct(p.yov,2)}`:"al año"):"no reparte")}`;
-  // tu posición: de dónde sale el resultado, como las columnas Revaloriz., FX y Dividendo de tu hoja (suman el total)
-  const effP=isNum(p.price)&&p.avg?p.price/p.avg-1:p.reval, effF=isNum(p.reval)&&isNum(effP)?p.reval-effP:null, effD=!p.annual&&!(p.paid>0)?null:p.invested?(p.paid||0)/p.invested:null;   // FIC-02 (v433): no reparte → «—»
-  const parts=[["Revalorización",effP,""],...(String(p.cur||"").toUpperCase()==="EUR"?[]:[["Divisa",effF,""]]),["Dividendos",effD,"dv"]], mxp=Math.max(...parts.map(x=>Math.abs(x[1]||0)),Math.abs(p.totalPct||0),0.0001);
-  const barT=v=>{ const w=isNum(v)?Math.abs(v)/mxp*50:0; return w>0.05?`<i class="${v<0?"neg":"pos"} t" style="${v<0?"right":"left"}:50%;width:${w.toFixed(1)}%"></i>`:""; };
-  const dec=`<div class="fp-dec">${parts.map(([l,v,k])=>{ const w=isNum(v)?Math.abs(v)/mxp*50:0;
-      return `<span class="l">${l}</span><span class="tr">${w>0.05?`<i class="${k||(v<0?"neg":"pos")}" style="${v<0?"right":"left"}:50%;width:${w.toFixed(1)}%"></i>`:""}</span><span class="v num ${k?(isNum(v)&&Math.abs(v)>=0.0005?k:"mute"):cls(isNum(v)&&Math.abs(v)>=0.0005?v:0)}">${isNum(v)?(Math.abs(v)<0.0005?"0,0\u202F%":pct(v,1,true)):"—"}</span>`; }).join("")}
-<span class="l t">Total</span><span class="tr t">${barT(p.totalPct)}</span><span class="v t num ${cls(p.totalPct)}">${pct(p.totalPct,1,true)}</span>${parts.length<3?`<span class="l ph" aria-hidden="true">&nbsp;</span><span class="tr ph" aria-hidden="true"></span><span class="v ph" aria-hidden="true">&nbsp;</span>`:""}</div>`;
-  const cPos=`<section class="fp-c"><div class="fp-ch"><h4>Tu posición</h4><span>${shares(p.shares)} ${p.shares===1?"acción":"acciones"}</span></div><div class="fp-v">${dec}</div>
-    ${facts([["Invertido",eur(p.invested)],["Precio medio",money(p.avg,p.cur)],["Cotización",precioVisible(p.price,p.cur)]])}<div class="fp-mov">${facts([["TIR",pct(p.irr,1)],["Dividendo al año",p.annual?eur(p.annual):"—"]])}</div></section>`;   // CM-01: en el móvil, lo que sale de la tarjeta
-  const cBuy=`<section class="fp-c"><div class="fp-ch"><h4>Compras</h4><span>${buys.length?`${nf(0).format(buys.length)} ${buys.length===1?"compra":"compras"}${nSold?` · ${nSold} ${nSold>1?"vendidas":"vendida"}`:""}`:""}</span></div><div class="fp-v">${tl}</div>
-    ${facts([["Primera",buys.length?fd(buys[0].d):""],["Última",buys.length?fd(buys[buys.length-1].d):""],["Desde la última",buys.length?hace(buys[buys.length-1].d):""]])}</section>`;
-  // dividendos: por año desde que tienes la posición actual (lo cobrado cuadra con «Cobrado» de tu hoja) y lo apuntado
-  const open1=buys.filter(b=>!b.sold).reduce((a,b)=>!a||b.d<a?b.d:a,null);
-  const dvs=DATA.dv.filter(r=>r.ticker===p.ticker&&(!DATA.isPaid(r)||(open1&&r.d>=open1)));
-  const yrs={}; dvs.forEach(r=>{ const y=day(r.d).getFullYear(), o=yrs[y]=yrs[y]||{c:0,a:0}; if(DATA.isPaid(r)) o.c+=r.gross||0; else o.a+=r.gross||0; });
-  const yk=Object.keys(yrs).map(Number).sort((a,b)=>a-b), ymx=Math.max(...yk.map(y=>yrs[y].c+yrs[y].a),1), hasA=yk.some(y=>yrs[y].a>0.5);
-  const yb=yk.length?`<div class="fp-yb">${yk.map(y=>{ const o=yrs[y], h=v=>Math.max(v>0.5?2:0,Math.round(v/ymx*39));
-      return `<div class="y"><span class="v num">${eur(o.c+o.a)}</span><span class="bar"><i class="a" style="height:${h(o.a)}px"></i><i class="c" style="height:${h(o.c)}px"></i></span><span class="yl">${y}</span></div>`; }).join("")}</div>
-    ${hasA?`<div class="fp-lg"><span><i class="c"></i>Cobrado</span><span><i class="a"></i>Previsto</span></div>`:""}`:"";
-  const nx=p.next instanceof Date?p.next:null, nxA=nx?sum(DATA.dv.filter(r=>r.ticker===p.ticker&&!DATA.isPaid(r)&&r.d.toDateString()===nx.toDateString()),r=>r.gross||0):0;
-  const cDiv=!yb&&!(p.paid>0)&&!nx?`<section class="fp-c dv fp-c1"><div class="fp-ch"><h4>Dividendos</h4><span>No reparte dividendo</span></div></section>`:`<section class="fp-c dv"><div class="fp-ch"><h4>Dividendos</h4><span>${nx?`Próximo cobro ${fechaCorta(nx)}${nxA>0.5?" · "+eur(nxA):""}`:""}</span></div><div class="fp-v">${yb||`<p class="fp-none">Sin dividendos</p>`}</div>
-    ${facts([["Cobrado",p.paid>0?eur(p.paid):""],["Sobre lo invertido",p.yoc?pct(p.yoc,2):""],["Sobre el valor de hoy",p.yov?pct(p.yov,2):""]])}</section>`;
-  return {band,body:`<div class="fp-cards">${cPos}${cBuy}${cDiv}</div>`};
-}
 // niveles de rentabilidad de la hoja (pestaña Cartera): ≥100 / ≥50 / ≥25 / ≥10 / >0 y <0 / ≤−5 / ≤−10 / ≤−15 / ≤−30 %
 const retLevel=r=>r>=1?"rp5":r>=0.5?"rp4":r>=0.25?"rp3":r>=0.1?"rp2":r>0?"rp1":r<=-0.3?"rn5":r<=-0.15?"rn4":r<=-0.1?"rn3":r<=-0.05?"rn2":r<0?"rn1":"";
 // logo sin círculo ni fondo, con la misma superficie para todos
@@ -4766,46 +4437,8 @@ function mvGraf(rows,y){ const G=$("mv-g"); if(!G) return; mvgArgs=[rows,y];
     const tr=document.querySelector(`#m-body tr.grp-row[data-mk="${k}"]`); if(!tr) return; const tb=document.querySelector(".top").getBoundingClientRect().bottom, th=$("m-head").getBoundingClientRect().height;
     scrollTo({top:Math.max(0,tr.getBoundingClientRect().top+scrollY+25-(tb+th+10)),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); });
   if(window.ResizeObserver) new ResizeObserver(()=>{ if(mvgArgs&&!G.hidden&&Math.abs(G.clientWidth-mvgW)>1) mvGraf(...mvgArgs); }).observe(G); }
-// el detalle de un movimiento, en el panel lateral (como la ficha): qué fue, su desglose y cómo está hoy esa empresa
-const mvFL=d=>fdate(d,{day:"numeric",month:"long",year:"numeric"});
-const mvR=(k,v,c="")=>`<div class="mvd-r${c?" "+c:""}"><span>${k}</span><span>${v}</span></div>`;
-const mvSec=(t,body)=>`<section class="fp-c fp-c1"><div class="fp-ch"><h4>${t}</h4></div>${body}</section>`;
 const mvQty=n=>`${shares(n)} ${n===1?"acción":"acciones"}`;
 const mvTiempo=(a,b)=>{ const d=Math.round((day(b)-day(a))/DIA_MS); if(d<45) return `${d} ${d===1?"día":"días"}`; const m=Math.round(d/30.44); if(m<24) return `${m} meses`; return `${nf(1).format(d/365.25)} años`; };
-function mvHoy(tk,name){ const p=DATA.pos.find(x=>x.ticker===tk), cmp=DATA.tx.filter(x=>x.ticker===tk), vs=new Set(cmp.filter(x=>x.sd).map(x=>+x.sd)).size;
-  const hoy=p?mvR("Acciones",p.isOption?`${nf(0).format(contratos(p.shares,tk)||p.shares)} ${contratos(p.shares,tk)===1?"contrato":"contratos"}`:shares(p.shares))+mvR("Precio medio",money(p.avg,p.cur))+mvR("Peso en la cartera",pct(p.weight,1)):`<p class="mvd-n">Ya no está en tu cartera.</p>`;
-  const his=cmp.length?mvR(`Compras de ${esc(name)}`,nf(0).format(cmp.length))+(vs?mvR("Ventas",nf(0).format(vs)):"")+mvR("Primera compra",fechaCorta(cmp.reduce((m,x)=>!m||x.bd<m?x.bd:m,null))):"";
-  return mvSec("En tu cartera hoy",hoy+his); }
-function mvDet(o){ const r=o.r, k=o.k, s=r.src||r, tg=(c,l)=>`<span class="tag mt mt-${c}">${esc(l)}</span>`;
-  let tk=null, name="", ic=null, sub="", tag="", imp="", impC="", s2="", body="";
-  if(k==="buy"||k==="lot"){ const x=k==="lot"?r:s; tk=x.ticker; name=cname(x.ticker,x.name); tag=tg("buy","Compra"); sub=`${esc(tk)} · ${mvFL(x.bd)} · ${esc(x.broker||"")}`;
-    imp=seur(-x.bt,2); s2=detOp(x.shares,x.ticker,x.bp,x.cur,mvQty);
-    body=mvSec("Desglose",mvR(`${esc(mvQty(x.shares))} × ${money(x.bp,x.cur)}`,eur(x.bt-(x.bfee||0),2))+mvR("Comisión",eur(x.bfee||0,2))+mvR("Total",eur(x.bt,2),"t"));
-    if(x.sd) body+=mvSec("Después",mvR("Vendida",mvFL(x.sd))+mvR("Precio de venta",money(x.sp,x.cur))+mvR("Tiempo en cartera",mvTiempo(x.bd,x.sd))+mvR("Resultado",`<span class="${cls(x.pnl)}">${seur(x.pnl,2)}</span>`,"t"));
-    if(x.note) body+=mvSec("Comentario",`<p class="mvd-n">${esc(x.note)}</p>`); }
-  else if(k==="sell"){ const L=r.lots||[], sf=sum(L,x=>x.sfee||0), bt=sum(L,x=>x.bt||0), b0=L.reduce((m,x)=>!m||x.bd<m?x.bd:m,null); tk=r.ticker; name=r.name; tag=tg("sell","Venta"); sub=`${esc(tk)} · ${mvFL(r.d)} · ${esc(r.broker||"")}`;
-    imp=seur(r.v,2); s2=r.det;
-    body=mvSec("Desglose",mvR(`${esc(mvQty(sum(L,x=>x.shares||0)))} × ${money(L[0]&&L[0].sp,L[0]&&L[0].cur)}`,eur(r.v+sf,2))+mvR("Comisión",eur(sf,2))+mvR("Recibido",eur(r.v,2),"t"))
-      +mvSec("Resultado",mvR(L.length>1?`Coste de las ${L.length} compras`:"Coste de la compra",eur(bt,2))+(b0?mvR(L.length>1?"Primera compra":"Comprada",fechaCorta(b0))+mvR("Tiempo en cartera",mvTiempo(b0,r.d)):"")+mvR("Rentabilidad",bt?`<span class="${cls(r.pnl)}">${pct(r.pnl/bt,1,true)}</span>`:"")+mvR("Resultado",`<span class="${cls(r.pnl)}">${seur(r.pnl,2)}</span>`,"t")); }
-  else if(k==="dv"){ tk=s.ticker; name=cname(s.ticker,s.name); const pd=DATA.isPaid(s), all=DATA.dv.filter(x=>x.ticker===tk&&DATA.isPaid(x)), y=yr(s.d), ret=(s.gross||0)-(s.net||0);
-    tag=tg("div",s.type||"Dividendo")+(pd?"":` <span class="tag">Previsto</span>`); sub=`${esc(tk)} · ${mvFL(s.d)} · ${esc(s.broker||"")}`; imp=seur(s.gross,2); s2=`${esc(mvQty(s.shares))} · ${dpsF(s.dps,s.cur)} por acción`;
-    body=mvSec("Desglose",mvR(`${esc(mvQty(s.shares))} × ${dpsF(s.dps,s.cur)}`,eur(s.gross,2))+(ret>0.005?mvR("Retención",`−${eur(ret,2)}`):"")+mvR("En el bróker",eur(s.net,2),"t"))
-      +mvSec(`Dividendos de ${esc(name)}`,mvR(`Cobrado en ${y}`,eur(sum(all.filter(x=>yr(x.d)===y),x=>x.gross||0),2))+mvR("Cobrado en total",eur(sum(all,x=>x.gross||0),2))+mvR("Cobros",nf(0).format(all.length))); }
-  else if(k==="ap"){ apAcc(); const out=s.amt<0, y=yr(s.d); ic=iconosMov[out?"out":"in"]; name=s.type||(out?"Retirada":"Aportación"); sub=`${esc(s.broker||"")} · ${mvFL(s.d)}`; imp=seur(s.amt,2);
-    body=mvSec("Detalle",mvR("Bróker",esc(s.broker||""))+(s.note?mvR("Comentario",esc(s.note),"w"):"")+mvR(`Neto aportado en ${y}`,eur(sum(DATA.ap.filter(x=>yr(x.d)===y),x=>x.amt||0),2))+(isNum(s.acc)?mvR("Aportado hasta aquí",eur(s.acc,2),"t"):"")); }
-  else { ic=iconosMov.adj; name="Ajuste"; sub=`${esc(s.broker||"")} · ${mvFL(s.d)}`; imp=seur(s.amt,2); impC=cls(s.amt);
-    body=mvSec("Detalle",mvR("Bróker",esc(s.broker||""))+(s.note?mvR("Comentario",esc(s.note),"w"):"")); }
-  const logo=tk?logoBare(name,tk,"xl"):`<span class="lgb mvg xl" aria-hidden="true"><svg viewBox="0 0 22 22">${ic}</svg></span>`;
-  const enC=tk&&(DATA.pos.some(x=>x.ticker===tk)||DATA.pre.some(x=>x.ticker===tk));
-  if(tk) body+=mvHoy(tk,name);
-  const go=enC?`<button type="button" class="fh-go fp-go" data-mvficha="${esc(tk)}">Ver la ficha de ${esc(name)}<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5L8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`:"";
-  return {tk,name,html:`<div class="ficha fpx mvd"><div class="fp-h"><div class="fp-id">${logo}<div class="fp-t"><h3>${esc(name)}</h3><div class="sub"><span>${sub}</span></div>${tag?`<div class="mvd-tg">${tag}</div>`:""}</div></div></div><div class="mvd-imp${impC?" "+impC:""}">${imp}</div>${s2?`<div class="mvd-s">${s2}</div>`:""}${body}${go}</div>`}; }
-function renderMovDet(){ const el=$("sheet"), i=+String(sheet.t).slice(5), o=mvSnap[i];
-  if(!o){ sheet=null; el.hidden=true; document.documentElement.classList.remove("sh-open"); markRows(); return; }
-  const d=mvDet(o); el.classList.remove("sh-cq"); el.classList.add("sh-mv"); $("sheet-b").innerHTML=d.html;
-  $("sh-tt").innerHTML=(d.tk?logoBare(d.name,d.tk):"")+`<b>${esc(d.name)}</b>`; el.setAttribute("aria-label",d.name);
-  $("sh-prev").disabled=i<=0; $("sh-next").disabled=i>=mvSnap.length-1; el.hidden=false; document.documentElement.classList.add("sh-open"); markRows();
-  const tr=[...document.querySelectorAll("#m-body tr[data-mi]")].find(x=>mvVis[+x.dataset.mi]&&mvVis[+x.dataset.mi].r===o.r); if(tr) tr.scrollIntoView({block:"nearest"}); }
 { const abre=tr=>{ const i=+tr.dataset.mi, o=mvVis[i]; if(!o) return;
     if(sheet&&String(sheet.t).startsWith("__mv:")&&mvSnap[+String(sheet.t).slice(5)]===o) return closeSheet();
     mvSnap=mvVis.slice(); openSheet("mv","__mv:"+i,mvSnap.map((_,j)=>"__mv:"+j)); };
@@ -4989,80 +4622,6 @@ document.querySelectorAll("#perf-k .cy").forEach(e=>e.textContent=new Date().get
   document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!M.hidden){ cierra(); B.focus(); } }); }
 
 /* ficha: tu hoja Valoración + mercado */
-function fichaPre(r){
-  const v=r.val||{}, cur=r.cur, mult=isNum(v.mult)?v.mult:r.mult, req=isNum(r.req)?r.req:v.req, vd=r.fvDate instanceof Date?r.fvDate:v.date;
-  const mb=(k,x,sub,c="",cl="")=>`<div class="fp-b${cl}"><span class="fp-k">${k}</span><b class="num ${c}">${x===""?"&nbsp;":x}</b><small>${sub||""}</small></div>`;
-  const d=r.dist, ds=isNum(d)?(Math.abs(d)<0.0005?"en tu valor razonable":`${pct(Math.abs(d),1)} ${d>0?"por encima":"por debajo"}`):"";
-  // tu valoración: sus cifras clave arriba del bloque
-  const sl=lastSession().closed?"sesión":"hoy", sesT=isNum(r.today)?`${pctSigno(r.today)} ${sl}`:isNum(r.last)?`${pctSigno(r.last)} última sesión`:"sin cotizar", vcells=`${mb("Cotización",precioVisible(r.price,cur),sesT)}${mb("Valor razonable",precioVisible(r.fv,cur),ds)}${mb("TIR esperada",tirP(r.irrExp),req>0?`exigida ${tipoPct(req)}`:"")}${mb("Margen",puntosPct(r.margin),"",clsM(r.margin)," ns")}${mb("Múltiplo",multiplo(mult),isNum(v.multNow)?`actual ${multiplo(v.multNow)}`:"")}`, vsum=`<div class="fp-m fp-vm">${vcells}</div>`;
-  const card=(h,right,body,cl="")=>`<section class="fp-c${cl}"><div class="fp-ch"><h4>${h}</h4>${right?`<span>${right}</span>`:""}</div>${body}</section>`;
-  const kl=xs=>`<div class="fp-kl">${xs.map(([l,x])=>`<span>${l}</span><b class="num">${x===""?"&nbsp;":x}</b>`).join("")}</div>`;
-  const vdS=vd instanceof Date?fechaCorta(vd):"";
-  // valoración: el año final, la matriz y la deuda (o la caja)
-  const y=v.y2, F=v.fv, near=(a,b)=>isNum(a)&&isNum(b)&&Math.abs(a-b)<1e-6;
-  const cY=y&&[y.price,y.irr,y.irrDiv].some(isNum)?card(`En ${esc(y.year??"")}`,"",kl([["Precio",precioVisible(y.price,cur)],["Dividendos",money(y.divs,cur)],["TIR sin dividendos",tirP(y.irr)],["TIR con dividendos",tirP(y.irrDiv)]])):"";
-  let cF=""; if(F){ const all=F.rows.flatMap(o=>o.v).filter(isNum), dd=all.length&&Math.max(...all.map(Math.abs))>=1000?0:2, mo=x=>isNum(x)?money(x,cur,dd):"";
-    // cada celda: el valor razonable y cuánto cotiza por encima (rojo) o por debajo (verde), con la escala de tu hoja (±30%)
-    const heat=x=>{ if(!isNum(x)||!x||!isNum(r.price)) return {bg:"",p:""}; const g=r.price/x-1, k=Math.min(Math.abs(g)/0.3,1)*100;
-      return {bg:`background:color-mix(in srgb,var(${g<0?"--hm-g":"--hm-r"}) ${k.toFixed(0)}%,var(--hm-0))`,p:pct(g,1,true)}; };
-    cF=card("Valor razonable","",`<div class="fp-hm" style="--n:${F.rates.length}"><span class="k tl">Múltiplo</span><span class="cap tr">TIR exigida</span>${F.rates.map(x=>`<span class="h${near(x,req)?" sel":""}">${tipoPct(x)}</span>`).join("")}${F.rows.map((o,j)=>`<span class="m${near(o.m,mult)?" sel":""}${j===F.rows.length-1?" bl":""}">${multiplo(o.m)}</span>${o.v.map((x,i)=>{ const h=heat(x); const t=mo(x), sp=t.lastIndexOf(" "); return `<span class="c${near(o.m,mult)&&near(F.rates[i],req)?" on":""}${j===F.rows.length-1&&i===o.v.length-1?" br":""}" style="${h.bg}"><b class="num">${sp>0?`${t.slice(0,sp)}<i class="cu">${t.slice(sp)}</i>`:t}</b><small class="num">${h.p}</small></span>`; }).join("")}`).join("")}</div>`," mx"); }
-  // con caja neta tu hoja da la deuda en negativo: aquí se muestra la caja en positivo
-  const ndL=!v.ndfcfL||/^free cash flow$/i.test(v.ndfcfL)?"FCF":v.ndfcfL;
-  // sin cifras (o todas a cero, como en un banco), el bloque no sale
-  const nz=x=>isNum(x)&&Math.abs(x)>0.0005;
-  const cD=[v.nd,v.ndps,v.ndfcf].some(nz)?card("Deuda","",kl([["Deuda neta",numSigno(v.nd)],["Deuda neta / acción",numSigno(v.ndps,2)],["Deuda neta / "+esc(ndL),multiplo(v.ndfcf)]]))
-    :[v.cash,v.cashps].some(nz)?card("Caja","",kl([["Caja neta",numSigno(isNum(v.cash)?Math.abs(v.cash):null)],["Caja neta / acción",numSigno(isNum(v.cashps)?Math.abs(v.cashps):null,2)]])):"";
-  const cs=[cY,cF,cD].filter(Boolean);
-  const val=cs.length?`<div class="fp-cards u${cs.length}" style="--n:${cs.length}">${cs.join("")}</div>`:"";
-  // proyección: en móvil solo el primer dato, el año final y la CAGR
-  let pj="";
-  if(v.proj&&v.proj.rows.length){ const C=v.proj.cols, isC=i=>/^CAGR/i.test(C[i]), ly=Math.max(...C.map((h,i)=>isC(i)?-1:i)), mid=i=>i>0&&i<ly;
-    const cl=(i,j)=>[isC(i)?"cg":"",mid(i)?"mid":"",i===C.length-1?"e":"",j%2===0?"z":""].filter(Boolean).join(" ");
-    const fm=(l,x,i)=>!isNum(x)?"":isC(i)||/crecimiento|margen/i.test(l)?pct(x,1):/acci[oó]n$|dividendo/i.test(l)?numSigno(x,2):numSigno(x);
-    pj=card("Proyección","",`<div class="fp-pj" style="--n:${C.length};--nm:${C.filter((h,i)=>!mid(i)).length}"><span class="l h"></span>${C.map((h,i)=>`<span class="h ${cl(i,1)}">${isC(i)?`<span class="pjl">${esc(h.replace(/^CAGR\b\s*/i,"Crecimiento anual ").replace(/\s*(\d+)\s*Y$/i," a $1 años").trim())}</span><span class="pjs">Anual</span>`:esc(h)}</span>`).join("")}${v.proj.rows.map((o,j)=>`<span class="l${j%2===0?" z":""}">${esc(o.l)}</span>${o.v.map((x,i)=>`<span class="${cl(i,j)}">${fm(o.l,x,i)}</span>`).join("")}`).join("")}</div>`); }
-  const per=[["1 semana","w1"],["1 mes","m1"],["3 meses","m3"],["6 meses","m6"],[`En ${new Date().getFullYear()}`,"ytd"],["1 año","y1"],["3 años","y3"]];
-  // pestaña «Cotización»: el precio frente a sus referencias (de mayor a menor, con la distancia a cada una, como en tu hoja: precio / referencia − 1)
-  const P0=r.price, own=DATA.pos.find(x=>x.ticker===r.ticker&&!x.isOption);
-  // las cuatro referencias están siempre: las que no tienen dato van al final con «N/A», para que el bloque mida lo mismo en todas las empresas
-  const refs=[ ["Máximo 1 año",isNum(r.hi52)&&r.hi52>-1&&isNum(P0)?P0/(1+r.hi52):null], ["Valor razonable",isNum(r.fv)&&r.fv>0?r.fv:null],
-    ["Tu precio medio",own&&isNum(own.avg)&&own.avg>0?own.avg:null], ["Media 200",isNum(r.mm200)&&r.mm200>-1&&isNum(P0)?P0/(1+r.mm200):null] ];
-  const rv=x=>isNum(x[1])?x[1]:-Infinity, lad=[...refs.filter(x=>isNum(x[1])),["Cotización",P0,1]].sort((a,b)=>rv(b)-rv(a)), na=refs.filter(x=>!isNum(x[1]));
-  // v364 · cada referencia, un punto en su fila y todos en la misma escala (con un 6 % de aire a cada lado); la línea discontinua
-  // une las filas por la cotización. Sin cotización o con una sola cifra, la columna queda vacía
-  const nv=lad.map(x=>x[1]).filter(isNum), pLo=Math.min(...nv), pHi=Math.max(...nv), conPts=isNum(P0)&&nv.length>1&&pHi-pLo>1e-9;
-  const ex=(pHi-pLo)*.06, Lp=v=>((v-pLo+ex)/(pHi-pLo+2*ex)*100).toFixed(1), cX=conPts?Lp(P0):0, ult=lad.length-1;
-  const tk=(cifra,i)=>`<span class="tk" aria-hidden="true">${conPts&&isNum(cifra)?`<i class="bl"></i><i class="ref${i===0?" t0":""}${i===ult?" t1":""}" style="left:${cX}%"></i><i class="dt" style="left:${Lp(cifra)}%"></i>`:""}</span>`;
-  const cPrice=`<section class="fp-c fp-cot"><div class="fp-ch"><h4>Precio</h4><span>${sesT}</span></div>
-    <ol class="cot-l">${lad.map(([l,cifra,me],i)=>`<li class="${me?"me":""}"><span>${l}</span>${tk(cifra,i)}<b class="num">${l==="Tu precio medio"?money(cifra,cur):precioVisible(cifra,cur)}</b><em class="num">${me||!isNum(P0)?"":pct(P0/cifra-1,1,true)}</em></li>`).join("")}${na.map(([l])=>`<li class="na"><span>${l}</span><span class="tk" aria-hidden="true"></span><b>N/A</b><em></em></li>`).join("")}</ol>
-    <div class="cot-f"><span>Desde máx. histórico</span><b class="num">${pct(r.dd,1,true)}</b><span>Volatilidad</span><b class="num">${pct(r.vol,1)}</b></div></section>`;
-  // rendimiento de cada periodo en barras; la marca, la media simple de su industria en ese periodo
-  const peers=r.ind?DATA.pre.filter(x=>x.ind===r.ind):[], avgOf=k=>{ const vals=peers.map(x=>x[k]).filter(isNum); return vals.length>1?sum(vals,x=>x)/vals.length:null; };
-  const z0=cifra=>isNum(cifra)&&Math.abs(cifra)<0.0005?0:cifra, rows=per.map(([l,k])=>[l,z0(r[k]),avgOf(k)]), rdv=rows.flatMap(x=>[x[1],x[2]]).filter(isNum),
-    lo=Math.max(0,...rdv.map(cifra=>-cifra)), hi=Math.max(0,...rdv), tot=Math.max(lo+hi,0.0001), z=lo/tot*100, wb=cifra=>(Math.abs(cifra)/tot*100).toFixed(1);
-  const cPerf=`<section class="fp-c fp-rd"><div class="fp-ch"><h4>Rendimiento</h4><span${peers.length>1?"":' class="hid" aria-hidden="true"'}><i class="rd-k"></i>media de ${esc(r.ind||"")}</span></div>
-    <div class="rd-g" style="--z:${z.toFixed(1)}%">${rows.map(([l,cifra,a])=>`<span class="rd-l">${l}</span><span class="rd-t">${isNum(a)?`<i class="m" style="left:calc(${(z+a/tot*100).toFixed(1)}% - 1px)"></i>`:""}${isNum(cifra)&&cifra?`<i class="${cifra<0?"n":"p"}" style="${cifra<0?`right:${(100-z).toFixed(1)}%`:`left:${z.toFixed(1)}%`};width:${wb(cifra)}%"></i>`:""}</span><b class="num ${cls(cifra)}">${isNum(cifra)?pct(cifra,1,true):""}</b>`).join("")}</div></section>`;
-  const mkt=cPrice+cPerf;
-  // tus textos: a favor y en contra, todos a la vista, cada punto con su titular en negrita
-  const items=t=>String(t||"").split(/\n+/).map(s=>s.trim().replace(/(\d)(?:[ \u00A0]|&nbsp;)?%/g,"$1\u202F%")).filter(Boolean);
-  const cap1=s=>/^[a-záéíóúñü][a-záéíóúñü]/.test(s)?s[0].toUpperCase()+s.slice(1):s;   // tras el titular, la frase empieza en mayúscula («ramp-up» sí; «iPhone» no se toca)
-  const lead=s=>{ const m=s.match(/^([^.:;]{2,48}[.:])\s+(.+)$/); return m&&m[1].split(/\s+/).length<=5?`<b>${esc(m[1].replace(/:$/,"."))}</b> ${esc(cap1(m[2]))}`:esc(s); };
-  const ul=(t,k)=>`<ul class="fp-ul ${k}">${items(t).map(s=>`<li>${lead(s)}</li>`).join("")}</ul>`, ps=t=>`<div class="fp-p">${items(t).map(s=>`<p>${lead(s)}</p>`).join("")}</div>`;
-  const pair=xs=>{ xs=xs.filter(Boolean); return xs.length?`<div class="fp-pair${xs.length===1?" one":""}">${xs.join("")}</div>`:""; };
-  const notes=v.notes?card("Notas","",ps(v.notes)):"";
-  // a favor y en contra: una tarjeta con dos columnas; cada punto lleva un punto de color, sin rayas
-  const pcs=[v.pro&&["A favor",ul(v.pro,"pro"),items(v.pro).length], v.con&&["En contra",ul(v.con,"con"),items(v.con).length]].filter(Boolean);
-  const pc=pcs.length?`<section class="fp-c fp-pc${pcs.length<2?" one":""}">${pcs.map(([h,u,n])=>`<div class="pc-col"><h4>${h}<span>${n}</span></h4>${u}</div>`).join("")}</section>`:"";
-  const mr=pair([v.multTxt?card("Múltiplo",multiplo(mult),ps(v.multTxt)):"", v.retTxt?card("TIR exigida",tipoPct(req),ps(v.retTxt)):""]);
-  // debajo, todo es tu valoración: primero sus cifras clave y su fecha
-  // si no la tienes, sus cifras ya van en la franja de arriba: aquí solo el título y la fecha
-  const porQue=stale(r)?(staleRes(r)?`Resultados del ${fdate(CALT.get(r.ticker).u)}, posteriores a tu valoración`:"Valorada hace más de un año"):"";
-  const vcard=card(`Tu valoración${stale(r)?`<span class="tag warn vrv" title="${esc(porQue)}" aria-label="Por revisar: ${esc(porQue)}">Por revisar</span>`:""}`,vdS?`valorada el ${vdS}`:"",(own?vsum:"")+`<div class="fp-kl fp-mgc"><span>Margen</span><b class="num ${clsM(r.margin)}">${puntosPct(r.margin)}</b></div>`," fp-vc"+(own?"":" fp-c1"));   // v425: una sola línea, como en las demás
-  // la valoración es una estimación: sus cuentas (2030, deuda, tabla, proyección, notas y argumentos) quedan plegadas
-  const calc=val||pj||mr?`<details class="fp-calc"><summary><h4>Cálculo de la valoración</h4><span class="pl-tg"><span class="o">Ver</span><span class="c">Plegar</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><div class="fp-cb">${val}${pj}${mr}</div></details>`:"";
-    // «Cotización» (lo que ha hecho en bolsa) va en su propia pestaña; «Valoración», lo tuyo
-  const vb=`${vcard}${pc}${notes}${calc}`;
-  return {mkt,band:vcells,body:vb.trim()?vb:`<section class="fp-c"><p class="fp-none">Sin valoración en tu hoja</p></section>`};
-}
 
 /* plan de aportación: calculadora con las reglas de tu hoja (acciones enteras, coste en euros y comisión por mercado) */
 const PLAN_K="plan-aportacion";
@@ -5235,51 +4794,19 @@ document.addEventListener("click",e=>{ const b=e.target.closest(".ri-go"); if(b)
 
 
 /* ---------- ficha en panel lateral ---------- */
-// una empresa por ficha, con pestañas: Posición, Valoración y Movimientos (las que tenga); ‹ › pasa a la anterior o la siguiente de la lista de la que vienes
+// una empresa, un movimiento o el cuadre por ficha (la pinta zf-7); ‹ › pasa a la anterior o la siguiente de la lista de la que vienes
 let sheet=null;   // {t, tab, list}
 function markRows(){ document.querySelectorAll("#pos-body tr.pr,#p-body tr.pr").forEach(tr=>{ const o=!!sheet&&sheet.t===tr.dataset.t; tr.classList.toggle("open",o); });
   const mo=sheet&&String(sheet.t).startsWith("__mv:")?mvSnap[+String(sheet.t).slice(5)]:null; document.querySelectorAll("#m-body tr[data-mi]").forEach(tr=>{ const v=mvVis[+tr.dataset.mi]; tr.classList.toggle("open",!!mo&&!!v&&v.r===mo.r); }); }
-// movimientos de la empresa, dentro de la ficha
-function fichaMov(t){
-  const tx=DATA.tx.filter(r=>r.ticker===t).sort((a,b)=>(a.bd||0)-(b.bd||0)), dv=DATA.dv.filter(r=>r.ticker===t).sort((a,b)=>(a.d||0)-(b.d||0));   // de más antiguo a más reciente
-  const open=go=>`<button type="button" class="fh-go fp-go" data-gomov="${esc(t)}" data-tab="${go}">${go==="dividendos"?"Todos los dividendos":"Todas las compras y ventas"}<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5L8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
-  const nS=tx.filter(r=>r.sd).length, paid=dv.filter(DATA.isPaid);
-  const cT=tx.length?`<section class="fp-c fp-mv"><div class="fp-ch"><h4>Compras y ventas</h4><span>${nf(0).format(tx.length)} ${tx.length===1?"compra":"compras"}${nS?` · ${nS} ${nS>1?"vendidas":"vendida"}`:""}</span></div>
-    <div class="fp-ml tx${nS?"":" ns"}"><span class="h c0">Fecha</span><span class="h r">Acciones</span><span class="h r pr">Precio</span><span class="h r">Importe</span>${nS?`<span class="h r">Resultado</span>`:""}
-    ${tx.map(r=>`<span class="c0">${sdate(r.bd)}</span><span class="r num"><span class="pv pvn">${shares(r.shares)}</span></span><span class="r num pr">${money(r.bp,r.cur)}</span><span class="r num">${eur(r.bt,2)}</span>${nS?`<span class="r num">${r.sd?`<span class="${cls(r.pnl)}">${seur(r.pnl,2)}</span>`:""}</span>`:""}`).join("")}</div>${open("transacciones")}</section>`:"";
-  const cD=dv.length?`<section class="fp-c fp-mv"><div class="fp-ch"><h4>Dividendos</h4><span>Cobrado ${eur(sum(paid,r=>r.gross||0))}</span></div>
-    <div class="fp-ml dv"><span class="h c0">Fecha</span><span class="h"></span><span class="h r">Bruto</span>
-    ${dv.map(r=>`<span class="c0">${sdate(r.d)}</span><span>${DATA.isPaid(r)?"":`<span class="tag">Previsto</span>`}</span><span class="r num">${eur(r.gross,2)}</span>`).join("")}</div>${open("dividendos")}</section>`:"";
-  return `<div class="fp-mvs">${cT}${cD}</div>`; }
 let sheetClave="";   // COD-14: con qué empresa y pestaña se pintó la ficha por última vez
 function renderSheet(){ const el0=$("sheet"), clave=sheet?sheet.t+"|"+sheet.tab:"", misma=!!sheet&&clave===sheetClave&&!el0.hidden;
-  const abiertos=misma?[...el0.querySelectorAll("details[open]")].map(x=>x.className):[], fa=misma&&el0.contains(document.activeElement)?document.activeElement:null, fid=fa&&(fa.id||(fa.dataset&&fa.dataset.shtab&&`[data-shtab="${fa.dataset.shtab}"]`));
+  const fa=misma&&el0.contains(document.activeElement)?document.activeElement:null, fid=fa&&fa.id;
   renderSheet0(); sheetClave=sheet?sheet.t+"|"+sheet.tab:"";
-  if(misma&&sheet){ el0.querySelectorAll("details").forEach(x=>{ if(abiertos.includes(x.className)) x.open=true; });
-    if(fa&&!fa.isConnected){ const n=fid&&(fid[0]==="["?el0.querySelector(fid):document.getElementById(fid)); (n||el0).focus({preventScroll:true}); } } }
+  if(misma&&sheet){
+    if(fa&&!fa.isConnected){ const n=fid&&document.getElementById(fid); (n||el0).focus({preventScroll:true}); } } }
 // HI-01 · el Cuadre en el panel lateral: su título, su etiqueta y la misma tabla que se pinta en la portada (oculta)
 const abreCuadre=()=>{ if(!DATA) return; $("more-m").hidden=true; $("more").setAttribute("aria-expanded","false"); openSheet("cq","__cq",[]); };
-function renderCuadre(){ const el=$("sheet"), tg=$("chk-tag");
-  $("sheet-b").innerHTML=`<div class="cq"><div class="cq-h"><h3>Cuadre con tu hoja</h3><span class="${esc(tg.className)}">${esc(tg.textContent)}</span></div><div class="cq-b">${$("chk").innerHTML}</div></div>`;
-  $("sh-tt").innerHTML="<b>Cuadre con tu hoja</b>"; el.setAttribute("aria-label","Cuadre con tu hoja"); $("sh-prev").disabled=$("sh-next").disabled=true;
-  el.classList.add("sh-cq"); el.hidden=false; document.documentElement.classList.add("sh-open"); markRows(); }
-function renderSheet0(){ if(sheet&&sheet.t==="__cq"&&DATA) return renderCuadre(); if(sheet&&String(sheet.t).startsWith("__mv:")&&DATA) return renderMovDet(); $("sheet").classList.remove("sh-cq","sh-mv"); const el=$("sheet"), t=sheet&&DATA?sheet.t:null, p=t&&DATA.pos.find(x=>x.ticker===t), r=t&&DATA.pre.find(x=>x.ticker===t);
-  if(!p&&!r) sheet=null;
-  else {
-    const hasM=DATA.tx.some(x=>x.ticker===t)||DATA.dv.some(x=>x.ticker===t), tabs=[p&&["pos","Posición"],hasM&&["mov","Movimientos"],r&&["mkt","Cotización"],r&&["pre","Valoración"]].filter(Boolean);
-    if(!tabs.some(x=>x[0]===sheet.tab)) sheet.tab=tabs[0][0];
-    const P=p?fichaPos(p):null, R=r&&(!p||sheet.tab==="pre"||sheet.tab==="mkt")?fichaPre(r):null, co=p||r, m=p?p.meta:{}, ctry=(r&&r.country)||m.country, ind=(r&&r.ind)||(p&&!p.isOption&&m.ind)||(p&&p.isOption?optSub(p.ticker):"");
-    const place=`${ctry?flagHtml(ctry):""}<span>${esc(t)}</span>${ctry?`<span class="mute">·</span><span class="mute">${esc(ctryN(ctry))}</span>`:""}`;
-    const tags=(p&&p.isOption?'<span class="tag">Opción</span>':"")+"";
-    const idb=`<div class="fp-id">${logoBare(co.name,t,"xl")}<div class="fp-t"><h3>${esc(co.name)}${tags}</h3><div class="sub">${place}</div>${ind?`<div class="fp-in">${p&&p.isOption?optSub(p.ticker):esc(ind)}</div>`:""}</div></div>`;
-    // debajo del nombre, igual en todas las pestañas: la franja con cinco cifras (las de tu posición o, si no la tienes, las de su valoración)
-    const band=P?P.band:R?R.band:"", tb=tabs.length?`<div class="sh-tabw"><div class="sh-tabs" role="tablist">${tabs.map(([k,l])=>`<button type="button" role="tab" id="sht-${k}" aria-controls="sh-pane" data-shtab="${k}" aria-selected="${k===sheet.tab}" tabindex="${k===sheet.tab?0:-1}">${l}</button>`).join("")}</div></div>`:"";
-    const body=sheet.tab==="pos"?P.body:sheet.tab==="pre"?R.body:sheet.tab==="mkt"?R.mkt:fichaMov(t);
-    $("sheet-b").innerHTML=`<div class="ficha fpx ${sheet.tab==="pos"&&!p.isOption?"fpp":sheet.tab==="pre"||sheet.tab==="mkt"?"fpu":"fpm"}"><div class="fp-h">${idb}</div>${band?`<div class="fx-band${P&&!p.isOption?" fx-pos":!P&&R?" fx-cand":""}">${band}</div>`:""}${tb}<div class="sh-pane" id="sh-pane" role="tabpanel"${tabs.length?` aria-labelledby="sht-${sheet.tab}"`:""}>${body}</div></div>`;
-    $("sh-tt").innerHTML=`${logoBare(co.name,t)}<b>${esc(co.name)}</b>`; el.setAttribute("aria-label",co.name);
-    const i=(sheet.list||[]).indexOf(t); $("sh-prev").disabled=i<=0; $("sh-next").disabled=i<0||i>=sheet.list.length-1;
-  }
-  el.hidden=!sheet; document.documentElement.classList.toggle("sh-open",!!sheet); markRows(); }
+function renderSheet0(){ sheet=null; $("sheet").hidden=true; document.documentElement.classList.remove("sh-open"); markRows(); }   // v627: la ficha del PC (zf-7) pinta todas las fichas
 // lista de la que vienes (para ‹ ›): las filas tal como se ven en esa tabla o lista
 let listBox=null;   // la lista desde la que se abre la ficha
 const listOf=el=>{ const box=el&&el.closest("tbody,#perf-up,#perf-dn,#tmap,.hoy"); listBox=box; return box?[...new Set([...box.querySelectorAll("[data-t]")].map(x=>x.dataset.t))]:[]; };
@@ -5291,7 +4818,6 @@ function closeSheet(){ if(!sheet) return; const was=sheet, back=sheetFrom; sheet
 const toggleSheet=(tab,t,list)=>sheet&&sheet.t===t?closeSheet():openSheet(tab,t,list);
 function stepSheet(d){ if(!sheet) return; const L=sheet.list||[], i=L.indexOf(sheet.t); if(i<0||!L[i+d]) return; sheet.t=L[i+d]; renderSheet(); $("sheet").scrollTop=0;
   const B=sheet.box, tr=B&&B.isConnected&&B.matches("tbody")?[...B.querySelectorAll("tr.pr")].find(x=>x.dataset.t===sheet.t&&x.offsetParent):null; if(tr) tr.scrollIntoView({block:"nearest"}); }
-$("sh-prev").addEventListener("click",()=>stepSheet(-1)); $("sh-next").addEventListener("click",()=>stepSheet(1));
 /* ---------- Actualidad: el periódico de la semana ---------- */
 // tu tarea de los lunes deja en Drive (Inversiones › Informes › AAAA-MM-DD) un índice y una ficha por empresa. Aquí se maqueta como el
 // periódico de la semana: una portada (la semana, los resultados si los hay, las noticias y la agenda) y una página por empresa.
@@ -5490,13 +5016,6 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   new MutationObserver(()=>requestAnimationFrame(()=>bands.forEach(fit))).observe(document.body,{attributes:true,attributeFilter:["data-view"]});
   document.body.classList.add("hm5on"); }
 
-// ficha: la franja reserva dos líneas para las etiquetas solo si alguna se parte («DIVIDENDO» en un móvil estrecho)
-{ const fit=()=>document.querySelectorAll("#sheet .fx-band").forEach(b=>{ if(!b.offsetWidth) return; b.classList.remove("k2");
-    const two=[...b.querySelectorAll(".fp-b:not(:first-child) .fp-k")].some(k=>{ const r=document.createRange(); r.selectNodeContents(k); return new Set([...r.getClientRects()].map(q=>Math.round(q.top))).size>1; });
-    b.classList.toggle("k2",two); });
-  const sh=$("sheet"); if(sh){ let q=0; new MutationObserver(()=>{ if(!q) q=requestAnimationFrame(()=>{ q=0; fit(); }); }).observe(sh,{subtree:true,childList:true}); if(window.ResizeObserver) new ResizeObserver(()=>fit()).observe(sh); }
-  if(document.fonts) document.fonts.ready.then(fit); }
-
 // en un PC estrecho la hora no se parte en varias líneas: si no cabe, el día abreviado («vie») y, si aún no, sin el día de la semana
 { const st=$("stat"), WD={lunes:"lun",martes:"mar","miércoles":"mié",jueves:"jue",viernes:"vie","sábado":"sáb",domingo:"dom"};
   const steps=t=>{ const a=[], s=t.replace(/\b(lunes|martes|miércoles|jueves|viernes|sábado|domingo)\b/g,dia=>WD[dia]); a.push(s);
@@ -5656,21 +5175,11 @@ const acHold=y0=>{ const m=$("pa-main"); if(!m) return; const max=document.docum
   kx.addEventListener("wheel",e=>{ if(!e.target.closest(".kx-r")) e.preventDefault(); },{passive:false}); }
 
 
-// pestañas: cambian sin mover la barra
-$("sheet").addEventListener("click",e=>{ const b=e.target.closest("[data-shtab]"); if(!b||!sheet) return; const sh=$("sheet"), y=sh.scrollTop; sheet.tab=b.dataset.shtab; renderSheet();
-  const tw=sh.querySelector(".sh-tabw"), stick=tw?tw.offsetTop-sh.querySelector(".sh-top").offsetHeight:0, d=Math.min(y,stick);
-  // si la pestaña nueva es corta y estabas abajo, se añade solo el hueco que falta para que las pestañas no suban (sin él, no hay desplazamiento de más)
-  // (la altura real del contenido: con contenido corto, scrollHeight da el alto de la pantalla)
-  const pn=sh.querySelector(".sh-pane"), real=[...sh.children].reduce((h,hijo)=>h+hijo.getBoundingClientRect().height,0), lack=Math.ceil(d+sh.clientHeight-real); if(pn&&lack>0) pn.style.minHeight=Math.ceil(pn.getBoundingClientRect().height)+lack+"px";
-  sh.scrollTop=d; });
-// al bajar por la ficha, su nombre se queda en la barra de arriba
-$("sheet").addEventListener("scroll",()=>$("sheet").classList.toggle("scrolled",$("sheet").scrollTop>70),{passive:true});
 // la ficha tiene su propia entrada en el historial: «atrás» (el del navegador o el de Android) la cierra y no saca de la página;
-// cerrarla con ✕ quita esa entrada. En el iPhone no: su gesto de atrás arrastraría la página entera y enseñaría detrás una foto de la
-// anterior; allí la ficha se cierra con su propio arrastre desde el borde (más abajo), que deja quieta la página de debajo
+// cerrarla con ✕ quita esa entrada. En el iPhone no: su gesto de atrás arrastraría la página entera y enseñaría detrás una foto de la anterior
 const SH_HIST=!(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1));
 let shBack=false;   // el «atrás» que da la propia web para quitar su entrada: no hay que hacer nada más
-const closeUI=quick=>{ const S=$("sheet");
+const closeUI=()=>{
   const h=history.state&&history.state.sh; closeSheet(); if(h){ shBack=true; try{ history.back(); }catch{} setTimeout(()=>{ shBack=false; },800); } };   // se cierra sin esperar al historial
 try{ if(history.state&&history.state.sh) history.replaceState({...history.state,sh:0},""); }catch{}
 addEventListener("popstate",()=>{ if(shBack){ shBack=false; return; } if(sheet&&!(history.state&&history.state.sh)) closeSheet(); });
@@ -5678,22 +5187,15 @@ new MutationObserver(()=>{ const S=$("sheet");
   if(!S.hidden){ if(SH_HIST&&!(history.state&&history.state.sh)) try{ history.pushState({...history.state,sh:1},""); }catch{} }
   }).observe($("sheet"),{attributes:true,attributeFilter:["hidden"]});
 
-$("sheet-x").addEventListener("click",()=>closeUI());
 $("sheet-bg").addEventListener("click",()=>closeUI());   // pulsar fuera de la ficha la cierra
 addEventListener("keydown",e=>{ if(!sheet) return; if(e.key==="Escape") closeUI();
   else if((e.key==="ArrowLeft"||e.key==="ArrowRight")&&!e.target.closest("input,select,textarea")){ e.preventDefault();
-    const tab=e.target.closest(".sh-tabs [role=tab]");   // con el foco en una pestaña, las flechas pasan de pestaña; si no, de empresa
-    if(tab){ const T=[...tab.parentElement.querySelectorAll("[role=tab]")], n=T[(T.indexOf(tab)+(e.key==="ArrowLeft"?-1:1)+T.length)%T.length]; n.click(); requestAnimationFrame(()=>{ const m=document.querySelector(`.sh-tabs [data-shtab="${n.dataset.shtab}"]`); m&&m.focus(); }); }
-    else stepSheet(e.key==="ArrowLeft"?-1:1); } });
+    stepSheet(e.key==="ArrowLeft"?-1:1); } });   // las flechas pasan de empresa
 /* Plan plegado en una línea: «Abrir» / «Plegar» siempre en el mismo sitio; se recuerda en este dispositivo */
 let plOpen=false; try{ plOpen=localStorage.getItem("plOpen")==="1"; }catch{}
 function plMode(){ $("s-plan").classList.toggle("open",plOpen); $("pl-bar").setAttribute("aria-expanded",plOpen); $("pl-tg").textContent=plOpen?"Plegar":"Ver"; }
 $("pl-bar").addEventListener("click",()=>{ plOpen=!plOpen; try{ localStorage.setItem("plOpen",plOpen?"1":"0"); }catch{} plMode(); if(DATA) plFit(); });
 plMode();
-// «Ver movimientos» / «Ver dividendos»: esa lista con solo esa empresa (todos los años, brókers y estados)
-document.addEventListener("click",e=>{ const a=e.target.closest("[data-gomov]"); if(!a) return; const tab=a.dataset.tab||"transacciones", c=MOV[tab];
-  if(c.states) mstate[tab]=c.states[0][0]; navega(tab,true);
-  $("m-q").value=a.dataset.gomov; $("m-year").value=""; $("m-broker").value=""; mshow=MSTEP; renderMov(false); });
 
 /* ---------- barra fija ---------- */
 
@@ -6658,15 +6160,15 @@ function zfAjusta(root){ if(!root) return;
 let zfAgT=0;
 { const _r0=renderSheet0; renderSheet0=function(){ const S=$("sheet");
     if(sheet&&String(sheet.t).startsWith("__mv:")&&DATA){ const i=+String(sheet.t).slice(5), o=mvSnap[i]; if(o){ const tb=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--tbh"))||0, z=Math.max(.5,Math.min(1,(innerWidth-48)/1600,(innerHeight-tb-48)/561));
-        S.classList.remove("sh-cq","sh-mv"); S.classList.add("gxf"); S.style.setProperty("--zfw",Math.round(1600*z)+"px"); S.style.setProperty("--zfh",Math.round(561*z)+"px"); S.style.setProperty("--zfz",z); if(tk0(o)) zfPrecarga([tk0(o)]);
-        $("sheet-b").innerHTML=zfMov(o); S.setAttribute("aria-label",zfTx(S.querySelector(".zf-lgb").getAttribute("aria-label"))); $("sh-prev").disabled=i<=0; $("sh-next").disabled=i>=mvSnap.length-1; S.hidden=false; document.documentElement.classList.add("sh-open","zf-open"); markRows(); zfLogoSym(S);
+        S.classList.add("gxf"); S.style.setProperty("--zfw",Math.round(1600*z)+"px"); S.style.setProperty("--zfh",Math.round(561*z)+"px"); S.style.setProperty("--zfz",z); if(tk0(o)) zfPrecarga([tk0(o)]);
+        $("sheet-b").innerHTML=zfMov(o); S.setAttribute("aria-label",zfTx(S.querySelector(".zf-lgb").getAttribute("aria-label"))); S.hidden=false; document.documentElement.classList.add("sh-open","zf-open"); markRows(); zfLogoSym(S);
         const tr=[...document.querySelectorAll("#m-body tr[data-mi]")].find(x=>mvVis[+x.dataset.mi]&&mvVis[+x.dataset.mi].r===o.r); if(tr) tr.scrollIntoView({block:"nearest"}); return; } }
-    if(sheet&&sheet.t==="__cq"&&DATA){ const D=zfDim(); S.classList.remove("sh-cq","sh-mv"); S.classList.add("gxf"); S.style.setProperty("--zfw",Math.round(1360*D.z)+"px"); S.style.setProperty("--zfh",Math.round(980*D.z)+"px"); S.style.setProperty("--zfz",D.z);
-      $("sheet-b").innerHTML=zfCuadre(); S.setAttribute("aria-label","Cuadre con tu hoja"); $("sh-prev").disabled=$("sh-next").disabled=true; S.hidden=false; document.documentElement.classList.add("sh-open","zf-open"); markRows(); return; }
-    if(sheet&&zfVale(sheet.t)){ const D=zfDim(); S.classList.remove("sh-cq","sh-mv"); S.classList.add("gxf"); S.style.setProperty("--zfw",Math.round(1600*D.z)+"px"); S.style.setProperty("--zfh",Math.round(980*D.z)+"px"); S.style.setProperty("--zfz",D.z); zfPrecarga(sheet.list);
+    if(sheet&&sheet.t==="__cq"&&DATA){ const D=zfDim(); S.classList.add("gxf"); S.style.setProperty("--zfw",Math.round(1360*D.z)+"px"); S.style.setProperty("--zfh",Math.round(980*D.z)+"px"); S.style.setProperty("--zfz",D.z);
+      $("sheet-b").innerHTML=zfCuadre(); S.setAttribute("aria-label","Cuadre con tu hoja"); S.hidden=false; document.documentElement.classList.add("sh-open","zf-open"); markRows(); return; }
+    if(sheet&&zfVale(sheet.t)){ const D=zfDim(); S.classList.add("gxf"); S.style.setProperty("--zfw",Math.round(1600*D.z)+"px"); S.style.setProperty("--zfh",Math.round(980*D.z)+"px"); S.style.setProperty("--zfz",D.z); zfPrecarga(sheet.list);
       if(zfIndT.t!==sheet.t){ zfOrd={k:0,inv:false}; zfIndT.t=sheet.t; }
-      try{ $("sheet-b").innerHTML=zfFicha(sheet.t,D); }catch(e){ console.warn("Cartera · ficha:",e); S.classList.remove("gxf"); return _r0(); }
-      S.setAttribute("aria-label",zfNom(sheet.t)); const L=sheet.list||[], i=L.indexOf(sheet.t); $("sh-prev").disabled=i<=0; $("sh-next").disabled=i<0||i>=L.length-1;
+      try{ $("sheet-b").innerHTML=zfFicha(sheet.t,D); }catch(e){ console.warn("Cartera · ficha:",e); S.classList.remove("gxf"); return _r0(); }   // v627: si falla, no se abre (ya no hay ficha antigua de respaldo)
+      S.setAttribute("aria-label",zfNom(sheet.t));
       S.hidden=false; document.documentElement.classList.add("sh-open","zf-open"); markRows(); zfLogoSym(S); zfAjusta(S.querySelector(".zf-s:not([hidden])"));
       // si el calendario aún no ha llegado, «Lo que viene» se rellena en cuanto llegue
       clearTimeout(zfAgT); if(!(typeof ACT!=="undefined"&&ACT&&ACT.ix)){ let n=0; const t0=sheet.t, re=()=>{ if(!sheet||sheet.t!==t0||S.hidden||!S.classList.contains("gxf")) return; if(typeof ACT!=="undefined"&&ACT&&ACT.ix) renderSheet(); else if(++n<30) zfAgT=setTimeout(re,2000); }; zfAgT=setTimeout(re,2000); }
@@ -7218,10 +6720,10 @@ addEventListener("hashchange",()=>{ const c=remCfg(location.hash);
 // después, mientras está activo) y el CSS lo emborrona; al quitarlo, las envolturas se quedan pero ya no se nota nada
 { const R=document.documentElement, btn=$("priv"), AM=/[+−-]?\d[\d.]*(?:,\d+)?\s?(?:€|\$|£|CHF|Fr|¥|C\$)|\d[\d.]*\s(?:acciones|acción|contratos?)\b/g;
   const mask=()=>{ if(!R.classList.contains("priv")) return; const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT), list=[]; let n;
-    while(n=w.nextNode()){ const e=n.parentElement; if(!e||e.closest(".pv,.npv,.co>b,.cn>b,.fp-t h3,.kx-t>b,#paper,svg,script,style,option,select,textarea,#nav,.tools,.seg,th")) continue; AM.lastIndex=0; if(AM.test(n.textContent)) list.push(n); }
+    while(n=w.nextNode()){ const e=n.parentElement; if(!e||e.closest(".pv,.npv,.co>b,.cn>b,.kx-t>b,#paper,svg,script,style,option,select,textarea,#nav,.tools,.seg,th")) continue; AM.lastIndex=0; if(AM.test(n.textContent)) list.push(n); }
     list.forEach(nodo=>{ const t=nodo.textContent, f=document.createDocumentFragment(); let last=0; AM.lastIndex=0; t.replace(AM,(m,off)=>{ if(off>last) f.append(t.slice(last,off)); const sp=document.createElement("span"); sp.className="pv"; sp.textContent=m; f.append(sp); last=off+m.length; return m; }); if(last<t.length) f.append(t.slice(last)); nodo.replaceWith(f); }); };
   // lo nuevo se oculta al momento: el observador corre antes de que la pantalla se pinte, y solo mira lo que ha cambiado
-  const skip=e=>!e||!!e.closest(".pv,.npv,.co>b,.cn>b,.fp-t h3,.kx-t>b,#paper,svg,script,style,option,select,textarea,#nav,.tools,.seg,th");
+  const skip=e=>!e||!!e.closest(".pv,.npv,.co>b,.cn>b,.kx-t>b,#paper,svg,script,style,option,select,textarea,#nav,.tools,.seg,th");
   const wrap=n=>{ const t=n.textContent; AM.lastIndex=0; if(!AM.test(t)) return; const f=document.createDocumentFragment(); let last=0; AM.lastIndex=0;
     t.replace(AM,(m,off)=>{ if(off>last) f.append(t.slice(last,off)); const sp=document.createElement("span"); sp.className="pv"; sp.textContent=m; f.append(sp); last=off+m.length; return m; }); if(last<t.length) f.append(t.slice(last)); n.replaceWith(f); };
   const maskIn=r=>{ if(r.nodeType===3){ if(r.parentNode&&!skip(r.parentElement)) wrap(r); return; } if(r.nodeType!==1||!r.isConnected||skip(r)) return;
@@ -7440,8 +6942,8 @@ $("more").addEventListener("click",()=>{ const M=$("more-m"), b=$("more"); if(M.
   const mo=$("more"); new MutationObserver(()=>{ const f=$("f-more"); if(f) f.setAttribute("aria-expanded",mo.getAttribute("aria-expanded")||"false"); }).observe(mo,{attributes:true,attributeFilter:["aria-expanded"]});
   document.addEventListener("keydown",e=>{ const t=e.target.closest&&e.target.closest('[role="tab"]'); if(!t||!["ArrowLeft","ArrowRight","Home","End"].includes(e.key)||e.metaKey||e.ctrlKey||e.altKey) return;
     const L=t.closest('[role="tablist"]'), ts=L?[...L.querySelectorAll('[role="tab"]')].filter(x=>x.getClientRects().length&&!x.disabled):[], i=ts.indexOf(t); if(i<0) return;
-    const n=e.key==="Home"?0:e.key==="End"?ts.length-1:(i+(e.key==="ArrowRight"?1:-1)+ts.length)%ts.length; e.preventDefault(); e.stopPropagation(); const nt=ts[n], id=nt.id, k=nt.dataset.shtab||nt.dataset.tab, lid=L.id; nt.focus(); nt.click();
-    requestAnimationFrame(()=>{ if(nt.isConnected&&document.activeElement===nt) return; const x=(id&&document.getElementById(id))||document.querySelector(`[role="tab"][data-shtab="${k}"],[role="tab"][data-tab="${k}"]`); if(x) x.focus({preventScroll:true}); }); },true);
+    const n=e.key==="Home"?0:e.key==="End"?ts.length-1:(i+(e.key==="ArrowRight"?1:-1)+ts.length)%ts.length; e.preventDefault(); e.stopPropagation(); const nt=ts[n], id=nt.id, k=nt.dataset.tab, lid=L.id; nt.focus(); nt.click();
+    requestAnimationFrame(()=>{ if(nt.isConnected&&document.activeElement===nt) return; const x=(id&&document.getElementById(id))||document.querySelector(`[role="tab"][data-tab="${k}"]`); if(x) x.focus({preventScroll:true}); }); },true);
   document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest("th>.thb"); if(!b) return; const th=b.parentElement, tb=th.closest("table"), k=th.dataset.k||"";
     requestAnimationFrame(()=>{ if(b.isConnected) return; const nb=tb&&tb.querySelector(`th[data-k="${CSS.escape(k)}"]>.thb`); if(nb) nb.focus({preventScroll:true}); }); },true); }
 setInterval(()=>{ if(document.visibilityState==="visible"&&!archivoLocal) load(true); },5*60*1000);
