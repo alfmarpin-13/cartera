@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-rkPbA+WEpuSF4rppNX1FLgzy34vdRDqI2uSBO3btjUA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-6PhEPkFAHqlVqExbk0mMrsMYxPY5CCeUdfM8//a5Rqc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v643">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v643">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v643">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v644">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v644">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v644">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3165,6 +3165,10 @@ html.m-tel[data-theme="dark"]{--m-tl:brightness(0) invert(1);--m-tlo:.9;--m-tlg:
 #ma-tabs svg .nd,#ma-tabs svg .pt,#ma .m-menu svg .nd{fill:currentColor;stroke:none}
 #ma-tabs button.on svg .nd,#ma-tabs .m-lens-in svg .nd,#ma .m-menu svg .nd{fill:var(--m-gid)}
 #ma .m-menu svg[viewBox="0 0 20 20"]{stroke-width:1.35}
+/* v644 · logos: nunca más grandes que su hueco y, mientras no se sabe su tamaño, invisibles (antes, una décima de segundo a tamaño natural) */
+#ma .m-lg img{max-width:30px;max-height:22px}
+#ma .m-tile img{max-width:56px;max-height:22px}
+#ma .m-lg img:not([style]),#ma .m-tile img:not([style]){opacity:0}
 </style>
 
 <div class="wrap">
@@ -3909,7 +3913,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v643";   // la versión publicada, en el pie
+const VER="v644";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6626,10 +6630,14 @@ function maFila(p){ if(!MA.L){ try{ MA.L=JSON.parse($("logos").textContent); }ca
   const der=!ok(pc)?`<span class="m-pc m-mute">—</span>`:`<i class="${tc}">${ok(eu)?maEurS(eu):""}</i><span class="m-pc ${tc}">(${maPct(pc)})</span>`;
   const izq=`${maNf(p.shares||0,0)} ${p.isOption?"opciones":"acciones"} a ${maPr(p.avg,p.cur)}`;
   return `<div class="m-row"><span class="m-lg">${lg}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(p.name)}</b><b class="num">${maPr(p.price,p.cur)}</b></span><span class="m-f2"><small class="num">${izq}</small><span class="m-l2 num">${der}</span></span></span></div>`; }
+const maMide=(ar,t)=>{ const mw=t?56:30, mh=22, k=t?26:20; let h=Math.min(mh,k/Math.sqrt(ar)), w=h*ar; if(w>mw){ w=mw; h=w/ar; } return [+w.toFixed(2),+h.toFixed(2)]; };
+// v644: los tamaños de todos los logos se calculan en cuanto llegan los datos (antes de pintar las demás pantallas); así ningún logo se pinta sin su tamaño
+function maPrecarga(){ if(!MA.L){ try{ MA.L=JSON.parse($("logos").textContent); }catch{ MA.L={}; } } const vistos=new Set();
+  Object.values(MA.L).forEach(src=>{ if(typeof src!=="string"||vistos.has(src)||(MA.tam[src]&&MA.tam["t:"+src])) return; vistos.add(src);
+    const im=new Image(); im.decoding="async"; im.onload=()=>{ const ar=im.naturalWidth/im.naturalHeight||1; MA.tam[src]=maMide(ar,false); MA.tam["t:"+src]=maMide(ar,true); maLogos(); }; im.src=src; }); }
 function maLogos(){ document.querySelectorAll("#ma .m-lg img,#ma .m-tile img").forEach(im=>{ const src=im.getAttribute("src"), t=!!im.closest(".m-tile"), key=t?"t:"+src:src; if(MA.tam[key]){ if(!im.style.width){ im.style.width=MA.tam[key][0]+"px"; im.style.height=MA.tam[key][1]+"px"; } return; }
-  const mw=t?56:30, mh=22, k=t?26:20;   // v639: en las losetas de Universo, hasta 56 × 22 px
-  const f=()=>{ const ar=im.naturalWidth/im.naturalHeight||1; let h=Math.min(mh,k/Math.sqrt(ar)), w=h*ar; if(w>mw){ w=mw; h=w/ar; }
-    MA.tam[key]=[+w.toFixed(2),+h.toFixed(2)]; im.style.width=w+"px"; im.style.height=h+"px"; }; im.complete&&im.naturalWidth?f():im.addEventListener("load",f,{once:true}); }); }
+  const f=()=>{ const ar=im.naturalWidth/im.naturalHeight||1, [w,h]=maMide(ar,t);   // v639: en las losetas de Universo, hasta 56 × 22 px
+    MA.tam[key]=[w,h]; im.style.width=w+"px"; im.style.height=h+"px"; }; im.complete&&im.naturalWidth?f():im.addEventListener("load",f,{once:true}); }); }
 const maAZ=(a,b)=>String(a.name||"").localeCompare(String(b.name||""),"es",{sensitivity:"base"});   // v635: siempre por orden alfabético
 function maLista(){ if(!DATA) return; const pos=DATA.pos||[], P=pos.filter(p=>!p.isOption), op=pos.filter(p=>p.isOption), ok=v=>v!=null&&isFinite(v), tot=MA.modo==="total";
   document.querySelectorAll("#m-pg-res .m-sel button").forEach((b,i)=>b.setAttribute("aria-pressed",String((i===1)===tot)));
@@ -6642,7 +6650,7 @@ function maPinta(){ if(!DATA||!$("ma")) return; const k=DATA.kpi||{}, cl=v=>v<0?
   $("m-p1").className="m-tp "+cl(k.todayPct); $("m-p1").firstChild.textContent=ok(k.todayPct)?maPct(k.todayPct):"—";
   $("m-i2").textContent=ok(k.ret)?maEurS(k.ret):"—"; $("m-i2").className="m-v "+(k.ret<0?"m-neg-t":"m-pos-t");
   $("m-p2").className="m-tp "+cl(k.ret); $("m-p2").firstChild.textContent=ok(k.ret)&&k.aport?maPct(k.ret/k.aport):"—";
-  maHora(); MA.hecho={}; const t=++MA.pt, cur=maPgDe(), resto=Object.keys(MA_PINTA).filter(k=>k!==cur); maPintaPg(cur);
+  maHora(); maPrecarga(); MA.hecho={}; const t=++MA.pt, cur=maPgDe(), resto=Object.keys(MA_PINTA).filter(k=>k!==cur); maPintaPg(cur);
   const sig=()=>{ if(t!==MA.pt) return; if(MA.toca||Date.now()-MA.tocaT<250){ setTimeout(sig,200); return; }   // v641: nunca con el dedo en la pantalla (ni justo al soltar)
     const k=resto.shift(); if(!k) return; maPintaPg(k); setTimeout(sig,60); }; setTimeout(sig,120); }
 MA.toca=false; MA.tocaT=0;
@@ -6757,9 +6765,10 @@ function maVe(v,p){ MA.dest=null; const R=document.documentElement;
 /* v639 · CALENDARIO DEL IPHONE: lo que queda por cobrar este año (arriba) y la agenda de cobros mes a mes; los ya cobrados este mes, en gris */
 const MA_MES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"], MA_DIA=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
 const maCap=s=>s.charAt(0).toUpperCase()+s.slice(1), maCob=n=>n===1?"1 cobro":n?`${maNf(n)} cobros`:"sin cobros";
-function maLogo(t,name){ if(!MA.L){ try{ MA.L=JSON.parse($("logos").textContent); }catch{ MA.L={}; } }
+function maLogo(t,name,tile){ if(!MA.L){ try{ MA.L=JSON.parse($("logos").textContent); }catch{ MA.L={}; } }
   let src=MA.L["T:"+t]; if(!src&&/\s/.test(String(t||""))) src=MA.L["T:NASDAQ:"+String(t).split(" ")[0]];   // las opciones (AST Call 55 $), con el logo de su empresa, como en Resumen
-  return src?`<img src="${maEsc(src)}" alt=""${MA_GRIS.has(t)?' class="gr"':""} decoding="async">`:`<span class="m-ini">${maEsc(maIni(name))}</span>`; }
+  const tm=src&&MA.tam[(tile?"t:":"")+src];
+  return src?`<img src="${maEsc(src)}" alt=""${MA_GRIS.has(t)?' class="gr"':""}${tm?` style="width:${tm[0]}px;height:${tm[1]}px"`:""} decoding="async">`:`<span class="m-ini">${maEsc(maIni(name))}</span>`; }
 function maCal(){ if(!DATA) return; const hoy=new Date(), y=hoy.getFullYear(), m=hoy.getMonth(), d0=new Date(y,m,hoy.getDate()).getTime(), K=d=>d.getFullYear()*12+d.getMonth();
   // v643: resultados (del agente) y dividendos de tus empresas, como el Calendario del PC: los de este mes (también los ya pasados, en gris) y todos los próximos
   let E=[]; try{ E=calEventos().filter(e=>e.pf); }catch(e){ console.warn("Cartera · calendario del iPhone:",e); }
@@ -6789,7 +6798,7 @@ function maUniHoy(){ const P=DATA.pre, ok=v=>isNum(v)&&isFinite(v), k=P.some(r=>
   $("m-u-ht").textContent=k==="today"?"Hoy":"Última sesión"; maSelMarca("uhoy",MA.uHoy);
   const up=MA.uHoy==="up", L=P.filter(r=>ok(r[k])&&(up?r[k]>=5e-4:r[k]<=-5e-4)).sort((a,b)=>up?b[k]-a[k]:a[k]-b[k]).slice(0,20);
   const E=[.5,1,2.5,5], nivel=v=>{ const n=1+E.filter(t=>Math.abs(v)*100>=t).length; return (v>0?"lp":"ln")+Math.min(5,n); };   // los escalones del mosaico del PC para «Hoy»
-  $("m-u-tl").innerHTML=L.length?L.map(r=>{ const c=nivel(r[k]); return `<div class="m-tile c-${c}${/5$/.test(c)?" blanco":""}" role="img" aria-label="${maEsc(r.name)} ${gxPS(r[k])}">${maLogo(r.ticker,r.name)}<b>${gxPS(r[k])}</b>${r.inPf?"<i></i>":""}</div>`; }).join("")
+  $("m-u-tl").innerHTML=L.length?L.map(r=>{ const c=nivel(r[k]); return `<div class="m-tile c-${c}${/5$/.test(c)?" blanco":""}" role="img" aria-label="${maEsc(r.name)} ${gxPS(r[k])}">${maLogo(r.ticker,r.name,true)}<b>${gxPS(r[k])}</b>${r.inPf?"<i></i>":""}</div>`; }).join("")
     :`<div class="m-vacio">${up?"Ninguna sube":"Ninguna baja"}${k==="today"?" hoy":" en la última sesión"}.</div>`;
   maLogos(); }
 function maUniInd(){ const k=MA.uInd, g={}, ok=v=>isNum(v)&&isFinite(v); maSelMarca("uind",k);
