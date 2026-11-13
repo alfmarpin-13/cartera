@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-QuVSKW6JD+Q5rav6W29fMcJyUGR41DufePMjHfVxnJk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-RtiVWC6k1lsg7ZYXcc1f5yi9iMzQkAwFU33mitchO7k=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v649">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v649">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v649">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v650">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v650">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v650">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3207,6 +3207,15 @@ html.m-tel[data-theme="dark"]{--m-tl:brightness(0) invert(1);--m-tlo:.9;--m-tlg:
 /* v649 · FLUIDEZ · con el rebote del iPhone, arriba asoma el verde de la cabecera (fondo de la página) y abajo, el fondo claro de la app
    (una capa fija detrás de todo, en la mitad de abajo de la pantalla; solo se ve en el hueco del rebote) */
 html.m-app.m-ios body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:50vh;z-index:-1;background:var(--m-bg);pointer-events:none}
+
+/* v650 · gesto de volver: la franja del borde izquierdo (invisible, encima de todo; solo cuando hay a dónde volver) */
+#m-borde{position:fixed;left:0;top:0;bottom:0;width:20px;z-index:2147483000;touch-action:none;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;background:transparent}
+#m-borde[hidden]{display:none}
+/* v650 · sin raya entre la cabecera y la zona negra: el iPhone coloca la cabecera fija y la página por separado y, al desplazar o rebotar, entre
+   las dos queda a veces una rendija de un tercio de píxel por la que asomaba el fondo claro (la raya que parpadeaba). Ahora la cabecera baja
+   1 px más de su color y, detrás de esa frontera, el fondo de la app es también del verde de la cabecera (en «Más», que no tiene zona negra, no) */
+#ma .m-bar{box-shadow:0 1px 0 var(--m-top)}
+#ma:not([data-pg="mas"]){background:linear-gradient(var(--m-top),var(--m-top)) 0 0/100% calc(env(safe-area-inset-top,0px) + 54px) no-repeat,var(--m-bg)}
 </style>
 
 <div class="wrap">
@@ -3955,7 +3964,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v649";   // la versión publicada, en el pie
+const VER="v650";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6778,9 +6787,9 @@ function maMasEtiquetas(){ const R=document.documentElement; $("m-mm-priv").text
   const rf=$("refresh"); document.querySelector('#m-pg-mas [data-mm="act"]').disabled=!!(rf&&rf.disabled); }
 function maPagina(p){ MA.pagina=p; maMuestra(); }
 // v639: qué página de la app se ve: Resumen o «Más» (pestaña Resumen), Calendario o Universo
-function maMuestra(){ const pg=maPgDe(); maPintaPg(pg);
-  if(MA.pg===pg) return; if(MA.pg&&MA.ptrRecoge) MA.ptrRecoge(); MA.pg=pg; ["res","mas","cal","uni","mov","ana"].forEach(k=>{ const e=$("m-pg-"+k); if(e){ e.toggleAttribute("data-off",k!==pg); if(k!==pg) e.setAttribute("aria-hidden","true"); else e.removeAttribute("aria-hidden"); } });   // v641: un atributo propio y no una clase (la web tiene reglas sobre el atributo class y cada cambio recalculaba la página entera)   // v641: oculta pero ya maquetada (mostrarla no cuesta)
-  $("ma").setAttribute("aria-label",{res:"Resumen",mas:"Más",cal:"Calendario",uni:"Universo",mov:"Movimientos",ana:"Análisis"}[pg]); if(pg==="mas") maMasEtiquetas(); }
+function maMuestra(){ const pg=maPgDe(); maPintaPg(pg); $("ma").dataset.pg=pg;
+  if(MA.pg===pg){ if(MA.borde) MA.borde(); return; } if(MA.pg&&MA.ptrRecoge) MA.ptrRecoge(); MA.pg=pg; ["res","mas","cal","uni","mov","ana"].forEach(k=>{ const e=$("m-pg-"+k); if(e){ e.toggleAttribute("data-off",k!==pg); if(k!==pg) e.setAttribute("aria-hidden","true"); else e.removeAttribute("aria-hidden"); } });   // v641: un atributo propio y no una clase (la web tiene reglas sobre el atributo class y cada cambio recalculaba la página entera)   // v641: oculta pero ya maquetada (mostrarla no cuesta)
+  $("ma").setAttribute("aria-label",{res:"Resumen",mas:"Más",cal:"Calendario",uni:"Universo",mov:"Movimientos",ana:"Análisis"}[pg]); if(pg==="mas") maMasEtiquetas(); if(MA.borde) MA.borde(); }
 $("m-pg-mas").addEventListener("click",e=>{ const b=e.target.closest("[data-mm]"); if(!b||b.disabled) return; const k=b.dataset.mm;
   if(k==="analisis"||k==="movimientos") maVe(k);
   else if(k==="buscar"){ const kb=$("kbtn"); if(kb) kb.click(); }
@@ -6794,10 +6803,57 @@ const MA_TIT={resumen:"Resumen",calendario:"Calendario",universo:"Universo",movi
 function maVe(v,p){ MA.dest=null; const R=document.documentElement;
   if(!R.classList.contains("m-app")||!MA_APP.has(v)){ if(p) MA.pagina=p; if(v!==view) navega(v,true); else { maModo(); scrollTo(0,0); } return; }
   if(MA.pg) MA.sy[MA.pg]=scrollY;
+  if(v==="resumen"&&p==="mas"&&MA.pg&&!["mas","mov","ana"].includes(MA.pg)) MA.antes=[view,MA.pagina];   /* v650: a dónde vuelve el gesto de volver desde «Más» */
   if(p) MA.pagina=p;
   if(v!==view){ view=v; document.body.dataset.view=v; MA.pcPend=true; document.title="Cartera · "+(MA_TIT[v]||""); try{ history.replaceState(null,"","#"+v); }catch{} }
   const R2=document.documentElement, mueve=Date.now()-MA.tocaT<300; if(mueve) R2.style.overflow="hidden";   /* v647: corta la inercia del desplazamiento de iOS (si la página aún se deslizaba, la nueva se quedaba pillada) */
   maModo(); scrollTo(0,MA.sy[MA.pg]||0); if(mueve) requestAnimationFrame(()=>requestAnimationFrame(()=>{ R2.style.overflow=""; scrollTo(0,MA.sy[MA.pg]||0); })); }   /* solo si la página aún se movía */
+/* v650 · GESTO DE VOLVER, como en iOS: desde el borde izquierdo, arrastrar hacia la derecha. La pantalla sigue al dedo y, debajo, asoma
+   a la que vuelves; al soltar pasado un 40 % (o con un golpe rápido) se completa, y si no, vuelve a su sitio.
+   · Con la ficha abierta: la ficha se va hacia la derecha y se cierra.
+   · En Movimientos y Análisis: vuelve a «Más». · En «Más»: vuelve a la pestaña de la que venías.
+   Una franja invisible de 20 px (del ancho de la pantalla del iPhone) en el borde, solo cuando hay a dónde volver: así el gesto no frena
+   el desplazamiento del resto de la página. Un toque en la franja llega a lo que hay debajo */
+if(MA.tel){ const B=document.createElement("div"); B.id="m-borde"; B.hidden=true; B.setAttribute("aria-hidden","true"); document.body.appendChild(B);
+  const PG={calendario:"cal",universo:"uni",movimientos:"mov",analisis:"ana"}, pgDe=a=>PG[a[0]]||(a[1]==="mas"?"mas":"res");
+  const accion=()=>{ const K=$("kx"); if(K&&!K.hidden) return null; const S=$("sheet"); if(S&&!S.hidden) return {f:1};
+    if(!document.documentElement.classList.contains("m-app")) return null;
+    if(MA.pg==="mov"||MA.pg==="ana") return {a:["resumen","mas"],dst:"mas"};
+    if(MA.pg==="mas"){ const a=MA.antes||["resumen","resumen"]; return {a,dst:pgDe(a)}; }
+    return null; };
+  const k=()=>innerWidth/(Math.min(screen.width,screen.height)||innerWidth);   /* px de la página por punto de pantalla (402 → 1; ficha a 980 → 2,4) */
+  MA.borde=()=>{ if(B.dataset.on) return; const ac=accion(); B.hidden=!ac; if(ac) B.style.width=(20*k()).toFixed(1)+"px"; };
+  ["sheet","kx"].forEach(id=>{ const e=$(id); if(e) new MutationObserver(()=>MA.borde()).observe(e,{attributes:true,attributeFilter:["hidden"]}); });
+  addEventListener("resize",()=>MA.borde());
+  const CURVA="transform .32s cubic-bezier(.25,.9,.3,1)";
+  let pid=null, x0=0, y0=0, yl=0, modo=0, ac=null, W=0, p=0, cur=null, und=null, base="", hist=[];
+  const pon=v=>{ p=Math.max(0,Math.min(W,v));
+    if(ac.f){ cur.style.transform=`translateX(${p.toFixed(1)}px) ${base}`; const bg=$("sheet-bg"); if(bg) bg.style.opacity=String(1-.85*p/W); }
+    else { cur.style.transform=`translateX(${p.toFixed(1)}px)`; und.style.transform=`translateX(${(-(W-p)*.28).toFixed(1)}px)`; } };
+  const prepara=()=>{ if(ac.f){ cur=$("sheet"); const t=getComputedStyle(cur).transform; base=t&&t!=="none"?t:""; W=Math.max(1,innerWidth-cur.getBoundingClientRect().left); return; }
+    cur=$("m-pg-"+MA.pg); und=$("m-pg-"+ac.dst); maPintaPg(ac.dst); W=innerWidth;
+    const H=document.querySelector("#ma .m-bar").offsetHeight;
+    Object.assign(cur.style,{position:"relative",zIndex:"2",background:"var(--m-bg)",boxShadow:"-10px 0 28px rgba(0,0,0,.16)",minHeight:(innerHeight+scrollY)+"px"});   /* la que se va tapa siempre la pantalla entera (Más es más corta) */
+    Object.assign(und.style,{clipPath:"none",zIndex:"1",top:(scrollY+H)+"px",height:(innerHeight-H)+"px",background:"var(--m-bg)"});
+    und.scrollTop=MA.sy[ac.dst]||0; };
+  const limpia=()=>{ if(cur) ["transform","transition","position","zIndex","background","boxShadow","minHeight"].forEach(q=>cur.style[q]="");
+    if(und){ ["transform","transition","clipPath","zIndex","top","height","background"].forEach(q=>und.style[q]=""); und.scrollTop=0; }
+    const bg=$("sheet-bg"); if(bg) bg.style.opacity=""; cur=und=null; };
+  const acaba=ok=>{ const a=ac, els=[cur,und].filter(Boolean); els.forEach(e=>e.style.transition=CURVA); pon(ok?W:0);
+    let hecho=false; const fin=()=>{ if(hecho) return; hecho=true; if(ok){ if(a.f){ const bg=$("sheet-bg"); if(bg) bg.click(); } else maVe(a.a[0],a.a[1]); } limpia(); delete B.dataset.on; MA.borde(); };
+    if(matchMedia("(prefers-reduced-motion: reduce)").matches) fin(); else { els[0].addEventListener("transitionend",fin,{once:true}); setTimeout(fin,380); } };
+  B.addEventListener("pointerdown",e=>{ if(pid!==null) return; pid=e.pointerId; x0=e.clientX; y0=yl=e.clientY; modo=0; hist=[[e.timeStamp,e.clientX]]; ac=accion(); try{ B.setPointerCapture(pid); }catch{} });
+  B.addEventListener("pointermove",e=>{ if(e.pointerId!==pid) return; const dx=e.clientX-x0, dy=e.clientY-y0, u=k();
+    if(!modo){ if(ac&&dx>6*u&&dx>Math.abs(dy)){ modo=1; B.dataset.on="1"; prepara(); } else if(Math.abs(dy)>8*u&&Math.abs(dy)>dx) modo=2; }
+    if(modo===1){ pon(dx); hist.push([e.timeStamp,e.clientX]); if(hist.length>5) hist.shift(); }
+    else if(modo===2&&$("sheet").hidden){ scrollBy(0,yl-e.clientY); }   /* arrastre vertical en la franja: la página se desplaza igual */
+    yl=e.clientY; });
+  const suelta=e=>{ if(e.pointerId!==pid) return; pid=null;
+    if(modo===1){ const [t0,xa]=hist[0], [t1,xb]=hist[hist.length-1], v=t1>t0?(xb-xa)/(t1-t0):0; acaba(e.type!=="pointercancel"&&(p>W*.4||(v>.45*k()&&p>12*k()))); return; }
+    if(modo===0&&e.type==="pointerup"){ B.style.pointerEvents="none"; const el=document.elementFromPoint(e.clientX,e.clientY); B.style.pointerEvents="";   /* un toque: llega a lo de debajo */
+      const c=el&&(el.closest("button,a,[role=button],[data-mm],input,label")||el); if(c&&c.click) c.click(); } };
+  B.addEventListener("pointerup",suelta); B.addEventListener("pointercancel",suelta);
+  MA.borde(); }
 /* v649 · FLUIDEZ · en el iPhone, tirar hacia abajo es el rebote del propio sistema (elástico, a 120 Hz, fuera del hilo de la web):
    la página entera baja con la resistencia de iOS y asoma el verde de la cabecera; la web solo lee cuánto se ha tirado (scrollY negativo)
    y hace crecer el punto del logotipo. Al soltar pasado el umbral, se actualiza; el sistema devuelve la página a su sitio.
