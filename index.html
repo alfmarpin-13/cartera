@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-6PhEPkFAHqlVqExbk0mMrsMYxPY5CCeUdfM8//a5Rqc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-64FAzxZ06d2jrQ5/ymSF7x4/hTbG+5j31ZOUYeVs3hQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v644">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v644">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v644">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v645">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v645">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v645">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3913,7 +3913,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v644";   // la versión publicada, en el pie
+const VER="v645";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6725,7 +6725,7 @@ function maMasEtiquetas(){ const R=document.documentElement; $("m-mm-priv").text
 function maPagina(p){ MA.pagina=p; maMuestra(); }
 // v639: qué página de la app se ve: Resumen o «Más» (pestaña Resumen), Calendario o Universo
 function maMuestra(){ const pg=maPgDe(); maPintaPg(pg);
-  if(MA.pg===pg) return; MA.pg=pg; ["res","mas","cal","uni","mov","ana"].forEach(k=>{ const e=$("m-pg-"+k); if(e){ e.toggleAttribute("data-off",k!==pg); if(k!==pg) e.setAttribute("aria-hidden","true"); else e.removeAttribute("aria-hidden"); } });   // v641: un atributo propio y no una clase (la web tiene reglas sobre el atributo class y cada cambio recalculaba la página entera)   // v641: oculta pero ya maquetada (mostrarla no cuesta)
+  if(MA.pg===pg) return; if(MA.pg&&MA.ptrRecoge) MA.ptrRecoge(); MA.pg=pg; ["res","mas","cal","uni","mov","ana"].forEach(k=>{ const e=$("m-pg-"+k); if(e){ e.toggleAttribute("data-off",k!==pg); if(k!==pg) e.setAttribute("aria-hidden","true"); else e.removeAttribute("aria-hidden"); } });   // v641: un atributo propio y no una clase (la web tiene reglas sobre el atributo class y cada cambio recalculaba la página entera)   // v641: oculta pero ya maquetada (mostrarla no cuesta)
   $("ma").setAttribute("aria-label",{res:"Resumen",mas:"Más",cal:"Calendario",uni:"Universo",mov:"Movimientos",ana:"Análisis"}[pg]); if(pg==="mas") maMasEtiquetas(); }
 $("m-pg-mas").addEventListener("click",e=>{ const b=e.target.closest("[data-mm]"); if(!b||b.disabled) return; const k=b.dataset.mm;
   if(k==="analisis"||k==="movimientos") maVe(k);
@@ -6747,7 +6747,10 @@ function maVe(v,p){ MA.dest=null; const R=document.documentElement;
 { const ma=$("ma"); let y0=null, p=0, carga=false, tira=false;
   const LIM=64, PARADA=56, MAX=120, arrastre=on=>{ const t=on?"none":""; $("m-ptr").style.transition=t; const pe=$("m-pg-"+(MA.pg||"res")); if(pe) pe.style.transition=t; },   // v641: sin transición mientras el dedo arrastra, solo en el indicador y la página que se ve
     set=v=>{ p=v; const ptr=$("m-ptr"), pe=$("m-pg-"+(MA.pg||"res"));   // v641: solo en el indicador y en la página que se ve (antes, en todo #ma: cada fotograma recalculaba las seis páginas)
-    ptr.style.setProperty("--m-pull",v.toFixed(1)+"px"); ptr.style.setProperty("--m-prog",Math.min(100,v/LIM*100).toFixed(1)); if(pe) pe.style.transform=v?`translateY(${v.toFixed(1)}px)`:""; };
+    ptr.style.setProperty("--m-pull",v.toFixed(1)+"px"); ptr.style.setProperty("--m-prog",Math.min(100,v/LIM*100).toFixed(1));
+    if(v) { if(pe) pe.style.transform=`translateY(${v.toFixed(1)}px)`; }
+    else document.querySelectorAll('#ma>[id^="m-pg-"]').forEach(e=>{ if(e.style.transform) e.style.transform=""; }); };   // v645: al recoger, todas las páginas (si cambiabas de pestaña mientras actualizaba, la de origen se quedaba bajada: hueco bajo la cabecera)
+  MA.ptrRecoge=()=>{ y0=null; tira=false; arrastre(false); $("m-ptr").removeAttribute("data-listo"); set(0); };   // v645: al cambiar de pestaña, el gesto se recoge al momento (la actualización sigue; lo dice el punto de la cabecera)
   const puede=()=>document.documentElement.classList.contains("m-app")&&MA.pg!=="mas"&&!carga&&scrollY<=0&&$("kx").hidden;
   addEventListener("touchstart",e=>{ tira=false; y0=(puede()&&e.touches.length===1&&!e.target.closest("#ma-tabs"))?e.touches[0].clientY:null; },{passive:true});
   addEventListener("touchmove",e=>{ if(y0==null) return; let d=e.touches[0].clientY-y0;
