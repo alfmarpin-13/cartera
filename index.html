@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-sKLu9PQTJbky+7m8zlA5v/toSCgd3dEmqOFeYr2z93Q=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-TWqMrA8W99OTkZyO0cfMqm5BWVxwaCLat2MJBUT/Lbk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v653">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v653">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v653">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v654">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v654">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v654">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3222,14 +3222,17 @@ html.m-app.m-ios body::after{content:"";position:fixed;left:0;right:0;bottom:0;h
 /* v653 · Resumen, zona negra en una rejilla de tres filas (71 px, como las demás pestañas): «Valor» arriba; la cifra en la fila de «Hoy» y
    «Liquidez» en la de «Total», cada fila con una misma línea base. Los porcentajes, entre paréntesis como en la lista (sin fichas de color) */
 #m-pg-res .m-dark{padding-top:2px;padding-bottom:6px}
-#m-pg-res .m-blk{display:grid;grid-template-columns:1fr auto auto auto;column-gap:8px;align-items:baseline;row-gap:0}
+#m-pg-res .m-blk{display:grid;grid-template-columns:1fr auto auto;column-gap:12px;align-items:baseline;row-gap:0}
 #m-pg-res .m-col,#m-pg-res .m-pila{display:contents}
 #m-pg-res .m-col>:nth-child(1){grid-area:1/1;font-size:12px;line-height:14px;color:var(--m-tfg2);white-space:nowrap}
 #m-pg-res .m-col>.m-big{grid-area:2/1;line-height:30px;margin:0;transform:none}
 #m-pg-res #m-liq{grid-area:3/1;font-size:12px;line-height:16px;color:var(--m-tfg2);white-space:nowrap}
 #m-pg-res #m-liq b{font-weight:600;color:var(--m-tfg)}
-#m-pg-res .m-pila>:nth-child(1){grid-area:2/2}#m-pg-res .m-pila>:nth-child(2){grid-area:2/3}#m-pg-res .m-pila>:nth-child(3){grid-area:2/4}
-#m-pg-res .m-pila>:nth-child(4){grid-area:3/2}#m-pg-res .m-pila>:nth-child(5){grid-area:3/3}#m-pg-res .m-pila>:nth-child(6){grid-area:3/4}
+#m-pg-res .m-pila>:nth-child(1){grid-area:2/2}#m-pg-res .m-pila>:nth-child(2){grid-area:2/3}
+#m-pg-res .m-pila>:nth-child(3){grid-area:3/2}#m-pg-res .m-pila>:nth-child(4){grid-area:3/3}
+/* v654 · Hoy y Total: el importe y su porcentaje juntos, como en la lista («−1.166 € (−1,0 %)»), alineados a la derecha */
+#m-pg-res .m-dup{justify-self:end;text-align:right;white-space:nowrap;line-height:16px}
+#m-pg-res .m-dup .m-tp{margin-left:4px}
 #m-pg-res .m-pila .m-lab{line-height:16px}
 #m-pg-res .m-pila .m-v{line-height:16px}
 #m-pg-res .m-pila .m-tp{display:inline;height:auto;background:none!important;padding:0;border-radius:0;font-size:13px;font-weight:400;line-height:16px;text-align:right;transform:none}
@@ -3439,8 +3442,8 @@ html.m-app.m-ios body::after{content:"";position:fixed;left:0;right:0;bottom:0;h
  <div id="m-pg-res">
  <div class="m-dark">
   <div class="m-hero"><div class="m-blk"><div class="m-col"><div class="m-cab">Valor</div><div class="m-big" id="m-val"></div><div class="m-cab" id="m-liq"></div></div>
-   <div class="m-pila"><span class="m-lab">Hoy</span><span class="m-v" id="m-i1"></span><span class="m-tp" id="m-p1"><span class="m-tx"></span></span>
-    <span class="m-lab">Total</span><span class="m-v" id="m-i2"></span><span class="m-tp" id="m-p2"><span class="m-tx"></span></span></div></div></div>
+   <div class="m-pila"><span class="m-lab">Hoy</span><span class="m-dup"><span class="m-v" id="m-i1"></span><span class="m-tp" id="m-p1"><span class="m-tx"></span></span></span>
+    <span class="m-lab">Total</span><span class="m-dup"><span class="m-v" id="m-i2"></span><span class="m-tp" id="m-p2"><span class="m-tx"></span></span></span></div></div></div>
  </div>
  <div class="m-sec"><h2>Posiciones</h2><div class="m-sel" role="group" aria-label="Vista"><button type="button" aria-pressed="true"><b>Hoy</b></button><button type="button" aria-pressed="false"><b>Total</b></button></div></div>
  <div class="m-list" id="m-l1"></div><div class="m-sub" id="m-s2"></div><div class="m-list" id="m-l2"></div><div class="m-sub" id="m-s3"></div><div class="m-list" id="m-l3"></div>
@@ -3984,7 +3987,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v653";   // la versión publicada, en el pie
+const VER="v654";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
