@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-pNC1Frir4ug1/4FTFcv0Gn08Bs8kzrP9tHOA+74OzVk=' 'sha256-QzJXAx3hijSbbB6t04CcIbYuo7BLZZw4UVhNv8Oen+0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-pNC1Frir4ug1/4FTFcv0Gn08Bs8kzrP9tHOA+74OzVk=' 'sha256-i4cfE8JrZr4TJ2GxsnpB2lxEfdoW2TKWwFouRbATIjs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v635">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v635">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v635">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v636">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v636">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v636">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content="width=980"; document.head.appendChild(m); document.documentElement.classList.add("m-tel"); } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -2948,11 +2948,11 @@ html.m-tel{--m-tpp:#1C3027;--m-tpn:#3A2323;--m-top:#18211C;--m-tfg:#F1EFE9;--m-t
  --m-bg:#F4F2ED;--m-card:#FFFFFF;--m-ink:#1A1A1A;--m-ink2:#50504B;--m-ink3:#77776F;--m-line:#E7E4DD;--m-pos:#346F57;--m-neg:#9C4848;--m-nbg:#EFEDE7;
  --m-tpos:#8FD3AE;--m-tneg:#F0A3A3;--m-logo:0;
  --m-glass:rgba(250,249,245,.5);--m-rim1:rgba(255,255,255,.95);--m-rim2:rgba(255,255,255,.18);--m-rim3:rgba(255,255,255,.5);--m-gsh:rgba(28,34,30,.18);
- --m-lens:rgba(26,26,26,.09);--m-lensH:rgba(255,255,255,.6);--m-lrim:rgba(255,255,255,.75);--m-tabi:#5A5A55;--m-k:1}
+ --m-lens:rgba(26,26,26,.09);--m-lensH:rgba(255,255,255,.6);--m-lrim:rgba(255,255,255,.75);--m-tabi:#5A5A55;--m-k:1;--m-glass2:rgba(252,251,248,.78);--m-grp:rgba(255,255,255,.7)}
 @media (prefers-color-scheme: dark){html.m-tel:not([data-theme="light"]){--m-top:#1F2B25;--m-tpp:#27412F;--m-tpn:#492A2A;--m-bg:#0F1311;--m-card:#171C19;--m-ink:#ECEAE4;--m-ink2:#B4B6B0;--m-ink3:#868A84;--m-line:#262C28;--m-pos:#7CC49F;--m-neg:#E39393;--m-nbg:#212622;--m-logo:1;
- --m-glass:rgba(58,64,60,.5);--m-rim1:rgba(255,255,255,.26);--m-rim2:rgba(255,255,255,.04);--m-rim3:rgba(255,255,255,.1);--m-gsh:rgba(0,0,0,.5);--m-lens:rgba(0,0,0,.34);--m-lensH:rgba(255,255,255,.17);--m-lrim:rgba(255,255,255,.1);--m-tabi:#B4B7B1}}
+ --m-glass:rgba(58,64,60,.5);--m-rim1:rgba(255,255,255,.26);--m-rim2:rgba(255,255,255,.04);--m-rim3:rgba(255,255,255,.1);--m-gsh:rgba(0,0,0,.5);--m-lens:rgba(0,0,0,.34);--m-lensH:rgba(255,255,255,.17);--m-lrim:rgba(255,255,255,.1);--m-tabi:#B4B7B1;--m-glass2:rgba(40,46,42,.78);--m-grp:rgba(255,255,255,.06)}}
 html.m-tel[data-theme="dark"]{--m-top:#1F2B25;--m-tpp:#27412F;--m-tpn:#492A2A;--m-bg:#0F1311;--m-card:#171C19;--m-ink:#ECEAE4;--m-ink2:#B4B6B0;--m-ink3:#868A84;--m-line:#262C28;--m-pos:#7CC49F;--m-neg:#E39393;--m-nbg:#212622;--m-logo:1;
- --m-glass:rgba(58,64,60,.5);--m-rim1:rgba(255,255,255,.26);--m-rim2:rgba(255,255,255,.04);--m-rim3:rgba(255,255,255,.1);--m-gsh:rgba(0,0,0,.5);--m-lens:rgba(0,0,0,.34);--m-lensH:rgba(255,255,255,.17);--m-lrim:rgba(255,255,255,.1);--m-tabi:#B4B7B1}
+ --m-glass:rgba(58,64,60,.5);--m-rim1:rgba(255,255,255,.26);--m-rim2:rgba(255,255,255,.04);--m-rim3:rgba(255,255,255,.1);--m-gsh:rgba(0,0,0,.5);--m-lens:rgba(0,0,0,.34);--m-lensH:rgba(255,255,255,.17);--m-lrim:rgba(255,255,255,.1);--m-tabi:#B4B7B1;--m-glass2:rgba(40,46,42,.78);--m-grp:rgba(255,255,255,.06)}
 /* la pantalla de app: fuera la web del PC, fondo propio y la franja del reloj del color de la zona negra */
 html.m-app,html.m-app body{background:var(--m-top)}   /* v634: iOS tiñe el difuminado de bajo el reloj con el fondo de la página: verde oscuro, como la zona negra */
 html.m-app body{padding:0!important}
@@ -3027,7 +3027,7 @@ html.m-tel.m-bar-on:not(.m-app) body{padding-bottom:calc(110px * var(--m-k))!imp
  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 #ma-tabs .m-lens{position:absolute;top:4px;left:4px;height:54px;width:calc((100% - 8px)/4);border-radius:27px;z-index:0;pointer-events:none;will-change:transform;
  background:var(--m-lens);box-shadow:inset 0 0 0 .5px var(--m-lrim);transition:background-color .25s,box-shadow .25s}
-#ma-tabs .m-lens.held{background:var(--m-lensH);box-shadow:inset 0 1px 0 var(--m-lrim),inset 0 0 0 .5px var(--m-lrim),0 6px 18px -6px var(--m-gsh)}
+#ma-tabs .m-lens.held{background:var(--m-lensH);box-shadow:inset 0 1px 0 var(--m-lrim),inset 0 0 0 .5px var(--m-lrim),0 4px 12px -4px var(--m-gsh)}
 #ma-tabs button{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;margin:0;padding:1px 0 0;border:0;background:none;
  font:500 10px/12px Inter,system-ui,-apple-system,sans-serif;color:var(--m-tabi);cursor:pointer;transition:color .2s}   /* 10 px, como en iOS (fuera de la guía) */
 #ma-tabs button.on{color:var(--m-ink);font-weight:600}
@@ -3038,14 +3038,20 @@ html.m-tel.m-bar-on:not(.m-app) body{padding-bottom:calc(110px * var(--m-k))!imp
 /* v634 · «Más»: hoja que sube desde abajo (estilo iOS) con Análisis, Movimientos y las opciones */
 #m-mas{display:none}
 html.m-tel #m-mas:not([hidden]){display:block;position:fixed;inset:0;z-index:var(--z-panel);font:400 13px/1.35 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;color:var(--m-ink)}
-#m-mas .m-mas-bg{position:absolute;inset:0;background:rgba(10,14,12,.32);opacity:0;transition:opacity .3s ease}
-#m-mas .m-mas-p{position:absolute;left:50%;bottom:calc((8px + env(safe-area-inset-bottom,0px)) * var(--m-k));width:386px;padding:6px 8px 10px;border-radius:32px;background:var(--m-card);
- box-shadow:0 18px 48px -12px var(--m-gsh),0 2px 10px -2px var(--m-gsh);transform-origin:50% 100%;transform:translateX(-50%) translateY(calc(100% + 40px)) scale(var(--m-k));transition:transform .42s cubic-bezier(.32,.72,0,1)}
+#m-mas .m-mas-bg{position:absolute;inset:0;background:rgba(10,14,12,.22);opacity:0;transition:opacity .28s ease}
+/* v636: como los menús de iOS 27, nace del botón «Más» (origen calculado al abrir), crece con un muelle y vuelve a él al cerrarse */
+#m-mas .m-mas-p{position:absolute;left:50%;bottom:calc(98px * var(--m-k));width:386px;padding:6px 8px 10px;border-radius:32px;
+ background:var(--m-glass2);-webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);
+ box-shadow:0 18px 48px -12px var(--m-gsh),0 2px 10px -2px var(--m-gsh),inset 0 0 0 .5px var(--m-lrim);will-change:transform,opacity;
+ transform:translateX(-50%) scale(calc(var(--m-k) * .16));opacity:0;
+ transition:transform .3s cubic-bezier(.45,0,.75,.4),opacity .18s ease .1s,border-radius .3s}
+#m-mas .m-mas-p>*{opacity:0;transition:opacity .12s ease}
 #m-mas.abierto .m-mas-bg{opacity:1}
-#m-mas.abierto .m-mas-p{transform:translateX(-50%) translateY(0) scale(var(--m-k))}
+#m-mas.abierto .m-mas-p{transform:translateX(-50%) scale(var(--m-k));opacity:1;transition:transform .6s linear(0,0.016,0.058,0.119,0.193,0.274,0.358,0.442,0.523,0.599,0.67,0.734,0.791,0.841,0.884,0.921,0.951,0.976,0.995,1.01,1.021,1.029,1.034,1.037,1.038,1.038,1.037,1.034,1.032,1.029,1.025,1.022,1.019,1.016,1.013,1.011,1.008,1.006,1.005,1.003,1.002,1.001,1,1,0.999,0.999,0.999,0.999,1),opacity .14s ease,border-radius .6s linear(0,0.016,0.058,0.119,0.193,0.274,0.358,0.442,0.523,0.599,0.67,0.734,0.791,0.841,0.884,0.921,0.951,0.976,0.995,1.01,1.021,1.029,1.034,1.037,1.038,1.038,1.037,1.034,1.032,1.029,1.025,1.022,1.019,1.016,1.013,1.011,1.008,1.006,1.005,1.003,1.002,1.001,1,1,0.999,0.999,0.999,0.999,1)}
+#m-mas.abierto .m-mas-p>*{opacity:1;transition:opacity .22s ease .08s}
 #m-mas .m-grab{display:block;width:36px;height:5px;margin:0 auto 4px;border-radius:3px;background:var(--m-line)}
 #m-mas .m-mas-l{padding:10px 12px 6px;font-size:12px;line-height:16px;color:var(--m-ink3)}
-#m-mas .m-mas-g{background:var(--m-bg);border-radius:20px;overflow:hidden}
+#m-mas .m-mas-g{background:var(--m-grp);border-radius:20px;overflow:hidden}
 #m-mas button{display:flex;align-items:center;gap:12px;width:100%;height:48px;margin:0;padding:0 14px;border:0;background:none;font:500 13px/18px Inter,system-ui,-apple-system,sans-serif;color:var(--m-ink);text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
 #m-mas button+button{box-shadow:inset 0 1px 0 var(--m-line)}
 #m-mas button:active{background:var(--m-nbg)}
@@ -3054,6 +3060,10 @@ html.m-tel #m-mas:not([hidden]){display:block;position:fixed;inset:0;z-index:var
 #m-mas svg.m-ch{width:16px;height:16px;color:var(--m-ink3)}
 #m-mas button[disabled]{opacity:.45;cursor:default}
 @media (prefers-reduced-motion:reduce){#m-mas .m-mas-p,#m-mas .m-mas-bg{transition:none}}
+/* v636 · cambio de pestaña con fundido: el contenido se va (.14 s), la página cambia oculta y vuelve (.24 s); el menú no se mueve */
+html.m-tel :is(#ma,.wrap){transition:opacity .24s ease}
+html.m-tel.m-fuera :is(#ma,.wrap){opacity:0;transition:opacity .14s ease}
+@media (prefers-reduced-motion:reduce){html.m-tel :is(#ma,.wrap){transition:none}}
 </style>
 
 <div class="wrap">
@@ -3761,7 +3771,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v635";   // la versión publicada, en el pie
+const VER="v636";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6502,32 +6512,34 @@ function maModo(){ if(!MA.tel) return; const R=document.documentElement, app=!!D
 (()=>{ const bar=$("ma-tabs"), lens=$("m-lens"); if(!bar||!lens) return;
  const T=[...bar.querySelectorAll("button")], N=T.length, V=["resumen","calendario","universo","mas"], quieto=matchMedia("(prefers-reduced-motion: reduce)").matches;
  const W=()=>(bar.offsetWidth-8)/N; let sel=0, x=0, v=0, xt=0, s=1, vs=0, st=1, sube=false, raf=0, last=0;
- const K=quieto?2000:300, C=quieto?90:2*Math.sqrt(300)*.8, KS=520, CS=2*Math.sqrt(520)*.62;
- const pinta=()=>{ const e=quieto?0:Math.min(Math.abs(v)/4200,.12); lens.style.transform=`translateX(${x.toFixed(2)}px) scale(${(s*(1+e)).toFixed(4)},${(s*(1-e*.45)).toFixed(4)})`; };
+ const K0=quieto?2000:300, C0=quieto?90:2*Math.sqrt(300)*.8, KD=1400, CD=2*Math.sqrt(1400)*.9, KS=520, CS=2*Math.sqrt(520)*.62;   // v636: al arrastrar, muelle firme (pegado al dedo)
+ let arrastra=false;
+ const pinta=()=>{ const e=quieto?0:Math.min(Math.abs(v)/(arrastra?6000:4200),arrastra?.07:.12); lens.style.transform=`translateX(${x.toFixed(2)}px) scale(${(s*(1+e)).toFixed(4)},${(s*(1-e*.45)).toFixed(4)})`; };
  const paso=t=>{ const dt=Math.min(.032,(t-last)/1000||.016); last=t;
+  const K=arrastra?KD:K0, C=arrastra?CD:C0;
   for(let k=0;k<4;k++){ const h=dt/4; v+=(K*(xt-x)-C*v)*h; x+=v*h; vs+=(KS*(st-s)-CS*vs)*h; s+=vs*h; }
   if(sube&&Math.abs(xt-x)<W()*.35){ st=1; sube=false; }
   pinta(); if(Math.abs(xt-x)<.05&&Math.abs(v)<.5&&Math.abs(st-s)<.0005&&Math.abs(vs)<.01&&!sube){ x=xt; s=st; v=vs=0; pinta(); raf=0; return; } raf=requestAnimationFrame(paso); };
  const mueve=()=>{ if(!raf){ last=performance.now(); raf=requestAnimationFrame(paso); } };
  const marca=i=>T.forEach((b,k)=>{ b.classList.toggle("on",k===i); if(k<3) b.setAttribute("aria-current",k===i?"page":"false"); });
  const deVista=()=>({resumen:0,calendario:1,universo:2,analisis:3,movimientos:3})[view]??0;
- const ve=i=>{ if(i!==sel){ sube=!quieto; st=quieto?1:1.07; } sel=i; xt=i*W(); marca(i); mueve(); };
+ const ve=i=>{ if(i!==sel){ sube=!quieto; st=quieto?1:1.05; } sel=i; xt=i*W(); marca(i); mueve(); };
  let masT=0; const masAbre=()=>{ clearTimeout(masT); masT=0; maMas(true); };
  MA.vuelve=()=>ve(deVista());
  // «Más» abre su hoja en el clic que sigue al toque (si se abriera antes, ese clic caería en su fondo y la cerraría)
  const abre=i=>{ if(V[i]==="mas"){ clearTimeout(masT); masT=setTimeout(masAbre,400); return; }
-   if(V[i]===view){ scrollTo({top:0,behavior:quieto?"auto":"smooth"}); return; } navega(V[i],true); };
+   if(V[i]===view){ scrollTo({top:0,behavior:quieto?"auto":"smooth"}); return; } maVe(V[i]); };
  MA.lente=()=>{ const i=deVista(); if(i!==sel||Math.abs(xt-i*W())>.5){ sel=i; xt=i*W(); marca(i); mueve(); } };
  let pid=null, x0=0, desde=0, arr=false;
  const loc=e=>{ const r=bar.getBoundingClientRect(), k=r.width/bar.offsetWidth||1; return (e.clientX-r.left)/k; };
  const idx=px=>Math.max(0,Math.min(N-1,Math.floor((px-4)/W())));
  bar.addEventListener("pointerdown",e=>{ pid=e.pointerId; x0=e.clientX; desde=idx(loc(e)); arr=false; try{ bar.setPointerCapture(pid); }catch{}
-  if(desde===sel&&desde<3){ arr=true; bar.classList.add("drag"); lens.classList.add("held"); st=quieto?1:1.16; mueve(); } });
+  if(desde===sel&&desde<3){ arr=true; bar.classList.add("drag"); lens.classList.add("held"); st=quieto?1:1.09; mueve(); } });
  bar.addEventListener("pointermove",e=>{ if(e.pointerId!==pid) return; const px=loc(e);
-  if(!arr&&Math.abs(e.clientX-x0)>6){ arr=true; bar.classList.add("drag"); lens.classList.add("held"); st=quieto?1:1.16; }
-  if(arr){ xt=Math.max(-6,Math.min((N-1)*W()+6,px-4-W()/2)); const c=idx(px); T.forEach((b,k)=>b.classList.toggle("cerca",k===c)); marca(c); mueve(); } });
+  if(!arr&&Math.abs(e.clientX-x0)>6){ arr=true; bar.classList.add("drag"); lens.classList.add("held"); st=quieto?1:1.09; }
+  if(arr){ arrastra=true; const q=px-4-W()/2, M=(N-1)*W(); xt=q<0?q*.22:q>M?M+(q-M)*.22:q; const c=idx(px); T.forEach((b,k)=>b.classList.toggle("cerca",k===c)); marca(c); mueve(); } });
  const suelta=e=>{ if(e.pointerId!==pid) return; pid=null; const px=loc(e);
-  bar.classList.remove("drag"); lens.classList.remove("held"); T.forEach(b=>b.classList.remove("cerca"));
+  arrastra=false; bar.classList.remove("drag"); lens.classList.remove("held"); T.forEach(b=>b.classList.remove("cerca"));
   if(e.type==="pointercancel"){ st=1; MA.lente(); return; }
   if(arr){ st=1; const i=Math.max(0,Math.min(N-1,Math.round(x/W()))); sel=i; xt=i*W(); marca(i); mueve(); abre(i); } else { const i=idx(px); ve(i); abre(i); } };
  bar.addEventListener("click",()=>{ if(masT) masAbre(); });
@@ -6542,16 +6554,24 @@ if(MA.tel){ const ob=new MutationObserver(()=>maHora()); ["stat","dot"].forEach(
 function maMas(abrir){ const M=$("m-mas"); if(!M) return;
   if(abrir){ const R=document.documentElement; $("m-mm-priv").textContent=R.classList.contains("priv")?"Mostrar importes":"Ocultar importes";
     $("m-mm-tema").textContent=isDk()?"Modo claro":"Modo noche"; const rf=$("refresh"); M.querySelector('[data-mm="act"]').disabled=!!(rf&&rf.disabled);
-    M.hidden=false; void M.offsetWidth; M.classList.add("abierto"); const b=M.querySelector("button"); if(b) b.focus({preventScroll:true}); }
-  else if(!M.hidden){ M.classList.remove("abierto"); setTimeout(()=>{ if(!M.classList.contains("abierto")) M.hidden=true; },matchMedia("(prefers-reduced-motion: reduce)").matches?0:300); if(MA.vuelve) MA.vuelve(); } }
+    M.hidden=false; const P=M.querySelector(".m-mas-p"), B=document.querySelector('#ma-tabs [data-mv="mas"]');
+    if(P&&B){ P.style.transition="none"; M.classList.add("abierto"); const r=P.getBoundingClientRect(), b=B.getBoundingClientRect(), k=r.width/P.offsetWidth||1;
+      P.style.transformOrigin=`${((b.left+b.width/2-r.left)/k).toFixed(1)}px ${((b.top+b.height/2-r.top)/k).toFixed(1)}px`; M.classList.remove("abierto"); void P.offsetWidth; P.style.transition=""; }
+    void M.offsetWidth; M.classList.add("abierto"); const b=M.querySelector("button"); if(b) b.focus({preventScroll:true}); }
+  else if(!M.hidden){ M.classList.remove("abierto"); setTimeout(()=>{ if(!M.classList.contains("abierto")) M.hidden=true; },matchMedia("(prefers-reduced-motion: reduce)").matches?0:320); if(MA.vuelve) MA.vuelve(); } }
 { const M=$("m-mas"); if(M){
   M.addEventListener("click",e=>{ const b=e.target.closest("[data-mm]"); if(!b) return; const k=b.dataset.mm; maMas(false);
-    if(k==="analisis"||k==="movimientos") navega(k,true);
+    if(k==="analisis"||k==="movimientos") maVe(k);
     else if(k==="buscar") setTimeout(()=>{ const kb=$("kbtn"); if(kb) kb.click(); },0);
     else if(k==="priv"){ const p=$("priv"); if(p) p.click(); }
     else if(k==="tema") ponTema(isDk()?"light":"dark");
     else if(k==="act"){ const rf=$("refresh"); if(rf&&!rf.disabled) rf.click(); } });
   addEventListener("keydown",e=>{ if(e.key==="Escape"&&!M.hidden) maMas(false); }); } }
+/* v636 · ir a una pestaña desde el menú del iPhone: se funde el contenido, se cambia la página oculta (con la burbuja ya casi quieta) y vuelve */
+let maVeT=0;
+function maVe(v){ const R=document.documentElement; if(matchMedia("(prefers-reduced-motion: reduce)").matches){ navega(v,true); return; }
+  clearTimeout(maVeT); R.classList.add("m-fuera");
+  maVeT=setTimeout(()=>{ navega(v,true); requestAnimationFrame(()=>requestAnimationFrame(()=>R.classList.remove("m-fuera"))); },230); }
 
 function navega(token,push){
   if(typeof token==="string"&&(token==="actualidad"||token.startsWith("actualidad/"))) token="calendario";   // COD-04: las direcciones antiguas siguen valiendo
