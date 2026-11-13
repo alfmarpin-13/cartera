@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-ku54VcNOpVjYj3sIeNSH5LUdQOkFMrPKXDoEfgYnu/s=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-QuVSKW6JD+Q5rav6W29fMcJyUGR41DufePMjHfVxnJk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v648">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v648">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v648">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v649">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v649">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v649">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3058,7 +3058,7 @@ html.m-tel.m-fuera :is(#ma,.wrap){opacity:0;transition:opacity .14s ease}
 @media (prefers-reduced-motion:reduce){html.m-tel :is(#ma,.wrap){transition:none}}
 /* v637 · tirar hacia abajo para actualizar: bajo la marca se abre un hueco del verde de la cabecera con el punto del logotipo;
    un anillo se completa al tirar, el punto salta al llegar y late (como en la carga) mientras se lee la hoja */
-html.m-app{overscroll-behavior-y:none}
+html.m-app:not(.m-ios){overscroll-behavior-y:none}   /* v649: en el iPhone, el rebote elástico del sistema vuelve (arriba y abajo, en todas las pestañas) */
 #ma{position:relative}#ma #m-ptr{--m-pull:0px}
 #ma>:not(.m-bar):not(#m-ptr){transition:transform .55s linear(0,0.016,0.058,0.119,0.193,0.274,0.358,0.442,0.523,0.599,0.67,0.734,0.791,0.841,0.884,0.921,0.951,0.976,0.995,1.01,1.021,1.029,1.034,1.037,1.038,1.038,1.037,1.034,1.032,1.029,1.025,1.022,1.019,1.016,1.013,1.011,1.008,1.006,1.005,1.003,1.002,1.001,1,1,0.999,0.999,0.999,0.999,1)}
 #ma #m-ptr{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 50px);height:calc(var(--m-pull) + min(1px, var(--m-pull)));z-index:3;overflow:hidden;background:var(--m-top);
@@ -3203,6 +3203,10 @@ html.m-tel[data-theme="dark"]{--m-tl:brightness(0) invert(1);--m-tlo:.9;--m-tlg:
 #ma .m-sec+#m-c-ag>.m-mesh:first-child{padding-top:2px}
 #ma .m-row.dia{background:var(--m-nbg);transition:background .3s}
 #ma .m-lt{overflow:visible}   /* v648: el punto del logotipo puede crecer sin recortarse */
+
+/* v649 · FLUIDEZ · con el rebote del iPhone, arriba asoma el verde de la cabecera (fondo de la página) y abajo, el fondo claro de la app
+   (una capa fija detrás de todo, en la mitad de abajo de la pantalla; solo se ve en el hueco del rebote) */
+html.m-app.m-ios body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:50vh;z-index:-1;background:var(--m-bg);pointer-events:none}
 </style>
 
 <div class="wrap">
@@ -3951,7 +3955,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v648";   // la versión publicada, en el pie
+const VER="v649";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4430,7 +4434,7 @@ function renderAnatomy(){
   // ACC-06: con el teclado, cada tramo se enfoca y enseña lo mismo que al pasar el ratón
   $("anat").addEventListener("focusin",e=>{ const t=e.target.closest("[data-n]"); if(!t) return; const r=t.getBoundingClientRect(); show(t,{clientX:r.left+r.width/2,clientY:r.top}); });
   $("anat").addEventListener("focusout",hide);
-  addEventListener("scroll",()=>{ const a=document.activeElement, t=a&&a.closest&&a.closest("#anat [data-n]"); if(t&&!tt.hidden&&t.matches(":focus-visible")){ const r=t.getBoundingClientRect(); show(t,{clientX:r.left+r.width/2,clientY:r.top}); } else hide(); },{passive:true});   // COD-13: con el ratón o el dedo se va; con el teclado se queda con su tramo
+  addEventListener("scroll",()=>{ if(document.documentElement.classList.contains("m-app")) return; const a=document.activeElement, t=a&&a.closest&&a.closest("#anat [data-n]"); if(t&&!tt.hidden&&t.matches(":focus-visible")){ const r=t.getBoundingClientRect(); show(t,{clientX:r.left+r.width/2,clientY:r.top}); } else hide(); },{passive:true});   // COD-13: con el ratón o el dedo se va; con el teclado se queda con su tramo
   document.addEventListener("pointerdown",e=>{ if(!e.target.closest("#anat")) hide(); });
   const nom=()=>$("anat").querySelectorAll("[data-n]:not([aria-label])").forEach(t=>{ const d=t.dataset; t.tabIndex=0; t.setAttribute("role","img"); t.setAttribute("aria-label",`${d.n}: ${d.v}${d.p?` · ${d.p}`:""}`); });
   new MutationObserver(nom).observe($("anat"),{childList:true,subtree:true}); nom(); }
@@ -4902,7 +4906,7 @@ $("p-rst").addEventListener("click",()=>{ $("p-q").value=""; $("p-ind").value=""
   const show=cm=>{ const src=cm&&cm.querySelector(".cpop"); if(!src){ pop.hidden=true; return; } pop.innerHTML=src.innerHTML; pop.hidden=false;
     const r=cm.getBoundingClientRect(), w=pop.offsetWidth, h=pop.offsetHeight, W=document.documentElement.clientWidth;
     pop.style.left=Math.max(12,Math.min(r.left+r.width/2-w/2,W-w-12))+"px"; pop.style.top=(r.bottom+6+h>innerHeight-8?Math.max(8,r.top-h-6):r.bottom+6)+"px"; };
-  let cur=null; const hide=()=>{ cur=null; pop.hidden=true; };
+  let cur=null; const hide=()=>{ cur=null; if(!pop.hidden) pop.hidden=true; };
   const onBar=e=>{ const cm=e.target.closest(".cm2"), b=cm&&cm.querySelector(".cbar"); if(!b) return null; const r=b.getBoundingClientRect(), top=Math.min(r.top,r.bottom-12);
     return e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=top&&e.clientY<=r.bottom+1?cm:null; };
   // con ratón, al pasar por la barra; con el dedo, al tocarla (y se cierra al tocar fuera o al desplazarse)
@@ -6535,7 +6539,7 @@ function zfMovSombra(){ const h=$("m-head"); if(!h) return; const t=h.closest("t
   const b=$("m-body"); if(b) new MutationObserver(pide).observe(b,{childList:true}); addEventListener("resize",pide); document.addEventListener("click",e=>{ if(e.target.closest('[data-v="movimientos"],.kw-m [data-kw="mov"]')) setTimeout(pide,60); }); }
 
 /* v583 · la raya de debajo de la barra, solo cuando has bajado y hay contenido por detrás */
-{ const tb=document.querySelector(".top"), f=()=>{ if(tb) tb.classList.toggle("zf-scr",scrollY>0); }; addEventListener("scroll",f,{passive:true}); f(); }
+{ const tb=document.querySelector(".top"), f=()=>{ if(tb&&!document.documentElement.classList.contains("m-app")) tb.classList.toggle("zf-scr",scrollY>0); }; addEventListener("scroll",f,{passive:true}); f(); }
 
 /* v584 · en la barra del PC, el valor de la cartera (v586: sin lo que va hoy), solo cuando la tarjeta de cifras de Resumen no se ve
    (al bajar en Resumen y siempre en las demás pestañas). Se copia de la propia tarjeta, así que en modo privado sale «••••» */
@@ -6543,7 +6547,7 @@ function zfMovSombra(){ const h=$("m-head"); if(!h) return; const t=h.closest("t
   if(tl&&hora){ const nb=document.createElement("span"); nb.className="zf-nbv"; nb.setAttribute("aria-hidden","true"); nb.innerHTML='<b class="pv"></b>'; tl.insertBefore(nb,hora);
     const hero=$("s-hero"), val=$("h-val"), b=nb.querySelector("b");
     const copia=()=>{ b.textContent=val?val.textContent.trim():""; };   // v586: solo el valor, sin la variación del día
-    const mira=()=>{ const tb=document.querySelector(".top"), alto=tb?tb.getBoundingClientRect().bottom:48;
+    const mira=()=>{ if(document.documentElement.classList.contains("m-app")) return; const tb=document.querySelector(".top"), alto=tb?tb.getBoundingClientRect().bottom:48;
       const visible=hero&&hero.getClientRects().length&&hero.getBoundingClientRect().bottom>alto;
       nb.classList.toggle("on",!visible&&!!b.textContent&&!(val&&val.querySelector(".skel"))); };
     if(hero) new MutationObserver(()=>{ copia(); mira(); }).observe(hero,{subtree:true,childList:true,characterData:true});
@@ -6649,7 +6653,7 @@ document.addEventListener("click",e=>{ const op=e.target.closest('.kw-m [data-kw
    y abajo va el menú de burbujas. Las demás pestañas se ven como antes, a 980 px. maModo() decide el modo; maPinta() pinta la pantalla */
 const MA_APP=new Set(["resumen","calendario","universo","movimientos","analisis"]);   // v640: también Movimientos y Análisis   // v639: pestañas que en el iPhone son pantallas de app
 const MA={ tel:document.documentElement.classList.contains("m-tel"), modo:"hoy", L:null, lente:null, tam:{}, pd:null, sh:false };
-const maNf=(n,d=0)=>new Intl.NumberFormat("es-ES",{minimumFractionDigits:d,maximumFractionDigits:d,useGrouping:"always"}).format(n);
+const MA_NF=[], maNf=(n,d=0)=>(MA_NF[d]||(MA_NF[d]=new Intl.NumberFormat("es-ES",{minimumFractionDigits:d,maximumFractionDigits:d,useGrouping:"always"}))).format(n);   /* v649: un formateador por número de decimales, hecho una vez (antes, uno nuevo en cada cifra: lo más lento al actualizar) */
 const maSg=v=>v>0?"+":v<0?"−":"", maEurS=(v,d=0)=>maSg(v)+maNf(Math.abs(v),d)+" €", maEur=(v,d=0)=>maNf(v,d)+" €", maPct=(v,d=1)=>maSg(v)+maNf(Math.abs(v*100),d)+" %";
 const maEsc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const MA_CS={EUR:"€",USD:"$",GBP:"£",CHF:"CHF",JPY:"¥",CAD:"C$"}, MA_GRIS=LOGO_GRIS;   // v639: la lista de logos grises de toda la web (antes solo 3)
@@ -6794,8 +6798,29 @@ function maVe(v,p){ MA.dest=null; const R=document.documentElement;
   if(v!==view){ view=v; document.body.dataset.view=v; MA.pcPend=true; document.title="Cartera · "+(MA_TIT[v]||""); try{ history.replaceState(null,"","#"+v); }catch{} }
   const R2=document.documentElement, mueve=Date.now()-MA.tocaT<300; if(mueve) R2.style.overflow="hidden";   /* v647: corta la inercia del desplazamiento de iOS (si la página aún se deslizaba, la nueva se quedaba pillada) */
   maModo(); scrollTo(0,MA.sy[MA.pg]||0); if(mueve) requestAnimationFrame(()=>requestAnimationFrame(()=>{ R2.style.overflow=""; scrollTo(0,MA.sy[MA.pg]||0); })); }   /* solo si la página aún se movía */
-/* v637 · tirar hacia abajo para actualizar (solo en la pantalla de Resumen del iPhone) */
-{ const ma=$("ma"); let y0=null, p=0, carga=false, tira=false;
+/* v649 · FLUIDEZ · en el iPhone, tirar hacia abajo es el rebote del propio sistema (elástico, a 120 Hz, fuera del hilo de la web):
+   la página entera baja con la resistencia de iOS y asoma el verde de la cabecera; la web solo lee cuánto se ha tirado (scrollY negativo)
+   y hace crecer el punto del logotipo. Al soltar pasado el umbral, se actualiza; el sistema devuelve la página a su sitio.
+   Sin escuchas que bloqueen el desplazamiento (todas pasivas) y sin mover la página desde la web */
+const MA_IOS=/iP(hone|od|ad)/.test(navigator.userAgent)||(/Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
+if(MA_IOS){ document.documentElement.classList.add("m-ios"); let on=false, raf=0, listo=false, y0=0, yd=0;
+  const LIM=64, punto=()=>document.querySelector("#ma .m-lt .m-pt"),
+    puede=()=>document.documentElement.classList.contains("m-app")&&MA.pg!=="mas"&&$("kx").hidden&&(!$("sheet")||$("sheet").hidden),   /* con la ficha o la búsqueda abiertas, no */
+    pon=p=>{ const c=punto(); if(!c) return; if(p<=0){ listo=false; if(c.style.transform){ c.style.transition=""; c.style.transform=""; } return; }
+      listo=p>=LIM; c.style.transition=listo?"":"none";   /* pegado al dedo; al llegar al umbral, el salto con muelle */
+      c.style.transform=`scale(${(1+.8*Math.min(1,p/LIM)+(listo?.25:0)).toFixed(3)})`; },
+    /* lo que ha bajado la página: el rebote que da iOS (scrollY negativo) o, por si no lo diera, el recorrido del dedo con la misma
+       resistencia que aplica iOS (0,55 sobre el alto de la pantalla); mientras la página no está arriba del todo, no cuenta */
+    goma=x=>{ const d=innerHeight||800; return x>0?(1-1/(x*.55/d+1))*d:0; },
+    paso=()=>{ raf=0; if(!on) return; const sy=scrollY; if(sy>0) y0=yd; pon(Math.max(-sy,sy>0?0:goma(yd-y0))); raf=requestAnimationFrame(paso); };
+  MA.ptrRecoge=()=>{ on=false; cancelAnimationFrame(raf); raf=0; pon(0); };
+  addEventListener("touchstart",e=>{ if(e.touches.length!==1||!puede()||e.target.closest("#ma-tabs")){ if(on) MA.ptrRecoge(); return; } on=true; y0=yd=e.touches[0].clientY; if(!raf) raf=requestAnimationFrame(paso); },{passive:true});
+  addEventListener("touchmove",e=>{ if(on&&e.touches.length===1) yd=e.touches[0].clientY; },{passive:true});
+  const fin=e=>{ if(!on||(e.touches&&e.touches.length)) return; const va=listo||-scrollY>=LIM||(scrollY<=0&&goma(yd-y0)>=LIM); MA.ptrRecoge();
+    if(va){ const rf=$("refresh"); if(rf&&!rf.disabled) rf.click(); } };   /* el punto late mientras se lee la hoja (maLate) */
+  addEventListener("touchend",fin,{passive:true}); addEventListener("touchcancel",fin,{passive:true}); }
+/* v637 · tirar hacia abajo para actualizar en los demás teléfonos (sin rebote del sistema): la página la mueve la web */
+if(!MA_IOS){ const ma=$("ma"); let y0=null, p=0, carga=false, tira=false;
   const LIM=64, PARADA=56, MAX=120, arrastre=on=>{ const t=on?"none":""; $("m-ptr").style.transition=t; const pe=$("m-pg-"+(MA.pg||"res")); if(pe) pe.style.transition=t; },   // v641: sin transición mientras el dedo arrastra, solo en el indicador y la página que se ve
     set=v=>{ { const d=devicePixelRatio||1; v=Math.round(v*d)/d; } p=v;   /* v646: en píxeles enteros de pantalla (con fracciones, el borde entre el indicador y la página dejaba ver una raya que parpadeaba) */ const ptr=$("m-ptr"), pe=$("m-pg-"+(MA.pg||"res"));   // v641: solo en el indicador y en la página que se ve (antes, en todo #ma: cada fotograma recalculaba las seis páginas)
     ptr.style.setProperty("--m-pull",v.toFixed(1)+"px"); ptr.style.setProperty("--m-prog",Math.min(100,v/LIM*100).toFixed(1));
@@ -7135,6 +7160,8 @@ async function fromCache(){ const c=await cacheGet(); if(!c||c.cv!==CACHE_V||!c.
   try{ const fp=JSON.stringify(c.pd), dd=model(c.pd); lastFp=fp; fpGuardada=fp; modelDay=new Date().toDateString(); render(dd); cacheAt=new Date(c.at); setStatus("busy",cacheLbl()+" · actualizando…");
     $("asof").textContent="Datos de tu hoja «Inversiones» · "+cacheAt.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}).replace(",",""); }catch(e){ console.warn("Cartera · no he podido pintar la copia guardada:",e); lastFp=""; cacheAt=null; } }
 let fpGuardada="", archivoLocal=false, pending=false, lastSig=null, sigAt=null, lastFp="", lastLoadAt=0, modelDay="";
+// v649: deja pasar un fotograma (o, con la página oculta, como mucho 50 ms) antes de seguir
+const respira=()=>new Promise(r=>{ let ya=false; const sigue=()=>{ if(!ya){ ya=true; r(); } }; requestAnimationFrame(()=>setTimeout(sigue,0)); setTimeout(sigue,50); });
 async function load(fresh){
   if(!canRead()) return; if(busy){ if(fresh) pending=true; return; } busy=true; $("refresh").disabled=true; setStatus("busy",cacheAt&&!lastLoadAt?cacheLbl()+" · actualizando…":"Leyendo la hoja…");
   try{
@@ -7147,9 +7174,9 @@ async function load(fresh){
     let p=res.payload; if(typeof p==="string"){ try{p=JSON.parse(p);}catch{} }
     const b64 = p&&p.content ? p.content : (typeof p==="string"?p:null);
     if(!b64) throw {code:"tool_error",message:"La respuesta de Google Drive no trae el archivo.",mine:1};
-    const wb = await readWbBg(b64,"base64"), pd=parse(wb), fp=JSON.stringify(pd); lastLoadAt=Date.now(); let pd0=null; try{ pd0=structuredClone(pd); }catch{}   // la hoja tal cual, antes de calcular la cartera (para la copia)
+    const wb = await readWbBg(b64,"base64"); await respira(); const pd=parse(wb); await respira(); const fp=JSON.stringify(pd); lastLoadAt=Date.now(); let pd0=null; try{ pd0=structuredClone(pd); }catch{} await respira();   // la hoja tal cual, antes de calcular la cartera (para la copia)
     // si la hoja no ha cambiado desde la última lectura, no se vuelve a calcular ni a pintar
-    const day0=new Date().toDateString(), dd=DATA&&fp===lastFp&&modelDay===day0?DATA:model(pd); lastFp=fp; modelDay=day0;
+    const day0=new Date().toDateString(), dd=DATA&&fp===lastFp&&modelDay===day0?DATA:model(pd); lastFp=fp; modelDay=day0; if(dd!==DATA) await respira();
     const when = res.cache?.storedAt ? new Date(res.cache.storedAt) : new Date(), hm=t=>t.toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"}), hhmm=hm(when);
     // huella de las cotizaciones: si Google no ha recalculado la hoja, no cambia aunque el archivo sí lo haga
     const sig=dd.pos.map(pos=>pos.ticker+":"+pos.price+":"+pos.today).join("|"), same=lastSig!==null&&sig===lastSig;
