@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-GrcfF1ysiqS/EZTPCdbwHkl/h21XFw4NL0EevNIAQuQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-yLvfPRXlLVzfsSyKtfQqPmP3Fb7E+OUwSPtOQ7WZB38=' 'sha256-KUHL3t6L63Iz0p/LYyGWld1pGIyU4xFBTfMjbH1lNDc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v630">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v630">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v630">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v631">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v631">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v631">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1686,15 +1686,15 @@ html.lmono[data-theme="dark"] #s-calm .lgb.kv img.kd{display:none}
 .cal-e .am{flex:none;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
 .cal-e small{white-space:nowrap;overflow:hidden;display:block;font-size:var(--fs-11);line-height:var(--lh-15);--lhp:var(--lh-15);color:var(--ink2)}
 .cal-e.cand b{font-weight:400;color:var(--ink2)}
-.cal-k{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
 .cal-dia{display:none}
 .cal-pie{margin:6px 0 0;font-size:var(--fs-12);line-height:var(--lh-16);--lhp:var(--lh-16);color:var(--ink3)}
 .cal-pie:empty{display:none}
 /* estrecho (tableta en vertical y móvil): el mes con puntos y, debajo, el día elegido con sus tarjetas grandes */
 @media (max-width:1100.98px){
   .cal-h{flex-direction:column;align-items:stretch}
-  #s-calm .cal-k{display:flex;flex-direction:column;align-items:stretch;gap:8px;width:100%}
-  #s-calm .cal-k .seg{display:flex;width:100%;margin-block:0}#s-calm .cal-k .seg button{flex:1 1 0;height:34px;padding:0 2px;min-width:0;white-space:nowrap}
+  
+  
   .cal-w{text-align:center;padding:4px 0 6px}
   .cal-c,.cal-c.wk{min-height:0;height:52px;padding:4px 0 2px;gap:4px;align-items:center;cursor:pointer;border-radius:0}
   .cal-n{padding:0;justify-content:center}
@@ -3217,7 +3217,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <section class="panel hero3 band2" id="s-cal"><div class="bg ug bg5" id="c-k"></div></section>
   <section class="panel" id="s-calm" aria-label="Calendario">
     <div class="chart-head cal-h"><div class="cal-t"><button type="button" class="btn" data-cm="0" id="cal-hoy">Hoy</button><span class="cal-nv"><button type="button" class="btn cal-a" data-cm="-1" aria-label="Mes anterior"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5"/></svg></button><button type="button" class="btn cal-a" data-cm="1" aria-label="Mes siguiente"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6 4.5 9.5"/></svg></button></span><h2 class="st" id="cal-mes"></h2></div>
-      <div class="perf-k cal-k"><div class="seg" role="group" aria-label="Qué ver" id="cal-f"><button type="button" data-cf="todo" aria-pressed="true">Todo</button><button type="button" data-cf="res" aria-pressed="false">Resultados</button><button type="button" data-cf="div" aria-pressed="false">Dividendos</button></div><div class="seg" role="group" aria-label="Qué empresas" id="cal-u"><button type="button" data-cu="0" aria-pressed="false">Tu cartera</button><button type="button" data-cu="1" aria-pressed="true">Todo el Universo</button></div></div></div>
+      </div>
     <p class="cal-prox" id="cal-prox"></p>
     <div class="cal-g" id="cal-g"></div>
     <div class="cal-dia" id="cal-d"></div>
@@ -3717,7 +3717,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v630";   // la versión publicada, en el pie
+const VER="v631";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5102,14 +5102,11 @@ function renderCal(){ calSync(); const G=$("cal-g"); if(!G||!DATA) return;
   $("cal-pie").innerHTML=ok?`Fechas de resultados al ${fdate(gen)} · cada lunes`
     :actSt==="permiso"?`Para ver las fechas de resultados necesito permiso para leer tu carpeta Informes (solo lee). <button class="btn" type="button" id="act-allow">Permitir y cargar</button>`
     :actSt==="cargando"?"Leyendo las fechas de resultados…":`Las fechas de resultados llegan cada lunes a tu carpeta Informes; ${actSt==="error"?"ahora mismo no he podido leerla":"todavía no ha llegado ninguna"}.`;
-  document.querySelectorAll("#cal-f button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.cf===calFi)));
-  document.querySelectorAll("#cal-u button").forEach(b=>b.setAttribute("aria-pressed",String((b.dataset.cu==="1")===calUn))); }
+   }
 renderAct=()=>{ renderCal(); gxPinta(); };   // v478: con el índice nuevo, también la portada del Calendario
 $("s-calm").addEventListener("click",e=>{
   const c=e.target.closest("[data-cm]"); if(c){ const n=+c.dataset.cm, hoy=calHoy(); if(n){ calM=new Date(calM.getFullYear(),calM.getMonth()+n,1); calSel=new Date(calM); } else { calM=new Date(hoy.getFullYear(),hoy.getMonth(),1); calSel=hoy; } renderCal(); return; }
-  const f=e.target.closest("[data-cf]"); if(f){ calFi=f.dataset.cf; renderCal(); return; }
-  const u=e.target.closest("[data-cu]"); if(u){ calUn=u.dataset.cu==="1"; renderCal(); return; }
-  const t=e.target.closest(".cal-e[data-t]"); if(t&&(!matchMedia("(max-width:1100.98px)").matches||t.closest("#cal-d"))){ const L=[...t.closest("#cal-d,#cal-g").querySelectorAll(".cal-e[data-t]")].map(x=>x.dataset.t); openSheet(t.dataset.pf==="1"?"pos":"pre",t.dataset.t,[...new Set(L)]); return; }
+    const t=e.target.closest(".cal-e[data-t]"); if(t&&(!matchMedia("(max-width:1100.98px)").matches||t.closest("#cal-d"))){ const L=[...t.closest("#cal-d,#cal-g").querySelectorAll(".cal-e[data-t]")].map(x=>x.dataset.t); openSheet(t.dataset.pf==="1"?"pos":"pre",t.dataset.t,[...new Set(L)]); return; }
   const d=e.target.closest(".cal-c:not(.out)"); if(d&&matchMedia("(max-width:1100.98px)").matches){ const k=+d.dataset.k; calSel=new Date(Math.floor(k/1e4),Math.floor(k/100)%100-1,k%100); renderCal(); } });
 const tabY={};   // cada pestaña recuerda hasta dónde habías bajado (pulsar la que ya estás, arriba del todo)
 // v478 · GC-01 (v479: altura fija a cualquier ancho y con cualquier opción; Universo con 15 por lado y colores según el periodo; v481: escalones por periodo y nombre al pasar el ratón): en el PC, cada pestaña abre con su portada (un titular de dos líneas como mucho y un dibujo propio), en blanco y a todo
