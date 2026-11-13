@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-ZCiHepjgSws/SuuIqcRazEYXy5BfrIWASi28SfGuKoE=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-VZ4qeSok/POoc6lgH/i32X0dSQF4UphO5r0clXGTakY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v651">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v651">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v651">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v652">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v652">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v652">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3219,19 +3219,17 @@ html.m-app.m-ios body::after{content:"";position:fixed;left:0;right:0;bottom:0;h
 
 /* v651 · mientras se actualiza: el punto en naranja (el mismo tono que el PC en cada tema) y «Actualizando…» en lugar de la hora */
 #ma .m-dot.busy{background:var(--warn)}
-/* v651 · Resumen, zona negra en filas: «Valor» en la misma línea que «Hoy», la cifra grande en la misma línea que «Total» y «Liquidez 229 €»
-   debajo de la cifra (medido con líneas base: Valor = Hoy y cifra = Total) */
-#m-pg-res .m-blk{align-items:flex-start}
-#m-pg-res .m-cab{font-size:12px;line-height:20px;color:var(--m-tfg2);white-space:nowrap}
-#m-pg-res #m-liq{line-height:16px;min-height:16px}
+/* v652 · Resumen, zona negra del mismo alto que en las demás pestañas (71 px), con Hoy y Total en su sitio de siempre y pegados abajo:
+   «Liquidez 229 €» en la misma línea base que «Total»; encima, la cifra (24 px) y «Valor» (11 px), con 4 px entre líneas y sin salirse de la
+   zona negra (con 28 px no cabían las tres líneas en 71 px) */
+#m-pg-res .m-blk{align-items:flex-end}
+#m-pg-res .m-col{margin-top:-14px}
+#m-pg-res .m-cab{font-size:11px;line-height:14px;color:var(--m-tfg2);white-space:nowrap;position:relative}
+#m-pg-res #m-liq{font-size:12px;line-height:20px;min-height:20px}
+#m-pg-res .m-col .m-big{font-size:24px;line-height:24px;transform:none;position:relative}
 #m-pg-res .m-cab b{font-weight:600;color:var(--m-tfg)}
-#m-pg-res .m-pila{row-gap:10px}
-#m-pg-res .m-dark{padding-bottom:16px}
-/* v651 · la cabecera (logotipo y hora), fija y no pegada: con el rebote del iPhone, al llegar abajo del todo la cabecera pegada podía irse con la
-   página; fija, como el menú de abajo, no se mueve nunca. Su hueco lo guarda #ma con el mismo alto (las páginas siguen en el mismo sitio) */
-#ma{padding-top:calc(env(safe-area-inset-top,0px) + 50px)}
-#ma .m-bar{position:fixed;top:0;left:0;right:0}
-#m-pg-res .m-big{transform:none}   /* v651: la cifra, en la misma línea base que «Total» (102,0 px las dos) */
+#m-pg-res .m-col .m-big{top:5px}            /* medido: línea base 82, a 4 px de «Liquidez» */
+#m-pg-res .m-col .m-cab:first-child{top:7px} /* medido: «Valor» empieza a 3 px del borde de la zona negra y queda a 4 px de la cifra */
 </style>
 
 <div class="wrap">
@@ -3980,7 +3978,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v651";   // la versión publicada, en el pie
+const VER="v652";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
