@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-iU4NM1BKX6zlG1HggF0RBDquU66oClBAsQqHg0K+TJs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-BXmmwpXBBTjqRDG4nyl6/mIpzmO8oHkmpg67nBJDxgo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v656">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v656">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v656">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v657">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v657">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v657">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3247,6 +3247,10 @@ html.m-app.m-ios body::after{content:"";position:fixed;left:0;right:0;bottom:0;h
    (antes asomaban «Valor», «Hoy ()», «Total ()» y fichas vacías) */
 #ma .m-dark{min-height:71px}
 #ma .m-dark:has(.m-big:empty) .m-blk{visibility:hidden}
+/* v657 · la segunda línea de las filas, sin salirse nunca por la derecha: si no cabe, se corta con «…» (en Movimientos, la línea de un ajuste
+   largo llegaba a 393 px, más allá del margen de 16 px) */
+#ma .m-f2 small{min-width:0;overflow:hidden;text-overflow:ellipsis}
+#ma .m-f2 .m-l2{flex:none}
 </style>
 
 <div class="wrap">
@@ -3995,7 +3999,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v656";   // la versión publicada, en el pie
+const VER="v657";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6745,7 +6749,7 @@ function maPinta(){ if(!DATA||!$("ma")) return; const k=DATA.kpi||{}, cl=v=>v<0?
   maHora(); maPrecarga(); MA.hecho={}; const t=++MA.pt, cur=maPgDe(), resto=Object.keys(MA_PINTA).filter(k=>k!==cur); maPintaPg(cur); if(fRes) maCuenta(fRes);
   const sig=()=>{ if(t!==MA.pt) return; if(MA.toca||Date.now()-MA.tocaT<250){ setTimeout(sig,200); return; }   // v641: nunca con el dedo en la pantalla (ni justo al soltar)
     const k=resto.shift(); if(!k) return; maPintaPg(k); setTimeout(sig,60); }; setTimeout(sig,120); }
-MA.toca=false; MA.tocaT=0;
+MA.toca=false; MA.tocaT=0; MA.pv=maPriv();   /* v657: el modo privado de partida (antes no se apuntaba y la primera vez que se activaba no se repintaba) */
 addEventListener("touchstart",()=>{ MA.toca=true; },{passive:true,capture:true});
 ["touchend","touchcancel"].forEach(t=>addEventListener(t,e=>{ if(!e.touches||!e.touches.length){ MA.toca=false; MA.tocaT=Date.now(); } },{passive:true,capture:true}));
 addEventListener("scroll",()=>{ MA.tocaT=Date.now(); },{passive:true});   // v641: las demás, de una en una (la pantalla no se bloquea)
@@ -6815,7 +6819,7 @@ if(MA.tel){ const ob=new MutationObserver(()=>{ maHora(); maModo(); if(MA.pagina
   new MutationObserver(()=>maTema(document.documentElement.classList.contains("m-app"))).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
   // v638: al abrir o cerrar una ficha (html.sh-open) se cambia de modo; solo si de verdad ha cambiado (maModo también toca las clases de html)
   new MutationObserver(()=>{ const sh=document.documentElement.classList.contains("sh-open"); if(sh!==MA.sh){ MA.sh=sh; maModo(); }
-    const pv=maPriv(); if(pv!==MA.pv){ const ya=MA.pv!==undefined; MA.pv=pv; if(ya&&DATA){ MA.hecho={}; maPinta(); } } }).observe(document.documentElement,{attributes:true,attributeFilter:["class"]});   /* v651: al tapar o destapar importes, la app se vuelve a pintar */
+    const pv=maPriv(); if(pv!==MA.pv){ MA.pv=pv; if(DATA){ MA.hecho={}; maPinta(); } } }).observe(document.documentElement,{attributes:true,attributeFilter:["class"]});   /* v651: al tapar o destapar importes, la app se vuelve a pintar */
   matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",()=>maTema(document.documentElement.classList.contains("m-app"))); }
 /* v637 · «Más» como pestaña propia de la pantalla de app: MA.pagina = "resumen" | "mas" */
 MA.pagina="resumen";
@@ -6951,7 +6955,7 @@ function maCal(){ if(!DATA) return; const hoy=new Date(), y=hoy.getFullYear(), m
   const nr=E.filter(e=>e.k==="r"&&fut(e)).length, nd=E.filter(e=>e.k==="d"&&fut(e)).length, pl=(n,a,b)=>`<b>${maNf(n)}</b> ${n===1?a:b}`;
   { const D=T.filter(e=>e.pf&&e.k==="d"&&fut(e)&&e.d.getFullYear()===y), S=a=>a.reduce((s,e)=>s+(+e.v||0),0), este=D.filter(e=>e.d.getMonth()===m), resto=D.filter(e=>e.d.getMonth()!==m), ms=[...new Set(resto.map(e=>e.d.getMonth()))];
     const fila=(l,a)=>`<span class="m-lab">${l}</span><span class="m-v">${maEur(S(a))}</span><span class="m-tp k"><span class="m-tx">${maCob(a.length)}</span></span>`;
-    $("m-c-tot").textContent=maEur(S(D)); $("m-c-pila").innerHTML=fila(maCap(MA_MES[m]),este)+(m<11?fila(ms.length===1?maCap(MA_MES[ms[0]]):"Resto del año",resto):""); }   /* v647: como en las demás pestañas (vuelta a la de la v642) */
+    $("m-c-tot").innerHTML=maEur(S(D))+"<small>por cobrar</small>";   /* v657: la cifra grande dice qué es, como en Universo («empresas») y Análisis («TIR anual») */ $("m-c-pila").innerHTML=fila(maCap(MA_MES[m]),este)+(m<11?fila(ms.length===1?maCap(MA_MES[ms[0]]):"Resto del año",resto):""); }   /* v647: como en las demás pestañas (vuelta a la de la v642) */
   const cuando=f=>{ const n=Math.round((f.getTime()-d0)/864e5); return n<=0?"hoy":n===1?"mañana":n<60?`en ${n} días`:`en ${Math.round(n/30.4)} meses`; };
   const hora=e=>e.hora==="antes de la apertura"?" · antes de abrir":e.hora==="tras el cierre"?" · tras el cierre":"";
   const row=e=>{ const pas=!fut(e), dia=`${MA_DIA[e.d.getDay()]} ${e.d.getDate()}`;
