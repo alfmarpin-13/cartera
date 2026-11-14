@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-qp9rpullqvhyZNSbMRVpVd372W01AfYjqcG/g81F0IQ=' 'sha256-hfSm0aaEw1WdfSRfFCkgykRnjpPQcHenom90tnHLT2M=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-qp9rpullqvhyZNSbMRVpVd372W01AfYjqcG/g81F0IQ=' 'sha256-h1CoSiD/Tx5ZBc8PZ504IagjQgPlUFfF8z67LSn1OAM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v693">
+<link rel="manifest" href="manifest.webmanifest?v694">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#1F2B25" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v693">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v693">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v693">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v693">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v693">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v694">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v694">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v694">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v694">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v694">
 <title>Cartera</title>
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.getElementById("m-vp"); m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); R.style.setProperty("--m-shh",(Math.max(screen.width,screen.height)/2)+"px"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
@@ -3840,7 +3840,7 @@ html.m-app.m-ios #ma #m-ptrg{display:block}
  </div>
  <div id="m-pg-uni" data-off aria-hidden="true">
  <div class="m-dark"><div class="m-hero"><div class="m-blk"><div class="m-big" id="m-u-n"></div><div class="m-cab m-st2" id="m-u-sub"></div>
-  <div class="m-pila sin"><span class="m-lab">En cartera</span><span class="m-v" id="m-u-pf"></span><span class="m-lab">Sobre lo exigido</span><span class="m-v" id="m-u-so"></span></div></div></div></div>
+  <div class="m-pila sin" id="m-u-pila"></div></div></div></div>
  <div class="m-sec"><h2 id="m-u-ht">Hoy</h2><div class="m-sel" role="group" aria-label="Hoy" data-g="uhoy"><button type="button" data-o="up" aria-pressed="true"><b>Suben</b></button><button type="button" data-o="dn" aria-pressed="false"><b>Bajan</b></button></div></div>
  <div class="m-tiles" id="m-u-tl"></div>
  <div class="m-sec m2"><h2>Industrias</h2><div class="m-sel" role="group" aria-label="Periodo" data-g="uind"><button type="button" data-o="today" aria-pressed="false"><b>Hoy</b></button><button type="button" data-o="m1" aria-pressed="false"><b>1 mes</b></button><button type="button" data-o="y1" aria-pressed="true"><b>1 año</b></button><button type="button" data-o="y3" aria-pressed="false"><b>3 años</b></button></div></div>
@@ -3850,13 +3850,13 @@ html.m-app.m-ios #ma #m-ptrg{display:block}
  </div>
  <div id="m-pg-mov" data-off aria-hidden="true">
  <div class="m-dark"><div class="m-hero"><div class="m-blk"><div class="m-big" id="m-m-n"></div><div class="m-cab m-st2" id="m-m-sub"></div>
-  <div class="m-pila sin"><span class="m-lab">Aportado</span><span class="m-v" id="m-m-ap"></span><span class="m-lab" id="m-m-yl"></span><span class="m-v" id="m-m-ay"></span></div></div></div></div>
+  <div class="m-pila sin" id="m-m-pila"></div></div></div></div>
  <div class="m-sec"><h2>Historial</h2><div class="m-sel" role="group" aria-label="Tipo" data-g="mfil"><button type="button" data-o="todo" aria-pressed="true"><b>Todo</b></button><button type="button" data-o="op" aria-pressed="false"><b>Compras</b></button><button type="button" data-o="dv" aria-pressed="false"><b>Dividendos</b></button><button type="button" data-o="ap" aria-pressed="false"><b>Aportaciones</b></button></div></div>
  <div id="m-m-li"></div>
  </div>
  <div id="m-pg-ana" data-off aria-hidden="true">
  <div class="m-dark"><div class="m-hero"><div class="m-blk"><div class="m-big" id="m-a-tir"></div><div class="m-cab m-st2" id="m-a-sub"></div>
-  <div class="m-pila sin"><span class="m-lab" id="m-a-yl"></span><span class="m-v" id="m-a-ye"></span><span class="m-lab" id="m-a-rl"></span><span class="m-v" id="m-a-re"></span></div></div></div></div>
+  <div class="m-pila sin" id="m-a-pila"></div></div></div></div>
  <div class="m-sec"><h2>Reparto</h2><div class="m-sel" role="group" aria-label="Reparto" data-g="arep"><button type="button" data-o="ind" aria-pressed="true"><b>Industrias</b></button><button type="button" data-o="pais" aria-pressed="false"><b>Países</b></button><button type="button" data-o="divisa" aria-pressed="false"><b>Divisas</b></button></div></div>
  <div class="m-list" id="m-a-rep"></div>
  <div class="m-sec m2"><h2>Dividendos</h2><div class="m-sel" role="group" aria-label="Vista" data-g="adiv"><button type="button" data-o="mes" aria-pressed="true"><b>Meses</b></button><button type="button" data-o="ano" aria-pressed="false"><b>Años</b></button><button type="button" data-o="emp" aria-pressed="false"><b>Empresas</b></button></div></div>
@@ -4401,7 +4401,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v693";   // la versión publicada, en el pie
+const VER="v694";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7133,6 +7133,9 @@ function maHora(){ const s=$("stat"), d=$("dot"); if(!s||!$("m-hora")) return;
 function maLate(b){ const c=document.querySelector("#ma .m-lt .m-pt"); if(!c) return; clearTimeout(MA.lateTo);
   if(b){ if(!c.classList.contains("late")){ MA.lateT=Date.now(); c.classList.add("late"); } }
   else if(c.classList.contains("late")) MA.lateTo=setTimeout(()=>c.classList.remove("late"),Math.max(0,900-(Date.now()-(MA.lateT||0)))); }
+/* v694 · una línea de la columna derecha de la zona negra (etiqueta y cifra). Movimientos, Análisis y Universo la escriben entera, con la cifra
+   ya dentro, como Calendario: si se rellenaba una casilla que ya existía vacía, Safari del iPhone no la volvía a medir y la cifra salía por la derecha */
+function maPar(l,v){ return `<span class="m-lab">${maEsc(l)}</span><span class="m-v">${maEsc(v)}</span>`; }
 function maFila(p){ if(!MA.L){ try{ MA.L=JSON.parse($("logos").textContent); }catch{ MA.L={}; } }
   const src=MA.L["T:"+(p.isOption?"NASDAQ:"+String(p.ticker).split(" ")[0]:p.ticker)];
   maTamR(); const tm=src&&MA.tam[src], lg=src?`<img src="${maEsc(src)}" alt=""${MA_GRIS.has(p.ticker)?' data-g="1" class="gr"':""}${tm?` style="width:${tm[0]}px;height:${tm[1]}px"`:""} decoding="sync">`:`<span class="m-ini">${maEsc(maIni(p.name))}</span>`;
@@ -7432,7 +7435,7 @@ MA.uHoy="up"; MA.uInd="y1"; MA.uRad="all";
 function maUni(){ if(!DATA||!DATA.pre) return; const P=DATA.pre, ok=v=>isNum(v)&&isFinite(v);
   $("m-u-n").innerHTML=`${maNf(P.length)}<small>empresas</small>`;
   $("m-u-sub").innerHTML=`Por revisar <b>${maNf(P.filter(stale).length)}</b>`;   /* v679: resultados posteriores a la valoración, como en el PC */
-  $("m-u-pf").textContent=maNf(P.filter(r=>r.inPf).length); $("m-u-so").textContent=maNf(P.filter(r=>ok(r.margin)&&r.margin>=.0005).length);
+  $("m-u-pila").innerHTML=maPar("En cartera",maNf(P.filter(r=>r.inPf).length))+maPar("Sobre lo exigido",maNf(P.filter(r=>ok(r.margin)&&r.margin>=.0005).length));   /* v694: casillas nuevas con la cifra dentro, como Calendario */
   maUniHoy(); maUniInd(); maUniRad(); }
 function maSelMarca(g,v){ document.querySelectorAll(`#ma .m-sel[data-g="${g}"] button`).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.o===v))); }
 function maUniHoy(){ const P=DATA.pre, ok=v=>isNum(v)&&isFinite(v), k=P.some(r=>ok(r.today)&&r.today!==0)?"today":"last";   // sin ningún cambio hoy (bolsas cerradas), la última sesión
@@ -7464,7 +7467,7 @@ MA.mFil="todo"; MA.mN=60;
 function maMov(){ if(!DATA) return; const R=movAll(), y=new Date().getFullYear(), ap=R.filter(r=>r.g==="in"||r.g==="out"), S=a=>a.reduce((s,r)=>s+(+r.v||0),0);
   $("m-m-n").innerHTML=`${maNf(R.length)}<small>${R.length===1?"movimiento":"movimientos"}</small>`;
   { const d0=R.reduce((m,r)=>r.d instanceof Date&&(!m||r.d<m)?r.d:m,null); $("m-m-sub").innerHTML=d0?`Desde <b>${MA_MES[d0.getMonth()]} de ${d0.getFullYear()}</b>`:""; }   /* v679 */
-  $("m-m-ap").textContent=maEur(S(ap)); $("m-m-yl").textContent=`En ${y}`; $("m-m-ay").textContent=maEur(S(ap.filter(r=>day(r.d).getFullYear()===y)));
+  $("m-m-pila").innerHTML=maPar("Aportado",maEur(S(ap)))+maPar(`En ${y}`,maEur(S(ap.filter(r=>day(r.d).getFullYear()===y))));   /* v694: casillas nuevas con la cifra dentro, como Calendario */
   maMovLista(); }
 function maMovLista(){ const f=MA.mFil; maSelMarca("mfil",f);
   const R=movAll().filter(r=>f==="todo"||(f==="op"?(r.ty==="Compra"||r.ty==="Venta"):f==="dv"?!!r.dv:(r.g==="in"||r.g==="out"))), L=R.slice(0,MA.mN);
@@ -7488,8 +7491,7 @@ MA.aRep="ind"; MA.aDiv="mes";
 function maAna(){ if(!DATA) return; const k=DATA.kpi||{}, ok=v=>isNum(v)&&isFinite(v);
   $("m-a-tir").innerHTML=ok(k.tir)?`${maP(k.tir)}<small>TIR anual</small>`:"—";
   $("m-a-sub").innerHTML=ok(k.tir)&&ok(k.vsIdx)?`MSCI World <b>${maP(k.tir-k.vsIdx)}</b>`:"";   /* v679: el índice, debajo de la TIR (como «Liquidez» en Resumen) */
-  { const dv=DATA.dvm||{}; $("m-a-yl").textContent=`Dividendos ${dv.curY||new Date().getFullYear()}`; $("m-a-ye").textContent=ok(dv.paidY)?maEur((dv.paidY||0)+(dv.schedY||0)):"—"; }   /* este año: cobrado + previsto */
-  $("m-a-rl").textContent=k.rentasLabel||"Dividendos"; $("m-a-re").textContent=ok(k.rentas)?maEur(k.rentas):"—";
+  { const dv=DATA.dvm||{}; $("m-a-pila").innerHTML=maPar(`Dividendos ${dv.curY||new Date().getFullYear()}`,ok(dv.paidY)?maEur((dv.paidY||0)+(dv.schedY||0)):"—")+maPar(k.rentasLabel||"Dividendos",ok(k.rentas)?maEur(k.rentas):"—"); }   /* este año: cobrado + previsto */
   maAnaRep(); maAnaDiv(); maAnaRet(); maAnaTra(); }
 const maBarra=(w,cls="")=>`<span class="m-br"><i${cls?` class="${cls}"`:""} style="width:${Math.max(0,Math.min(100,w)).toFixed(1)}%"></i></span>`;
 function maAnaRep(){ const k=MA.aRep; maSelMarca("arep",k); const A=(DATA[k]||[]).filter(x=>isNum(x.val)).slice().sort((a,b)=>b.val-a.val), mx=Math.max(...A.map(x=>x.val),1e-9);
@@ -7530,7 +7532,7 @@ $("m-pg-ana").addEventListener("click",e=>{ const b=e.target.closest(".m-sel[dat
     MA.pcData=null; return pcRender.apply(this,arguments); }; }
 /* v641 · las listas de la app solo se rehacen si lo que hay que enseñar ha cambiado (con la misma hoja, nada se toca: ni saltos ni tirones) */
 { const P=Object.getOwnPropertyDescriptor(Element.prototype,"innerHTML");
-  ["m-l1","m-l2","m-l3","m-c-pila","m-c-ag","m-u-n","m-u-tl","m-u-in","m-u-ra","m-m-n","m-m-li","m-a-tir","m-a-rep","m-a-div","m-a-ret","m-a-tra"].forEach(id=>{ const e=$(id); if(!e) return;
+  ["m-l1","m-l2","m-l3","m-c-pila","m-m-pila","m-a-pila","m-u-pila","m-c-ag","m-u-n","m-u-tl","m-u-in","m-u-ra","m-m-n","m-m-li","m-a-tir","m-a-rep","m-a-div","m-a-ret","m-a-tra"].forEach(id=>{ const e=$(id); if(!e) return;
     Object.defineProperty(e,"innerHTML",{ configurable:true, get(){ return P.get.call(this); }, set(h){ h=String(h); if(this._mh===h) return; this._mh=h; P.set.call(this,h); } }); }); }
 
 /* v643 · cuando llegan los resultados del agente: en la app solo se actualiza su Calendario (el del PC, que no se ve, se repinta al salir a él) */
