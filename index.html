@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-A7gYtLYzrKS1v2N8/9RaR+pry4fCPImM/B8PNymGmnc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-+X86vic/3A+1KwizI01Uj7sNf5ivq797qTNCLyoVFXg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v664">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v664">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v664">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v665">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v665">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v665">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -2968,6 +2968,10 @@ html.m-app #ma{display:block}
 #ma .m-dark{background:var(--m-top);color:var(--m-tfg);padding:7px 16px 20px}
 /* v635: la marca y la hora, fijas arriba al bajar (con la franja del reloj y 10 px más, fuera del difuminado de iOS) */
 #ma .m-bar{position:sticky;top:0;z-index:4;display:flex;align-items:center;box-sizing:content-box;height:40px;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 0;background:var(--m-top);color:var(--m-tfg)}
+/* v665 · la barra del logo, fija a la pantalla en la app (antes, pegada con sticky): al pasarse del final de la página, el rebote de iOS
+   arrastraba la barra hacia arriba con el contenido y desaparecía. Su sitio lo guarda un hueco del mismo alto (::before), así que nada se mueve */
+html.m-app #ma .m-bar{position:fixed;left:0;right:0}
+html.m-app #ma::before{content:"";display:block;height:calc(env(safe-area-inset-top,0px) + 50px)}
 #ma .m-lt{display:block;height:17px;width:auto;fill:var(--m-tfg)} #ma .m-lt circle{fill:var(--m-gid)}
 #ma .m-st{margin-left:auto;margin-right:-1px;display:flex;align-items:center;gap:6px;font-size:12px;line-height:1;color:var(--m-tfg2)}
 #ma #m-hora{transform:translateY(.37px)}
@@ -4094,7 +4098,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v664";   // la versión publicada, en el pie
+const VER="v665";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
