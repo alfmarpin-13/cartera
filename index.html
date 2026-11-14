@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-qp9rpullqvhyZNSbMRVpVd372W01AfYjqcG/g81F0IQ=' 'sha256-VCKKwI/6HKBsBICBLF+HjPNc4g0xK71GV6t5/rXmeHo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-qp9rpullqvhyZNSbMRVpVd372W01AfYjqcG/g81F0IQ=' 'sha256-CxFL+873A44HQ8hMCpT5qTyHvKNTaT0Cn1PBKpa0xOQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,11 +12,11 @@
 <meta name="theme-color" content="#1F2B25" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v690">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v690">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v690">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v690">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v690">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v691">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v691">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v691">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v691">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v691">
 <title>Cartera</title>
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.getElementById("m-vp"); m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); R.style.setProperty("--m-shh",(Math.max(screen.width,screen.height)/2)+"px"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
@@ -4400,7 +4400,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v690";   // la versión publicada, en el pie
+const VER="v691";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7199,7 +7199,7 @@ function maModo(){ if(!MA.tel) return; const d=$("dot"), leyendo=!d||/\bbusy\b/.
   if(R.classList.contains("m-app")!==app){ R.classList.toggle("m-app",app); maTema(app); }
   if(!R.classList.contains("m-bar-on")) R.classList.add("m-bar-on");
   if(vp){ const c=app?"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover":"width=980"; if(vp.getAttribute("content")!==c) vp.setAttribute("content",c); }
-  if(app&&DATA&&MA.pd!==DATA){ MA.pd=DATA; maPinta(); mfPreparaTodas(); maSplashListo(); }
+  if(app&&DATA&&MA.pd!==DATA){ MA.pd=DATA; maPinta(); maSplashListo(); }
   if(con) maSplashFin(); else if(!app&&!leyendo) maSplashFin(true);   /* v687: con la pantalla de conectar, el logo también se queda su 1,5 s y se va fundido (antes se quitaba al instante y el logo de la imagen de arranque de iOS quedaba flotando sobre el formulario) */   /* v669: con la pantalla de conectar, o fuera de la app, la pantalla de carga se va enseguida */
   if(app&&!con) maMuestra();
   // v641: al salir de la app (una ficha abierta), la web del PC se pone al día con la pestaña en la que estás (en la app no se repinta al cambiar de pestaña)
@@ -7563,9 +7563,8 @@ const MF_FR=new Map();
 /* v668 · la parte cara de abrir una ficha (construir sus frases a partir de la ficha del PC) se hace antes: para tus empresas, en segundo
    plano al arrancar (una cada 150 ms y nunca con el dedo en la pantalla); para las demás, al apoyar el dedo en su fila (si no se desliza) */
 function mfPrepara(t){ if(!DATA||!t) return; const x0=MF_FR.get(t); if(x0&&x0.dv===DATA) return; try{ const x=mfFrases(t); x.dv=DATA; MF_FR.set(t,x); }catch(e){} }
-function mfPreparaTodas(){ if(!DATA||!MA.tel) return; const d0=DATA, L=(DATA.pos||[]).map(p=>p.ticker).filter(Boolean);
-  const paso=()=>{ if(DATA!==d0) return; if(MA.toca||Date.now()-MA.tocaT<400||MA.fi){ setTimeout(paso,400); return; } const t=L.shift(); if(!t) return; mfPrepara(t); setTimeout(paso,150); };
-  setTimeout(paso,3000); }
+/* v691 · R-02: ya no se preparan en segundo plano las frases de todas las empresas tras cada lectura (cada una construía la ficha entera
+   del PC: ≈1 s de CPU a ×4 justo después de abrir y cada 5 minutos). Se preparan solo al apoyar el dedo en una fila o al abrir la ficha */
 const MF_SEC=[["res","Resumen"],["pos","Tu posición"],["val","Valoración"],["pj","Proyección"],["tes","Tesis"],["cot","Cotización"]];
 MA.fi=null; MA.fiSec="res";
 const mfCol=v=>!isNum(v)?"m-mute":v>=0.0005?"m-pos":v<=-0.0005?"m-neg":"m-mute";
