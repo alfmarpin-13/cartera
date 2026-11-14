@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-23f2kcoZzkWCdyMnTHNKmq3HwSskfitDUAQesK7lgBg=' 'sha256-2l82JYRiMQPzUargYBK3oy92GiPZ1FBQZJP9Y/IqB/8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-23f2kcoZzkWCdyMnTHNKmq3HwSskfitDUAQesK7lgBg=' 'sha256-L3KzIti7yCxJBJ7+k8+Clq6/dtmcKcpr2Buja2XLgSc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v669">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v669">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v669">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v670">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v670">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v670">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app","m-splash"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3398,6 +3398,17 @@ html.m-splash.m-sp-out::after{opacity:0}
 /* v669 · G-05, la regla de los verdes (escrita; Análisis es la excepción, a petición de Alfonso: es la portada de la marca y va en el verde
    de Cartera). Salvia (#87AE91 y sus tonos, --lp*) para subir o ganar: mapas, rentabilidad, cascadas. Menta (#86D3AA, --m-gid / --gx-id)
    para lo tuyo que viene y para la marca: dividendos previstos, punto del logotipo, subrayado del selector, hoy en los calendarios. */
+/* v670 · tirar para actualizar en el iPhone: el anillo y el texto en el hueco entre la barra y la página, del alto exacto del hueco;
+   sobre el fondo de la página (crema en claro, casi negro en noche): texto gris y anillo en el verde de las subidas */
+#ma #m-ptrg{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 50px);height:0;z-index:3;display:none;flex-direction:column;align-items:center;justify-content:center;gap:6px;overflow:hidden;opacity:0;transition:none!important;pointer-events:none;background:var(--m-bg);color:var(--m-ink3);font:500 12px/16px Inter,system-ui,sans-serif}
+html.m-app.m-ios #ma #m-ptrg{display:flex}
+#ma #m-ptrg svg{flex:none;width:28px;height:28px;overflow:visible}
+#ma #m-ptrg .m-ptr-r{stroke:var(--m-ink)}
+#ma #m-ptrg .m-ptr-a{stroke:var(--m-pos)}
+#ma #m-ptrg .m-ptr-d{fill:var(--m-pos)}
+#ma #m-ptrg span{flex:none}
+#m-ptrg[data-listo] .m-ptr-d{transform:scale(1.35)}
+#m-ptrg[data-listo] span{color:var(--m-ink2)}
 </style>
 
 <div class="wrap">
@@ -4149,7 +4160,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v669";   // la versión publicada, en el pie
+const VER="v670";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7080,7 +7091,13 @@ const MA_IOS=/iP(hone|od|ad)/.test(navigator.userAgent)||(/Macintosh/.test(navig
 if(MA_IOS){ document.documentElement.classList.add("m-ios"); let on=false, raf=0, listo=false, y0=0, yd=0;
   const LIM=64, punto=()=>document.querySelector("#ma .m-lt .m-pt"),
     puede=()=>document.documentElement.classList.contains("m-app")&&MA.pg!=="mas"&&$("kx").hidden&&(!$("sheet")||$("sheet").hidden),   /* con la ficha o la búsqueda abiertas, no */
-    pon=p=>{ const c=punto(); if(!c) return; if(p<=0){ listo=false; if(c.style.transform){ c.style.transition=""; c.style.transform=""; } return; }
+    /* v670 · en el hueco que se abre entre la barra y la página al tirar: el anillo se va llenando con el verde de la marca y dice qué pasa
+       («Desliza para actualizar»; pasado el umbral, «Suelta para actualizar»). Ocupa justo el hueco (su alto es el del tirón), así que nunca pisa la página */
+    G=(()=>{ const e=document.createElement("div"); e.id="m-ptrg"; e.setAttribute("aria-hidden","true"); e.innerHTML=`<svg viewBox="0 0 32 32"><circle class="m-ptr-r" cx="16" cy="16" r="12"/><circle class="m-ptr-a" cx="16" cy="16" r="12" pathLength="100"/><circle class="m-ptr-d" cx="16" cy="16" r="4.5"/></svg><span>Desliza para actualizar</span>`; const m=$("ma"); if(m) m.appendChild(e); return e; })(),
+    hueco=p=>{ if(!G) return; const h=Math.max(0,-scrollY); if(p<=0||h<1){ if(G.style.opacity!=="0"){ G.style.opacity="0"; G.removeAttribute("data-listo"); } return; }
+      const ok=p>=LIM; G.style.opacity=Math.min(1,Math.max(0,(h-14)/28)).toFixed(2); G.style.height=h.toFixed(1)+"px"; G.style.setProperty("--m-prog",Math.min(100,p/LIM*100).toFixed(1));   /* del alto exacto del hueco: nunca pisa la página */
+      if(ok!==G.hasAttribute("data-listo")){ G.toggleAttribute("data-listo",ok); G.lastChild.textContent=ok?"Suelta para actualizar":"Desliza para actualizar"; } },
+    pon=p=>{ hueco(p); const c=punto(); if(!c) return; if(p<=0){ listo=false; if(c.style.transform){ c.style.transition=""; c.style.transform=""; } return; }
       listo=p>=LIM; c.style.transition=listo?"":"none";   /* pegado al dedo; al llegar al umbral, el salto con muelle */
       c.style.transform=`scale(${(1+.8*Math.min(1,p/LIM)+(listo?.25:0)).toFixed(3)})`; },
     /* lo que ha bajado la página: el rebote que da iOS (scrollY negativo) o, por si no lo diera, el recorrido del dedo con la misma
