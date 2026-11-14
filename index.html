@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-RLyCS6+77JOHwmXur0fbtmjIJW1fKzDcoOiLnyDwXTk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-xmxQ70ixiDR/Fs62MUldZ3kgGrlGXHIn+aa6RjWxHFA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v662">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v662">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v662">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v663">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v663">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v663">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3282,6 +3282,66 @@ html.m-con #m-pg-con{display:block;padding:16px 0 calc(env(safe-area-inset-botto
 /* v662 · mientras carga, nada late en el iPhone: ni el punto verde de «Cartera.» ni el naranja de «Actualizando…» (antes latían cada 1,1 y
    1,8 s apagándose a la mitad; con una carga de 20 s, unas 18 veces). Basta con el punto naranja quieto y la palabra */
 #ma .m-dot.busy,#ma .m-lt .m-pt.late,#m-ptr[data-carga] .m-ptr-d,#m-ptrf .m-ptr-d{animation:none!important}
+
+/* v663 · G-01 · la ficha del iPhone: una pantalla propia que sube desde abajo, con la cabecera y el bloque oscuro de la app, las pestañas
+   como palabras (como «Hoy · Total») y listas. Letra: 17 (nombre), 13 y 12 px (12 en lo secundario), como el resto de la app */
+#m-fi{position:fixed;inset:0;z-index:60;overflow-y:auto;overscroll-behavior:contain;background:var(--m-bg);color:var(--m-ink);transform:translateY(100%);transition:transform .34s cubic-bezier(.25,.9,.3,1);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 32px);box-shadow:0 -10px 30px rgba(0,0,0,.18)}
+#m-fi.on{transform:none}
+@media (prefers-reduced-motion:reduce){#m-fi{transition:none}}
+#m-fi .mf-top{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:10px;box-sizing:content-box;height:40px;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 0 6px;background:var(--m-top);color:var(--m-tfg);touch-action:none}
+#m-fi .m-dark{touch-action:none}
+#m-fi .mf-x{display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin:0;padding:0;border:0;background:none;color:inherit;cursor:pointer;flex:none}
+#m-fi .mf-x svg{width:24px;height:24px}
+#m-fi .mf-lg{display:flex;align-items:center;justify-content:center;width:30px;height:24px;flex:none}
+#m-fi .mf-lg img{filter:brightness(0) invert(1);opacity:.92}
+#m-fi .mf-lg .m-ini{font:600 12px/1 Inter,system-ui,sans-serif;color:var(--m-tfg)}
+#m-fi .mf-id{display:flex;flex-direction:column;min-width:0}
+#m-fi .mf-nom{font:600 17px/22px Inter,system-ui,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#m-fi .mf-sub{font:400 12px/16px Inter,system-ui,sans-serif;color:var(--m-tfg2,rgba(241,239,233,.65));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#m-fi .mf-sub:empty{display:none}
+#m-fi .mf-tabs{display:flex;gap:4px;overflow-x:auto;padding:4px 8px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#m-fi .mf-tabs::-webkit-scrollbar{display:none}
+#m-fi .mf-tabs button{flex:none;height:44px;margin:0;padding:14px 8px 0;border:0;background:none;cursor:pointer;font:500 13px/18px Inter,system-ui,sans-serif;color:var(--m-ink3);white-space:nowrap}
+#m-fi .mf-tabs button b{font-weight:inherit;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;text-decoration-color:transparent}
+#m-fi .mf-tabs button[aria-selected="true"]{color:var(--m-ink)}
+#m-fi .mf-tabs button[aria-selected="true"] b{text-decoration-color:var(--gx-id)}
+#m-fi .mf-fr{margin:10px 16px 4px;font:400 13px/18px Inter,system-ui,sans-serif;color:var(--m-ink2)}
+#m-fi .mf-fr:empty{display:none}
+#m-fi .mf-fr .mf-l1{display:block;font-weight:600;color:var(--m-ink)}
+#m-fi .mf-fr .mf-l2{display:block;margin-top:2px}
+#m-fi .mf-der{position:absolute;right:16px;top:20px;font:400 12px/16px Inter,system-ui,sans-serif;color:var(--m-ink3);white-space:nowrap}
+#m-fi .m-row{cursor:default}
+#m-fi .m-row[data-t]{cursor:pointer}
+#m-fi .m-row.mf-yo .m-n{font-weight:600}
+#m-fi .mf-prev{color:var(--m-pos)}
+#m-fi .mf-tx{padding:12px 16px;font:400 13px/19px Inter,system-ui,sans-serif;color:var(--m-ink2)}
+#m-fi .mf-tx+.mf-tx{border-top:1px solid var(--m-line)}
+#m-fi .mf-tx b{display:inline;font-weight:600;color:var(--m-ink)}
+#m-fi .mf-tx>b:first-child:not(:only-child){display:block;margin-bottom:4px}
+#m-fi .mf-tx p{margin:0}
+#m-fi .mf-tx p+p{margin-top:6px}
+#m-fi .mf-mz{display:grid;grid-template-columns:48px repeat(var(--n),minmax(0,1fr));gap:6px;padding:12px 12px 8px}
+#m-fi .mf-mh{display:flex;align-items:center;justify-content:center;font:500 12px/16px Inter,system-ui,sans-serif;color:var(--m-ink3);font-feature-settings:"tnum"}
+#m-fi .mf-mh.l{justify-content:flex-start}
+#m-fi .mf-mh.on{color:var(--m-ink);font-weight:600}
+#m-fi .mf-mc{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:52px;border-radius:8px;background:var(--m-bg);font-feature-settings:"tnum"}
+#m-fi .mf-mc b{font:600 13px/18px Inter,system-ui,sans-serif;color:var(--m-ink)}
+#m-fi .mf-mc small{font:500 12px/16px Inter,system-ui,sans-serif}
+#m-fi .mf-mc.on{box-shadow:inset 0 0 0 1.5px var(--m-ink)}
+#m-fi .mf-pie{padding:0 16px 12px;font:400 12px/16px Inter,system-ui,sans-serif;color:var(--m-ink3)}
+#m-fi .mf-tb{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#m-fi .mf-tb table{border-collapse:collapse;min-width:100%;font:400 12px/16px Inter,system-ui,sans-serif;font-feature-settings:"tnum";color:var(--m-ink)}
+#m-fi .mf-tb th,#m-fi .mf-tb td{padding:9px 10px;text-align:right;white-space:nowrap}
+#m-fi .mf-tb th{font-weight:500;color:var(--m-ink3)}
+#m-fi .mf-tb th:first-child,#m-fi .mf-tb td:first-child{position:sticky;left:0;z-index:1;text-align:left;background:var(--m-card);padding-left:16px}
+#m-fi .mf-tb tr.s td{color:var(--m-ink3)}
+#m-fi .mf-tb tbody tr+tr td{border-top:1px solid var(--m-line)}
+#m-fi .mf-tb .l{background:var(--m-bg)}
+#m-fi .m-sub{padding:16px}
+html.mf-on #ma-tabs,html.mf-on #m-lens{visibility:hidden}
+#m-fi .m-big{white-space:nowrap}
+#m-fi .m-pila .m-v{white-space:nowrap;text-align:right}
+#m-fi .mf-px{font:inherit;color:var(--m-tfg2)}
 </style>
 
 <div class="wrap">
@@ -4030,7 +4090,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v662";   // la versión publicada, en el pie
+const VER="v663";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6755,7 +6815,7 @@ function maFila(p){ if(!MA.L){ try{ MA.L=JSON.parse($("logos").textContent); }ca
   const c=!ok(pc)?"z":pc>=0.0005?"p":pc<=-0.0005?"n":"z", tc=c==="p"?"m-pos":c==="n"?"m-neg":"m-mute";
   const der=!ok(pc)?`<span class="m-pc m-mute">—</span>`:`<i class="${tc}">${ok(eu)?maEurS(eu):""}</i><span class="m-pc ${tc}">(${maPct(pc)})</span>`;
   const izq=maAcc(`${maNf(p.shares||0,0)} ${p.isOption?"opciones":"acciones"}`)+` a ${maPr(p.avg,p.cur)}`;
-  return `<div class="m-row"><span class="m-lg">${lg}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(p.name)}</b><b class="num">${maPr(p.price,p.cur)}</b></span><span class="m-f2"><small class="num">${izq}</small><span class="m-l2 num">${der}</span></span></span></div>`; }
+  return `<div class="m-row" data-t="${maEsc(p.ticker)}"><span class="m-lg">${lg}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(p.name)}</b><b class="num">${maPr(p.price,p.cur)}</b></span><span class="m-f2"><small class="num">${izq}</small><span class="m-l2 num">${der}</span></span></span></div>`; }
 const maMide=(ar,t)=>{ const mw=t?56:30, mh=22, k=t?26:20; let h=Math.min(mh,k/Math.sqrt(ar)), w=h*ar; if(w>mw){ w=mw; h=w/ar; } return [+w.toFixed(2),+h.toFixed(2)]; };
 // v644: los tamaños de todos los logos se calculan en cuanto llegan los datos (antes de pintar las demás pantallas); así ningún logo se pinta sin su tamaño
 /* v662 · el tamaño de cada logo sale de su proporción, que ya viene guardada («R:…»): se pinta desde el principio a su tamaño final.
@@ -6897,7 +6957,7 @@ function maVe(v,p){ MA.dest=null; const R=document.documentElement;
    el desplazamiento del resto de la página. Un toque en la franja llega a lo que hay debajo */
 if(MA.tel){ const B=document.createElement("div"); B.id="m-borde"; B.hidden=true; B.setAttribute("aria-hidden","true"); document.body.appendChild(B);
   const PG={calendario:"cal",universo:"uni",movimientos:"mov",analisis:"ana"}, pgDe=a=>PG[a[0]]||(a[1]==="mas"?"mas":"res");
-  const accion=()=>{ const K=$("kx"); if(K&&!K.hidden) return null; const S=$("sheet"); if(S&&!S.hidden) return {f:1};
+  const accion=()=>{ const K=$("kx"); if(K&&!K.hidden) return null; if(MA.fi) return {f:2}; const S=$("sheet"); if(S&&!S.hidden) return {f:1};
     if(!document.documentElement.classList.contains("m-app")) return null;
     if(MA.pg==="mov"||MA.pg==="ana") return {a:["resumen","mas"],dst:"mas"};
     if(MA.pg==="mas"){ const a=MA.antes||["resumen","resumen"]; return {a,dst:pgDe(a)}; }
@@ -6911,7 +6971,7 @@ if(MA.tel){ const B=document.createElement("div"); B.id="m-borde"; B.hidden=true
   const pon=v=>{ p=Math.max(0,Math.min(W,v));
     if(ac.f){ cur.style.transform=`translateX(${p.toFixed(1)}px) ${base}`; const bg=$("sheet-bg"); if(bg) bg.style.opacity=String(1-.85*p/W); }
     else { cur.style.transform=`translateX(${p.toFixed(1)}px)`; und.style.transform=`translateX(${(-(W-p)*.28).toFixed(1)}px)`; } };
-  const prepara=()=>{ if(ac.f){ cur=$("sheet"); const t=getComputedStyle(cur).transform; base=t&&t!=="none"?t:""; W=Math.max(1,innerWidth-cur.getBoundingClientRect().left); return; }
+  const prepara=()=>{ if(ac.f){ cur=ac.f===2?$("m-fi"):$("sheet"); const t=getComputedStyle(cur).transform; base=t&&t!=="none"?t:""; W=Math.max(1,innerWidth-cur.getBoundingClientRect().left); return; }
     cur=$("m-pg-"+MA.pg); und=$("m-pg-"+ac.dst); maPintaPg(ac.dst); W=innerWidth;
     const H=document.querySelector("#ma .m-bar").offsetHeight;
     Object.assign(cur.style,{position:"relative",zIndex:"2",background:"var(--m-bg)",boxShadow:"-10px 0 28px rgba(0,0,0,.16)",minHeight:(innerHeight+scrollY)+"px"});   /* la que se va tapa siempre la pantalla entera (Más es más corta) */
@@ -6921,7 +6981,7 @@ if(MA.tel){ const B=document.createElement("div"); B.id="m-borde"; B.hidden=true
     if(und){ ["transform","transition","clipPath","zIndex","top","height","background"].forEach(q=>und.style[q]=""); und.scrollTop=0; }
     const bg=$("sheet-bg"); if(bg) bg.style.opacity=""; cur=und=null; };
   const acaba=ok=>{ const a=ac, els=[cur,und].filter(Boolean); els.forEach(e=>e.style.transition=CURVA); pon(ok?W:0);
-    let hecho=false; const fin=()=>{ if(hecho) return; hecho=true; if(ok){ if(a.f){ const bg=$("sheet-bg"); if(bg) bg.click(); } else maVe(a.a[0],a.a[1]); } limpia(); delete B.dataset.on; MA.borde(); };
+    let hecho=false; const fin=()=>{ if(hecho) return; hecho=true; if(ok){ if(a.f===2) mfCierra("ya"); else if(a.f){ const bg=$("sheet-bg"); if(bg) bg.click(); } else maVe(a.a[0],a.a[1]); } limpia(); delete B.dataset.on; MA.borde(); };
     if(matchMedia("(prefers-reduced-motion: reduce)").matches) fin(); else { els[0].addEventListener("transitionend",fin,{once:true}); setTimeout(fin,380); } };
   B.addEventListener("pointerdown",e=>{ if(pid!==null) return; pid=e.pointerId; x0=e.clientX; y0=yl=e.clientY; modo=0; hist=[[e.timeStamp,e.clientX]]; ac=accion(); try{ B.setPointerCapture(pid); }catch{} });
   B.addEventListener("pointermove",e=>{ if(e.pointerId!==pid) return; const dx=e.clientX-x0, dy=e.clientY-y0, u=k();
@@ -7002,7 +7062,7 @@ function maCal(){ if(!DATA) return; const hoy=new Date(), y=hoy.getFullYear(), m
     const der1=e.k==="d"?`<b class="num">${maEur(e.v,2)}</b>`:`<span class="res">${ven?"Ventas":"Resultados"}</span>`;
     const izq=e.k==="d"?dia:`${dia} · ${maEsc(cp.replace(/^(Resultados|Ventas)\s*/,""))}${!pas&&e.est?" · estimada":""}${pas?"":hora(e)}`;
     const der2=pas?(e.k==="d"?"cobrado":"publicados"):cuando(e.d);
-    return `<div class="m-row${pas?" pas":""}" data-d="${e.d.getFullYear()}-${e.d.getMonth()+1}-${e.d.getDate()}"><span class="m-lg">${maLogo(e.t,e.n)}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(e.n)}${todas&&e.pf?'<i class="mia" aria-label="en cartera"></i>':""}</b>${der1}</span><span class="m-f2"><small class="num">${izq.replace(/ · $/,"")}</small><span class="m-l2 num"><span class="cu">${der2}</span></span></span></span></div>`; };
+    return `<div class="m-row${pas?" pas":""}" data-t="${maEsc(e.t)}" data-d="${e.d.getFullYear()}-${e.d.getMonth()+1}-${e.d.getDate()}"><span class="m-lg">${maLogo(e.t,e.n)}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(e.n)}${todas&&e.pf?'<i class="mia" aria-label="en cartera"></i>':""}</b>${der1}</span><span class="m-f2"><small class="num">${izq.replace(/ · $/,"")}</small><span class="m-l2 num"><span class="cu">${der2}</span></span></span></span></div>`; };
   const g=new Map(); E.forEach(e=>{ const k=K(e.d); if(!g.has(k)) g.set(k,[]); g.get(k).push(e); });
   $("m-c-ag").innerHTML=g.size?[...g.keys()].sort((a,b)=>a-b).map(k=>`<div class="m-sub m-mesh">${maCap(MA_MES[k%12])}${Math.floor(k/12)!==y?" "+Math.floor(k/12):""}</div><div class="m-list">${g.get(k).map(row).join("")}</div>`).join("")
     :`<div class="m-list"><div class="m-vacio">No hay resultados ni cobros previstos.</div></div>`;
@@ -7018,7 +7078,7 @@ function maUniHoy(){ const P=DATA.pre, ok=v=>isNum(v)&&isFinite(v), k=P.some(r=>
   $("m-u-ht").textContent=k==="today"?"Hoy":"Última sesión"; maSelMarca("uhoy",MA.uHoy);
   const up=MA.uHoy==="up", L=P.filter(r=>ok(r[k])&&(up?r[k]>=5e-4:r[k]<=-5e-4)).sort((a,b)=>up?b[k]-a[k]:a[k]-b[k]).slice(0,20);
   const E=[.5,1,2.5,5], nivel=v=>{ const n=1+E.filter(t=>Math.abs(v)*100>=t).length; return (v>0?"lp":"ln")+Math.min(5,n); };   // los escalones del mosaico del PC para «Hoy»
-  $("m-u-tl").innerHTML=L.length?L.map(r=>{ const c=nivel(r[k]); return `<div class="m-tile c-${c}${/5$/.test(c)?" blanco":""}" role="img" aria-label="${maEsc(r.name)} ${gxPS(r[k])}">${maLogo(r.ticker,r.name,true)}<b>${gxPS(r[k])}</b>${r.inPf?"<i></i>":""}</div>`; }).join("")
+  $("m-u-tl").innerHTML=L.length?L.map(r=>{ const c=nivel(r[k]); return `<div class="m-tile c-${c}${/5$/.test(c)?" blanco":""}" data-t="${maEsc(r.ticker)}" role="img" aria-label="${maEsc(r.name)} ${gxPS(r[k])}">${maLogo(r.ticker,r.name,true)}<b>${gxPS(r[k])}</b>${r.inPf?"<i></i>":""}</div>`; }).join("")
     :`<div class="m-vacio">${up?"Ninguna sube":"Ninguna baja"}${k==="today"?" hoy":" en la última sesión"}.</div>`;
   maLogos(); }
 function maUniInd(){ const k=MA.uInd, g={}, ok=v=>isNum(v)&&isFinite(v); maSelMarca("uind",k);
@@ -7031,7 +7091,7 @@ function maUniRad(){ const f=MA.uRad, ok=v=>isNum(v)&&isFinite(v); maSelMarca("u
   const row=r=>{ const m=r.margin, c=!ok(m)||Math.abs(m)<5e-4?"m-mute":m>0?"m-pos":"m-neg";
     const izq=maEsc(r.ind||"Sin industria");   /* v651: debajo del nombre, su industria (sin «Razonable» ni «exige») */
     const der=ok(r.irrExp)?`<i class="${c}">TIR ${r.irrExp<0?"−":""}${maNf(Math.abs(r.irrExp*100),1)}\u202f%</i>${ok(m)?`<span class="m-pc ${c}">(${puntosPct(m)})</span>`:""}`:`<span class="m-pc m-mute">—</span>`;
-    return `<div class="m-row"><span class="m-lg">${maLogo(r.ticker,r.name)}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(r.name||r.ticker)}${r.inPf?'<i class="mia" aria-label="en cartera"></i>':""}</b><b class="num">${maPr(r.price,r.cur)}</b></span><span class="m-f2"><small>${izq}</small><span class="m-l2 num">${der}</span></span></span></div>`; };
+    return `<div class="m-row" data-t="${maEsc(r.ticker)}"><span class="m-lg">${maLogo(r.ticker,r.name)}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(r.name||r.ticker)}${r.inPf?'<i class="mia" aria-label="en cartera"></i>':""}</b><b class="num">${maPr(r.price,r.cur)}</b></span><span class="m-f2"><small>${izq}</small><span class="m-l2 num">${der}</span></span></span></div>`; };
   $("m-u-ra").innerHTML=L.length?L.map(row).join(""):`<div class="m-vacio">Ninguna.</div>`; maLogos(); }
 $("m-pg-uni").addEventListener("click",e=>{ const b=e.target.closest(".m-sel[data-g] button"); if(!b||!DATA) return; const g=b.parentNode.dataset.g, v=b.dataset.o;
   if(g==="uhoy"){ MA.uHoy=v; maUniHoy(); } else if(g==="uind"){ MA.uInd=v; maUniInd(); } else if(g==="urad"){ MA.uRad=v; maUniRad(); } });
@@ -7050,7 +7110,7 @@ function maMovLista(){ const f=MA.mFil; maSelMarca("mfil",f);
     const lg=r.ticker?maLogo(r.ticker,r.name):`<span class="m-ico"><svg viewBox="0 0 22 22" aria-hidden="true">${iconosMov[r.g]||iconosMov.in}</svg></span>`;
     const det=maAcc(r.dv?String(r.ds||"").replace(" · "," a "):String(r.det||""));
     const pl=r.ty==="Venta"&&isNum(r.pnl)?` · <span class="${r.pnl<0?"m-neg":"m-pos"}">${maEurS(r.pnl,2)}</span>`:"";
-    return `<div class="m-row"><span class="m-lg">${lg}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(r.ticker?r.name:(r.broker||r.ty))}</b><b class="num${c}">${maEurS(s,2)}</b></span><span class="m-f2"><small class="num">${maEsc(r.ty)}${det?" · "+maEsc(det):""}${pl}</small><span class="m-l2 num"><span class="cu">${t.getDate()} ${MA_M3[t.getMonth()]}</span></span></span></span></div>`; };
+    return `<div class="m-row"${r.ticker?` data-t="${maEsc(r.ticker)}"`:""}><span class="m-lg">${lg}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(r.ticker?r.name:(r.broker||r.ty))}</b><b class="num${c}">${maEurS(s,2)}</b></span><span class="m-f2"><small class="num">${maEsc(r.ty)}${det?" · "+maEsc(det):""}${pl}</small><span class="m-l2 num"><span class="cu">${t.getDate()} ${MA_M3[t.getMonth()]}</span></span></span></span></div>`; };
   const g=new Map(); L.forEach(r=>{ const k=K(r); if(!g.has(k)) g.set(k,[]); g.get(k).push(r); });
   let h=[...g.entries()].map(([k,a])=>{ const der=f==="dv"?maEur(tot.get(k)):f==="ap"?maEurS(tot.get(k)):"";
     return `<div class="m-sec"><h2>${maCap(MA_MES[k%12])} ${Math.floor(k/12)}</h2>${der?`<span class="m-der num">${der}</span>`:""}</div><div class="m-list">${a.map(row).join("")}</div>`; }).join("");
@@ -7124,6 +7184,167 @@ $("m-pg-cal").addEventListener("click",e=>{ const s=e.target.closest(".m-sel[dat
   const b=e.target.closest(".m-mes button[data-d]"); if(!b) return; const r=document.querySelector(`#m-c-ag .m-row[data-d="${b.dataset.d}"]`); if(!r) return;
   const y=r.getBoundingClientRect().top+scrollY-120; scrollTo({top:Math.max(0,y),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
   document.querySelectorAll("#m-c-ag .m-row[data-d]").forEach(x=>x.classList.toggle("dia",x.dataset.d===b.dataset.d)); clearTimeout(MA.diaT); MA.diaT=setTimeout(()=>document.querySelectorAll("#m-c-ag .m-row.dia").forEach(x=>x.classList.remove("dia")),1600); });
+
+/* ═════ v663 · G-01 · LA FICHA DEL IPHONE, HECHA PARA EL IPHONE ═════
+   Antes, al abrir una empresa, la app dejaba su modo y enseñaba la ficha del PC (dibujada para 1600 × 980) encogida al 41 %, con letra de
+   unos 5 px; y pulsar una fila no hacía nada. Ahora la ficha es una pantalla propia de 402 px que sube desde abajo: la cabecera oscura con
+   el logo y el nombre, el bloque oscuro de 71 px con tres cifras, las seis pestañas de la ficha del PC como palabras y, debajo, listas.
+   Las frases (titular y entradilla de cada pestaña) son las mismas que las del PC: se sacan de la propia ficha del PC. Se abre al pulsar
+   cualquier fila con empresa (Posiciones, Agenda, Movimientos, Radar, casillas de Hoy) y desde el buscador; se cierra con la flecha,
+   deslizando hacia abajo desde la cabecera o con el gesto de volver. En modo privado tapa lo tuyo (importes y acciones), como el resto */
+const MF_SEC=[["res","Resumen"],["pos","Tu posición"],["val","Valoración"],["pj","Proyección"],["tes","Tesis"],["cot","Cotización"]];
+MA.fi=null; MA.fiSec="res";
+const mfCol=v=>!isNum(v)?"m-mute":v>=0.0005?"m-pos":v<=-0.0005?"m-neg":"m-mute";
+const mfPv=h=>{ if(!maPriv()) return h; const tp=document.createElement("template"); tp.innerHTML=h; tp.content.querySelectorAll(".pv").forEach(e=>{ e.textContent=MA_PV; }); const d=document.createElement("div"); d.append(tp.content); return maAcc(d.innerHTML); };
+const mfFila=(a,b,c="",d="",cb="")=>`<div class="m-row nl"><span class="m-cu"><span class="m-f1"><b class="m-n">${a}</b><b class="num${cb?" "+cb:""}">${b??"—"}</b></span>${c||d?`<span class="m-f2"><small class="num">${c||"&nbsp;"}</small><span class="m-l2 num"><span class="cu">${d}</span></span></span>`:""}</span></div>`;
+const mfSec=(tit,cuerpo,der="")=>cuerpo?`<div class="m-sec"><h2>${tit}</h2>${der?`<span class="m-der mf-der">${der}</span>`:""}</div><div class="m-list">${cuerpo}</div>`:"";
+const mfAcc=n=>`${shares(n)} ${n===1?"acción":"acciones"}`;
+/* las frases de cada pestaña y qué pestañas hay: las de la ficha del PC (se construye sin pintarla; una plantilla no carga imágenes) */
+function mfFrases(t){ let html=""; const s0=sheet, z0=zfSec;
+  try{ sheet={t,tab:"res",list:[t]}; zfSec="res"; html=zfFicha(t,DATA); }catch(e){ console.warn("Cartera · ficha del iPhone:",e); } finally{ sheet=s0; zfSec=z0; }
+  const tp=document.createElement("template"); tp.innerHTML=html; const fr={}, hay={};
+  tp.content.querySelectorAll("[data-zf-p]").forEach(s=>{ const f=s.querySelector(".zfr"); if(!f) return; const br=f.querySelector(":scope>br"), d=document.createElement("div");   /* el titular es «línea 1<br><span>línea 2</span>» */
+    let n=f.firstChild; while(n&&n!==br){ d.append(n.cloneNode(true)); n=n.nextSibling; } const l2=br&&br.nextElementSibling?br.nextElementSibling.innerHTML.replace(/&nbsp;/g,"").trim():"";
+    fr[s.dataset.zfP]=[d.innerHTML.trim(),l2]; });
+  tp.content.querySelectorAll(".zf-nav button[data-zf-s]").forEach(b=>{ hay[b.dataset.zfS]=!b.disabled; });
+  return {fr,hay}; }
+function mfDatos(t){ const op=typeof zfOpcion==="function"?zfOpcion(t):null; if(op&&op.sub&&op.sub.ticker) t=op.sub.ticker;
+  const P=DATA.pos.find(x=>x.ticker===t&&!x.isOption)||null, R=DATA.pre.find(x=>x.ticker===t)||null; if(!P&&!R) return null;
+  const V=(R&&R.val)||{}, co=P||R, cur=(R&&R.cur)||(P&&P.cur)||"EUR";
+  const price=R&&isNum(R.price)?R.price:P&&isNum(P.price)?P.price:null, fv=R&&isNum(R.fv)&&R.fv>0?R.fv:null;
+  const mult=isNum(V.mult)?V.mult:R?R.mult:null, req=R&&isNum(R.req)?R.req:V.req, irrE=R&&isNum(R.irrExp)&&(fv||R.irrExp!==0)?R.irrExp:null;
+  const F=V.fv&&V.fv.rows&&V.fv.rows.length&&V.fv.rates&&V.fv.rates.length?V.fv:null, Y2v=V.y2&&[V.y2.price,V.y2.irr].some(isNum)?V.y2:null;
+  const PJ=V.proj&&V.proj.rows&&V.proj.rows.length&&V.proj.cols&&V.proj.cols.length?V.proj:null;
+  const ind=(R&&R.ind)||(P&&P.meta&&P.meta.ind)||"", ctry=(R&&R.country)||(P&&P.meta&&P.meta.country)||"";
+  const mem=ind?DATA.pre.filter(x=>x.ind===ind):[], media=k=>{ const v=mem.map(x=>x[k]).filter(isNum); return v.length>1?v.reduce((a,b)=>a+b,0)/v.length:null; };
+  const fin=new Date(); fin.setHours(23,59,59,999);
+  const dvs=DATA.dv.filter(d=>d.ticker===t&&d.d instanceof Date&&(d.gross||0)>0).sort((a,b)=>a.d-b.d);
+  return {t,P,R,V,co,cur,price,fv,mult,req,irrE,F,Y2v,PJ,ind,ctry,mem,media,fin,dvs,pot:fv&&isNum(price)?fv/price-1:null}; }
+/* el bloque oscuro: tres cifras, como en las demás pantallas */
+function mfOscuro(D){ const {P,R,cur,price,fv,irrE,req,pot}=D, tc=v=>!isNum(v)?"":v<0?" m-neg-t":" m-pos-t", fila=(lab,v,c,x)=>`<span class="m-lab">${lab}</span><span class="m-v${c}">${v}${x?` <small class="mf-px">${x}</small>`:""}</span>`;
+  if(P){ const hoy=isNum(P.today)&&isNum(P.value)&&!P.atCost?P.value*P.today/(1+P.today):null;
+    return `<div class="m-big">${maEur(P.value)}</div><div class="m-pila sin">${fila("Total",isNum(P.totalEur)?maEurS(P.totalEur):"—",tc(P.totalEur),isNum(P.totalPct)?`(${maPct(P.totalPct)})`:"")}${fila("Hoy",isNum(hoy)?maEurS(hoy):"—",tc(hoy),isNum(P.today)?`(${maPct(P.today)})`:"")}</div>`; }
+  return `<div class="m-big">${maPr(price,cur)}</div><div class="m-pila sin">${fila("Para ti",fv?maPr(fv,cur):"—","",isNum(pot)?`(${maPct(pot)})`:"")}${fila("Esperas",isNum(irrE)?pct(irrE,1):"—",isNum(irrE)&&isNum(req)?tc(irrE-req):"",isNum(req)?`(exiges ${tipoPct(req)})`:"")}</div>`; }
+/* ── las seis pestañas, en listas ── */
+function mfRes(D){ const {P,R,cur,price,fv,irrE,req,Y2v,F,dvs,fin,media}=D; let h=""; const yI=media("y1");
+  if(P){ const cob=dvs.filter(d=>d.d<=fin), pd=isNum(P.paid)?P.paid:cob.reduce((s,d)=>s+(d.gross||0),0), prv=dvs.filter(d=>d.d>fin&&d.d-fin<=366*DIA_MS);
+    h+=mfSec("Tu posición",[
+      mfFila("Valor actual",maEur(P.value),maAcc(`${mfAcc(P.shares)} a ${maPr(price,cur)}`)),
+      mfFila(P.totalEur>=0?"Llevas ganado":"Llevas perdido",maEur(Math.abs(P.totalEur||0)),`${isNum(P.totalPct)?maPct(P.totalPct):"0,0 %"}${pd>=.5?", dividendos incluidos":" sobre lo invertido"}`,"",mfCol(P.totalEur)),
+      mfFila("Dividendos al año",P.annual>=.5?maEur(P.annual):"—",prv.length?(prv.length===1?`en un solo pago, en ${zfMesL(prv[0].d)}`:`en ${prv.length} pagos al año`):dvs.length?"sin cobros previstos":"no reparte dividendos"),
+      mfFila("Rentabilidad por dividendo",isNum(P.yov)&&P.yov>0?pct(P.yov,1):"—",isNum(P.yoc)&&P.yoc>0?`${pct(P.yoc,1)} sobre tu precio de compra`:""),
+      R&&isNum(R.y1)?mfFila("La acción en un año",maPct(R.y1),isNum(yI)?`su industria, ${maPct(yI)}`:"","",mfCol(R.y1)):""].join("")); }
+  else { const mg=isNum(irrE)&&isNum(req)?irrE-req:null, pot=D.pot;
+    h+=mfSec("En cifras",[
+      mfFila("Cotiza a",maPr(price,cur),R&&isNum(R.today)?`${maPct(R.today)} en la última sesión`:""),
+      mfFila("Para ti vale",fv?maPr(fv,cur):"—",fv&&isNum(pot)?`un ${pct(Math.abs(pot),1)} ${pot>=0?"más":"menos"} de lo que cotiza`:"todavía sin valorar"),
+      mfFila("Esperas ganar",isNum(irrE)?`${pct(irrE,1)} al año`:"—",isNum(req)&&isNum(irrE)?`exiges un ${tipoPct(req)}`:"","",isNum(mg)?mfCol(mg):""),
+      Y2v&&isNum(Y2v.price)?mfFila(`En ${maEsc(String(Y2v.year??""))} podría valer`,maPr(Y2v.price,cur),isNum(price)?`un ${pct(Math.abs(Y2v.price/price-1),1)} ${Y2v.price>=price?"más":"menos"} que hoy`:""):"",
+      R&&isNum(R.y1)?mfFila("La acción en un año",maPct(R.y1),isNum(yI)?`su industria, ${maPct(yI)}`:"","",mfCol(R.y1)):""].join("")); }
+  const fvs=F?F.rows.flatMap(o=>o.v).filter(x=>isNum(x)&&x>0):[], lo=fvs.length?Math.min(...fvs):null, hi=fvs.length?Math.max(...fvs):null;
+  const pr=[isNum(price)?[0,"Hoy",price,""]:null,P&&isNum(P.avg)&&P.avg>0?[1,"Tu precio medio",P.avg,isNum(price)?`hoy, un ${pct(Math.abs(price/P.avg-1),1)} ${price>=P.avg?"por encima":"por debajo"}`:""]:null,fv?[2,"Valor razonable",fv,isNum(lo)&&isNum(hi)&&hi>lo?`abanico de ${maPr(lo,cur)} a ${maPr(hi,cur)}`:""]:null].filter(Boolean);
+  if(pr.length>1) h+=mfSec("Precio",pr.map(([k,a,v,s])=>mfFila(a,maPr(v,cur),s,"",k===0?"":"")).join(""));
+  const ev=[], cal=typeof CALT!=="undefined"&&CALT.get(D.t)||null, hoy0=new Date(); hoy0.setHours(0,0,0,0);
+  if(cal&&cal.p instanceof Date&&cal.p>=hoy0){ const pp=String(cal.pp||"").trim(), ven=/\(ventas\)/i.test(pp), pq=pp.replace(/\s*\(ventas\)/i,"").trim();
+    ev.push([cal.p,/^año/i.test(pq)?(ven?"Ventas del año":"Resultados anuales"):`${ven?"Ventas":"Resultados"}${pq?` del ${maEsc(pq)}`:""}`,cal.est?"fecha estimada":"toca revisar tu tesis"]); }
+  const prx=P&&dvs.find(d=>d.d>fin); if(prx) ev.push([prx.d,"Dividendo",`${maEur(prx.gross)} brutos`]);
+  ev.sort((a,b)=>a[0]-b[0]); const evH=ev.map(([d,a,s])=>mfFila(a,zfFecha(d),s)).join("")+(Y2v&&isNum(Y2v.price)?mfFila("Tu proyección",maEsc(String(Y2v.year??"")),`si se cumple, valdría ${maPr(Y2v.price,cur)} por acción`):"");
+  h+=mfSec("Lo que viene",evH); return h; }
+function mfPos(D){ const {P,t,cur,dvs,fin,price}=D; if(!P) return ""; let h="";
+  const cob=dvs.filter(d=>d.d<=fin), iv=P.invested||0, rv=P.value-iv, pd=isNum(P.paid)?P.paid:cob.reduce((s,d)=>s+(d.gross||0),0), pl=isNum(P.price)?P.price:price, ext=P.cur&&P.cur!=="EUR";
+  const fxH=P.shares&&pl?P.value/(P.shares*pl):null, pe=ext&&isNum(fxH)&&isNum(P.avg)?(pl-P.avg)*P.shares*fxH:rv, fe=rv-pe, div=ext&&Math.abs(fe)>=.5;
+  h+=mfSec("Cómo se ha formado el resultado",[mfFila("Invertido",maEur(iv)),mfFila(div?"Precio":"Revalorización",maEurS(pe),"","",mfCol(pe)),div?mfFila("Divisa",maEurS(fe),"","",mfCol(fe)):"",pd>=.5||dvs.length?mfFila("Dividendos",maEurS(pd),"","",mfCol(pd)):"",mfFila("<b>Total</b>",`<b>${maEur(P.value+pd)}</b>`)].join(""));
+  const TX=DATA.tx.filter(x=>x.ticker===t&&x.bd instanceof Date&&isNum(x.bp)).sort((a,b)=>b.bd-a.bd), ab=TX.filter(x=>!(x.sd instanceof Date)), vd=TX.filter(x=>x.sd instanceof Date), sy=MA_CS[cur]||cur;
+  const fx=x=>mfFila(zfFecha(x.bd),x.bt?maEur(x.bt,2):"—",maAcc(`${mfAcc(x.shares)} a ${maNf(x.bp,2)} ${sy}`));
+  if(TX.length) h+=mfSec("Compras",ab.map(fx).join("")+mfFila("<b>En cartera</b>",`<b>${maEur(iv,2)}</b>`,maAcc(mfAcc(P.shares)),isNum(P.avg)?`a ${maNf(P.avg,2)} ${sy} de media`:""),`${ab.length} ${ab.length===1?"compra":"compras"}`)
+    +(vd.length?mfSec("Vendidas",vd.map(fx).join("")):"");
+  if(dvs.length){ const L=dvs.slice(-12).reverse(); h+=mfSec("Dividendos",L.map(d=>{ const fut=d.d>fin; return mfFila(zfFecha(d.d),maEur(d.gross,2),maAcc(`${mfAcc(d.shares)} × ${isNum(d.dps)?maNf(d.dps,d.dps<1?3:2)+" "+sy:"—"}`),fut?"previsto":"cobrado",fut?"mf-prev":""); }).join(""),"los últimos 12"); }
+  return h; }
+function mfVal(D){ const {F,cur,price,mult,req,irrE,V,R}=D; let h=""; const near=(a,b)=>isNum(a)&&isNum(b)&&Math.abs(a-b)<1e-6, fvDate=R&&R.fvDate instanceof Date?R.fvDate:null;
+  if(F){ const cS=F.rates.findIndex(r=>near(r,req)), rS=F.rows.findIndex(o=>near(o.m,mult)), d0=F.rows.flatMap(o=>o.v).some(v=>isNum(v)&&v>=1000)?0:2;
+    const cab=`<span></span>${F.rates.map((r,k)=>`<span class="mf-mh${k===cS?" on":""}">TIR ${tipoPct(r)}</span>`).join("")}`;
+    const fil=F.rows.map((o,ri)=>`<span class="mf-mh l${ri===rS?" on":""}">${multiplo(o.m)}</span>${o.v.map((v,k)=>{ const ok=isNum(v)&&v>0, p=ok&&isNum(price)?v/price-1:null; return `<span class="mf-mc${ri===rS&&k===cS?" on":""}"><b>${ok?maNf(v,d0):"—"}</b><small class="${mfCol(p)}">${isNum(p)?maPct(p,0):""}</small></span>`; }).join("")}`).join("");
+    h+=mfSec("Valor razonable",`<div class="mf-mz" style="--n:${F.rates.length}">${cab}${fil}</div><div class="mf-pie">En ${MA_CS[cur]||cur} por acción, frente a los ${maPr(price,cur)} de hoy. Tu casilla: múltiplo ${multiplo(mult)} y TIR ${tipoPct(req)}.</div>`,fvDate?`valorada el ${zfFecha(fvDate)}`:""); }
+  const mg=isNum(irrE)&&isNum(req)?irrE-req:null, ptos=v=>{ const n=Math.abs(v*100); return `${maNf(n,1)} ${n>=.95&&n<1.05?"punto":"puntos"}`; };
+  if(isNum(irrE)||isNum(req)) h+=mfSec("Rentabilidad",mfFila("Esperas",isNum(irrE)?`${pct(irrE,1)} al año`:"—","","",isNum(mg)?mfCol(mg):"")+mfFila("Exiges",isNum(req)?tipoPct(req):"—"),isNum(mg)?(Math.abs(mg)<.0005?"justo lo que exiges":`te ${mg>0?"sobran":"faltan"} ${ptos(mg)}`):"");
+  const nz=x=>isNum(x)&&Math.abs(x)>.0005, caja=nz(V.ndps)?`deuda neta: ${maPr(Math.abs(V.ndps),cur)} por acción`:nz(V.cashps)?`caja neta: ${maPr(Math.abs(V.cashps),cur)} por acción`:"";
+  if(isNum(mult)||isNum(V.multNow)) h+=mfSec("Múltiplo",mfFila("Hoy",isNum(V.multNow)&&V.multNow>0?multiplo(V.multNow):"—")+mfFila("Tu salida",isNum(mult)?multiplo(mult):"—"),caja);
+  const pq=[["Múltiplo de salida",multiplo(mult),V.multTxt],["TIR exigida",tipoPct(req),V.retTxt]].filter(([,,x])=>x).map(([k,f,x])=>`<div class="mf-tx"><b>${k} · ${f||"—"}</b>${zfLineas(x).map(l=>`<p>${maEsc(l)}</p>`).join("")}</div>`).join("");
+  h+=mfSec("Por qué",pq); return h; }
+function mfPj(D){ const {PJ,Y2v,mult,price,cur,req}=D; if(!PJ) return ""; let h=""; const C=PJ.cols, isC=i=>/^CAGR/i.test(C[i]), li=i=>/^LTM(\s|$)/i.test(String(C[i]).trim());
+  const etq=l=>String(l).trim().replace(/^Free Cash Flow/i,"FCF").replace(/\s*\/\s*Acci[oó]n$/i," por acción").replace(/^Crecimiento YoY$/i,"Crecimiento").replace(/^Dividendos Descontados$/i,"Dividendo descontado").replace(/^Dividendos$/i,"Dividendo por acción").replace(/^Margen Free Cash Flow$/i,"Margen FCF");
+  const pctR=l=>/^(crecimiento|margen)/i.test(String(l).trim()), porAc=l=>/\/\s*acci[oó]n$|^dividendos?( descontados?)?$/i.test(String(l).trim());
+  const filas=PJ.rows.filter(o=>o.v.some((x,i)=>!isC(i)&&isNum(x)&&x!==0)), ly=Math.max(...C.map((c,i)=>isC(i)?-1:i)), yr=Y2v?String(Y2v.year??""):String(C[ly]||"").split(/\s+/)[0];
+  const ps=[...filas].reverse().find(o=>/\/\s*acci[oó]n$/i.test(o.l)), yc=C.map((c,i)=>i).filter(i=>!isC(i));
+  if(ps&&isNum(mult)){ const pts=yc.map(i=>({l:li(i)?"Últimos 12 meses":String(C[i]).trim().split(/\s+/)[0],v:isNum(ps.v[i])?ps.v[i]*mult:null})).filter(o=>isNum(o.v));
+    h+=mfSec(`Lo que valdría cada año a ${multiplo(mult)}`,pts.map(o=>mfFila(maEsc(o.l),maPr(o.v,cur),isNum(price)?`${maPct(o.v/price-1)} frente a hoy`:"","",isNum(price)?mfCol(o.v-price):"")).join(""),isNum(price)?`hoy, ${maPr(price,cur)}`:""); }
+  if(Y2v&&isNum(Y2v.price)){ const vy=ps?ps.v[ly]:null, up=isNum(price)?Y2v.price/price-1:null, mg=isNum(Y2v.irr)&&isNum(req)?Y2v.irr-req:null;
+    h+=mfSec(`La cuenta hasta ${maEsc(yr)}`,[isNum(vy)?mfFila(`${maEsc(etq(ps.l))} en ${maEsc(yr)}`,maPr(vy,cur)):"",isNum(mult)?mfFila("Por el múltiplo que le das",multiplo(mult)):"",mfFila(`<b>Precio en ${maEsc(yr)}</b>`,`<b>${maPr(Y2v.price,cur)}</b>`,isNum(up)?`${maPct(up)} desde los ${maPr(price,cur)} de hoy`:""),
+      isNum(Y2v.irr)?mfFila("TIR esperada",pct(Y2v.irr,1),isNum(Y2v.irrDiv)?`${pct(Y2v.irrDiv,1)} con dividendos`:"",isNum(req)?`exiges ${tipoPct(req)}`:"",isNum(mg)?mfCol(mg):""):""].join("")); }
+  const fm=(l,x,i)=>!isNum(x)?"":isC(i)?pct(x,1,true):pctR(l)?pct(x,1):porAc(l)?maNf(x,2):maNf(x,0);
+  const tb=`<div class="mf-tb"><table><thead><tr><th></th>${C.map((c,i)=>`<th${li(i)?' class="l"':""}>${maEsc(isC(i)?"CAGR":li(i)?"LTM":String(c).trim().split(/\s+/)[0])}</th>`).join("")}</tr></thead><tbody>${filas.map(o=>`<tr${pctR(o.l)||/descontad/i.test(o.l)?' class="s"':""}><td>${maEsc(etq(o.l))}</td>${o.v.map((x,i)=>`<td${li(i)?' class="l"':""}>${fm(o.l,x,i)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  h+=mfSec("Año a año",tb,"desliza para ver los años"); return h; }
+function mfTes(D){ const {V}=D, pro=zfLineas(V.pro), con=zfLineas(V.con), notas=zfLineas(V.notes); if(notas.length&&/^actualizad/i.test(notas[0])) notas.shift();
+  const li=a=>a.map(s=>{ const p=zfPartes(s); return `<div class="mf-tx">${p.t?`<b>${maEsc(p.t)}.</b> `:""}${maEsc(p.x)}</div>`; }).join("");
+  return mfSec("A favor",li(pro),String(pro.length))+mfSec("En contra",li(con),String(con.length))+mfSec("Notas",notas.map(s=>`<div class="mf-tx">${maEsc(s)}</div>`).join("")); }
+function mfCot(D){ const {R,price,fv,cur,mem,media,t,ind}=D; if(!R) return ""; let h=""; const ano=new Date().getFullYear();
+  const per=[["1 semana","w1"],["1 mes","m1"],["3 meses","m3"],["6 meses","m6"],[`En ${ano}`,"ytd"],["1 año","y1"],["3 años","y3"]].filter(([,k])=>isNum(R[k]));
+  h+=mfSec("Rentabilidad",per.map(([l,k])=>{ const m=mem.length>1?media(k):null; return mfFila(l,maPct(R[k]),isNum(m)?`su industria, ${maPct(m)}`:"","",mfCol(R[k])); }).join(""));
+  const mm=isNum(R.mm200)&&R.mm200>-1&&isNum(price)?price/(1+R.mm200):null, mx1=isNum(R.hi52)&&R.hi52>-1&&isNum(price)?price/(1+R.hi52):null, mxh=isNum(R.dd)&&R.dd>-1&&isNum(price)?price/(1+R.dd):null;
+  const es=[mxh&&(!mx1||mxh>mx1*1.005)&&{v:mxh,t:"Máximo histórico"},mx1&&{v:mx1,t:"Máximo de 1 año"},mm&&{v:mm,t:"Media de 200 sesiones"},fv&&{v:fv,t:"Valor razonable"},isNum(price)&&{v:price,t:"Hoy",h:1}].filter(Boolean).sort((a,b)=>b.v-a.v);
+  if(es.length>1) h+=mfSec("Escalera de precios",es.map(o=>o.h?mfFila("<b>Hoy</b>",`<b>${maPr(o.v,cur)}</b>`):mfFila(o.t,maPr(o.v,cur),isNum(price)?`hoy, ${maPct(price/o.v-1)}`:"")).join(""));
+  if(mem.length>1){ const L=[...mem].sort((a,b)=>String(a.name).localeCompare(String(b.name),"es"));
+    h+=mfSec(`Industria de ${maEsc(String(ind).toLowerCase())}`,L.map(x=>`<div class="m-row nl${x.ticker===t?" mf-yo":""}"${x.ticker===t?"":` data-t="${maEsc(x.ticker)}"`}><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(x.name||x.ticker)}${x.inPf?'<i class="mia" aria-label="en cartera"></i>':""}</b><b class="num ${mfCol(x.y1)}">${isNum(x.y1)?maPct(x.y1):"—"}</b></span><span class="m-f2"><small class="num">${isNum(x.irrExp)?`TIR ${pct(x.irrExp,1)}${isNum(x.req)?` · exiges ${tipoPct(x.req)}`:""}`:"sin valorar"}</small><span class="m-l2 num"><span class="cu">en un año</span></span></span></span></div>`).join("")); }
+  return h; }
+const MF_PINTA={res:mfRes,pos:mfPos,val:mfVal,pj:mfPj,tes:mfTes,cot:mfCot};
+/* pintar la ficha abierta (también al cambiar de pestaña, al llegar datos nuevos o al tapar los importes) */
+function mfPinta(){ const F=$("m-fi"); if(!F||!MA.fi||!DATA) return; const D=mfDatos(MA.fi.t); if(!D){ mfCierra(); return; }
+  if(!MA.fi.fr||MA.fi.dv!==DATA){ const x=mfFrases(D.t); MA.fi.fr=x.fr; MA.fi.hay=x.hay; MA.fi.dv=DATA; }
+  const hay=MA.fi.hay, sec=hay[MA.fiSec]?MA.fiSec:"res", fr=MA.fi.fr[sec]||["",""], nom=D.co.name||D.t;
+  F.setAttribute("aria-label",`Ficha de ${nom}`);
+  F.querySelector(".mf-nom").textContent=nom;
+  F.querySelector(".mf-lg").innerHTML=maLogo(D.t,nom);
+  F.querySelector(".mf-sub").textContent=[D.ctry?ctryN(D.ctry):"",D.ind?zfIndL(D.ind):""].filter(Boolean).join(" · ");
+  F.querySelector(".m-blk").innerHTML=mfOscuro(D);
+  F.querySelector(".mf-tabs").innerHTML=MF_SEC.filter(([k])=>hay[k]||k==="res").map(([k,n])=>`<button type="button" role="tab" data-mf="${k}" aria-selected="${k===sec}"><b>${n}</b></button>`).join("");
+  F.querySelector(".mf-fr").innerHTML=fr[0]?`<span class="mf-l1">${mfPv(fr[0])}</span>${fr[1]?`<span class="mf-l2">${mfPv(fr[1])}</span>`:""}`:"";
+  let c=""; try{ c=MF_PINTA[sec](D); }catch(e){ console.warn("Cartera · ficha del iPhone ("+sec+"):",e); }
+  F.querySelector(".mf-c").innerHTML=c||'<div class="m-sub">Sin datos para esta pestaña.</div>';
+  const on=F.querySelector('.mf-tabs [aria-selected="true"]'); if(on) on.scrollIntoView({block:"nearest",inline:"nearest"}); }
+function mfAbre(t){ if(!DATA||!MA.tel) return; const D=mfDatos(t); if(!D) return; let F=$("m-fi");
+  if(!F){ F=document.createElement("div"); F.id="m-fi"; F.hidden=true; F.setAttribute("role","dialog"); F.setAttribute("aria-modal","true");
+    F.innerHTML=`<div class="mf-top"><button type="button" class="mf-x" aria-label="Cerrar la ficha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="mf-lg"></span><span class="mf-id"><b class="mf-nom"></b><small class="mf-sub"></small></span></div>
+      <div class="m-dark"><div class="m-hero"><div class="m-blk"></div></div></div><div class="mf-tabs" role="tablist" aria-label="Secciones de la ficha"></div><p class="mf-fr"></p><div class="mf-c"></div>`;
+    $("ma").appendChild(F); mfEventos(F); }
+  const ya=!!MA.fi; MA.fi={t:D.t}; MA.fiSec="res"; mfPinta(); F.scrollTop=0;   /* cada empresa se abre por Resumen */
+  if(!ya){ F.hidden=false; document.documentElement.classList.add("mf-on"); requestAnimationFrame(()=>requestAnimationFrame(()=>F.classList.add("on")));
+    try{ history.pushState({mfi:1},""); }catch{} }
+  if(MA.borde) MA.borde(); }
+function mfCierra(sinHist){ const F=$("m-fi"); if(!F||!MA.fi) return; MA.fi=null; document.documentElement.classList.remove("mf-on");
+  const fin=()=>{ if(!MA.fi){ F.hidden=true; F.style.transform=""; F.style.transition=""; } };
+  if(sinHist==="ya"||matchMedia("(prefers-reduced-motion: reduce)").matches){ F.classList.remove("on"); fin(); }
+  else { F.style.transform=""; F.classList.remove("on"); F.addEventListener("transitionend",fin,{once:true}); setTimeout(fin,420); }
+  if(sinHist!==true){ try{ if(history.state&&history.state.mfi) history.back(); }catch{} }
+  if(MA.borde) MA.borde(); }
+addEventListener("popstate",()=>{ if(MA.fi) mfCierra(true); });
+function mfEventos(F){
+  F.addEventListener("click",e=>{ if(e.target.closest(".mf-x")){ mfCierra(); return; }
+    const b=e.target.closest(".mf-tabs [data-mf]"); if(b){ if(MA.fiSec!==b.dataset.mf){ MA.fiSec=b.dataset.mf; mfPinta(); const c=F.querySelector(".mf-tabs"); F.scrollTop=Math.min(F.scrollTop,c.offsetTop-F.querySelector(".mf-top").offsetHeight); } return; }
+    const r=e.target.closest("[data-t]"); if(r&&r.dataset.t!==(MA.fi&&MA.fi.t)){ MA.fi={t:r.dataset.t}; MA.fiSec="res"; mfPinta(); F.scrollTop=0; } });
+  // deslizar hacia abajo desde la cabecera o el bloque oscuro (o desde arriba del todo de la ficha) la cierra
+  let pid=null, y0=0, dy=0, t0=0;
+  F.addEventListener("pointerdown",e=>{ if(pid!==null||e.button>0) return; const zona=e.target.closest(".mf-top,.m-dark"); if(!zona&&F.scrollTop>0) return; if(e.target.closest(".mf-tabs,.mf-tb,button")&&!e.target.closest(".mf-top")) return;
+    pid=e.pointerId; y0=e.clientY; dy=0; t0=e.timeStamp; });
+  F.addEventListener("pointermove",e=>{ if(e.pointerId!==pid) return; dy=e.clientY-y0; if(dy>8&&F.scrollTop<=0){ F.style.transition="none"; F.style.transform=`translateY(${dy.toFixed(1)}px)`; } else if(dy<0) pid=null; },{passive:true});
+  const suelta=e=>{ if(e.pointerId!==pid) return; pid=null; const v=dy/Math.max(1,e.timeStamp-t0);
+    if(dy>120||(dy>40&&v>.6)){ F.style.transition=""; F.style.transform=`translateY(100%)`; mfCierra(); } else { F.style.transition=""; F.style.transform=""; } };
+  F.addEventListener("pointerup",suelta); F.addEventListener("pointercancel",suelta);
+  F.addEventListener("keydown",e=>{ if(e.key==="Escape") mfCierra(); }); }
+/* abrir: cualquier fila o casilla con empresa de la app, y el buscador (que llamaba a la ficha del PC) */
+if(MA.tel){ const ma0=$("ma"); if(ma0) ma0.addEventListener("click",e=>{ if(e.target.closest("#m-fi")) return; const r=e.target.closest(".m-row[data-t],.m-tile[data-t]"); if(r) mfAbre(r.dataset.t); });
+  const abrePC=openSheet; openSheet=function(tab,t,list){ if(document.documentElement.classList.contains("m-app")&&DATA&&mfDatos(t)){ mfAbre(t); return; } return abrePC.apply(this,arguments); }; }
+/* al llegar datos nuevos o al tapar/destapar los importes, la ficha abierta se repinta con la app */
+{ const maPinta0=maPinta; maPinta=function(){ maPinta0.apply(this,arguments); if(MA.fi) mfPinta(); }; }
 
 function navega(token,push){
   if(typeof token==="string"&&(token==="actualidad"||token.startsWith("actualidad/"))) token="calendario";   // COD-04: las direcciones antiguas siguen valiendo
