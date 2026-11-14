@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-+X86vic/3A+1KwizI01Uj7sNf5ivq797qTNCLyoVFXg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-1oxpNuhMztM7rdBez6CW4Dhr8YGHT+DuGEsCVxRXUsk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v665">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v665">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v665">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v666">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v666">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v666">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3331,10 +3331,25 @@ html.m-con #m-pg-con{display:block;padding:16px 0 calc(env(safe-area-inset-botto
 #m-fi .mf-mh{display:flex;align-items:center;justify-content:center;font:500 12px/16px Inter,system-ui,sans-serif;color:var(--m-ink3);font-feature-settings:"tnum"}
 #m-fi .mf-mh.l{justify-content:flex-start}
 #m-fi .mf-mh.on{color:var(--m-ink);font-weight:600}
-#m-fi .mf-mc{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:52px;border-radius:8px;background:var(--m-bg);font-feature-settings:"tnum"}
-#m-fi .mf-mc b{font:600 13px/18px Inter,system-ui,sans-serif;color:var(--m-ink)}
-#m-fi .mf-mc small{font:500 12px/16px Inter,system-ui,sans-serif}
-#m-fi .mf-mc.on{box-shadow:inset 0 0 0 1.5px var(--m-ink)}
+/* v666 · la matriz del valor razonable, como en el PC (.zmc, .zcr, .zmx): mismos escalones de color, cruz suave y casilla elegida sin recuadro */
+#m-fi{--mf-zb:rgba(26,26,26,.055)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #m-fi{--mf-zb:rgba(255,255,255,.07)}}
+:root[data-theme="dark"] #m-fi{--mf-zb:rgba(255,255,255,.07)}
+#m-fi .mf-mx{display:block;background:var(--mf-zb);border-radius:12px}
+#m-fi .mf-mx.f{margin:-4px -4px -4px -6px}
+#m-fi .mf-mx.c{margin:-4px}
+#m-fi .mf-mh,#m-fi .mf-mc{position:relative}
+#m-fi .mf-mc{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:56px;border-radius:10px;background:var(--m-bg);color:var(--m-ink);font-feature-settings:"tnum"}
+#m-fi .mf-mc.l0{background:var(--lv0);color:var(--m-ink2)}
+#m-fi .mf-mc.lp1{background:var(--lp1);color:var(--lp1t)} #m-fi .mf-mc.ln1{background:var(--ln1);color:var(--ln1t)}
+#m-fi .mf-mc.lp2{background:var(--lp2);color:var(--lp2t)} #m-fi .mf-mc.ln2{background:var(--ln2);color:var(--ln2t)}
+#m-fi .mf-mc.lp3{background:var(--lp3);color:var(--lp3t)} #m-fi .mf-mc.ln3{background:var(--ln3);color:var(--ln3t)}
+#m-fi .mf-mc.lp4{background:var(--lp4);color:var(--lp4t)} #m-fi .mf-mc.ln4{background:var(--ln4);color:var(--ln4t)}
+#m-fi .mf-mc.lp5{background:var(--lp5);color:var(--lp5t)} #m-fi .mf-mc.ln5{background:var(--ln5);color:var(--ln5t)}
+#m-fi .mf-mc b{font:500 13px/18px Inter,system-ui,sans-serif;color:inherit;white-space:nowrap}
+#m-fi .mf-mc small{font:500 12px/16px Inter,system-ui,sans-serif;color:inherit;white-space:nowrap}
+#m-fi .mf-mc.on b{font-size:16px;line-height:20px;font-weight:600}
+#m-fi .mf-mc.on small{font-size:13px;font-weight:600}
 #m-fi .mf-pie{padding:0 16px 12px;font:400 12px/16px Inter,system-ui,sans-serif;color:var(--m-ink3)}
 #m-fi .mf-tb{overflow-x:auto;-webkit-overflow-scrolling:touch}
 #m-fi .mf-tb table{border-collapse:collapse;min-width:100%;font:400 12px/16px Inter,system-ui,sans-serif;font-feature-settings:"tnum";color:var(--m-ink)}
@@ -4098,7 +4113,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v665";   // la versión publicada, en el pie
+const VER="v666";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7276,9 +7291,14 @@ function mfPos(D){ const {P,t,cur,dvs,fin,price}=D; if(!P) return ""; let h="";
   return h; }
 function mfVal(D){ const {F,cur,price,mult,req,irrE,V,R}=D; let h=""; const near=(a,b)=>isNum(a)&&isNum(b)&&Math.abs(a-b)<1e-6, fvDate=R&&R.fvDate instanceof Date?R.fvDate:null;
   if(F){ const cS=F.rates.findIndex(r=>near(r,req)), rS=F.rows.findIndex(o=>near(o.m,mult)), d0=F.rows.flatMap(o=>o.v).some(v=>isNum(v)&&v>=1000)?0:2;
-    const cab=`<span></span>${F.rates.map((r,k)=>`<span class="mf-mh${k===cS?" on":""}">TIR ${tipoPct(r)}</span>`).join("")}`;
-    const fil=F.rows.map((o,ri)=>`<span class="mf-mh l${ri===rS?" on":""}">${multiplo(o.m)}</span>${o.v.map((v,k)=>{ const ok=isNum(v)&&v>0, p=ok&&isNum(price)?v/price-1:null; return `<span class="mf-mc${ri===rS&&k===cS?" on":""}"><b>${ok?maNf(v,d0):"—"}</b><small class="${mfCol(p)}">${isNum(p)?maPct(p,0):""}</small></span>`; }).join("")}`).join("");
-    h+=mfSec("Valor razonable",`<div class="mf-mz" style="--n:${F.rates.length}">${cab}${fil}</div><div class="mf-pie">En ${MA_CS[cur]||cur} por acción, frente a los ${maPr(price,cur)} de hoy. Tu casilla: múltiplo ${multiplo(mult)} y TIR ${tipoPct(req)}.</div>`,fvDate?`valorada el ${zfFecha(fvDate)}`:""); }
+    /* v666 · la matriz con la estética del PC (zfMatriz): casillas teñidas con los cinco escalones de distancia a la cotización (verde por encima,
+       rojo por debajo, gris a menos de un 0,5 %), una cruz muy suave por tu fila y tu columna, tu casilla más grande y en negrita (sin recuadro)
+       y la moneda detrás de cada cifra. Cada pieza va en su sitio de la rejilla (fila 1: las TIR; columna 1: los múltiplos) */
+    const sy=MA_CS[cur]||cur||"", n=F.rates.length, m=F.rows.length, lvl=p=>{ if(!isNum(p)) return ""; const a=Math.abs(p)*100; return a<.5?"l0":(p>0?"lp":"ln")+Math.min(5,1+[5,10,20,35].filter(t=>a>=t).length); };
+    const cruz=cS>=0&&rS>=0?`<i class="mf-mx f" style="grid-area:${rS+2}/1/${rS+3}/${n+2}"></i><i class="mf-mx c" style="grid-area:1/${cS+2}/${m+2}/${cS+3}"></i>`:"";
+    const cab=F.rates.map((r,k)=>`<span class="mf-mh${k===cS?" on":""}" style="grid-area:1/${k+2}">TIR ${tipoPct(r)}</span>`).join("");
+    const fil=F.rows.map((o,ri)=>`<span class="mf-mh l${ri===rS?" on":""}" style="grid-area:${ri+2}/1">${multiplo(o.m)}</span>${o.v.map((v,k)=>{ const ok=isNum(v)&&v>0, p=ok&&isNum(price)?v/price-1:null; return `<span class="mf-mc ${lvl(p)}${ri===rS&&k===cS?" on":""}" style="grid-area:${ri+2}/${k+2}"><b>${ok?maNf(v,d0)+"\u00A0"+sy:"—"}</b><small>${isNum(p)?maPct(p,0):""}</small></span>`; }).join("")}`).join("");
+    h+=mfSec("Valor razonable",`<div class="mf-mz" style="--n:${n}">${cruz}${cab}${fil}</div><div class="mf-pie">En ${MA_CS[cur]||cur} por acción, frente a los ${maPr(price,cur)} de hoy. Tu casilla: múltiplo ${multiplo(mult)} y TIR ${tipoPct(req)}.</div>`,fvDate?`valorada el ${zfFecha(fvDate)}`:""); }
   const mg=isNum(irrE)&&isNum(req)?irrE-req:null, ptos=v=>{ const n=Math.abs(v*100); return `${maNf(n,1)} ${n>=.95&&n<1.05?"punto":"puntos"}`; };
   if(isNum(irrE)||isNum(req)) h+=mfSec("Rentabilidad",mfFila("Esperas",isNum(irrE)?`${pct(irrE,1)} al año`:"—","","",isNum(mg)?mfCol(mg):"")+mfFila("Exiges",isNum(req)?tipoPct(req):"—"),isNum(mg)?(Math.abs(mg)<.0005?"justo lo que exiges":`te ${mg>0?"sobran":"faltan"} ${ptos(mg)}`):"");
   const nz=x=>isNum(x)&&Math.abs(x)>.0005, caja=nz(V.ndps)?`deuda neta: ${maPr(Math.abs(V.ndps),cur)} por acción`:nz(V.cashps)?`caja neta: ${maPr(Math.abs(V.cashps),cur)} por acción`:"";
