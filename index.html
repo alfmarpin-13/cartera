@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-O7tyN/i8iASbBg/2EkFxClvpl2O5aGJTV5F97HDepDg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-cG8sgS/ZBFkoSGYkdgTR0RMRF89dBUBn48IPj6Tc3ag=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v667">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v667">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v667">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v668">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v668">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v668">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3295,7 +3295,8 @@ html.m-con #m-pg-con{display:block;padding:16px 0 calc(env(safe-area-inset-botto
 #m-fi.on{transform:none}
 /* v664 · la ficha sube con su propia curva (0,34 s, sin pasarse): la regla de las páginas de la app (#ma>…, 0,55 s con rebote del 3,8 %) le ganaba
    y al abrir asomaba abajo una franja de la página de detrás */
-#ma>#m-fi:not(#m-ptr){transition:transform .34s cubic-bezier(.25,.9,.3,1)}
+/* v668: curva que arranca suave (la anterior recorría 300 px en el primer fotograma: se veía a saltos) y la capa preparada de antemano */
+#ma>#m-fi:not(#m-ptr){transition:transform .42s cubic-bezier(.32,.72,0,1);will-change:transform}
 @media (prefers-reduced-motion:reduce){#m-fi,#ma>#m-fi:not(#m-ptr){transition:none}}
 #m-fi .mf-top{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:10px;box-sizing:content-box;height:40px;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 0 6px;background:var(--m-top);color:var(--m-tfg);touch-action:none}
 #m-fi .m-dark{touch-action:none}
@@ -3370,6 +3371,9 @@ html.m-con #m-pg-con{display:block;padding:16px 0 calc(env(safe-area-inset-botto
 
 /* v667 · PC-01: en Calendario, la sección blanca llega hasta el pie (antes quedaban 64 px de crema vacíos entre los dos) */
 body[data-view="calendario"] .foot{margin-top:calc(-1 * var(--gap))}   /* el hueco entre bloques de .wrap, sea cual sea el ancho */
+/* v668 · el bloque oscuro de cada pantalla con su alto desde el principio: al llegar los datos crecía (Resumen 52 → 63 px; Movimientos y Análisis 24 → 44 px) */
+#m-pg-res .m-blk{min-height:63px}
+#ma [id^="m-pg-"]:not(#m-pg-res) .m-blk{min-height:44px}
 </style>
 
 <div class="wrap">
@@ -3949,6 +3953,7 @@ function model(d){
   const todayE=sum(quotedPos.filter(p=>isNum(p.today)),p=>p.value*p.today/(1+p.today));
   const firstAp=d.ap.reduce((a,r)=>r.d<a?r.d:a,d.ap[0].d);
   const nextY=sum(sched.filter(r=>yr(r.d)===curY+1),r=>r.gross);
+  { const ry=(d.tray||[]).find(x=>x.y===d.curYear); if(ry&&isNum(total)) ry.val=total; }   // v668 · G-06
   d.kpi={ value:total, today:todayE, todayPct:(total-todayE)?todayE/(total-todayE):0, ret, retSub:`<span class="${cls(aport?ret:0)}">${pct(aport?ret/aport:null,1,true)}</span> sobre lo aportado`,
     tir, vsIdx:isNum(tir)&&isNum(idxTir)?tir-idxTir:null,
     rentas:nextY, rentasLabel:`Dividendos ${curY+1}`, rentasSub:`previstas · ≈ ${eur(nextY/12)} al mes`, npos:`${pos.length} posiciones`, aport, liquidez:liq,
@@ -4120,7 +4125,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v667";   // la versión publicada, en el pie
+const VER="v668";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5472,7 +5477,7 @@ function gxAna(){ const s=gxSec("v-analisis"), pos=DATA.pos.filter(p=>!p.isOptio
   let html="";
   baldas.forEach((B,bi)=>{ let x=0; const y=bi*SH;
     B.forEach(G=>{ const x0=x, base=sum(G.ps,p=>wd(p,k)), fx=(gws(G,k)-(G.ps.length-1)*GT)/base;
-      G.ps.forEach((p,i)=>{ const w=wd(p,k)*fx, pc=gxP(p.weight/tw,1), lw0=Math.min(150,Math.round(w*.62)), lh0=/RMS/.test(p.ticker)?44:30, wide=LOGO_ANCHO[p.ticker]&&w>=110&&Math.min(lh0,lw0/(LOGO_R[LOGO_ANCHO[p.ticker]]||3))>=15, lw=wide?lw0:57, lh=wide?lh0:33;   // v494: el ancho solo si el logo queda con 15 px de alto o más (Hermès, apilado, algo más alto)
+      G.ps.forEach((p,i)=>{ const w=wd(p,k)*fx, pc=gxP(p.weight/tw,1), lw0=Math.min(160,Math.round(w*.8)), lh0=/RMS/.test(p.ticker)?44:30, wide=LOGO_ANCHO[p.ticker]&&w>=90&&Math.min(lh0,lw0/(LOGO_R[LOGO_ANCHO[p.ticker]]||3))>=15, lw=wide?lw0:57, lh=wide?lh0:33;   // v494: el ancho solo si el logo queda con 15 px de alto o más (Hermès, apilado, algo más alto)
         html+=`<button type="button" class="gx-tile" data-t="${esc(p.ticker)}" title="${esc(p.name)} · ${pc}" style="left:${x.toFixed(1)}px;top:${y}px;width:${w.toFixed(1)}px;height:${TH}px">${gxLogo(p.ticker,lw,lh,{ancho:wide})}<em>${pc}</em></button>`;
         x+=w+(i<G.ps.length-1?GT:0); });
       html+=`<div class="gx-rule" style="left:${x0.toFixed(1)}px;top:${y+TH+10}px;width:${(x-x0).toFixed(1)}px"></div><div class="gx-grp" style="left:${x0.toFixed(1)}px;top:${y+TH+17}px;width:${Math.min(x-x0+GG,W-x0).toFixed(1)}px">${esc(G.k)}<span>${gxP(G.w,1)}</span></div>`;
@@ -5997,7 +6002,7 @@ function zfFicha(t,D){
   // la posición: lo invertido, lo que ha hecho el precio, la divisa y los dividendos
   let cas=null;
   if(P){ const iv=P.invested||0, rv=P.value-iv, pl=isNum(P.price)?P.price:price, ext=P.cur&&P.cur!=="EUR", fxH=P.shares&&pl?P.value/(P.shares*pl):null, pe=ext&&isNum(fxH)&&isNum(P.avg)?(pl-P.avg)*P.shares*fxH:rv, fe=rv-pe, pd=isNum(P.paid)?P.paid:sum(cob,d=>d.gross);
-    cas={iv,rv,pe,fe,pd,pasos:[["Invertido",iv,"b"],[ext&&Math.abs(fe)>=.5?"Precio":"Revalorización",pe,"d"],...(ext&&Math.abs(fe)>=.5?[["Divisa",fe,"d"]]:[]),...(pd>=.5||dvs.length?[["Dividendos",pd,"d"]]:[]),["Total",P.value+pd,"t"]]}; }
+    cas={iv,rv,pe,fe,pd,pasos:[[ext&&Math.abs(fe)>=.5?"Precio":"Revalorización",pe,"d"],...(ext&&Math.abs(fe)>=.5?[["Divisa",fe,"d"]]:[]),...(pd>=.5||dvs.length?[["Dividendos",pd,"d"]]:[]),["Ganancia",rv+pd,"t"]]}; }
   // cómo paga el dividendo (los cobros previstos de los próximos doce meses)
   const pagos=(()=>{ if(!P||!prv12.length) return null; const n=prv12.length, dps=prv12.map(d=>d.dps).filter(isNum), igual=dps.length===n&&dps.every(v=>Math.abs(v-dps[0])<1e-6), tot=sum(prv12,d=>d.gross), ms=prv12.map(d=>d.d).sort((a,b)=>a.getMonth()-b.getMonth()).map(zfMes);
     return {n,igual,tot,ms,d0:prv12[0],per:n>=11?"mensual":n>=4?"trimestral":n===3?"cuatrimestral":n===2?"semestral":"anual"}; })();
@@ -6038,7 +6043,7 @@ function zfFicha(t,D){
         ["Esperas ganar",isNum(irrE)?`${pct(irrE,1)} al año`:"",isNum(mg)?zfCol(mg):"",isNum(req)&&isNum(irrE)?`exiges un ${tipoPct(req)}`:""],
         [Y2v&&isNum(Y2v.price)?`En ${esc(String(Y2v.year??""))} podría valer`:"Precio objetivo",Y2v?PX(Y2v.price):"","",Y2v&&isNum(Y2v.price)&&isNum(price)?`un ${pct(Math.abs(Y2v.price/price-1),1)} ${Y2v.price>=price?"más":"menos"} que hoy`:""],
         ["La acción en un año",R&&isNum(R.y1)?pct(R.y1,1,true):"",R?zfCol(R.y1):"",isNum(yI)?`su industria, ${pct(yI,1,true)}`:""]]);
-      const b=zfBarras(LX0,Y2,CW2,"Rentabilidad",isNum(mg)?(Math.abs(mg)<.0005?"justo lo que exiges":`te ${mg>0?"sobran":"faltan"} ${ptos(mg)}`):"",isNum(mg)?zfCol(mg):"",[["Esperas",irrE,isNum(mg)&&mg<0?"fr":"fv"],["Exiges",req,"fg"]],v=>pct(v,1)); h+=b.h; g+=b.g; }
+      const b=zfBarras(LX0,Y2,CW2,"Rentabilidad",isNum(mg)?(Math.abs(mg)<.0005?"justo lo que exiges":`te ${mg>0?"sobran":"faltan"} ${ptos(mg)}`):"",isNum(mg)?zfCol(mg):"",[["Esperas",irrE,"fi"],["Exiges",req,"fg"]],v=>pct(v,1)); h+=b.h; g+=b.g; }
     h+=zfMatriz(X2,Y2,F,{price,mult,req,PX,fvDate,rev});
     h+=zC(RX0,Y2,RW,H2,"Lo que viene"); const tl=zfTiempo(RX0,Y2,evs.slice(0,3)); h+=tl.h; g+=tl.g;
     S.res=zFr(l1,l2)+h+zSvg(g); }
@@ -6106,7 +6111,7 @@ function zfFicha(t,D){
     const l1=fv&&isNum(price)?`Para ti, ${nom} vale ${PX(fv)}, ${Math.abs(pot)<.0005?"justo lo que cotiza":`un ${pct(Math.abs(pot),1)} ${pot>0?"más":"menos"} de lo que cotiza`}.`:`${nom}, todavía sin valor razonable.`;
     const l2=isNum(irrE)?`A este precio esperas un ${pct(irrE,1)} al año${isNum(mg)?(Math.abs(mg)<.0005?", justo lo que exiges":`, ${ptos(mg)} ${mg>0?"más":"menos"} de lo que exiges`):""}.`:isNum(mult)?`Con un múltiplo de salida de ${multiplo(mult)}.`:"";
     h+=zfMatriz(LX0,T1,F,{price,mult,req,PX,fvDate,rev});
-    const b1=zfBarras(X2,T1,CW2,"Rentabilidad",isNum(mg)?(Math.abs(mg)<.0005?"justo lo que exiges":`te ${mg>0?"sobran":"faltan"} ${ptos(mg)}`):"",isNum(mg)?zfCol(mg):"",[["Esperas",irrE,isNum(mg)&&mg<0?"fr":"fv"],["Exiges",req,"fg"]],v=>pct(v,1));
+    const b1=zfBarras(X2,T1,CW2,"Rentabilidad",isNum(mg)?(Math.abs(mg)<.0005?"justo lo que exiges":`te ${mg>0?"sobran":"faltan"} ${ptos(mg)}`):"",isNum(mg)?zfCol(mg):"",[["Esperas",irrE,"fi"],["Exiges",req,"fg"]],v=>pct(v,1));
     const caja=nz(V.ndps)?`deuda neta: ${money(Math.abs(V.ndps),cur,2)} por acción`:nz(V.cashps)?`caja neta: ${money(Math.abs(V.cashps),cur,2)} por acción`:"";
     const b2=zfBarras(RX0,T1,RW,"Múltiplo",caja,"",[["Hoy",isNum(V.multNow)&&V.multNow>0?V.multNow:null,"fg"],["Tu salida",mult,"fi"]],v=>multiplo(v));
     h+=b1.h+b2.h; g+=b1.g+b2.g;
@@ -6844,8 +6849,8 @@ function maFila(p){ if(!MA.L){ try{ MA.L=JSON.parse($("logos").textContent); }ca
   const ok=v=>v!=null&&isFinite(v), tot=MA.modo==="total", pc=tot?p.totalPct:p.today, eu=tot?p.totalEur:(!p.atCost&&ok(p.today)&&ok(p.value)?p.value*p.today/(1+p.today):null);   /* v651: los euros del día, calculados aquí (antes los ponía la web del PC al pintarse, y en la app ya no se pinta) */
   const c=!ok(pc)?"z":pc>=0.0005?"p":pc<=-0.0005?"n":"z", tc=c==="p"?"m-pos":c==="n"?"m-neg":"m-mute";
   const der=!ok(pc)?`<span class="m-pc m-mute">—</span>`:`<i class="${tc}">${ok(eu)?maEurS(eu):""}</i><span class="m-pc ${tc}">(${maPct(pc)})</span>`;
-  const izq=maAcc(`${maNf(p.shares||0,0)} ${p.isOption?"opciones":"acciones"}`)+` a ${maPr(p.avg,p.cur)}`;
-  return `<div class="m-row" data-t="${maEsc(p.ticker)}"><span class="m-lg">${lg}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(p.name)}</b><b class="num">${maPr(p.price,p.cur)}</b></span><span class="m-f2"><small class="num">${izq}</small><span class="m-l2 num">${der}</span></span></span></div>`; }
+  const izq=maAcc(`${maNf(p.shares||0,0)} ${p.isOption?"opciones":"acciones"}`)+` a ${maPr(tot?p.price:p.avg,p.cur)}`;   /* v668 · IP-03: con «Total», arriba el valor de tu posición y aquí la cotización (con «Hoy», la cotización arriba y aquí tu precio medio) */
+  return `<div class="m-row" data-t="${maEsc(p.ticker)}"><span class="m-lg">${lg}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(p.name)}</b><b class="num">${tot?maEur(p.value):maPr(p.price,p.cur)}</b></span><span class="m-f2"><small class="num">${izq}</small><span class="m-l2 num">${der}</span></span></span></div>`; }
 const maMide=(ar,t)=>{ const mw=t?56:30, mh=22, k=t?26:20; let h=Math.min(mh,k/Math.sqrt(ar)), w=h*ar; if(w>mw){ w=mw; h=w/ar; } return [+w.toFixed(2),+h.toFixed(2)]; };
 // v644: los tamaños de todos los logos se calculan en cuanto llegan los datos (antes de pintar las demás pantallas); así ningún logo se pinta sin su tamaño
 /* v662 · el tamaño de cada logo sale de su proporción, que ya viene guardada («R:…»): se pinta desde el principio a su tamaño final.
@@ -6905,7 +6910,7 @@ function maModo(){ if(!MA.tel) return; const d=$("dot"), leyendo=!d||/\bbusy\b/.
   if(R.classList.contains("m-app")!==app){ R.classList.toggle("m-app",app); maTema(app); }
   if(!R.classList.contains("m-bar-on")) R.classList.add("m-bar-on");
   if(vp){ const c=app?"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover":"width=980"; if(vp.getAttribute("content")!==c) vp.setAttribute("content",c); }
-  if(app&&DATA&&MA.pd!==DATA){ MA.pd=DATA; maPinta(); }
+  if(app&&DATA&&MA.pd!==DATA){ MA.pd=DATA; maPinta(); mfPreparaTodas(); }
   if(app&&!con) maMuestra();
   // v641: al salir de la app (una ficha abierta), la web del PC se pone al día con la pestaña en la que estás (en la app no se repinta al cambiar de pestaña)
   else if(MA.pcPend&&R.classList.contains("m-tel")){ MA.pcPend=false; if(MA.pcData){ const dd=MA.pcData; MA.pcData=null; try{ MA.pcRender(dd); }catch(e){ console.warn("Cartera · web del PC:",e); } } navega(view); }   // v638: la lista se repinta solo cuando llegan datos nuevos (antes, cada vez que cambiaba el texto de estado)
@@ -6999,7 +7004,8 @@ if(MA.tel){ const B=document.createElement("div"); B.id="m-borde"; B.hidden=true
     if(MA.pg==="mov"||MA.pg==="ana") return {a:["resumen","mas"],dst:"mas"};
     if(MA.pg==="mas"){ const a=MA.antes||["resumen","resumen"]; return {a,dst:pgDe(a)}; }
     return null; };
-  const k=()=>innerWidth/(Math.min(screen.width,screen.height)||innerWidth);   /* px de la página por punto de pantalla (402 → 1; ficha a 980 → 2,4) */
+  let kC=0; addEventListener("resize",()=>{ kC=0; },{passive:true});   /* v668: leer innerWidth justo después de pintar la ficha obligaba a recalcular toda la página (42 ms con la CPU a 1/4) */
+  const k=()=>kC||(kC=innerWidth/(Math.min(screen.width,screen.height)||innerWidth));   /* px de la página por punto de pantalla (402 → 1; ficha a 980 → 2,4) */
   MA.borde=()=>{ if(B.dataset.on) return; const ac=accion(); B.hidden=!ac; if(ac) B.style.width=(20*k()).toFixed(1)+"px"; };
   ["sheet","kx"].forEach(id=>{ const e=$(id); if(e) new MutationObserver(()=>MA.borde()).observe(e,{attributes:true,attributeFilter:["hidden"]}); });
   addEventListener("resize",()=>MA.borde());
@@ -7008,11 +7014,12 @@ if(MA.tel){ const B=document.createElement("div"); B.id="m-borde"; B.hidden=true
   const pon=v=>{ p=Math.max(0,Math.min(W,v));
     if(ac.f){ cur.style.transform=`translateX(${p.toFixed(1)}px) ${base}`; const bg=$("sheet-bg"); if(bg) bg.style.opacity=String(1-.85*p/W); }
     else { cur.style.transform=`translateX(${p.toFixed(1)}px)`; und.style.transform=`translateX(${(-(W-p)*.28).toFixed(1)}px)`; } };
-  const prepara=()=>{ if(ac.f){ cur=ac.f===2?$("m-fi"):$("sheet"); const t=getComputedStyle(cur).transform; base=t&&t!=="none"?t:""; W=Math.max(1,innerWidth-cur.getBoundingClientRect().left); return; }
+  const prepara=()=>{ if(ac.f){ cur=ac.f===2?$("m-fi"):$("sheet"); const t=getComputedStyle(cur).transform; base=t&&t!=="none"?t:""; W=Math.max(1,innerWidth-cur.getBoundingClientRect().left); cur.style.transition="none"; return; }   /* v668: mientras se arrastra, sin animación: antes la ficha iba 20–38 px por detrás del dedo */
     cur=$("m-pg-"+MA.pg); und=$("m-pg-"+ac.dst); maPintaPg(ac.dst); W=innerWidth;
     const H=document.querySelector("#ma .m-bar").offsetHeight;
     Object.assign(cur.style,{position:"relative",zIndex:"2",background:"var(--m-bg)",boxShadow:"-10px 0 28px rgba(0,0,0,.16)",minHeight:(innerHeight+scrollY)+"px"});   /* la que se va tapa siempre la pantalla entera (Más es más corta) */
     Object.assign(und.style,{clipPath:"none",zIndex:"1",top:(scrollY+H)+"px",height:(innerHeight-H)+"px",background:"var(--m-bg)"});
+    cur.style.transition=und.style.transition="none";   /* v668: las dos pantallas siguen al dedo (antes, con la curva de 0,55 s con rebote, iban por detrás) */
     und.scrollTop=MA.sy[ac.dst]||0; };
   const limpia=()=>{ if(cur) ["transform","transition","position","zIndex","background","boxShadow","minHeight"].forEach(q=>cur.style[q]="");
     if(und){ ["transform","transition","clipPath","zIndex","top","height","background"].forEach(q=>und.style[q]=""); und.scrollTop=0; }
@@ -7173,10 +7180,10 @@ function maAnaDiv(){ const v=MA.aDiv, E=$("m-a-div"); maSelMarca("adiv",v);
   if(v==="mes"){ const hoy=new Date(), c=hoy.getFullYear()*12+hoy.getMonth(), M=new Map();
     (DATA.dv||[]).forEach(r=>{ const t=day(r.d); if(!t||!isNum(r.gross)) return; const k=t.getFullYear()*12+t.getMonth(); if(k<c-11||k>c+11) return; const o=M.get(k)||{p:0,s:0}; DATA.isPaid(r)?o.p+=r.gross:o.s+=r.gross; M.set(k,o); });
     const ks=[]; for(let k=c-11;k<=c+11;k++) ks.push(k); const mx=Math.max(...ks.map(k=>{ const o=M.get(k); return o?o.p+o.s:0; }),1e-9);
-    const P=ks.reduce((s,k)=>s+(M.get(k)?.p||0),0), S=ks.reduce((s,k)=>s+(M.get(k)?.s||0),0);
-    E.innerHTML=`<div class="m-chart"><div class="m-cols" role="img" aria-label="Dividendos por mes: cobrado ${maEur(P)} en los últimos 12 meses y previsto ${maEur(S)} en los próximos 12">${ks.map(k=>{ const o=M.get(k)||{p:0,s:0}; return `<span${k===c?' class="hoy"':""}><i style="height:${(o.p/mx*100).toFixed(1)}%"></i><i class="p" style="height:${(o.s/mx*100).toFixed(1)}%"></i></span>`; }).join("")}</div>
+    const y0=hoy.getFullYear()*12, P=ks.filter(k=>k>=y0&&k<y0+12).reduce((s,k)=>s+(M.get(k)?.p||0),0), S=ks.filter(k=>k>=y0&&k<y0+12).reduce((s,k)=>s+(M.get(k)?.s||0),0)+P;   /* v668 · G-06: por año natural, como el PC («cobrado este año», «previsto este año»); antes, doce meses atrás y doce adelante */
+    E.innerHTML=`<div class="m-chart"><div class="m-cols" role="img" aria-label="Dividendos por mes: este año, cobrado ${maEur(P)} de ${maEur(S)} previstos">${ks.map(k=>{ const o=M.get(k)||{p:0,s:0}; return `<span${k===c?' class="hoy"':""}><i style="height:${(o.p/mx*100).toFixed(1)}%"></i><i class="p" style="height:${(o.s/mx*100).toFixed(1)}%"></i></span>`; }).join("")}</div>
       <div class="m-cl" aria-hidden="true">${ks.map(k=>`<span${k===c?' class="hoy"':""}>${MA_MES[k%12][0].toUpperCase()}</span>`).join("")}</div>
-      <div class="m-ley"><span><i></i>Cobrado · últimos 12 meses<b>${maEur(P)}</b></span><span><i class="p"></i>Previsto · próximos 12 meses<b>${maEur(S)}</b></span></div></div>`; }
+      <div class="m-ley"><span><i></i>Cobrado este año<b>${maEur(P)}</b></span><span><i class="p"></i>Previsto este año<b>${maEur(S)}</b></span></div></div>`; }
   else if(v==="ano"){ const Y=(DATA.dvm&&DATA.dvm.years)||[], G=new Map((DATA.years||[]).map(x=>[x.y,x.g])), mx=Math.max(...Y.map(x=>(x.paid||0)+(x.sched||0)),1e-9);
     E.innerHTML=Y.map(x=>{ const t=(x.paid||0)+(x.sched||0), g=G.get(x.y), sm=!x.paid&&x.sched?"previsto":isNum(g)?maP(g,0,true):"";
       return `<div class="m-r2"><span>${x.y}${sm?`<small>${sm}</small>`:""}</span><span class="m-br"><i class="k" style="width:${((x.paid||0)/mx*100).toFixed(1)}%"></i><i style="width:${((x.sched||0)/mx*100).toFixed(1)}%"></i></span><b>${maEur(t)}</b></div>`; }).join("")+`<div class="m-nota m-ley h"><span><i></i>Cobrado</span><span><i class="p"></i>Previsto</span></div>`; }
@@ -7231,7 +7238,14 @@ $("m-pg-cal").addEventListener("click",e=>{ const s=e.target.closest(".m-sel[dat
    Las frases (titular y entradilla de cada pestaña) son las mismas que las del PC: se sacan de la propia ficha del PC. Se abre al pulsar
    cualquier fila con empresa (Posiciones, Agenda, Movimientos, Radar, casillas de Hoy) y desde el buscador; se cierra con la flecha,
    deslizando hacia abajo desde la cabecera o con el gesto de volver. En modo privado tapa lo tuyo (importes y acciones), como el resto */
-const MF_FR=new Map(); const MF_SEC=[["res","Resumen"],["pos","Tu posición"],["val","Valoración"],["pj","Proyección"],["tes","Tesis"],["cot","Cotización"]];
+const MF_FR=new Map();
+/* v668 · la parte cara de abrir una ficha (construir sus frases a partir de la ficha del PC) se hace antes: para tus empresas, en segundo
+   plano al arrancar (una cada 150 ms y nunca con el dedo en la pantalla); para las demás, al apoyar el dedo en su fila (si no se desliza) */
+function mfPrepara(t){ if(!DATA||!t) return; const x0=MF_FR.get(t); if(x0&&x0.dv===DATA) return; try{ const x=mfFrases(t); x.dv=DATA; MF_FR.set(t,x); }catch(e){} }
+function mfPreparaTodas(){ if(!DATA||!MA.tel) return; const d0=DATA, L=(DATA.pos||[]).map(p=>p.ticker).filter(Boolean);
+  const paso=()=>{ if(DATA!==d0) return; if(MA.toca||Date.now()-MA.tocaT<400||MA.fi){ setTimeout(paso,400); return; } const t=L.shift(); if(!t) return; mfPrepara(t); setTimeout(paso,150); };
+  setTimeout(paso,3000); }
+const MF_SEC=[["res","Resumen"],["pos","Tu posición"],["val","Valoración"],["pj","Proyección"],["tes","Tesis"],["cot","Cotización"]];
 MA.fi=null; MA.fiSec="res";
 const mfCol=v=>!isNum(v)?"m-mute":v>=0.0005?"m-pos":v<=-0.0005?"m-neg":"m-mute";
 const mfPv=h=>{ if(!maPriv()) return h; const tp=document.createElement("template"); tp.innerHTML=h; tp.content.querySelectorAll(".pv").forEach(e=>{ e.textContent=MA_PV; }); const d=document.createElement("div"); d.append(tp.content); return maAcc(d.innerHTML); };
@@ -7292,7 +7306,7 @@ function mfRes(D){ const {P,R,cur,price,fv,irrE,req,Y2v,F,dvs,fin,media}=D; let 
 function mfPos(D){ const {P,t,cur,dvs,fin,price}=D; if(!P) return ""; let h="";
   const cob=dvs.filter(d=>d.d<=fin), iv=P.invested||0, rv=P.value-iv, pd=isNum(P.paid)?P.paid:cob.reduce((s,d)=>s+(d.gross||0),0), pl=isNum(P.price)?P.price:price, ext=P.cur&&P.cur!=="EUR";
   const fxH=P.shares&&pl?P.value/(P.shares*pl):null, pe=ext&&isNum(fxH)&&isNum(P.avg)?(pl-P.avg)*P.shares*fxH:rv, fe=rv-pe, div=ext&&Math.abs(fe)>=.5;
-  h+=mfSec("Cómo se ha formado el resultado",[mfFila("Invertido",maEur(iv)),mfFila(div?"Precio":"Revalorización",maEurS(pe),"","",mfCol(pe)),div?mfFila("Divisa",maEurS(fe),"","",mfCol(fe)):"",pd>=.5||dvs.length?mfFila("Dividendos",maEurS(pd),"","",mfCol(pd)):"",mfFila("<b>Total</b>",`<b>${maEur(P.value+pd)}</b>`)].join(""));
+  h+=mfSec("Cómo se ha formado el resultado",[mfFila(div?"Precio":"Revalorización",maEurS(pe),"","",mfCol(pe)),div?mfFila("Divisa",maEurS(fe),"","",mfCol(fe)):"",pd>=.5||dvs.length?mfFila("Dividendos",maEurS(pd),"","",mfCol(pd)):"",mfFila("<b>Ganancia</b>",`<b>${maEurS(P.value-iv+pd)}</b>`,"","",mfCol(P.value-iv+pd))].join(""));   /* v668 · G-06: acaba en «Ganancia», como el PC */
   const TX=DATA.tx.filter(x=>x.ticker===t&&x.bd instanceof Date&&isNum(x.bp)).sort((a,b)=>b.bd-a.bd), ab=TX.filter(x=>!(x.sd instanceof Date)), vd=TX.filter(x=>x.sd instanceof Date), sy=MA_CS[cur]||cur;
   const fx=x=>mfFila(zfFecha(x.bd),x.bt?maEur(x.bt,2):"—",maAcc(`${mfAcc(x.shares)} a ${maNf(x.bp,2)} ${sy}`));
   if(TX.length) h+=mfSec("Compras",ab.map(fx).join("")+mfFila("<b>En cartera</b>",`<b>${maEur(iv,2)}</b>`,maAcc(mfAcc(P.shares)),isNum(P.avg)?`a ${maNf(P.avg,2)} ${sy} de media`:""),`${ab.length} ${ab.length===1?"compra":"compras"}`)
@@ -7387,6 +7401,9 @@ function mfEventos(F){
   F.addEventListener("pointerup",suelta); F.addEventListener("pointercancel",suelta);
   F.addEventListener("keydown",e=>{ if(e.key==="Escape") mfCierra(); }); }
 /* abrir: cualquier fila o casilla con empresa de la app, y el buscador (que llamaba a la ficha del PC) */
+/* v668 · al apoyar el dedo en una fila con empresa (y no deslizar en 60 ms), se preparan sus frases: al soltar, la ficha ya puede subir */
+if(MA.tel){ const ma0=$("ma"); let pt=0, px=0, py=0; if(ma0){ ma0.addEventListener("pointerdown",e=>{ clearTimeout(pt); if(e.target.closest("#m-fi")) return; const r=e.target.closest(".m-row[data-t],.m-tile[data-t]"); if(!r) return; px=e.clientX; py=e.clientY; pt=setTimeout(()=>mfPrepara(r.dataset.t),60); },{passive:true});
+  ma0.addEventListener("pointermove",e=>{ if(pt&&Math.hypot(e.clientX-px,e.clientY-py)>8){ clearTimeout(pt); pt=0; } },{passive:true}); ["pointercancel","scroll"].forEach(n=>(n==="scroll"?window:ma0).addEventListener(n,()=>{ clearTimeout(pt); pt=0; },{passive:true})); } }
 if(MA.tel){ const ma0=$("ma"); if(ma0) ma0.addEventListener("click",e=>{ if(e.target.closest("#m-fi")) return; const r=e.target.closest(".m-row[data-t],.m-tile[data-t]"); if(r) mfAbre(r.dataset.t); });
   const abrePC=openSheet; openSheet=function(tab,t,list){ if(document.documentElement.classList.contains("m-app")&&DATA&&mfDatos(t)){ mfAbre(t); return; } return abrePC.apply(this,arguments); }; }
 /* al llegar datos nuevos o al tapar/destapar los importes, la ficha abierta se repinta con la app */
