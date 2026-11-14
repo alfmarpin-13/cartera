@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-PHsfSFR1pzD/islXYhc+robzHA2ZFAMhzyVKAT7+7F4=' 'sha256-dZeBi4uxipzPub0pHHDJGBys5BQBSx0odUHKfCQQzMQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-PHsfSFR1pzD/islXYhc+robzHA2ZFAMhzyVKAT7+7F4=' 'sha256-aWkdkFR1s5GAjU+hRZRGNRZXokHM8/W1ALd0tsFo/yY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,11 +11,11 @@
 <meta name="theme-color" content="#1F2B25" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v676">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v676">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v676">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v676">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v676">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v677">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v677">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v677">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v677">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v677">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); if(navigator.standalone){ const sp=()=>{ if(!R.classList.contains("m-splash")) return removeEventListener("resize",sp); const dy=(screen.height-innerHeight*screen.width/innerWidth)/2; R.style.setProperty("--m-spdy",(dy>0&&dy<60?dy:0).toFixed(1)+"px"); }; sp(); requestAnimationFrame(sp); addEventListener("resize",sp); } let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -4186,7 +4186,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v676";   // la versión publicada, en el pie
+const VER="v677";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7461,7 +7461,7 @@ function mfAbre(t){ if(!DATA||!MA.tel) return; const D=mfDatos(t); if(!D) return
     $("ma").appendChild(F); mfEventos(F); }
   const ya=!!MA.fi; MA.fi={t:D.t}; MA.fiSec="res"; mfPinta(); F.scrollTop=0;   /* cada empresa se abre por Resumen */
   if(!ya){ F.hidden=false; document.documentElement.classList.add("mf-on"); requestAnimationFrame(()=>requestAnimationFrame(()=>F.classList.add("on")));
-    try{ history.pushState({mfi:1},""); }catch{} }
+    if(!MA_IOS) try{ history.pushState({mfi:1},""); }catch{} }   /* v677: en el iPhone, sin entrada en el historial: con ella, iOS activaba su propio gesto de atrás (arrastra una foto de la página entera) a la vez que el nuestro, y se veían dos ventanas moviéndose. En Android sigue: su botón de atrás cierra la ficha */
   if(MA.borde) MA.borde(); }
 function mfCierra(sinHist){ const F=$("m-fi"); if(!F||!MA.fi) return; MA.fi=null; document.documentElement.classList.remove("mf-on");
   const fin=()=>{ if(!MA.fi){ F.hidden=true; F.style.transform=""; F.style.transition=""; } };
