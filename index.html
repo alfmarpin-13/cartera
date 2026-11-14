@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-XCCzK2JGnNx65ok5E6EHnAYxcWdqVutFzHxO1GiD6l4=' 'sha256-fHLo0tlun1N0V712ZHM7KBH/EayK3uAu0sV0yL/+3FE=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-XCCzK2JGnNx65ok5E6EHnAYxcWdqVutFzHxO1GiD6l4=' 'sha256-imVVcP8xzbkHUFlM0nW6Bq3BKy5XEh1xoWfz9PU9fOc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,11 +11,11 @@
 <meta name="theme-color" content="#1F2B25" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v682">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v682">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v682">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v682">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v682">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v683">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v683">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v683">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v683">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v683">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); if(navigator.standalone){ const w=Math.min(screen.width,screen.height), hh=Math.max(screen.width,screen.height), SB={"402x874":62,"440x956":62,"393x852":59,"430x932":59,"390x844":47,"428x926":47,"375x812":44,"414x896":44}[w+"x"+hh]; let b=SB; if(!b){ const g=hh-innerHeight*w/innerWidth; b=g>0&&g<80?g:0; } R.style.setProperty("--m-sb2",(b/2).toFixed(1)+"px"); } let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3551,6 +3551,21 @@ html.m-app #kx .kx-in kbd,html.m-app #kx .kx-f{display:none}
 #ma .m-mes .ds button.res.pas{opacity:.45}
 
 /* v681 · menú de 386 × 66 (8 px a cada lado de la pantalla) y burbuja de 80 × 58 siempre: centrada en cada pestaña y sin cambiar de tamaño */
+
+/* v683 · LA BARRA AL TOCARLA, COMO EN iOS 27: crece un 3,5 % desde su centro de abajo y se aclara mientras tienes el dedo (y hasta que la
+   burbuja se asienta); vuelve con un pequeño rebote. La burbuja pasa de cápsula oscura a vidrio y de vuelta con un fundido de 0,25 s */
+#ma-tabs{transition:transform .42s cubic-bezier(.3,1.35,.5,1),background-color .25s}
+#ma-tabs.act{transform:translateX(-50%) scale(1.035)}
+#ma-tabs::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;background:rgba(255,255,255,.22);opacity:0;transition:opacity .25s}
+#ma-tabs.act::before{opacity:1}
+#ma-tabs .m-lens{transition:background .25s,box-shadow .25s}
+@media (prefers-reduced-motion:reduce){#ma-tabs,#ma-tabs.act{transition:none;transform:translateX(-50%)}}
+/* v683 · tirar para actualizar: el hueco, oscuro como la cabecera (antes, del claro de la página) y con el anillo en el verde de la marca */
+#ma #m-ptrg{background:var(--m-top);color:var(--m-tfg2)}
+#ma #m-ptrg .m-ptr-r{stroke:rgba(255,255,255,.22)}
+#ma #m-ptrg .m-ptr-a{stroke:var(--gx-id,#86D3AA)}
+#ma #m-ptrg .m-ptr-d{fill:var(--gx-id,#86D3AA)}
+#m-ptrg[data-listo] span{color:var(--m-tfg)}
 /* v680 · G-04 · AGENDA DEL CALENDARIO (PC): tarjeta de detalle bajo los dos meses, filas de 44 px: día · logo · empresa · qué es · importe · cuándo */
 .gxag .gxag-m{margin:28px 0 8px}
 .gxag .gxan-t + .gxag-m{margin-top:0}
@@ -4351,7 +4366,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v682";   // la versión publicada, en el pie
+const VER="v683";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7166,13 +7181,20 @@ function maModo(){ if(!MA.tel) return; const d=$("dot"), leyendo=!d||/\bbusy\b/.
     es el que cabe centrado sin salirse del menú: 88 en las tres del medio y 73,2 en Resumen y Universo (antes se apoyaba en el borde y en
     esas dos quedaba descentrada: 14 px a un lado y 29 al otro) */
  const IN=378, LW=80, pos=i=>i*W()+W()/2, ancho=()=>LW;
- /* v681 · LA BURBUJA NO CAMBIA DE TAMAÑO NUNCA: 80 × 58 en todas las pestañas, centrada en la suya también en los extremos (usa los 4 px de
-    margen del menú), sin estirarse con la velocidad, sin crecer al volar ni bajo el dedo (antes variaba al desplazarse y se asentaba al llegar) */   // v637: posiciones en unidades de pantalla (402 = ancho del iPhone), igual a 402 o a 980 px
+ /* v683 · COMO LA BARRA DE «BUSCAR» DE iOS 27 (vídeo de Alfonso, medido fotograma a fotograma):
+    · en reposo, la burbuja es una cápsula oscura de 80 × 58, centrada en su pestaña;
+    · al tocar una pestaña, en ese mismo instante: la barra entera crece un 3,5 % y se aclara, y la burbuja se vuelve una lente de vidrio
+      clara un 15 % más grande (más alta que la barra) que aumenta lo que tiene debajo y salta a la pestaña tocada muy deprisa (≈80 ms);
+    · con el dedo puesto sigue grande; si arrastras, va pegada al dedo y se estira en la dirección del movimiento;
+    · al soltar (y como poco 260 ms después de tocar), se encoge y vuelve a ser la cápsula oscura; la barra vuelve a su tamaño */   // v637: posiciones en unidades de pantalla (402 = ancho del iPhone), igual a 402 o a 980 px
  const LI=document.createElement("div"); LI.className="m-lens-in"; LI.setAttribute("aria-hidden","true"); T.forEach(b=>{ const s=document.createElement("span"); s.innerHTML=b.innerHTML; LI.appendChild(s); }); lens.appendChild(LI);
  let sel=0, x=pos(0), v=0, xt=pos(0), s=1, vs=0, st=1, sube=false, raf=0, last=0;
- const K0=quieto?2000:300, C0=quieto?90:2*Math.sqrt(300)*.8, KD=1400, CD=2*Math.sqrt(1400)*.9, KS=520, CS=2*Math.sqrt(520)*.62;   // v636: al arrastrar, muelle firme (pegado al dedo)
- let arrastra=false, vuela=false;
- const pinta=()=>{ const e=0; const sx=s*(1+e), sy=s*(1-e*.55);
+ const K0=quieto?2000:1100, C0=quieto?90:2*Math.sqrt(1100)*.78, KD=1400, CD=2*Math.sqrt(1400)*.9, KS=520, CS=2*Math.sqrt(520)*.62;   // v636: al arrastrar, muelle firme (pegado al dedo)
+ let arrastra=false, vuela=false, t0=0, suT=0;
+ const VID=quieto?1:1.15;   /* la lente de vidrio, un 15 % más grande que la cápsula */
+ const toca=()=>{ clearTimeout(suT); t0=performance.now(); bar.classList.add("act"); };
+ const asienta=()=>{ clearTimeout(suT); suT=setTimeout(()=>{ if(pid!==null) return; lens.classList.remove("held"); st=1; bar.classList.remove("act"); mueve(); },Math.max(0,260-(performance.now()-t0))); };
+ const pinta=()=>{ const e=quieto?0:Math.min(Math.abs(v)/(arrastra?5200:2600),.16); const sx=s*(1+e), sy=s*(1-e*.55);
    const lw=ancho(x), lx=x-lw/2; lens.style.width=`calc(${lw.toFixed(2)} * var(--u))`; lens.style.transform=`translateX(calc(${lx.toFixed(2)} * var(--u))) scale(${sx.toFixed(4)},${sy.toFixed(4)})`; const m=1+(s-1)*.45; LI.style.transformOrigin=`calc(${x.toFixed(2)} * var(--u)) calc(29 * var(--u))`; LI.style.transform=`translateX(calc(${(-lx).toFixed(2)} * var(--u))) scale(${(m/s).toFixed(4)})`;   // v637: dentro de la lente el aumento es menor (13 % con la lente al 130 %): menos corte en el borde
    if(vuela&&Math.abs(xt-x)<W()*.12&&Math.abs(v)<120){ vuela=false; lens.classList.remove("vuela"); } };
  const paso=t=>{ const dt=Math.min(.032,(t-last)/1000||.016); last=t;
@@ -7183,7 +7205,7 @@ function maModo(){ if(!MA.tel) return; const d=$("dot"), leyendo=!d||/\bbusy\b/.
  const mueve=()=>{ if(!raf){ last=performance.now(); raf=requestAnimationFrame(paso); } };
  const marca=i=>T.forEach((b,k)=>{ b.classList.toggle("on",k===i); b.setAttribute("aria-current",k===i?"page":"false"); });
  const deVista=()=>({resumen:0,analisis:1,movimientos:2,calendario:3,universo:4})[view]??0;
- const ve=i=>{ if(i!==sel){ sube=!quieto; st=1; if(!quieto){ vuela=true; lens.classList.add("vuela"); } } sel=i; xt=pos(i); marca(i); mueve(); };
+ const ve=i=>{ if(i!==sel){ sube=!quieto; st=quieto?1:VID; if(!quieto){ vuela=true; lens.classList.add("vuela"); } } sel=i; xt=pos(i); marca(i); mueve(); };
  const abre=i=>{ const p="resumen", destino=V[i];   /* v678: siempre a la pestaña (y fuera de la Calculadora o el Cuadre, si estabas en ellos) */
    const ya=MA.dest?MA.dest:[view,MA.pagina];   // v638: si hay un cambio en marcha, cuenta su destino (dos toques seguidos ya no se pierden)
    if(destino===ya[0]&&p===ya[1]){ if(!MA.dest) scrollTo({top:0,behavior:quieto?"auto":"smooth"}); return; }
@@ -7192,16 +7214,16 @@ function maModo(){ if(!MA.tel) return; const d=$("dot"), leyendo=!d||/\bbusy\b/.
  let pid=null, x0=0, desde=0, arr=false;
  const loc=e=>{ const r=bar.getBoundingClientRect(); return (e.clientX-r.left)/(r.width/386||1); };
  const idx=px=>Math.max(0,Math.min(N-1,Math.floor((px-4)/W())));
- bar.addEventListener("pointerdown",e=>{ pid=e.pointerId; x0=e.clientX; desde=idx(loc(e)); arr=false; try{ bar.setPointerCapture(pid); }catch{}
-  if(desde===sel){ arr=true; bar.classList.add("drag"); lens.classList.add("held"); st=1; mueve(); }
-  else { bar.classList.add("drag"); lens.classList.add("held"); st=1; xt=pos(desde); marca(desde); if(!quieto){ vuela=true; lens.classList.add("vuela"); } mueve(); } });   /* v681: al tocar otra pestaña, la burbuja va hacia ella mientras tienes el dedo (antes, solo al soltar o al arrastrar) */
+ bar.addEventListener("pointerdown",e=>{ toca(); pid=e.pointerId; x0=e.clientX; desde=idx(loc(e)); arr=false; try{ bar.setPointerCapture(pid); }catch{}
+  if(desde===sel){ arr=true; bar.classList.add("drag"); lens.classList.add("held"); st=VID; mueve(); }
+  else { bar.classList.add("drag"); lens.classList.add("held"); st=VID; sel=desde; xt=pos(desde); marca(desde); if(!quieto){ vuela=true; lens.classList.add("vuela"); } mueve(); } });   /* v681: al tocar otra pestaña, la burbuja va hacia ella mientras tienes el dedo (antes, solo al soltar o al arrastrar) */
  bar.addEventListener("pointermove",e=>{ if(e.pointerId!==pid) return; const px=loc(e);
-  if(!arr&&Math.abs(e.clientX-x0)>6){ arr=true; bar.classList.add("drag"); lens.classList.add("held"); st=1; }
+  if(!arr&&Math.abs(e.clientX-x0)>6){ arr=true; bar.classList.add("drag"); lens.classList.add("held"); st=VID; }
   if(arr){ arrastra=true; const q=px-4, m0=W()/2, M=IN-W()/2; xt=q<m0?m0+(q-m0)*.22:q>M?M+(q-M)*.22:q; const c=idx(px); T.forEach((b,k)=>b.classList.toggle("cerca",k===c)); marca(c); mueve(); } });
  const suelta=e=>{ if(e.pointerId!==pid) return; pid=null; const px=loc(e);
-  arrastra=false; bar.classList.remove("drag"); lens.classList.remove("held"); T.forEach(b=>b.classList.remove("cerca"));
-  if(e.type==="pointercancel"){ st=1; MA.lente(); return; }
-  if(arr){ st=1; const i=Math.max(0,Math.min(N-1,Math.floor(x/W()))); sel=i; xt=pos(i); marca(i); mueve(); abre(i); } else { const i=idx(px); ve(i); abre(i); } };
+  arrastra=false; bar.classList.remove("drag"); T.forEach(b=>b.classList.remove("cerca")); asienta();   /* v683: la lente se asienta un poco después (como poco 260 ms tras tocar) */
+  if(e.type==="pointercancel"){ MA.lente(); return; }
+  if(arr){ const i=Math.max(0,Math.min(N-1,Math.floor(x/W()))); sel=i; xt=pos(i); marca(i); mueve(); abre(i); } else { const i=idx(px); ve(i); abre(i); } };
  bar.addEventListener("pointerup",suelta); bar.addEventListener("pointercancel",suelta);
  bar.addEventListener("keydown",e=>{ const b=e.target.closest("button"); if(b&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); const i=T.indexOf(b); ve(i); abre(i); } });
  marca(0); pinta(); })();
@@ -7288,9 +7310,9 @@ if(MA_IOS){ document.documentElement.classList.add("m-ios"); let on=false, raf=0
     /* v670 · en el hueco que se abre entre la barra y la página al tirar: el anillo se va llenando con el verde de la marca y dice qué pasa
        («Desliza para actualizar»; pasado el umbral, «Suelta para actualizar»). Ocupa justo el hueco (su alto es el del tirón), así que nunca pisa la página */
     G=(()=>{ const e=document.createElement("div"); e.id="m-ptrg"; e.setAttribute("aria-hidden","true"); e.innerHTML=`<svg viewBox="0 0 32 32"><circle class="m-ptr-r" cx="16" cy="16" r="12"/><circle class="m-ptr-a" cx="16" cy="16" r="12" pathLength="100"/><circle class="m-ptr-d" cx="16" cy="16" r="4.5"/></svg><span>Desliza para actualizar</span>`; const m=$("ma"); if(m) m.appendChild(e); return e; })(),
-    hueco=p=>{ if(!G) return; const h=Math.max(0,-scrollY); if(p<=0||h<1){ if(G.style.opacity!=="0"){ G.style.opacity="0"; G.removeAttribute("data-listo"); } return; }
-      const ok=p>=LIM; G.style.opacity=Math.min(1,Math.max(0,(h-14)/28)).toFixed(2); G.style.height=h.toFixed(1)+"px"; G.style.setProperty("--m-prog",Math.min(100,p/LIM*100).toFixed(1));   /* del alto exacto del hueco: nunca pisa la página */
-      if(ok!==G.hasAttribute("data-listo")){ G.toggleAttribute("data-listo",ok); G.lastChild.textContent=ok?"Suelta para actualizar":"Desliza para actualizar"; } },
+    hueco=(p,txt)=>{ if(!G) return; const h=Math.max(0,-scrollY); if(p<=0||h<1){ if(G.style.opacity!=="0"){ G.style.opacity="0"; G.style.height="0px"; G.removeAttribute("data-listo"); } return; }
+      const ok=p>=LIM, t=txt||(ok?"Suelta para actualizar":"Desliza para actualizar"); G.style.opacity=Math.min(1,Math.max(0,(h-14)/28)).toFixed(2); G.style.height=h.toFixed(1)+"px"; G.style.setProperty("--m-prog",Math.min(100,p/LIM*100).toFixed(1));   /* del alto exacto del hueco: nunca pisa la página */
+      if(ok!==G.hasAttribute("data-listo")) G.toggleAttribute("data-listo",ok); if(G.lastChild.textContent!==t) G.lastChild.textContent=t; },
     pon=p=>{ hueco(p); const c=punto(); if(!c) return; if(p<=0){ listo=false; if(c.style.transform){ c.style.transition=""; c.style.transform=""; } return; }
       listo=p>=LIM; c.style.transition=listo?"":"none";   /* pegado al dedo; al llegar al umbral, el salto con muelle */
       c.style.transform=`scale(${(1+.8*Math.min(1,p/LIM)+(listo?.25:0)).toFixed(3)})`; },
@@ -7301,7 +7323,12 @@ if(MA_IOS){ document.documentElement.classList.add("m-ios"); let on=false, raf=0
   MA.ptrRecoge=()=>{ on=false; cancelAnimationFrame(raf); raf=0; pon(0); };
   addEventListener("touchstart",e=>{ if(e.touches.length!==1||!puede()||e.target.closest("#ma-tabs")){ if(on) MA.ptrRecoge(); return; } on=true; y0=yd=e.touches[0].clientY; if(!raf) raf=requestAnimationFrame(paso); },{passive:true});
   addEventListener("touchmove",e=>{ if(on&&e.touches.length===1) yd=e.touches[0].clientY; },{passive:true});
-  const fin=e=>{ if(!on||(e.touches&&e.touches.length)) return; const va=listo||-scrollY>=LIM||(scrollY<=0&&goma(yd-y0)>=LIM); MA.ptrRecoge();
+  /* v683 · al soltar, el indicador ya no desaparece de golpe: acompaña al rebote del sistema fotograma a fotograma (su alto y su opacidad
+     siguen al hueco) hasta que la página vuelve a su sitio; si se actualiza, dice «Actualizando…» con el anillo lleno */
+  const fin=e=>{ if(!on||(e.touches&&e.touches.length)) return; const va=listo||-scrollY>=LIM||(scrollY<=0&&goma(yd-y0)>=LIM);
+    on=false; cancelAnimationFrame(raf); raf=0; listo=false; { const c=punto(); if(c){ c.style.transition=""; c.style.transform=""; } }
+    const sigue=()=>{ raf=0; if(on) return; const h=-scrollY; if(h>.5){ hueco(va?Math.max(h,LIM):h,va?"Actualizando…":"Desliza para actualizar"); raf=requestAnimationFrame(sigue); } else hueco(0); };
+    raf=requestAnimationFrame(sigue);
     if(va){ const rf=$("refresh"); if(rf&&!rf.disabled) rf.click(); } };   /* el punto late mientras se lee la hoja (maLate) */
   addEventListener("touchend",fin,{passive:true}); addEventListener("touchcancel",fin,{passive:true}); }
 /* v637 · tirar hacia abajo para actualizar en los demás teléfonos (sin rebote del sistema): la página la mueve la web */
