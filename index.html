@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-FH1XzqQLeKIVmEKjIGoO4D/YRlg77FplZTrpLpnRMqY=' 'sha256-X5DWPFwqF79EeS2DPuNrDTvxBS/Pt4hYl7C9t3OXdtk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-FH1XzqQLeKIVmEKjIGoO4D/YRlg77FplZTrpLpnRMqY=' 'sha256-2XKJK1Nzn1z9vD2XqQ025PGzW2f/7cx3bawWIIpyv54=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v696">
+<link rel="manifest" href="manifest.webmanifest?v697">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#1F2B25" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v696">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v696">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v696">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v696">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v696">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v697">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v697">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v697">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v697">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v697">
 <title>Cartera</title>
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { let vu=null; try{ vu=JSON.parse(sessionStorage.getItem("cartera-vuelta")||"null"); }catch{} R.classList.add("m-app"); if(!(vu&&Date.now()-vu.t<30000)) R.classList.add("m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); R.style.setProperty("--m-shh",(Math.max(screen.width,screen.height)/2)+"px"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
@@ -1203,7 +1203,7 @@ html.sh-open:not(#_) body .sheet-bg{display:block}
 @media (min-width:701px){
   .top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line);box-shadow:0 0 0 100vmax var(--line);clip-path:inset(0 -100vmax);pointer-events:none}
   .top{box-shadow:0 0 0 100vmax var(--canvas);clip-path:inset(0 -100vmax -1px)}
-  #s-hero,#s-aidx,#s-uni,#s-cal{border-radius:0;box-shadow:0 0 0 100vmax var(--h-bg);clip-path:inset(0 -100vmax)}
+  #s-aidx,#s-uni,#s-cal{border-radius:0;box-shadow:0 0 0 100vmax var(--h-bg);clip-path:inset(0 -100vmax)}
 }
 /* Posiciones: al ensanchar la columna, el espacio que sobra se reparte entre todas las columnas (Peso se lleva la mayor parte y la barra crece)
    --ex = lo que la tabla mide de más sobre los 1.132 px de antes: de 0 (pantalla de 1.212 px) a 260 px (columna completa de 1.440) */
@@ -1257,9 +1257,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#p-body,#pl-body,#b-payers,#
 /* ===== Franjas oscuras iguales en las cinco pestañas (Resumen, Análisis, Movimientos, Universo y Actualidad):
    misma altura, mismas cifras (de 30 a 40 px según el ancho) y, con cuatro cifras, las mismas columnas. Resumen ya no tiene una cifra mayor que las demás ===== */
 @media (min-width:901px){
-    #s-hero .bg{grid-template-columns:repeat(4,minmax(0,1fr))}
-  #s-hero .bg .c0{padding-right:12px}
-  #s-hero,#s-aidx,#s-uni,#s-cal,#mtabs{min-height:0}
+  #s-aidx,#s-uni,#s-cal,#mtabs{min-height:0}
   #h-sub{white-space:nowrap}
 }
 /* en Resumen, la línea de debajo del valor cabe en su columna: por debajo de 1.400 px de ancho se queda sin la liquidez */
@@ -1315,10 +1313,6 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#p-body,#pl-body,#b-payers,#
   :is(#s-aidx,#s-uni,#s-cal) .bg .bl{padding-bottom:8px}
   :is(#s-aidx,#s-uni,#s-cal) .bg .bs{padding-top:8px}
   /* Resumen: la misma altura y el mismo tamaño de cifra que las secciones; lo que la distingue es su color */
-  #s-hero{padding-top:20px;padding-bottom:20px}
-  #s-hero .bg .bl{padding-bottom:8px}
-  #s-hero .bg .bs{padding-top:8px}
-  #s-hero .bg .r2.bv,#s-hero .bg .r2.bv.big{font-size:var(--fs-28);line-height:var(--lh-32);--lhp:var(--lh-32)}
   }
 @media (min-width:1001px){
   #mtabs a{padding:26px clamp(16px,3vw,30px) 26px;gap:0;padding-top:20px;padding-bottom:20px}
@@ -1442,22 +1436,14 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#p-body,#pl-body,#b-payers,#
 .hoja-al{--nt-bg:#E9E3D7;--nt-line:#D3CABA;--nt-fg:#1A1A1A;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3);margin-top:calc(-1 * var(--gap))}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hoja-al{--nt-bg:#2E2820;--nt-line:#463E33;--nt-fg:#EDE9E2;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}}
 :root[data-theme="dark"] .hoja-al{--nt-bg:#2E2820;--nt-line:#463E33;--nt-fg:#EDE9E2;--nt-fg2:var(--ink2);--nt-fg3:var(--ink3)}
-.hoja-al .hal{background:var(--nt-bg);color:var(--nt-fg2);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 40px;align-items:center;padding:16px 32px}
-.hoja-al .hal-tx{display:flex;flex-direction:column;gap:6px;min-width:0}
 .hoja-al .nt-k{font-size:var(--fs-11);font-weight:600;line-height:var(--lh-14);--lhp:var(--lh-14);letter-spacing:var(--ls-up);text-transform:uppercase;color:var(--nt-fg3)}
 .hoja-al p{margin:0;max-width:96ch;font-size:var(--fs-13);line-height:var(--lh-21);--lhp:var(--lh-21)}
 .hoja-al b{font-weight:500;color:var(--nt-fg)}
-#hoja-al .hal .btn{height:auto;min-height:0;padding:0;margin:0;border:0;border-radius:0;background:none;box-shadow:none;font-size:var(--fs-13);line-height:var(--lh-21);--lhp:var(--lh-21);font-weight:500;color:var(--nt-fg);white-space:nowrap;text-decoration:underline;text-decoration-color:var(--nt-fg3);text-underline-offset:4px}   /* «Ver el cuadre», como enlace: alineado con el texto */
-@media (min-width:701px){.hoja-al .hal{box-shadow:0 0 0 100vmax var(--nt-bg);clip-path:inset(0 -100vmax)}}
 
 /* Rendimiento: la cotización de cada empresa (en el PC, en su columna antes de la barra; en el móvil, debajo de la cifra) y la columna
    de la cifra tan ancha como haga falta (un +1.234 % ya no se sale) */
 
 /* el aviso de tu hoja se cierra con ✕ (arriba a la derecha) */
-.hoja-al .hal{position:relative;padding-right:48px}
-.hoja-al .hal-x{position:absolute;top:10px;right:12px;width:36px;height:36px;display:grid;place-items:center;border:0;border-radius:var(--r-8);background:none;color:var(--nt-fg3);cursor:pointer}
-.hoja-al .hal-x:hover{color:var(--nt-fg);background:color-mix(in srgb,var(--nt-fg) 7%,transparent)}
-.hoja-al .hal-x svg{width:16px;height:16px}
 
 
    /* solo con nota; sin nota, la línea se parte sin empezar por «·» */
@@ -1714,7 +1700,6 @@ html.lmono[data-theme="dark"] #s-calm .lgb.kv img.kd{display:none}
 /* ======================= revisión: FL-02, FL-03, PR-01 ======================= */
 /* al abrir, el esqueleto ocupa lo mismo que lo que llega: el mapa ya en 4:3 y las líneas de la franja con su alto (sin saltos) */
 #tmap{aspect-ratio:4/3}
-#s-hero :is(.bs,.bv):empty::before{content:"\00a0"}
 .hy-leg:empty{display:flex;visibility:hidden}.hy-leg:empty::before{content:"\00a0"}
 #s-pos:has(#pos-body .skel){min-height:70vh}
 
@@ -1998,9 +1983,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .pl-sub, .cal-prox{display:none}
 @media (min-width:701px){
   #s-aidx,#s-uni,#s-cal,#mtabs{border-radius:var(--r-12);box-shadow:none;clip-path:none}   /* v472: vuelven, como tarjeta */
-  #s-hero{border-radius:var(--r-12);box-shadow:none;clip-path:none}
   .hoja-al{margin-top:0}
-  .hoja-al .hal{border-radius:var(--r-12);box-shadow:none;clip-path:none}
   #notice .notice{border-radius:var(--r-12);box-shadow:none;clip-path:none}
   .pl-sub{display:block;margin:4px 0 0;font-size:var(--fs-13);line-height:var(--lh-20);color:var(--ink3)}
   .pl-sub b{font-weight:500;color:var(--ink2)} .pl-sub b.pos{color:var(--pos)} .pl-sub b.neg{color:var(--neg)}
@@ -2505,9 +2488,6 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 /* v545 · Resumen (PC) con el estilo nuevo: franja blanca con el bloque negro, el mapa y la evolución; debajo, Posiciones en su tarjeta */
 @media (min-width:701px){
   #v-resumen .gx3.zr{padding-block:56px 72px}
-  #v-resumen .zr #s-hero{margin:0;border-radius:20px}
-  #v-resumen .zr #s-hero .bl{font-size:13px;line-height:18px;font-weight:400;letter-spacing:0;text-transform:none}
-  #v-resumen .zr #s-hero .bv{font-weight:600;letter-spacing:-.02em}
   #v-resumen .zr .duo{display:grid;grid-template-columns:2fr 1fr;gap:64px;margin:40px 0 0}
   #v-resumen .zr .duo>.panel{background:none;box-shadow:none;border:0;padding:0;border-radius:0;min-width:0}
   #v-resumen .zr .duo .chart-head,#v-resumen .zr #l1-side{display:flex;align-items:center;justify-content:space-between;height:32px;min-height:0;margin:0 0 24px;padding:0}
@@ -2796,7 +2776,6 @@ html body .top .zf-nbv{display:none!important}
    «Tu cartera hoy», oscura (el color de la barra): el valor de la cartera con la liquidez, lo de hoy y el mapa.
    «Evolución», arena: el retorno total, la TIR y el gráfico. Los rótulos, en la misma línea; las cifras, sobre la misma base */
 @media (min-width:701px){
-  #v-resumen .zr #s-hero{display:none!important}
   #v-resumen .zr .duo{margin-top:0!important;gap:24px!important;align-items:stretch}
   #v-resumen .zr .duo>.panel{padding:32px 36px 28px!important;border-radius:20px!important}
   #v-resumen .zr .duo>#s-today{background:var(--h-bg)!important;color:var(--h-fg)}
@@ -3618,39 +3597,25 @@ html:not(.hay-datos) .wrap>.view{display:none!important}
   <div class="view" id="v-resumen">
 
   <!-- Resumen -->
-  <section class="panel hero3 band2" id="s-hero">
-    <div class="bg">
-      <div class="c0 r1 bl">Valor de cartera</div>
-      <div class="c0 r2 bv big num" id="h-val"><span class="skel">000.000 €</span></div>
-      <div class="c0 r3 bs num" id="h-sub"></div>
-      <i class="dv d1"></i><i class="dv d2"></i><i class="dv d3"></i>
-      <div class="c1 r1 bl" id="hk-ren-l">Hoy</div>
-      <div class="c1 r2 bv num" id="hk-ren"></div>
-      <div class="c1 r3 bs num" id="hk-ren-s"></div>
-      <div class="c2 r1 bl"><span class="lg">Retorno total</span><span class="sh">Retorno</span></div>
-      <div class="c2 r2 bv num" id="hk-ret"></div>
-      <div class="c2 r3 bs num" id="hk-ret-s"></div>
-      <div class="c3 r1 bl">TIR</div>
-      <div class="c3 r2 bv num" id="hk-tir"></div>
-      <div class="c3 r3 bs num" id="hk-tir-s"></div>
-    </div>
-  </section>
-  <div class="hoja-al" id="hoja-al" role="status" hidden></div>
-
+  <!-- v697 · la portada de Resumen, ya con su estructura (antes la montaba el código al llegar los datos, moviendo los bloques del diseño antiguo) -->
+  <section class="gx3 zr"><h2 class="gx-t r1-h"></h2>
   <div class="duo">
   <!-- Tu cartera hoy -->
   <section class="panel hoy" id="s-today">
     <div class="hy" id="l1-side"><div class="hy-a"><h2 class="st">Tu cartera hoy</h2></div></div>
+    <div class="r1-k"><div class="f"><div class="r1-lab">Valor de cartera</div><div class="r1-num g" data-c="h-val"></div><div class="r1-sub" data-c="h-sub"></div></div><div class="f d"><div class="r1-lab" data-c="hk-ren-l"></div><div class="r1-num" data-c="hk-ren"></div><div class="r1-sub" data-c="hk-ren-s"></div></div></div>
     <div class="tmap" id="tmap"></div>
     <div class="legend hy-leg" id="hy-leg"></div>
   </section>
 
   <section class="panel" id="s-evo">
     <div class="chart-head"><h2 class="st">Evolución</h2></div>
+    <div class="r1-k"><div class="f"><div class="r1-lab">Retorno total</div><div class="r1-num" data-c="hk-ret"></div><div class="r1-sub" data-c="hk-ret-s"></div></div><div class="f"><div class="r1-lab">TIR</div><div class="r1-num" data-c="hk-tir"></div><div class="r1-sub" data-c="hk-tir-s"></div></div></div>
     <div class="chartbox evo-c evo-one"><canvas id="c-evo" role="img" aria-label="Evolución del valor de la cartera"></canvas></div>
     <div class="legend evo-leg"><span style="--c:var(--pos-deep)"><i></i>Valor de cartera</span><span style="--c:var(--g3)"><i class="dash"></i>Aportado</span><span style="--c:var(--evo-msci)"><i class="dash2"></i>MSCI World</span><span><i class="area"></i>Ganancia</span></div>
   </section>
   </div>
+  </section>
 
   <!-- Posiciones -->
   <section class="panel" id="s-pos">
@@ -3666,7 +3631,6 @@ html:not(.hay-datos) .wrap>.view{display:none!important}
         <tbody id="pos-body"><tr><td colspan="13"><span class="skel">Cargando posiciones de la hoja…</span></td></tr></tbody>
       </table>
     </div>
-    <div class="pos-age pos-age-m num" id="pos-age-m"></div>
     
   </section>
 
@@ -4383,7 +4347,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v696";   // la versión publicada, en el pie
+const VER="v697";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4522,7 +4486,7 @@ function renderPositions(){
 
 let chkShow=false;   // el cuadre, si todo cuadra, solo se abre desde el pie
 // v458 · MV-01: las cifras de la tarjeta de Resumen, antes y después de actualizar; las que cambian cuentan hasta la nueva
-const MV_SEL=["#h-val","#hk-ren","#hk-ret","#hk-tir"];
+const MV_SEL=['#v-resumen [data-c="h-val"]','#v-resumen [data-c="hk-ren"]','#v-resumen [data-c="hk-ret"]','#v-resumen [data-c="hk-tir"]'];
 const mvTexto=el=>{ const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT); let n; while((n=w.nextNode())) if(/\d/.test(n.nodeValue)) return n; return null; };
 const mvLee=t=>{ const m=String(t).trim().match(/^([+−-]?)([\d.]+)(?:,(\d+))?(\s*\S*)$/); if(!m) return null;
   const v=parseFloat(m[2].replace(/\./g,"")+"."+(m[3]||"0"))*(m[1]==="−"||m[1]==="-"?-1:1); return {v,d:(m[3]||"").length,mas:m[1]==="+",suf:m[4]}; };
@@ -4537,12 +4501,12 @@ function mvCuenta(ant){ if(matchMedia("(prefers-reduced-motion: reduce)").matche
 function render(d){
   DATA=d; dataV++; const k=d.kpi; setTimeout(()=>{ gxPinta(); maModo(); },0);
   const v=k.value||0;
-  $("h-val").innerHTML = `${nf(0).format(Math.round(v))}\u202F€`;
-  $("h-sub").innerHTML=`Liquidez <b><span class="pv">${eur(k.liquidez||0)}</span></b>`;   // RES-01 (v429): como en el móvil   // la liquidez está en el cuadre y las empresas, en Posiciones
-  { const a=(d.stats.find(x=>x.l==="Antigüedad media")||{}).v; const np=d.pos.filter(p=>!p.isOption).length, no=d.pos.length-np, h=`<b>${nf(0).format(np)}</b> ${np===1?"posición":"posiciones"}${no?` y <b>${nf(0).format(no)}</b> ${no===1?"opción":"opciones"}`:""}${isNum(a)?`<span class="pa-d"> · </span>antigüedad<span class="pa-m"> media</span> <b>${nf(1).format(a)} años</b>`:""}`; $("pos-age").innerHTML=h; $("pos-age-m").innerHTML=h; }   // cuántas hay (las acciones, como en el mapa, y aparte las opciones) y su antigüedad
-  $("hk-ret").className="c2 r2 bv num "+cls(k.ret); $("hk-ret").textContent=seur(k.ret); $("hk-ret-s").innerHTML=k.retSub;
-  $("hk-tir").textContent=pct(k.tir,1); $("hk-tir-s").innerHTML=isNum(k.tir)&&isNum(k.vsIdx)?`MSCI World <b>${pct(k.tir-k.vsIdx,1)}</b>`:"";
-  // la cuarta casilla es la del día (renderHoy); los dividendos del año siguen en la franja de Análisis
+  R1("h-val").innerHTML = `${nf(0).format(Math.round(v))}\u202F€`;
+  R1("h-sub").innerHTML=`Liquidez <b><span class="pv">${eur(k.liquidez||0)}</span></b>`;   // RES-01 (v429): como en el móvil   // la liquidez está en el cuadre y las empresas, en Posiciones
+  { const a=(d.stats.find(x=>x.l==="Antigüedad media")||{}).v; const np=d.pos.filter(p=>!p.isOption).length, no=d.pos.length-np, h=`<b>${nf(0).format(np)}</b> ${np===1?"posición":"posiciones"}${no?` y <b>${nf(0).format(no)}</b> ${no===1?"opción":"opciones"}`:""}${isNum(a)?`<span class="pa-d"> · </span>antigüedad<span class="pa-m"> media</span> <b>${nf(1).format(a)} años</b>`:""}`; $("pos-age").innerHTML=h; }   // cuántas hay (las acciones, como en el mapa, y aparte las opciones) y su antigüedad
+  r1Signo(R1("hk-ret"),k.ret); R1("hk-ret").textContent=seur(k.ret); R1("hk-ret-s").innerHTML=k.retSub;
+  R1("hk-tir").textContent=pct(k.tir,1); R1("hk-tir-s").innerHTML=isNum(k.tir)&&isNum(k.vsIdx)?`MSCI World <b>${pct(k.tir-k.vsIdx,1)}</b>`:"";
+  // la segunda casilla de «Tu cartera hoy» es la del día (renderHoy)
 
   renderHoy(); renderTreemap();
 
@@ -4578,18 +4542,6 @@ function render(d){
   $("s-check").hidden=true;   // HI-01: el Cuadre ya no va en la portada; se abre desde Opciones o desde «Ver el cuadre»
   $("more").classList.toggle("aviso",bad.length>0); $("more").title=bad.length?`El cuadre tiene ${bad.length} ${bad.length>1?"diferencias":"diferencia"}`:""; { const mt=$("mm-chk-t"); mt.className=$("chk-tag").className; mt.textContent=$("chk-tag").textContent; }
   $("foot").innerHTML=`<span class="f-l">Datos de tu hoja<span id="f-h"></span> · versión ${VER.replace(/^v/,"")}<span class="f-op"> · <button type="button" class="foot-b foot-m${bad.length?" aviso":""}" id="f-more" aria-haspopup="menu" aria-expanded="${$("more").getAttribute("aria-expanded")||"false"}">Opciones</button></span></span>`; footHora();   // v475 · SI-06 
-  // tu hoja: lo que no tiene cotización (se valora a precio de compra) y lo que no cuadra, en un solo aviso, en una franja debajo del bloque oscuro
-  { const n=d.noPx||[], bc=bad.filter(c=>!c.data), bd=bad.filter(c=>c.data), el=$("hoja-al");
-    const yL=L=>L.length>1?L.slice(0,-1).join(", ")+" y "+L[L.length-1]:L[0]||"";
-    const lw=texto=>/^.[a-záéíóúñ]/.test(texto)?texto[0].toLowerCase()+texto.slice(1):texto, ls=xs=>yL(xs.map(c=>esc(lw(c.l))));   // «frente al MSCI World» y «TIR anualizada», con sus mayúsculas
-    const t=[];
-    if(n.length) t.push(`<b>${yL(n.map(p=>esc(p.name)))}</b> ${n.length>1?"no tienen":"no tiene"} cotización en tu hoja: la web ${n.length>1?"las":"la"} valora a precio de compra.`);
-    if(bc.length) t.push(`${n.length?"Además, la web no cuadra":"No cuadra"} con tu hoja: ${yL(bc.map(c=>esc(c.l)))}.`);
-    if(bd.length) t.push(`Revisa en tu hoja: ${ls(bd)}.`);
-    const sig=t.join(" "); let off=""; try{ off=localStorage.getItem("hoja-al")||""; }catch{}
-    el.hidden=!t.length||off===sig;   // cerrado con ✕: no vuelve mientras diga lo mismo
-    el.innerHTML=t.length?`<div class="hal"><div class="hal-tx"><span class="nt-k">Tu hoja</span><p>${sig}</p></div>${bad.length?`<button type="button" class="btn" id="chk-go">Ver el cuadre</button>`:""}<button type="button" class="hal-x" aria-label="Cerrar el aviso"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>`:"";
-    const x=el.querySelector(".hal-x"); if(x) x.onclick=()=>{ el.hidden=true; try{ localStorage.setItem("hoja-al",sig); }catch{} }; }
   const cf=(c,val)=>!isNum(val)?"":c.kind==="pct"?pct(val,2):c.kind==="pp"?puntosPct(val):c.kind==="n"?nf(0).format(val):eur(val,2);
   const cdiff=c=>c.kind==="pct"||c.kind==="pp"?puntosPct(c.a-c.b):c.kind==="n"?cifraSigno(c.b-c.a,0)+" fallan":seur(c.a-c.b,2);
   $("chk").innerHTML = `<div class="ck h"><span></span><span>Web</span><span>Hoja</span><span></span></div>` + d.check.map(c=>`<div class="ck"><span>${esc(c.l)}${c.note?`<small>${esc(c.note)}</small>`:""}</span><span class="num">${cf(c,c.a)}</span><span class="num mute">${cf(c,c.b)}</span><span class="num ${c.ok?"":c.ok===false?"warn-t":"mute"}">${c.ok?"✓ Cuadra":c.ok===false?(c.kind==="n"?"":"Δ ")+cdiff(c):""}</span></div>`).join("");
@@ -4746,10 +4698,15 @@ function renderHoy(){
   if(!DATA) return;
   $("l1-side").innerHTML=hyHead();   // el bloque del mapa, solo con su título: la cifra del día va arriba, en el bloque oscuro
   const k=DATA.kpi, ss=lastSession(), c=cls(k.today);
-  $("hk-ren-l").innerHTML=ss.closed?`<span class="lg">Última sesión</span><span class="sh">Sesión</span>`:"Hoy";
-  $("hk-ren").className="c1 r2 bv num "+c; $("hk-ren").textContent=seur(k.today);
-  $("hk-ren-s").innerHTML=`<span class="${c}">${pct(k.todayPct,1,true)}</span> ${ss.closed?"· "+ss.lbl:"sobre el cierre anterior"}`;
+  R1("hk-ren-l").textContent=ss.closed?"Última sesión":"Hoy";
+  r1Signo(R1("hk-ren"),k.today); R1("hk-ren").textContent=seur(k.today);
+  R1("hk-ren-s").innerHTML=`<span class="${c}">${pct(k.todayPct,1,true)}</span> sobre el cierre anterior`;
+  if(zfSinDia()){ R1("hk-ren").textContent="—"; R1("hk-ren").classList.remove("pos","neg"); R1("hk-ren-s").textContent=""; }   /* v603: sin datos del día, «—» en vez de 0 € y 0,0 % */
 }
+/* v697 · las cifras de Resumen (PC) van directamente en sus tarjetas. Antes se escribían en la franja del diseño antiguo, escondida, y un
+   observador las copiaba a las tarjetas cada vez que cambiaban */
+function R1(c){ return document.querySelector(`#v-resumen [data-c="${c}"]`); }
+function r1Signo(el,v){ const c=cls(v); el.classList.toggle("pos",c==="pos"); el.classList.toggle("neg",c==="neg"); }
 
 /* ---------- concentración ---------- */
 
@@ -6791,9 +6748,8 @@ $("more-m").addEventListener("click",e=>{ if(e.target.closest("#mm-calc")) zfCal
 // · el mapa: cada casilla exactamente de su peso; las que no caben en 84 × 64 px van juntas en «Otras»; las empresas cuya bolsa aún no ha abierto,
 //   con la última sesión y el color apagado; casillas como el mosaico de Universo (logo centrado con tope de 96 × 36 px y la cifra debajo)
 function zfResumen(){ if(!DATA) return; const V=$("v-resumen"); if(!V) return;
-  const s=gxSec("v-resumen"); s.classList.add("zr");
-  [$("s-hero"),$("hoja-al"),V.querySelector(":scope > .duo")].forEach(e=>{ if(e&&e.parentElement!==s) s.append(e); });
-  gxPega(s); zfMapa(); zfEvoKw(); zfR1(); }
+  const s=gxSec("v-resumen");
+  gxPega(s); zfMapa(); zfEvoKw(); zfR1Frase(); }
 function zfMapa(){ const T=$("tmap"); if(!T||!DATA) return; const W=Math.round(T.clientWidth), H=386;   /* v600: el mapa, más bajo, dentro de la tarjeta «Tu cartera hoy» (antes 516) */ if(W<200) return;
   const all=DATA.pos.filter(p=>!p.isOption&&p.shares>0&&p.value>0).sort((a,b)=>b.value-a.value).map(p=>{ const hoy=isNum(p.today); return {p,v:p.value,ch:hoy?p.today:null,sin:!hoy}; });   // v546: las que aún no cotizan, como antes (casilla neutra, sin cifra)
   if(!all.length) return;
@@ -6972,7 +6928,7 @@ function zfMovSombra(){ const h=$("m-head"); if(!h) return; const t=h.closest("t
    (al bajar en Resumen y siempre en las demás pestañas). Se copia de la propia tarjeta, así que en modo privado sale «••••» */
 { const tl=document.querySelector(".top .tools"), hora=tl&&tl.querySelector(".status.hora");
   if(tl&&hora){ const nb=document.createElement("span"); nb.className="zf-nbv"; nb.setAttribute("aria-hidden","true"); nb.innerHTML='<b class="pv"></b>'; tl.insertBefore(nb,hora);
-    const hero=$("s-hero"), val=$("h-val"), b=nb.querySelector("b");
+    const hero=document.querySelector("#s-today .r1-k"), val=R1("h-val"), b=nb.querySelector("b");
     const copia=()=>{ b.textContent=val?val.textContent.trim():""; };   // v586: solo el valor, sin la variación del día
     const mira=()=>{ if(document.documentElement.classList.contains("m-app")) return; const tb=document.querySelector(".top"), alto=tb?tb.getBoundingClientRect().bottom:48;
       const visible=hero&&hero.getClientRects().length&&hero.getBoundingClientRect().bottom>alto;
@@ -6988,37 +6944,20 @@ function zfMovSombra(){ const h=$("m-head"); if(!h) return; const t=h.closest("t
     const cs=getComputedStyle(w), der=w.getBoundingClientRect().right-parseFloat(cs.paddingRight||0);
     M.style.setProperty("--mm-x",(der-M.offsetWidth).toFixed(2)+"px"); M.style.setProperty("--mm-y",Math.round(tb.getBoundingClientRect().bottom+8)+"px"); })); }
 
-// v600 · Resumen (PC): las cifras de la franja pasan a las dos tarjetas. A la izquierda, en «Tu cartera hoy», el valor de la cartera
-// (con la liquidez) y lo de hoy; a la derecha, en «Evolución», el retorno total y la TIR. La franja sigue existiendo (oculta en el PC)
-// y es la que se rellena con los datos: aquí solo se copian sus cifras cada vez que cambian, con sus colores y el modo privado
-function zfR1(){ const T=$("s-today"), E=$("s-evo"), H=$("s-hero"); if(!T||!E||!H) return;
-  const f=(l,n,s,d)=>`<div class="f${d?" d":""}"><div class="r1-lab"${l[0]==="#"?` data-c="${l.slice(1)}"`:""}>${l[0]==="#"?"":l}</div><div class="r1-num${n[1]?" "+n[1]:""}" data-c="${n[0]}"></div><div class="r1-sub" data-c="${s}"></div></div>`;
-  if(!T.querySelector(".r1-k")){ const a=document.createElement("div"); a.className="r1-k"; a.innerHTML=f("Valor de cartera",["h-val","g"],"h-sub")+f("#hk-ren-l",["hk-ren"],"hk-ren-s",1); ($("l1-side")||T.firstElementChild).after(a); }
-  if(!E.querySelector(".r1-k")){ const b=document.createElement("div"); b.className="r1-k"; b.innerHTML=f("Retorno total",["hk-ret"],"hk-ret-s")+f("TIR",["hk-tir"],"hk-tir-s"); (E.querySelector(".chart-head")||E.firstElementChild).after(b); }
-  const copia=()=>{ document.querySelectorAll("#v-resumen .r1-k [data-c]").forEach(el=>{ const o=$(el.dataset.c); if(!o) return;
-      if(el.dataset.c==="hk-ren-l") el.textContent=((o.querySelector(".lg")||o).textContent||"").trim();   /* v602: con la bolsa cerrada, «Última sesión» (antes salía «Última sesiónSesión») */
-      else if(el.dataset.c==="hk-ren-s"){ const p=o.querySelector("span"); el.innerHTML=p?p.outerHTML+" sobre el cierre anterior":o.innerHTML; }   /* v629: el porcentaje del día con su frase (con la bolsa cerrada, la última sesión frente a su cierre anterior) */
-      else el.innerHTML=o.innerHTML;
-      ["pos","neg"].forEach(c=>el.classList.toggle(c,o.classList.contains(c))); });
-    if(zfSinDia()){ const n=document.querySelector('#v-resumen .r1-k [data-c="hk-ren"]'), u=document.querySelector('#v-resumen .r1-k [data-c="hk-ren-s"]');   /* v603: sin datos del día, «—» en vez de 0 € y 0,0 % */
-      if(n){ n.textContent="—"; n.classList.remove("pos","neg"); } if(u) u.textContent=""; }
-    zfR1Frase(); };
-  copia(); if(!zfR1.mo){ zfR1.mo=new MutationObserver(copia); zfR1.mo.observe(H,{subtree:true,childList:true,characterData:true,attributes:true}); } }
-
 // v602 · G-01: Resumen abre con su frase, como las otras cuatro pestañas (titular de 38 px y, en gris, la segunda frase).
 // Primera frase, lo de hoy: cuántas empresas suben o bajan y cuánto se mueve la cartera. Segunda, lo de siempre: lo ganado y su porcentaje sobre lo aportado
 function zfR1Frase(){ const S=document.querySelector("#v-resumen > section.gx3"); if(!S||!DATA) return;
   let h=S.querySelector(":scope > h2.r1-h"); if(!h){ h=document.createElement("h2"); h.className="gx-t r1-h"; S.prepend(h); }
   const all=DATA.pos.filter(p=>!p.isOption&&p.shares>0&&p.value>0), cot=all.filter(p=>isNum(p.today)), up=cot.filter(p=>p.today>0).length, dn=cot.filter(p=>p.today<0).length, N=all.length;
-  const cerr=!!$("hk-ren-l").querySelector(".lg");   // con la bolsa cerrada, la franja habla de la última sesión
-  const pd=(($("hk-ren-s").querySelector("span")||{}).textContent||"").trim(), neg=/^[−-]/.test(pd), sinS=pd.replace(/^[+−-]\s*/,""), cero=!pd||/^0(,0+)?\s*%$/.test(sinS);
+  const cerr=lastSession().closed;   // con la bolsa cerrada, la frase habla de la última sesión
+  const pd=(pct(DATA.kpi.todayPct,1,true)||"").trim(), neg=/^[−-]/.test(pd), sinS=pd.replace(/^[+−-]\s*/,""), cero=!pd||/^0(,0+)?\s*%$/.test(sinS);
   const de=cot.length===N?`de tus ${N} empresas`:`de las ${cot.length} empresas que ya cotizan`;
   const vb=cerr?["subieron","bajaron"]:["suben","bajan"];
   const mov=dn>up?`${vb[1]} ${dn}`:up>dn?`${vb[0]} ${up}`:`${vb[0]} ${up} y ${vb[1]} ${dn}`;
   const car=cero?(cerr?"la cartera se quedó igual":"la cartera se queda igual"):neg?(cerr?`la cartera bajó un ${sinS}`:`la cartera baja un ${sinS}`):(cerr?`la cartera subió un ${sinS}`:`la cartera sube un ${sinS}`);   // v607: «sube» y «baja» (antes «gana» y «cede»)
   const wd=new Date().getDay();   /* v603: sin ningún cambio del día (antes de las 9, la hoja trae «-»), no se inventa: se dice que no ha abierto */
   const l1=zfSinDia()?(wd===0||wd===6?"Las bolsas no abren hasta el lunes.":cerr?"Las bolsas aún no han abierto.":`Aún no cotiza ninguna de tus ${N} empresas.`):`${cerr?"En la última sesión":"Hoy"} ${mov} ${de} y ${car}.`;
-  const rt=($("hk-ret").textContent||"").trim(), rneg=/^[−-]/.test(rt), rabs=rt.replace(/^[+−-]\s*/,""), rp=(($("hk-ret-s").querySelector("span")||{}).textContent||"").trim().replace(/^[+−-]\s*/,"");
+  const rt=(R1("hk-ret").textContent||"").trim(), rneg=/^[−-]/.test(rt), rabs=rt.replace(/^[+−-]\s*/,""), rp=((R1("hk-ret-s").querySelector("span")||{}).textContent||"").trim().replace(/^[+−-]\s*/,"");
   const l2=!rt?"":rneg?`Desde el inicio pierdes <span class="pv">${esc(rabs)}</span>, un ${esc(rp)} menos de lo aportado.`:`Desde el inicio ganas <span class="pv">${esc(rabs)}</span>, un ${esc(rp)} sobre lo aportado.`;
   const html=`<span class="l1">${esc(l1)}</span>${l2?`<span class="l2">${l2}</span>`:""}`; if(h.innerHTML!==html) h.innerHTML=html; }
 
@@ -8100,7 +8039,7 @@ async function load(fresh){
     else notice(`<h2>No he podido leer la hoja ahora mismo</h2><p>${DATA?"Sigues viendo los últimos datos cargados. ":""}${actz(1)} en unos segundos.</p>`);
   }finally{ busy=false; $("refresh").disabled=!canRead(); if(pending){ pending=false; load(true); } }
 }
-document.addEventListener("click",e=>{ if(e.target.id==="allow"){ notice(""); load(true); } if(e.target.id==="chk-go") abreCuadre();
+document.addEventListener("click",e=>{ if(e.target.id==="allow"){ notice(""); load(true); } 
   if(e.target.closest("#chk-show")){ if(chkShow&&!$("chk-go")&&view==="resumen"){ chkShow=false; $("s-check").hidden=true; return; } chkShow=true; $("s-check").hidden=false; $("chk-d").open=true; if(view!=="resumen") navega("resumen",true); requestAnimationFrame(()=>$("s-check").scrollIntoView({behavior:"smooth",block:"start"})); } });
 document.addEventListener("click",e=>{ const b=e.target.closest(".info"), pop=$("pop");
   if(!b){ if(!e.target.closest("#pop")) pop.hidden=true; return; }
