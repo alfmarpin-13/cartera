@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-XCCzK2JGnNx65ok5E6EHnAYxcWdqVutFzHxO1GiD6l4=' 'sha256-imVVcP8xzbkHUFlM0nW6Bq3BKy5XEh1xoWfz9PU9fOc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-XCCzK2JGnNx65ok5E6EHnAYxcWdqVutFzHxO1GiD6l4=' 'sha256-D/SnhhJS3mRZkWeWb05udI9wZU2lO4MRa94/YwaCrZ4=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,11 +11,11 @@
 <meta name="theme-color" content="#1F2B25" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v683">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v683">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v683">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v683">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v683">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v684">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v684">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v684">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v684">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v684">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); if(navigator.standalone){ const w=Math.min(screen.width,screen.height), hh=Math.max(screen.width,screen.height), SB={"402x874":62,"440x956":62,"393x852":59,"430x932":59,"390x844":47,"428x926":47,"375x812":44,"414x896":44}[w+"x"+hh]; let b=SB; if(!b){ const g=hh-innerHeight*w/innerWidth; b=g>0&&g<80?g:0; } R.style.setProperty("--m-sb2",(b/2).toFixed(1)+"px"); } let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3566,6 +3566,22 @@ html.m-app #kx .kx-in kbd,html.m-app #kx .kx-f{display:none}
 #ma #m-ptrg .m-ptr-a{stroke:var(--gx-id,#86D3AA)}
 #ma #m-ptrg .m-ptr-d{fill:var(--gx-id,#86D3AA)}
 #m-ptrg[data-listo] span{color:var(--m-tfg)}
+
+/* v684 · tirar para actualizar, fluido: el indicador mide 160 px y solo se ve el trozo del hueco (clip-path con --m-h); el contenido baja la
+   mitad de lo que crece el hueco para quedar en su centro (transform); los tres textos, superpuestos, se funden en 0,18 s */
+#ma #m-ptrg{display:none;height:160px;clip-path:inset(0 0 calc(160px - var(--m-h,0px)) 0);will-change:opacity,clip-path;contain:strict}
+html.m-app.m-ios #ma #m-ptrg{display:block}
+#ma #m-ptrg .m-pgi{position:absolute;left:0;right:0;top:0;height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transform:translate3d(0,calc((var(--m-h,0px) - 160px) / 2),0);will-change:transform}
+#ma #m-ptrg .m-pgt{display:grid;place-items:center}
+#ma #m-ptrg .m-pgt b{grid-area:1/1;font-weight:500;white-space:nowrap;opacity:0;transition:opacity .18s}
+#ma #m-ptrg:not([data-listo]):not([data-act]) .m-pgt .a,#ma #m-ptrg[data-listo]:not([data-act]) .m-pgt .b,#ma #m-ptrg[data-act] .m-pgt .c{opacity:1}
+#ma #m-ptrg[data-listo] .m-pgt b{color:var(--m-tfg)}
+#ma #m-ptrg .m-ptr-d{transition:transform .25s cubic-bezier(.3,1.5,.5,1);transform-box:fill-box;transform-origin:center}
+/* v684 · el «zoom» de la barra al tocarla, más cuidado (Alfonso: «un poco basto»): 1,8 % en lugar de 3,5 %, entrada suave sin rebote
+   (0,28 s) y vuelta con un rebote mínimo (0,5 s); la iluminación, más tenue (12 % en lugar de 22 %) */
+#ma-tabs{transition:transform .5s cubic-bezier(.25,1.12,.4,1),background-color .25s}
+#ma-tabs.act{transform:translateX(-50%) scale(1.018);transition:transform .28s cubic-bezier(.2,.8,.3,1),background-color .25s}
+#ma-tabs::before{background:rgba(255,255,255,.12);transition:opacity .3s ease}
 /* v680 · G-04 · AGENDA DEL CALENDARIO (PC): tarjeta de detalle bajo los dos meses, filas de 44 px: día · logo · empresa · qué es · importe · cuándo */
 .gxag .gxag-m{margin:28px 0 8px}
 .gxag .gxan-t + .gxag-m{margin-top:0}
@@ -4366,7 +4382,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v683";   // la versión publicada, en el pie
+const VER="v684";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7309,10 +7325,13 @@ if(MA_IOS){ document.documentElement.classList.add("m-ios"); let on=false, raf=0
     puede=()=>document.documentElement.classList.contains("m-app")&&MA.pg!=="calc"&&MA.pg!=="cq"&&$("kx").hidden&&(!$("sheet")||$("sheet").hidden),   /* con la ficha o la búsqueda abiertas, no */
     /* v670 · en el hueco que se abre entre la barra y la página al tirar: el anillo se va llenando con el verde de la marca y dice qué pasa
        («Desliza para actualizar»; pasado el umbral, «Suelta para actualizar»). Ocupa justo el hueco (su alto es el del tirón), así que nunca pisa la página */
-    G=(()=>{ const e=document.createElement("div"); e.id="m-ptrg"; e.setAttribute("aria-hidden","true"); e.innerHTML=`<svg viewBox="0 0 32 32"><circle class="m-ptr-r" cx="16" cy="16" r="12"/><circle class="m-ptr-a" cx="16" cy="16" r="12" pathLength="100"/><circle class="m-ptr-d" cx="16" cy="16" r="4.5"/></svg><span>Desliza para actualizar</span>`; const m=$("ma"); if(m) m.appendChild(e); return e; })(),
-    hueco=(p,txt)=>{ if(!G) return; const h=Math.max(0,-scrollY); if(p<=0||h<1){ if(G.style.opacity!=="0"){ G.style.opacity="0"; G.style.height="0px"; G.removeAttribute("data-listo"); } return; }
-      const ok=p>=LIM, t=txt||(ok?"Suelta para actualizar":"Desliza para actualizar"); G.style.opacity=Math.min(1,Math.max(0,(h-14)/28)).toFixed(2); G.style.height=h.toFixed(1)+"px"; G.style.setProperty("--m-prog",Math.min(100,p/LIM*100).toFixed(1));   /* del alto exacto del hueco: nunca pisa la página */
-      if(ok!==G.hasAttribute("data-listo")) G.toggleAttribute("data-listo",ok); if(G.lastChild.textContent!==t) G.lastChild.textContent=t; },
+    G=(()=>{ const e=document.createElement("div"); e.id="m-ptrg"; e.setAttribute("aria-hidden","true"); e.innerHTML=`<div class="m-pgi"><svg viewBox="0 0 32 32"><circle class="m-ptr-r" cx="16" cy="16" r="12"/><circle class="m-ptr-a" cx="16" cy="16" r="12" pathLength="100"/><circle class="m-ptr-d" cx="16" cy="16" r="4.5"/></svg><span class="m-pgt"><b class="a">Desliza para actualizar</b><b class="b">Suelta para actualizar</b><b class="c">Actualizando…</b></span></div>`; const m=$("ma"); if(m) m.appendChild(e); return e; })(),
+    /* v684 · SIN RECOLOCAR NADA EN CADA FOTOGRAMA: el indicador mide siempre 160 px; de él solo se ve el trozo del hueco (recorte) y su
+       contenido se desplaza para quedar en el centro del hueco. Antes se cambiaba su alto en cada fotograma y el navegador recolocaba el
+       anillo y el texto (iba a saltos). Los tres textos están uno encima de otro y se funden entre sí, sin cambiar de golpe */
+    hueco=(p,act)=>{ if(!G) return; const h=Math.max(0,-scrollY); if(p<=0||h<1){ if(G.style.opacity!=="0"){ G.style.opacity="0"; G.style.setProperty("--m-h","0px"); G.removeAttribute("data-listo"); G.removeAttribute("data-act"); } return; }
+      const ok=p>=LIM; G.style.opacity=Math.min(1,Math.max(0,(h-14)/28)).toFixed(3); G.style.setProperty("--m-h",Math.min(160,h).toFixed(1)+"px"); G.style.setProperty("--m-prog",Math.min(100,p/LIM*100).toFixed(1));
+      if(ok!==G.hasAttribute("data-listo")) G.toggleAttribute("data-listo",ok); if(!!act!==G.hasAttribute("data-act")) G.toggleAttribute("data-act",!!act); },
     pon=p=>{ hueco(p); const c=punto(); if(!c) return; if(p<=0){ listo=false; if(c.style.transform){ c.style.transition=""; c.style.transform=""; } return; }
       listo=p>=LIM; c.style.transition=listo?"":"none";   /* pegado al dedo; al llegar al umbral, el salto con muelle */
       c.style.transform=`scale(${(1+.8*Math.min(1,p/LIM)+(listo?.25:0)).toFixed(3)})`; },
@@ -7327,7 +7346,7 @@ if(MA_IOS){ document.documentElement.classList.add("m-ios"); let on=false, raf=0
      siguen al hueco) hasta que la página vuelve a su sitio; si se actualiza, dice «Actualizando…» con el anillo lleno */
   const fin=e=>{ if(!on||(e.touches&&e.touches.length)) return; const va=listo||-scrollY>=LIM||(scrollY<=0&&goma(yd-y0)>=LIM);
     on=false; cancelAnimationFrame(raf); raf=0; listo=false; { const c=punto(); if(c){ c.style.transition=""; c.style.transform=""; } }
-    const sigue=()=>{ raf=0; if(on) return; const h=-scrollY; if(h>.5){ hueco(va?Math.max(h,LIM):h,va?"Actualizando…":"Desliza para actualizar"); raf=requestAnimationFrame(sigue); } else hueco(0); };
+    const sigue=()=>{ raf=0; if(on) return; const h=-scrollY; if(h>.5){ hueco(va?Math.max(h,LIM):h,va); raf=requestAnimationFrame(sigue); } else hueco(0); };
     raf=requestAnimationFrame(sigue);
     if(va){ const rf=$("refresh"); if(rf&&!rf.disabled) rf.click(); } };   /* el punto late mientras se lee la hoja (maLate) */
   addEventListener("touchend",fin,{passive:true}); addEventListener("touchcancel",fin,{passive:true}); }
