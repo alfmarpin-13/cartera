@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-PHsfSFR1pzD/islXYhc+robzHA2ZFAMhzyVKAT7+7F4=' 'sha256-763Caql3OKFjB0EVvR1EG+2h53FZoqxz7wm16lzF+xg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-PHsfSFR1pzD/islXYhc+robzHA2ZFAMhzyVKAT7+7F4=' 'sha256-DngB7CoUi/s8odWYhl7UF7IVkxxiMTk2U4pYDdc44Bw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,11 +11,11 @@
 <meta name="theme-color" content="#1F2B25" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v679">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v679">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v679">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v679">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v679">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v680">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v680">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v680">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v680">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v680">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); if(navigator.standalone){ const sp=()=>{ if(!R.classList.contains("m-splash")) return removeEventListener("resize",sp); const dy=(screen.height-innerHeight*screen.width/innerWidth)/2; R.style.setProperty("--m-spdy",(dy>0&&dy<60?dy:0).toFixed(1)+"px"); }; sp(); requestAnimationFrame(sp); addEventListener("resize",sp); } let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3521,6 +3521,43 @@ html.m-app #kx .kx-in kbd,html.m-app #kx .kx-f{display:none}
 #ma :is(#m-pg-res,#m-pg-ana,#m-pg-mov,#m-pg-cal,#m-pg-uni,#m-pg-calc,#m-pg-cq) .m-dark{height:71px;min-height:0;box-sizing:border-box;overflow:hidden}
 #ma :is(#m-pg-res,#m-pg-ana,#m-pg-mov,#m-pg-cal,#m-pg-uni,#m-pg-calc,#m-pg-cq) .m-blk{height:63px;min-height:0}
 #ma :is(#m-pg-ana,#m-pg-mov,#m-pg-cal,#m-pg-uni,#m-pg-calc,#m-pg-cq) :is(.m-st2,.m-pila>:nth-child(3),.m-pila>:nth-child(4)){position:relative;top:1px}
+
+/* v680 · G-04 · CALENDARIO DEL IPHONE CON LOGOS EN LA REJILLA (como el PC): cada día mide 50 × 60 px (antes 42 de alto) para el número (26 px)
+   y una fila de logos de 16 px de alto (dos como mucho, de hasta 22 px de ancho; con más, el primero y «+N»). Los días con resultados, en
+   casilla oscura con el número y los logos en claro, como en el PC */
+#ma .m-mes .ds{row-gap:4px}
+#ma .m-mes .ds button{height:60px;gap:4px;padding:3px 0 0;border-radius:9px}
+#ma .m-mes .ds button span{display:flex;align-items:center;justify-content:center;gap:3px;height:16px}
+#ma .m-mes .ds button .m-cl{display:grid;place-items:center;width:22px;height:16px}
+#ma .m-mes .ds button .m-cl img{max-width:22px!important;max-height:15px!important;width:auto!important;height:auto!important;filter:brightness(0) invert(var(--m-logo));opacity:.85}
+#ma .m-mes .ds button .m-cl .m-ini{font-size:9px;line-height:1}
+#ma .m-mes .ds button em{font-style:normal;font-size:10px;font-weight:600;color:var(--m-ink2)}
+#ma .m-mes .ds button.res{background:var(--m-ink);color:var(--m-card)}
+#ma .m-mes .ds button.res .m-cl img{filter:brightness(0) invert(calc(1 - var(--m-logo)));opacity:.9}
+#ma .m-mes .ds button.res em{color:var(--m-card)}
+#ma .m-mes .ds button.res.pas{opacity:.55;color:var(--m-card)}
+#ma .m-mes .ds button.pas .m-cl img{opacity:.45}
+#ma .m-ley2 i.r{width:10px;height:10px;border-radius:3px;background:var(--m-ink)}
+/* v680 · G-04 · AGENDA DEL CALENDARIO (PC): tarjeta de detalle bajo los dos meses, filas de 44 px: día · logo · empresa · qué es · importe · cuándo */
+.gxag .gxag-m{margin:28px 0 8px}
+.gxag .gxan-t + .gxag-m{margin-top:0}
+.gxag-l{display:flex;flex-direction:column}
+.gxag-r{display:grid;grid-template-columns:64px 72px minmax(0,1.2fr) minmax(0,1.6fr) 110px 110px;align-items:center;column-gap:16px;height:44px;padding:0 12px;border-radius:8px;font-size:15px;line-height:20px;color:var(--ink);cursor:pointer}
+.gxag-r+.gxag-r{box-shadow:inset 0 1px 0 var(--line)}
+.gxag-r:hover{background:color-mix(in srgb,var(--ink) 4%,transparent);box-shadow:none}
+.gxag-r:hover+.gxag-r{box-shadow:none}
+.gxag-r:focus-visible{outline:2px solid var(--gx-id);outline-offset:-2px}
+.gxag-r .dd{color:var(--ink3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.gxag-r .lg{display:flex;justify-content:center;align-items:center;height:28px}
+.gxag-r .nm{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gxag-r .nm .mia{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gx-id);margin-left:6px;vertical-align:2px}
+.gxag-r .qu{color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gxag-r.r .qu{color:var(--ink)}
+.gxag-r b{font-weight:500;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.gxag-r .cu{color:var(--ink3);text-align:right;white-space:nowrap}
+.gxag-r.pas .nm,.gxag-r.pas .qu,.gxag-r.pas b{color:var(--ink3)}
+.gxag-r.pas .lg{opacity:.5}
+.gxag-v{margin:0;color:var(--ink3);font-size:15px}
 </style>
 
 <div class="wrap">
@@ -3733,7 +3770,7 @@ html.m-app #kx .kx-in kbd,html.m-app #kx .kx-f{display:none}
  <div id="m-pg-cal" data-off aria-hidden="true">
  <div class="m-dark"><div class="m-hero"><div class="m-blk"><div class="m-big" id="m-c-tot"></div><div class="m-cab m-st2" id="m-c-sub"></div>
   <div class="m-pila dos" id="m-c-pila"></div></div></div></div>
- <div class="m-sec"><h2 id="m-c-mes"></h2><span class="m-der m-ley2"><i class="d"></i>Dividendo<i class="r"></i>Resultados</span></div>
+ <div class="m-sec"><h2 id="m-c-mes"></h2><span class="m-der m-ley2"><i class="r"></i>Resultados</span></div>
  <div class="m-list m-mes" id="m-c-grid"></div>
  <div class="m-sec m2"><h2>Agenda</h2><div class="m-sel" role="group" aria-label="Empresas" data-g="cfil"><button type="button" data-o="pf" aria-pressed="true"><b>Mi cartera</b></button><button type="button" data-o="todas" aria-pressed="false"><b>Universo</b></button></div></div>
  <div id="m-c-ag"></div>
@@ -4301,7 +4338,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v679";   // la versión publicada, en el pie
+const VER="v680";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -7417,8 +7454,10 @@ function maCalMes(E,hoy){ const y=hoy.getFullYear(), m=hoy.getMonth(), d0=new Da
   $("m-c-mes").textContent=maCap(MA_MES[m])+" "+y;
   let h='<div class="ws">'+["L","M","X","J","V","S","D"].map(x=>`<span>${x}</span>`).join("")+'</div><div class="ds">'+'<span></span>'.repeat(ini);
   for(let d=1;d<=nd;d++){ const ev=por.get(d)||[], c=(d===hoy.getDate()?" hoy":"")+(d<hoy.getDate()?" pas":"");
-    const pts=ev.slice(0,3).map(e=>`<i class="${e.k==="d"?"d":e.est&&!e.ya?"e":"r"}"></i>`).join("");
-    h+=`<button type="button" class="${c.trim()}"${ev.length?` data-d="${y}-${m+1}-${d}"`:" disabled"} aria-label="${d} de ${MA_MES[m]}${ev.length?`: ${ev.map(e=>e.n).join(", ")}`:""}"><b>${d}</b><span>${pts}</span></button>`; }
+    /* v680 · G-04: en cada día, los logos de sus empresas (como en el PC; antes, puntos): dos como mucho y, si hay más, «+N». Los días con
+       resultados van en casilla oscura, como en el PC; los de solo cobros, en claro */
+    const res=ev.some(e=>e.k==="r"), lg=ev.slice(0,ev.length>2?1:2).map(e=>`<span class="m-cl">${maLogo(e.t,e.n)}</span>`).join("")+(ev.length>2?`<em>+${ev.length-1}</em>`:"");
+    h+=`<button type="button" class="${(c+(res?" res":"")).trim()}"${ev.length?` data-d="${y}-${m+1}-${d}"`:" disabled"} aria-label="${d} de ${MA_MES[m]}${ev.length?`: ${ev.map(e=>e.n).join(", ")}`:""}"><b>${d}</b><span>${lg}</span></button>`; }
   $("m-c-grid").innerHTML=h+"</div>"; }
 $("m-pg-cal").addEventListener("click",e=>{ const s=e.target.closest(".m-sel[data-g=cfil] button"); if(s&&DATA){ const v=s.dataset.o; if(v!==MA.cFil){ MA.cFil=v; maCal(); } return; }
   const b=e.target.closest(".m-mes button[data-d]"); if(!b) return; const r=document.querySelector(`#m-c-ag .m-row[data-d="${b.dataset.d}"]`); if(!r) return;
@@ -7709,6 +7748,35 @@ function maCq(){ if(!DATA||!$("m-pg-cq")) return; const C=DATA.check||[], cif=C.
   $("m-q-lc").innerHTML=cif.map(fila).join("")||'<div class="m-vacio">Sin comprobaciones.</div>';
   $("m-q-ld").innerHTML=dat.map(fila).join("")||'<div class="m-vacio">Sin comprobaciones.</div>'; }
 MA_PINTA.calc=()=>maCalc(); MA_PINTA.cq=()=>maCq();
+
+/* ═════ v680 · G-04 · CALENDARIO DEL PC CON AGENDA (como el iPhone) ═════
+   Debajo de los dos meses, en una tarjeta de detalle como las de Análisis: la agenda de lo que viene (cobros y resultados, mes a mes, desde
+   este mes), con la palabra que hace de selector: «tu cartera» o «todo el Universo» (en el Universo, también los resultados de las candidatas).
+   Cada fila: el día, el logo, la empresa, qué es (cobro o resultados, con su periodo y si es antes de abrir, tras el cierre o estimada), el
+   importe y cuándo. Al pulsar una fila se abre la ficha de la empresa. Así desaparece también la franja crema vacía bajo los meses */
+let gxAgFil="pf";
+function gxAgenda(){ const v=$("v-calendario"); if(!v||!DATA) return; let s=$("gxag");
+  if(!s){ s=document.createElement("section"); s.id="gxag"; s.className="gxan gxag"; const g=v.querySelector(":scope > .gx3"); if(g) g.after(s); else v.prepend(s); }
+  let T=[]; try{ T=calEventos(); }catch(e){ console.warn("Cartera · agenda del PC:",e); }
+  const hoy=new Date(), y=hoy.getFullYear(), m=hoy.getMonth(), d0=new Date(y,m,hoy.getDate()).getTime(), K=d=>d.getFullYear()*12+d.getMonth(), todas=gxAgFil==="todas";
+  const E=T.filter(e=>(e.pf||(todas&&e.k==="r"))&&K(e.d)>=y*12+m), fut=e=>!e.ya&&e.d.getTime()>=d0;
+  const nc=E.filter(e=>e.k==="d"&&fut(e)), nr=E.filter(e=>e.k==="r"&&fut(e)), imp=sum(nc,e=>+e.v||0);
+  const kw=gxKw("cag",todas?"todo el Universo":"tu cartera",[{k:"pf",t:"Tu cartera",on:!todas},{k:"todas",t:"Todo el Universo",on:todas}]);
+  const l2=[nc.length?`${nf(0).format(nc.length)} ${nc.length===1?"cobro":"cobros"} por ${gxE(imp)} brutos`:"",nr.length?`${nf(0).format(nr.length)} ${nr.length===1?"presentación":"presentaciones"} de resultados`:""].filter(Boolean).join(" y ")||"Nada a la vista";
+  const cuando=f=>{ const n=Math.round((f.getTime()-d0)/864e5); return n<=0?"hoy":n===1?"mañana":n<60?`en ${n} días`:`en ${Math.round(n/30.4)} meses`; };
+  const hora=e=>e.hora==="antes de la apertura"?"antes de abrir":e.hora==="tras el cierre"?"tras el cierre":"";
+  const fila=e=>{ const pas=!fut(e), cp=e.k==="r"?calPer(e.per):"", ven=/^Ventas/.test(cp), per=cp.replace(/^(Resultados|Ventas)\s*/,"");
+    const que=e.k==="d"?"Cobro":[ven?"Ventas":"Resultados",per,!pas&&e.est?"estimada":"",pas?"":hora(e)].filter(Boolean).join(" · ");
+    return `<div class="gxag-r${pas?" pas":""}${e.k==="r"?" r":""}" data-t="${esc(e.t)}" role="button" tabindex="0"><span class="dd">${GX_DIAS[e.d.getDay()].slice(0,3)} ${e.d.getDate()}</span><span class="lg">${gxLogo(e.t,56,22)}</span><span class="nm">${esc(e.n)}${todas&&e.pf?'<i class="mia" title="En tu cartera"></i>':""}</span><span class="qu">${esc(que)}</span><b class="pv">${e.k==="d"?eur(e.v,2):""}</b><span class="cu">${pas?(e.k==="d"?"cobrado":"publicados"):cuando(e.d)}</span></div>`; };
+  const g=new Map(); E.forEach(e=>{ const k=K(e.d); if(!g.has(k)) g.set(k,[]); g.get(k).push(e); });
+  const mes=k=>{ const n=GX_MESL[k%12]; return n[0].toUpperCase()+n.slice(1)+(Math.floor(k/12)!==y?" "+Math.floor(k/12):""); };
+  s.innerHTML=`<h2 class="gxan-t"><span>Lo que viene en ${kw}</span><span>${l2}.</span></h2>`
+    +(g.size?[...g.keys()].sort((a,b)=>a-b).map(k=>`<div class="gxan-h gxag-m">${mes(k)}</div><div class="gxag-l">${g.get(k).map(fila).join("")}</div>`).join(""):`<p class="gxag-v">No hay resultados ni cobros previstos.</p>`); }
+document.addEventListener("click",e=>{ const op=e.target.closest('.kw-m [data-kw="cag"]'); if(op&&!op.disabled){ gxAgFil=op.dataset.o; gxAgenda(); return; }
+  const r=e.target.closest(".gxag-r[data-t]"); if(!r) return; const t=r.dataset.t, L=[...new Set([...document.querySelectorAll("#gxag .gxag-r[data-t]")].map(x=>x.dataset.t))];
+  openSheet(DATA.pos.some(p=>p.ticker===t)?"pos":"pre",t,L); });
+document.addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches(".gxag-r[data-t]")){ e.preventDefault(); e.target.click(); } });
+{ const _gc=gxCal; gxCal=function(){ _gc.apply(this,arguments); try{ gxAgenda(); }catch(e){ console.warn("Cartera · agenda del PC:",e); } }; }
 
 function navega(token,push){
   if(typeof token==="string"&&(token==="actualidad"||token.startsWith("actualidad/"))) token="calendario";   // COD-04: las direcciones antiguas siguen valiendo
