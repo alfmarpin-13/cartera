@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-xmxQ70ixiDR/Fs62MUldZ3kgGrlGXHIn+aa6RjWxHFA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ggJ836o7dPc+qw8iTMbFjGoLaJBATpqjwmTWqPFXIeg=' 'sha256-A7gYtLYzrKS1v2N8/9RaR+pry4fCPImM/B8PNymGmnc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="theme-color" content="#E4E2DC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v663">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v663">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v663">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v664">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v664">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v664">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, h=location.hash.slice(1).split("/")[0], otra=false, m=document.createElement("meta"); m.name="viewport"; m.id="m-vp"; m.content=otra?"width=980":"width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; document.head.appendChild(m); R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); if(!otra){ R.classList.add("m-app"); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3287,7 +3287,10 @@ html.m-con #m-pg-con{display:block;padding:16px 0 calc(env(safe-area-inset-botto
    como palabras (como «Hoy · Total») y listas. Letra: 17 (nombre), 13 y 12 px (12 en lo secundario), como el resto de la app */
 #m-fi{position:fixed;inset:0;z-index:60;overflow-y:auto;overscroll-behavior:contain;background:var(--m-bg);color:var(--m-ink);transform:translateY(100%);transition:transform .34s cubic-bezier(.25,.9,.3,1);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 32px);box-shadow:0 -10px 30px rgba(0,0,0,.18)}
 #m-fi.on{transform:none}
-@media (prefers-reduced-motion:reduce){#m-fi{transition:none}}
+/* v664 · la ficha sube con su propia curva (0,34 s, sin pasarse): la regla de las páginas de la app (#ma>…, 0,55 s con rebote del 3,8 %) le ganaba
+   y al abrir asomaba abajo una franja de la página de detrás */
+#ma>#m-fi:not(#m-ptr){transition:transform .34s cubic-bezier(.25,.9,.3,1)}
+@media (prefers-reduced-motion:reduce){#m-fi,#ma>#m-fi:not(#m-ptr){transition:none}}
 #m-fi .mf-top{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:10px;box-sizing:content-box;height:40px;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 0 6px;background:var(--m-top);color:var(--m-tfg);touch-action:none}
 #m-fi .m-dark{touch-action:none}
 #m-fi .mf-x{display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin:0;padding:0;border:0;background:none;color:inherit;cursor:pointer;flex:none}
@@ -3338,7 +3341,8 @@ html.m-con #m-pg-con{display:block;padding:16px 0 calc(env(safe-area-inset-botto
 #m-fi .mf-tb tbody tr+tr td{border-top:1px solid var(--m-line)}
 #m-fi .mf-tb .l{background:var(--m-bg)}
 #m-fi .m-sub{padding:16px}
-html.mf-on #ma-tabs,html.mf-on #m-lens{visibility:hidden}
+html.mf-on #ma-tabs{visibility:hidden;transition:visibility 0s .4s}   /* v664: el menú se esconde cuando la ficha ya lo tapa (antes desaparecía antes de que ella llegara) */
+#ma-tabs .m-lens-in{will-change:transform}   /* v664: la copia de los iconos de la burbuja va en su capa; antes, en cada fotograma del muelle se repintaba la burbuja entera */
 #m-fi .m-big{white-space:nowrap}
 #m-fi .m-pila .m-v{white-space:nowrap;text-align:right}
 #m-fi .mf-px{font:inherit;color:var(--m-tfg2)}
@@ -4090,7 +4094,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v663";   // la versión publicada, en el pie
+const VER="v664";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4170,16 +4174,16 @@ function drawTray(live){
   vert(["val","ren","tir","msci"]);
 }
 // al cambiar el ancho se vuelve a dibujar (las cifras de las filas se ajustan a su columna)
-{ let tw=0, tt; addEventListener("resize",()=>{ clearTimeout(tt); tt=setTimeout(()=>{ if(view==="analisis"&&innerWidth!==tw){ tw=innerWidth; drawTray(); } },150); }); }
+{ let tw=0, tt; addEventListener("resize",()=>{ clearTimeout(tt); tt=setTimeout(()=>{ if(view==="analisis"&&innerWidth!==tw&&!document.documentElement.classList.contains("m-app")){ tw=innerWidth; drawTray(); } },150); }); }
 // cada pestaña dibuja sus gráficos al verse (con la pestaña oculta no tienen medidas); el calendario recalcula si caben los importes
 let dataV=0, themeV=0; const drawn={};   // lecturas de la hoja y cambios de tema · con qué se dibujó cada pestaña
 const stampOf=v=>[dataV,v==="resumen"||v==="analisis"?themeV:"",v==="resumen"?"":innerWidth,v==="movimientos"?mtab:""].join("|");
-function drawAll(){ if(view==="resumen") drawEvo(); if(view==="analisis"&&DATA){ drawDivs(); drawTray(); if(DATA.dvm) miniCal($("pays"),DATA.dvm.pays); }
+function drawAll(){ if(document.documentElement.classList.contains("m-app")){ drawn.resumen=drawn.analisis=""; return; } if(view==="resumen") drawEvo(); if(view==="analisis"&&DATA){ drawDivs(); drawTray(); if(DATA.dvm) miniCal($("pays"),DATA.dvm.pays); }
   if(DATA&&(view==="resumen"||view==="analisis")) drawn[view]=stampOf(view); }
 let redrawT; const redraw=()=>{ themeV++; clearTimeout(redrawT); redrawT=setTimeout(drawAll,60); };
 // COD-12: las gráficas, cuando llegue su biblioteca; si no llega, un aviso en su lugar
 libLista("lib-chart",()=>!!window.Chart).then(()=>{ document.querySelectorAll(".chartbox .sin-graf").forEach(x=>x.remove()); if(DATA) redraw(); }).catch(e=>{ console.error("Cartera · gráficas:",e);
-  const avisa=()=>document.querySelectorAll("#c-evo,#c-year,#c-tray").forEach(c=>{ const b=c.closest(".chartbox"); if(b&&!b.querySelector(".sin-graf")) b.insertAdjacentHTML("beforeend",'<p class="sub sin-graf">No se ha podido cargar la biblioteca de las gráficas. Vuelve a abrir la página cuando tengas conexión.</p>'); });
+  const avisa=()=>document.documentElement.classList.contains("m-app")||document.querySelectorAll("#c-evo,#c-year,#c-tray").forEach(c=>{ const b=c.closest(".chartbox"); if(b&&!b.querySelector(".sin-graf")) b.insertAdjacentHTML("beforeend",'<p class="sub sin-graf">No se ha podido cargar la biblioteca de las gráficas. Vuelve a abrir la página cuando tengas conexión.</p>'); });
   avisa(); new MutationObserver(avisa).observe(document.body,{childList:true,subtree:true}); });
 matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",redraw);
 new MutationObserver(redraw).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
@@ -4433,7 +4437,7 @@ function tmLogos(){
 let ctxMedida; const textW=(t,font)=>{ ctxMedida=ctxMedida||document.createElement("canvas").getContext("2d"); ctxMedida.font=font; return ctxMedida.measureText(String(t)).width; };
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ if(!tmFonts){ mapaClave=0; renderTreemap(); } });
 // alto de la barra superior fija: las cabeceras de tabla se quedan justo debajo al bajar
-{ const tb=document.querySelector(".top"), set=()=>document.documentElement.style.setProperty("--tbh",(getComputedStyle(tb).position==="sticky"?tb.offsetHeight:0)+"px");
+{ const tb=document.querySelector(".top"), set=()=>{ if(!document.documentElement.classList.contains("m-app")) document.documentElement.style.setProperty("--tbh",(getComputedStyle(tb).position==="sticky"?tb.offsetHeight:0)+"px"); };
   if(window.ResizeObserver) new ResizeObserver(set).observe(tb); addEventListener("resize",set); set(); }
 { let t=0; const luego=()=>{ clearTimeout(t); t=setTimeout(renderTreemap,100); };   // COD-09
   if(window.ResizeObserver) new ResizeObserver(luego).observe($("tmap")); else addEventListener("resize",luego); }
@@ -4957,9 +4961,9 @@ function planCalc(){
     set("w0",pct(tot?x.val/tot:null)); set("w1",x.cost||x.inc?pct(after>0?Math.max(x.val+same,0)/after:null):""); });
 }
 function plFit(){ $("pl-k").querySelectorAll(".mk-v").forEach(el=>{ el.style.fontSize=""; let f=parseFloat(getComputedStyle(el).fontSize); while(el.scrollWidth>el.clientWidth+1&&f>12){ f-=1; el.style.fontSize=f+"px"; } }); }
-{ let r=0; addEventListener("resize",()=>{ if(!r) r=requestAnimationFrame(()=>{ r=0; if(DATA&&view==="universo") plFit(); }); }); }   // COD-20: una vez por fotograma
+{ let r=0; addEventListener("resize",()=>{ if(!r) r=requestAnimationFrame(()=>{ r=0; if(DATA&&view==="universo"&&!document.documentElement.classList.contains("m-app")) plFit(); }); }); }   // COD-20: una vez por fotograma
 // al cambiar el ancho de la ventana, se vuelven a medir las columnas de Universo
-{ let t, w=innerWidth; addEventListener("resize",()=>{ clearTimeout(t); t=setTimeout(()=>{ if(DATA&&view==="universo"&&innerWidth!==w){ w=innerWidth; renderPre(); } },200); }); }
+{ let t, w=innerWidth; addEventListener("resize",()=>{ clearTimeout(t); t=setTimeout(()=>{ if(DATA&&view==="universo"&&innerWidth!==w&&!document.documentElement.classList.contains("m-app")){ w=innerWidth; renderPre(); } },200); }); }
 // importes: como mucho 7 cifras enteras y 2 decimales; lo que sobra no se llega a escribir
 const PL_MAX=9999999;
 const plNum=el=>{ let t=String(el.value||""); const m=t.match(/^(\d*)(?:[.,](\d*))?/), a=(m&&m[1]||"").slice(0,7), d=m&&m[2]!=null?m[2].slice(0,2):null;
@@ -5191,7 +5195,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
   if(document.fonts) document.fonts.ready.then(()=>bands.forEach(fit));
   addEventListener("load",()=>bands.forEach(fit));
   addEventListener("hashchange",()=>requestAnimationFrame(()=>bands.forEach(fit)));
-  new MutationObserver(()=>requestAnimationFrame(()=>bands.forEach(fit))).observe(document.body,{attributes:true,attributeFilter:["data-view"]});
+  new MutationObserver(()=>{ if(!document.documentElement.classList.contains("m-app")) requestAnimationFrame(()=>bands.forEach(fit)); }).observe(document.body,{attributes:true,attributeFilter:["data-view"]});
   document.body.classList.add("hm5on"); }
 
 // en un PC estrecho la hora no se parte en varias líneas: si no cabe, el día abreviado («vie») y, si aún no, sin el día de la semana
@@ -5203,7 +5207,7 @@ $("mtabs").addEventListener("click",e=>{ const a=e.target.closest("a[data-t]"); 
     const l=nw.match(/^(En vivo|Mercado cerrado) · .*?(\d\d:\d\d)$/); if(l){ a.push(l[1]+" · "+l[2]); a.push(l[2]); }   // al final, solo la hora (el punto dice si está en vivo)
     return a.filter((x,i)=>x!==t&&a.indexOf(x)===i); };
   const one=()=>{ const lh=parseFloat(getComputedStyle(st).lineHeight)||17; return st.getBoundingClientRect().height<lh*1.5; };
-  const fit=()=>{ if(!st.offsetWidth) return; st.removeAttribute("data-s"); st.removeAttribute("title");
+  const fit=()=>{ if(document.documentElement.classList.contains("m-app")||!st.offsetWidth) return; st.removeAttribute("data-s"); st.removeAttribute("title");
     { const full=st.textContent.trim(), k=$("dot").className, hm=(full.match(/\d{1,2}:\d{2}(?!.*\d:\d\d)/)||[])[0];   // v461: en la cabecera, solo la hora
       if(/busy/.test(k)){ st.title=full; st.dataset.s="Actualizando…"; return; }
       if(!/err/.test(k)&&hm){ st.title=full; st.dataset.s=hm; return; } }
@@ -5314,7 +5318,7 @@ const calPer=p=>{ const s=String(p||""), v=/\bventas\b/i.test(s); let t=s.replac
 function calSync(){ const ok=ACT&&ACT.ix&&ACT.ix.tipo==="calendario", sig=ok?ACT.ix.semana+"|"+ACT.ix.generado:"";
   if(sig===calSig) return false; calSig=sig; CALT=new Map();
   if(ok) ACT.ix.empresas.forEach(e=>CALT.set(e.ticker,{n:e.nombre,u:e.ultimos.fecha?calYmd(e.ultimos.fecha):null,up:e.ultimos.periodo,p:e.proximos.fecha?calYmd(e.proximos.fecha):null,pp:e.proximos.periodo,est:e.proximos.estado!=="confirmada",hora:e.proximos.hora}));
-  if(DATA){ drawn.universo=null; if(view==="universo") renderPre(); if(sheet) renderSheet(); }
+  if(DATA){ drawn.universo=null; if(!document.documentElement.classList.contains("m-app")){ if(view==="universo") renderPre(); if(sheet) renderSheet(); } }
   return true; }
 calSync();
 // todos los acontecimientos: resultados (últimos y próximos) y cobros (los cobrados de la hoja y los previstos)
@@ -5645,10 +5649,10 @@ function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayH
   sv.addEventListener("click",e=>{ const c=e.target.closest("circle[data-i]"); if(c){ const p=TODOS[+c.dataset.i]; openSheet(p.r.inPf?"pos":"pre",p.r.ticker,TODOS.map(q=>q.r.ticker)); } });
   gxPega(s); }
 
-function gxPinta(){ if(!DATA) return;
+function gxPinta(){ if(!DATA||document.documentElement.classList.contains("m-app")) return;
   try{ if(view==="analisis"){ gxAna(); gxAnaDet(); } else if(view==="movimientos") gxMov(); else if(view==="calendario") gxCal(); else if(view==="universo") gxUni(); }catch(e){ console.warn("Cartera · portada:",e); } }
 // v486: al cambiar el ancho de la ventana, la franja blanca y la tarjeta se estiran al momento (antes se veía el crema hasta que se redibujaba)
-function gxEstira(){ const wr=document.querySelector(".wrap"); if(!wr) return; const w=wr.getBoundingClientRect(), dw=document.documentElement.clientWidth;
+function gxEstira(){ if(document.documentElement.classList.contains("m-app")) return; const wr=document.querySelector(".wrap"); if(!wr) return; const w=wr.getBoundingClientRect(), dw=document.documentElement.clientWidth;
   document.querySelectorAll(".gxv > .gx3").forEach(s=>{ s.style.marginLeft=-w.left+"px"; s.style.marginRight=-(dw-w.right)+"px"; s.style.paddingLeft=w.left+"px"; s.style.paddingRight=(dw-w.right)+"px";
     if(s.classList.contains("gx3b")){ s.style.setProperty("--pl",w.left+"px"); s.style.setProperty("--pr",(dw-w.right)+"px"); } }); }
 { let t=0, r=0; addEventListener("resize",()=>{ cancelAnimationFrame(r); r=requestAnimationFrame(gxEstira); clearTimeout(t); t=setTimeout(gxPinta,150); }); }
@@ -6574,7 +6578,7 @@ function zfPosT(diaPrueba){ if(!DATA) return; const S=$("s-pos"), h=S&&S.querySe
   T.innerHTML=`<span>${f[0]}</span>${f[1]?`<span>${f[1]}</span>`:""}`; }
 { const _tm2=renderTreemap; renderTreemap=function(){ _tm2.apply(this,arguments); try{ zfPosT(); }catch(e){ console.warn("Cartera · Posiciones:",e); } }; }
 // v553 · tablas (PC): la cabecera de cada columna de cifras o barras, en el centro de los datos que tiene debajo, y no alineada a un borde
-function zfCabeceras(){
+function zfCabeceras(){ if(document.documentElement.classList.contains("m-app")) return;
   document.querySelectorAll("table.rt").forEach(t=>{ const ths=[...t.querySelectorAll("thead th")]; if(!ths.length) return;
     const lab=th=>th.querySelector(":scope > button")||th.querySelector(":scope > span");
     ths.forEach(th=>{ const l=lab(th); if(l) l.style.transform=""; });
@@ -6639,7 +6643,7 @@ function zfEsqPos(){ const t=$("t-pos"); zfEsquinas(t,c=>c.classList.contains("z
 function zfEsqUni(){ zfEsquinas($("t-p"),c=>ZF_UNI_VA.includes(c.dataset.k)); }
 { const _rpos2=renderPositions; renderPositions=function(){ const r=_rpos2.apply(this,arguments); try{ zfEsqPos(); }catch(e){ console.warn("Cartera · Posiciones:",e); } return r; }; }
 { const _rpt2=renderPreTable; renderPreTable=function(){ const r=_rpt2.apply(this,arguments); try{ zfEsqUni(); }catch(e){ console.warn("Cartera · Universo:",e); } return r; }; }
-{ let tm; addEventListener("resize",()=>{ clearTimeout(tm); tm=setTimeout(()=>{ try{ zfPosOrden(); zfEsqPos(); zfEsqUni(); }catch(e){} },120); }); }
+{ let tm; addEventListener("resize",()=>{ clearTimeout(tm); tm=setTimeout(()=>{ if(document.documentElement.classList.contains("m-app")) return; try{ zfPosOrden(); zfEsqPos(); zfEsqUni(); }catch(e){} },120); }); }
 
 /* v570 · Universo (PC): el filtro de la tabla (Todas, En cartera, Candidatas, Sobre lo exigido, Por revisar), con el selector de palabra
    de la web en lugar de la fila de botones; se ve la opción elegida y, al pulsarla, las cinco con su número */
@@ -6782,7 +6786,7 @@ function zfMovPal(){ const S=$("s-mov"), T=S&&S.querySelector(".toolbar"); if(!T
 document.addEventListener("click",e=>{ const op=e.target.closest('.kw-m [data-kw="mvs"],.kw-m [data-kw="mvy"],.kw-m [data-kw="mvb"]'); if(!op||op.disabled) return;
   const s=$({mvs:"m-state",mvy:"m-year",mvb:"m-broker"}[op.dataset.kw]); if(!s) return; s.value=op.dataset.o==="_"?"":op.dataset.o; s.dispatchEvent(new Event("input",{bubbles:true})); });
 { const _rm4=renderMov; renderMov=function(){ const r=_rm4.apply(this,arguments); try{ zfMovPal(); }catch(e){ console.warn("Cartera · Movimientos:",e); } return r; }; }
-{ let tm; addEventListener("resize",()=>{ clearTimeout(tm); tm=setTimeout(()=>{ try{ zfMovPal(); }catch(_){} },120); }); }
+{ let tm; addEventListener("resize",()=>{ clearTimeout(tm); tm=setTimeout(()=>{ if(document.documentElement.classList.contains("m-app")) return; try{ zfMovPal(); }catch(_){} },120); }); }
 
 /* v633 · RESUMEN DEL IPHONE: en un teléfono (html.m-tel, lo marca el primer script), Resumen es una pantalla de app a 402 px (html.m-app)
    y abajo va el menú de burbujas. Las demás pestañas se ven como antes, a 980 px. maModo() decide el modo; maPinta() pinta la pantalla */
@@ -6822,7 +6826,13 @@ const maMide=(ar,t)=>{ const mw=t?56:30, mh=22, k=t?26:20; let h=Math.min(mh,k/M
    Antes se precargaban los 391 logos a la vez y, al llegar cada uno, se repasaban todos los de la pantalla y saltaban de su tamaño natural
    al suyo (con el iPhone sin logos guardados, cientos de saltos durante segundos). Además se pedían como imágenes unos números («1.391») */
 function maTamR(){ if(MA.tamR) return; MA.tamR=true; Object.keys(MA.L).forEach(k=>{ if(!k.startsWith("R:")) return; const src=MA.L[k.slice(2)], ar=+MA.L[k]; if(typeof src!=="string"||!(ar>0)||MA.tam[src]) return; MA.tam[src]=maMide(ar,false); MA.tam["t:"+src]=maMide(ar,true); }); }
+/* v664 · los logos se calientan en segundo plano, de 20 en 20 y nunca con el dedo en la pantalla: ya tienen su tamaño (maTamR) y no se toca
+   la página al llegar; así, al entrar por primera vez en una pestaña o en una ficha, los logos ya están y no aparecen de golpe */
+function maCalienta(){ if(MA.calI) return; MA.calI=1; const L=[...new Set(Object.values(MA.L||{}).filter(s=>typeof s==="string"&&/\.(webp|png)$/.test(s)))]; MA.calL=[];
+  const paso=()=>{ if(MA.toca||Date.now()-MA.tocaT<300){ setTimeout(paso,300); return; } L.splice(0,20).forEach(s=>{ const im=new Image(); im.decoding="async"; im.src=s; MA.calL.push(im); }); if(L.length) setTimeout(paso,250); };
+  setTimeout(paso,1500); }
 function maPrecarga(){ if(!MA.L){ try{ MA.L=JSON.parse($("logos").textContent); }catch{ MA.L={}; } } maTamR(); const vistos=new Set();
+  maCalienta();
   Object.values(MA.L).forEach(src=>{ if(typeof src!=="string"||!/\.(webp|png|svg)$/.test(src)||vistos.has(src)||(MA.tam[src]&&MA.tam["t:"+src])) return; vistos.add(src);
     const im=new Image(); im.decoding="async"; im.onload=()=>{ const ar=im.naturalWidth/im.naturalHeight||1; MA.tam[src]=maMide(ar,false); MA.tam["t:"+src]=maMide(ar,true); maLogos(); }; im.src=src; }); }
 function maLogos(){ document.querySelectorAll("#ma .m-lg img,#ma .m-tile img").forEach(im=>{ const src=im.getAttribute("src"), t=!!im.closest(".m-tile"), key=t?"t:"+src:src; if(MA.tam[key]){ if(!im.style.width){ im.style.width=MA.tam[key][0]+"px"; im.style.height=MA.tam[key][1]+"px"; } return; }
@@ -7192,7 +7202,7 @@ $("m-pg-cal").addEventListener("click",e=>{ const s=e.target.closest(".m-sel[dat
    Las frases (titular y entradilla de cada pestaña) son las mismas que las del PC: se sacan de la propia ficha del PC. Se abre al pulsar
    cualquier fila con empresa (Posiciones, Agenda, Movimientos, Radar, casillas de Hoy) y desde el buscador; se cierra con la flecha,
    deslizando hacia abajo desde la cabecera o con el gesto de volver. En modo privado tapa lo tuyo (importes y acciones), como el resto */
-const MF_SEC=[["res","Resumen"],["pos","Tu posición"],["val","Valoración"],["pj","Proyección"],["tes","Tesis"],["cot","Cotización"]];
+const MF_FR=new Map(); const MF_SEC=[["res","Resumen"],["pos","Tu posición"],["val","Valoración"],["pj","Proyección"],["tes","Tesis"],["cot","Cotización"]];
 MA.fi=null; MA.fiSec="res";
 const mfCol=v=>!isNum(v)?"m-mute":v>=0.0005?"m-pos":v<=-0.0005?"m-neg":"m-mute";
 const mfPv=h=>{ if(!maPriv()) return h; const tp=document.createElement("template"); tp.innerHTML=h; tp.content.querySelectorAll(".pv").forEach(e=>{ e.textContent=MA_PV; }); const d=document.createElement("div"); d.append(tp.content); return maAcc(d.innerHTML); };
@@ -7299,7 +7309,7 @@ function mfCot(D){ const {R,price,fv,cur,mem,media,t,ind}=D; if(!R) return ""; l
 const MF_PINTA={res:mfRes,pos:mfPos,val:mfVal,pj:mfPj,tes:mfTes,cot:mfCot};
 /* pintar la ficha abierta (también al cambiar de pestaña, al llegar datos nuevos o al tapar los importes) */
 function mfPinta(){ const F=$("m-fi"); if(!F||!MA.fi||!DATA) return; const D=mfDatos(MA.fi.t); if(!D){ mfCierra(); return; }
-  if(!MA.fi.fr||MA.fi.dv!==DATA){ const x=mfFrases(D.t); MA.fi.fr=x.fr; MA.fi.hay=x.hay; MA.fi.dv=DATA; }
+  if(!MA.fi.fr||MA.fi.dv!==DATA){ let x=MF_FR.get(D.t); if(!x||x.dv!==DATA){ x=mfFrases(D.t); x.dv=DATA; MF_FR.set(D.t,x); } MA.fi.fr=x.fr; MA.fi.hay=x.hay; MA.fi.dv=DATA; MA.fi.frH=0; }   /* v664: las frases, guardadas por empresa (la ficha del PC se construye una vez por empresa y por datos) */
   const hay=MA.fi.hay, sec=hay[MA.fiSec]?MA.fiSec:"res", fr=MA.fi.fr[sec]||["",""], nom=D.co.name||D.t;
   F.setAttribute("aria-label",`Ficha de ${nom}`);
   F.querySelector(".mf-nom").textContent=nom;
@@ -7307,7 +7317,9 @@ function mfPinta(){ const F=$("m-fi"); if(!F||!MA.fi||!DATA) return; const D=mfD
   F.querySelector(".mf-sub").textContent=[D.ctry?ctryN(D.ctry):"",D.ind?zfIndL(D.ind):""].filter(Boolean).join(" · ");
   F.querySelector(".m-blk").innerHTML=mfOscuro(D);
   F.querySelector(".mf-tabs").innerHTML=MF_SEC.filter(([k])=>hay[k]||k==="res").map(([k,n])=>`<button type="button" role="tab" data-mf="${k}" aria-selected="${k===sec}"><b>${n}</b></button>`).join("");
-  F.querySelector(".mf-fr").innerHTML=fr[0]?`<span class="mf-l1">${mfPv(fr[0])}</span>${fr[1]?`<span class="mf-l2">${mfPv(fr[1])}</span>`:""}`:"";
+  const frH=(f)=>f&&f[0]?`<span class="mf-l1">${mfPv(f[0])}</span>${f[1]?`<span class="mf-l2">${mfPv(f[1])}</span>`:""}`:"", pF=F.querySelector(".mf-fr");
+  if(!MA.fi.frH){ pF.style.minHeight=""; let mx=0; MF_SEC.forEach(([k])=>{ if(!(hay[k]||k==="res")) return; pF.innerHTML=frH(MA.fi.fr[k]); mx=Math.max(mx,pF.offsetHeight); }); MA.fi.frH=mx; pF.style.minHeight=mx+"px"; }   /* v664: la frase ocupa siempre lo que la más larga de sus pestañas; antes, lo de debajo saltaba 18–36 px al cambiar de pestaña */
+  pF.innerHTML=frH(fr);
   let c=""; try{ c=MF_PINTA[sec](D); }catch(e){ console.warn("Cartera · ficha del iPhone ("+sec+"):",e); }
   F.querySelector(".mf-c").innerHTML=c||'<div class="m-sub">Sin datos para esta pestaña.</div>';
   const on=F.querySelector('.mf-tabs [aria-selected="true"]'); if(on) on.scrollIntoView({block:"nearest",inline:"nearest"}); }
@@ -7406,7 +7418,7 @@ $("pos-body").addEventListener("click",e=>{ const tr=e.target.closest("tr.pr"); 
 $("pos-body").addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.matches("tr.pr")){ e.preventDefault(); e.target.click(); } });
 
 /* ---------- conexión con Google Drive ---------- */
-function lastSession(now=new Date()){ const d=new Date(now), wd=d.getDay(), back=wd===6?1:wd===0?2:d.getHours()<9?(wd===1?3:1):0; d.setDate(d.getDate()-back); return {d,closed:back>0,lbl:d.toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"}).replace(/[.,]/g,"").replace(/\bsept\b/,"sep")}; }
+function lastSession(now=new Date()){ const d=new Date(now), wd=d.getDay(), back=wd===6?1:wd===0?2:d.getHours()<9?(wd===1?3:1):0; d.setDate(d.getDate()-back); let l=null; return {d,closed:back>0,get lbl(){ return l??(l=d.toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"}).replace(/[.,]/g,"").replace(/\bsept\b/,"sep")); }}; }
 // modo claro / oscuro: por defecto el del sistema; el botón lo fija y se recuerda en este navegador
 { const R=document.documentElement, mq=matchMedia("(prefers-color-scheme: dark)"), dark=()=>R.dataset.theme?R.dataset.theme==="dark":mq.matches;
   try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") R.dataset.theme=t; }catch{}
@@ -7532,7 +7544,7 @@ async function load(fresh){
     let p=res.payload; if(typeof p==="string"){ try{p=JSON.parse(p);}catch{} }
     const b64 = p&&p.content ? p.content : (typeof p==="string"?p:null);
     if(!b64) throw {code:"tool_error",message:"La respuesta de Google Drive no trae el archivo.",mine:1};
-    const wb = await readWbBg(b64,"base64"); await respira(); const pd=parse(wb); await respira(); const fp=JSON.stringify(pd); lastLoadAt=Date.now(); let pd0=null; try{ pd0=structuredClone(pd); }catch{} await respira();   // la hoja tal cual, antes de calcular la cartera (para la copia)
+    const wb = await readWbBg(b64,"base64"); await respira(); const pd=parse(wb); await respira(); const fp=JSON.stringify(pd); lastLoadAt=Date.now(); let pd0=null; if(fp!==fpGuardada){ try{ pd0=structuredClone(pd); }catch{} await respira(); }   // la hoja tal cual, antes de calcular la cartera (para la copia)
     // si la hoja no ha cambiado desde la última lectura, no se vuelve a calcular ni a pintar
     const day0=new Date().toDateString(), dd=DATA&&fp===lastFp&&modelDay===day0?DATA:model(pd); lastFp=fp; modelDay=day0; if(dd!==DATA) await respira();
     const when = res.cache?.storedAt ? new Date(res.cache.storedAt) : new Date(), hm=t=>t.toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"}), hhmm=hm(when);
