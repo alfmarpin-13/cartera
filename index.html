@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-e4WKf5aX5T9MX4uR5vflq01HuHY3jvoYUADIFozwb70=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-LLmoYadzRgYa8sa+3ALfDmCHVPu+F5yPaqkewhzW0cc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v720">
+<link rel="manifest" href="manifest.webmanifest?v721">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v720">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v720">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v720">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v720">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v720">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v721">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v721">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v721">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v721">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v721">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3779,7 +3779,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v720";   // la versión publicada, en el pie
+const VER="v721";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5649,11 +5649,12 @@ function zfPosT(diaPrueba){ if(!DATA) return; const S=$("s-pos"), h=S&&S.querySe
   T.innerHTML=`<span>${f[0]}</span>${f[1]?`<span>${f[1]}</span>`:""}`; }
 { const _tm2=renderTreemap; renderTreemap=function(){ _tm2.apply(this,arguments); try{ zfPosT(); }catch(e){ console.warn("Cartera · Posiciones:",e); } }; }
 // v553 · tablas (PC): la cabecera de cada columna de cifras o barras, en el centro de los datos que tiene debajo, y no alineada a un borde
+const ZF_CABD=new Map();   // v721: dónde quedó cada título (por tabla y columna)
 function zfCabeceras(){ if(document.documentElement.classList.contains("m-app")) return;
   document.querySelectorAll("table.rt").forEach(t=>{ const ths=[...t.querySelectorAll("thead th")]; if(!ths.length) return;
     const lab=th=>th.querySelector(":scope > button")||th.querySelector(":scope > span");
     ths.forEach(th=>{ const l=lab(th); if(l) l.style.transform=""; });
-    if(!t.offsetParent) return;
+    if(!t.offsetParent) return; const anchoT=Math.round(t.offsetWidth);
     const filas=[...t.querySelectorAll("tbody tr")].filter(r=>r.offsetParent&&r.children.length>1);
     if(!filas.length) return; const rg=document.createRange();
     ths.forEach((th,i)=>{ const l=lab(th); if(!l||!th.offsetWidth) return; let a=Infinity, b=-Infinity; const nom=th.textContent.trim();
@@ -5661,9 +5662,11 @@ function zfCabeceras(){ if(document.documentElement.classList.contains("m-app"))
       let tx=0, nc=0;
       filas.forEach(r=>{ const td=[...r.children].find(c=>c.dataset.l===nom&&c.offsetWidth)||(r.children.length===ths.length?r.children[i]:null); if(!td||!td.offsetWidth||!td.textContent.trim()&&!td.querySelector("img,i,b,span")) return; nc++; if(/[A-Za-zÁÉÍÓÚÑáéíóúñü]{3,}/.test(td.innerText)) tx++;   /* v571: solo el texto visible (la celda de Hoy lleva escondido el texto del móvil) */ rg.selectNodeContents(td); const q=rg.getBoundingClientRect(); if(q.width>0){ a=Math.min(a,q.left); b=Math.max(b,q.right); } });
       // v554 · solo cifras y barras: las columnas de texto (empresa, industria, tipo, detalle, bróker, fecha) se quedan con su alineación de siempre
-      if(!isFinite(a)||nc&&tx/nc>.5||th.dataset.k==="d"||th.dataset.k==="bd") return;   /* v611: la Fecha, siempre en su sitio (en «todo» lleva «12 nov» y en el resto «15/10/26»: se movía al cambiar de vista) */    /* v572: las columnas de texto (y País) no se desplazan al ordenar */ const q=l.getBoundingClientRect(), R=th.getBoundingClientRect(), fl=th.hasAttribute("aria-sort")?13:0;
+      if(!isFinite(a)||nc&&tx/nc>.5||th.dataset.k==="d"||th.dataset.k==="bd") return;   /* v611: la Fecha, siempre en su sitio (en «todo» lleva «12 nov» y en el resto «15/10/26»: se movía al cambiar de vista) */    /* v572: las columnas de texto (y País) no se desplazan al ordenar */ const q=l.getBoundingClientRect(), R=th.getBoundingClientRect(), fl=th.hasAttribute("aria-sort")||l.tagName==="BUTTON"?13:0;   /* v721: el hueco de la flecha se reserva siempre en las que se pueden ordenar, esté puesta o no: al pulsar para ordenar, el título (y el bloque gris que se coloca con él) ya no salta a un lado (hasta 23 px) */
       // centrada sobre sus datos, sin salirse de su celda (la flecha incluida): así nunca pisa ni se acerca a la columna de al lado
       let d=Math.round((a+b)/2-(q.left+q.right)/2); d=Math.min(d,Math.floor(R.right-(fl?14:4)-fl-q.right));   /* v571: con flecha, 14 px hasta el borde de su celda (antes 4: en País quedaba pegada a Industria) */ d=Math.max(d,Math.ceil(R.left+4-q.left));
+      /* v721 · y si al ordenar solo cambian las filas que se ven (Movimientos enseña una parte) y el centro se mueve 1 o 2 px, el título se queda donde estaba */
+      { const kk=(t.id||(t.closest("[id]")||{}).id||"")+"|"+(th.dataset.k||nom), o=ZF_CABD.get(kk); if(o&&o.w===anchoT&&Math.abs(d-o.d)<=2) d=o.d; ZF_CABD.set(kk,{d,w:anchoT}); }
       if(Math.abs(d)>=1) l.style.transform=`translateX(${d}px)`; }); });
   try{ zfEsqPos(); zfMovSombra(); }catch(e){} }   /* v582: las sombras se recolocan después de centrar las cabeceras */
 { let r=0; const pide=()=>{ cancelAnimationFrame(r); r=requestAnimationFrame(()=>requestAnimationFrame(()=>{ try{ zfCabeceras(); }catch(e){ console.warn("Cartera · cabeceras:",e); } })); };
@@ -5741,9 +5744,14 @@ function zfMovSombra(){ const h=$("m-head"); if(!h) return; const t=h.closest("t
   // dónde empieza: 8 px antes de la cifra que más ocupa en la primera columna del bloque
   let L=Infinity; filas.forEach(r=>{ const td=r.querySelector(`td[data-k="${ks[0]}"]`); if(!td) return; const rg=document.createRange(); rg.selectNodeContents(td); const q=rg.getBoundingClientRect(); if(q.width>0) L=Math.min(L,q.left-td.getBoundingClientRect().left); });
   { const lb=a.querySelector("button,span"); if(lb){ const q=lb.getBoundingClientRect(); if(q.width>0) L=Math.min(L,q.left-a.getBoundingClientRect().left); } }   // v582: también la cabecera («Acciones» es más ancha que sus cifras y se salía)
-  const zo=isFinite(L)?Math.max(0,L-8):0; t.style.setProperty("--zom",zo.toFixed(1)+"px");
+  let zo=isFinite(L)?Math.max(0,L-8):0;
+  /* v721 · al ordenar cambian las filas que se ven (Movimientos enseña una parte) y con ellas la cifra más ancha: el bloque gris ya no encoge ni crece a
+     cada clic; recuerda su borde (en la misma vista y con el mismo ancho) y solo se ensancha si una cifra nueva no cabe */
+  { const kk=(S.dataset.t||"")+"|"+Math.round(t.offsetWidth), o=ZF_MOVZO.get(kk); if(o!=null) zo=Math.min(zo,o); ZF_MOVZO.set(kk,zo); }
+  t.style.setProperty("--zom",zo.toFixed(1)+"px");
   const tl=t.getBoundingClientRect().left, ra=a.getBoundingClientRect(), rz=z.getBoundingClientRect();
   t.querySelectorAll("tbody tr.grp-row > td").forEach(g=>{ g.style.setProperty("--zx",(ra.left-tl+zo).toFixed(1)+"px"); g.style.setProperty("--zw",(rz.right-ra.left-zo).toFixed(1)+"px"); g.classList.add("zq-g"); }); }
+const ZF_MOVZO=new Map();   // v721: el borde del bloque gris de cada vista de Movimientos
 { const _rm=renderMov; renderMov=function(){ const r=_rm.apply(this,arguments); try{ zfMovSombra(); }catch(e){ console.warn("Cartera · Movimientos:",e); } return r; }; }
 { let r2=0; const pide=()=>{ cancelAnimationFrame(r2); r2=requestAnimationFrame(()=>{ try{ zfMovSombra(); }catch(e){} }); };
   const b=$("m-body"); if(b) new MutationObserver(pide).observe(b,{childList:true}); addEventListener("resize",pide); document.addEventListener("click",e=>{ if(e.target.closest('[data-v="movimientos"],.kw-m [data-kw="mov"]')) setTimeout(pide,60); }); }
