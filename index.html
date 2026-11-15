@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-5bxUcRUaoj+nDZ+Vk+yQ1WoqWOzBYzXkUjMNK+c73+E=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-5dkHdeErj6Lbpw/0N7fWxfFmsRrj3uDBGrR+UHyoguw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v716">
+<link rel="manifest" href="manifest.webmanifest?v717">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v716">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v716">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v716">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v716">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v716">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v717">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v717">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v717">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v717">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v717">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -2419,7 +2419,7 @@ html.m-app #ma::before{content:"";display:block;height:calc(env(safe-area-inset-
 #ma .m-lt{display:block;height:17px;width:auto;fill:var(--m-tfg)} #ma .m-lt circle{fill:var(--m-gid)}
 /* v667 · IP-04: el punto, a la derecha de la hora («19:40 ●») y pegado al margen: ya no salta 49,5 px al pasar de «Actualizando…» a la hora */
 #ma .m-st{margin-left:auto;margin-right:0;display:flex;align-items:center;gap:6px;font-size:12px;line-height:1;color:var(--m-tfg2)}
-#ma #m-hora{transform:translateY(.37px)}
+#ma #m-hora{transform:translateY(-.3px)}   /* v717: en el iPhone, 0,7 px más baja que la bola y el menú con +0,37 */
 #ma .m-dot{width:7px;height:7px;border-radius:50%;background:var(--m-gid)}
 #ma .m-dot.busy{animation:latir 1.8s ease-in-out infinite}
 #ma .m-dot.err{background:var(--m-tneg)}
@@ -3076,6 +3076,10 @@ html:not(.hay-datos) .wrap>.view{display:none!important}
    Calculadora y el Cuadre, con filas de alto variable, quedan fuera). Medido en Safari 27: el peor fotograma del cambio, de 299 a 178 ms */
 #m-pg-res .m-list>.m-row{content-visibility:auto;contain-intrinsic-size:auto 57px}
 #ma :is(#m-pg-ana,#m-pg-mov,#m-pg-cal,#m-pg-uni) .m-list>.m-row{content-visibility:auto;contain-intrinsic-size:auto 52px}
+/* v717 · TIRAR PARA ACTUALIZAR: el anillo, en el hueco reservado bajo la cabecera fija (dentro de la página): en reposo lo tapa la cabecera;
+   al tirar baja con la página y asoma por debajo de ella, y al soltar vuelve a esconderse deslizándose, todo con el rebote nativo */
+html.m-app.m-ios #ma #m-ptrg{position:absolute;top:calc(env(safe-area-inset-top,0px) - 6px);left:0;right:0;height:56px;z-index:1;opacity:1;clip-path:none;background:none;will-change:auto;contain:layout paint style}
+html.m-app.m-ios #ma #m-ptrg .m-pgi{top:0;bottom:0;height:auto;transform:none;will-change:auto}
 /* · la versión, al final del menú de opciones del móvil */
 #m-opm .m-opver{display:block;padding:6px 14px 6px;font-size:12px;line-height:16px;color:var(--m-ink3)}
 </style>
@@ -3760,7 +3764,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v716";   // la versión publicada, en el pie
+const VER="v717";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6109,8 +6113,13 @@ if(MA_IOS){ document.documentElement.classList.add("m-ios"); let on=false, raf=0
     /* v684 · SIN RECOLOCAR NADA EN CADA FOTOGRAMA: el indicador mide siempre 160 px; de él solo se ve el trozo del hueco (recorte) y su
        contenido se desplaza para quedar en el centro del hueco. Antes se cambiaba su alto en cada fotograma y el navegador recolocaba el
        anillo y el texto (iba a saltos). Los tres textos están uno encima de otro y se funden entre sí, sin cambiar de golpe */
-    hueco=(p,act)=>{ if(!G) return; const h=Math.max(0,-scrollY); if(p<=0||h<1){ if(G.style.opacity!=="0"){ G.style.opacity="0"; G.style.setProperty("--m-h","0px"); G.removeAttribute("data-listo"); G.removeAttribute("data-act"); } return; }
-      const ok=p>=LIM; G.style.opacity=Math.min(1,Math.max(0,(h-14)/28)).toFixed(3); G.style.setProperty("--m-h",Math.min(160,h).toFixed(1)+"px"); G.style.setProperty("--m-prog",Math.min(100,p/LIM*100).toFixed(1));
+    hueco=(p,act)=>{ if(!G) return; const h=Math.max(0,-scrollY); clearTimeout(G._vacia);
+      /* v717 · el anillo va dentro de la página, encima del contenido y tapado por la cabecera: lo mueve el propio rebote de iOS, a la vez que la
+         lista. Antes era una capa fija que JavaScript recolocaba en cada fotograma con la altura del rebote, que en el iPhone llega tarde y a
+         trompicones (vídeo de Alfonso de las 12:05: la capa tapaba con una franja oscura el principio de la lista y se apagaba con el hueco aún
+         abierto). Aquí solo se pone cuánto está lleno; al esconderse bajo la cabecera se vacía, ya sin verse */
+      if(p<=0||h<1){ G._vacia=setTimeout(()=>{ G.style.setProperty("--m-prog","0"); G.removeAttribute("data-listo"); G.removeAttribute("data-act"); },450); return; }
+      const ok=p>=LIM; G.style.setProperty("--m-prog",Math.min(100,p/LIM*100).toFixed(1));
       if(ok!==G.hasAttribute("data-listo")) G.toggleAttribute("data-listo",ok); if(!!act!==G.hasAttribute("data-act")) G.toggleAttribute("data-act",!!act); },
     pon=p=>{ hueco(p); const c=punto(); if(!c) return; if(p<=0){ listo=false; if(c.style.transform){ c.style.transition=""; c.style.transform=""; } return; }
       listo=p>=LIM; c.style.transition=listo?"":"none";   /* pegado al dedo; al llegar al umbral, el salto con muelle */
