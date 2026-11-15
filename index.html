@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-dA4NpBceNVNIaMEKf2qj+6cEK7a9tomrSycTGhbgAwo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-LtGwe7PJmS99MUM8bdROgQhVOw/6/O7LW2YhlvpYaLA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v727">
+<link rel="manifest" href="manifest.webmanifest?v728">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v727">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v727">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v727">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v727">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v727">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v728">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v728">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v728">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v728">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v728">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3798,7 +3798,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v727";   // la versión publicada, en el pie
+const VER="v728";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5953,7 +5953,7 @@ function maPinta(){ if(!DATA||!$("ma")) return; const k=DATA.kpi||{}, cl=v=>v<0?
   $("m-p1").className="m-tp "+cl(k.todayPct); $("m-p1").firstChild.textContent=ok(k.todayPct)?maPct(k.todayPct):"—";
   $("m-i2").textContent=ok(k.ret)?maEurS(k.ret):"—"; $("m-i2").className="m-v "+(k.ret<0?"m-neg-t":"m-pos-t");
   $("m-p2").className="m-tp "+cl(k.ret); $("m-p2").firstChild.textContent=ok(k.ret)&&k.aport?maPct(k.ret/k.aport):"—";
-  maHora(); maPrecarga(); MA.hecho={}; const t=++MA.pt, cur=maPgDe(), resto=Object.keys(MA_PINTA).filter(k=>k!==cur); maPintaPg(cur); if(fRes) maCuenta(fRes);
+  maHora(); maPrecarga(); maFotoGuarda(); MA.hecho={}; const t=++MA.pt, cur=maPgDe(), resto=Object.keys(MA_PINTA).filter(k=>k!==cur); maPintaPg(cur); if(fRes) maCuenta(fRes);
   const sig=()=>{ if(t!==MA.pt) return; if(MA.toca||Date.now()-MA.tocaT<250){ setTimeout(sig,200); return; }   // v641: nunca con el dedo en la pantalla (ni justo al soltar)
     const k=resto.shift(); if(!k) return; maPintaPg(k); setTimeout(sig,60); }; setTimeout(sig,120); }
 try{ if(document.documentElement.classList.contains("m-tel")&&"scrollRestoration" in history) history.scrollRestoration="manual"; }catch{}   /* v667: al cerrar la ficha (history.back), Safari ya no recoloca la página por su cuenta */
@@ -6796,12 +6796,17 @@ $("pos-body").addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&
 function sesion(){ const s=lastSession(); if(s.closed||!DATA) return s; const hay=r=>isNum(r.today)&&r.today!==0;
   if((DATA.pos||[]).some(p=>!p.isOption&&hay(p))||(DATA.pre||[]).some(hay)) return s;
   const d=new Date(s.d); do d.setDate(d.getDate()-1); while(d.getDay()===0||d.getDay()===6); const r=lastSession(new Date(d.getFullYear(),d.getMonth(),d.getDate(),12)); return {d:r.d,closed:true,get lbl(){ return r.lbl; }}; }
-/* v715 · tras repintar con datos nuevos, la página se queda donde estaba: al rehacer las pantallas cambia un instante de alto y el
-   navegador recolocaba el desplazamiento (en el iPhone, Safari no compensa como Chrome). Se repone al momento, en los dos fotogramas
-   siguientes y cuando terminan de llegar logos y gráficos; si tocas, desplazas o usas el teclado, se deja de reponer */
-function mantenAltura(y){ let tu=false; const ev=["wheel","touchstart","keydown","mousedown"], para=()=>{ tu=true; }; ev.forEach(e=>addEventListener(e,para,{passive:true,capture:true}));
-  const fija=()=>{ if(!tu&&Math.abs(scrollY-y)>1) scrollTo(scrollX,y); }; fija(); requestAnimationFrame(()=>{ fija(); requestAnimationFrame(fija); });
-  setTimeout(fija,250); setTimeout(()=>{ fija(); ev.forEach(e=>removeEventListener(e,para,{capture:true})); },900); }
+/* v728 · MÓVIL: TRAS REPINTAR CON DATOS NUEVOS, LA FILA QUE ESTÁS VIENDO SE QUEDA QUIETA (sustituye a la de la v715, que devolvía la página a la
+   misma altura en píxeles durante casi un segundo y, si la página aún se deslizaba por inercia, la frenaba a tirones). Si la página se está
+   deslizando al llegar los datos, no se toca nada; si la tocas o la mueves, se deja. Arriba del todo no hace falta */
+function maAncla(){ if(scrollY<=0||Date.now()-(MA.scrollT||0)<200) return null; const e0=document.elementFromPoint(innerWidth/2,Math.round(innerHeight*.45)); if(!e0||!e0.closest("#ma")||e0.closest(".m-bar,#ma-tabs")) return null;
+  const e=e0.closest("[data-t]")||e0; return {e,t:e.dataset?e.dataset.t||null:null,pg:MA.pg,top:e.getBoundingClientRect().top}; }
+function maSostiene(an){ if(!an) return; const t0=performance.now(); let tu=false, esp=scrollY; const para=()=>{ tu=true; }, ev=["touchstart","wheel","keydown"]; ev.forEach(k=>addEventListener(k,para,{passive:true,capture:true}));
+  const sc=()=>{ if(Math.abs(scrollY-esp)>1) tu=true; }; addEventListener("scroll",sc,{passive:true});
+  const fin=()=>{ ev.forEach(k=>removeEventListener(k,para,{capture:true})); removeEventListener("scroll",sc); };
+  const busca=()=>{ if(an.e.isConnected&&an.e.getClientRects().length) return an.e; if(an.t){ const P=$("m-pg-"+an.pg); const x=P&&[...P.querySelectorAll("[data-t]")].find(n=>n.dataset.t===an.t&&n.getClientRects().length); if(x) return x; } return null; };
+  const paso=()=>{ if(tu||MA.pg!==an.pg||performance.now()-t0>2500){ fin(); return; } const e=busca(); if(e){ const d=e.getBoundingClientRect().top-an.top; if(Math.abs(d)>=.5) scrollBy(0,d); } esp=scrollY; requestAnimationFrame(paso); };
+  paso(); }
 function lastSession(now=new Date()){ const d=new Date(now), wd=d.getDay(), back=wd===6?1:wd===0?2:d.getHours()<9?(wd===1?3:1):0; d.setDate(d.getDate()-back); let l=null; return {d,closed:back>0,get lbl(){ return l??(l=d.toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"}).replace(/[.,]/g,"").replace(/\bsept\b/,"sep")); }}; }
 // modo claro / oscuro: por defecto el del sistema; el botón lo fija y se recuerda en este navegador
 { const R=document.documentElement, mq=matchMedia("(prefers-color-scheme: dark)"), dark=()=>R.dataset.theme?R.dataset.theme==="dark":mq.matches;
@@ -6851,7 +6856,7 @@ let remBad=false;   // el enlace (o lo guardado) trae la clave pero no un ID que
 // CO-13 · cada petición a tu script lleva la clave dentro (no en la dirección); el script la recibe en doPost
 function remPide(q,signal){ return fetch(`https://script.google.com/macros/s/${encodeURIComponent(REM.d)}/exec`,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(q?{k:REM.k,q}:{k:REM.k}),cache:"no-store",signal}); }
 // SEG-02 y SEG-08 · lo que se guarda de tus datos en este dispositivo, aparte del ID y la clave: se borra al cambiar de script o al quitar la clave
-const olvidaDatos=()=>{ try{ ["cartera-ok","actEd","actLeidas","plan-aportacion","hoja-al"].forEach(k=>localStorage.removeItem(k)); }catch{} try{ indexedDB.deleteDatabase("cartera"); }catch{} ACT=null; };
+const olvidaDatos=()=>{ try{ ["cartera-ok","actEd","actLeidas","plan-aportacion","hoja-al","cartera-snap"].forEach(k=>localStorage.removeItem(k)); }catch{} try{ indexedDB.deleteDatabase("cartera"); }catch{} ACT=null; };
 const REM = (()=>{ let c=remCfg(location.hash); if(c) history.replaceState(null,"",location.pathname+location.search);   // la clave no se queda en la barra de direcciones
   if(c&&c.bad){ remBad=true; c=null; }
   try{ const d0=remId(localStorage.getItem("cartera-d"));
@@ -6918,7 +6923,7 @@ let fpGuardada="", archivoLocal=false, pending=false, lastSig=null, sigAt=null, 
 // v649: deja pasar un fotograma (o, con la página oculta, como mucho 50 ms) antes de seguir
 const respira=()=>new Promise(r=>{ let ya=false; const sigue=()=>{ if(!ya){ ya=true; r(); } }; requestAnimationFrame(()=>setTimeout(sigue,0)); setTimeout(sigue,50); });
 async function load(fresh){
-  if(!canRead()) return; if(busy){ if(fresh){ if(MA.calla){ MA.calla=false; $("refresh").disabled=true; setStatus("busy","Leyendo la hoja…"); } else pending=true; } return; } const porTi=Date.now()-(MA.pide||0)<1500; MA.pide=0; busy=true;
+  if(!canRead()) return; if(busy){ if(fresh){ if(MA.calla){ if(Date.now()-(MA.pide||0)<1500){ MA.calla=false; $("refresh").disabled=true; setStatus("busy","Leyendo la hoja…"); } } else pending=true; } return; }   /* v728: solo si lo has pedido tú (botón, menú o tirón) */ const porTi=Date.now()-(MA.pide||0)<1500; MA.pide=0; busy=true;
   const callado=!porTi&&!!DATA&&lastLoadAt>0; MA.calla=callado; $("refresh").disabled=!callado;   /* v724: en la lectura en silencio (al volver a la pestaña o cada 5 min) el botón ya no se queda gris sin decir nada: sigue activo y, si lo pulsas, enseña «Leyendo la hoja…» y espera a esa misma lectura */   // v700: al volver a la app o cada 5 min, en silencio (con el botón o tirando hacia abajo, se ve que lee)
   if(!callado) setStatus("busy",cacheAt&&!lastLoadAt?cacheLbl()+" · actualizando…":"Leyendo la hoja…");
   try{
@@ -6938,7 +6943,7 @@ async function load(fresh){
     // huella de las cotizaciones: si Google no ha recalculado la hoja, no cambia aunque el archivo sí lo haga
     const sig=dd.pos.map(pos=>pos.ticker+":"+pos.price+":"+pos.today).join("|"), same=lastSig!==null&&sig===lastSig;
     if(!same){ lastSig=sig; sigAt=when; }
-    if(dd!==DATA){ const ant=DATA&&porTi?mvFoto():null, sy0=DATA?scrollY:null; if(porTi) MA.cuentaHasta=Date.now()+3000; try{ render(dd); }catch(err){ if(err&&typeof err==="object") err.pinta=1; throw err; } if(ant) mvCuenta(ant); if(sy0!=null&&document.documentElement.classList.contains("m-app")) mantenAltura(sy0); }   /* v724: en el PC no (deshacía el ancla y movía lo que estabas viendo) */   /* MV-01 */ notice(""); retried=false; loadAct(false); cacheAt=null; if(pd0&&fp!==fpGuardada){ cachePut({ver:VER,cv:CACHE_V,at:Date.now(),pd:pd0}); fpGuardada=fp; }   // la copia para la próxima vez
+    if(dd!==DATA){ const ant=DATA&&porTi?mvFoto():null, sy0=DATA?scrollY:null, anM=DATA&&document.documentElement.classList.contains("m-app")?maAncla():null; if(porTi) MA.cuentaHasta=Date.now()+3000; try{ render(dd); }catch(err){ if(err&&typeof err==="object") err.pinta=1; throw err; } if(ant) mvCuenta(ant); if(anM) maSostiene(anM); }   /* v728: en el móvil, la fila quieta (en el PC lo hace el ancla de la v724) */   /* MV-01 */ notice(""); retried=false; loadAct(false); cacheAt=null; if(pd0&&fp!==fpGuardada){ cachePut({ver:VER,cv:CACHE_V,at:Date.now(),pd:pd0}); fpGuardada=fp; }   // la copia para la próxima vez
     if(REM) try{ localStorage.setItem("cartera-ok",REM.d); }catch{}   // este ID ya ha funcionado en este dispositivo
     const ss=sesion();
     if(ss.closed) setStatus("","Mercado cerrado · leído a las "+hhmm); else setStatus("live", same ? `Cotizaciones de las ${hm(sigAt)}` : "En vivo · "+when.toLocaleDateString("es-ES",{weekday:"short"}).replace(".","")+" "+when.getDate()+" "+MES[when.getMonth()].toLowerCase()+" · "+hhmm);
@@ -6982,8 +6987,10 @@ $("mm-ver").textContent="Versión "+VER.slice(1); { const mv=$("m-op-ver"); if(m
 if(/\.github\.io$/.test(location.hostname)){ let vAt=0;
   const vChk=async(arr)=>{ if(Date.now()-vAt<12e4) return; vAt=Date.now();
     try{ let v=null; const r=await fetch("version.txt?nv="+Date.now(),{cache:"no-store"}); if(r.ok){ const t=(await r.text()).trim(); if(/^v\d+$/.test(t)) v=t; }
-      if(v&&+v.slice(1)>+VER.slice(1)){ if(busy&&!arr){ vAt=0; setTimeout(vChk,5000); return; } if(!DATA&&!arr){ vAt=0; return; } if(DATA&&!document.documentElement.classList.contains("m-splash")) return;   /* v700: con tus datos ya a la vista, no se recarga delante de ti: la versión nueva entra al abrir la app la próxima vez */ let ya=null; try{ ya=sessionStorage.getItem("cartera-vtry"); }catch{} if(ya===v) return; try{ sessionStorage.setItem("cartera-vtry",v); }catch{} window.maRecarga=true; location.replace(location.pathname+"?v="+v.slice(1)+location.hash); return "recarga"; } }catch(e){ console.warn("Cartera · comprobación de versión:",e); } };
-  if(!document.documentElement.classList.contains("m-tel")) vChk(true); }
+      if(v&&+v.slice(1)>+VER.slice(1)){ if(busy&&!arr){ vAt=0; setTimeout(vChk,5000); return; } if(!DATA&&!arr){ vAt=0; return; } if((DATA||MA.foto)&&!document.documentElement.classList.contains("m-splash")){ if(document.documentElement.classList.contains("m-tel")) MA.verNueva=v; return; }   /* v728: en el iPhone, la nueva entra al salir de la app. v700: con tus datos ya a la vista, no se recarga delante de ti: la versión nueva entra al abrir la app la próxima vez */ let ya=null; try{ ya=sessionStorage.getItem("cartera-vtry"); }catch{} if(ya===v) return; try{ sessionStorage.setItem("cartera-vtry",v); }catch{} window.maRecarga=true; location.replace(location.pathname+"?v="+v.slice(1)+location.hash); return "recarga"; } }catch(e){ console.warn("Cartera · comprobación de versión:",e); } };
+  vChk(true);   /* v728: también en el iPhone (antes solo en el PC: el móvil se quedaba con la versión que tuviera guardada) */
+  document.addEventListener("visibilitychange",()=>{ if(document.visibilityState!=="hidden"||!MA.verNueva) return; const v=MA.verNueva; MA.verNueva=null;
+    let ya=null; try{ ya=sessionStorage.getItem("cartera-vtry"); }catch{} if(ya===v) return; try{ sessionStorage.setItem("cartera-vtry",v); }catch{} location.replace(location.pathname+"?v="+v.slice(1)+location.hash); }); }
 document.addEventListener("click",e=>{ if(!e.target.closest("#f-more")) return; e.stopPropagation(); $("more").click(); });
 // FL-04 · «···» está junto a la luna y el menú sale justo debajo, alineado con su borde derecho (sin salirse de la ventana)
 $("more").addEventListener("click",()=>{ const M=$("more-m"), b=$("more"); if(M.hidden) return; const r=b.getBoundingClientRect(), w=M.offsetWidth;
@@ -7000,9 +7007,22 @@ $("more").addEventListener("click",()=>{ const M=$("more-m"), b=$("more"); if(M.
     requestAnimationFrame(()=>{ if(nt.isConnected&&document.activeElement===nt) return; const x=(id&&document.getElementById(id))||document.querySelector(`[role="tab"][data-tab="${k}"]`); if(x) x.focus({preventScroll:true}); }); },true);
   document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest("th>.thb"); if(!b) return; const th=b.parentElement, tb=th.closest("table"), k=th.dataset.k||"";
     requestAnimationFrame(()=>{ if(b.isConnected) return; const nb=tb&&tb.querySelector(`th[data-k="${CSS.escape(k)}"]>.thb`); if(nb) nb.focus({preventScroll:true}); }); },true); }
-setInterval(()=>{ if(document.visibilityState==="visible"&&!archivoLocal) load(true); },5*60*1000);
+setInterval(()=>{ if(document.visibilityState==="visible"&&!archivoLocal) load(false); },5*60*1000);   // v728: en silencio (antes load(true): si coincidía con otra lectura en silencio, la destapaba)
 document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible"&&DATA&&canRead()&&!archivoLocal&&Date.now()-lastLoadAt>180000) load(false); });
 
+/* v728 · RESUMEN AL INSTANTE: al abrir, en vez de medio segundo de pantalla de carga vacía (medido en el vídeo de las 14:23: de 1,03 a 1,50 s),
+   se pintan las cifras y las listas de Resumen tal como estaban la última vez (foto guardada en este dispositivo, solo de esta misma versión)
+   y la pantalla de carga se quita en cuanto están sus logos. Después llegan los datos guardados y los de la hoja y la ponen al día en su sitio */
+const MA_FOTO_IDS=["m-val","m-liq","m-i1","m-p1","m-i2","m-p2","m-l1","m-s2","m-l2","m-s3","m-l3"];
+function maFotoGuarda(){ clearTimeout(MA.fotoT); MA.fotoT=setTimeout(()=>{ try{ const l=$("m-l1"); if(!DATA||!l||!l.children.length) return;
+    const p={v:VER,at:Date.now(),hora:($("m-hora")||{}).textContent||"",lab:($("m-i1").closest(".m-pila").querySelector(".m-lab")||{}).textContent||"",e:{}};
+    MA_FOTO_IDS.forEach(id=>{ const e=$(id); if(e) p.e[id]=[e.className,e.innerHTML]; }); const s=JSON.stringify(p); if(s.length<600000) localStorage.setItem("cartera-snap",s); }catch{} },2500); }
+{ const R=document.documentElement;
+  if(R.classList.contains("m-app")&&R.classList.contains("m-splash")&&(REM||GAS)&&!/^#?(analisis|movimientos|calendario|universo)\b/.test(location.hash)){
+    try{ const f=JSON.parse(localStorage.getItem("cartera-snap")||"null");
+      if(f&&f.v===VER&&f.e&&f.e["m-l1"]&&f.e["m-l1"][1]){ MA_FOTO_IDS.forEach(id=>{ const e=$(id), x=f.e[id]; if(e&&x){ e.className=x[0]; e.innerHTML=x[1]; } });
+        if(f.hora&&$("m-hora")) $("m-hora").textContent=f.hora; if(f.lab){ const lb=$("m-i1").closest(".m-pila").querySelector(".m-lab"); if(lb) lb.textContent=f.lab; }
+        MA.foto=true; maSplashLogos(); } }catch(e){ console.warn("Cartera · foto de Resumen:",e); } } }
 (async()=>{
   if(GAS||REM||window.claude) await fromCache();   // primero la copia guardada, si la hay; luego se lee la hoja
   try{ await xlsxListo(); }catch(e){ console.error("Cartera · lector de hojas:",e); }
