@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-DgFF2RQX6gUgZMIkesFesKGlc5aFtaWlFpOJRQ6szMs=' 'sha256-D6X4TJGL1/MMoEO3778J8qozhEjZnhRICSIxw6ZSIAw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-DgFF2RQX6gUgZMIkesFesKGlc5aFtaWlFpOJRQ6szMs=' 'sha256-V4MRHpz/3ymaEM64wYy6D8zYmFvXTjNOdXg9qflUw0o=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v709">
+<link rel="manifest" href="manifest.webmanifest?v710">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#1F2B25" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v709">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v709">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v709">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v709">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v709">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v710">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v710">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v710">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v710">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v710">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -2459,7 +2459,7 @@ html.m-app #ma::before{content:"";display:block;height:calc(env(safe-area-inset-
 #ma .m-f2{margin-top:6px;font-size:11px}   /* la línea de abajo, a 11 px (fuera de la guía, aprobado): el nombre (13 px) manda */
 #ma .m-f2 small{font-size:11px;color:var(--m-ink3);white-space:nowrap}
 #ma .m-l2{display:flex;align-items:baseline;gap:4px;white-space:nowrap}
-#ma .m-l2 i{font-style:normal;font-weight:600}
+#ma .m-l2 i{font-style:normal;font-weight:400;color:var(--m-ink3)}   /* v710: la TIR, en gris y sin negrita, como el renglón de la izquierda */
 #ma .m-l2 .m-pc{font-weight:500}
 #ma .m-pos{color:var(--m-pos)} #ma .m-neg{color:var(--m-neg)} #ma .m-mute{color:var(--m-ink3)}
 #ma .m-sub{padding:12px 16px 6px;font-size:12px;line-height:16px;color:var(--m-ink3)}
@@ -3725,7 +3725,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v709";   // la versión publicada, en el pie
+const VER="v710";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4084,7 +4084,7 @@ const PCOLS=[
   {k:"price",l:"Cotización",r:"sub",g:"real",f:r=>precioVisible(r.price,r.cur)},
   {k:"today",l:()=>sesion().closed?"Sesión":"Hoy",g:"real",mx:1,f:r=>pctSigno(r.today)},
   {k:"fv",l:"Valor razonable",hs:1,g:"est",sep:1,f:r=>precioVisible(r.fv,r.cur)},
-  {k:"irrExp",l:"TIR esperada",g:"est",mx:1,f:r=>tirP(r.irrExp)},
+  {k:"irrExp",l:"TIR",g:"est",mx:1,f:r=>tirP(r.irrExp)},
   {k:"req",l:"Exigida",hs:1,g:"est",f:r=>r.req>0?pct(r.req):""},
   {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>!isNum(r.margin)?`<span class="mute">—</span>`:`<span class="mg-c">${margenBarra(r.margin)}<span class="mg-n ${clsM(r.margin)}">${puntosPct(r.margin)}</span></span>`},
   {k:"mult",l:"Múltiplo",hs:1,g:"est",sv:r=>{ const m=r.val&&isNum(r.val.mult)?r.val.mult:r.mult; return isNum(m)?m:null; },f:r=>{ const m=r.val&&isNum(r.val.mult)?r.val.mult:r.mult; return multiplo(m); }},
@@ -4689,7 +4689,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=sesion().closed, hayHoy=!c
   // al pasar el ratón por un punto, su cartel (logo, nombre y TIR); al pulsarlo, su ficha
   const tip=U.querySelector(".gx-tip"), sv=U.querySelector("svg"); let cur=null;
   sv.addEventListener("mousemove",e=>{ const c=e.target.closest("circle[data-i]"); if(c===cur) return; if(cur) cur.setAttribute("r","6"); cur=c; if(!c){ tip.hidden=true; return; }
-    const p=TODOS[+c.dataset.i]; c.setAttribute("r","8"); tip.innerHTML=`${gxLogo(p.r.ticker,40,22)}<span><b>${esc(p.r.name)}</b><em>TIR esperada ${gxP(p.r.irrExp,1)}</em></span>`; tip.hidden=false;   // v486: solo logo, nombre y TIR (la exigida ya la dice la columna)
+    const p=TODOS[+c.dataset.i]; c.setAttribute("r","8"); tip.innerHTML=`${gxLogo(p.r.ticker,40,22)}<span><b>${esc(p.r.name)}</b><em>TIR ${gxP(p.r.irrExp,1)}</em></span>`; tip.hidden=false;   // v486: solo logo, nombre y TIR (la exigida ya la dice la columna)
     const tw=tip.offsetWidth; tip.style.left=Math.min(Math.max(0,p.x-tw/2),WU-tw)+"px"; tip.style.top=(p.y-tip.offsetHeight-14)+"px"; });
   sv.addEventListener("mouseleave",()=>{ if(cur) cur.setAttribute("r","6"); cur=null; tip.hidden=true; });
   sv.addEventListener("click",e=>{ const c=e.target.closest("circle[data-i]"); if(c){ const p=TODOS[+c.dataset.i]; openSheet(p.r.inPf?"pos":"pre",p.r.ticker,TODOS.map(q=>q.r.ticker)); } });
@@ -6117,7 +6117,7 @@ function maUniRad(){ const f=MA.uRad, ok=v=>isNum(v)&&isFinite(v); maSelMarca("u
   const row=r=>{ const m=r.margin, c=!ok(m)||Math.abs(m)<5e-4?"m-mute":m>0?"m-pos":"m-neg";
     const fc=d=>`${d.getDate()} ${MA_M3[d.getMonth()]}${d.getFullYear()!==new Date().getFullYear()?" "+String(d.getFullYear()).slice(2):""}`, vd=f==="rv"?valDate(r):null, cu=f==="rv"?(CALT.get(r.ticker)||{}).u:null;
     const izq=f==="rv"&&vd?`Valorada ${fc(vd)}${cu instanceof Date?` · resultados ${fc(cu)}`:""}`:maEsc(r.ind||"Sin industria");   /* v651: debajo del nombre, su industria · v681: en «Por revisar», la fecha de tu valoración y la de los resultados que la dejan atrás */
-    const der=ok(r.irrExp)?`<i>TIR esperada ${maP(r.irrExp)}</i>${ok(m)?`<span class="m-pc ${c}">(${puntosPct(m)})</span>`:""}`:`<span class="m-pc m-mute">—</span>`;
+    const der=ok(r.irrExp)?`<i>TIR ${maP(r.irrExp)}</i>${ok(m)?`<span class="m-pc ${c}">(${puntosPct(m)})</span>`:""}`:`<span class="m-pc m-mute">—</span>`;
     return `<div class="m-row" data-t="${maEsc(r.ticker)}"><span class="m-lg">${maLogo(r.ticker,r.name)}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(r.name||r.ticker)}${r.inPf?'<i class="mia" aria-label="en cartera"></i>':""}</b><b class="num">${maPr(r.price,r.cur)}</b></span><span class="m-f2"><small>${izq}</small><span class="m-l2 num">${der}</span></span></span></div>`; };
   $("m-u-ra").innerHTML=L.length?L.map(row).join(""):`<div class="m-vacio">Ninguna.</div>`; maLogos(); }
 $("m-pg-uni").addEventListener("click",e=>{ const b=e.target.closest(".m-sel[data-g] button"); if(!b||!DATA) return; const g=b.parentNode.dataset.g, v=b.dataset.o;
@@ -6358,7 +6358,7 @@ function mfCot(D){ const {R,price,fv,cur,mem,media,t,ind}=D; if(!R) return ""; l
   const es=[mxh&&(!mx1||mxh>mx1*1.005)&&{v:mxh,t:"Máximo histórico"},mx1&&{v:mx1,t:"Máximo de 1 año"},mm&&{v:mm,t:"Media de 200 sesiones"},fv&&{v:fv,t:"Valor razonable"},isNum(price)&&{v:price,t:"Hoy",h:1}].filter(Boolean).sort((a,b)=>b.v-a.v);
   if(es.length>1) h+=mfSec("Escalera de precios",es.map(o=>o.h?mfFila("<b>Hoy</b>",`<b>${maPr(o.v,cur)}</b>`):mfFila(o.t,maPr(o.v,cur),isNum(price)?`hoy, ${maPct(price/o.v-1)}`:"")).join(""));
   if(mem.length>1){ const L=[...mem].sort((a,b)=>String(a.name).localeCompare(String(b.name),"es"));
-    h+=mfSec(`Industria de ${maEsc(String(ind).toLowerCase())}`,L.map(x=>`<div class="m-row nl${x.ticker===t?" mf-yo":""}"${x.ticker===t?"":` data-t="${maEsc(x.ticker)}"`}><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(x.name||x.ticker)}${x.inPf?'<i class="mia" aria-label="en cartera"></i>':""}</b><b class="num ${mfCol(x.y1)}">${isNum(x.y1)?maPct(x.y1):"—"}</b></span><span class="m-f2"><small class="num">${isNum(x.irrExp)?`TIR esperada ${pct(x.irrExp,1)}${isNum(x.req)?` · exiges ${tipoPct(x.req)}`:""}`:"sin valorar"}</small><span class="m-l2 num"><span class="cu">en un año</span></span></span></span></div>`).join("")); }
+    h+=mfSec(`Industria de ${maEsc(String(ind).toLowerCase())}`,L.map(x=>`<div class="m-row nl${x.ticker===t?" mf-yo":""}"${x.ticker===t?"":` data-t="${maEsc(x.ticker)}"`}><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(x.name||x.ticker)}${x.inPf?'<i class="mia" aria-label="en cartera"></i>':""}</b><b class="num ${mfCol(x.y1)}">${isNum(x.y1)?maPct(x.y1):"—"}</b></span><span class="m-f2"><small class="num">${isNum(x.irrExp)?`TIR ${pct(x.irrExp,1)}${isNum(x.req)?` · exiges ${tipoPct(x.req)}`:""}`:"sin valorar"}</small><span class="m-l2 num"><span class="cu">en un año</span></span></span></span></div>`).join("")); }
   return h; }
 const MF_PINTA={res:mfRes,pos:mfPos,val:mfVal,pj:mfPj,tes:mfTes,cot:mfCot};
 /* pintar la ficha abierta (también al cambiar de pestaña, al llegar datos nuevos o al tapar los importes) */
