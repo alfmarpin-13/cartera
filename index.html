@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-JzvB3x9AsbIw6PbluAAvT5CViWeRAqM6EuEmXMgTkfc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-B0H7WCuRZ5Rqsnpq7n8lQCdSXwI2djTopWGUIEVZ53c=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v718">
+<link rel="manifest" href="manifest.webmanifest?v719">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v718">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v718">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v718">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v718">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v718">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v719">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v719">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v719">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v719">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v719">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3775,7 +3775,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v718";   // la versión publicada, en el pie
+const VER="v719";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6141,9 +6141,9 @@ if(MA_IOS){ const R=document.documentElement; R.classList.add("m-ios"); let on=f
     baja=y=>{ const t=y>.05?`translate3d(0,${y.toFixed(1)}px,0)`:""; if(P) P.style.transform=t; if(G) G.style.transform=t; },
     para=()=>{ anims.forEach(a=>{ try{ a.cancel(); }catch{} }); anims=[]; },
     // de una altura a otra con la tarjeta gráfica; lo escrito en el estilo ya es el destino
-    anima=(de,a,ms,fin)=>{ para(); baja(a); const k=[{transform:`translate3d(0,${de.toFixed(1)}px,0)`},{transform:`translate3d(0,${a.toFixed(1)}px,0)`}], o={duration:ms,easing:"cubic-bezier(.25,.8,.3,1)"};
+    anima=(de,a,ms,fin,cur)=>{ para(); baja(a); const k=[{transform:`translate3d(0,${de.toFixed(1)}px,0)`},{transform:`translate3d(0,${a.toFixed(1)}px,0)`}], o={duration:ms,easing:cur||"cubic-bezier(.25,.8,.3,1)"};
       anims=[P,G].filter(Boolean).map(e=>e.animate(k,o)); const yo=anims; if(anims[0]) anims[0].finished.then(()=>{ if(anims===yo){ anims=[]; if(fin) fin(); } }).catch(()=>{}); else if(fin) fin(); },
-    suelta=()=>{ para(); if(P){ P.style.transform=""; P.style.transition=""; P.style.willChange=""; } if(G){ G.style.transform=""; G.style.willChange=""; } P=null; h=0; },
+    suelta=()=>{ para(); if(G){ const gi=G.querySelector(".m-pgi"); if(gi&&gi.getAnimations) gi.getAnimations().forEach(a=>a.cancel()); } if(P){ P.style.transform=""; P.style.transition=""; P.style.willChange=""; } if(G){ G.style.transform=""; G.style.willChange=""; } P=null; h=0; },
     goma=x=>{ const d=innerHeight||800; return x>0?(1-1/(x*.55/d+1))*d:0; },   // la resistencia del rebote de iOS (0,55 sobre el alto de la pantalla)
     paso=()=>{ raf=0; if(!on) return; if(scrollY>0) y0=yd; const nh=scrollY>0?0:goma(yd-y0); if(Math.abs(nh-h)>.1){ h=nh; baja(h); anillo(h); logo(h); } raf=requestAnimationFrame(paso); },
     arriba=()=>{ const a=scrollY<=0; if(a!==R.classList.contains("m-ptrtop")) R.classList.toggle("m-ptrtop",a); };
@@ -6158,9 +6158,14 @@ if(MA_IOS){ const R=document.documentElement; R.classList.add("m-ios"); let on=f
     if(!P){ anillo(0); return; }
     if(h>=LIM&&puede()){ sujeta=true; G.removeAttribute("data-listo"); G.setAttribute("data-act",""); anima(h,SUJ,280);
       MA.ptrAct=true; const t0=Date.now(), rf=$("refresh"); if(rf&&!rf.disabled) rf.click(); maHora();
-      // se queda bajada mientras se lee la hoja (el botón de actualizar, desactivado), como poco 0,7 s y como mucho 20 s
-      sondeo=setInterval(()=>{ const r=$("refresh"), n=Date.now()-t0; if(n<700||(r&&r.disabled&&n<20000)) return; clearInterval(sondeo); sondeo=0;
-        MA.ptrAct=false; maHora(); anima(SUJ,0,320,()=>{ sujeta=false; G.removeAttribute("data-act"); anillo(0); suelta(); }); },100); }
+      /* se queda bajada mientras se lee la hoja (el botón de actualizar, desactivado), como poco 0,9 s y como mucho 20 s.
+         v719 · AL ACABAR, SIN PRISA: espera 0,3 s más (a que se termine de pintar lo nuevo, que si coincide con la subida la hace ir a tirones) y
+         entonces la página sube en 0,55 s, arrancando y frenando suave, mientras el anillo se encoge y se apaga (antes subía en 0,32 s de golpe
+         y el anillo desaparecía en seco) */
+      let hecho=0; sondeo=setInterval(()=>{ const r=$("refresh"), n=Date.now()-t0; if(n<900||(r&&r.disabled&&n<20000)){ hecho=0; return; } if(!hecho){ hecho=Date.now(); return; } if(Date.now()-hecho<300) return;
+        clearInterval(sondeo); sondeo=0; MA.ptrAct=false; maHora();
+        const gi=G.querySelector(".m-pgi"); if(gi&&gi.animate) gi.animate([{opacity:1,transform:"scale(1)"},{opacity:0,transform:"scale(.55)"}],{duration:420,easing:"cubic-bezier(.4,0,.6,1)",fill:"forwards"});
+        anima(SUJ,0,550,()=>{ sujeta=false; G.removeAttribute("data-act"); anillo(0); suelta(); },"cubic-bezier(.45,0,.25,1)"); },50); }
     else if(h>.5) anima(h,0,260,()=>{ anillo(0); suelta(); });
     else { anillo(0); suelta(); } };
   addEventListener("touchend",fin,{passive:true}); addEventListener("touchcancel",fin,{passive:true}); }
