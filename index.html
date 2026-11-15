@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-DeRYirZWtAOTn2hwV9Acw78wbxja8HxhOOQpjocVHgY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-JZmblbsCvQNQirVLlop5dyqi+VLpSkN7Y7+K/lxydxc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v714">
+<link rel="manifest" href="manifest.webmanifest?v715">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v714">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v714">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v714">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v714">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v714">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v715">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v715">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v715">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v715">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v715">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3236,7 +3236,7 @@ html:not(.hay-datos) .wrap>.view{display:none!important}
  </div>
  <div id="m-pg-calc" data-off aria-hidden="true">
  <div class="m-dark"><div class="m-hero"><div class="m-blk"><div class="m-big" id="m-k-disp"></div><div class="m-cab m-st2" id="m-k-sub"></div>
-  <div class="m-pila sin"><span class="m-lab">Compras</span><span class="m-v" id="m-k-hc"></span><span class="m-lab">Ventas</span><span class="m-v" id="m-k-hv"></span></div></div></div></div>
+  <div class="m-pila sin" id="m-k-pila"></div></div></div></div>
  <div class="m-sec"><h2>Cuentas</h2></div>
  <div class="m-list m-kc">
   <label class="m-kr m-kap"><span class="m-ks"></span><span class="m-kk">Aportación</span><span class="m-kf"><input id="m-k-ap" type="text" inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Aportación"><i>€</i></span></label>
@@ -3252,8 +3252,8 @@ html:not(.hay-datos) .wrap>.view{display:none!important}
  <div class="m-sub" id="m-k-nota"></div>
  </div>
  <div id="m-pg-cq" data-off aria-hidden="true">
- <div class="m-dark"><div class="m-hero"><div class="m-blk"><div class="m-big" id="m-q-n"></div>
-  <div class="m-pila sin"><span class="m-lab">Tus cifras</span><span class="m-v" id="m-q-c"></span><span class="m-lab">Datos de tu hoja</span><span class="m-v" id="m-q-d"></span></div></div></div></div>
+ <div class="m-dark"><div class="m-hero"><div class="m-blk"><div class="m-big" id="m-q-n"></div><div class="m-cab m-st2" id="m-q-sub"></div>
+  <div class="m-pila sin" id="m-q-pila"></div></div></div></div>
  <div class="m-sec"><h2>Tus cifras</h2><span class="m-der">Web · Hoja</span></div>
  <div class="m-list" id="m-q-lc"></div>
  <div class="m-sec m2"><h2>Datos de tu hoja</h2></div>
@@ -3750,7 +3750,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v714";   // la versión publicada, en el pie
+const VER="v715";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4118,12 +4118,12 @@ const PCOLS=[
 const etiquetaDe=x=>typeof x.l==="function"?x.l():x.l;
 // pantallas anchas: los anchos de la lista, medidos con todas las empresas. Cada columna de cifras mide lo que su cifra mayor
 // más un hueco, el mismo entre todas y tan grande como quepa (hasta 48 px); lo que sobra, para Empresa e Industria
-let preHueco=40;
+let preHueco=40, preUlt=null;   // v715: los últimos anchos aplicados (para no reajustar las columnas en cada lectura)
 function anchosPre(){
   const t=$("t-p"), st=$("pcv-css")||document.head.appendChild(Object.assign(document.createElement("style"),{id:"pcv-css"}));
   st.textContent=""; const vis=[...$("p-head").querySelectorAll("th[data-k]")].filter(th=>th.getClientRects().length); if(!vis.length) return null;
   const an=e=>e.getBoundingClientRect().width, txt=e=>{ const r=document.createRange(); r.selectNodeContents(e); return r.getBoundingClientRect().width; };
-  const n=Math.ceil(Math.max(0,...[...t.querySelectorAll('td[data-k="margin"] .mg-n')].map(an)));
+  let n=Math.ceil(Math.max(0,...[...t.querySelectorAll('td[data-k="margin"] .mg-n')].map(an)));
   if(n) st.textContent=`@media (min-width:701px){#t-p td[data-k="margin"] .mg-n{min-width:${n}px}}`;
   const tw=innerWidth<=1100?Math.min(an(t),t.parentElement.clientWidth||an(t)):an(t), cols=vis.map(th=>{ const k=th.dataset.k, x=PCOLS.find(c=>c.k===k), cs=getComputedStyle(th), pad=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight);
     if(x.left||x.ctr){ // texto: lo que pide su cifra o nombre más largo (sin partirse)
@@ -4138,6 +4138,11 @@ function anchosPre(){
   nums.forEach(c=>{ c.w=c.v+preHueco; });   // una cabecera más ancha que su columna asoma, centrada, por los dos lados
   const libre=tw-nums.reduce((s,c)=>s+c.w,0), crece=cols.filter(c=>c.txt&&c.k!=="country"), pide=crece.reduce((s,c)=>s+c.need,0);
   cols.filter(c=>c.txt).forEach(c=>{ c.w=c.k==="country"?c.need:c.need+(libre-need)*c.need/pide; });
+  // v715 · con el mismo ancho de ventana y las mismas columnas, si todo lo nuevo cabe en los anchos de antes, se quedan esos: al actualizar
+  // las columnas ya no se reajustan solas (antes se medían otra vez con cada lectura y bastaba una cifra con otro número de dígitos)
+  const clave=innerWidth+"|"+cols.map(c=>c.k).join(",");
+  if(preUlt&&preUlt.clave===clave&&cols.every((c,i)=>(c.txt?c.need:c.v+16)<=preUlt.w[i]+.5)){ cols.forEach((c,i)=>{ c.w=preUlt.w[i]; if(!c.txt) c.v=Math.max(c.v,preUlt.v[i]); }); n=Math.max(n,preUlt.n); }
+  preUlt={clave,w:cols.map(c=>c.w),v:cols.map(c=>c.v||0),n};
   st.textContent=`@media (min-width:701px){${n?`#t-p td[data-k="margin"] .mg-n{min-width:${n}px}`:""}${nums.map(c=>`#t-p td[data-k="${c.k}"]>.cifb{width:${c.v}px}`).join("")}}`;
   if(document.fonts&&document.fonts.status!=="loaded"&&!preEsperaLetras){ preEsperaLetras=true; document.fonts.ready.then(()=>{ preEsperaLetras=false; preAnchosClave=""; if(view==="universo") renderPreTable(); else drawn.universo=""; }); }   // COD-17
   return cols.map(c=>c.w); }
@@ -6494,7 +6499,7 @@ function maCalcPinta(){ const P=$("m-pg-calc"); if(!P||!DATA) return; const C=zf
   const L=$("m-k-left"); L.textContent=maPriv()?MA_PV:(neg?"−":"")+maNf(Math.abs(C.left),2)+" €"; L.classList.toggle("n",neg);
   $("m-k-disp").innerHTML=(maPriv()?MA_PV:(neg?"−":"")+maNf(Math.abs(C.left),0)+" €")+"<small>disponible</small>"; $("m-k-disp").classList.toggle("n",neg);
   $("m-k-sub").innerHTML=`Aportación <b>${maEur(isNum(plan.aport)?plan.aport:0)}</b>`;   /* v679 */
-  $("m-k-hc").textContent=C.buys?"−"+e2(C.buys).replace(/^−/,""):e2(0); $("m-k-hv").textContent=C.sells?"+"+e2(C.sells):e2(0);
+  $("m-k-pila").innerHTML=maPar("Compras",C.buys?"−"+e2(C.buys).replace(/^−/,""):e2(0))+maPar("Ventas",C.sells?"+"+e2(C.sells):e2(0));   // v715: como las demás pestañas
   C.rows.forEach((x,i)=>{ const R=P.querySelector(`.m-kop[data-i="${i}"]`); if(!R) return; const o=x.o, r=x.r, mx=plShares(o.t), inp=R.querySelector(".m-kin");
     R.querySelector(".m-lg").innerHTML=r?maLogo(r.ticker,r.name):'<span class="m-kvac"></span>';
     const n=R.querySelector(".m-n"); n.textContent=r?r.name:(o.sell?"Qué vendes":"Qué compras"); n.classList.toggle("ph",!r);
@@ -6541,8 +6546,8 @@ function maCq(){ if(!DATA||!$("m-pg-cq")) return; const C=DATA.check||[], cif=C.
   const fila=c=>`<div class="m-row nl m-qr${c.ok===false?" mal":""}"><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(c.l)}</b>${dif(c)}</span>
     <span class="m-f2"><small class="num">${cf(c,c.a)} <span class="cu">·</span> ${cf(c,c.b)}</small></span>${c.note?`<small class="m-qn">${maEsc(c.note.charAt(0).toUpperCase()+c.note.slice(1))}</small>`:""}</span></div>`;   /* la nota, en su propia línea: al lado cortaba las cifras */
   $("m-q-n").innerHTML=`${maNf(C.length-bad.length)} de ${maNf(C.length)}<small>${bad.length?"comprobaciones cuadran":"comprobaciones · todo cuadra"}</small>`;
-  $("m-q-c").innerHTML=nb(cif)?`<span class="w">${nb(cif)} no ${nb(cif)===1?"cuadra":"cuadran"}</span>`:"Todo cuadra";
-  $("m-q-d").innerHTML=nb(dat)?`<span class="w">${nb(dat)} por revisar</span>`:dat.length?"Todo cuadra":"—";
+  { const par=(l,h)=>`<span class="m-lab">${maEsc(l)}</span><span class="m-v">${h}</span>`;   // v715: el par de las demás pestañas
+    $("m-q-pila").innerHTML=par("Tus cifras",nb(cif)?`<span class="w">${nb(cif)} no ${nb(cif)===1?"cuadra":"cuadran"}</span>`:"Todo cuadra")+par("Tu hoja",nb(dat)?`<span class="w">${nb(dat)} por revisar</span>`:dat.length?"Todo cuadra":"—"); }
   $("m-q-lc").innerHTML=cif.map(fila).join("")||'<div class="m-vacio">Sin comprobaciones.</div>';
   $("m-q-ld").innerHTML=dat.map(fila).join("")||'<div class="m-vacio">Sin comprobaciones.</div>'; }
 MA_PINTA.calc=()=>maCalc(); MA_PINTA.cq=()=>maCq();
@@ -6645,6 +6650,12 @@ $("pos-body").addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&
 function sesion(){ const s=lastSession(); if(s.closed||!DATA) return s; const hay=r=>isNum(r.today)&&r.today!==0;
   if((DATA.pos||[]).some(p=>!p.isOption&&hay(p))||(DATA.pre||[]).some(hay)) return s;
   const d=new Date(s.d); do d.setDate(d.getDate()-1); while(d.getDay()===0||d.getDay()===6); const r=lastSession(new Date(d.getFullYear(),d.getMonth(),d.getDate(),12)); return {d:r.d,closed:true,get lbl(){ return r.lbl; }}; }
+/* v715 · tras repintar con datos nuevos, la página se queda donde estaba: al rehacer las pantallas cambia un instante de alto y el
+   navegador recolocaba el desplazamiento (en el iPhone, Safari no compensa como Chrome). Se repone al momento, en los dos fotogramas
+   siguientes y cuando terminan de llegar logos y gráficos; si tocas, desplazas o usas el teclado, se deja de reponer */
+function mantenAltura(y){ let tu=false; const ev=["wheel","touchstart","keydown","mousedown"], para=()=>{ tu=true; }; ev.forEach(e=>addEventListener(e,para,{passive:true,capture:true}));
+  const fija=()=>{ if(!tu&&Math.abs(scrollY-y)>1) scrollTo(scrollX,y); }; fija(); requestAnimationFrame(()=>{ fija(); requestAnimationFrame(fija); });
+  setTimeout(fija,250); setTimeout(()=>{ fija(); ev.forEach(e=>removeEventListener(e,para,{capture:true})); },900); }
 function lastSession(now=new Date()){ const d=new Date(now), wd=d.getDay(), back=wd===6?1:wd===0?2:d.getHours()<9?(wd===1?3:1):0; d.setDate(d.getDate()-back); let l=null; return {d,closed:back>0,get lbl(){ return l??(l=d.toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"}).replace(/[.,]/g,"").replace(/\bsept\b/,"sep")); }}; }
 // modo claro / oscuro: por defecto el del sistema; el botón lo fija y se recuerda en este navegador
 { const R=document.documentElement, mq=matchMedia("(prefers-color-scheme: dark)"), dark=()=>R.dataset.theme?R.dataset.theme==="dark":mq.matches;
@@ -6781,7 +6792,7 @@ async function load(fresh){
     // huella de las cotizaciones: si Google no ha recalculado la hoja, no cambia aunque el archivo sí lo haga
     const sig=dd.pos.map(pos=>pos.ticker+":"+pos.price+":"+pos.today).join("|"), same=lastSig!==null&&sig===lastSig;
     if(!same){ lastSig=sig; sigAt=when; }
-    if(dd!==DATA){ const ant=DATA&&porTi?mvFoto():null; if(porTi) MA.cuentaHasta=Date.now()+3000; try{ render(dd); }catch(err){ if(err&&typeof err==="object") err.pinta=1; throw err; } if(ant) mvCuenta(ant); }   /* MV-01 */ notice(""); retried=false; loadAct(false); cacheAt=null; if(pd0&&fp!==fpGuardada){ cachePut({ver:VER,cv:CACHE_V,at:Date.now(),pd:pd0}); fpGuardada=fp; }   // la copia para la próxima vez
+    if(dd!==DATA){ const ant=DATA&&porTi?mvFoto():null, sy0=DATA?scrollY:null; if(porTi) MA.cuentaHasta=Date.now()+3000; try{ render(dd); }catch(err){ if(err&&typeof err==="object") err.pinta=1; throw err; } if(ant) mvCuenta(ant); if(sy0!=null) mantenAltura(sy0); }   /* MV-01 */ notice(""); retried=false; loadAct(false); cacheAt=null; if(pd0&&fp!==fpGuardada){ cachePut({ver:VER,cv:CACHE_V,at:Date.now(),pd:pd0}); fpGuardada=fp; }   // la copia para la próxima vez
     if(REM) try{ localStorage.setItem("cartera-ok",REM.d); }catch{}   // este ID ya ha funcionado en este dispositivo
     const ss=sesion();
     if(ss.closed) setStatus("","Mercado cerrado · leído a las "+hhmm); else setStatus("live", same ? `Cotizaciones de las ${hm(sigAt)}` : "En vivo · "+when.toLocaleDateString("es-ES",{weekday:"short"}).replace(".","")+" "+when.getDate()+" "+MES[when.getMonth()].toLowerCase()+" · "+hhmm);
