@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-5dkHdeErj6Lbpw/0N7fWxfFmsRrj3uDBGrR+UHyoguw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-JzvB3x9AsbIw6PbluAAvT5CViWeRAqM6EuEmXMgTkfc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v717">
+<link rel="manifest" href="manifest.webmanifest?v718">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v717">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v717">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v717">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v717">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v717">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v718">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v718">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v718">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v718">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v718">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -2481,7 +2481,7 @@ html.m-tel.m-bar-on:not(.m-app) body{padding-bottom:calc(110 * min(100vw,100vh) 
 /* v637 · la lente de iOS 26/27, por ingeniería inversa: al mantener pulsado (y mientras viaja entre pestañas) la selección se vuelve una gota
    de vidrio más grande que la cápsula que AUMENTA lo que tiene debajo. Dentro lleva una copia de los iconos alineada con los de debajo
    (.m-lens-in); al crecer la lente, la copia crece con ella desde su centro, como una lupa. El fondo de vidrio tapa los iconos de debajo */
-#ma-tabs .m-lens-in{position:absolute;left:0;top:0;height:calc(58 * var(--u));width:calc(378 * var(--u));display:grid;grid-template-columns:repeat(5,1fr);opacity:0;transition:opacity .12s linear}
+#ma-tabs .m-lens-in{position:absolute;left:0;top:0;height:calc(58 * var(--u));width:calc(378 * var(--u));display:grid;grid-template-columns:repeat(5,1fr);opacity:0;transition:opacity .16s}
 #ma-tabs .m-lens-in span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(3 * var(--u));padding-top:calc(1 * var(--u));font:600 calc(10 * var(--u))/calc(12 * var(--u)) Inter,system-ui,-apple-system,sans-serif;color:var(--m-ink)}
 #ma-tabs .m-lens-in svg{stroke-width:1.9}
 #ma-tabs .m-lens:is(.held,.vuela){background:linear-gradient(180deg,var(--m-lg1),var(--m-lg2));
@@ -2845,11 +2845,6 @@ html.m-app.m-ios #ma #m-ptrg{display:flex}
 #ma #m-ptrg span{flex:none}
 #m-ptrg[data-listo] .m-ptr-d{transform:scale(1.35)}
 #m-ptrg[data-listo] span{color:var(--m-ink2)}
-/* v671 · G-09, prueba B en Resumen (Posiciones y Opciones): nombre y cifra a 15 px y segunda línea a 12 px (antes 13 y 11); fila de 57 px.
-   El 15 está fuera de la guía (38 · 28 · 17 · 13 · 12), a propósito: se lee mejor sin perder casi densidad */
-#m-pg-res .m-row .m-f1 b{font-size:15px}
-#m-pg-res .m-row .m-f2,#m-pg-res .m-row .m-f2 small{font-size:12px}
-#m-pg-res .m-list .m-row{height:57px}
 
 /* v675 · ZONA NEGRA COMO LA DE RESUMEN en Análisis, Movimientos, Calendario y Universo: el rótulo de la cifra encima de ella (donde va «Valor»),
    la cifra en el mismo sitio y las dos líneas de la derecha a la altura de las de Resumen («Hoy» con la cifra, «Total» debajo), en la misma
@@ -2987,12 +2982,7 @@ html.m-app #kx .kx-in kbd,html.m-app #kx .kx-f{display:none}
 #ma-tabs.act{transform:translateX(-50%) scale(1.035)}
 #ma-tabs::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;background:rgba(255,255,255,.22);opacity:0;transition:opacity .25s}
 #ma-tabs.act::before{opacity:1}
-#ma-tabs .m-lens{transition:background .12s linear,box-shadow .12s linear}
-/* v716 · al tocar, la lente (fondo claro, sombras y lupa) aparece al instante; la vuelta a cápsula se funde en 0,12 s, a la vez el fondo y la lupa.
-   Antes las dos se fundían a ritmos distintos (0,25 y 0,16 s): durante el cambio se veía a medias la etiqueta de debajo y la copia ampliada
-   («Re umen», «An lisis») y al pararse quedaba una mancha. Y como la fundida la hace el procesador, al cambiar de pestaña la burbuja ya volaba
-   (tarjeta gráfica) antes de vestirse de lente */
-#ma-tabs .m-lens:is(.held,.vuela),#ma-tabs .m-lens:is(.held,.vuela) .m-lens-in{transition:none}
+#ma-tabs .m-lens{transition:background .25s,box-shadow .25s}
 /* v683 · tirar para actualizar: el hueco, oscuro como la cabecera (antes, del claro de la página) y con el anillo en el verde de la marca */
 #ma #m-ptrg{background:var(--m-top);color:var(--m-tfg2)}
 #ma #m-ptrg .m-ptr-r{stroke:rgba(255,255,255,.22)}
@@ -3070,11 +3060,11 @@ html:not(.hay-datos) .wrap>.view{display:none!important}
 #ma .m-kop:has(.m-ksub:empty):has(.m-kd:empty) .m-kx{align-self:center}
 /* v714 · calculadora: las casillas de dinero, de 36 px (las de 44 llenaban la fila de borde a borde) y la de «Aportación» con el mismo ancho
    y el mismo borde derecho que las de las operaciones (allí, a la derecha, va la X: 24 px más 10 de separación) */
-#ma .m-kc .m-kap .m-kf{margin-right:var(--kap-mr,26px)}
+
 /* v716 · AL CAMBIAR DE PESTAÑA, Safari solo pinta las filas que se ven: las de fuera de la pantalla esperan a acercarse (content-visibility),
    con su alto exacto reservado para que nada salte al bajar (57 px en Resumen, 52 en Análisis, Movimientos, Calendario y Universo; la
    Calculadora y el Cuadre, con filas de alto variable, quedan fuera). Medido en Safari 27: el peor fotograma del cambio, de 299 a 178 ms */
-#m-pg-res .m-list>.m-row{content-visibility:auto;contain-intrinsic-size:auto 57px}
+#m-pg-res .m-list>.m-row{content-visibility:auto;contain-intrinsic-size:auto 52px}
 #ma :is(#m-pg-ana,#m-pg-mov,#m-pg-cal,#m-pg-uni) .m-list>.m-row{content-visibility:auto;contain-intrinsic-size:auto 52px}
 /* v717 · TIRAR PARA ACTUALIZAR: el anillo, en el hueco reservado bajo la cabecera fija (dentro de la página): en reposo lo tapa la cabecera;
    al tirar baja con la página y asoma por debajo de ella, y al soltar vuelve a esconderse deslizándose, todo con el rebote nativo */
@@ -3082,6 +3072,27 @@ html.m-app.m-ios #ma #m-ptrg{position:absolute;top:calc(env(safe-area-inset-top,
 html.m-app.m-ios #ma #m-ptrg .m-pgi{top:0;bottom:0;height:auto;transform:none;will-change:auto}
 /* · la versión, al final del menú de opciones del móvil */
 #m-opm .m-opver{display:block;padding:6px 14px 6px;font-size:12px;line-height:16px;color:var(--m-ink3)}
+
+/* v718 · TIRAR PARA ACTUALIZAR: arriba del todo el rebote de iOS se apaga y el tirón lo lleva la web (puede sujetar la página bajada); mientras
+   se actualiza, el anillo gira */
+html.m-app.m-ios.m-ptrtop,html.m-app.m-ios.m-ptrtop body{overscroll-behavior-y:none}
+#ma #m-ptrg[data-act] .m-ptr-a{stroke-dasharray:28 72}
+#ma #m-ptrg[data-act] svg{animation:m-gira .8s linear infinite}
+@keyframes m-gira{to{transform:rotate(360deg)}}
+/* v718 · UNIVERSO DEL MÓVIL: las empresas de tu cartera, como en el PC: fondo verde suave, barra verde a la izquierda y el nombre en negrita
+   (sin el punto) */
+#m-u-ra .m-row.pf{position:relative;background-color:color-mix(in srgb,var(--gx-id) 14%,transparent)}
+#m-u-ra .m-row.pf::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:4px;border-radius:2px;background:var(--gx-id)}
+#m-u-ra .m-row.pf .m-n{font-weight:600}
+#m-u-ra .m-row.pf .mia{display:none}
+/* v718 · CASILLAS DE LA CALCULADORA SIN CAJA: la cifra se escribe en la misma letra que las demás cifras (13 px, en tinta) sobre una raya fina,
+   que se vuelve verde al escribir; en Cuentas, el «€» de la Aportación acaba donde acaban los importes de debajo */
+#ma .m-kf{gap:3px}
+#ma .m-kf input,#ma .m-kfo input{width:96px;height:30px;padding:0;border:0;border-radius:0;background:transparent;box-shadow:inset 0 -1px 0 var(--m-line);color:var(--m-ink);font:500 13px/18px Inter,system-ui,sans-serif;font-feature-settings:"cv11","tnum";text-align:right;caret-color:var(--sel)}
+#ma .m-kf input:focus{box-shadow:inset 0 -2px 0 var(--sel)}
+#ma .m-kf input::placeholder{color:var(--m-ink3);opacity:1}
+#ma .m-kf i{font-size:13px;color:var(--m-ink);min-width:0}
+#ma .m-kfo i{min-width:26px}
 </style>
 
 <div id="m-sp" aria-hidden="true"><img class="sp-c" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4' preserveAspectRatio='none'%3E%3Crect width='4' height='4' fill='%2318211C'/%3E%3C/svg%3E"><img class="sp-o" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4' preserveAspectRatio='none'%3E%3Crect width='4' height='4' fill='%232B2B29'/%3E%3C/svg%3E"></div>
@@ -3764,7 +3775,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v717";   // la versión publicada, en el pie
+const VER="v718";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4155,8 +4166,15 @@ function anchosPre(){
   // v715 · con el mismo ancho de ventana y las mismas columnas, si todo lo nuevo cabe en los anchos de antes, se quedan esos: al actualizar
   // las columnas ya no se reajustan solas (antes se medían otra vez con cada lectura y bastaba una cifra con otro número de dígitos)
   const clave=innerWidth+"|"+cols.map(c=>c.k).join(",");
-  if(preUlt&&preUlt.clave===clave&&cols.every((c,i)=>(c.txt?c.need:c.v+16)<=preUlt.w[i]+.5)){ cols.forEach((c,i)=>{ c.w=preUlt.w[i]; if(!c.txt) c.v=Math.max(c.v,preUlt.v[i]); }); n=Math.max(n,preUlt.n); }
-  preUlt={clave,w:cols.map(c=>c.w),v:cols.map(c=>c.v||0),n};
+  /* v718 · y SE GUARDAN EN ESTE ORDENADOR: al recargar la página se parte de los mismos anchos, no de unos medidos a medias (sin la letra o sin
+     todos los datos) que unos segundos después se volvían a medir y ensanchaban Empresa. Si algo nuevo no cabe, se rehace, pero Empresa
+     conserva su ancho (solo crece si un nombre no cabe) y la diferencia la absorbe Industria */
+  if(!preUlt||preUlt.clave!==clave){ try{ const o=JSON.parse(localStorage.getItem("cartera-pcw")||"null"); if(o&&o.clave===clave&&Array.isArray(o.w)&&o.w.length===cols.length) preUlt=o; }catch{} }
+  if(preUlt&&preUlt.clave===clave){
+    if(cols.every((c,i)=>(c.txt?c.need:c.v+16)<=preUlt.w[i]+.5)){ cols.forEach((c,i)=>{ c.w=preUlt.w[i]; if(!c.txt) c.v=Math.max(c.v,preUlt.v[i]||0); }); n=Math.max(n,preUlt.n||0); }
+    else { const ie=cols.findIndex(c=>c.k==="name"), ii=cols.findIndex(c=>c.k==="ind");
+      if(ie>=0&&ii>=0){ const we=Math.max(cols[ie].need,preUlt.w[ie]), d=we-cols[ie].w; if(cols[ii].w-d>=cols[ii].need){ cols[ie].w=we; cols[ii].w-=d; } } } }
+  preUlt={clave,w:cols.map(c=>c.w),v:cols.map(c=>c.v||0),n}; try{ localStorage.setItem("cartera-pcw",JSON.stringify(preUlt)); }catch{}
   st.textContent=`@media (min-width:701px){${n?`#t-p td[data-k="margin"] .mg-n{min-width:${n}px}`:""}${nums.map(c=>`#t-p td[data-k="${c.k}"]>.cifb{width:${c.v}px}`).join("")}}`;
   if(document.fonts&&document.fonts.status!=="loaded"&&!preEsperaLetras){ preEsperaLetras=true; document.fonts.ready.then(()=>{ preEsperaLetras=false; preAnchosClave=""; if(view==="universo") renderPreTable(); else drawn.universo=""; }); }   // COD-17
   return cols.map(c=>c.w); }
@@ -4646,7 +4664,7 @@ function gxCal(){ const s=gxSec("v-calendario"), hoy=new Date(); hoy.setHours(12
       html+=n?`<div class="${cls}"><span class="n">${d}</span>${hr}<span class="lr">${ve.map(x=>`<button type="button" class="gx-dl" data-t="${esc(x.t)}" aria-label="${esc(nm[x.t]||x.t)}">${gxLogo(x.t,lw,lh,{cls:r.length?"inv":""})}</button>`).join("")}${e.length>2?`<span class="gx-mas" title="${esc(e.slice(2).map(x=>nm[x.t]||x.t).join(" · "))}">+${e.length-2}</span>`:""}</span>${lab?`<span class="lb">${lab}</span>`:""}</div>`:`<div class="${cls}"><span class="n">${d}</span></div>`; }
     for(let i=off+dim;i<42;i++) html+=`<div class="gx-d vac"></div>`;   // v479: seis semanas siempre, para que no cambie de alto de un mes a otro
     html+=`</div></div>`; }
-  s.querySelector(".gx-cal").innerHTML=html; gxPega(s); gxAgenda(); }
+  s.querySelector(".gx-cal").innerHTML=html; gxPega(s); }   /* v718: sin la agenda debajo (como en la v679) */
 
 // ── Universo · el mosaico del día (las quince que más suben y las quince que más bajan, del tamaño de su movimiento, con los colores del mapa
 // de Resumen) y las columnas de la exigencia. La palabra del titular elige el periodo; sustituye a la lista de Rendimiento del PC
@@ -5854,7 +5872,7 @@ function maSplashFin(ya){ const R=document.documentElement; if(!R.classList.cont
 setTimeout(()=>{ if(!window.maRecarga) maSplashFin(true); },MA_SPMAX);
 function maHora(){ const s=$("stat"), d=$("dot"); if(!s||!$("m-hora")) return;
   const lee=!!(d&&/\bbusy\b/.test(d.className)), t=s.textContent.match(/\d{1,2}:\d{2}/g);
-  const h=$("m-hora"), nh=lee?"Actualizando…":t?t[t.length-1]:s.textContent.trim(); if(nh&&h.textContent!==nh) h.textContent=nh;   /* v660: sin hora (por ejemplo «Sin acceso»), el estado tal cual; antes se quedaba en «Actualizando…» */   // v651: mientras lee, «Actualizando…» y el punto naranja, como en el PC; al acabar, la hora
+  const h=$("m-hora"), nh=lee?(MA.ptrAct?h.textContent:"Actualizando…"):t?t[t.length-1]:s.textContent.trim(); if(nh&&h.textContent!==nh) h.textContent=nh;   /* v660: sin hora (por ejemplo «Sin acceso»), el estado tal cual; antes se quedaba en «Actualizando…» */   // v651: mientras lee, «Actualizando…» y el punto naranja, como en el PC; al acabar, la hora
   { const md=$("m-dot"), c="m-dot"+(d&&/\bbusy\b/.test(d.className)?" busy":"")+(d&&/\berr/.test(d.className)?" err":""); if(md.className!==c) md.className=c; } maLate(!!(d&&/\bbusy\b/.test(d.className))); }
 /* v648 · mientras se actualiza, late el punto verde del logotipo «Cartera.» en todas las pestañas (la espera de la marca, como en el PC); al menos 0,9 s */
 function maLate(b){ const c=document.querySelector("#ma .m-lt .m-pt"); if(!c) return; clearTimeout(MA.lateTo);
@@ -5943,6 +5961,9 @@ function maModo(){ if(!MA.tel) return; const d=$("dot"), leyendo=!d||/\bbusy\b/.
  const T=[...bar.querySelectorAll("button")], N=T.length, V=["resumen","analisis","movimientos","calendario","universo"], quieto=matchMedia("(prefers-reduced-motion: reduce)").matches;
  const W=()=>75.6;   // v678: cinco pestañas · v679: menú de 374 × 66 · v681: de 386 × 66 (378 por dentro)
  const IN=378, LW=80, pos=i=>i*W()+W()/2;
+ /* v718 · el ancho de la burbuja, el de su pestaña: 94 en Movimientos (la etiqueta más larga: con 80 le quedaban 9 px a cada lado, frente a
+    los 17 de Resumen) y 80 en las demás; entre dos pestañas, pasa de un ancho al otro */
+ const LWS=[80,80,94,80,80], wDe=X=>{ const f=Math.max(0,Math.min(4,(X-W()/2)/W())), i=Math.min(3,Math.floor(f)); return LWS[i]+(LWS[i+1]-LWS[i])*(f-i); };
  /* v683 · COMO LA BARRA DE «BUSCAR» DE iOS 27 (vídeo de Alfonso, medido fotograma a fotograma):
     · en reposo, la burbuja es una cápsula oscura de 80 × 58, centrada en su pestaña;
     · al tocar una pestaña, en ese mismo instante: la burbuja se vuelve una lente de vidrio clara un 15 % más grande que aumenta lo que tiene
@@ -5961,9 +5982,10 @@ function maModo(){ if(!MA.tel) return; const d=$("dot"), leyendo=!d||/\bbusy\b/.
  // px por unidad de diseño (la barra mide 386): del ancho de la barra (sin su escala al tocar) o, si aún no se ve, de la pantalla
  let u=0; const U=()=>u||(u=bar.offsetWidth?bar.offsetWidth/386:Math.min(innerWidth,innerHeight)/(parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--m-sw"))||402));
  // la burbuja (translateX + escala con el estirado) y su lupa (la misma franja de iconos, contra-desplazada y algo aumentada alrededor del centro)
- const tr=(X,Vv,Sc,dr)=>{ const e=quieto?0:Math.min(Math.abs(Vv)/(dr?5200:2600),.16), sx=Sc*(1+e), sy=Sc*(1-e*.55), q=U(), lx=X-LW/2, m=1+(Sc-1)*.45, ox=X*q, oy=29*q;
-   return [`translateX(${(lx*q).toFixed(2)}px) scale(${sx.toFixed(4)},${sy.toFixed(4)})`,`translate(${ox.toFixed(2)}px,${oy.toFixed(2)}px) translateX(${(-lx*q).toFixed(2)}px) scale(${(m/Sc).toFixed(4)}) translate(${(-ox).toFixed(2)}px,${(-oy).toFixed(2)}px)`]; };
- const pinta=()=>{ const k=tr(x,v,s,arrastra); lens.style.width=(LW*U()).toFixed(2)+"px"; lens.style.transform=k[0]; LI.style.transform=k[1];
+ // wb: el ancho que tiene la burbuja; en pleno vuelo, el de la pestaña por la que pasa se consigue estirándola (fx), y la lupa se compensa
+ const tr=(X,Vv,Sc,dr,wb)=>{ const e=quieto?0:Math.min(Math.abs(Vv)/(dr?5200:2600),.16), fx=wDe(X)/wb, sx=Sc*(1+e)*fx, sy=Sc*(1-e*.55), q=U(), lx=X-wb/2, m=1+(Sc-1)*.45, ox=X*q, oy=29*q;
+   return [`translateX(${(lx*q).toFixed(2)}px) scale(${sx.toFixed(4)},${sy.toFixed(4)})`,`translate(${ox.toFixed(2)}px,${oy.toFixed(2)}px) translateX(${(-lx*q).toFixed(2)}px) scale(${(m/Sc/fx).toFixed(4)},${(m/Sc).toFixed(4)}) translate(${(-ox).toFixed(2)}px,${(-oy).toFixed(2)}px)`]; };
+ const pinta=()=>{ const wb=wDe(x), k=tr(x,v,s,arrastra,wb); lens.style.width=(wb*U()).toFixed(2)+"px"; lens.style.transform=k[0]; LI.style.transform=k[1];
    if(vuela&&Math.abs(xt-x)<W()*.12&&Math.abs(v)<120){ vuela=false; lens.classList.remove("vuela"); } };
  addEventListener("resize",()=>{ u=0; if(!an&&!raf) pinta(); },{passive:true});
  // el vuelo: dónde está ahora (muestra del recorrido según el tiempo), pararlo y calcular uno nuevo desde el estado actual
@@ -5987,8 +6009,8 @@ function maModo(){ if(!MA.tel) return; const d=$("dot"), leyendo=!d||/\bbusy\b/.
   if(an){ ahora(); an.A.forEach(a=>a.cancel()); clearTimeout(an.tv); clearTimeout(an.tf); an=null; }
   const {S,tv,su,stF}=vuelo();
   if(S.length<=2){ x=xt; v=vs=0; s=st=stF; sube=false; pinta(); return; }
-  const K=S.map(([X,Vv,Sc])=>tr(X,Vv,Sc,false)), d=(S.length-1)*DT, o={duration:d,easing:"linear",fill:"forwards"};
-  lens.style.width=(LW*U()).toFixed(2)+"px"; lens.style.transform=K[0][0]; LI.style.transform=K[0][1];
+  const wb=wDe(x), K=S.map(([X,Vv,Sc])=>tr(X,Vv,Sc,false,wb)), d=(S.length-1)*DT, o={duration:d,easing:"linear",fill:"forwards"};
+  lens.style.width=(wb*U()).toFixed(2)+"px"; lens.style.transform=K[0][0]; LI.style.transform=K[0][1];
   const A=[lens.animate(K.map(k=>({transform:k[0]})),o),LI.animate(K.map(k=>({transform:k[1]})),o)], yo={t0:performance.now(),S,A,su};
   A[0].ready.then(()=>{ if(an!==yo) return; if(tv>=0) yo.tv=setTimeout(()=>{ if(vuela&&an===yo){ vuela=false; lens.classList.remove("vuela"); } },tv*DT); }).catch(()=>{});
   A[0].finished.then(()=>{ if(an!==yo) return; x=xt; v=vs=0; s=st=stF; sube=false; pinta(); A.forEach(a=>a.cancel()); an=null; }).catch(()=>{});
@@ -6104,40 +6126,43 @@ if(MA.tel){ const B=document.createElement("div"); B.id="m-borde"; B.hidden=true
    y hace crecer el punto del logotipo. Al soltar pasado el umbral, se actualiza; el sistema devuelve la página a su sitio.
    Sin escuchas que bloqueen el desplazamiento (todas pasivas) y sin mover la página desde la web */
 const MA_IOS=/iP(hone|od|ad)/.test(navigator.userAgent)||(/Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
-if(MA_IOS){ document.documentElement.classList.add("m-ios"); let on=false, raf=0, listo=false, y0=0, yd=0;
-  const LIM=64, punto=()=>document.querySelector("#ma .m-lt .m-pt"),
-    puede=()=>document.documentElement.classList.contains("m-app")&&MA.pg!=="calc"&&MA.pg!=="cq"&&$("kx").hidden&&(!$("sheet")||$("sheet").hidden)&&!MA.fi&&$("m-opm").hidden,   /* con la ficha (del PC o del iPhone), la búsqueda o el menú de opciones abiertos, no (v685 · IP-01: arrastrar dentro de la ficha del iPhone lanzaba «Actualizar») */
-    /* v670 · en el hueco que se abre entre la barra y la página al tirar: el anillo se va llenando con el verde de la marca y dice qué pasa
-       («Desliza para actualizar»; pasado el umbral, «Suelta para actualizar»). Ocupa justo el hueco (su alto es el del tirón), así que nunca pisa la página */
+if(MA_IOS){ const R=document.documentElement; R.classList.add("m-ios"); let on=false, raf=0, listo=false, y0=0, yd=0, h=0, P=null, sujeta=false, sondeo=0, anims=[];
+  /* v718 · TIRAR PARA ACTUALIZAR COMO LAS APPS: la página baja pegada al dedo (con la resistencia del rebote de iOS) y, si pasa el umbral,
+     al soltar se queda un poco bajada (56 px) con el anillo girando en el hueco mientras se lee la hoja; al acabar, sube deslizándose. Arriba del
+     todo, el rebote del sistema se apaga (no puede sujetar la página) y el tirón lo lleva la web; en el resto de la página, el rebote es el de
+     siempre. Sin «Actualizando…» en la cabecera mientras tanto: ya lo dice el anillo */
+  const LIM=64, SUJ=56, punto=()=>document.querySelector("#ma .m-lt .m-pt"),
+    puede=()=>R.classList.contains("m-app")&&MA.pg!=="calc"&&MA.pg!=="cq"&&$("kx").hidden&&(!$("sheet")||$("sheet").hidden)&&!MA.fi&&$("m-opm").hidden,   /* con la ficha (del PC o del iPhone), la búsqueda o el menú de opciones abiertos, no (v685 · IP-01) */
     G=(()=>{ const e=document.createElement("div"); e.id="m-ptrg"; e.setAttribute("aria-hidden","true"); e.innerHTML=`<div class="m-pgi"><svg viewBox="0 0 32 32"><circle class="m-ptr-r" cx="16" cy="16" r="12"/><circle class="m-ptr-a" cx="16" cy="16" r="12" pathLength="100"/><circle class="m-ptr-d" cx="16" cy="16" r="4.5"/></svg></div>`; const m=$("ma"); if(m) m.appendChild(e); return e; })(),
-    /* v684 · SIN RECOLOCAR NADA EN CADA FOTOGRAMA: el indicador mide siempre 160 px; de él solo se ve el trozo del hueco (recorte) y su
-       contenido se desplaza para quedar en el centro del hueco. Antes se cambiaba su alto en cada fotograma y el navegador recolocaba el
-       anillo y el texto (iba a saltos). Los tres textos están uno encima de otro y se funden entre sí, sin cambiar de golpe */
-    hueco=(p,act)=>{ if(!G) return; const h=Math.max(0,-scrollY); clearTimeout(G._vacia);
-      /* v717 · el anillo va dentro de la página, encima del contenido y tapado por la cabecera: lo mueve el propio rebote de iOS, a la vez que la
-         lista. Antes era una capa fija que JavaScript recolocaba en cada fotograma con la altura del rebote, que en el iPhone llega tarde y a
-         trompicones (vídeo de Alfonso de las 12:05: la capa tapaba con una franja oscura el principio de la lista y se apagaba con el hueco aún
-         abierto). Aquí solo se pone cuánto está lleno; al esconderse bajo la cabecera se vacía, ya sin verse */
-      if(p<=0||h<1){ G._vacia=setTimeout(()=>{ G.style.setProperty("--m-prog","0"); G.removeAttribute("data-listo"); G.removeAttribute("data-act"); },450); return; }
-      const ok=p>=LIM; G.style.setProperty("--m-prog",Math.min(100,p/LIM*100).toFixed(1));
-      if(ok!==G.hasAttribute("data-listo")) G.toggleAttribute("data-listo",ok); if(!!act!==G.hasAttribute("data-act")) G.toggleAttribute("data-act",!!act); },
-    pon=p=>{ hueco(p); const c=punto(); if(!c) return; if(p<=0){ listo=false; if(c.style.transform){ c.style.transition=""; c.style.transform=""; } return; }
-      listo=p>=LIM; c.style.transition=listo?"":"none";   /* pegado al dedo; al llegar al umbral, el salto con muelle */
-      c.style.transform=`scale(${(1+.8*Math.min(1,p/LIM)+(listo?.25:0)).toFixed(3)})`; },
-    /* lo que ha bajado la página: el rebote que da iOS (scrollY negativo) o, por si no lo diera, el recorrido del dedo con la misma
-       resistencia que aplica iOS (0,55 sobre el alto de la pantalla); mientras la página no está arriba del todo, no cuenta */
-    goma=x=>{ const d=innerHeight||800; return x>0?(1-1/(x*.55/d+1))*d:0; },
-    paso=()=>{ raf=0; if(!on) return; const sy=scrollY; if(sy>0) y0=yd; pon(Math.max(-sy,sy>0?0:goma(yd-y0))); raf=requestAnimationFrame(paso); };
-  MA.ptrRecoge=()=>{ on=false; cancelAnimationFrame(raf); raf=0; pon(0); };
-  addEventListener("touchstart",e=>{ if(e.touches.length!==1||scrollY>0||!puede()||e.target.closest("#ma-tabs,#m-fi,#m-opm")){ if(on) MA.ptrRecoge(); return; } on=true; y0=yd=e.touches[0].clientY; if(!raf) raf=requestAnimationFrame(paso); },{passive:true});
+    anillo=p=>{ if(!G) return; if(p<=0){ G.style.setProperty("--m-prog","0"); G.removeAttribute("data-listo"); return; }
+      const ok=p>=LIM; G.style.setProperty("--m-prog",Math.min(100,p/LIM*100).toFixed(1)); if(ok!==G.hasAttribute("data-listo")) G.toggleAttribute("data-listo",ok); },
+    logo=p=>{ const c=punto(); if(!c) return; if(p<=0){ listo=false; if(c.style.transform){ c.style.transition=""; c.style.transform=""; } return; }
+      listo=p>=LIM; c.style.transition=listo?"":"none"; c.style.transform=`scale(${(1+.8*Math.min(1,p/LIM)+(listo?.25:0)).toFixed(3)})`; },
+    baja=y=>{ const t=y>.05?`translate3d(0,${y.toFixed(1)}px,0)`:""; if(P) P.style.transform=t; if(G) G.style.transform=t; },
+    para=()=>{ anims.forEach(a=>{ try{ a.cancel(); }catch{} }); anims=[]; },
+    // de una altura a otra con la tarjeta gráfica; lo escrito en el estilo ya es el destino
+    anima=(de,a,ms,fin)=>{ para(); baja(a); const k=[{transform:`translate3d(0,${de.toFixed(1)}px,0)`},{transform:`translate3d(0,${a.toFixed(1)}px,0)`}], o={duration:ms,easing:"cubic-bezier(.25,.8,.3,1)"};
+      anims=[P,G].filter(Boolean).map(e=>e.animate(k,o)); const yo=anims; if(anims[0]) anims[0].finished.then(()=>{ if(anims===yo){ anims=[]; if(fin) fin(); } }).catch(()=>{}); else if(fin) fin(); },
+    suelta=()=>{ para(); if(P){ P.style.transform=""; P.style.transition=""; P.style.willChange=""; } if(G){ G.style.transform=""; G.style.willChange=""; } P=null; h=0; },
+    goma=x=>{ const d=innerHeight||800; return x>0?(1-1/(x*.55/d+1))*d:0; },   // la resistencia del rebote de iOS (0,55 sobre el alto de la pantalla)
+    paso=()=>{ raf=0; if(!on) return; if(scrollY>0) y0=yd; const nh=scrollY>0?0:goma(yd-y0); if(Math.abs(nh-h)>.1){ h=nh; baja(h); anillo(h); logo(h); } raf=requestAnimationFrame(paso); },
+    arriba=()=>{ const a=scrollY<=0; if(a!==R.classList.contains("m-ptrtop")) R.classList.toggle("m-ptrtop",a); };
+  addEventListener("scroll",arriba,{passive:true}); arriba();
+  MA.ptrRecoge=()=>{ on=false; cancelAnimationFrame(raf); raf=0; clearInterval(sondeo); sondeo=0; sujeta=false; logo(0); anillo(0); if(G) G.removeAttribute("data-act"); suelta(); if(MA.ptrAct){ MA.ptrAct=false; maHora(); } };
+  addEventListener("touchstart",e=>{ if(sujeta) return;   // mientras se actualiza, la página sigue bajada aunque se toque
+    if(e.touches.length!==1||scrollY>0||!puede()||e.target.closest("#ma-tabs,#m-fi,#m-opm")){ if(on) MA.ptrRecoge(); return; }
+    on=true; y0=yd=e.touches[0].clientY; para(); P=$("m-pg-"+MA.pg); h=0; if(P){ P.style.transition="none"; P.style.willChange="transform"; } if(G) G.style.willChange="transform"; baja(0);
+    if(!raf) raf=requestAnimationFrame(paso); },{passive:true});
   addEventListener("touchmove",e=>{ if(on&&e.touches.length===1) yd=e.touches[0].clientY; },{passive:true});
-  /* v683 · al soltar, el indicador ya no desaparece de golpe: acompaña al rebote del sistema fotograma a fotograma (su alto y su opacidad
-     siguen al hueco) hasta que la página vuelve a su sitio; si se actualiza, dice «Actualizando…» con el anillo lleno */
-  const fin=e=>{ if(!on||(e.touches&&e.touches.length)) return; const va=listo||-scrollY>=LIM||(scrollY<=0&&goma(yd-y0)>=LIM);
-    on=false; cancelAnimationFrame(raf); raf=0; listo=false; { const c=punto(); if(c){ c.style.transition=""; c.style.transform=""; } }
-    const sigue=()=>{ raf=0; if(on) return; const h=-scrollY; if(h>.5){ hueco(va?Math.max(h,LIM):h,va); raf=requestAnimationFrame(sigue); } else hueco(0); };
-    raf=requestAnimationFrame(sigue);
-    if(va){ const rf=$("refresh"); if(rf&&!rf.disabled) rf.click(); } };   /* el punto late mientras se lee la hoja (maLate) */
+  const fin=e=>{ if(!on||(e.touches&&e.touches.length)) return; on=false; cancelAnimationFrame(raf); raf=0; logo(0);
+    if(!P){ anillo(0); return; }
+    if(h>=LIM&&puede()){ sujeta=true; G.removeAttribute("data-listo"); G.setAttribute("data-act",""); anima(h,SUJ,280);
+      MA.ptrAct=true; const t0=Date.now(), rf=$("refresh"); if(rf&&!rf.disabled) rf.click(); maHora();
+      // se queda bajada mientras se lee la hoja (el botón de actualizar, desactivado), como poco 0,7 s y como mucho 20 s
+      sondeo=setInterval(()=>{ const r=$("refresh"), n=Date.now()-t0; if(n<700||(r&&r.disabled&&n<20000)) return; clearInterval(sondeo); sondeo=0;
+        MA.ptrAct=false; maHora(); anima(SUJ,0,320,()=>{ sujeta=false; G.removeAttribute("data-act"); anillo(0); suelta(); }); },100); }
+    else if(h>.5) anima(h,0,260,()=>{ anillo(0); suelta(); });
+    else { anillo(0); suelta(); } };
   addEventListener("touchend",fin,{passive:true}); addEventListener("touchcancel",fin,{passive:true}); }
 
 /* v639 · CALENDARIO DEL IPHONE: lo que queda por cobrar este año (arriba) y la agenda de cobros mes a mes; los ya cobrados este mes, en gris */
@@ -6195,7 +6220,7 @@ function maUniRad(){ const f=MA.uRad, ok=v=>isNum(v)&&isFinite(v); maSelMarca("u
     const fc=d=>`${d.getDate()} ${MA_M3[d.getMonth()]}${d.getFullYear()!==new Date().getFullYear()?" "+String(d.getFullYear()).slice(2):""}`, vd=f==="rv"?valDate(r):null, cu=f==="rv"?(CALT.get(r.ticker)||{}).u:null;
     const izq=f==="rv"&&vd?`Valorada ${fc(vd)}${cu instanceof Date?` · resultados ${fc(cu)}`:""}`:maEsc(r.ind||"Sin industria");   /* v651: debajo del nombre, su industria · v681: en «Por revisar», la fecha de tu valoración y la de los resultados que la dejan atrás */
     const der=ok(r.irrExp)?`<i>TIR ${maP(r.irrExp)}</i>${ok(m)?`<span class="m-pc ${c}">(${puntosPct(m)})</span>`:""}`:`<span class="m-pc m-mute">—</span>`;
-    return `<div class="m-row" data-t="${maEsc(r.ticker)}"><span class="m-lg">${maLogo(r.ticker,r.name)}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(r.name||r.ticker)}${r.inPf?'<i class="mia" aria-label="en cartera"></i>':""}</b><b class="num">${maPr(r.price,r.cur)}</b></span><span class="m-f2"><small>${izq}</small><span class="m-l2 num">${der}</span></span></span></div>`; };
+    return `<div class="m-row${r.inPf?" pf":""}" data-t="${maEsc(r.ticker)}"><span class="m-lg">${maLogo(r.ticker,r.name)}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(r.name||r.ticker)}${r.inPf?'<i class="mia" aria-label="en cartera"></i>':""}</b><b class="num">${maPr(r.price,r.cur)}</b></span><span class="m-f2"><small>${izq}</small><span class="m-l2 num">${der}</span></span></span></div>`; };
   $("m-u-ra").innerHTML=L.length?L.map(row).join(""):`<div class="m-vacio">Ninguna.</div>`; maLogos(); }
 $("m-pg-uni").addEventListener("click",e=>{ const b=e.target.closest(".m-sel[data-g] button"); if(!b||!DATA) return; const g=b.parentNode.dataset.g, v=b.dataset.o;
   if(g==="uhoy"){ MA.uHoy=v; maUniHoy(); } else if(g==="uind"){ MA.uInd=v; maUniInd(); } else if(g==="urad"){ MA.uRad=v; maUniRad(); } });
@@ -6269,7 +6294,26 @@ $("m-pg-ana").addEventListener("click",e=>{ const b=e.target.closest(".m-sel[dat
 { const pcRender=render; MA.pcRender=pcRender;
   render=function(d){ document.documentElement.classList.add("hay-datos");   // v696: con datos, ya se ven las pestañas del PC (sin datos, solo la barra y el aviso)
     if(MA.tel&&document.documentElement.classList.contains("m-app")){ DATA=d; dataV++; MA.pcData=d; MA.pcPend=true; maModo(); return; }   // v702: en el mismo momento (antes, en la vuelta siguiente)
-    MA.pcData=null; return pcRender.apply(this,arguments); }; }
+    MA.pcData=null; const an=MA.pcAncla?MA.pcAncla():null, r=pcRender.apply(this,arguments); if(MA.pcVuelve) MA.pcVuelve(an); return r; }; }
+/* v718 · PC: AL RECARGAR LA PÁGINA, EN EL MISMO SITIO. Antes el navegador intentaba devolverte a tu sitio cuando la página aún estaba vacía
+   (sin datos) y te dejaba arriba del todo. Ahora se apunta dónde estabas (por pestaña) y se vuelve allí en el mismo instante en que se pintan
+   los datos, sin verse la página arriba; si después algo cambia de alto (gráficos, logos), se corrige durante 2 s, salvo que muevas tú la página.
+   Y al actualizar, la fila que tenías a la vista se queda exactamente donde estaba aunque cambie el alto de lo de encima */
+if(!document.documentElement.classList.contains("m-tel")){
+  try{ if("scrollRestoration" in history) history.scrollRestoration="manual"; }catch{}
+  let vuelve=null; try{ const o=JSON.parse(sessionStorage.getItem("cartera-sy")||"null"); if(o&&o.h===location.hash&&o.y>0) vuelve={y:o.y,t:0}; }catch{}
+  const guarda=()=>{ try{ sessionStorage.setItem("cartera-sy",JSON.stringify({h:location.hash,y:Math.round(scrollY)})); }catch{} };
+  let gt=0; addEventListener("scroll",()=>{ clearTimeout(gt); gt=setTimeout(guarda,120); },{passive:true}); addEventListener("pagehide",guarda);
+  const quieto=()=>{ vuelve=null; }; ["wheel","touchstart","mousedown","keydown"].forEach(k=>addEventListener(k,quieto,{passive:true,capture:true}));
+  const ruta=e=>{ const r=[]; while(e&&e!==document.body&&e.parentNode){ r.unshift([...e.parentNode.children].indexOf(e)); e=e.parentNode; } return e===document.body?r:null; },
+    sigue=r=>{ let e=document.body; for(const i of r){ e=e&&e.children[i]; } return e||null; };
+  MA.pcAncla=()=>{ if(vuelve||scrollY<=0) return null; const e=document.elementFromPoint(innerWidth/2,Math.min(innerHeight-1,160)); if(!e||e.closest(".bar,header,nav")) return null;
+    const r=ruta(e); return r?{r,top:e.getBoundingClientRect().top}:null; };
+  MA.pcVuelve=an=>{ if(vuelve){ const v=vuelve; if(!v.t){ v.t=performance.now(); scrollTo(0,v.y);
+        const otra=()=>{ if(vuelve!==v) return; if(performance.now()-v.t>2000){ vuelve=null; return; } if(Math.abs(scrollY-v.y)>1) scrollTo(0,v.y); requestAnimationFrame(otra); }; requestAnimationFrame(otra); }
+      else scrollTo(0,v.y); return; }
+    if(!an) return; const e=sigue(an.r); if(!e) return; const d=e.getBoundingClientRect().top-an.top; if(Math.abs(d)>=.5) scrollBy(0,d); };
+}
 /* v641 · las listas de la app solo se rehacen si lo que hay que enseñar ha cambiado (con la misma hoja, nada se toca: ni saltos ni tirones) */
 /* v696 · y si ha cambiado, en las listas solo se cambia lo que cambia (textos, cifras y colores): las filas se reconocen por su empresa (data-t),
    se reordenan sin rehacerse y los logos no se vuelven a cargar. Antes se rehacía la lista entera, logos incluidos, cada vez que llegaba la hoja.
@@ -6626,7 +6670,6 @@ document.addEventListener("click",e=>{ const op=e.target.closest('.kw-m [data-kw
   const r=e.target.closest(".gxag-r[data-t]"); if(!r) return; const t=r.dataset.t, L=[...new Set([...document.querySelectorAll("#gxag .gxag-r[data-t]")].map(x=>x.dataset.t))];
   openSheet(DATA.pos.some(p=>p.ticker===t)?"pos":"pre",t,L); });
 document.addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches(".gxag-r[data-t]")){ e.preventDefault(); e.target.click(); } });
-{ const _gc=gxCal; gxCal=function(){ _gc.apply(this,arguments); try{ gxAgenda(); }catch(e){ console.warn("Cartera · agenda del PC:",e); } }; }
 /* v681 · Universo: tocar «Por revisar» (bajo la cifra) lleva al Radar filtrado por «Por revisar», donde cada empresa dice cuándo la valoraste
    y de cuándo son los resultados que dejan atrás esa valoración */
 { const u=$("m-u-sub"); if(u){ u.style.cursor="pointer"; u.setAttribute("role","button"); u.addEventListener("click",()=>{ if(!DATA) return; MA.uRad="rv"; maUniRad();
