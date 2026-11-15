@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-/dDQrWdaNdpfxQiQ2hd6NA+li7xqZOeDCPLmP9Oj96Q=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-3SGaby5As7EghHmXUsvtvAbn8R7DxyUcaPiRfikEJxw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v712">
+<link rel="manifest" href="manifest.webmanifest?v713">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v712">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v712">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v712">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v712">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v712">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v713">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v713">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v713">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v713">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v713">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -708,7 +708,7 @@ html{-webkit-tap-highlight-color:transparent;scrollbar-gutter:stable;background:
 /* Valoración empieza, como Posición y Movimientos, con una tarjeta: rendimiento y técnico como fila de cifras, sin casillas dentro */
 /* fichas de Posición: todas las tarjetas del mismo alto en todas las empresas, tengan o no dividendos o fila «Divisa» */
 /* etiquetas propias al pasar el ratón o tocar (al momento, sin esperar al aviso del navegador); en los bordes se alinean hacia dentro */
-[data-tip]{outline:0}
+[data-tip]:not(:focus-visible){outline:0}
 [data-tip]:hover,[data-tip]:focus{z-index:var(--z-flota)}
 [data-tip]::after{content:attr(data-tip);display:none;position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);padding:4px 8px;border-radius:var(--r-4);background:var(--ink);color:var(--canvas);font-size:var(--fs-12);font-weight:400;line-height:1.35;line-height:round(nearest,calc(1.35*1em - .01px),1px);--lhx:1.35;--lhp:initial;white-space:pre;text-align:left;pointer-events:none}
 [data-tip]:hover::after,[data-tip]:focus::after{display:block}
@@ -1581,8 +1581,8 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gx-tip b{font-weight:600;color:var(--ink)} .gx-tip em{font-style:normal;color:var(--ink3);font-variant-numeric:tabular-nums}
   /* la palabra que hace de selector */
   .kwr{position:relative;display:inline}
-  .kw{font:inherit;line-height:inherit;vertical-align:baseline;height:auto;letter-spacing:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;white-space:nowrap;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:8px;text-decoration-color:var(--gx-id)}   /* v486: subrayado con el verde del logo */
-  .kw:hover{text-decoration-color:var(--gx-id)}   /* v487: al pasar el ratón, sigue verde */
+  .kw{font:inherit;line-height:inherit;vertical-align:baseline;height:auto;letter-spacing:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;white-space:nowrap;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:8px;text-decoration-color:var(--sel)}   /* v486: subrayado con el verde del logo; v713: verde oscuro sobre claro */
+  .kw:hover{text-decoration-color:var(--sel)}   /* v487: al pasar el ratón, sigue verde */
   .kw i{display:inline-block;width:.34em;height:.34em;margin:0 .06em 0 .16em;border-right:3px solid currentColor;border-bottom:3px solid currentColor;transform:translateY(-.2em) rotate(45deg);opacity:.55}
   .kw-m{position:absolute;left:-12px;top:calc(100% + 14px);background:var(--gx-pop);border-radius:12px;box-shadow:0 14px 36px rgba(0,0,0,.16),0 0 0 1px var(--line);padding:6px;font-size:15px;line-height:20px;font-weight:500;letter-spacing:0;min-width:240px;z-index:var(--z-menu,60);color:var(--ink);text-align:left;display:flex;flex-direction:column}
   .kw-m[hidden]{display:none}
@@ -1629,7 +1629,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gx-gr{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}   /* v485: ninguna columna crece por su contenido */
   .gx-d{position:relative;height:88px;border-radius:8px;background:var(--gx-tile);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:12px 0 0;box-sizing:border-box;border:0;font:inherit;color:inherit}
   .gx-d.vac{background:none}
-  .gx-d.pas{opacity:.45}   /* v479: los días pasados, con su casilla pero más tenues */
+  .gx-d.pas{opacity:.65}   /* v479: los días pasados, con su casilla pero más tenues */
   .gx-d .n{position:absolute;left:10px;top:8px;font-size:12px;line-height:16px;font-weight:500;color:var(--ink2);font-variant-numeric:tabular-nums}
   .gx-d.fin .n{color:var(--ink3)}
   .gx-d.hoy .n{left:5px;top:4px;width:24px;height:24px;line-height:24px;text-align:center;border-radius:50%;background:var(--gx-id);color:var(--gx-id-ink)}
@@ -1931,7 +1931,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .top .tools #priv,.top .tools #theme{display:none!important}
 }
 /* v539 · sin el contorno de foco al pulsar las pestañas (la activa ya lleva su subrayado) */
-.nav a:focus,.nav a:focus-visible{outline:none}
+.nav a:focus:not(:focus-visible){outline:none} .nav a:focus-visible{outline:2px solid var(--gx-id);outline-offset:4px;border-radius:2px}
 /* v542 · menú de Opciones (PC) con el estilo de la calculadora: misma tarjeta, mismos grises y tamaños, rótulo sin mayúsculas y selector en pastilla */
 @media (min-width:761px){
   .more-m:not([hidden]){width:296px;padding:8px;border-radius:18px;background:var(--canvas);box-shadow:0 24px 64px -16px rgba(0,0,0,.30),0 0 0 1px color-mix(in srgb,var(--ink) 8%,transparent)}
@@ -2172,7 +2172,7 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   html body .top :is(.btn.ic,.kbar,#refresh) svg{flex:none;width:16px;height:16px}
   html body .top .tools .zf-nbv{margin-right:0}
   #more.aviso::after{right:0}
-  html body .top :is(.btn.ic,.kbar,#refresh):focus-visible{outline:none;color:var(--ink)}   
+  html body .top :is(.btn.ic,.kbar,#refresh,#more):focus-visible{outline:2px solid var(--gx-id);outline-offset:2px;border-radius:4px;color:var(--ink)}   
 }
 
 /* v589 · la barra del PC, de 52 px (antes 48): 8,5 px de aire bajo el subrayado de la sección activa */
@@ -2444,7 +2444,7 @@ html.m-app #ma::before{content:"";display:block;height:calc(env(safe-area-inset-
 #ma .m-sel button:last-child{padding-right:16px}
 #ma .m-sel button b{font-weight:inherit;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;text-decoration-color:transparent}
 #ma .m-sel button[aria-pressed="true"]{color:var(--m-ink);cursor:default}
-#ma .m-sel button[aria-pressed="true"] b{text-decoration-color:var(--gx-id)}   /* v635: el verde de la identidad, como el menú del PC */
+#ma .m-sel button[aria-pressed="true"] b{text-decoration-color:var(--sel)}   /* v635: el verde de la identidad, como el menú del PC */
 #ma .m-list{background:var(--m-card);margin:0 12px;border-radius:12px;overflow:hidden}
 #ma .m-list:empty{display:none}
 #ma .m-row{display:grid;grid-template-columns:30px 1fr;align-items:center;gap:0 10px;height:52px;padding:0 10px;border-top:1px solid transparent}
@@ -2743,7 +2743,7 @@ html.m-con #m-pg-con{display:block;padding:16px 0 calc(env(safe-area-inset-botto
 #m-fi .mf-tabs button{flex:none;height:44px;margin:0;padding:14px 8px 0;border:0;background:none;cursor:pointer;font:500 13px/18px Inter,system-ui,sans-serif;color:var(--m-ink3);white-space:nowrap}
 #m-fi .mf-tabs button b{font-weight:inherit;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;text-decoration-color:transparent}
 #m-fi .mf-tabs button[aria-selected="true"]{color:var(--m-ink)}
-#m-fi .mf-tabs button[aria-selected="true"] b{text-decoration-color:var(--gx-id)}
+#m-fi .mf-tabs button[aria-selected="true"] b{text-decoration-color:var(--sel)}
 #m-fi .mf-fr{margin:10px 16px 4px;font:400 13px/18px Inter,system-ui,sans-serif;color:var(--m-ink2)}
 #m-fi .mf-fr:empty{display:none}
 #m-fi .mf-fr .mf-l1{display:block;font-weight:600;color:var(--m-ink)}
@@ -2897,7 +2897,7 @@ html.m-app #kx .kx-in kbd,html.m-app #kx .kx-f{display:none}
 #ma .m-kc .m-kt b.n{color:var(--m-neg,var(--m-tneg))}
 /* las casillas, a 17 px: con menos, el iPhone amplía la pantalla al escribir */
 #ma .m-kf{display:inline-flex;align-items:baseline;gap:4px;justify-self:end}
-#ma .m-kf input{width:112px;height:34px;padding:0 10px;border:1px solid var(--m-line);border-radius:8px;background:var(--m-bg);color:var(--m-ink);font:500 17px/20px Inter,system-ui,sans-serif;font-feature-settings:"cv11","tnum";text-align:right;-webkit-appearance:none;appearance:none}
+#ma .m-kf input{width:112px;height:44px;padding:0 10px;border:1px solid var(--m-line);border-radius:8px;background:var(--m-bg);color:var(--m-ink);font:500 17px/20px Inter,system-ui,sans-serif;font-feature-settings:"cv11","tnum";text-align:right;-webkit-appearance:none;appearance:none}
 #ma .m-kf input:focus{outline:none;border-color:var(--gx-id)}
 #ma .m-kf i{font-style:normal;font-size:13px;color:var(--m-ink3);min-width:24px}
 #ma .m-sec .m-kclr{margin-left:auto;margin-right:-6px;height:44px;padding:0 6px;border:0;background:none;font:500 13px/18px Inter,system-ui,sans-serif;color:var(--m-ink3);cursor:pointer}
@@ -2909,12 +2909,12 @@ html.m-app #kx .kx-in kbd,html.m-app #kx .kx-f{display:none}
 #ma .m-ksw .m-n.ph{color:var(--m-ink3);font-weight:400}
 #ma .m-ksw .m-n::after{content:"";display:inline-block;width:6px;height:6px;margin:0 0 2px 6px;border-right:1.5px solid var(--m-ink3);border-bottom:1.5px solid var(--m-ink3);transform:rotate(45deg)}
 #ma .m-ksel{position:absolute;inset:-8px 0;width:100%;opacity:0;font-size:17px;-webkit-appearance:none;appearance:none}
-#ma .m-kfo input{width:104px;height:32px}
+#ma .m-kfo input{width:104px;height:44px}
 #ma .m-kop .m-f2{margin-top:7px}
 #ma .m-kop.vt .m-ksub{color:var(--m-ink2)}
 #ma .m-kall{padding:0;border:0;background:none;font:500 11px/1 Inter,system-ui,sans-serif;color:var(--m-pos);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 #ma .m-kd{font-size:11px;color:var(--m-ink2)}
-#ma .m-kx{align-self:start;display:grid;place-items:center;width:24px;height:32px;margin:0;padding:0;border:0;background:none;color:var(--m-ink3);cursor:pointer}
+#ma .m-kx{position:relative;align-self:start;display:grid;place-items:center;width:24px;height:44px;margin:0;padding:0;border:0;background:none;color:var(--m-ink3);cursor:pointer}
 #ma .m-kx svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
 #ma .m-kx[hidden]{visibility:hidden;display:grid}
 #ma .m-kvac{display:block;width:26px;height:26px;border-radius:50%;border:1.5px dashed var(--m-line)}
@@ -2975,9 +2975,9 @@ html.m-app #kx .kx-in kbd,html.m-app #kx .kx-f{display:none}
    pasados, la casilla entera al 45 % (número y logos), como en el PC; antes solo se aclaraba el número y no se entendía que era pasado */
 #ma .m-mes .ds{column-gap:4px}
 #ma .m-mes .ds button{background:var(--m-nbg)}
-#ma .m-mes .ds button.pas{opacity:.45;color:var(--m-ink)}
+#ma .m-mes .ds button.pas{opacity:.55;color:var(--m-ink)}
 #ma .m-mes .ds button.pas .m-cl img{opacity:.85}
-#ma .m-mes .ds button.res.pas{opacity:.45}
+#ma .m-mes .ds button.res.pas{opacity:.55}
 
 /* v681 · menú de 386 × 66 (8 px a cada lado de la pantalla) y burbuja de 80 × 58 siempre: centrada en cada pestaña y sin cambiar de tamaño */
 
@@ -3045,6 +3045,26 @@ html.m-app.m-ios #ma #m-ptrg{display:block}
 /* v696 · PC sin datos (cargando, o sin poder leer la hoja): solo la barra y el aviso. Las pestañas guardan los bloques del diseño antiguo, que el
    diseño nuevo reaprovecha al llegar los datos; sin datos se veían tal cual (la franja de cuatro cifras, «Tu cartera hoy», «Evolución»…) */
 html:not(.hay-datos) .wrap>.view{display:none!important}
+
+/* v713 · ACCESIBILIDAD Y TACTO
+   · el verde del subrayado de lo elegido: oscuro sobre claro (5,7:1) y menta en modo oscuro */
+:root{--sel:#346F57}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sel:var(--gx-id)}}
+:root[data-theme="dark"]{--sel:var(--gx-id)}
+/* · zona que responde al dedo de 44 × 44 px (el dibujo no cambia): opciones (36), cerrar la ficha (40), quitar una operación (24 de ancho) */
+#ma .m-opc{position:relative} #ma .m-opc::after{content:"";position:absolute;inset:-4px}
+#m-fi .mf-x{position:relative} #m-fi .mf-x::after{content:"";position:absolute;inset:-2px}
+#ma .m-kx::after{content:"";position:absolute;inset:0 -10px}
+/* · PC: los iconos de la barra (16 px de ancho, el menú 14) responden en una zona de unos 32 × 44 px */
+@media (min-width:761px){ html body .top :is(.btn.ic,.kbar,#refresh){position:relative} html body .top :is(.btn.ic,.kbar,#refresh,#more)::before{content:"";position:absolute;inset:-4px -8px} }
+/* · al tocar una empresa (fila o casilla), se oscurece un poco mientras dura el toque */
+#ma .m-row[data-t]{transition:background-color .12s} #ma .m-row[data-t]:active{background-color:color-mix(in srgb,var(--m-ink) 4%,transparent)}
+#ma .m-tile[data-t]{transition:filter .12s} #ma .m-tile[data-t]:active{filter:brightness(.96)}
+/* · calculadora: sin empresa elegida, el segundo renglón vacío no ocupa sitio, y «Qué compras», la casilla y el círculo quedan en la misma línea */
+#ma .m-kop .m-f2:has(.m-ksub:empty):has(.m-kd:empty){display:none}
+#ma .m-kop:has(.m-ksub:empty):has(.m-kd:empty) .m-kx{align-self:center}
+/* · la versión, al final del menú de opciones del móvil */
+#m-opm .m-opver{display:block;padding:6px 14px 6px;font-size:12px;line-height:16px;color:var(--m-ink3)}
 </style>
 
 <div id="m-sp" aria-hidden="true"><img class="sp-c" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4' preserveAspectRatio='none'%3E%3Crect width='4' height='4' fill='%2318211C'/%3E%3C/svg%3E"><img class="sp-o" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4' preserveAspectRatio='none'%3E%3Crect width='4' height='4' fill='%232B2B29'/%3E%3C/svg%3E"></div>
@@ -3244,6 +3264,7 @@ html:not(.hay-datos) .wrap>.view{display:none!important}
   <button type="button" role="menuitem" data-op="priv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg><span id="m-op-priv">Ocultar importes</span></button>
   <button type="button" role="menuitem" data-op="tema"><svg viewBox="0 0 24 24" aria-hidden="true" id="m-op-tic"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg><span id="m-op-tema">Modo oscuro</span></button>
   <button type="button" role="menuitem" data-op="act"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v4.5h-4.5"/></svg><span>Actualizar</span></button>
+  <i class="m-opsep"></i><span class="m-opver" id="m-op-ver"></span>
  </div></div>
 </div>
 <nav id="ma-tabs" aria-label="Secciones"><i class="m-lens" id="m-lens"></i>
@@ -3726,7 +3747,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v712";   // la versión publicada, en el pie
+const VER="v713";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -6796,7 +6817,7 @@ document.addEventListener("click",e=>{ const b=e.target.closest(".info"), pop=$(
 
 $("refresh").addEventListener("click",()=>{ MA.pide=Date.now(); archivoLocal=false; load(true); loadAct(true); });   // v696: MA.pide, para que las cifras cuenten solo cuando actualizas tú
 
-$("mm-ver").textContent="Versión "+VER.slice(1);
+$("mm-ver").textContent="Versión "+VER.slice(1); { const mv=$("m-op-ver"); if(mv) mv.textContent="Versión "+VER.slice(1); }   // v713: también en el menú del móvil
 // en GitHub: al abrir la página y al volver a ella se mira si hay una versión publicada más nueva y, si la hay, se carga (como mucho, una vez cada 2 minutos)
 if(/\.github\.io$/.test(location.hostname)){ let vAt=0;
   const vChk=async(arr)=>{ if(Date.now()-vAt<12e4) return; vAt=Date.now();
