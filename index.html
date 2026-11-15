@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-DgFF2RQX6gUgZMIkesFesKGlc5aFtaWlFpOJRQ6szMs=' 'sha256-zlV2VUsJgXbxyYxLXrwnSdxlvQTFeQXiiXC+66H4clw=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-DgFF2RQX6gUgZMIkesFesKGlc5aFtaWlFpOJRQ6szMs=' 'sha256-PL3WO9IlYPJaBd/FuepnMeKtp/FOD2pCUHSPVqVy4qk=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v706">
+<link rel="manifest" href="manifest.webmanifest?v707">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#1F2B25" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v706">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v706">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v706">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v706">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v706">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v707">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v707">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v707">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v707">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v707">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#1F2B25":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -2570,6 +2570,12 @@ html.m-tel[data-theme="dark"]{--m-tl:brightness(0) invert(1);--m-tlo:.9;--m-tlg:
 #ma .m-cl{display:flex;gap:3px;margin-top:6px}
 #ma .m-cl span{flex:1;text-align:center;font-size:10px;line-height:12px;color:var(--m-ink3)}
 #ma .m-cl span.hoy{color:var(--m-ink);font-weight:600}
+/* v707 · el año bajo el primer mes y bajo cada enero, y una raya fina donde empieza el año */
+#ma .m-cl{padding-bottom:13px}
+#ma .m-cl span{position:relative}
+#ma .m-cl span em{position:absolute;left:50%;top:14px;transform:translateX(-50%);font-style:normal;font-weight:400;font-size:10px;line-height:12px;color:var(--m-ink3);white-space:nowrap}
+#ma .m-cols>span{position:relative}
+#ma .m-cols>span.a::before{content:"";position:absolute;left:-2px;top:0;bottom:-1px;border-left:1px dashed var(--m-line)}
 #ma .m-ley{display:flex;flex-direction:column;gap:8px;margin-top:14px}
 #ma .m-ley span{display:flex;align-items:center;gap:8px;font-size:12px;line-height:16px;color:var(--m-ink2)}
 #ma .m-ley span i{width:8px;height:8px;border-radius:2px;background:var(--m-ink)}
@@ -2644,6 +2650,9 @@ html.m-app.m-ios body::after{content:"";position:fixed;left:0;right:0;bottom:0;h
 /* v700 · #ma, verde de arriba abajo, y el crema en cada página: en lo alto de la pantalla no hay ningún fondo claro con el que iOS pueda teñir el
    difuminado de bajo el reloj (antes, #ma era crema con una franja verde pintada encima como degradado) */
 #ma{background-color:var(--m-top)}
+/* v707 · el relleno de debajo de cada página (110 px, tras la barra de pestañas), en el crema de la página: con #ma en verde (v700), al llegar
+   al final asomaba una franja verde oscuro */
+#ma{background:linear-gradient(var(--m-bg),var(--m-bg)) 0 100%/100% calc(110px + env(safe-area-inset-bottom,0px)) no-repeat,var(--m-top)}
 #ma>[id^="m-pg-"]{background-color:var(--m-bg);min-height:calc(100vh - 50px - env(safe-area-inset-top,0px))}
 
 /* v651 · mientras se actualiza: el punto en naranja (el mismo tono que el PC en cada tema) y «Actualizando…» en lugar de la hora */
@@ -3716,7 +3725,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v706";   // la versión publicada, en el pie
+const VER="v707";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -3869,7 +3878,7 @@ if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>renderTre
 const posicionesHoy=()=>DATA.pos.filter(p=>p.value>0&&!p.isOption).map(p=>{ const live=!p.atCost&&isNum(p.today);
   return {p,t:live?p.today:null,e:live?p.value*p.today/(1+p.today):null,wait:!p.atCost&&!p.today&&p.status==="Previo"}; });
 function hyHead(){ const k=DATA.kpi, q=posicionesHoy(), up=q.filter(x=>x.t>=0.0005).length, dn=q.filter(x=>x.t<=-0.0005).length, cero=q.filter(x=>isNum(x.t)&&!x.wait&&Math.abs(x.t)<0.0005).length, wait=q.filter(x=>x.wait).length;
-  const ss=lastSession(); $("t-pos").querySelector('th[data-k="today"] .thb').textContent=ss.closed?"Sesión":"Hoy"; $("t-pos").querySelector('th[data-k="todayEur"] .thb').textContent=ss.closed?"Sesión €":"Hoy €";
+  const ss=sesion(); $("t-pos").querySelector('th[data-k="today"] .thb').textContent=ss.closed?"Sesión":"Hoy"; $("t-pos").querySelector('th[data-k="todayEur"] .thb').textContent=ss.closed?"Sesión €":"Hoy €";
   // «suben / bajan» va debajo del mapa, como la leyenda de Evolución; la cifra del día, en la fila del título
   const lg=$("hy-leg"); if(lg) lg.innerHTML=`<span><i class="up"></i><b>${up}</b> ${up===1?"sube":"suben"}</span><span><i class="dn"></i><b>${dn}</b> ${dn===1?"baja":"bajan"}</span>${cero?`<span><i class="fl"></i><b>${cero}</b> sin cambios</span>`:""}`
     +`${wait?`<span><i class="wt"></i><b>${wait}</b> sin cotizar</span>`:""}`;
@@ -3877,7 +3886,7 @@ function hyHead(){ const k=DATA.kpi, q=posicionesHoy(), up=q.filter(x=>x.t>=0.00
 function renderHoy(){
   if(!DATA) return;
   $("l1-side").innerHTML=hyHead();   // el bloque del mapa, solo con su título: la cifra del día va arriba, en el bloque oscuro
-  const k=DATA.kpi, ss=lastSession(), c=cls(k.today);
+  const k=DATA.kpi, ss=sesion(), c=cls(k.today);
   R1("hk-ren-l").textContent=ss.closed?"Última sesión":"Hoy";
   r1Signo(R1("hk-ren"),k.today); R1("hk-ren").textContent=seur(k.today);
   R1("hk-ren-s").innerHTML=`<span class="${c}">${pct(k.todayPct,1,true)}</span> sobre el cierre anterior`;
@@ -4073,7 +4082,7 @@ const PCOLS=[
   {k:"country",l:"País",ctr:1,f:r=>r.country?`<span title="${esc(ctryN(r.country))}">${flagHtml(r.country)}<span class="vh">${esc(ctryN(r.country))}</span></span>`:""},
   {k:"ind",l:"Industria",left:1,f:r=>esc(r.ind||"")},
   {k:"price",l:"Cotización",r:"sub",g:"real",f:r=>precioVisible(r.price,r.cur)},
-  {k:"today",l:()=>lastSession().closed?"Sesión":"Hoy",g:"real",mx:1,f:r=>pctSigno(r.today)},
+  {k:"today",l:()=>sesion().closed?"Sesión":"Hoy",g:"real",mx:1,f:r=>pctSigno(r.today)},
   {k:"fv",l:"Valor razonable",hs:1,g:"est",sep:1,f:r=>precioVisible(r.fv,r.cur)},
   {k:"irrExp",l:"TIR",g:"est",mx:1,f:r=>tirP(r.irrExp)},
   {k:"req",l:"Exigida",hs:1,g:"est",f:r=>r.req>0?pct(r.req):""},
@@ -4598,7 +4607,7 @@ function gxCal(){ const s=gxSec("v-calendario"), hoy=new Date(); hoy.setHours(12
 // ── Universo · el mosaico del día (las quince que más suben y las quince que más bajan, del tamaño de su movimiento, con los colores del mapa
 // de Resumen) y las columnas de la exigencia. La palabra del titular elige el periodo; sustituye a la lista de Rendimiento del PC
 const GX_PER=[["today","Hoy"],["last","Última sesión"],["w1","1 semana"],["m1","1 mes"],["m3","3 meses"],["m6","6 meses"],["ytd",""],["y1","1 año"],["y3","3 años"],["dd","Desde máximo"]];
-function gxUni(){ const s=gxSec("v-universo"), closed=lastSession().closed, hayHoy=!closed&&DATA.pre.some(r=>isNum(r.today)), ano=new Date().getFullYear();
+function gxUni(){ const s=gxSec("v-universo"), closed=sesion().closed, hayHoy=!closed&&DATA.pre.some(r=>isNum(r.today)), ano=new Date().getFullYear();
   let k=GX.uni; if(!k||(k==="today"&&!hayHoy)) k=hayHoy?"today":"last";
   // v574: «Hoy» se puede elegir siempre; si aún no ha abierto ninguna bolsa (o es fin de semana), no hay datos de hoy
   if(GX.uni==="today") k="today";
@@ -4718,7 +4727,11 @@ function gxDivs(){ const d=DATA, dv=d.dvm; if(!dv||!dv.years||!dv.years.length){
   const W=s.querySelector("#gxdv-m").clientWidth, hoy=new Date(), fd=r=>new Date(+new Date(r.d)+3*36e5);   // las fechas llegan a medianoche de Madrid
   const pas=[]; for(let i=12;i>=1;i--){ const dt=new Date(hoy.getFullYear(),hoy.getMonth()-i,1), y=dt.getFullYear(), m=dt.getMonth();
     pas.push({y,m,paid:sum(d.dv.filter(r=>d.isPaid(r)&&fd(r).getFullYear()===y&&fd(r).getMonth()===m),r=>r.gross||0),sched:0}); }
-  const M=[...pas,...(dv.months||[]).map(r=>({y:r.y,m:r.m,paid:r.paid||0,sched:r.sched||0}))], H=200, cw=W/M.length, bw=Math.min(28,cw*.5), mx=Math.max(1,...M.map(r=>r.paid+r.sched)), fs=cw>=36?12:11;   /* v504: en columnas estrechas, letra de 11 para que las cifras no se toquen */
+  // v707 · el mes en curso con lo ya cobrado: la parte pasada acaba el mes anterior y la de previstos empieza en este mes sin cobros (o en el siguiente)
+  const yA=hoy.getFullYear(), mA=hoy.getMonth(), cob0=sum(d.dv.filter(r=>d.isPaid(r)&&fd(r).getFullYear()===yA&&fd(r).getMonth()===mA),r=>r.gross||0);
+  let fut=(dv.months||[]).map(r=>({y:r.y,m:r.m,paid:r.paid||0,sched:r.sched||0}));
+  if(fut.length&&fut[0].y===yA&&fut[0].m===mA) fut[0].paid+=cob0; else if(cob0>0) fut=[{y:yA,m:mA,paid:cob0,sched:0},...fut].slice(0,12);
+  const M=[...pas,...fut], H=200, cw=W/M.length, bw=Math.min(28,cw*.5), mx=Math.max(1,...M.map(r=>r.paid+r.sched)), fs=cw>=36?12:11;   /* v504: en columnas estrechas, letra de 11 para que las cifras no se toquen */
   const PREV="color-mix(in srgb,var(--gx-id) 55%,var(--panel))";
   let g=`<line x1="0" x2="${W}" y1="${H}" y2="${H}" stroke="var(--line)"/>`;
   M.forEach((r,i)=>{ const x=i*cw+cw/2, hp=r.paid/mx*(H-28), hs=r.sched/mx*(H-28), t=r.paid+r.sched;
@@ -5724,7 +5737,7 @@ function zfInd(){ const V=$("v-universo"); if(!V||!DATA) return; const s=V.query
   if(I.length<2){ S.remove(); return; }
   const P=v=>isNum(v)?gxPS(v):"—", lv=(v,st)=>{ if(!isNum(v)||Math.abs(v)<5e-4) return "lv0"; const a=Math.abs(v); let L=1; st.forEach((t,i)=>{ if(a>=t) L=i+2; }); return (v>0?"lp":"ln")+Math.min(5,L); };
   const conA=I.filter(x=>isNum(x.y1)), up=conA.filter(x=>x.y1>0).length, t=conA[0], w=conA[conA.length-1];
-  const closed=lastSession().closed, conH=I.filter(x=>isNum(x.today)), upH=conH.filter(x=>x.today>0).length, N=I.length;
+  const closed=sesion().closed, conH=I.filter(x=>isNum(x.today)), upH=conH.filter(x=>x.today>0).length, N=I.length;
   const hoy=!conH.length?"":closed?` En la última sesión ${upH===1?"subió":"subieron"} ${upH} de ${conH.length}.`:` Hoy ${upH===1?"sube":"suben"} ${upH} de las ${conH.length} que ya cotizan.`;
   const l1=t?`En un año ${up===1?"sube":"suben"} ${up} de las ${N} industrias; la que mejor va, ${esc(t.k)} (${P(t.y1)}).`:`Tus ${N} industrias, de hoy a un año.`;
   const l2=w&&w!==t?`La que peor, ${esc(w.k)} (${P(w.y1)}).${hoy}`:hoy.trim();
@@ -5841,6 +5854,8 @@ function maLista(){ if(!DATA) return; const pos=DATA.pos||[], P=pos.filter(p=>!p
 function maPinta(){ if(!DATA||!$("ma")) return; const k=DATA.kpi||{}, cl=v=>v<0?"n":"p", ok=v=>v!=null&&isFinite(v), fRes=MA.pg==="res"?maFoto("res"):null;   /* v648: la foto de las cifras de Resumen, antes de escribirlas */
   $("m-val").textContent=ok(k.value)?maEur(k.value):"—";
   $("m-liq").innerHTML=ok(k.liquidez)&&Math.abs(k.liquidez)>=.5?`Liquidez <b>${maEur(k.liquidez)}</b>`:"";   /* v651: «Valor» encima de la cifra y «Liquidez 229 €» debajo (como en el PC) */
+  { const hoyL=sesion().closed?"Sesión":"Hoy", lb=$("m-i1").closest(".m-pila").querySelector(".m-lab"), bp=document.querySelector('#m-pg-res .m-sel[aria-label="Vista"] button b'), bi=document.querySelector('#ma .m-sel[data-g="uind"] button[data-o="today"] b');
+    [lb,bp,bi].forEach(e=>{ if(e&&e.textContent!==hoyL) e.textContent=hoyL; }); }   // v707: el criterio común (sesion)
   $("m-i1").textContent=ok(k.today)?maEurS(k.today):"—"; $("m-i1").className="m-v "+(k.today<0?"m-neg-t":"m-pos-t");
   $("m-p1").className="m-tp "+cl(k.todayPct); $("m-p1").firstChild.textContent=ok(k.todayPct)?maPct(k.todayPct):"—";
   $("m-i2").textContent=ok(k.ret)?maEurS(k.ret):"—"; $("m-i2").className="m-v "+(k.ret<0?"m-neg-t":"m-pos-t");
@@ -6085,7 +6100,7 @@ function maUni(){ if(!DATA||!DATA.pre) return; const P=DATA.pre, ok=v=>isNum(v)&
   $("m-u-pila").innerHTML=maPar("En cartera",maNf(P.filter(r=>r.inPf).length))+maPar("Sobre lo exigido",maNf(P.filter(r=>ok(r.margin)&&r.margin>=.0005).length));   /* v694: casillas nuevas con la cifra dentro, como Calendario */
   maUniHoy(); maUniInd(); maUniRad(); }
 function maSelMarca(g,v){ document.querySelectorAll(`#ma .m-sel[data-g="${g}"] button`).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.o===v))); }
-function maUniHoy(){ const P=DATA.pre, ok=v=>isNum(v)&&isFinite(v), k=P.some(r=>ok(r.today)&&r.today!==0)?"today":"last";   // sin ningún cambio hoy (bolsas cerradas), la última sesión
+function maUniHoy(){ const P=DATA.pre, ok=v=>isNum(v)&&isFinite(v), k=sesion().closed?"last":"today";   // v707: el criterio común (sesion)   // sin ningún cambio hoy (bolsas cerradas), la última sesión
   $("m-u-ht").textContent=k==="today"?"Hoy":"Última sesión"; maSelMarca("uhoy",MA.uHoy);
   const up=MA.uHoy==="up", L=P.filter(r=>ok(r[k])&&(up?r[k]>=5e-4:r[k]<=-5e-4)).sort((a,b)=>up?b[k]-a[k]:a[k]-b[k]).slice(0,20);
   const E=[.5,1,2.5,5], nivel=v=>{ const n=1+E.filter(t=>Math.abs(v)*100>=t).length; return (v>0?"lp":"ln")+Math.min(5,n); };   // los escalones del mosaico del PC para «Hoy»
@@ -6150,9 +6165,9 @@ function maAnaDiv(){ const v=MA.aDiv, E=$("m-a-div"); maSelMarca("adiv",v);
     (DATA.dv||[]).forEach(r=>{ const t=day(r.d); if(!t||!isNum(r.gross)) return; const k=t.getFullYear()*12+t.getMonth(); if(k<c-11||k>c+11) return; const o=M.get(k)||{p:0,s:0}; DATA.isPaid(r)?o.p+=r.gross:o.s+=r.gross; M.set(k,o); });
     const ks=[]; for(let k=c-11;k<=c+11;k++) ks.push(k); const mx=Math.max(...ks.map(k=>{ const o=M.get(k); return o?o.p+o.s:0; }),1e-9);
     const y0=hoy.getFullYear()*12, P=ks.filter(k=>k>=y0&&k<y0+12).reduce((s,k)=>s+(M.get(k)?.p||0),0), S=ks.filter(k=>k>=y0&&k<y0+12).reduce((s,k)=>s+(M.get(k)?.s||0),0)+P;   /* v668 · G-06: por año natural, como el PC («cobrado este año», «previsto este año»); antes, doce meses atrás y doce adelante */
-    E.innerHTML=`<div class="m-chart"><div class="m-cols" role="img" aria-label="Dividendos por mes: este año, cobrado ${maEur(P)} de ${maEur(S)} previstos">${ks.map(k=>{ const o=M.get(k)||{p:0,s:0}; return `<span${k===c?' class="hoy"':""}><i style="height:${(o.p/mx*100).toFixed(1)}%"></i><i class="p" style="height:${(o.s/mx*100).toFixed(1)}%"></i></span>`; }).join("")}</div>
-      <div class="m-cl" aria-hidden="true">${ks.map(k=>`<span${k===c?' class="hoy"':""}>${MA_MES[k%12][0].toUpperCase()}</span>`).join("")}</div>
-      <div class="m-ley"><span><i></i>Cobrado este año<b>${maEur(P)}</b></span><span><i class="p"></i>Previsto este año<b>${maEur(S)}</b></span></div></div>`; }
+    E.innerHTML=`<div class="m-chart"><div class="m-cols" role="img" aria-label="Dividendos por mes: este año, cobrado ${maEur(P)} de ${maEur(S)} previstos">${ks.map(k=>{ const o=M.get(k)||{p:0,s:0}; return `<span class="${k===c?"hoy":""}${k%12===0?" a":""}"><i style="height:${(o.p/mx*100).toFixed(1)}%"></i><i class="p" style="height:${(o.s/mx*100).toFixed(1)}%"></i></span>`; }).join("")}</div>
+      <div class="m-cl" aria-hidden="true">${ks.map(k=>`<span${k===c?' class="hoy"':""}>${MA_MES[k%12][0].toUpperCase()}${k%12===0||(k===c-11&&k%12<=9)?`<em>${Math.floor(k/12)}</em>`:""}</span>`).join("")}</div>
+      <div class="m-ley"><span><i></i>Cobrado este año<b>${maEur(P)}</b></span><span><i class="p"></i>Por cobrar este año<b>${maEur(S-P)}</b></span></div></div>`; }
   else if(v==="ano"){ const Y=(DATA.dvm&&DATA.dvm.years)||[], G=new Map((DATA.years||[]).map(x=>[x.y,x.g])), mx=Math.max(...Y.map(x=>(x.paid||0)+(x.sched||0)),1e-9);
     E.innerHTML=Y.map(x=>{ const t=(x.paid||0)+(x.sched||0), g=G.get(x.y), sm=!x.paid&&x.sched?"previsto":isNum(g)?maP(g,0,true):"";
       return `<div class="m-r2"><span>${x.y}${sm?`<small>${sm}</small>`:""}</span><span class="m-br"><i class="k" style="width:${((x.paid||0)/mx*100).toFixed(1)}%"></i><i style="width:${((x.sched||0)/mx*100).toFixed(1)}%"></i></span><b>${maEur(t)}</b></div>`; }).join("")+`<div class="m-nota m-ley h"><span><i></i>Cobrado</span><span><i class="p"></i>Previsto</span></div>`; }
@@ -6600,6 +6615,11 @@ $("pos-body").addEventListener("click",e=>{ const tr=e.target.closest("tr.pr"); 
 $("pos-body").addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.matches("tr.pr")){ e.preventDefault(); e.target.click(); } });
 
 /* ---------- conexión con Google Drive ---------- */
+/* v707 · «hoy» o «última sesión», el mismo en todas las pestañas: día de bolsa por el reloj y, además, alguna cotización con cambio del día
+   (un festivo o antes de que lleguen las cotizaciones cuenta como cerrado, con la fecha del día de bolsa anterior) */
+function sesion(){ const s=lastSession(); if(s.closed||!DATA) return s; const hay=r=>isNum(r.today)&&r.today!==0;
+  if((DATA.pos||[]).some(p=>!p.isOption&&hay(p))||(DATA.pre||[]).some(hay)) return s;
+  const d=new Date(s.d); do d.setDate(d.getDate()-1); while(d.getDay()===0||d.getDay()===6); const r=lastSession(new Date(d.getFullYear(),d.getMonth(),d.getDate(),12)); return {d:r.d,closed:true,get lbl(){ return r.lbl; }}; }
 function lastSession(now=new Date()){ const d=new Date(now), wd=d.getDay(), back=wd===6?1:wd===0?2:d.getHours()<9?(wd===1?3:1):0; d.setDate(d.getDate()-back); let l=null; return {d,closed:back>0,get lbl(){ return l??(l=d.toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"}).replace(/[.,]/g,"").replace(/\bsept\b/,"sep")); }}; }
 // modo claro / oscuro: por defecto el del sistema; el botón lo fija y se recuerda en este navegador
 { const R=document.documentElement, mq=matchMedia("(prefers-color-scheme: dark)"), dark=()=>R.dataset.theme?R.dataset.theme==="dark":mq.matches;
@@ -6738,7 +6758,7 @@ async function load(fresh){
     if(!same){ lastSig=sig; sigAt=when; }
     if(dd!==DATA){ const ant=DATA&&porTi?mvFoto():null; if(porTi) MA.cuentaHasta=Date.now()+3000; try{ render(dd); }catch(err){ if(err&&typeof err==="object") err.pinta=1; throw err; } if(ant) mvCuenta(ant); }   /* MV-01 */ notice(""); retried=false; loadAct(false); cacheAt=null; if(pd0&&fp!==fpGuardada){ cachePut({ver:VER,cv:CACHE_V,at:Date.now(),pd:pd0}); fpGuardada=fp; }   // la copia para la próxima vez
     if(REM) try{ localStorage.setItem("cartera-ok",REM.d); }catch{}   // este ID ya ha funcionado en este dispositivo
-    const ss=lastSession();
+    const ss=sesion();
     if(ss.closed) setStatus("","Mercado cerrado · leído a las "+hhmm); else setStatus("live", same ? `Cotizaciones de las ${hm(sigAt)}` : "En vivo · "+when.toLocaleDateString("es-ES",{weekday:"short"}).replace(".","")+" "+when.getDate()+" "+MES[when.getMonth()].toLowerCase()+" · "+hhmm);
     $("asof").textContent = "Datos de tu hoja «Inversiones» · "+when.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}).replace(",","");
   }catch(e){
