@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-o+d2yAiFBZaDsFf84853aTbW8bu6mBFi0sGWZjzWxjo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-EmP40SMq2wOqSxZ14YWxMAj0tJ+X2WIkpKJOxU+BKC4=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v730">
+<link rel="manifest" href="manifest.webmanifest?v731">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v730">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v730">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v730">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v730">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v730">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v731">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v731">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v731">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v731">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v731">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3098,6 +3098,24 @@ html.m-app.m-ios #ma #m-ptrg .m-pgi{top:0;bottom:0;height:auto;transform:none;wi
 /* v718 · TIRAR PARA ACTUALIZAR: arriba del todo el rebote de iOS se apaga y el tirón lo lleva la web (puede sujetar la página bajada); mientras
    se actualiza, el anillo gira */
 html.m-app.m-ios.m-ptrtop,html.m-app.m-ios.m-ptrtop body{overscroll-behavior-y:none}
+/* v731 · FICHA DEL IPHONE SIN LA FRASE DE CADA PESTAÑA («Tienes 30 acciones…», «Para ti, … vale…»): cada pestaña empieza ya por sus cifras */
+#m-fi .mf-fr{display:none}
+/* v731 · MOSAICO DE LA ÚLTIMA SESIÓN EN RESUMEN (el del PC): a lo ancho, con 16 px a cada lado; debajo, cuántas suben y cuántas bajan */
+#ma #m-mapa{position:relative;margin:0 16px}
+#ma #m-mapa .zr-tr{position:relative}
+#ma #m-mapa .gx-t2{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0;padding:0;border:0;border-radius:8px;overflow:hidden;font-family:Inter,system-ui,sans-serif}
+#ma #m-mapa .gx-t2 .gxsil{display:block;flex:none;background:currentColor;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center}
+#ma #m-mapa .gx-t2 .gxsol{display:block;flex:none;object-fit:contain}
+#ma #m-mapa .gx-t2 b{display:block;font-weight:400;font-variant-numeric:tabular-nums;white-space:nowrap}
+#ma #m-mapa .gx-t2 b.zr-nd{color:var(--m-ink3)}
+#ma #m-mapa .zr-ot span{font-size:13px;line-height:18px;font-weight:600}
+#ma .m-mapa-l{display:flex;justify-content:center;gap:16px;margin:10px 16px 0;font:400 12px/16px Inter,system-ui,sans-serif;color:var(--m-ink3)}
+#ma .m-mapa-l:empty{display:none}
+#ma .m-mapa-l b{font-weight:600;color:var(--m-ink2);margin-right:3px}
+#ma .m-mapa-l i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:0}
+#ma .m-mapa-l i.up{background:var(--lp3)}
+#ma .m-mapa-l i.dn{background:var(--ln3)}
+#ma .m-mapa-l i.zr-sc{background:var(--lv0)}
 /* v724: arriba del todo, la página y el anillo ya van en su propia capa: al empezar a tirar no hay que prepararla (con un tirón rápido, el primer tramo iba a saltos) */
 html.m-app.m-ios.m-ptrtop #ma>[id^="m-pg-"]:not([data-off]),html.m-app.m-ios.m-ptrtop #ma #m-ptrg{will-change:transform}
 #ma #m-ptrg[data-act] .m-ptr-a{stroke-dasharray:28 72}
@@ -3243,6 +3261,7 @@ html.m-app.m-ios.m-ptrtop #ma>[id^="m-pg-"]:not([data-off]),html.m-app.m-ios.m-p
    <div class="m-pila"><span class="m-lab">Hoy</span><span class="m-dup"><span class="m-v" id="m-i1"></span><span class="m-tp" id="m-p1"><span class="m-tx"></span></span></span>
     <span class="m-lab">Total</span><span class="m-dup"><span class="m-v" id="m-i2"></span><span class="m-tp" id="m-p2"><span class="m-tx"></span></span></span></div></div></div>
  </div>
+ <div class="m-sec"><h2 id="m-mapa-t">Última sesión</h2></div><div class="m-mapa" id="m-mapa"></div><div class="m-mapa-l" id="m-mapa-l"></div>
  <div class="m-sec"><h2>Posiciones</h2><div class="m-sel" role="group" aria-label="Vista"><button type="button" aria-pressed="true"><b>Hoy</b></button><button type="button" aria-pressed="false"><b>Total</b></button></div></div>
  <div class="m-list" id="m-l1"></div><div class="m-sub" id="m-s2"></div><div class="m-list" id="m-l2"></div><div class="m-sub" id="m-s3"></div><div class="m-list" id="m-l3"></div>
  </div>
@@ -3799,7 +3818,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v730";   // la versión publicada, en el pie
+const VER="v731";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5598,7 +5617,9 @@ $("more-m").addEventListener("click",e=>{ if(e.target.closest("#mm-calc")) zfCal
 function zfResumen(){ if(!DATA) return; const V=$("v-resumen"); if(!V) return;
   const s=gxSec("v-resumen");
   gxPega(s); zfMapa(); zfEvoKw(); zfR1Frase(); }
-function zfMapa(){ const T=$("tmap"); if(!T||!DATA) return; const W=Math.round(T.clientWidth), H=386;   /* v600: el mapa, más bajo, dentro de la tarjeta «Tu cartera hoy» (antes 516) */ if(W<200) return;
+function zfMapa(){ const T=$("tmap"); if(!T) return; mapaHoy(T,Math.round(T.clientWidth),386,$("hy-leg")); }   /* v600: el mapa, más bajo, dentro de la tarjeta «Tu cartera hoy» (antes 516) */
+/* v731 · el mapa de la última sesión (cada empresa, del tamaño de su peso y del color de su día), en cualquier sitio y tamaño: en el PC y en Resumen del móvil */
+function mapaHoy(T,W,H,lg){ if(!T||!DATA||W<200) return;
   const all=DATA.pos.filter(p=>!p.isOption&&p.shares>0&&p.value>0).sort((a,b)=>b.value-a.value).map(p=>{ const hoy=isNum(p.today); return {p,v:p.value,ch:hoy?p.today:null,sin:!hoy}; });   // v546: las que aún no cotizan, como antes (casilla neutra, sin cifra)
   if(!all.length) return;
   const nivel=v=>{ if(!isNum(v)||Math.abs(v)<5e-5) return "lv0"; const m=Math.abs(v)*100, n=1+[.5,1,2.5,5].filter(t=>m>=t).length; return (v>0?"lp":"ln")+Math.min(5,n); };
@@ -5626,7 +5647,7 @@ function zfMapa(){ const T=$("tmap"); if(!T||!DATA) return; const W=Math.round(T
     const mw=Math.max(0,fila?w-2*px-gp-tw:w-2*px), mh=Math.max(0,fila?h-2*py:h-2*py-nh-gp), lh=fila?Math.min(mh,26):Math.min(tgt,mh), lw=Math.min(mw,Math.round(lh*96/36)), logo=lh>=10&&mw>=16?gxSil(p.ticker,lw,lh,mw,mh):"";
     const st2=st.replace(/;gap:4px$/,"")+`;gap:${gp}px${fila?";flex-direction:row":""}`;
     return `<button type="button" class="${cls}" data-t="${esc(p.ticker)}" style="${st2}" title="${esc(tip)}" aria-label="${esc(tip)}">${logo}<b class="${c?"":"zr-nd"}" style="font-size:${fs}px;line-height:${nh}px">${txt}</b></button>`; }).join("")}</div>`;
-  const up=all.filter(z=>z.ch>0).length, dn=all.filter(z=>z.ch<0).length, sc=all.filter(z=>z.sin).length, lg=$("hy-leg");
+  const up=all.filter(z=>z.ch>0).length, dn=all.filter(z=>z.ch<0).length, sc=all.filter(z=>z.sin).length;
   if(lg) lg.innerHTML=`<span><i class="up"></i><b>${up}</b> ${up===1?"sube":"suben"}</span><span><i class="dn"></i><b>${dn}</b> ${dn===1?"baja":"bajan"}</span>${sc?`<span><i class="zr-sc"></i><b>${sc}</b> sin cotizar</span>`:""}`; }
 document.addEventListener("click",e=>{ const b=e.target.closest("#tmap .gx-t2[data-t]"); if(b) openSheet("pos",b.dataset.t,listOf($("pos-body").firstElementChild)); });
 // v549 · Evolución (PC): el periodo, con la palabra del título y su menú, como en las demás pestañas (la palabra guarda el periodo en evoN)
@@ -5954,7 +5975,7 @@ function maPinta(){ if(!DATA||!$("ma")) return; const k=DATA.kpi||{}, cl=v=>v<0?
   $("m-p1").className="m-tp "+cl(k.todayPct); $("m-p1").firstChild.textContent=ok(k.todayPct)?maPct(k.todayPct):"—";
   $("m-i2").textContent=ok(k.ret)?maEurS(k.ret):"—"; $("m-i2").className="m-v "+(k.ret<0?"m-neg-t":"m-pos-t");
   $("m-p2").className="m-tp "+cl(k.ret); $("m-p2").firstChild.textContent=ok(k.ret)&&k.aport?maPct(k.ret/k.aport):"—";
-  maHora(); maPrecarga(); maFotoGuarda(); MA.hecho={}; const t=++MA.pt, cur=maPgDe(), resto=Object.keys(MA_PINTA).filter(k=>k!==cur); maPintaPg(cur); if(fRes) maCuenta(fRes);
+  maHora(); maPrecarga(); maMapa(); maFotoGuarda(); MA.hecho={}; const t=++MA.pt, cur=maPgDe(), resto=Object.keys(MA_PINTA).filter(k=>k!==cur); maPintaPg(cur); if(fRes) maCuenta(fRes);
   const sig=()=>{ if(t!==MA.pt) return; if(MA.toca||Date.now()-MA.tocaT<250){ setTimeout(sig,200); return; }   // v641: nunca con el dedo en la pantalla (ni justo al soltar)
     const k=resto.shift(); if(!k) return; maPintaPg(k); setTimeout(sig,60); }; setTimeout(sig,120); }
 try{ if(document.documentElement.classList.contains("m-tel")&&"scrollRestoration" in history) history.scrollRestoration="manual"; }catch{}   /* v667: al cerrar la ficha (history.back), Safari ya no recoloca la página por su cuenta */
@@ -6578,9 +6599,9 @@ function mfEventos(F){
   F.addEventListener("keydown",e=>{ if(e.key==="Escape") mfCierra(); }); }
 /* abrir: cualquier fila o casilla con empresa de la app, y el buscador (que llamaba a la ficha del PC) */
 /* v668 · al apoyar el dedo en una fila con empresa (y no deslizar en 60 ms), se preparan sus frases: al soltar, la ficha ya puede subir */
-if(MA.tel){ const ma0=$("ma"); let pt=0, px=0, py=0; if(ma0){ ma0.addEventListener("pointerdown",e=>{ clearTimeout(pt); if(e.target.closest("#m-fi")) return; const r=e.target.closest(".m-row[data-t],.m-tile[data-t]"); if(!r) return; px=e.clientX; py=e.clientY; pt=setTimeout(()=>mfPrepara(r.dataset.t),60); },{passive:true});
+if(MA.tel){ const ma0=$("ma"); let pt=0, px=0, py=0; if(ma0){ ma0.addEventListener("pointerdown",e=>{ clearTimeout(pt); if(e.target.closest("#m-fi")) return; const r=e.target.closest(".m-row[data-t],.m-tile[data-t],#m-mapa [data-t]"); if(!r) return; px=e.clientX; py=e.clientY; pt=setTimeout(()=>mfPrepara(r.dataset.t),60); },{passive:true});
   ma0.addEventListener("pointermove",e=>{ if(pt&&Math.hypot(e.clientX-px,e.clientY-py)>8){ clearTimeout(pt); pt=0; } },{passive:true}); ["pointercancel","scroll"].forEach(n=>(n==="scroll"?window:ma0).addEventListener(n,()=>{ clearTimeout(pt); pt=0; },{passive:true})); } }
-if(MA.tel){ const ma0=$("ma"); if(ma0) ma0.addEventListener("click",e=>{ if(e.target.closest("#m-fi")) return; const r=e.target.closest(".m-row[data-t],.m-tile[data-t]"); if(r) mfAbre(r.dataset.t); });
+if(MA.tel){ const ma0=$("ma"); if(ma0) ma0.addEventListener("click",e=>{ if(e.target.closest("#m-fi")) return; const r=e.target.closest(".m-row[data-t],.m-tile[data-t],#m-mapa [data-t]"); if(r) mfAbre(r.dataset.t); });
   const abrePC=openSheet; openSheet=function(tab,t,list){ if(document.documentElement.classList.contains("m-app")&&DATA&&mfDatos(t)){ mfAbre(t); return; } return abrePC.apply(this,arguments); }; }
 /* al llegar datos nuevos o al tapar/destapar los importes, la ficha abierta se repinta con la app */
 { const maPinta0=maPinta; maPinta=function(){ maPinta0.apply(this,arguments); if(MA.fi) mfPinta(); }; }
@@ -7014,7 +7035,10 @@ document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==
 /* v728 · RESUMEN AL INSTANTE: al abrir, en vez de medio segundo de pantalla de carga vacía (medido en el vídeo de las 14:23: de 1,03 a 1,50 s),
    se pintan las cifras y las listas de Resumen tal como estaban la última vez (foto guardada en este dispositivo, solo de esta misma versión)
    y la pantalla de carga se quita en cuanto están sus logos. Después llegan los datos guardados y los de la hoja y la ponen al día en su sitio */
-const MA_FOTO_IDS=["m-val","m-liq","m-i1","m-p1","m-i2","m-p2","m-l1","m-s2","m-l2","m-s3","m-l3"];
+const MA_FOTO_IDS=["m-val","m-liq","m-i1","m-p1","m-i2","m-p2","m-mapa-t","m-mapa","m-mapa-l","m-l1","m-s2","m-l2","m-s3","m-l3"];
+/* v731 · el mosaico de la última sesión en Resumen del móvil (el mismo del PC, a lo ancho de la pantalla y 300 px de alto) */
+function maMapa(){ const T=$("m-mapa"); if(!T||!DATA) return; const W=Math.round(T.clientWidth); if(W<200) return;
+  try{ mapaHoy(T,W,300,$("m-mapa-l")); const h=$("m-mapa-t"); if(h){ const n=sesion().closed?"Última sesión":"Hoy"; if(h.textContent!==n) h.textContent=n; } }catch(e){ console.warn("Cartera · mosaico del móvil:",e); } }
 function maFotoGuarda(){ clearTimeout(MA.fotoT); MA.fotoT=setTimeout(()=>{ try{ const l=$("m-l1"); if(!DATA||!l||!l.children.length) return;
     const p={v:VER,at:Date.now(),hora:($("m-hora")||{}).textContent||"",lab:($("m-i1").closest(".m-pila").querySelector(".m-lab")||{}).textContent||"",e:{}};
     MA_FOTO_IDS.forEach(id=>{ const e=$(id); if(e) p.e[id]=[e.className,e.innerHTML]; }); const s=JSON.stringify(p); if(s.length<600000) localStorage.setItem("cartera-snap",s); }catch{} },2500); }
