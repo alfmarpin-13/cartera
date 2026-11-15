@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-xX+bptz+VXYq1J74u+lmqNKtH1/DzFIhQIHx7/sHOWA=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-lALySq+do2DiXvDQ68XgTsuykPNn6l3fZsuXuCIzYBg=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v745">
+<link rel="manifest" href="manifest.webmanifest?v746">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v745">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v745">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v745">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v745">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v745">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v746">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v746">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v746">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v746">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v746">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3819,7 +3819,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v745";   // la versión publicada, en el pie
+const VER="v746";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4541,7 +4541,7 @@ const tabY={};   // cada pestaña recuerda hasta dónde habías bajado (pulsar l
 // lo ancho; debajo, el detalle en crema a 1200 px. La palabra subrayada del titular es el selector
 const GX_NEG={};   /* v735: vacío; American Express ya tiene logo de solo letras (v486: «solo las letras» para el mosaico) */
 const gxSrc=t=>GX_NEG[t]||logoSrc(t), gxF=t=>GX_NEG[t]?1:logoF(t);
-const LOGO_R={"logos/nasdaq-meli-ancho.webp":3.95,"logos/ams-wkl-ancho.webp":6.25,"logos/nyse-mo-ancho.webp":2.63,"logos/nyse-ge-ancho.webp":4.25,"logos/tse-csu-ancho.webp":3.17,"logos/nyse-de-ancho.webp":1.51,"logos/nasdaq-bkng-ancho.webp":6.0,"logos/nyse-pm-ancho.webp":4.35,"logos/nasdaq-nvda-ancho.webp":5.26,"logos/nyse-axp-ancho.webp":3.08,"logos/bit-bc-ancho.webp":3.38,"logos/nyse-hei-a-ancho.webp":6.43,"logos/swx-nesn-ancho.webp":0.97,"logos/lon-lseg-ancho.webp":3.0,"logos/nasdaq-adbe-ancho.webp":3.98,"logos/nasdaq-amzn-ancho.webp":3.32,"logos/ams-asml-ancho.webp":3.57,"logos/nasdaq-asts-ancho.webp":3.75,"logos/bme-bbva-ancho.webp":3.35,"logos/nyse-bn-ancho.webp":6.72,"logos/lon-dge-ancho.webp":4.66,"logos/nasdaq-googl-ancho.webp":3.03,"logos/nyse-ko-ancho.webp":3.18,"logos/epa-mc-ancho.webp":4.21,"logos/nasdaq-meta-ancho.webp":4.97,"logos/vie-nto-ancho.webp":4.05,"logos/epa-or-ancho.webp":5.52,"logos/epa-rms-ancho.webp":1.72,"logos/nyse-spgi-ancho.webp":4.62,"logos/nasdaq-txn-ancho.webp":8.04,"logos/nyse-uber-ancho.webp":2.88,"logos/bme-vid-ancho.webp":4.31,"logos/bme-vis-ancho.webp":2.32};   // v494: proporción ancho/alto de cada logo ancho
+const LOGO_R={"logos/nasdaq-meli-ancho.webp":3.95,"logos/ams-wkl-ancho.webp":6.25,"logos/nyse-mo-ancho.webp":2.63,"logos/nyse-ge-ancho.webp":4.25,"logos/tse-csu-ancho.webp":3.17,"logos/nyse-de-ancho.webp":1.51,"logos/nasdaq-bkng-ancho.webp":6.0,"logos/nyse-pm-ancho.webp":4.35,"logos/nasdaq-nvda-ancho.webp":5.26,"logos/nyse-axp-ancho.webp":3.08,"logos/bit-bc-ancho.webp":3.38,"logos/nyse-hei-a-ancho.webp":6.43,"logos/swx-nesn-ancho.webp":0.97,"logos/lon-lseg-ancho.webp":3.0,"logos/nasdaq-adbe-ancho.webp":3.98,"logos/nasdaq-amzn-ancho.webp":3.32,"logos/ams-asml-ancho.webp":3.57,"logos/nasdaq-asts-ancho.webp":2.1,"logos/bme-bbva-ancho.webp":3.35,"logos/nyse-bn-ancho.webp":6.72,"logos/lon-dge-ancho.webp":4.66,"logos/nasdaq-googl-ancho.webp":3.03,"logos/nyse-ko-ancho.webp":3.18,"logos/epa-mc-ancho.webp":4.21,"logos/nasdaq-meta-ancho.webp":4.97,"logos/vie-nto-ancho.webp":4.05,"logos/epa-or-ancho.webp":5.52,"logos/epa-rms-ancho.webp":1.72,"logos/nyse-spgi-ancho.webp":4.62,"logos/nasdaq-txn-ancho.webp":8.04,"logos/nyse-uber-ancho.webp":2.88,"logos/bme-vid-ancho.webp":4.31,"logos/bme-vis-ancho.webp":2.32};   // v494: proporción ancho/alto de cada logo ancho
 const LOGO_ANCHO={"NASDAQ:MELI":"logos/nasdaq-meli-ancho.webp","AMS:WKL":"logos/ams-wkl-ancho.webp","NYSE:MO":"logos/nyse-mo-ancho.webp","NYSE:GE":"logos/nyse-ge-ancho.webp","TSE:CSU":"logos/tse-csu-ancho.webp","NYSE:DE":"logos/nyse-de-ancho.webp","NASDAQ:BKNG":"logos/nasdaq-bkng-ancho.webp","NYSE:PM":"logos/nyse-pm-ancho.webp","NASDAQ:NVDA":"logos/nasdaq-nvda-ancho.webp","NYSE:AXP":"logos/nyse-axp-ancho.webp","BIT:BC":"logos/bit-bc-ancho.webp","NYSE:HEI.A":"logos/nyse-hei-a-ancho.webp","SWX:NESN":"logos/swx-nesn-ancho.webp","LON:LSEG":"logos/lon-lseg-ancho.webp","BME:VID":"logos/bme-vid-ancho.webp","VIE:NTO":"logos/vie-nto-ancho.webp","NASDAQ:AMZN":"logos/nasdaq-amzn-ancho.webp","NYSE:SPGI":"logos/nyse-spgi-ancho.webp","AMS:ASML":"logos/ams-asml-ancho.webp","NASDAQ:ASTS":"logos/nasdaq-asts-ancho.webp","BME:BBVA":"logos/bme-bbva-ancho.webp","NYSE:BN":"logos/nyse-bn-ancho.webp","NYSE:KO":"logos/nyse-ko-ancho.webp","LON:DGE":"logos/lon-dge-ancho.webp","NASDAQ:GOOGL":"logos/nasdaq-googl-ancho.webp","EPA:MC":"logos/epa-mc-ancho.webp","NASDAQ:META":"logos/nasdaq-meta-ancho.webp","EPA:OR":"logos/epa-or-ancho.webp","EPA:RMS":"logos/epa-rms-ancho.webp","NASDAQ:TXN":"logos/nasdaq-txn-ancho.webp","NYSE:UBER":"logos/nyse-uber-ancho.webp","BME:VIS":"logos/bme-vis-ancho.webp","NASDAQ:ADBE":"logos/nasdaq-adbe-ancho.webp"};   // v494: las versiones anchas del zip
 const GX={ana:"industria",uni:null,gap:null};
 const gxE=(v,d=0)=>`<span class="pv">${cifraSigno(v,d)} €</span>`;   // v708: nunca «−0»
