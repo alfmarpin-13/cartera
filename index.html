@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-JZmblbsCvQNQirVLlop5dyqi+VLpSkN7Y7+K/lxydxc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-5bxUcRUaoj+nDZ+Vk+yQ1WoqWOzBYzXkUjMNK+c73+E=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v715">
+<link rel="manifest" href="manifest.webmanifest?v716">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v715">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v715">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v715">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v715">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v715">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v716">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v716">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v716">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v716">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v716">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -2481,7 +2481,7 @@ html.m-tel.m-bar-on:not(.m-app) body{padding-bottom:calc(110 * min(100vw,100vh) 
 /* v637 · la lente de iOS 26/27, por ingeniería inversa: al mantener pulsado (y mientras viaja entre pestañas) la selección se vuelve una gota
    de vidrio más grande que la cápsula que AUMENTA lo que tiene debajo. Dentro lleva una copia de los iconos alineada con los de debajo
    (.m-lens-in); al crecer la lente, la copia crece con ella desde su centro, como una lupa. El fondo de vidrio tapa los iconos de debajo */
-#ma-tabs .m-lens-in{position:absolute;left:0;top:0;height:calc(58 * var(--u));width:calc(378 * var(--u));display:grid;grid-template-columns:repeat(5,1fr);opacity:0;transition:opacity .16s}
+#ma-tabs .m-lens-in{position:absolute;left:0;top:0;height:calc(58 * var(--u));width:calc(378 * var(--u));display:grid;grid-template-columns:repeat(5,1fr);opacity:0;transition:opacity .12s linear}
 #ma-tabs .m-lens-in span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(3 * var(--u));padding-top:calc(1 * var(--u));font:600 calc(10 * var(--u))/calc(12 * var(--u)) Inter,system-ui,-apple-system,sans-serif;color:var(--m-ink)}
 #ma-tabs .m-lens-in svg{stroke-width:1.9}
 #ma-tabs .m-lens:is(.held,.vuela){background:linear-gradient(180deg,var(--m-lg1),var(--m-lg2));
@@ -2987,7 +2987,12 @@ html.m-app #kx .kx-in kbd,html.m-app #kx .kx-f{display:none}
 #ma-tabs.act{transform:translateX(-50%) scale(1.035)}
 #ma-tabs::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;background:rgba(255,255,255,.22);opacity:0;transition:opacity .25s}
 #ma-tabs.act::before{opacity:1}
-#ma-tabs .m-lens{transition:background .25s,box-shadow .25s}
+#ma-tabs .m-lens{transition:background .12s linear,box-shadow .12s linear}
+/* v716 · al tocar, la lente (fondo claro, sombras y lupa) aparece al instante; la vuelta a cápsula se funde en 0,12 s, a la vez el fondo y la lupa.
+   Antes las dos se fundían a ritmos distintos (0,25 y 0,16 s): durante el cambio se veía a medias la etiqueta de debajo y la copia ampliada
+   («Re umen», «An lisis») y al pararse quedaba una mancha. Y como la fundida la hace el procesador, al cambiar de pestaña la burbuja ya volaba
+   (tarjeta gráfica) antes de vestirse de lente */
+#ma-tabs .m-lens:is(.held,.vuela),#ma-tabs .m-lens:is(.held,.vuela) .m-lens-in{transition:none}
 /* v683 · tirar para actualizar: el hueco, oscuro como la cabecera (antes, del claro de la página) y con el anillo en el verde de la marca */
 #ma #m-ptrg{background:var(--m-top);color:var(--m-tfg2)}
 #ma #m-ptrg .m-ptr-r{stroke:rgba(255,255,255,.22)}
@@ -3066,6 +3071,11 @@ html:not(.hay-datos) .wrap>.view{display:none!important}
 /* v714 · calculadora: las casillas de dinero, de 36 px (las de 44 llenaban la fila de borde a borde) y la de «Aportación» con el mismo ancho
    y el mismo borde derecho que las de las operaciones (allí, a la derecha, va la X: 24 px más 10 de separación) */
 #ma .m-kc .m-kap .m-kf{margin-right:var(--kap-mr,26px)}
+/* v716 · AL CAMBIAR DE PESTAÑA, Safari solo pinta las filas que se ven: las de fuera de la pantalla esperan a acercarse (content-visibility),
+   con su alto exacto reservado para que nada salte al bajar (57 px en Resumen, 52 en Análisis, Movimientos, Calendario y Universo; la
+   Calculadora y el Cuadre, con filas de alto variable, quedan fuera). Medido en Safari 27: el peor fotograma del cambio, de 299 a 178 ms */
+#m-pg-res .m-list>.m-row{content-visibility:auto;contain-intrinsic-size:auto 57px}
+#ma :is(#m-pg-ana,#m-pg-mov,#m-pg-cal,#m-pg-uni) .m-list>.m-row{content-visibility:auto;contain-intrinsic-size:auto 52px}
 /* · la versión, al final del menú de opciones del móvil */
 #m-opm .m-opver{display:block;padding:6px 14px 6px;font-size:12px;line-height:16px;color:var(--m-ink3)}
 </style>
@@ -3750,7 +3760,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v715";   // la versión publicada, en el pie
+const VER="v716";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5928,32 +5938,59 @@ function maModo(){ if(!MA.tel) return; const d=$("dot"), leyendo=!d||/\bbusy\b/.
 (()=>{ const bar=$("ma-tabs"), lens=$("m-lens"); if(!bar||!lens) return;
  const T=[...bar.querySelectorAll("button")], N=T.length, V=["resumen","analisis","movimientos","calendario","universo"], quieto=matchMedia("(prefers-reduced-motion: reduce)").matches;
  const W=()=>75.6;   // v678: cinco pestañas · v679: menú de 374 × 66 · v681: de 386 × 66 (378 por dentro)
- /* v679 · la burbuja, más ancha que su pestaña (88 × 58). v681: SIEMPRE CENTRADA EN SU PESTAÑA: el muelle mueve su centro (x) y su ancho
-    es el que cabe centrado sin salirse del menú: 88 en las tres del medio y 73,2 en Resumen y Universo (antes se apoyaba en el borde y en
-    esas dos quedaba descentrada: 14 px a un lado y 29 al otro) */
- const IN=378, LW=80, pos=i=>i*W()+W()/2, ancho=()=>LW;
+ const IN=378, LW=80, pos=i=>i*W()+W()/2;
  /* v683 · COMO LA BARRA DE «BUSCAR» DE iOS 27 (vídeo de Alfonso, medido fotograma a fotograma):
     · en reposo, la burbuja es una cápsula oscura de 80 × 58, centrada en su pestaña;
-    · al tocar una pestaña, en ese mismo instante: la barra entera crece un 3,5 % y se aclara, y la burbuja se vuelve una lente de vidrio
-      clara un 15 % más grande (más alta que la barra) que aumenta lo que tiene debajo y salta a la pestaña tocada muy deprisa (≈80 ms);
+    · al tocar una pestaña, en ese mismo instante: la burbuja se vuelve una lente de vidrio clara un 15 % más grande que aumenta lo que tiene
+      debajo y salta a la pestaña tocada muy deprisa;
     · con el dedo puesto sigue grande; si arrastras, va pegada al dedo y se estira en la dirección del movimiento;
-    · al soltar (y como poco 260 ms después de tocar), se encoge y vuelve a ser la cápsula oscura; la barra vuelve a su tamaño */   // v637: posiciones en unidades de pantalla (402 = ancho del iPhone), igual a 402 o a 980 px
- const LI=document.createElement("div"); LI.className="m-lens-in"; LI.setAttribute("aria-hidden","true"); T.forEach(b=>{ const s=document.createElement("span"); s.innerHTML=b.innerHTML; LI.appendChild(s); }); lens.appendChild(LI);
- let sel=0, x=pos(0), v=0, xt=pos(0), s=1, vs=0, st=1, sube=false, raf=0, last=0;
+    · al soltar (y como poco 260 ms después de tocar), se encoge y vuelve a ser la cápsula oscura.
+    v716 · EL VUELO LO HACE LA TARJETA GRÁFICA: al tocar se calcula de una vez todo el recorrido del muelle (el mismo de antes, a 60 por
+    segundo) y se entrega como animación (Web Animations) de la burbuja y de su lupa. Antes cada fotograma lo movía JavaScript y, como al
+    soltar se pinta la pestaña nueva, la burbuja esperaba y saltaba (medido en Safari 27: de x = −2 a 30 y a 57 en tres fotogramas).
+    Arrastrar con el dedo sigue fotograma a fotograma (tiene que ir pegado al dedo). Las medidas, en px de pantalla (antes, calc con --u) */
+ const LI=document.createElement("div"); LI.className="m-lens-in"; LI.setAttribute("aria-hidden","true"); LI.style.transformOrigin="0 0"; T.forEach(b=>{ const s=document.createElement("span"); s.innerHTML=b.innerHTML; LI.appendChild(s); }); lens.appendChild(LI);
+ let sel=0, x=pos(0), v=0, xt=pos(0), s=1, vs=0, st=1, sube=false, raf=0, last=0, an=null;
  const K0=quieto?2000:1100, C0=quieto?90:2*Math.sqrt(1100)*.78, KD=1400, CD=2*Math.sqrt(1400)*.9, KS=520, CS=2*Math.sqrt(520)*.62;   // v636: al arrastrar, muelle firme (pegado al dedo)
  let arrastra=false, vuela=false, t0=0, suT=0;
  const VID=quieto?1:1.15;   /* la lente de vidrio, un 15 % más grande que la cápsula */
- const toca=()=>{ clearTimeout(suT); t0=performance.now(); bar.classList.add("act"); };
- const asienta=()=>{ clearTimeout(suT); suT=setTimeout(()=>{ if(pid!==null) return; lens.classList.remove("held"); st=1; bar.classList.remove("act"); mueve(); },Math.max(0,260-(performance.now()-t0))); };
- const pinta=()=>{ const e=quieto?0:Math.min(Math.abs(v)/(arrastra?5200:2600),.16); const sx=s*(1+e), sy=s*(1-e*.55);
-   const lw=ancho(x), lx=x-lw/2; lens.style.width=`calc(${lw.toFixed(2)} * var(--u))`; lens.style.transform=`translateX(calc(${lx.toFixed(2)} * var(--u))) scale(${sx.toFixed(4)},${sy.toFixed(4)})`; const m=1+(s-1)*.45; LI.style.transformOrigin=`calc(${x.toFixed(2)} * var(--u)) calc(29 * var(--u))`; LI.style.transform=`translateX(calc(${(-lx).toFixed(2)} * var(--u))) scale(${(m/s).toFixed(4)})`;   // v637: dentro de la lente el aumento es menor (13 % con la lente al 130 %): menos corte en el borde
+ // px por unidad de diseño (la barra mide 386): del ancho de la barra (sin su escala al tocar) o, si aún no se ve, de la pantalla
+ let u=0; const U=()=>u||(u=bar.offsetWidth?bar.offsetWidth/386:Math.min(innerWidth,innerHeight)/(parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--m-sw"))||402));
+ // la burbuja (translateX + escala con el estirado) y su lupa (la misma franja de iconos, contra-desplazada y algo aumentada alrededor del centro)
+ const tr=(X,Vv,Sc,dr)=>{ const e=quieto?0:Math.min(Math.abs(Vv)/(dr?5200:2600),.16), sx=Sc*(1+e), sy=Sc*(1-e*.55), q=U(), lx=X-LW/2, m=1+(Sc-1)*.45, ox=X*q, oy=29*q;
+   return [`translateX(${(lx*q).toFixed(2)}px) scale(${sx.toFixed(4)},${sy.toFixed(4)})`,`translate(${ox.toFixed(2)}px,${oy.toFixed(2)}px) translateX(${(-lx*q).toFixed(2)}px) scale(${(m/Sc).toFixed(4)}) translate(${(-ox).toFixed(2)}px,${(-oy).toFixed(2)}px)`]; };
+ const pinta=()=>{ const k=tr(x,v,s,arrastra); lens.style.width=(LW*U()).toFixed(2)+"px"; lens.style.transform=k[0]; LI.style.transform=k[1];
    if(vuela&&Math.abs(xt-x)<W()*.12&&Math.abs(v)<120){ vuela=false; lens.classList.remove("vuela"); } };
- const paso=t=>{ const dt=Math.min(.032,(t-last)/1000||.016); last=t;
+ addEventListener("resize",()=>{ u=0; if(!an&&!raf) pinta(); },{passive:true});
+ // el vuelo: dónde está ahora (muestra del recorrido según el tiempo), pararlo y calcular uno nuevo desde el estado actual
+ const DT=1000/60;
+ const ahora=()=>{ if(!an) return; const ct=an.A[0].currentTime, i=Math.min(an.S.length-1,Math.max(0,Math.round((ct==null?0:ct)/DT)));   /* lo que lleva de verdad la animación (puede arrancar unos fotogramas después de crearla) */ [x,v,s,vs]=an.S[i]; if(an.su>=0&&i>=an.su){ st=1; sube=false; } };
+ const corta=()=>{ if(!an) return; ahora(); pinta(); an.A.forEach(a=>a.cancel()); clearTimeout(an.tv); clearTimeout(an.tf); an=null; };
+ const vuelo=()=>{ const S=[]; let X=x,Vv=v,Sc=s,VS=vs,ST=st,SU=sube,tv=-1,su=-1; const h=DT/4000;
+   for(let k=0;k<300;k++){ S.push([X,Vv,Sc,VS]); if(tv<0&&vuela&&Math.abs(xt-X)<W()*.12&&Math.abs(Vv)<120) tv=k;
+     if(Math.abs(xt-X)<.05&&Math.abs(Vv)<.5&&Math.abs(ST-Sc)<.0005&&Math.abs(VS)<.01&&!SU) break;
+     for(let j=0;j<4;j++){ Vv+=(K0*(xt-X)-C0*Vv)*h; X+=Vv*h; VS+=(KS*(ST-Sc)-CS*VS)*h; Sc+=VS*h; }
+     if(SU&&Math.abs(xt-X)<W()*.35){ ST=1; SU=false; su=k+1; } }
+   S.push([xt,0,ST,0]); return {S,tv,su,stF:ST}; };
+ const paso=t=>{ const dt=Math.min(.032,(t-last)/1000||.016); last=t;   // solo al arrastrar con el dedo
   const K=arrastra?KD:K0, C=arrastra?CD:C0;
   for(let k=0;k<4;k++){ const h=dt/4; v+=(K*(xt-x)-C*v)*h; x+=v*h; vs+=(KS*(st-s)-CS*vs)*h; s+=vs*h; }
   if(sube&&Math.abs(xt-x)<W()*.35){ st=1; sube=false; }
-  pinta(); if(Math.abs(xt-x)<.05&&Math.abs(v)<.5&&Math.abs(st-s)<.0005&&Math.abs(vs)<.01&&!sube){ x=xt; s=st; v=vs=0; pinta(); raf=0; return; } raf=requestAnimationFrame(paso); };
- const mueve=()=>{ if(!raf){ last=performance.now(); raf=requestAnimationFrame(paso); } };
+  pinta(); if(!arrastra){ raf=0; mueve(); return; } raf=requestAnimationFrame(paso); };
+ const mueve=()=>{
+  if(arrastra){ corta(); if(!raf){ last=performance.now(); raf=requestAnimationFrame(paso); } return; }
+  if(raf){ cancelAnimationFrame(raf); raf=0; }
+  if(an){ ahora(); an.A.forEach(a=>a.cancel()); clearTimeout(an.tv); clearTimeout(an.tf); an=null; }
+  const {S,tv,su,stF}=vuelo();
+  if(S.length<=2){ x=xt; v=vs=0; s=st=stF; sube=false; pinta(); return; }
+  const K=S.map(([X,Vv,Sc])=>tr(X,Vv,Sc,false)), d=(S.length-1)*DT, o={duration:d,easing:"linear",fill:"forwards"};
+  lens.style.width=(LW*U()).toFixed(2)+"px"; lens.style.transform=K[0][0]; LI.style.transform=K[0][1];
+  const A=[lens.animate(K.map(k=>({transform:k[0]})),o),LI.animate(K.map(k=>({transform:k[1]})),o)], yo={t0:performance.now(),S,A,su};
+  A[0].ready.then(()=>{ if(an!==yo) return; if(tv>=0) yo.tv=setTimeout(()=>{ if(vuela&&an===yo){ vuela=false; lens.classList.remove("vuela"); } },tv*DT); }).catch(()=>{});
+  A[0].finished.then(()=>{ if(an!==yo) return; x=xt; v=vs=0; s=st=stF; sube=false; pinta(); A.forEach(a=>a.cancel()); an=null; }).catch(()=>{});
+  an=yo; };
+ const toca=()=>{ clearTimeout(suT); t0=performance.now(); bar.classList.add("act"); };
+ const asienta=()=>{ clearTimeout(suT); suT=setTimeout(()=>{ if(pid!==null) return; lens.classList.remove("held"); st=1; bar.classList.remove("act"); mueve(); },Math.max(0,260-(performance.now()-t0))); };
  const marca=i=>T.forEach((b,k)=>{ b.classList.toggle("on",k===i); b.setAttribute("aria-current",k===i?"page":"false"); });
  const deVista=()=>({resumen:0,analisis:1,movimientos:2,calendario:3,universo:4})[view]??0;
  const ve=i=>{ if(i!==sel){ sube=!quieto; st=quieto?1:VID; if(!quieto){ vuela=true; lens.classList.add("vuela"); } } sel=i; xt=pos(i); marca(i); mueve(); };
@@ -5972,7 +6009,8 @@ function maModo(){ if(!MA.tel) return; const d=$("dot"), leyendo=!d||/\bbusy\b/.
   if(!arr&&Math.abs(e.clientX-x0)>6){ arr=true; bar.classList.add("drag"); lens.classList.add("held"); st=VID; }
   if(arr){ arrastra=true; const q=px-4, m0=W()/2, M=IN-W()/2; xt=q<m0?m0+(q-m0)*.22:q>M?M+(q-M)*.22:q; const c=idx(px); T.forEach((b,k)=>b.classList.toggle("cerca",k===c)); marca(c); mueve(); } });
  const suelta=e=>{ if(e.pointerId!==pid) return; pid=null; const px=loc(e);
-  arrastra=false; bar.classList.remove("drag"); T.forEach(b=>b.classList.remove("cerca")); asienta();   /* v683: la lente se asienta un poco después (como poco 260 ms tras tocar) */
+  if(arrastra){ arrastra=false; if(raf){ cancelAnimationFrame(raf); raf=0; } }
+  bar.classList.remove("drag"); T.forEach(b=>b.classList.remove("cerca")); asienta();   /* v683: la lente se asienta un poco después (como poco 260 ms tras tocar) */
   if(e.type==="pointercancel"){ MA.lente(); return; }
   if(arr){ const i=Math.max(0,Math.min(N-1,Math.floor(x/W()))); sel=i; xt=pos(i); marca(i); mueve(); abre(i); } else { const i=idx(px); ve(i); abre(i); } };
  bar.addEventListener("pointerup",suelta); bar.addEventListener("pointercancel",suelta);
@@ -6067,7 +6105,7 @@ if(MA_IOS){ document.documentElement.classList.add("m-ios"); let on=false, raf=0
     puede=()=>document.documentElement.classList.contains("m-app")&&MA.pg!=="calc"&&MA.pg!=="cq"&&$("kx").hidden&&(!$("sheet")||$("sheet").hidden)&&!MA.fi&&$("m-opm").hidden,   /* con la ficha (del PC o del iPhone), la búsqueda o el menú de opciones abiertos, no (v685 · IP-01: arrastrar dentro de la ficha del iPhone lanzaba «Actualizar») */
     /* v670 · en el hueco que se abre entre la barra y la página al tirar: el anillo se va llenando con el verde de la marca y dice qué pasa
        («Desliza para actualizar»; pasado el umbral, «Suelta para actualizar»). Ocupa justo el hueco (su alto es el del tirón), así que nunca pisa la página */
-    G=(()=>{ const e=document.createElement("div"); e.id="m-ptrg"; e.setAttribute("aria-hidden","true"); e.innerHTML=`<div class="m-pgi"><svg viewBox="0 0 32 32"><circle class="m-ptr-r" cx="16" cy="16" r="12"/><circle class="m-ptr-a" cx="16" cy="16" r="12" pathLength="100"/><circle class="m-ptr-d" cx="16" cy="16" r="4.5"/></svg><span class="m-pgt"><b class="a">Desliza para actualizar</b><b class="b">Suelta para actualizar</b><b class="c">Actualizando…</b></span></div>`; const m=$("ma"); if(m) m.appendChild(e); return e; })(),
+    G=(()=>{ const e=document.createElement("div"); e.id="m-ptrg"; e.setAttribute("aria-hidden","true"); e.innerHTML=`<div class="m-pgi"><svg viewBox="0 0 32 32"><circle class="m-ptr-r" cx="16" cy="16" r="12"/><circle class="m-ptr-a" cx="16" cy="16" r="12" pathLength="100"/><circle class="m-ptr-d" cx="16" cy="16" r="4.5"/></svg></div>`; const m=$("ma"); if(m) m.appendChild(e); return e; })(),
     /* v684 · SIN RECOLOCAR NADA EN CADA FOTOGRAMA: el indicador mide siempre 160 px; de él solo se ve el trozo del hueco (recorte) y su
        contenido se desplaza para quedar en el centro del hueco. Antes se cambiaba su alto en cada fotograma y el navegador recolocaba el
        anillo y el texto (iba a saltos). Los tres textos están uno encima de otro y se funden entre sí, sin cambiar de golpe */
