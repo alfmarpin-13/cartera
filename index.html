@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-G4WwqxAfwQcOcansY6LhV/05xKc6k1lfQx3tNz4XXGE=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-zTDLb5YHapS6wrR+S65UxstqiKthRyOigr1LdxgLP/w=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v758">
+<link rel="manifest" href="manifest.webmanifest?v759">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v758">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v758">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v758">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v758">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v758">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v759">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v759">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v759">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v759">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v759">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3828,7 +3828,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v758";   // la versión publicada, en el pie
+const VER="v759";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4772,7 +4772,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=sesion().closed, hayHoy=!c
   C.innerHTML=k==="dd"?bloque(ok.slice().sort((a,b)=>a.dd-b.dd),"Más lejos de su máximo")+bloque(ok.slice().sort((a,b)=>b.dd-a.dd),"Más cerca de su máximo",true)
     :bloque(ok.filter(r=>r[k]>=5e-4),"Suben")+bloque(ok.filter(r=>r[k]<=-5e-4).reverse(),"Bajan");   // v512: las que se quedan en 0,0 % no salen en ninguno de los dos
   // las columnas de la exigencia: cada empresa, a la altura de su TIR esperada y en la columna de lo que le exiges
-  const okr=DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0)   /* v564: todas salen; las de más de un 40 %, en el tope de la gráfica, sin salirse de ella (al pasar el ratón, su TIR real) */, reqs=[...new Set(DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0).map(r=>Math.round(r.req*1000)/1000))].sort((a,b)=>a-b)   /* v563: una columna por cada exigida, aunque sus empresas pasen del 40 % y no salgan (antes, si AST pasaba del 40 %, desaparecía la del 20 %) */, sob=okr.filter(r=>r.margin>0);
+  const okr=DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0)   /* v564: todas salen; las de más de un 40 %, en el tope de la gráfica, sin salirse de ella (al pasar el ratón, su TIR real) */, EXC=r=>Math.min(Math.round(r.req*1000)/1000,.15)   /* v759: lo que exiges por encima del 15 %, en la columna del 15 % («15 % o más») */, EXC_MAS=DATA.pre.some(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>.1505), reqs=[...new Set(DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0).map(EXC))].sort((a,b)=>a-b)   /* v563: una columna por cada exigida, aunque sus empresas pasen del 40 % y no salgan (antes, si AST pasaba del 40 %, desaparecía la del 20 %) */, sob=okr.filter(r=>r.margin>0);
   if(!reqs.length){ s2.remove(); gxPega(s); return; }
   let top3=sob.slice().sort((a,b)=>b.margin-a.margin).slice(0,5);   /* v755: hasta 5 (antes 3); si la frase no cabe en una línea, 4 o 3 */
   okr.forEach(r=>gxSol(gxSrc(r.ticker),r.ticker));   // v488: los logos de los carteles, preparados ya (si se preparaban al pasar el ratón, la gráfica se redibujaba y el cartel desaparecía)
@@ -4783,8 +4783,8 @@ function gxUni(){ const s=gxSec("v-universo"), closed=sesion().closed, hayHoy=!c
   for(let v=Math.round(ymin*10);v<=Math.round(ymax*10);v++){ const y=ys(v/10); g+=`<line x1="${PL}" x2="${WU}" y1="${y}" y2="${y}" stroke="var(--line)" ${v===0?"":'stroke-dasharray="2 4"'}/><text x="${PL-10}" y="${y+4}" text-anchor="end" class="t3">${v<0?"−":""}${Math.abs(v*10)} %</text>`; }
   reqs.forEach((q,ci)=>{ const cx=PL+cw*ci+cw/2, yq=ys(q);
     g+=`<rect x="${cx-cw/2+10}" y="${tp}" width="${cw-20}" height="${yq-tp}" fill="var(--pos)" opacity=".06" rx="4"/><line x1="${cx-cw/2+18}" x2="${cx+cw/2-18}" y1="${yq}" y2="${yq}" style="stroke:color-mix(in srgb,var(--ink) 55%,var(--canvas))" stroke-width="1.5"/>`;   /* v492: la raya de la exigencia, algo más clara */
-    g+=`<text x="${cx}" y="${H-16}" text-anchor="middle" class="t1 b">${nf(q*100%1?1:0).format(q*100)} %</text><text x="${cx}" y="${H}" text-anchor="middle" class="t3" style="font-size:11px">exigida</text>`;
-    const col=okr.filter(r=>Math.round(r.req*1000)/1000===q).sort((a,b)=>b.irrExp-a.irrExp), pl=[];
+    g+=`<text x="${cx}" y="${H-16}" text-anchor="middle" class="t1 b">${nf(q*100%1?1:0).format(q*100)} %${q===.15&&EXC_MAS?" o más":""}</text><text x="${cx}" y="${H}" text-anchor="middle" class="t3" style="font-size:11px">exigida</text>`;
+    const col=okr.filter(r=>EXC(r)===q).sort((a,b)=>b.irrExp-a.irrExp), pl=[];
     // v486: cada bola, lo más cerca posible de su altura, pero siempre dentro de su columna: primero se abre a los lados y, cuando ya no cabe, se aparta un poco arriba o abajo
     const R=6.5, half=Math.max(R,cw/2-10-R-2), PASO=R/2, cand=[];
     for(let i=-Math.floor(half/PASO);i<=Math.floor(half/PASO);i++) for(let j=-12;j<=12;j++) cand.push({dx:i*PASO,dy:j*PASO,c:Math.abs(i*PASO)+20*Math.abs(j*PASO)});
@@ -4795,7 +4795,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=sesion().closed, hayHoy=!c
     pl.forEach(p=>{ const sube=p.r.margin>0, mine=p.r.inPf; p.i=TODOS.length; g+=`<circle data-i="${p.i}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6" style="fill:${sube?(mine?"var(--gx-id)":"var(--gx-cand)"):`color-mix(in srgb,var(--ink) ${mine?75:12}%,var(--canvas))`}"/>` /* v502: tuyas llenas sin aro; v755: candidatas en azul (antes, menta al 45 %, que apenas se distinguía) */; TODOS.push(p); if(T3.has(p.r.ticker)) LB.push(p); }); });
   // v481: cada cartel, dentro de la columna de su exigencia: a la derecha del punto, a la izquierda, encima o debajo, sin pisar puntos ni otros carteles
   // v481: las destacadas llevan solo su logo, junto al punto y dentro de la columna de su exigencia, sin pisar puntos ni otros logos
-  const caja=[], ET=[]; LB.forEach(p=>{ const ci=reqs.indexOf(Math.round(p.r.req*1000)/1000), c0=PL+cw*ci+18, c1=PL+cw*(ci+1)-18,   /* v531: dentro del sombreado, con 8 px de aire (antes tocaba su borde) */ aw=LOGO_ANCHO[p.r.ticker], tw=aw?Math.min(92,Math.round(20*(LOGO_R[aw]||3.5))):Math.min(92,Math.round(22*(LOGO_R[gxSrc(p.r.ticker)]||1.8))), h=22,   /* v503: logo ancho si lo hay */ cl=x=>Math.min(Math.max(x,c0),c1-tw);
+  const caja=[], ET=[]; LB.forEach(p=>{ const ci=reqs.indexOf(EXC(p.r)), c0=PL+cw*ci+18, c1=PL+cw*(ci+1)-18,   /* v531: dentro del sombreado, con 8 px de aire (antes tocaba su borde) */ aw=LOGO_ANCHO[p.r.ticker], tw=aw?Math.min(92,Math.round(20*(LOGO_R[aw]||3.5))):Math.min(92,Math.round(22*(LOGO_R[gxSrc(p.r.ticker)]||1.8))), h=22,   /* v503: logo ancho si lo hay */ cl=x=>Math.min(Math.max(x,c0),c1-tw);
     const cands=[{x0:p.x+12,y0:p.y-h/2},{x0:p.x-12-tw,y0:p.y-h/2},{x0:cl(p.x-tw/2),y0:p.y-h-10},{x0:cl(p.x-tw/2),y0:p.y+10},{x0:cl(p.x-tw/2),y0:p.y-h-32},{x0:cl(p.x-tw/2),y0:p.y+32}].map(c=>({...c,x1:c.x0+tw,y1:c.y0+h}));
     const fuera=c=>c.x0<c0-0.5||c.x1>c1+0.5||c.y0<tp+8||c.y1>bottom+4, choca=c=>TODOS.some(q=>q!==p&&q.x+7>c.x0&&q.x-7<c.x1&&q.y+7>c.y0&&q.y-7<c.y1)||caja.some(b=>b.x0<c.x1&&b.x1>c.x0&&b.y0<c.y1&&b.y1>c.y0);
     const c=cands.find(c=>!fuera(c)&&!choca(c))||cands.find(c=>!fuera(c)); if(!c) return;   /* v529: un logo nunca se sale de su columna: si no cabe dentro, no se pinta */
