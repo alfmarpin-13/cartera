@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-xZiueRq5FfHmXfqQb0WbQueGBC0pbUTs9S2cQPCbX1c=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-D1oPtzaf1D3pIC7dRzDT3YvK+GE/0woPiwQ5uoQWpL0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v760">
+<link rel="manifest" href="manifest.webmanifest?v761">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v760">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v760">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v760">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v760">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v760">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v761">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v761">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v761">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v761">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v761">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1601,8 +1601,8 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gxl img{display:block;width:100%;height:100%;object-fit:contain;filter:brightness(0) opacity(.82)}
   .gxl.inv img{filter:brightness(0) invert(1)}
   /* v481: logos rellenos (Spotify, Booking…): el relleno, entero del color de la tinta (negro o blanco) y sus trazos, del contrario */
-  .gxl.sol-d img,.gx-t2 .gxsol.sol-d{filter:grayscale(1) contrast(8) opacity(.86)}
-  .gxl.sol-l img,.gx-t2 .gxsol.sol-l{filter:grayscale(1) contrast(8) invert(1) opacity(.86)}
+  .gxl.sol-d img,.gx-t2 .gxsol.sol-d,.gx-mr .gxsol.sol-d{filter:grayscale(1) contrast(8) opacity(.86)}
+  .gxl.sol-l img,.gx-t2 .gxsol.sol-l,.gx-mr .gxsol.sol-l{filter:grayscale(1) contrast(8) invert(1) opacity(.86)}
   .gxl.inv.sol-d img,.gx-t2:is(.lp5,.ln5) .gxsol.sol-d{filter:grayscale(1) contrast(8) invert(1)}
   .gxl.inv.sol-l img,.gx-t2:is(.lp5,.ln5) .gxsol.sol-l{filter:grayscale(1) contrast(8)}
   /* Análisis · la librería */
@@ -1656,6 +1656,21 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gx-d.res .lb i{font-style:normal;opacity:.75;font-weight:500}
   /* Universo · el mosaico, con los colores del mapa de Resumen */
   .gx-mos{display:grid;grid-template-columns:1fr 1fr;gap:24px;position:relative}
+.gx-mos.gx-mar{display:block}   /* v761: la mariposa */
+.gx-mar .gx-mar-c{position:relative}
+.gx-mar .gx-mar-eje{position:absolute;top:30px;bottom:0;width:1px;background:var(--ink3);opacity:.55}
+.gx-mar .gx-mar-h{position:absolute;top:0;font-size:15px;line-height:20px;font-weight:600}
+.gx-mr{position:absolute;display:flex;align-items:center;gap:10px;height:30px;padding:0;margin:0;border:0;background:none;cursor:pointer;font:inherit;color:inherit}
+.gx-mr.izq{flex-direction:row-reverse}
+.gx-mr .b{display:block;height:20px;border-radius:3px;flex:none}
+.gx-mr .p{font-size:14px;line-height:20px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.gx-mr .lg{display:flex;flex:none;width:56px;height:22px;align-items:center}
+.gx-mr.der .lg{justify-content:flex-start}
+.gx-mr.izq .lg{justify-content:flex-end}
+.gx-mr .gxsil{display:block;flex:none;background:currentColor;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain}
+.gx-mr.der .gxsil{-webkit-mask-position:left center;mask-position:left center}
+.gx-mr.izq .gxsil{-webkit-mask-position:right center;mask-position:right center}
+.gx-mr:hover .b,.gx-mr:focus-visible .b{filter:brightness(.92)}
   .gx-tip2{position:absolute;z-index:6;padding:6px 10px;border-radius:8px;background:var(--ink);color:var(--gx-bg);font-size:13px;line-height:18px;font-weight:500;white-space:nowrap;pointer-events:none}
   .gx-tip2[hidden]{display:none}
   .gx-tr{position:relative;height:420px}
@@ -1666,23 +1681,23 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gx-t2.ln1{color:var(--ln1t)}.gx-t2.ln2{color:var(--ln2t)}.gx-t2.ln3{color:var(--ln3t)}.gx-t2.ln4{color:var(--ln4t)}.gx-t2.ln5{color:var(--ln5t)}
   .gx-t2:hover{filter:brightness(.97)}
   .gx-t2 .gxsil{display:block;background:currentColor;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center}
-  .gx-t2 .gxsol{display:block;object-fit:contain}
+  .gx-t2 .gxsol,.gx-mr .gxsol{display:block;object-fit:contain}
   .gx-t2 b{font-size:15px;line-height:20px;font-weight:400;font-variant-numeric:tabular-nums}   /* v500: sin negrita */
   .gx-t2.mia::before{content:"";position:absolute;top:9px;right:9px;width:8px;height:8px;border-radius:50%;background:currentColor;z-index:2}   
 }
 @media (min-width:700.99px){
   :root[data-theme="dark"] .gxl img{filter:brightness(0) invert(.9)}
   :root[data-theme="dark"] .gxl.inv img{filter:brightness(0)}
-  :root[data-theme="dark"] :is(.gxl.sol-d img,.gx-t2 .gxsol.sol-d){filter:grayscale(1) contrast(8) invert(1) opacity(.9)}
-  :root[data-theme="dark"] :is(.gxl.sol-l img,.gx-t2 .gxsol.sol-l){filter:grayscale(1) contrast(8) opacity(.9)}
+  :root[data-theme="dark"] :is(.gxl.sol-d img,.gx-t2 .gxsol.sol-d,.gx-mr .gxsol.sol-d){filter:grayscale(1) contrast(8) invert(1) opacity(.9)}
+  :root[data-theme="dark"] :is(.gxl.sol-l img,.gx-t2 .gxsol.sol-l,.gx-mr .gxsol.sol-l){filter:grayscale(1) contrast(8) opacity(.9)}
   :root[data-theme="dark"] .gxl.inv.sol-d img{filter:grayscale(1) contrast(8)}
   :root[data-theme="dark"] .gxl.inv.sol-l img{filter:grayscale(1) contrast(8) invert(1)}
 }
 @media (min-width:700.99px) and (prefers-color-scheme:dark){
   :root:not([data-theme="light"]) .gxl img{filter:brightness(0) invert(.9)}
   :root:not([data-theme="light"]) .gxl.inv img{filter:brightness(0)}
-  :root:not([data-theme="light"]) :is(.gxl.sol-d img,.gx-t2 .gxsol.sol-d){filter:grayscale(1) contrast(8) invert(1) opacity(.9)}
-  :root:not([data-theme="light"]) :is(.gxl.sol-l img,.gx-t2 .gxsol.sol-l){filter:grayscale(1) contrast(8) opacity(.9)}
+  :root:not([data-theme="light"]) :is(.gxl.sol-d img,.gx-t2 .gxsol.sol-d,.gx-mr .gxsol.sol-d){filter:grayscale(1) contrast(8) invert(1) opacity(.9)}
+  :root:not([data-theme="light"]) :is(.gxl.sol-l img,.gx-t2 .gxsol.sol-l,.gx-mr .gxsol.sol-l){filter:grayscale(1) contrast(8) opacity(.9)}
   :root:not([data-theme="light"]) .gxl.inv.sol-d img{filter:grayscale(1) contrast(8)}
   :root:not([data-theme="light"]) .gxl.inv.sol-l img{filter:grayscale(1) contrast(8) invert(1)}
 }
@@ -3821,7 +3836,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v760";   // la versión publicada, en el pie
+const VER="v761";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4759,11 +4774,19 @@ function gxUni(){ const s=gxSec("v-universo"), closed=sesion().closed, hayHoy=!c
       return `<button type="button" class="gx-t2 ${lv} ${r.inPf?"mia":""}" data-t="${esc(r.ticker)}" data-n="${esc(r.name)}" aria-label="${esc(r.name)} · ${gxPS(r[k])}" style="left:${(z.x+G/2).toFixed(1)}px;top:${(z.y+G/2).toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px${pq?";gap:4px":""}">${gxSil(r.ticker,lw,lh,Math.min(96,w-14),Math.min(36,h-(pq?36:46)))}<b>${gxPS(r[k])}</b></button>`; }).join("")}</div></div>`; };
   C.dataset.l=JSON.stringify(lista);
   // v481: al pasar el ratón por una casilla, su nombre al momento
-  C.onmouseover=e=>{ const b=e.target.closest(".gx-t2"); let t=C.querySelector(".gx-tip2"); if(!b){ if(t) t.hidden=true; return; } if(!t){ t=document.createElement("span"); t.className="gx-tip2"; C.append(t); }
+  C.onmouseover=e=>{ const b=e.target.closest(".gx-t2,.gx-mr"); let t=C.querySelector(".gx-tip2"); if(!b){ if(t) t.hidden=true; return; } if(!t){ t=document.createElement("span"); t.className="gx-tip2"; C.append(t); }
     t.textContent=b.dataset.n; t.hidden=false; const cr=C.getBoundingClientRect(), br=b.getBoundingClientRect(); t.style.left=Math.min(Math.max(0,br.left-cr.left+br.width/2-t.offsetWidth/2),cr.width-t.offsetWidth)+"px"; t.style.top=(br.top-cr.top-t.offsetHeight-6)+"px"; };
   C.onmouseleave=()=>{ const t=C.querySelector(".gx-tip2"); if(t) t.hidden=true; };
+  // v761 · la mariposa: las 15 que más bajan, a la izquierda; las 15 que más suben, a la derecha; cada barra, del tamaño de su movimiento (la misma escala a los dos lados)
+  const mariposa=()=>{ const N=15, sube=ok.filter(r=>r[k]>=5e-4).sort((a,b)=>b[k]-a[k]).slice(0,N), baja=ok.filter(r=>r[k]<=-5e-4).sort((a,b)=>a[k]-b[k]).slice(0,N), n=Math.max(sube.length,baja.length);
+    if(!n) return `<div class="gx-tr gx-vacio">Ninguna se mueve</div>`;
+    const RH=30, T0=36, CX=Math.round(W/2), LW=Math.max(80,CX-4-10-64-10-56-8), mx=Math.max(...sube.concat(baja).map(r=>Math.abs(r[k])));
+    const fila=(r,i,izq)=>{ const v=r[k], L=Math.max(3,Math.round(Math.abs(v)/mx*LW)), mia=!!r.inPf, fondo=izq?(mia?"var(--ln5)":"var(--ln2)"):(mia?"var(--lp5)":"var(--lp2)");
+      return `<button type="button" class="gx-mr ${izq?"izq":"der"}" data-t="${esc(r.ticker)}" data-n="${esc(r.name)}" aria-label="${esc(r.name)} · ${gxPS(v)}" style="top:${T0+i*RH}px;${izq?`right:${W-CX+4}px`:`left:${CX+4}px`}"><span class="b" style="width:${L}px;background:${fondo}"></span><b class="p" style="color:var(${izq?"--neg":"--pos"})">${gxPS(v)}</b><span class="lg" style="color:var(${mia?"--ink":"--ink3"})">${gxSil(r.ticker,52,22,56,22)}</span></button>`; };
+    return `<div class="gx-mar-c" style="height:${T0+n*RH}px"><b class="gx-mar-h" style="right:${W-CX+14}px;color:var(--neg)">Bajan</b><b class="gx-mar-h" style="left:${CX+14}px;color:var(--pos)">Suben</b><span class="gx-mar-eje" style="left:${CX}px"></span>${baja.map((r,i)=>fila(r,i,true)).join("")}${sube.map((r,i)=>fila(r,i,false)).join("")}</div>`; };
+  C.classList.toggle("gx-mar",k!=="dd");
   C.innerHTML=k==="dd"?bloque(ok.slice().sort((a,b)=>a.dd-b.dd),"Más lejos de su máximo")+bloque(ok.slice().sort((a,b)=>b.dd-a.dd),"Más cerca de su máximo",true)
-    :bloque(ok.filter(r=>r[k]>=5e-4),"Suben")+bloque(ok.filter(r=>r[k]<=-5e-4).reverse(),"Bajan");   // v512: las que se quedan en 0,0 % no salen en ninguno de los dos
+    :mariposa();   // v512: las que se quedan en 0,0 % no salen en ninguno de los dos lados; v761: en mariposa (antes, mosaicos «Suben» y «Bajan»)
   // las columnas de la exigencia: cada empresa, a la altura de su TIR esperada y en la columna de lo que le exiges
   const okr=DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0)   /* v564: todas salen; las de más de un 40 %, en el tope de la gráfica, sin salirse de ella (al pasar el ratón, su TIR real) */, EXC=r=>Math.min(Math.round(r.req*1000)/1000,.15)   /* v759: lo que exiges por encima del 15 %, en la columna del 15 % («15 % o más») */, EXC_MAS=DATA.pre.some(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>.1505), reqs=[...new Set(DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0).map(EXC))].sort((a,b)=>a-b)   /* v563: una columna por cada exigida, aunque sus empresas pasen del 40 % y no salgan (antes, si AST pasaba del 40 %, desaparecía la del 20 %) */, sob=okr.filter(r=>r.margin>0);
   if(!reqs.length){ s2.remove(); gxPega(s); return; }
