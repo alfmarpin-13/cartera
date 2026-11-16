@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-5weld7dECrD2gDuCk8ZACXGg9p0le7m5J2MuHeLIpnI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-Viw/GdAASmyt7IiWSVgjm8GVaSZUtAMEVgnetyU7Vl8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v756">
+<link rel="manifest" href="manifest.webmanifest?v757">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v756">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v756">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v756">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v756">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v756">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v757">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v757">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v757">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v757">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v757">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1583,6 +1583,11 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
 .gx-leg2 i{width:10px;height:10px;margin:0 6px 0 0;border-radius:50%}
 .gx-leg2 i.cart{background:var(--gx-id)}
 .gx-leg2 i.cand{background:var(--gx-cand)}
+.gx-leg2 i.cartg{background:color-mix(in srgb,var(--ink) 75%,var(--canvas))}
+.gx-leg2 i.candg{background:color-mix(in srgb,var(--ink) 12%,var(--canvas))}
+.gx-leg2 .gl{color:var(--ink3)}
+.gx-leg2 .gl+span{margin-left:-6px}
+.gx-leg2 .gs{margin-left:28px}   /* v757: los cuatro tipos de bola, en dos grupos */
   .gx-tip[hidden]{display:none}
   .gx-tip span{display:flex;flex-direction:column;gap:2px;font-size:13px;line-height:17px}
   .gx-tip b{font-weight:600;color:var(--ink)} .gx-tip em{font-style:normal;color:var(--ink3);font-variant-numeric:tabular-nums}
@@ -3825,7 +3830,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v756";   // la versión publicada, en el pie
+const VER="v757";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4797,7 +4802,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=sesion().closed, hayHoy=!c
     const fuera=c=>c.x0<c0-0.5||c.x1>c1+0.5||c.y0<tp+8||c.y1>bottom+4, choca=c=>TODOS.some(q=>q!==p&&q.x+7>c.x0&&q.x-7<c.x1&&q.y+7>c.y0&&q.y-7<c.y1)||caja.some(b=>b.x0<c.x1&&b.x1>c.x0&&b.y0<c.y1&&b.y1>c.y0);
     const c=cands.find(c=>!fuera(c)&&!choca(c))||cands.find(c=>!fuera(c)); if(!c) return;   /* v529: un logo nunca se sale de su columna: si no cabe dentro, no se pinta */
     caja.push(c); ET.push(`<span class="gx-et" style="left:${c.x0.toFixed(1)}px;top:${c.y0.toFixed(1)}px">${gxLogo(p.r.ticker,tw,h,{ancho:!!aw,sinF:!aw})}</span>`); });
-  U.innerHTML=`<svg width="${WU}" height="${H+6}" viewBox="0 0 ${WU} ${H+6}" role="img" aria-label="TIR esperada frente a la exigida">${g}</svg>${ET.join("")}<span class="gx-tip" hidden></span><div class="legend hy-leg gx-leg2"><span><i class="cart"></i>en cartera</span><span><i class="cand"></i>candidatas</span></div>`;   /* v755: leyenda */
+  U.innerHTML=`<svg width="${WU}" height="${H+6}" viewBox="0 0 ${WU} ${H+6}" role="img" aria-label="TIR esperada frente a la exigida">${g}</svg>${ET.join("")}<span class="gx-tip" hidden></span><div class="legend hy-leg gx-leg2"><span class="gl">Rinden más de lo exigido:</span><span><i class="cart"></i>en cartera</span><span><i class="cand"></i>candidatas</span><span class="gl gs">No llegan:</span><span><i class="cartg"></i>en cartera</span><span><i class="candg"></i>candidatas</span></div>`;   /* v755: leyenda; v757: completa, con las cuatro bolas */
   // al pasar el ratón por un punto, su cartel (logo, nombre y TIR); al pulsarlo, su ficha
   const tip=U.querySelector(".gx-tip"), sv=U.querySelector("svg"); let cur=null;
   sv.addEventListener("mousemove",e=>{ const c=e.target.closest("circle[data-i]"); if(c===cur) return; if(cur) cur.setAttribute("r","6"); cur=c; if(!c){ tip.hidden=true; return; }
