@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-Ba6eCzziKYXVMlb+ubJd6PSCEHEMXaJiEm1xw3Qu3bM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-Hng40WD6EunSwGRSoY4lCR3qimbcsH/6I8fZE23lYAo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v754">
+<link rel="manifest" href="manifest.webmanifest?v755">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v754">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v754">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v754">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v754">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v754">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v755">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v755">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v755">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v755">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v755">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1578,6 +1578,11 @@ body:has(#dot.busy) :is(.marca-l,.nav-logo) circle:last-child{transform-box:fill
   .gx-et{position:absolute;display:flex;align-items:center;gap:8px;height:20px;font-size:13px;line-height:20px;white-space:nowrap;pointer-events:none}
   .gx-et b{font-weight:500;color:var(--ink);overflow:hidden;text-overflow:ellipsis}
   .gx-tip{position:absolute;z-index:5;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:var(--gx-pop);box-shadow:0 10px 28px rgba(0,0,0,.16),0 0 0 1px var(--line);pointer-events:none;white-space:nowrap}
+:root{--gx-cand:#86AFD3}   /* v755: las candidatas (rinden más de lo exigido y no las tienes), en azul: se distinguen del menta de las tuyas en claro y en oscuro, y no dicen ni bueno ni malo */
+.gx-leg2{justify-content:center;margin-top:20px}
+.gx-leg2 i{width:10px;height:10px;margin:0 6px 0 0;border-radius:50%}
+.gx-leg2 i.cart{background:var(--gx-id)}
+.gx-leg2 i.cand{background:var(--gx-cand)}
   .gx-tip[hidden]{display:none}
   .gx-tip span{display:flex;flex-direction:column;gap:2px;font-size:13px;line-height:17px}
   .gx-tip b{font-weight:600;color:var(--ink)} .gx-tip em{font-style:normal;color:var(--ink3);font-variant-numeric:tabular-nums}
@@ -3820,7 +3825,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v754";   // la versión publicada, en el pie
+const VER="v755";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4766,9 +4771,10 @@ function gxUni(){ const s=gxSec("v-universo"), closed=sesion().closed, hayHoy=!c
   // las columnas de la exigencia: cada empresa, a la altura de su TIR esperada y en la columna de lo que le exiges
   const okr=DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0)   /* v564: todas salen; las de más de un 40 %, en el tope de la gráfica, sin salirse de ella (al pasar el ratón, su TIR real) */, reqs=[...new Set(DATA.pre.filter(r=>isNum(r.irrExp)&&isNum(r.req)&&r.req>0).map(r=>Math.round(r.req*1000)/1000))].sort((a,b)=>a-b)   /* v563: una columna por cada exigida, aunque sus empresas pasen del 40 % y no salgan (antes, si AST pasaba del 40 %, desaparecía la del 20 %) */, sob=okr.filter(r=>r.margin>0);
   if(!reqs.length){ s2.remove(); gxPega(s); return; }
-  const top3=sob.slice().sort((a,b)=>b.margin-a.margin).slice(0,3);
+  let top3=sob.slice().sort((a,b)=>b.margin-a.margin).slice(0,5);   /* v755: hasta 5 (antes 3); si la frase no cabe en una línea, 4 o 3 */
   okr.forEach(r=>gxSol(gxSrc(r.ticker),r.ticker));   // v488: los logos de los carteles, preparados ya (si se preparaban al pasar el ratón, la gráfica se redibujaba y el cartel desaparecía)
-  s2.querySelector(".gx-c2").innerHTML=gxH(sob.length?`Hay ${sob.length} ${sob.length===1?"empresa que rinde más de lo que le exiges":"empresas que rinden más de lo que les exiges"}.`:"Ninguna empresa rinde más de lo que le exiges.",top3.length?`Las que más: ${top3.map(r=>esc(r.name)).join(", ").replace(/, ([^,]*)$/," y $1")}.`:"Ninguna lo supera.");
+  { const c2=s2.querySelector(".gx-c2"), tit=L=>{ c2.innerHTML=gxH(sob.length?`Hay ${sob.length} ${sob.length===1?"empresa que rinde más de lo que le exiges":"empresas que rinden más de lo que les exiges"}.`:"Ninguna empresa rinde más de lo que le exiges.",L.length?`Las que más: ${L.map(r=>esc(r.name)).join(", ").replace(/, ([^,]*)$/," y $1")}.`:"Ninguna lo supera."); };
+    for(let n=top3.length;;n--){ tit(top3.slice(0,n)); const l2=c2.querySelector(".l2"); if(n<=3||!c2.clientWidth||!l2||l2.scrollWidth<=c2.clientWidth+.5){ top3=top3.slice(0,n); break; } } }
   const U=s2.querySelector(".gx-un"), WU=Math.round(U.getBoundingClientRect().width), H=340, PL=46, tp=16, bottom=H-44, ymin=-0.10, ymax=0.4;
   const ys=v=>tp+(ymax-Math.max(ymin,Math.min(ymax,v)))/(ymax-ymin)*(bottom-tp), cw=(WU-PL)/reqs.length; let g=""; const TODOS=[], LB=[], T3=new Set(top3.map(r=>r.ticker));
   for(let v=Math.round(ymin*10);v<=Math.round(ymax*10);v++){ const y=ys(v/10); g+=`<line x1="${PL}" x2="${WU}" y1="${y}" y2="${y}" stroke="var(--line)" ${v===0?"":'stroke-dasharray="2 4"'}/><text x="${PL-10}" y="${y+4}" text-anchor="end" class="t3">${v<0?"−":""}${Math.abs(v*10)} %</text>`; }
@@ -4783,7 +4789,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=sesion().closed, hayHoy=!c
     col.forEach(r=>{ const y0=ys(r.irrExp); const k=cand.find(c=>{ const x=cx+c.dx, y=Math.min(bottom,Math.max(tp+7,y0+c.dy)); return !pl.some(p=>Math.hypot(p.x-x,p.y-y)<R*2); })||{dx:0,dy:0};
       pl.push({x:cx+k.dx,y:Math.min(bottom,Math.max(tp+7,y0+k.dy)),r}); });
     // v486: las que rinden más de lo exigido, con el verde del logo; v490: colores opacos (mezclados con el fondo), para que la raya no se vea a través de las bolas
-    pl.forEach(p=>{ const sube=p.r.margin>0, mine=p.r.inPf; p.i=TODOS.length; g+=`<circle data-i="${p.i}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6" style="fill:color-mix(in srgb,${sube?"var(--gx-id)":"var(--ink)"} ${sube?(mine?100:45):(mine?75:12)}%,var(--canvas))"/>` /* v502: tuyas llenas sin aro; candidatas al 45 % */; TODOS.push(p); if(T3.has(p.r.ticker)) LB.push(p); }); });
+    pl.forEach(p=>{ const sube=p.r.margin>0, mine=p.r.inPf; p.i=TODOS.length; g+=`<circle data-i="${p.i}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6" style="fill:${sube?(mine?"var(--gx-id)":"var(--gx-cand)"):`color-mix(in srgb,var(--ink) ${mine?75:12}%,var(--canvas))`}"/>` /* v502: tuyas llenas sin aro; v755: candidatas en azul (antes, menta al 45 %, que apenas se distinguía) */; TODOS.push(p); if(T3.has(p.r.ticker)) LB.push(p); }); });
   // v481: cada cartel, dentro de la columna de su exigencia: a la derecha del punto, a la izquierda, encima o debajo, sin pisar puntos ni otros carteles
   // v481: las destacadas llevan solo su logo, junto al punto y dentro de la columna de su exigencia, sin pisar puntos ni otros logos
   const caja=[], ET=[]; LB.forEach(p=>{ const ci=reqs.indexOf(Math.round(p.r.req*1000)/1000), c0=PL+cw*ci+18, c1=PL+cw*(ci+1)-18,   /* v531: dentro del sombreado, con 8 px de aire (antes tocaba su borde) */ aw=LOGO_ANCHO[p.r.ticker], tw=aw?Math.min(92,Math.round(20*(LOGO_R[aw]||3.5))):Math.min(92,Math.round(22*(LOGO_R[gxSrc(p.r.ticker)]||1.8))), h=22,   /* v503: logo ancho si lo hay */ cl=x=>Math.min(Math.max(x,c0),c1-tw);
@@ -4791,7 +4797,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=sesion().closed, hayHoy=!c
     const fuera=c=>c.x0<c0-0.5||c.x1>c1+0.5||c.y0<tp+8||c.y1>bottom+4, choca=c=>TODOS.some(q=>q!==p&&q.x+7>c.x0&&q.x-7<c.x1&&q.y+7>c.y0&&q.y-7<c.y1)||caja.some(b=>b.x0<c.x1&&b.x1>c.x0&&b.y0<c.y1&&b.y1>c.y0);
     const c=cands.find(c=>!fuera(c)&&!choca(c))||cands.find(c=>!fuera(c)); if(!c) return;   /* v529: un logo nunca se sale de su columna: si no cabe dentro, no se pinta */
     caja.push(c); ET.push(`<span class="gx-et" style="left:${c.x0.toFixed(1)}px;top:${c.y0.toFixed(1)}px">${gxLogo(p.r.ticker,tw,h,{ancho:!!aw,sinF:!aw})}</span>`); });
-  U.innerHTML=`<svg width="${WU}" height="${H+6}" viewBox="0 0 ${WU} ${H+6}" role="img" aria-label="TIR esperada frente a la exigida">${g}</svg>${ET.join("")}<span class="gx-tip" hidden></span>`;
+  U.innerHTML=`<svg width="${WU}" height="${H+6}" viewBox="0 0 ${WU} ${H+6}" role="img" aria-label="TIR esperada frente a la exigida">${g}</svg>${ET.join("")}<span class="gx-tip" hidden></span><div class="legend hy-leg gx-leg2"><span><i class="cart"></i>en cartera</span><span><i class="cand"></i>candidatas</span></div>`;   /* v755: leyenda */
   // al pasar el ratón por un punto, su cartel (logo, nombre y TIR); al pulsarlo, su ficha
   const tip=U.querySelector(".gx-tip"), sv=U.querySelector("svg"); let cur=null;
   sv.addEventListener("mousemove",e=>{ const c=e.target.closest("circle[data-i]"); if(c===cur) return; if(cur) cur.setAttribute("r","6"); cur=c; if(!c){ tip.hidden=true; return; }
