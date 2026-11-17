@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-vtu/8bZ0omjlWuH+R5ubptBz0RBDGifsADJgSqqJu/c=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-VkznIfET/f0ygzIjyTIxaYdy7SobksG8ckq8pB9GGOY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v778">
+<link rel="manifest" href="manifest.webmanifest?v779">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v778">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v778">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v778">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v778">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v778">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v779">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v779">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v779">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v779">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v779">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1259,6 +1259,7 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#p-body,#pl-body,#b-payers,#
    del móvil, cifras sobre las barras por año), los puntos también van centrados */
 .priv :is(.ca,.mc-v,.y>.v) .pv::after{text-align:center}
 .priv .zcp .pv::after{text-align:right}
+:is(.zc-f,.m-kf).tod>i{display:none}   /* «todas»: sin «acc.» detrás */
 .priv .zcp .zc-sub .pv::after{text-align:left}   /* en el texto de debajo del nombre («Venta a …»), pegados a la palabra */   /* v778: en la calculadora, los puntos acaban donde acababa la cifra: todos alineados a la derecha */
 /* Resumen › posiciones: la pastilla de Rentab. con sitio para tres cifras enteras (+123,4%): 6,6 px a la izquierda y 7 a la derecha
    (antes, 68 px desde 1201 y 66 px entre 701 y 860: al texto le quedaban 2,6 y 0,6 px a la derecha; entre 861 y 1200 ya mide 76) */
@@ -3851,7 +3852,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v778";   // la versión publicada, en el pie
+const VER="v779";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4263,7 +4264,7 @@ function fillIndustries(){ opts($("p-ind"),[...new Set(DATA.pre.map(r=>r.ind).fi
 
 /* plan de aportación: calculadora con las reglas de tu hoja (acciones enteras, coste en euros y comisión por mercado) */
 const PLAN_K="plan-aportacion";
-let plan=(()=>{ try{ const o=JSON.parse(localStorage.getItem(PLAN_K)||"null"); if(o&&Array.isArray(o.rows)){ const c=v=>typeof v==="number"&&isFinite(v)?Math.min(Math.max(v,0),9999999):null; o.aport=c(o.aport); o.rows.forEach(r=>{ r.amt=c(r.amt); r.n=c(r.n); r.sell=!!r.sell; }); return o; } }catch{} return {aport:null,rows:[{t:"",amt:null}]}; })();
+let plan=(()=>{ try{ const o=JSON.parse(localStorage.getItem(PLAN_K)||"null"); if(o&&Array.isArray(o.rows)){ const c=v=>typeof v==="number"&&isFinite(v)?Math.min(Math.max(v,0),9999999):null; o.aport=c(o.aport); o.rows.forEach(r=>{ r.amt=c(r.amt); r.n=c(r.n); r.sell=!!r.sell; r.all=r.sell&&!!r.all; }); return o; } }catch{} return {aport:null,rows:[{t:"",amt:null}]}; })();
 const plHas=()=>isNum(plan.aport)||plan.rows.length>1||plan.rows.some(o=>o.t||isNum(o.amt)||isNum(o.n)||o.sell);
 const planSave=()=>{ try{ localStorage.setItem(PLAN_K,JSON.stringify(plan)); }catch{} };
 function planOpts(sel,sell){ const by=(a,b)=>a.name.localeCompare(b.name,"es"), o=r=>`<option value="${esc(r.ticker)}"${r.ticker===sel?" selected":""}>${esc(r.name)}</option>`;
@@ -5539,6 +5540,9 @@ function zfCuenta(){ const k=DATA.kpi, fx=DATA.fx||{EUR:1}, tot=k.value||0, liq=
   return {rows,liq,buys,sells,fees,left}; }
 // los importes, con punto de miles mientras no se escriben; al entrar en la casilla, la cifra tal cual (con coma decimal)
 const zcFmt=v=>isNum(v)?nf(v%1?2:0).format(v):"", zcRaw=v=>isNum(v)?String(v).replace(".",","):"";
+const zcPv=()=>document.documentElement.classList.contains("priv");   /* v779: con los importes ocultos, la casilla de una venta no dice cuántas acciones tienes */
+const zcVal=o=>{ if(!o.sell) return zcFmt(o.amt); if(zcPv()) return o.all?"todas":zcFmt(o.n); const mx=plShares(o.t); return zcFmt(mx&&o.n>mx?mx:o.n); };
+const zcEnt=o=>o.sell&&o.all&&zcPv()?"":zcRaw(o.sell?o.n:o.amt);
 function zfPanel(){ const ln=(s,k,id)=>`<div class="zc-ln"><span class="zc-s">${s}</span><span class="zc-k">${k}</span><span class="zc-v" id="${id}"></span></div>`;
   const P=document.createElement("aside"); P.id="zcp"; P.className="zcp"; P.hidden=true; P.setAttribute("aria-label","Calculadora de operaciones");
   P.innerHTML=`<div class="zcp-h" title="Arrastra para moverla"><b>Calculadora</b><button type="button" class="zcp-x" id="zcp-x" aria-label="Cerrar la calculadora" title="Cerrar">${ZC_X}</button></div>
@@ -5564,7 +5568,7 @@ function zfCalcPinta(){ const Z=document.getElementById("zcp"); if(!Z||Z.hidden|
   C.rows.forEach((x,i)=>{ const R=Z.querySelector(`.zc-op[data-i="${i}"]`); if(!R) return; const o=x.o, r=x.r, mx=plShares(o.t), inp=R.querySelector(".zc-in");
     R.querySelector(".zc-lg").innerHTML=r?gxSil(r.ticker,32,28,32,28):"";
     const t=R.querySelector(".zc-t"); t.textContent=r?r.name:(o.sell?"Qué vendes":"Qué compras"); t.classList.toggle("zc-ph",!r);
-    inp.placeholder=o.sell&&mx?(pv?"máx.":`máx. ${nf(0).format(mx)}`):"0"; if(document.activeElement!==inp) inp.value=zcFmt(o.sell?o.n:o.amt);
+    inp.placeholder=o.sell&&mx?(pv?"máx.":`máx. ${nf(0).format(mx)}`):"0"; if(document.activeElement!==inp) inp.value=zcVal(o); inp.parentElement.classList.toggle("tod",zcVal(o)==="todas");
     let sub="";
     if(r&&!x.pxe) sub=`Sin tipo de cambio ${esc(r.cur)}`;
     else if(r&&o.sell) sub=!x.sh&&mx?`<button type="button" class="zc-all" data-i="${i}">Vender todas${pv?"":` (${nf(0).format(mx)})`}</button>`:`Venta a ${money(r.price,r.cur)}`;
@@ -5572,8 +5576,9 @@ function zfCalcPinta(){ const Z=document.getElementById("zcp"); if(!Z||Z.hidden|
     R.querySelector(".zc-sub").innerHTML=sub;
     // precio medio y peso: arriba el valor tras la operación; debajo, en gris, el de antes (sin operación, solo el de ahora, en gris)
     const dos=(v,a)=>`<b>${v}</b><small>${a}</small>`, hay=r&&x.sh>0;
-    R.querySelector('[data-c="pm"]').innerHTML=!r?"":hay?dos(x.pm1!=null?money(x.pm1,r.cur):"—",x.pm0!=null?money(x.pm0,r.cur):""):x.pm0!=null?dos(`<span class="zc-g">${money(x.pm0,r.cur)}</span>`,""):"";
-    R.querySelector('[data-c="w"]').innerHTML=!r?"":x.w1!=null?dos(pct(x.w1),x.w0>0.0005?pct(x.w0):""):x.w0>0.0005?dos(`<span class="zc-g">${pct(x.w0)}</span>`,""):"";
+    R.querySelector('[data-c="pm"]').innerHTML=!r?"":pv?dos('<span class="pv">0,00 €</span>','<span class="pv">0,00 €</span>'):hay?dos(x.pm1!=null?money(x.pm1,r.cur):"—",x.pm0!=null?money(x.pm0,r.cur):""):x.pm0!=null?dos(`<span class="zc-g">${money(x.pm0,r.cur)}</span>`,""):"";
+    const wp=v=>pv?`<span class="pv">${pct(v)}</span>`:pct(v);   /* v779: los pesos, ocultos con los importes */
+    R.querySelector('[data-c="w"]').innerHTML=!r?"":pv?dos(wp(0),wp(0)):x.w1!=null?dos(wp(x.w1),x.w0>0.0005?wp(x.w0):""):x.w0>0.0005?dos(`<span class="zc-g">${wp(x.w0)}</span>`,""):"";
     const one=plan.rows.length===1; R.querySelector(".zc-x").hidden=one&&!(o.t||isNum(o.amt)||isNum(o.n)); });
   // como mucho 12 operaciones: con más, el panel se alarga sin control
   const lleno=plRow0()==null&&plan.rows.length>=ZC_MAX, ok=!lleno&&(plan.rows.every(o=>o.t)||plRow0()!=null);
@@ -5584,16 +5589,16 @@ const ZC_MAX=12;
 const zfCalcGuarda=()=>{ planSave(); renderPlan(); };
 function zfCalcEventos(){ const Z=document.getElementById("zcp");
   $("zcp-x").addEventListener("click",zfCalcCierra);
-  Z.addEventListener("focusin",e=>{ const el=e.target, o=el.matches(".zc-in")?plan.rows[+el.dataset.i]:null; if(el.id==="zc-ap") el.value=zcRaw(plan.aport); else if(o) el.value=zcRaw(o.sell?o.n:o.amt); });
-  Z.addEventListener("focusout",e=>{ const el=e.target, o=el.matches(".zc-in")?plan.rows[+el.dataset.i]:null; if(el.id==="zc-ap") el.value=zcFmt(plan.aport); else if(o) el.value=zcFmt(o.sell?o.n:o.amt); });
+  Z.addEventListener("focusin",e=>{ const el=e.target, o=el.matches(".zc-in")?plan.rows[+el.dataset.i]:null; if(o) el.parentElement.classList.remove("tod"); if(el.id==="zc-ap") el.value=zcRaw(plan.aport); else if(o) el.value=zcEnt(o); });
+  Z.addEventListener("focusout",e=>{ const el=e.target, o=el.matches(".zc-in")?plan.rows[+el.dataset.i]:null; if(el.id==="zc-ap") el.value=zcFmt(plan.aport); else if(o){ el.value=zcVal(o); el.parentElement.classList.toggle("tod",el.value==="todas"); } });
   $("zc-ap").addEventListener("input",e=>{ plan.aport=plNum(e.target); zfCalcGuarda(); zfCalcPinta(); });
   Z.addEventListener("input",e=>{ const el=e.target; if(!el.matches(".zc-in")) return; const o=plan.rows[+el.dataset.i]; if(!o) return;
-    if(o.sell){ const v=plNum(el), mx=plShares(o.t); o.n=v==null?null:Math.floor(mx?Math.min(v,mx):v); if(v!=null&&o.n!==v) el.value=o.n; } else o.amt=plNum(el);
+    if(o.sell){ const v=plNum(el), mx=plShares(o.t), pv=zcPv(); o.all=false; o.n=v==null?null:Math.floor(pv||!mx?v:Math.min(v,mx)); if(!pv&&v!=null&&o.n!==v) el.value=o.n; } else o.amt=plNum(el);   /* v779: con los importes ocultos, tu cifra se queda (la venta se calcula con lo que tienes) */
     zfCalcGuarda(); zfCalcPinta(); });
   Z.addEventListener("change",e=>{ const el=e.target; if(!el.matches(".zc-sel")) return; const o=plan.rows[+el.dataset.i]; if(!o) return; o.t=el.value;
-    if(o.sell){ const mx=plShares(o.t); if(mx&&o.n>mx) o.n=mx; } zfCalcGuarda(); zfCalcTabla(); });
+    if(o.sell){ const mx=plShares(o.t); o.all=false; if(mx&&o.n>mx&&!zcPv()) o.n=mx; } zfCalcGuarda(); zfCalcTabla(); });
   Z.addEventListener("click",e=>{ const a=e.target.closest(".zc-all"), x=e.target.closest(".zc-x");
-    if(a){ const o=plan.rows[+a.dataset.i], mx=plShares(o&&o.t); if(!mx) return; o.n=mx; zfCalcGuarda(); zfCalcTabla(); return; }
+    if(a){ const o=plan.rows[+a.dataset.i], mx=plShares(o&&o.t); if(!mx) return; o.n=mx; o.all=true; zfCalcGuarda(); zfCalcTabla(); return; }
     if(x){ plan.rows.splice(+x.dataset.i,1); if(!plan.rows.length) plan.rows.push({t:"",amt:null}); zfCalcGuarda(); zfCalcTabla(); } });
   const nueva=sell=>{ const f=sell?{t:"",amt:null,n:null,sell:true}:{t:"",amt:null}; if(plRow0()!=null) plan.rows[0]=f; else { if(plan.rows.length>=ZC_MAX||!plan.rows.every(o=>o.t)) return; plan.rows.push(f); }
     zfCalcGuarda(); zfCalcTabla(); const s=Z.querySelector(".zc-op:last-child .zc-sel"); if(s){ s.focus(); s.closest(".zc-op").scrollIntoView({block:"nearest"}); } };
@@ -6735,14 +6740,14 @@ function maCalcPinta(){ const P=$("m-pg-calc"); if(!P||!DATA) return; const C=zf
   C.rows.forEach((x,i)=>{ const R=P.querySelector(`.m-kop[data-i="${i}"]`); if(!R) return; const o=x.o, r=x.r, mx=plShares(o.t), inp=R.querySelector(".m-kin");
     R.querySelector(".m-lg").innerHTML=r?maLogo(r.ticker,r.name):'<span class="m-kvac"></span>';
     const n=R.querySelector(".m-n"); n.textContent=r?r.name:(o.sell?"Qué vendes":"Qué compras"); n.classList.toggle("ph",!r);
-    inp.placeholder=o.sell&&mx?(maPriv()?"máx.":`máx. ${maNf(mx)}`):"0"; if(document.activeElement!==inp) inp.value=zcFmt(o.sell?o.n:o.amt);
+    inp.placeholder=o.sell&&mx?(maPriv()?"máx.":`máx. ${maNf(mx)}`):"0"; if(document.activeElement!==inp) inp.value=zcVal(o); inp.parentElement.classList.toggle("tod",zcVal(o)==="todas");
     let sub="";
     if(r&&!x.pxe) sub=`Sin tipo de cambio ${maEsc(r.cur)}`;
-    else if(r&&o.sell) sub=!x.sh&&mx?`<button type="button" class="m-kall" data-i="${i}">Vender todas${maPriv()?"":` (${maNf(mx)})`}</button>`:`${maNf(x.sh)} acc. a ${maPr(r.price,r.cur)}`;
+    else if(r&&o.sell) sub=!x.sh&&mx?`<button type="button" class="m-kall" data-i="${i}">Vender todas${maPriv()?"":` (${maNf(mx)})`}</button>`:maPriv()?`Venta a ${maPr(r.price,r.cur)}`:`${maNf(x.sh)} acc. a ${maPr(r.price,r.cur)}`;
     else if(r) sub=`${maNf(x.sh)} acc. a ${maPr(r.price,r.cur)}`;
     R.querySelector(".m-ksub").innerHTML=sub;
     const hay=r&&x.sh>0, pm=hay?x.pm1:x.pm0, w=x.w1!=null?x.w1:x.w0;
-    R.querySelector(".m-kd").innerHTML=!r?"":[pm!=null?`<span class="cu">P. medio</span> ${maPriv()?MA_PV:maPr(pm,r.cur)}`:"",w>0.0005?`<span class="cu">peso</span> ${maNf(w*100,1)} %`:""].filter(Boolean).join('<span class="cu"> · </span>');
+    R.querySelector(".m-kd").innerHTML=!r?"":maPriv()?`<span class="cu">P. medio</span> ${MA_PV}<span class="cu"> · </span><span class="cu">peso</span> ${MA_PV}`:[pm!=null?`<span class="cu">P. medio</span> ${maPriv()?MA_PV:maPr(pm,r.cur)}`:"",w>0.0005?`<span class="cu">peso</span> ${maPriv()?MA_PV:maNf(w*100,1)+" %"}`:""].filter(Boolean).join('<span class="cu"> · </span>');
     R.querySelector(".m-kx").hidden=plan.rows.length===1&&!(o.t||isNum(o.amt)||isNum(o.n)); });
   const lleno=plRow0()==null&&plan.rows.length>=ZC_MAX, ok=!lleno&&(plan.rows.every(o=>o.t)||plRow0()!=null);
   P.querySelectorAll(".m-kadd button").forEach(b=>b.disabled=!ok);
@@ -6750,16 +6755,16 @@ function maCalcPinta(){ const P=$("m-pg-calc"); if(!P||!DATA) return; const C=zf
   $("m-k-clr").hidden=!plHas(); }
 { const P=$("m-pg-calc");
   if(P){ const ap=$("m-k-ap");
-    P.addEventListener("focusin",e=>{ const el=e.target, o=el.matches(".m-kin")?plan.rows[+el.dataset.i]:null; if(el===ap) el.value=zcRaw(plan.aport); else if(o) el.value=zcRaw(o.sell?o.n:o.amt); });
-    P.addEventListener("focusout",e=>{ const el=e.target, o=el.matches(".m-kin")?plan.rows[+el.dataset.i]:null; if(el===ap) el.value=zcFmt(plan.aport); else if(o) el.value=zcFmt(o.sell?o.n:o.amt); });
+    P.addEventListener("focusin",e=>{ const el=e.target, o=el.matches(".m-kin")?plan.rows[+el.dataset.i]:null; if(o) el.parentElement.classList.remove("tod"); if(el===ap) el.value=zcRaw(plan.aport); else if(o) el.value=zcEnt(o); });
+    P.addEventListener("focusout",e=>{ const el=e.target, o=el.matches(".m-kin")?plan.rows[+el.dataset.i]:null; if(el===ap) el.value=zcFmt(plan.aport); else if(o){ el.value=zcVal(o); el.parentElement.classList.toggle("tod",el.value==="todas"); } });
     ap.addEventListener("input",()=>{ plan.aport=plNum(ap); maCalcGuarda(); maCalcPinta(); });
     P.addEventListener("input",e=>{ const el=e.target; if(!el.matches(".m-kin")) return; const o=plan.rows[+el.dataset.i]; if(!o) return;
-      if(o.sell){ const v=plNum(el), mx=plShares(o.t); o.n=v==null?null:Math.floor(mx?Math.min(v,mx):v); if(v!=null&&o.n!==v) el.value=o.n; } else o.amt=plNum(el);
+      if(o.sell){ const v=plNum(el), mx=plShares(o.t), pv=zcPv(); o.all=false; o.n=v==null?null:Math.floor(pv||!mx?v:Math.min(v,mx)); if(!pv&&v!=null&&o.n!==v) el.value=o.n; } else o.amt=plNum(el);   /* v779: con los importes ocultos, tu cifra se queda (la venta se calcula con lo que tienes) */
       maCalcGuarda(); maCalcPinta(); });
     P.addEventListener("change",e=>{ const el=e.target; if(!el.matches(".m-ksel")) return; const o=plan.rows[+el.dataset.i]; if(!o) return; o.t=el.value;
-      if(o.sell){ const mx=plShares(o.t); if(mx&&o.n>mx) o.n=mx; } maCalcGuarda(); maCalc(); });
+      if(o.sell){ const mx=plShares(o.t); o.all=false; if(mx&&o.n>mx&&!zcPv()) o.n=mx; } maCalcGuarda(); maCalc(); });
     P.addEventListener("click",e=>{ const a=e.target.closest(".m-kall"), x=e.target.closest(".m-kx"), b=e.target.closest(".m-kadd button");
-      if(a){ const o=plan.rows[+a.dataset.i], mx=plShares(o&&o.t); if(!mx) return; o.n=mx; maCalcGuarda(); maCalc(); return; }
+      if(a){ const o=plan.rows[+a.dataset.i], mx=plShares(o&&o.t); if(!mx) return; o.n=mx; o.all=true; maCalcGuarda(); maCalc(); return; }
       if(x){ plan.rows.splice(+x.dataset.i,1); if(!plan.rows.length) plan.rows.push({t:"",amt:null}); maCalcGuarda(); maCalc(); return; }
       if(b&&!b.disabled){ const sell=b.dataset.k==="sell", f=sell?{t:"",amt:null,n:null,sell:true}:{t:"",amt:null};
         if(plRow0()!=null) plan.rows[0]=f; else { if(plan.rows.length>=ZC_MAX||!plan.rows.every(o=>o.t)) return; plan.rows.push(f); }
