@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-f/jOXHZfmCkXAR67kNbj9yv7bhqQxSlT6fFtc41/mtI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-vtu/8bZ0omjlWuH+R5ubptBz0RBDGifsADJgSqqJu/c=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v777">
+<link rel="manifest" href="manifest.webmanifest?v778">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v777">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v777">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v777">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v777">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v777">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v778">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v778">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v778">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v778">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v778">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1258,6 +1258,8 @@ html.lmono[data-theme="dark"] :is(#pos-body,#m-body,#p-body,#pl-body,#b-payers,#
 /* modo privado: donde la cifra va centrada por la maquetación (barras de dividendos por meses, calendario de cobros, franja fija
    del móvil, cifras sobre las barras por año), los puntos también van centrados */
 .priv :is(.ca,.mc-v,.y>.v) .pv::after{text-align:center}
+.priv .zcp .pv::after{text-align:right}
+.priv .zcp .zc-sub .pv::after{text-align:left}   /* en el texto de debajo del nombre («Venta a …»), pegados a la palabra */   /* v778: en la calculadora, los puntos acaban donde acababa la cifra: todos alineados a la derecha */
 /* Resumen › posiciones: la pastilla de Rentab. con sitio para tres cifras enteras (+123,4%): 6,6 px a la izquierda y 7 a la derecha
    (antes, 68 px desde 1201 y 66 px entre 701 y 860: al texto le quedaban 2,6 y 0,6 px a la derecha; entre 861 y 1200 ya mide 76) */
 @media (min-width:701px) and (max-width:860.98px),(min-width:1201px){ #t-pos td[data-l="Rentab."] :is(.tpill,.rlv){width:72px;min-width:72px} }
@@ -3849,7 +3851,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v777";   // la versión publicada, en el pie
+const VER="v778";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5558,14 +5560,14 @@ function zfCalcTabla(){ const T=document.getElementById("zc-tb"); if(!T) return;
 function zfCalcPinta(){ const Z=document.getElementById("zcp"); if(!Z||Z.hidden||!DATA) return; const C=zfCuenta(), e2=v=>eur(v,2), ap=$("zc-ap");
   if(document.activeElement!==ap) ap.value=zcFmt(plan.aport);
   $("zc-liq").textContent=e2(C.liq); $("zc-ven").textContent=e2(C.sells); $("zc-com").textContent=e2(C.buys); $("zc-fee").textContent=e2(C.fees);
-  const L=$("zc-left"), neg=C.left<-0.005; L.textContent=neg?"−"+e2(-C.left):e2(Math.abs(C.left)); L.classList.toggle("neg",neg);
+  const pv=document.documentElement.classList.contains("priv"), L=$("zc-left"), neg=C.left<-0.005; L.textContent=neg?"−"+e2(-C.left):e2(Math.abs(C.left)); L.classList.toggle("neg",neg&&!pv);   /* v778: con los importes ocultos, el disponible no se pone rojo (delataba si te llega) */
   C.rows.forEach((x,i)=>{ const R=Z.querySelector(`.zc-op[data-i="${i}"]`); if(!R) return; const o=x.o, r=x.r, mx=plShares(o.t), inp=R.querySelector(".zc-in");
     R.querySelector(".zc-lg").innerHTML=r?gxSil(r.ticker,32,28,32,28):"";
     const t=R.querySelector(".zc-t"); t.textContent=r?r.name:(o.sell?"Qué vendes":"Qué compras"); t.classList.toggle("zc-ph",!r);
-    inp.placeholder=o.sell&&mx?`máx. ${nf(0).format(mx)}`:"0"; if(document.activeElement!==inp) inp.value=zcFmt(o.sell?o.n:o.amt);
+    inp.placeholder=o.sell&&mx?(pv?"máx.":`máx. ${nf(0).format(mx)}`):"0"; if(document.activeElement!==inp) inp.value=zcFmt(o.sell?o.n:o.amt);
     let sub="";
     if(r&&!x.pxe) sub=`Sin tipo de cambio ${esc(r.cur)}`;
-    else if(r&&o.sell) sub=!x.sh&&mx?`<button type="button" class="zc-all" data-i="${i}">Vender todas (${nf(0).format(mx)})</button>`:`Venta a ${money(r.price,r.cur)}`;
+    else if(r&&o.sell) sub=!x.sh&&mx?`<button type="button" class="zc-all" data-i="${i}">Vender todas${pv?"":` (${nf(0).format(mx)})`}</button>`:`Venta a ${money(r.price,r.cur)}`;
     else if(r) sub=`${nf(0).format(x.sh)} acc. a ${money(r.price,r.cur)}`;   // también con 0 acciones: así se ve que el importe no llega a una
     R.querySelector(".zc-sub").innerHTML=sub;
     // precio medio y peso: arriba el valor tras la operación; debajo, en gris, el de antes (sin operación, solo el de ahora, en gris)
@@ -6726,21 +6728,21 @@ function maCalc(){ const P=$("m-pg-calc"); if(!P||!DATA) return; const ops=$("m-
 function maCalcPinta(){ const P=$("m-pg-calc"); if(!P||!DATA) return; const C=zfCuenta(), e2=v=>maEur(v,2), ap=$("m-k-ap"), neg=C.left<-0.005;
   if(document.activeElement!==ap) ap.value=zcFmt(plan.aport);
   $("m-k-liq").textContent=e2(C.liq); $("m-k-ven").textContent=e2(C.sells); $("m-k-com").textContent=e2(C.buys); $("m-k-fee").textContent=e2(C.fees);
-  const L=$("m-k-left"); L.textContent=maPriv()?MA_PV:(neg?"−":"")+maNf(Math.abs(C.left),2)+" €"; L.classList.toggle("n",neg);
-  $("m-k-disp").innerHTML=(maPriv()?MA_PV:(neg?"−":"")+maNf(Math.abs(C.left),0)+" €")+"<small>disponible</small>"; $("m-k-disp").classList.toggle("n",neg);
+  const L=$("m-k-left"); L.textContent=maPriv()?MA_PV:(neg?"−":"")+maNf(Math.abs(C.left),2)+" €"; L.classList.toggle("n",neg&&!maPriv());
+  $("m-k-disp").innerHTML=(maPriv()?MA_PV:(neg?"−":"")+maNf(Math.abs(C.left),0)+" €")+"<small>disponible</small>"; $("m-k-disp").classList.toggle("n",neg&&!maPriv());
   $("m-k-sub").innerHTML=`Aportación <b>${maEur(isNum(plan.aport)?plan.aport:0)}</b>`;   /* v679 */
   $("m-k-pila").innerHTML=maPar("Compras",C.buys?"−"+e2(C.buys).replace(/^−/,""):e2(0))+maPar("Ventas",C.sells?"+"+e2(C.sells):e2(0));   // v715: como las demás pestañas
   C.rows.forEach((x,i)=>{ const R=P.querySelector(`.m-kop[data-i="${i}"]`); if(!R) return; const o=x.o, r=x.r, mx=plShares(o.t), inp=R.querySelector(".m-kin");
     R.querySelector(".m-lg").innerHTML=r?maLogo(r.ticker,r.name):'<span class="m-kvac"></span>';
     const n=R.querySelector(".m-n"); n.textContent=r?r.name:(o.sell?"Qué vendes":"Qué compras"); n.classList.toggle("ph",!r);
-    inp.placeholder=o.sell&&mx?`máx. ${maNf(mx)}`:"0"; if(document.activeElement!==inp) inp.value=zcFmt(o.sell?o.n:o.amt);
+    inp.placeholder=o.sell&&mx?(maPriv()?"máx.":`máx. ${maNf(mx)}`):"0"; if(document.activeElement!==inp) inp.value=zcFmt(o.sell?o.n:o.amt);
     let sub="";
     if(r&&!x.pxe) sub=`Sin tipo de cambio ${maEsc(r.cur)}`;
-    else if(r&&o.sell) sub=!x.sh&&mx?`<button type="button" class="m-kall" data-i="${i}">Vender todas (${maNf(mx)})</button>`:`${maNf(x.sh)} acc. a ${maPr(r.price,r.cur)}`;
+    else if(r&&o.sell) sub=!x.sh&&mx?`<button type="button" class="m-kall" data-i="${i}">Vender todas${maPriv()?"":` (${maNf(mx)})`}</button>`:`${maNf(x.sh)} acc. a ${maPr(r.price,r.cur)}`;
     else if(r) sub=`${maNf(x.sh)} acc. a ${maPr(r.price,r.cur)}`;
     R.querySelector(".m-ksub").innerHTML=sub;
     const hay=r&&x.sh>0, pm=hay?x.pm1:x.pm0, w=x.w1!=null?x.w1:x.w0;
-    R.querySelector(".m-kd").innerHTML=!r?"":[pm!=null?`<span class="cu">P. medio</span> ${maPr(pm,r.cur)}`:"",w>0.0005?`<span class="cu">peso</span> ${maNf(w*100,1)} %`:""].filter(Boolean).join('<span class="cu"> · </span>');
+    R.querySelector(".m-kd").innerHTML=!r?"":[pm!=null?`<span class="cu">P. medio</span> ${maPriv()?MA_PV:maPr(pm,r.cur)}`:"",w>0.0005?`<span class="cu">peso</span> ${maNf(w*100,1)} %`:""].filter(Boolean).join('<span class="cu"> · </span>');
     R.querySelector(".m-kx").hidden=plan.rows.length===1&&!(o.t||isNum(o.amt)||isNum(o.n)); });
   const lleno=plRow0()==null&&plan.rows.length>=ZC_MAX, ok=!lleno&&(plan.rows.every(o=>o.t)||plRow0()!=null);
   P.querySelectorAll(".m-kadd button").forEach(b=>b.disabled=!ok);
@@ -6870,7 +6872,8 @@ addEventListener("hashchange",()=>{ const c=remCfg(location.hash);
   const unmaskAtr=()=>document.querySelectorAll("[data-pv-title],[data-pv-aria]").forEach(e=>ATR.forEach(([a,k])=>{ if(e.dataset[k]!=null){ e.setAttribute(a,e.dataset[k]); delete e.dataset[k]; } }));
   const mo=new MutationObserver(R2=>{ if(!R.classList.contains("priv")) return; for(const x of R2){ if(x.type==="characterData") maskIn(x.target); else if(x.type==="attributes") maskAtr(x.target); else x.addedNodes.forEach(n=>{ maskIn(n); maskAtr(n); }); } });
   const set=on=>{ R.classList.toggle("priv",on); btn.setAttribute("aria-pressed",on); btn.title=on?"Mostrar importes":"Ocultar importes";
-    if(on){ mask(); maskAtr(document.body); mo.observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:["data-tip","title","aria-label"]}); } else { mo.disconnect(); unmaskAtr(); } };
+    if(on){ mask(); maskAtr(document.body); mo.observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:["data-tip","title","aria-label"]}); } else { mo.disconnect(); unmaskAtr(); }
+    try{ zfCalcPinta(); }catch{} try{ if(typeof maCalcPinta==="function") maCalcPinta(); }catch{} };   /* v778: la calculadora, al día con el modo */
   let on0=false; try{ on0=localStorage.getItem("priv")==="1"; }catch{} set(on0);
   btn.addEventListener("click",()=>{ const on=!R.classList.contains("priv"); try{ localStorage.setItem("priv",on?"1":"0"); }catch{} set(on); }); }
 
