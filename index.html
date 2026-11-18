@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-Ear3osyfV7TcDYgVc8I4RVjKfehT/iy7oB/0TrUmkNo=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-gOfJmGPQAGVaq8MzSq5vipxggVrDs4ZIzsltUVf1+Gs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v793">
+<link rel="manifest" href="manifest.webmanifest?v794">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v793">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v793">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v793">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v793">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v793">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v794">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v794">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v794">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v794">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v794">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -2330,6 +2330,7 @@ html body .top .zf-nbv{display:none!important}
   .gxan-h{font-size:17px}                                       /* 15 → 17: subtítulos de Análisis */
   .gxan-pg b{font-size:13px}                                    /* 15 → 13: importes de «Quién te paga más» */
   .gx-t2 b{font-size:17px}                                      /* 15 → 17: cifra de las casillas del mosaico */
+  #v-universo .gx-t2 b{font-size:15px}                          /* v794: 17 → 15 en el radar del Universo (el paso anterior de la escala) */
   #zf-unikw,#zf-unikw > .kwr,#zf-unikw > .kwr > .kw{font-size:17px;line-height:22px}    /* 15 → 17: filtro de Universo, como los demás filtros */
   #v-analisis svg text[font-size="15"]{font-size:13px}          /* 15 → 13: cifras sobre las barras, como las demás */
   #v-resumen .zr .zr-ot span{font-size:17px}                    /* 15 → 17: casilla «Otras» del mapa */
@@ -3855,7 +3856,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v793";   // la versión publicada, en el pie
+const VER="v794";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4938,9 +4939,10 @@ function gxTray(){ if(!DATA||!DATA.tray||!DATA.tray.length||typeof traySup==="un
   /* v504: una columna propia a la izquierda para «mil €» y «€/mes» (alineada con el borde de los deslizadores), filas con aire,
      y si las cifras no caben en su columna se escribe una sí y otra no (siempre la última) para que nunca se toquen */
   const W=C.clientWidth||S.clientWidth-96, PL=64, WP=W-PL, H=300, n=t.length, cw=WP/n, bw=Math.min(26,cw*.56), mx=Math.max(1,...t.map(r=>r.val||0)), yh=v=>Math.max(0,v)/mx*(H-24);
-  const YA=H+24, YV=H+56, YR=H+82, HB=H+94, ancho=s=>s.length*7.4;
+  const tirs=t.some(r=>r.y<=cur&&isNum(r.tir)), YA=H+24, YV=H+56, YR=H+82, YT=H+108, HB=tirs?H+120:H+94, ancho=s=>s.length*7.4;   /* v794: y la TIR de cada año, debajo de la renta */
   const larga=Math.max(...t.map(r=>Math.max(ancho(String(r.y)),ancho(gxMil((r.val||0)/1000)),isNum(r.net)?ancho(gxMil(r.net)):0))), paso=larga<=cw-10?1:2;
   const ve=i=>paso===1||i%paso===(n-1)%paso;
+  const tirN=v=>pct(v,1).replace(/\u202F?%/,""), tirVe=i=>Math.max(...t.filter(r=>r.y<=cur&&isNum(r.tir)).map(r=>tirN(r.tir).length*7.4))<=cw-6||ve(i);   /* la TIR de cada año, sin «%» (va en su rótulo): cabe en su columna y no obliga a escribir un año sí y otro no */
   let g=`<line x1="${PL}" x2="${W}" y1="${H}" y2="${H}" stroke="var(--line)"/>`;
   t.forEach((r,i)=>{ const x=PL+i*cw+cw/2, fu=r.y>cur, ha=yh(Math.min(r.acc,r.val)), hc=yh(r.val-r.acc);
     const CA=fu?"color-mix(in srgb,var(--gx-in) 16%,var(--panel))":"var(--gx-in)", CC=fu?"color-mix(in srgb,var(--gx-id) 55%,var(--panel))":"var(--gx-id)";
@@ -4948,9 +4950,10 @@ function gxTray(){ if(!DATA||!DATA.tray||!DATA.tray.length||typeof traySup==="un
     if(!ve(i)) return;
     g+=`<text x="${x.toFixed(1)}" y="${YA}" text-anchor="middle" font-size="12" fill="var(--ink3)">${r.y}</text>`;
     g+=`<text x="${x.toFixed(1)}" y="${YV}" text-anchor="middle" font-size="13" fill="var(--ink)">${gxSv(gxMil((r.val||0)/1000))}</text>`;
-    if(isNum(r.net)) g+=`<text x="${x.toFixed(1)}" y="${YR}" text-anchor="middle" font-size="13" fill="${r.re===false?"var(--ink)":"var(--ink3)"}">${gxSv(gxMil(r.net))}</text>`; });
+    if(isNum(r.net)) g+=`<text x="${x.toFixed(1)}" y="${YR}" text-anchor="middle" font-size="13" fill="${r.re===false?"var(--ink)":"var(--ink3)"}">${gxSv(gxMil(r.net))}</text>`;
+    if(r.y<=cur&&isNum(r.tir)&&tirVe(i)) g+=`<text x="${x.toFixed(1)}" y="${YT}" text-anchor="middle" font-size="13" fill="${r.tir<0?"var(--neg)":"var(--pos)"}"${r.y===cur?' fill-opacity=".6"':""}><title>${r.y===cur?`TIR de ${r.y}, en curso`:`TIR de ${r.y}`}: ${pct(r.tir,1)}</title>${tirN(r.tir)}</text>`; });   /* el año en curso, más claro: aún no está cerrado */
   g+=`<line x1="0" x2="${W}" y1="${YV-19}" y2="${YV-19}" stroke="var(--line)"/>`;
-  g+=`<text x="0" y="${YV}" font-size="12" fill="var(--ink3)">mil €</text><text x="0" y="${YR}" font-size="12" fill="var(--ink3)">€/mes</text>`;
+  g+=`<text x="0" y="${YV}" font-size="12" fill="var(--ink3)">mil €</text><text x="0" y="${YR}" font-size="12" fill="var(--ink3)">€/mes</text>${tirs?`<text x="0" y="${YT}" font-size="12" fill="var(--ink3)">TIR %</text>`:""}`;
   const xi=t.findIndex(r=>r.y>cur), xs=t.findIndex(r=>r.y>cur&&r.re===false), raya=(k,txt,dy=0)=>{ const X=PL+k*cw; return `<line x1="${X}" x2="${X}" y1="-4" y2="${H}" stroke="var(--ink)" stroke-dasharray="2 3" stroke-opacity=".5"/><text x="${X+8}" y="${6+dy}" font-size="12" fill="var(--ink3)">${txt}</text>`; };
   // v581: si «hoy» y «sin reinvertir» caen en el mismo año, una sola raya con los dos rótulos seguidos; si caen muy cerca, el segundo rótulo, una línea más abajo (antes se montaban)
   if(xi>0&&xs===xi) g+=raya(xi,"hoy · sin reinvertir"); else { if(xi>0) g+=raya(xi,"hoy"); if(xs>0) g+=raya(xs,"sin reinvertir",xi>0&&(xs-xi)*cw<40?18:0); }
