@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-aO2A9gzCUa6jJvkciO9f2ASZU8xv92Dv0VaBPLfK+I8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-XfAJWs575vJmgJbJ3Fa1qiKNCRNLhcI2Fyktrij1HSs=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v795">
+<link rel="manifest" href="manifest.webmanifest?v796">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v795">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v795">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v795">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v795">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v795">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v796">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v796">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v796">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v796">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v796">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3702,7 +3702,7 @@ function model(d){
   const firstAp=d.ap.reduce((a,r)=>r.d<a?r.d:a,d.ap[0].d);
   const nextY=sum(sched.filter(r=>yr(r.d)===curY+1),r=>r.gross);
   { const ry=(d.tray||[]).find(x=>x.y===d.curYear); if(ry&&isNum(total)) ry.val=total; }   // v668 · G-06
-  d.kpi={ value:total, today:todayE, todayPct:(total-todayE)?todayE/(total-todayE):0, ret, retSub:`<span class="${cls(aport?ret:0)}">${pct(aport?ret/aport:null,1,true)}</span> sobre lo aportado`,
+  d.kpi={ value:total, today:todayE, todayPct:(total-todayE)?todayE/(total-todayE):0, ret, retSub:`<span class="${cls(aport?ret:0)}">${pct(aport?ret/aport:null,1,true)}</span> sobre lo que has aportado`,
     tir, vsIdx:isNum(tir)&&isNum(idxTir)?tir-idxTir:null,
     rentas:nextY, rentasLabel:`Dividendos ${curY+1}`, rentasSub:`previstas · ≈ ${eur(nextY/12)} al mes`, npos:`${pos.length} posiciones`, aport, liquidez:liq,
     liqSub:Object.entries(cash).filter(([,v])=>Math.abs(v)>=0.5).map(([b,v])=>`${b} ${eur(v)}`).join(" · ") };
@@ -3856,7 +3856,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v795";   // la versión publicada, en el pie
+const VER="v796";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4614,6 +4614,11 @@ function gxSil(t,w,h,mw,mh){ const src=gxSrc(t); if(!src) return ""; const lf=gx
   // v500: la corrección óptica de cada logo entra en su tamaño y nunca pasa del hueco que le queda (antes se aplicaba después y podía salirse)
   let W=w*lf, H=h*lf; const k=Math.min(1,mw?mw/W:1,mh?mh/H:1); W=Math.round(W*k); H=Math.round(H*k);
   const so=gxSol(src,t); return so?`<img class="gxsol sol-${so}" src="${src}" alt="" style="width:${W}px;height:${H}px">`:`<span class="gxsil" style="width:${W}px;height:${H}px;-webkit-mask-image:url('${src}');mask-image:url('${src}')"></span>`; }
+/* v796 · el radar del Universo, con el logo ancho de cada empresa (si lo tiene), del tamaño que permite su casilla: hasta 150 px de ancho
+   (dejando 10 a cada lado) y de alto, 26 px (34 los apilados, más altos que anchos de lo normal), sin quitarle sitio a la cifra */
+function gxSilA(t,w,h,mw,mh,cw,ch,pq){ const aw=GX_NEG[t]?null:LOGO_ANCHO[t], R=aw&&+LOGO_R[aw]; if(!aw||!(R>0)||!cw) return gxSil(t,w,h,mw,mh);
+  const hc=Math.max(12,Math.min(R<2.5?34:26,ch-(pq?40:56))); let W=Math.min(cw-20,150,hc*R), H=W/R; W=Math.round(W); H=Math.round(H);
+  const so=gxSol(aw,t); return so?`<img class="gxsol sol-${so}" src="${aw}" alt="" style="width:${W}px;height:${H}px">`:`<span class="gxsil" style="width:${W}px;height:${H}px;-webkit-mask-image:url('${aw}');mask-image:url('${aw}')"></span>`; }
 function gxKw(id,txt,ops){ return `<span class="kwr"><button type="button" class="kw" data-kw="${id}" aria-haspopup="menu" aria-expanded="false">${txt}<i aria-hidden="true"></i></button><span class="kw-m" role="menu" hidden>${ops.map(o=>`<button type="button" role="menuitemradio" data-kw="${id}" data-o="${o.k}" aria-checked="${!!o.on}"${o.dis?" disabled":""}>${o.t}<em>${o.n??""}</em></button>`).join("")}</span></span>`; }
 const gxH=(l1,l2)=>`<h2 class="gx-t"><span class="l1">${l1}</span><span class="l2">${l2}</span></h2>`;   // v479: siempre dos líneas
 function gxSec(vid){ const v=$(vid); let s=v.querySelector(":scope > .gx3"); if(!s){ s=document.createElement("section"); s.className="gx3"; v.prepend(s); }
@@ -4803,7 +4808,7 @@ function gxUni(){ const s=gxSec("v-universo"), closed=sesion().closed, hayHoy=!c
     const mxa=Math.max(...it.map(r=>Math.abs(r[k]))); let fl=.12; const a=r=>igual?1:Math.max(Math.abs(r[k]),mxa*fl,1e-4), lay=L=>{ const tot=sum(L,a); return sq(L.map(r=>({r,a:a(r)/tot*Wb*Hb})),0,0,Wb,Hb); }, chica=t=>t.some(z=>z.w-G<84||z.h-G<64);
     let tl=lay(it); while(chica(tl)&&fl<.34){ fl+=.02; tl=lay(it); } while(it.length>6&&chica(tl)){ it.pop(); tl=lay(it); }
     return `<div><div class="gx-mh"><b>${tit}</b></div><div class="gx-tr">${tl.map(z=>{ const r=z.r, lv=nivel(r[k]), w=z.w-G, h=z.h-G, pq=h<100, lw0=Math.round(Math.max(30,Math.min(96,w*.5,(h-(pq?34:44))*1.6))), lw=Math.min(96,w<120?Math.max(lw0,Math.round(w-18)):lw0), lh=Math.min(36,Math.round(lw0*.5625));   /* v545: tope de 96 × 36 px, para que manden el color y la cifra (antes hasta 150 px) */   /* v513: en las casillas estrechas, los logos alargados (como L'Oréal) pueden ocupar casi todo el ancho; el alto sigue igual, así que los cuadrados no crecen */
-      return `<button type="button" class="gx-t2 ${lv} ${r.inPf?"mia":""}" data-t="${esc(r.ticker)}" data-n="${esc(r.name)}" aria-label="${esc(r.name)} · ${gxPS(r[k])}" style="left:${(z.x+G/2).toFixed(1)}px;top:${(z.y+G/2).toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px${pq?";gap:4px":""}">${gxSil(r.ticker,Math.round(lw*.85),Math.round(lh*.85),Math.min(82,w-14),Math.min(31,h-(pq?36:46)))}<b>${gxPS(r[k])}</b></button>`; }).join("")}</div></div>`; };   /* v795: los logos del radar, un 15 % más pequeños (tope 82 × 31 px, antes 96 × 36) */
+      return `<button type="button" class="gx-t2 ${lv} ${r.inPf?"mia":""}" data-t="${esc(r.ticker)}" data-n="${esc(r.name)}" aria-label="${esc(r.name)} · ${gxPS(r[k])}" style="left:${(z.x+G/2).toFixed(1)}px;top:${(z.y+G/2).toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px${pq?";gap:4px":""}">${gxSilA(r.ticker,Math.round(lw*.85),Math.round(lh*.85),Math.min(82,w-14),Math.min(31,h-(pq?36:46)),w,h,pq)}<b>${gxPS(r[k])}</b></button>`; }).join("")}</div></div>`; };   /* v795: los logos del radar, un 15 % más pequeños (tope 82 × 31 px, antes 96 × 36) */
   C.dataset.l=JSON.stringify(lista);
   // v481: al pasar el ratón por una casilla, su nombre al momento
   C.onmouseover=e=>{ const b=e.target.closest(".gx-t2"); let t=C.querySelector(".gx-tip2"); if(!b){ if(t) t.hidden=true; return; } if(!t){ t=document.createElement("span"); t.className="gx-tip2"; C.append(t); }
@@ -5924,7 +5929,7 @@ function zfR1Frase(){ const S=document.querySelector("#v-resumen > section.gx3")
   const wd=new Date().getDay();   /* v603: sin ningún cambio del día (antes de las 9, la hoja trae «-»), no se inventa: se dice que no ha abierto */
   const l1=zfSinDia()?(wd===0||wd===6?"Las bolsas no abren hasta el lunes.":cerr?"Las bolsas aún no han abierto.":`Aún no cotiza ninguna de tus ${N} empresas.`):`${cerr?"En la última sesión":"Hoy"} ${mov} ${de} y ${car}.`;
   const rt=(R1("hk-ret").textContent||"").trim(), rneg=/^[−-]/.test(rt), rabs=rt.replace(/^[+−-]\s*/,""), rp=((R1("hk-ret-s").querySelector("span")||{}).textContent||"").trim().replace(/^[+−-]\s*/,"");
-  const l2=!rt?"":rneg?`Desde el inicio pierdes <span class="pv">${esc(rabs)}</span>, un ${esc(rp)} menos de lo aportado.`:`Desde el inicio ganas <span class="pv">${esc(rabs)}</span>, un ${esc(rp)} sobre lo aportado.`;
+  const l2=!rt?"":rneg?`Desde el inicio llevas perdido <span class="pv">${esc(rabs)}</span>, un ${esc(rp)} menos de lo que has aportado.`:`Desde el inicio llevas ganado <span class="pv">${esc(rabs)}</span>, un ${esc(rp)} sobre lo que has aportado.`;
   const html=`<span class="l1">${esc(l1)}</span>${l2?`<span class="l2">${l2}</span>`:""}`; if(h.innerHTML!==html) h.innerHTML=html; }
 
 // v603 · ¿hay algún cambio del día? Si ninguna empresa trae una variación distinta de cero, no hay datos (antes de las 9 la hoja pone «-» en «Hoy»)
