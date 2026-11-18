@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-CVRZ7JH5tcCg1v1Wxk95mGyaljj3cm1VH+8rdSKmcg8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-CJahVKWfgjXNUq5HtYcOwZ08Gtf2NNmkBZ6nRF/XYGQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v801">
+<link rel="manifest" href="manifest.webmanifest?v802">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v801">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v801">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v801">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v801">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v801">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v802">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v802">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v802">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v802">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v802">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3856,7 +3856,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v801";   // la versión publicada, en el pie
+const VER="v802";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -5176,7 +5176,8 @@ function zfFicha(t,D){
   const pro=zfLineas(V.pro), con=zfLineas(V.con), notas=zfLineas(V.notes); if(notas.length&&/^actualizad/i.test(notas[0])) notas.shift();
   const rev=!!(R&&fv&&typeof stale==="function"&&stale(R));
   const mem=ind?DATA.pre.filter(x=>x.ind===ind):[], media=k=>{ const v=mem.map(x=>x[k]).filter(isNum); return v.length>1?v.reduce((a,b)=>a+b,0)/v.length:null; };
-  const hay={res:1,pos:!!P,val:!!(R&&(fv||F)),pj:!!(PJ&&(fv||F||Y2v)&&PJ.rows.some(o=>o.v.some(x=>isNum(x)&&x!==0))),tes:!!(pro.length||con.length||notas.length),cot:!!R};
+  const pasado=!P&&DATA.tx.some(x=>x.ticker===t&&x.bd instanceof Date&&x.sd instanceof Date&&isNum(x.bp));   /* v802: una empresa que tuviste y vendiste del todo */
+  const hay={res:1,pos:!!P||pasado,val:!!(R&&(fv||F)),pj:!!(PJ&&(fv||F||Y2v)&&PJ.rows.some(o=>o.v.some(x=>isNum(x)&&x!==0))),tes:!!(pro.length||con.length||notas.length),cot:!!R};
   const fvDate=R&&R.fvDate instanceof Date?R.fvDate:null, S={};
   const ptos=v=>{ const n=Math.abs(v*100); return `${nf(1).format(n)} ${n>=.95&&n<1.05?"punto":"puntos"}`; };
   const cal=typeof CALT!=="undefined"&&CALT.get(t)||null;
@@ -5185,6 +5186,8 @@ function zfFicha(t,D){
   let cas=null;
   if(P){ const iv=P.invested||0, rv=P.value-iv, pl=isNum(P.price)?P.price:price, ext=P.cur&&P.cur!=="EUR", fxH=P.shares&&pl?P.value/(P.shares*pl):null, pe=ext&&isNum(fxH)&&isNum(P.avg)?(pl-P.avg)*P.shares*fxH:rv, fe=rv-pe, pd=isNum(P.paid)?P.paid:sum(cob,d=>d.gross);
     cas={iv,rv,pe,fe,pd,pasos:[["Revalorización",pe,"d"],...(ext&&Math.abs(fe)>=.5?[["Divisa",fe,"d"]]:[]),...(pd>=.5||dvs.length?[["Dividendos",pd,"d"]]:[]),["Resultado",rv+pd,"t"]]}; }
+  else if(pasado){ const rv=sum(DATA.tx.filter(x=>x.ticker===t&&x.sd instanceof Date),x=>isNum(x.pnl)?x.pnl:0), pd=sum(cob,d=>d.gross);   /* v802: ya cerrado: lo ganado al vender y los dividendos cobrados */
+    cas={iv:0,rv,pe:rv,fe:0,pd,pasos:[["Revalorización",rv,"d"],...(pd>=.5?[["Dividendos",pd,"d"]]:[]),["Resultado",rv+pd,"t"]]}; }
   // cómo paga el dividendo (los cobros previstos de los próximos doce meses)
   const pagos=(()=>{ if(!P||!prv12.length) return null; const n=prv12.length, dps=prv12.map(d=>d.dps).filter(isNum), igual=dps.length===n&&dps.every(v=>Math.abs(v-dps[0])<1e-6), tot=sum(prv12,d=>d.gross), ms=prv12.map(d=>d.d).sort((a,b)=>a.getMonth()-b.getMonth()).map(zfMes);
     return {n,igual,tot,ms,d0:prv12[0],per:n>=11?"mensual":n>=4?"trimestral":n===3?"cuatrimestral":n===2?"semestral":"anual"}; })();
@@ -5231,29 +5234,32 @@ function zfFicha(t,D){
     S.res=zFr(l1,l2)+h+zSvg(g); }
 
   // ── Tu posición: tu historia con la empresa (cada estancia, las compras, el resultado y los dividendos)
-  if(P){ const TX=DATA.tx.filter(x=>x.ticker===t&&x.bd instanceof Date&&isNum(x.bp)).sort((a,b)=>a.bd-b.bd); let h="", g="";
+  if(P||pasado){ const TX=DATA.tx.filter(x=>x.ticker===t&&x.bd instanceof Date&&isNum(x.bp)).sort((a,b)=>a.bd-b.bd); let h="", g="";   /* v802: también si ya no la tienes */
     const grupos=new Map(); TX.forEach(x=>{ const k=x.sd instanceof Date?+x.sd:"a"; if(!grupos.has(k)) grupos.set(k,[]); grupos.get(k).push(x); });
     const tr=[...grupos.entries()].map(([k,ts])=>{ const ab=k==="a", ini=new Date(Math.min(...ts.map(x=>+x.bd))), fn=ab?hoy:new Date(k); let res=ab?P.value-(P.invested||0):sum(ts,x=>isNum(x.pnl)?x.pnl:0);
       res+=sum(cob.filter(d=>d.d>=ini&&d.d<=fn),d=>d.gross); return {ini,fin:fn,ab,res}; }).sort((a,b)=>a.ini-b.ini);
-    const abT=tr.find(o=>o.ab), desde=abT?abT.ini:(P.first instanceof Date?P.first:null), ORD=["","primera","segunda","tercera","cuarta","quinta","sexta","séptima","octava","novena","décima"];
-    const l1=`Tienes ${shares(P.shares)} ${P.shares===1?"acción":"acciones"} de ${nom} que hoy valen ${PV(eur(P.value))}; ${P.totalEur>=0?"ganas":"pierdes"} ${PV(eur(Math.abs(P.totalEur)))}, un ${pct(Math.abs(P.totalPct),1)||"0,0 %"}.`;   // v605 · G-02: el «desde» pasa a la segunda línea para que el titular quepa a 28 px
+    const abT=tr.find(o=>o.ab), desde=abT?abT.ini:(P&&P.first instanceof Date?P.first:null), ORD=["","primera","segunda","tercera","cuarta","quinta","sexta","séptima","octava","novena","décima"];
+    const l1=!P?`Ya no tienes acciones de ${nom}.`:`Tienes ${shares(P.shares)} ${P.shares===1?"acción":"acciones"} de ${nom} que hoy valen ${PV(eur(P.value))}; ${P.totalEur>=0?"ganas":"pierdes"} ${PV(eur(Math.abs(P.totalEur)))}, un ${pct(Math.abs(P.totalPct),1)||"0,0 %"}.`;   // v605 · G-02: el «desde» pasa a la segunda línea para que el titular quepa a 28 px
     const cuando=desde?`${zfMesL(desde)}${desde.getFullYear()!==hoy.getFullYear()?` de ${desde.getFullYear()}`:""}`:"";
-    const vez=tr.length>1?`Es tu ${ORD[tr.length]||`${tr.length}.ª`} vez${cuando?`; volviste en ${cuando}`:""}.`:cuando?(P.shares===1?`La compraste en ${cuando}.`:`Compraste las primeras en ${cuando}.`):"";
-    const l2=[vez,P.annual>=.5?`Aportan ${PV(eur(P.annual))} al año en dividendos.`:"No reparte dividendos."].filter(Boolean).join(" ");
+    const vez=tr.length>1?`Es tu ${ORD[tr.length]||`${tr.length}.ª`} vez${cuando?`; volviste en ${cuando}`:""}.`:cuando&&P?(P.shares===1?`La compraste en ${cuando}.`:`Compraste las primeras en ${cuando}.`):"";
+    const mA=d=>`${zfMesL(d)} de ${d.getFullYear()}`, rT=cas?cas.rv:0, dT=cas?cas.pd:0, gan=v=>`${v>=0?"ganaste":"perdiste"} ${PV(eur(Math.abs(v)))}`;   /* v802: si ya no la tienes, cuándo la tuviste y cómo te fue */
+    const l2=P?[vez,P.annual>=.5?`Aportan ${PV(eur(P.annual))} al año en dividendos.`:"No reparte dividendos."].filter(Boolean).join(" ")
+      :tr.length===1?`La tuviste de ${mA(tr[0].ini)} a ${mA(tr[0].fin)}; ${gan(rT)}${dT>=.5?` y cobraste ${PV(eur(dT))} en dividendos`:""}.`
+      :`La tuviste ${tr.length} veces, la última hasta ${mA(tr[tr.length-1].fin)}; en total ${gan(rT)}${dT>=.5?` y cobraste ${PV(eur(dT))} en dividendos`:""}.`;
     // tus compras en el tiempo: cada compra a su precio, frente al de hoy y a tu precio medio; las estancias pasadas, en gris
     h+=zC(LX0,T1,LW,H1,"Tus compras en el tiempo");
-    if(TX.length&&isNum(price)){ const X0=LX0+68, X1=LX0+LW-28, Y0=T1+70+(tr.length>1?44:24), Y1=T1+H1-68, DD=DIA_MS;
+    if(TX.length&&isNum(price)){ const X0=LX0+68, X1=LX0+LW-28, Y0=T1+70+(tr.length>1||!P?44:24), Y1=T1+H1-68, DD=DIA_MS;
       const t0=+tr[0].ini-25*DD, t1=+hoy+12*DD, xs=d=>X0+(+d-t0)/(t1-t0)*(X1-X0);
-      const pr=[...TX.map(x=>x.bp),...TX.filter(x=>isNum(x.sp)&&x.sp>0).map(x=>x.sp),price,P.avg].filter(v=>isNum(v)&&v>0); let lo2=Math.min(...pr), hi2=Math.max(...pr); const pad=((hi2-lo2)||hi2*.2)*.12; lo2-=pad; hi2+=pad;
+      const pr=[...TX.map(x=>x.bp),...TX.filter(x=>isNum(x.sp)&&x.sp>0).map(x=>x.sp),price,P?P.avg:null].filter(v=>isNum(v)&&v>0); let lo2=Math.min(...pr), hi2=Math.max(...pr); const pad=((hi2-lo2)||hi2*.2)*.12; lo2-=pad; hi2+=pad;
       const st=[.01,.02,.05,.1,.2,.5,1,2,5,10,20,50,100,200,500,1000,2000,5000,10000].reduce((a,b)=>Math.abs((hi2-lo2)/3.5-b)<Math.abs((hi2-lo2)/3.5-a)?b:a), dec=st<.1?2:st<1?1:0, ys=q=>Y1-(q-lo2)/(hi2-lo2)*(Y1-Y0);
-      if(tr.length>1) tr.forEach(o=>{ if(o.ab) return; const a=xs(o.ini)-14, b=xs(o.fin)+14; g+=`<rect x="${zr(a)}" y="${Y0-8}" width="${zr(b-a)}" height="${Y1-Y0+16}" rx="10" class="fk"/>`; });
+      if(tr.length>1||!P) tr.forEach(o=>{ if(o.ab) return; const a=xs(o.ini)-14, b=xs(o.fin)+14; g+=`<rect x="${zr(a)}" y="${Y0-8}" width="${zr(b-a)}" height="${Y1-Y0+16}" rx="10" class="fk"/>`; });
       for(let k=Math.ceil(lo2/st)*st;k<hi2;k+=st){ const y=ys(k); g+=zL(X0,y,X1,y,"e",'stroke-dasharray="2 5"')+zTx(X0-14,y+5,nf(dec).format(k),"k3",'text-anchor="end" font-size="12"'); }
       const AY=Y1+14; g+=zL(X0,AY,X1,AY,"e");
       const meses=(t1-t0)/(30.44*DD), paso=meses<=24?3:meses<=60?6:12; let prim=true;
       for(let d=new Date(new Date(t0).getFullYear(),new Date(t0).getMonth()+1,1);+d<t1;d.setMonth(d.getMonth()+1)){ if(d.getMonth()%paso) continue; const x=xs(d); if(x<X0+20||x>X1-20||Math.abs(x-xs(hoy))<=52) continue;
         const lb=paso===12?String(d.getFullYear()):(d.getMonth()===0||prim)?`${zfMes(d)} ${d.getFullYear()}`:zfMes(d); prim=false; g+=zL(x,AY,x,AY+5,"e")+zTx(x,AY+24,lb,"k3",'text-anchor="middle" font-size="12"'); }
       const xh=xs(hoy); g+=zL(xh,AY,xh,AY+6,"li",'stroke-width="1.5"')+zTx(xh,AY+24,"hoy","k1",'text-anchor="middle" font-size="12"');
-      const yh=ys(price), ya=isNum(P.avg)?ys(P.avg):null; g+=zL(X0,yh,X1,yh,"l3",'stroke-opacity=".55"');
+      const yh=ys(price), ya=P&&isNum(P.avg)?ys(P.avg):null; g+=zL(X0,yh,X1,yh,"l3",'stroke-opacity=".55"');
       if(ya!=null) g+=zL(X0,ya,X1,ya,"l3",'stroke-width="1.2" stroke-dasharray="4 4"');
       const [hy,ay]=ya!=null&&ya>yh?[yh-9,ya+21]:[yh+21,(ya??0)-9];
       g+=zTx(X1,hy,`Hoy ${PX(price)}`,"k3",'text-anchor="end" font-size="12.5"'); if(ya!=null) g+=zTx(X1,ay,`Tu precio medio ${PX(P.avg)}`,"k3",'text-anchor="end" font-size="12"');
@@ -5266,7 +5272,7 @@ function zfFicha(t,D){
       { const V=new Map(); TX.forEach(x=>{ if(!(x.sd instanceof Date)||!(x.sp>0)) return; const k=+x.sd+"|"+x.sp, o=V.get(k)||{d:x.sd,p:x.sp,n:0,cur:x.cur||cur}; o.n+=x.shares||0; V.set(k,o); });
         V.forEach(o=>{ const rr=4+Math.sqrt((o.n||1)/mxN)*6, tip=`${zfFecha(o.d)} · venta\n${shares(o.n)} ${o.n===1?"acción":"acciones"} a ${zfTx(money(o.p,o.cur))}`;
           g+=`<circle cx="${zr(xs(o.d))}" cy="${zr(o.p<lo2?AY:ys(o.p))}" r="${zr(rr)}" class="fs" data-tip="${esc(tip)}"/>`; }); }
-      if(tr.length>1) tr.forEach(o=>{ if(o.ab) return; const cx=(xs(o.ini)+xs(o.fin))/2; g+=zTx(cx,Y0-30,PVs(seur(o.res)||eur(0)),o.res>0?"kp":"kn",'text-anchor="middle" font-size="12.5" font-weight="600"')+zTx(cx,Y0-14,`${zfMes(o.ini)} ${o.ini.getFullYear()} – ${zfMes(o.fin)} ${o.fin.getFullYear()}`,"k3",'text-anchor="middle" font-size="12"'); }); }
+      if(tr.length>1||!P) tr.forEach(o=>{ if(o.ab) return; const cx=(xs(o.ini)+xs(o.fin))/2; g+=zTx(cx,Y0-30,PVs(seur(o.res)||eur(0)),o.res>0?"kp":"kn",'text-anchor="middle" font-size="12.5" font-weight="600"')+zTx(cx,Y0-14,`${zfMes(o.ini)} ${o.ini.getFullYear()} – ${zfMes(o.fin)} ${o.fin.getFullYear()}`,"k3",'text-anchor="middle" font-size="12"'); }); }
     else h+=zVac(LX0,T1,"Sin compras");
     // cómo se ha formado el resultado
     h+=zC(LX0,Y2,CW2,H2,"Cómo se ha formado el resultado"); g+=zfCascada(LX0,Y2,cas.pasos,PVs);
@@ -5281,15 +5287,15 @@ function zfFicha(t,D){
     else h+=zVac(X2,Y2,"No reparte dividendos");
     // las compras, a toda la altura: las que siguen en cartera, el total y, debajo, las vendidas
     const ab=TX.filter(x=>!(x.sd instanceof Date)), vd=TX.filter(x=>x.sd instanceof Date);
-    h+=zC(RX0,T1,RW,ZG.YB-T1,"Compras",`${ab.length} ${ab.length===1?"compra":"compras"}`);
-    if(TX.length){ const disp=ZG.YB-28-(T1+66); let rh=40, nA=ab.length, nV=vd.length; const alto=()=>42+rh*nA+4+rh+(nV?52+rh*nV:0);
+    h+=zC(RX0,T1,RW,ZG.YB-T1,"Compras",P?`${ab.length} ${ab.length===1?"compra":"compras"}`:`${vd.length} ${vd.length===1?"vendida":"vendidas"}`);
+    if(TX.length){ const disp=ZG.YB-28-(T1+66); let rh=40, nA=ab.length, nV=vd.length; const alto=()=>42+rh*nA+(P?4+rh:0)+(nV?(P?52:0)+rh*nV:0);
       while(alto()>disp&&rh>28) rh--; while(alto()>disp&&nV>0) nV--; while(alto()>disp&&nA>1) nA--;
       const cel=[], fon=[]; let y=T1+66; const fila=(vals,cls,zeb)=>{ if(zeb) fon.push(`<div class="zz" style="left:${RX0+16}px;top:${y+1}px;width:${RW-32}px;height:${rh-2}px"></div>`); vals.forEach((v,k)=>cel.push(`<div class="${cls}${k?" r":""}" style="height:${rh}px;line-height:${rh}px">${v}</div>`)); y+=rh; };
       cel.push(...["Fecha","Acciones",`Precio (${sym})`,"Importe (€)"].map((v,k)=>`<div class="h${k?" r":""}" style="height:42px;line-height:42px">${v}</div>`)); y+=42;
       ab.slice(-nA).forEach((x,n)=>fila([zfFecha(x.bd),shares(x.shares),nf(2).format(x.bp),x.bt?PV(nf(2).format(x.bt)):"—"],"",n%2===0));
-      fon.push(`<div class="zsep" style="left:${RX0+16}px;top:${y+2}px;width:${RW-32}px"></div>`); y+=4; cel.push('<div style="grid-column:1/-1;height:4px"></div>');
-      fila(["En cartera",shares(P.shares),isNum(P.avg)?nf(2).format(P.avg):"—",PV(nf(2).format(P.invested||0))],"b",false);
-      if(nV){ cel.push('<div class="h b" style="grid-column:1/-1;height:52px;line-height:22px;padding-top:24px">Vendidas</div>'); y+=52; vd.slice(-nV).forEach((x,n)=>fila([zfFecha(x.bd),shares(x.shares),nf(2).format(x.bp),x.bt?PV(nf(2).format(x.bt)):"—"],"q",n%2===0)); }
+      if(P){ fon.push(`<div class="zsep" style="left:${RX0+16}px;top:${y+2}px;width:${RW-32}px"></div>`); y+=4; cel.push('<div style="grid-column:1/-1;height:4px"></div>');
+      fila(["En cartera",shares(P.shares),isNum(P.avg)?nf(2).format(P.avg):"—",PV(nf(2).format(P.invested||0))],"b",false); }   /* v802: sin «En cartera» si ya no la tienes */
+      if(nV){ if(P){ cel.push('<div class="h b" style="grid-column:1/-1;height:52px;line-height:22px;padding-top:24px">Vendidas</div>'); y+=52; } vd.slice(-nV).forEach((x,n)=>fila([zfFecha(x.bd),shares(x.shares),nf(2).format(x.bp),x.bt?PV(nf(2).format(x.bt)):"—"],"q",n%2===0)); }
       h+=fon.join("")+`<div class="zgr" style="left:${RX0+28}px;top:${T1+66}px;width:${RW-56}px;grid-template-columns:repeat(4,max-content)">${cel.join("")}</div>`; }
     else h+=zVac(RX0,T1,"Sin compras");
     S.pos=zFr(l1,l2)+h+zSvg(g); }
@@ -6649,7 +6655,7 @@ function mfRes(D){ const {P,R,cur,price,fv,irrE,req,Y2v,F,dvs,fin,media}=D; let 
   const prx=P&&dvs.find(d=>d.d>fin); if(prx) ev.push([prx.d,"Dividendo",`${maEur(prx.gross)} brutos`]);
   ev.sort((a,b)=>a[0]-b[0]); const evH=ev.map(([d,a,s])=>mfFila(a,zfFecha(d),s)).join("")+(Y2v&&isNum(Y2v.price)?mfFila("Tu proyección",maEsc(String(Y2v.year??"")),`si se cumple, valdría ${maPr(Y2v.price,cur)} por acción`):"");
   h+=mfSec("Lo que viene",evH); return h; }
-function mfPos(D){ const {P,t,cur,dvs,fin,price}=D; if(!P) return ""; let h="";
+function mfPos(D){ const {P,t,cur,dvs,fin,price}=D; if(!P) return mfPosPasada(D); let h="";
   const cob=dvs.filter(d=>d.d<=fin), iv=P.invested||0, rv=P.value-iv, pd=isNum(P.paid)?P.paid:cob.reduce((s,d)=>s+(d.gross||0),0), pl=isNum(P.price)?P.price:price, ext=P.cur&&P.cur!=="EUR";
   const fxH=P.shares&&pl?P.value/(P.shares*pl):null, pe=ext&&isNum(fxH)&&isNum(P.avg)?(pl-P.avg)*P.shares*fxH:rv, fe=rv-pe, div=ext&&Math.abs(fe)>=.5;
   h+=mfSec("Cómo se ha formado el resultado",[mfFila("Revalorización",maEurS(pe),"","",mfCol(pe)),div?mfFila("Divisa",maEurS(fe),"","",mfCol(fe)):"",pd>=.5||dvs.length?mfFila("Dividendos",maEurS(pd),"","",mfCol(pd)):"",mfFila("<b>Resultado</b>",`<b>${maEurS(P.value-iv+pd)}</b>`,"","",mfCol(P.value-iv+pd))].join(""));   /* v668 · G-06: acaba como el PC; v769: «Resultado» (vocabulario único) */
@@ -6699,6 +6705,13 @@ function mfCot(D){ const {R,price,fv,cur,mem,media,t,ind}=D; if(!R) return ""; l
   if(es.length>1) h+=mfSec("Escalera de precios",es.map(o=>o.h?mfFila("<b>Hoy</b>",`<b>${maPr(o.v,cur)}</b>`):mfFila(o.t,maPr(o.v,cur),isNum(price)?`hoy, ${maPct(price/o.v-1)}`:"")).join(""));
   if(mem.length>1){ const L=[...mem].sort((a,b)=>String(a.name).localeCompare(String(b.name),"es"));
     h+=mfSec(`Industria de ${maEsc(String(ind).toLowerCase())}`,L.map(x=>`<div class="m-row nl${x.ticker===t?" mf-yo":""}"${x.ticker===t?"":` data-t="${maEsc(x.ticker)}"`}><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(x.name||x.ticker)}${x.inPf?'<i class="mia" aria-label="en cartera"></i>':""}</b><b class="num ${mfCol(x.y1)}">${isNum(x.y1)?maPct(x.y1):"—"}</b></span><span class="m-f2"><small class="num">${isNum(x.irrExp)?`TIR ${pct(x.irrExp,1)}${isNum(x.req)?` · exiges ${tipoPct(x.req)}`:""}`:"sin valorar"}</small><span class="m-l2 num"><span class="cu">en un año</span></span></span></span></div>`).join("")); }
+  return h; }
+/* v802 · una empresa que tuviste y vendiste del todo: cómo te fue (lo ganado al vender y los dividendos), las compras con su venta y los dividendos cobrados */
+function mfPosPasada(D){ const {t,cur,dvs,fin}=D, TX=DATA.tx.filter(x=>x.ticker===t&&x.bd instanceof Date&&x.sd instanceof Date&&isNum(x.bp)).sort((a,b)=>b.sd-a.sd||b.bd-a.bd); if(!TX.length) return "";
+  const sy=MA_CS[cur]||cur, rv=TX.reduce((s,x)=>s+(isNum(x.pnl)?x.pnl:0),0), cob=dvs.filter(d=>d.d<=fin), pd=cob.reduce((s,d)=>s+(d.gross||0),0); let h="";
+  h+=mfSec("Cómo se ha formado el resultado",[mfFila("Revalorización",maEurS(rv),"","",mfCol(rv)),pd>=.5?mfFila("Dividendos",maEurS(pd),"","",mfCol(pd)):"",mfFila("<b>Resultado</b>",`<b>${maEurS(rv+pd)}</b>`,"","",mfCol(rv+pd))].join(""));
+  h+=mfSec("Vendidas",TX.map(x=>mfFila(zfFecha(x.bd),x.bt?maEur(x.bt,2):"—",maAcc(`${mfAcc(x.shares)} a ${maNf(x.bp,2)} ${sy}`),isNum(x.sp)&&x.sp>0?`vendidas el ${zfFecha(x.sd)} a ${maNf(x.sp,2)} ${sy}`:`vendidas el ${zfFecha(x.sd)}`)).join(""),`${TX.length} ${TX.length===1?"compra":"compras"}`);
+  if(cob.length){ const L=cob.slice(-12).reverse(); h+=mfSec("Dividendos",L.map(d=>mfFila(zfFecha(d.d),maEur(d.gross,2),maAcc(`${mfAcc(d.shares)} × ${isNum(d.dps)?maNf(d.dps,d.dps<1?3:2)+" "+sy:"—"}`),"cobrado")).join(""),cob.length>12?"los últimos 12":""); }
   return h; }
 const MF_PINTA={res:mfRes,pos:mfPos,val:mfVal,pj:mfPj,tes:mfTes,cot:mfCot};
 /* pintar la ficha abierta (también al cambiar de pestaña, al llegar datos nuevos o al tapar los importes) */
