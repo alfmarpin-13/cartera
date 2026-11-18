@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-CJahVKWfgjXNUq5HtYcOwZ08Gtf2NNmkBZ6nRF/XYGQ=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-20Od7pY5jiGOWMFy1gIELGapzXIfcms56vUyXrJMvKM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v802">
+<link rel="manifest" href="manifest.webmanifest?v803">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v802">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v802">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v802">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v802">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v802">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v803">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v803">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v803">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v803">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v803">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3856,7 +3856,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v802";   // la versión publicada, en el pie
+const VER="v803";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4195,7 +4195,7 @@ const calUlt=c=>{ if(!c) return null; const p=c.p, hoyN=diaN(new Date());
   const ya=p&&!c.est&&(diaN(p)<hoyN||(diaN(p)===hoyN&&/^antes/i.test(c.hora||"")));
   return ya&&(!c.u||p>c.u)?p:c.u||null; };
 const staleRes=r=>{ const d=valDate(r), u=calUlt(CALT.get(r.ticker)); return !!(d&&u&&diaN(u)>diaN(d)); };
-const stale=r=>{ const d=valDate(r); if(!d) return false; const u=calUlt(CALT.get(r.ticker)); return u?diaN(u)>diaN(d):Date.now()-d>365.25*DIA_MS; };
+const stale=r=>{ const d=valDate(r); if(!d) return true;   /* v803: sin «Última valoración» en tu hoja, también por revisar */ const u=calUlt(CALT.get(r.ticker)); return u?diaN(u)>diaN(d):Date.now()-d>365.25*DIA_MS; };
 let preEsperaLetras=false, preFiltro="", preAmb="", preInd="", uniN={}, psort=["ind",1], preAnchos=null, preAnchosClave="", pRows=null, pRowsFor=null;
 const clsM = v => cls(isNum(v)&&Math.abs(v)<0.0005?0:v);   // margen: lo que redondea a 0,0 pp va en neutro
 const pctSigno = v => isNum(v)&&Math.abs(v)<0.0005 ? `<span class="mute">0,0\u202F%</span>` : `<span class="${cls(v)}">${pct(v,1,true)}</span>`;
@@ -4226,7 +4226,8 @@ const PCOLS=[
   {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>!isNum(r.margin)?`<span class="mute">—</span>`:`<span class="mg-c">${margenBarra(r.margin)}<span class="mg-n ${clsM(r.margin)}">${puntosPct(r.margin)}</span></span>`},
   {k:"mult",l:"Múltiplo",hs:1,g:"est",sv:r=>{ const m=r.val&&isNum(r.val.mult)?r.val.mult:r.mult; return isNum(m)?m:null; },f:r=>{ const m=r.val&&isNum(r.val.mult)?r.val.mult:r.mult; return multiplo(m); }},
   {k:"vd",l:"Valorada",r:"vd",g:"est",sv:r=>{ const d=valDate(r); return d?d.getTime():null; },
-   f:r=>{ const d=valDate(r); return d?`<span class="vd-k">valorada </span><span class="${stale(r)?"vd-old":""}"${stale(r)?` title="${esc(staleRes(r)?`Por revisar: resultados del ${fdate(calUlt(CALT.get(r.ticker)))}, posteriores a tu valoración`:"Por revisar: valorada hace más de un año")}"`:""}>${sdate(d)}</span>`:""; }} ];
+   f:r=>{ const d=valDate(r); if(!d) return `<span class="vd-k">valorada </span><span class="vd-old" title="Por revisar: aún sin valorar">nunca</span>`;   /* v803: sin valorar: «nunca», tan corto como una fecha */
+     return d?`<span class="vd-k">valorada </span><span class="${stale(r)?"vd-old":""}"${stale(r)?` title="${esc(staleRes(r)?`Por revisar: resultados del ${fdate(calUlt(CALT.get(r.ticker)))}, posteriores a tu valoración`:"Por revisar: valorada hace más de un año")}"`:""}>${sdate(d)}</span>`:""; }} ];
 const etiquetaDe=x=>typeof x.l==="function"?x.l():x.l;
 // pantallas anchas: los anchos de la lista, medidos con todas las empresas. Cada columna de cifras mide lo que su cifra mayor
 // más un hueco, el mismo entre todas y tan grande como quepa (hasta 48 px); lo que sobra, para Empresa e Industria
@@ -6407,7 +6408,7 @@ function maUniRad(){ const f=MA.uRad, ok=v=>isNum(v)&&isFinite(v); maSelMarca("u
   const L=DATA.pre.filter(r=>f==="pf"?r.inPf:f==="rv"?stale(r):true).slice().sort((a,b)=>String(a.ind||"\uffff").localeCompare(String(b.ind||"\uffff"),"es",{sensitivity:"base"})||maAZ(a,b));   /* v651: por industria y, dentro, por nombre */
   const row=r=>{ const m=r.margin, c=!ok(m)||Math.abs(m)<5e-4?"m-mute":m>0?"m-pos":"m-neg";
     const fc=d=>`${d.getDate()} ${MA_M3[d.getMonth()]}${d.getFullYear()!==new Date().getFullYear()?" "+String(d.getFullYear()).slice(2):""}`, vd=f==="rv"?valDate(r):null, cu=f==="rv"?(CALT.get(r.ticker)||{}).u:null;
-    const izq=f==="rv"&&vd?`Valorada ${fc(vd)}${cu instanceof Date?` · resultados ${fc(cu)}`:""}`:maEsc(r.ind||"Sin industria");   /* v651: debajo del nombre, su industria · v681: en «Por revisar», la fecha de tu valoración y la de los resultados que la dejan atrás */
+    const izq=f==="rv"&&vd?`Valorada ${fc(vd)}${cu instanceof Date?` · resultados ${fc(cu)}`:""}`:f==="rv"?"Sin valorar":maEsc(r.ind||"Sin industria");   /* v803: sin fecha de valoración, «Sin valorar» */   /* v651: debajo del nombre, su industria · v681: en «Por revisar», la fecha de tu valoración y la de los resultados que la dejan atrás */
     const der=ok(r.irrExp)?`<i>TIR ${maP(r.irrExp)}</i>${ok(m)?`<span class="m-pc ${c}">(${puntosPct(m)})</span>`:""}`:`<span class="m-pc m-mute">—</span>`;
     return `<div class="m-row${r.inPf?" pf":""}" data-t="${maEsc(r.ticker)}"><span class="m-lg">${maLogo(r.ticker,r.name)}</span><span class="m-cu"><span class="m-f1"><b class="m-n">${maEsc(r.name||r.ticker)}${r.inPf?'<i class="mia" aria-label="en cartera"></i>':""}</b><b class="num">${maPr(r.price,r.cur)}</b></span><span class="m-f2"><small>${izq}</small><span class="m-l2 num">${der}</span></span></span></div>`; };
   $("m-u-ra").innerHTML=L.length?L.map(row).join(""):`<div class="m-vacio">Ninguna.</div>`; maLogos(); }
