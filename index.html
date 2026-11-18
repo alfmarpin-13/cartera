@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-PQk6PnJXcFsLLNYHBpPMqrGh/QJNwtuoeACbELSdukU=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-z6g+Ecn1y2fGZN4xU/RIl4s8pU3U+f0q2+7n10tawuE=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v781">
+<link rel="manifest" href="manifest.webmanifest?v782">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v781">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v781">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v781">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v781">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v781">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v782">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v782">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v782">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v782">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v782">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -549,7 +549,7 @@ details.chk[open]>summary{margin-bottom:12px}
 /* la primera fila deja sitio al reparto de Operaciones (compras y ventas), igual en las cuatro pestañas */
 @media (min-width:701px){#s-plist .toolbar .search{min-width:180px}}
 @media (min-width:701px) and (max-width:1200.98px){#t-p [data-k="price"]{display:none}}
-@media (min-width:701px) and (max-width:1419.98px){#t-p [data-k="multNow"]{display:none}}   /* v753/v754: el múltiplo de hoy, solo donde cabe sin estrechar Empresa e Industria hasta montarse (desde 1.420 px) */
+@media (min-width:701px) and (max-width:1439.98px){#t-p [data-k="multNow"]{display:none}}   /* v753/v754/v782: el múltiplo de hoy, solo donde cabe sin estrechar Empresa e Industria hasta montarse (desde 1.440 px; el Múltiplo de salida ganó sitio para su flecha) */
 @media (min-width:701px) and (max-width:1060px){#t-p [data-k="today"]{display:none}}
 
 @media (min-width:701px) and (max-width:940px){#t-p [data-k="req"]{display:none}}
@@ -2839,8 +2839,9 @@ body[data-view="calendario"] .foot{margin-top:calc(-1 * var(--gap))}
 body[data-view="calendario"]:has(#gxag:not([hidden])) .foot{margin-top:48px}
 /* v723 · LA FLECHA DE ORDENAR EN LA ÚLTIMA COLUMNA (Dividendo en Resumen, Valorada en Universo, Resultado en Movimientos): a la derecha del título
    caía fuera de la tabla y no se veía; ahí va a su izquierda, en el hueco libre de la celda. El título no se mueve ni deja de estar en su sitio */
-html body table thead th:last-child>:is(button,span){position:relative}
-html body table th[aria-sort][aria-sort]:last-child:not(#_):not(#__)>:is(button,span)::after{position:absolute;right:100%;top:50%;margin:-3px 6px 0 0;vertical-align:baseline}   /* el hueco entre bloques de .wrap, sea cual sea el ancho */
+html body table thead th:is(:last-child,[data-fl="izq"])>:is(button,span){position:relative}
+html body table th[aria-sort][aria-sort]:is(:last-child,[data-fl="izq"]):not(#_):not(#__)>:is(button,span)::after{position:absolute;right:100%;top:50%;margin:-3px 6px 0 0;vertical-align:baseline}
+html body table th[aria-sort][aria-sort][data-fl="izq"]:not(:last-child):not(#_):not(#__)>:is(button,span)::after{margin-right:3px}   /* v782: también donde a la derecha no cabe, pegada a su título */   /* el hueco entre bloques de .wrap, sea cual sea el ancho */
 /* v668 · el bloque oscuro de cada pantalla con su alto desde el principio: al llegar los datos crecía (Resumen 52 → 63 px; Movimientos y Análisis 24 → 44 px) */
 /* v702 · PANTALLA DE CARGA del iPhone: la silueta de la propia app, sin texto (arriba la franja de la barra y la zona negra, 121 px bajo la hora;
    debajo, el fondo de la lista), igual que la imagen de arranque de iOS. Al abrir, iOS funde su imagen de arranque con la primera imagen de la
@@ -3853,7 +3854,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v781";   // la versión publicada, en el pie
+const VER="v782";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4221,7 +4222,7 @@ const PCOLS=[
   {k:"irrExp",l:"TIR",g:"est",mx:1,f:r=>tirP(r.irrExp)},
   {k:"req",l:"Exigida",hs:1,g:"est",f:r=>r.req>0?pct(r.req):""},
   {k:"margin",l:"Margen",r:"amt",g:"est",f:r=>!isNum(r.margin)?`<span class="mute">—</span>`:`<span class="mg-c">${margenBarra(r.margin)}<span class="mg-n ${clsM(r.margin)}">${puntosPct(r.margin)}</span></span>`},
-  {k:"mult",l:"Múltiplo",hs:1,g:"est",sv:r=>{ const m=r.val&&isNum(r.val.mult)?r.val.mult:r.mult; return isNum(m)?m:null; },f:r=>{ const m=r.val&&isNum(r.val.mult)?r.val.mult:r.mult; return multiplo(m); }},
+  {k:"mult",l:"Múltiplo",hs:1,g:"est",fla:1,sv:r=>{ const m=r.val&&isNum(r.val.mult)?r.val.mult:r.mult; return isNum(m)?m:null; },f:r=>{ const m=r.val&&isNum(r.val.mult)?r.val.mult:r.mult; return multiplo(m); }},
   {k:"vd",l:"Valorada",r:"vd",g:"est",sv:r=>{ const d=valDate(r); return d?d.getTime():null; },
    f:r=>{ const d=valDate(r); return d?`<span class="vd-k">valorada </span><span class="${stale(r)?"vd-old":""}"${stale(r)?` title="${esc(staleRes(r)?`Por revisar: resultados del ${fdate(calUlt(CALT.get(r.ticker)))}, posteriores a tu valoración`:"Por revisar: valorada hace más de un año")}"`:""}>${sdate(d)}</span>`:""; }} ];
 const etiquetaDe=x=>typeof x.l==="function"?x.l():x.l;
@@ -4244,7 +4245,7 @@ function anchosPre(){
     return {k,v:Math.ceil(ws.length?ws[ws.length-1]:0),h:Math.ceil(txt(th))}; });
   const nums=cols.filter(c=>!c.txt), need=cols.filter(c=>c.txt).reduce((s,c)=>s+c.need,0), base=nums.reduce((s,c)=>s+c.v,0);
   preHueco=Math.max(16,Math.min(48,Math.floor((tw-need-base)/Math.max(nums.length,1))));
-  nums.forEach(c=>{ c.w=c.v+preHueco; if(PCOLS.find(x=>x.k===c.k).cab) c.w=Math.max(c.w,c.h+16); });   // una cabecera más ancha que su columna asoma, centrada, por los dos lados (v753: salvo el múltiplo de hoy, pegado al bloque sombreado de la valoración, que la taparía: esa columna mide al menos su cabecera)
+  nums.forEach(c=>{ c.w=c.v+preHueco; if(PCOLS.find(x=>x.k===c.k).cab) c.w=Math.max(c.w,c.h+16); if(PCOLS.find(x=>x.k===c.k).fla) c.w=Math.max(c.w,c.h+18); });   /* v782: el Múltiplo de salida, con sitio para la flecha de ordenar (a la derecha chocaba con «Exigida» y a la izquierda con «Valor razonable») */   // una cabecera más ancha que su columna asoma, centrada, por los dos lados (v753: salvo el múltiplo de hoy, pegado al bloque sombreado de la valoración, que la taparía: esa columna mide al menos su cabecera)
   const libre=tw-nums.reduce((s,c)=>s+c.w,0), crece=cols.filter(c=>c.txt&&c.k!=="country"), pide=crece.reduce((s,c)=>s+c.need,0);
   cols.filter(c=>c.txt).forEach(c=>{ c.w=c.k==="country"?c.need:c.need+(libre-need)*c.need/pide; });
   // v715 · con el mismo ancho de ventana y las mismas columnas, si todo lo nuevo cabe en los anchos de antes, se quedan esos: al actualizar
@@ -5769,11 +5770,12 @@ const ZF_CABD=new Map();   // v721: dónde quedó cada título (por tabla y colu
 function zfCabeceras(){ if(document.documentElement.classList.contains("m-app")) return;
   document.querySelectorAll("table.rt").forEach(t=>{ const ths=[...t.querySelectorAll("thead th")]; if(!ths.length) return;
     const lab=th=>th.querySelector(":scope > button")||th.querySelector(":scope > span");
-    ths.forEach(th=>{ const l=lab(th); if(l) l.style.transform=""; });
+    ths.forEach(th=>{ const l=lab(th); if(l) l.style.transform=""; delete th.dataset.fl; });
     if(!t.offsetParent) return; const anchoT=Math.round(t.offsetWidth);
     const filas=[...t.querySelectorAll("tbody tr")].filter(r=>r.offsetParent&&r.children.length>1);
     if(!filas.length) return; const rg=document.createRange();
     ths.forEach((th,i)=>{ const l=lab(th); if(!l||!th.offsetWidth) return; let a=Infinity, b=-Infinity; const nom=th.textContent.trim();
+      if(th.dataset.k==="country"){ const f=[...t.querySelectorAll('tbody td[data-k="country"] :is(img,svg,.flag)')].find(e=>e.offsetWidth); if(f){ const fr=f.getBoundingClientRect(), q=l.getBoundingClientRect(), d=Math.round((fr.left+fr.right)/2-(q.left+q.right)/2); if(Math.abs(d)>=1) l.style.transform=`translateX(${d}px)`; } return; }   /* v782: «País», centrado sobre las banderas */
       // la celda de cada fila: la que lleva el mismo nombre de columna (data-l); si no lo lleva, la de la misma posición
       let tx=0, nc=0;
       filas.forEach(r=>{ const td=[...r.children].find(c=>c.dataset.l===nom&&c.offsetWidth)||(r.children.length===ths.length?r.children[i]:null); if(!td||!td.offsetWidth||!td.textContent.trim()&&!td.querySelector("img,i,b,span")) return; nc++; if(/[A-Za-zÁÉÍÓÚÑáéíóúñü]{3,}/.test(td.innerText)) tx++;   /* v571: solo el texto visible (la celda de Hoy lleva escondido el texto del móvil) */ rg.selectNodeContents(td); const q=rg.getBoundingClientRect(); if(q.width>0){ a=Math.min(a,q.left); b=Math.max(b,q.right); } });
@@ -5783,7 +5785,12 @@ function zfCabeceras(){ if(document.documentElement.classList.contains("m-app"))
       let d=Math.round((a+b)/2-(q.left+q.right)/2); d=Math.min(d,Math.floor(R.right-(fl?14:4)-fl-q.right));   /* v571: con flecha, 14 px hasta el borde de su celda (antes 4: en País quedaba pegada a Industria) */ d=Math.max(d,Math.ceil(R.left+4-q.left));
       /* v721 · y si al ordenar solo cambian las filas que se ven (Movimientos enseña una parte) y el centro se mueve 1 o 2 px, el título se queda donde estaba */
       { const S=t.closest("[data-t]"), kk=(t.id||(t.closest("[id]")||{}).id||"")+"|"+(document.body.dataset.view||"")+"|"+(S?S.dataset.t:"")+"|"+(th.dataset.k||nom), o=ZF_CABD.get(kk); if(o&&o.w===anchoT) d=Math.max(Math.min(o.d,Math.floor(R.right-4-q.right)),Math.ceil(R.left+4-q.left)); ZF_CABD.set(kk,{d,w:anchoT}); }   /* v722: en la misma vista y con el mismo ancho, cada título se queda donde se colocó la primera vez (al reordenar Movimientos cambian las filas que se ven y su centro se movía hasta 14 px) */
-      if(Math.abs(d)>=1) l.style.transform=`translateX(${d}px)`; }); });
+      if(Math.abs(d)>=1) l.style.transform=`translateX(${d}px)`; });
+    /* v782 · la flecha de ordenar, a la izquierda del título si a la derecha se mete en la columna siguiente y a la izquierda cabe (hasta el título de la anterior) */
+    const vis=ths.filter(th=>th.offsetWidth), ult=vis[vis.length-1];
+    vis.forEach((th,j)=>{ if(!th.hasAttribute("aria-sort")||th===ult) return; const l=lab(th); if(!l) return; rg.selectNodeContents(l); const q=rg.getBoundingClientRect(), Rt=th.getBoundingClientRect(), F=13;
+      const pv=j>0?lab(vis[j-1]):null; let finAnt=Rt.left; if(pv){ rg.selectNodeContents(pv); finAnt=rg.getBoundingClientRect().right; }
+      if(q.right+F>Rt.right-2&&q.left-9>=finAnt+6) th.dataset.fl="izq";   /* a la izquierda, pegada a su título (3 px) y a 6 px o más del anterior */ }); });
   try{ zfEsqPos(); zfMovSombra(); }catch(e){} }   /* v582: las sombras se recolocan después de centrar las cabeceras */
 { let r=0; const pide=()=>{ cancelAnimationFrame(r); r=requestAnimationFrame(()=>requestAnimationFrame(()=>{ try{ zfCabeceras(); }catch(e){ console.warn("Cartera · cabeceras:",e); } })); };
   new MutationObserver(ms=>{ if(ms.some(m=>m.target.closest&&m.target.closest("table.rt,.view,[id^='v-']")&&(m.target.closest("table.rt")||[...m.addedNodes].some(n=>n.nodeType===1&&(n.matches("table.rt")||n.querySelector&&n.querySelector("table.rt")))))){ try{ zfCabeceras(); }catch(e){} pide(); } }).observe(document.body,{childList:true,subtree:true});   /* v611: también en el momento, antes de pintar (si no, al cambiar de vista la cabecera se veía un instante en su sitio por defecto y luego saltaba) */
