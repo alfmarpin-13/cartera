@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-Efc3AYD21rGxZ0spIFCOdWDW1ySsRo/bFdSMHdnsHW0=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-+rl0/sJxP0e13By8osYVABf8iEX8IJmdmJWr2TTrCvI=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v806">
+<link rel="manifest" href="manifest.webmanifest?v807">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v806">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v806">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v806">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v806">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v806">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v807">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v807">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v807">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v807">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v807">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3856,7 +3856,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v806";   // la versión publicada, en el pie
+const VER="v807";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4247,20 +4247,21 @@ function anchosPre(){
     const ws=[...t.querySelectorAll(`td[data-k="${k}"]>.cifb>span`)].map(an).filter(v=>v>0).sort((p,q)=>p-q);
     return {k,v:Math.ceil(ws.length?ws[ws.length-1]:0),h:Math.ceil(txt(th))}; });
   /* v784 · cada columna de cifras: el título centrado sobre sus cifras y, a su derecha, sitio para la flecha de ordenar, todo dentro de su celda (la columna
-     mide lo que pide su título o su cifra, lo mayor, a cada lado del centro). Entre título y título, el mismo hueco (H, hasta 36 px; la flecha cabe en él) y
-     entre cifra y cifra, 20 px como mínimo (16 por debajo de 1.366 px) (con poco sitio, hasta 6 px entre flecha y título antes de cortar con «…» Empresa o Industria); junto al sombreado de la valoración, 9 px de aire. Lo que sobra, para Empresa e Industria */
+     mide lo que pide su título o su cifra, lo mayor, a cada lado del centro). v807: ENTRE LOS DATOS DE DOS COLUMNAS, EL MISMO HUECO (G, hasta 36 px) en todas,
+     salvo antes de «Valor», donde empieza el sombreado de la valoración, 12 px más; solo donde los títulos no caben con ese hueco (pantallas estrechas) se abre lo
+     justo. Junto al sombreado, 9 px de aire. Con poco sitio, hasta 8 px antes de cortar con «…» Empresa o Industria. Lo que sobra, para Empresa e Industria */
   const A=13, E=4, need=cols.filter(c=>c.txt).reduce((s,c)=>s+c.need,0), nums=cols.filter(c=>!c.txt), sepK=k=>!!PCOLS.find(z=>z.k===k).sep;
   nums.forEach(c=>{ if(c.k==="today"){ const th=vis.find(z=>z.dataset.k==="today"), l=th&&(th.querySelector(":scope > button")||th); if(l){ const s=document.createElement("span"); s.textContent="Sesión"; s.style.cssText="position:absolute;visibility:hidden;white-space:nowrap"; l.appendChild(s); c.h=Math.max(c.h,Math.ceil(an(s))); s.remove(); } }   // «Hoy» o «Sesión»: la columna, igual con los dos
     const e=sepK(c.k)?9:E; c.L=Math.ceil(Math.max(c.h/2+e,c.v/2+(sepK(c.k)?9:2))); c.R=Math.ceil(Math.max(c.h/2+A+E,c.v/2+2))+(c===nums[nums.length-1]?6:0); });   // la última, con algo más de aire hasta el borde de la tabla
   const bord=nums.slice(0,-1).map((c,j)=>{ const d=nums[j+1]; return {t:c.R-c.h/2-A+d.L-d.h/2, f:c.R-c.v/2+d.L-d.v/2, sep:sepK(d.k)}; }),
-    FM=innerWidth<1366?16:20, huecos=H=>bord.map(b=>Math.ceil(Math.max(0,H-b.t,FM-b.f))), total=H=>nums.reduce((s,c)=>s+c.L+c.R,0)+huecos(H).reduce((s,x)=>s+x,0);
-  let H=36; while(H>6&&need+total(H)>tw) H--; preHueco=H; const sp=huecos(H);   // solo si ni con 6 px cabe todo, se estrechan Empresa e Industria (con «…»)
+    DIV=12, huecos=G=>bord.map(b=>Math.ceil(Math.max(0,G+(b.sep?DIV:0)-b.f))), total=G=>nums.reduce((s,c)=>s+c.L+c.R,0)+huecos(G).reduce((s,x)=>s+x,0);   // b.f: el hueco entre los datos que ya dejan las dos celdas
+  let H=36; while(H>8&&need+total(H)>tw) H--; preHueco=H; const sp=huecos(H);   // solo si ni con 8 px cabe todo, se estrechan Empresa e Industria (con «…»)
   nums.forEach((c,j)=>{ const l=j&&!bord[j-1].sep?sp[j-1]/2:0, r=j<sp.length?(bord[j].sep?sp[j]:sp[j]/2):0; c.w=l+c.L+c.R+r; c.cen=l+c.L; });   // junto al sombreado, todo el hueco del lado de fuera
   const libre=tw-nums.reduce((s,c)=>s+c.w,0), crece=cols.filter(c=>c.txt&&c.k!=="country"), pide=crece.reduce((s,c)=>s+c.need,0);
   cols.filter(c=>c.txt).forEach(c=>{ c.w=c.k==="country"?c.need:c.need+(libre-need)*c.need/pide; });
   // v715 · con el mismo ancho de ventana y las mismas columnas, si todo lo nuevo cabe en los anchos de antes, se quedan esos: al actualizar
   // las columnas ya no se reajustan solas (antes se medían otra vez con cada lectura y bastaba una cifra con otro número de dígitos)
-  const clave="v784|"+innerWidth+"|"+cols.map(c=>c.k).join(",");
+  const clave="v807|"+innerWidth+"|"+cols.map(c=>c.k).join(",");
   /* v718 · y SE GUARDAN EN ESTE ORDENADOR: al recargar la página se parte de los mismos anchos, no de unos medidos a medias (sin la letra o sin
      todos los datos) que unos segundos después se volvían a medir y ensanchaban Empresa. Si algo nuevo no cabe, se rehace, pero Empresa
      conserva su ancho (solo crece si un nombre no cabe) y la diferencia la absorbe Industria */
