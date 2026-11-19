@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-dIIFSdivBYzcjN/qj1z928zTDzvGJqZwvMJDaYBhIBc=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-O8kVxHj9nnYL4MqJxZ8TEtZdMsYn3TBN+9E1AQRB+yc=' 'sha256-N/CXaCttcxed+pStg4BN+jkmWc+VDgbfj8B20UkuDa8=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v808">
+<link rel="manifest" href="manifest.webmanifest?v809">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v808">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v808">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v808">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v808">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v808">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v809">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v809">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v809">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v809">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v809">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3856,7 +3856,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v808";   // la versión publicada, en el pie
+const VER="v809";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4814,13 +4814,17 @@ function gxUni(){ const s=gxSec("v-universo"), closed=sesion().closed, hayHoy=!c
     m3:{u:[17,20,25,40],d:[15,18,22,30]},m6:{u:[32,40,47,60],d:[12,17,22,28]},ytd:{u:[33,40,55,80],d:[22,28,33,38]},y1:{u:[35,45,60,100],d:[20,28,35,42]},
     y3:{u:[115,150,270,400],d:[20,35,45,55]},dd:{u:[10,30,55,70],d:[10,30,55,70]}}[k];
   const nivel=v=>{ if(!isNum(v)||Math.abs(v)<5e-5) return "lv0"; const m=Math.abs(v)*100, n=1+(v>0?ESC.u:ESC.d).filter(t=>m>=t).length; return (v>0?"lp":"ln")+Math.min(5,n); };
-  const bloque=(lst,tit,igual)=>{ let it=lst.slice(0,20), Wb=(W-24)/2, Hb=420, G=4;
+  const bloque=(lst,tit,igual)=>{ let it=lst.slice(0,25), Wb=(W-24)/2, Hb=420, G=4;   /* v809: entre 20 y 25 por lado (si hay menos, todas) */
     if(!it.length) return `<div><div class="gx-mh"><b>${tit}</b></div><div class="gx-tr gx-vacio">Ninguna</div></div>`;
     // v512: cada casilla, del tamaño de su movimiento, pero nunca por debajo de un quinto de la mayor (con un día de poco movimiento, las pequeñas quedaban en una tira sin sitio para el logo ni la cifra)
     // y si aun así alguna casilla no llega a 84 × 64 px (lo justo para el logo y la cifra; v513, antes 92 × 80), se quitan las del final, las que menos se mueven, hasta que todas caben
     // (primero se sube poco a poco ese mínimo, de un octavo hasta un tercio de la mayor; solo si ni así caben se quitan las del final)
     const mxa=Math.max(...it.map(r=>Math.abs(r[k]))); let fl=.12; const a=r=>igual?1:Math.max(Math.abs(r[k]),mxa*fl,1e-4), lay=L=>{ const tot=sum(L,a); return sq(L.map(r=>({r,a:a(r)/tot*Wb*Hb})),0,0,Wb,Hb); }, chica=t=>t.some(z=>z.w-G<84||z.h-G<64);
-    let tl=lay(it); while(chica(tl)&&fl<.34){ fl+=.02; tl=lay(it); } while(it.length>6&&chica(tl)){ it.pop(); tl=lay(it); }
+    /* v809 · SIEMPRE ENTRE 20 Y 25 (si hay menos, todas): con 25, el mínimo de cada casilla sube hasta la mitad de la mayor; si aun así alguna no llega
+       a 84 × 64, se quitan las que menos se mueven, pero nunca por debajo de 20; con 20, el mínimo sube lo que haga falta (hasta todas iguales).
+       Solo si ni con todas iguales caben (pantallas muy estrechas) se quitan más */
+    const MIN=Math.min(20,lst.length), sube=tope=>{ let t=lay(it); while(chica(t)&&fl<tope){ fl+=.02; t=lay(it); } return t; };
+    let tl=sube(.5); while(it.length>MIN&&chica(tl)){ it.pop(); tl=sube(.5); } if(chica(tl)) tl=sube(1.01); while(it.length>6&&chica(tl)){ it.pop(); tl=lay(it); }
     return `<div><div class="gx-mh"><b>${tit}</b></div><div class="gx-tr">${tl.map(z=>{ const r=z.r, lv=nivel(r[k]), w=z.w-G, h=z.h-G, pq=h<100, lw0=Math.round(Math.max(30,Math.min(96,w*.5,(h-(pq?34:44))*1.6))), lw=Math.min(96,w<120?Math.max(lw0,Math.round(w-18)):lw0), lh=Math.min(36,Math.round(lw0*.5625));   /* v545: tope de 96 × 36 px, para que manden el color y la cifra (antes hasta 150 px) */   /* v513: en las casillas estrechas, los logos alargados (como L'Oréal) pueden ocupar casi todo el ancho; el alto sigue igual, así que los cuadrados no crecen */
       return `<button type="button" class="gx-t2 ${lv} ${r.inPf?"mia":""}" data-t="${esc(r.ticker)}" data-n="${esc(r.name)}" aria-label="${esc(r.name)} · ${gxPS(r[k])}" style="left:${(z.x+G/2).toFixed(1)}px;top:${(z.y+G/2).toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px${pq?";gap:4px":""}">${gxSilA(r.ticker,Math.round(lw*.85),Math.round(lh*.85),Math.min(82,w-14),Math.min(31,h-(pq?36:46)),w,h,pq)}<b>${gxPS(r[k])}</b></button>`; }).join("")}</div></div>`; };   /* v795: los logos del radar, un 15 % más pequeños (tope 82 × 31 px, antes 96 × 36) */
   C.dataset.l=JSON.stringify(lista);
