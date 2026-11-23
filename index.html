@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-5FPkHb8uV3rCn70yz41d9qAUuUmCfMG/KE9ZoIxeXZI=' 'sha256-yj2StVlmd6F2hQ7Yge1vPp+dtmmjxwdkYjIjZBIpW/A=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-5FPkHb8uV3rCn70yz41d9qAUuUmCfMG/KE9ZoIxeXZI=' 'sha256-ApEKO1aVjKHPaEuW3PFGyN2xYtKEvbKKoZolLZH6z/w=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v824">
+<link rel="manifest" href="manifest.webmanifest?v825">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v824">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v824">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v824">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v824">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v824">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v825">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v825">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v825">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v825">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v825">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); try{ const s=localStorage.getItem("cartera-snap"); if(s) window.MA_PRE=[...new Set(s.match(/logos\/[\w.-]+\.webp/g)||[])].slice(0,60).map(u=>{ const i=new Image(); i.decoding="async"; i.src=u; return i; }); }catch{} requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -396,6 +396,13 @@ details.chk[open]>summary{margin-bottom:12px}
 .wb2>span{text-align:right}
 .wb2 i{display:block;height:4px}
 .wb2 b{display:block;height:100%;min-width:6px;border-radius:var(--r-2);background:var(--ink-soft);opacity:.7}
+/* v825 · Resultado con barra, como Peso: largo según lo que ganas o pierdes (la misma escala para toda la columna), en verde si ganas y en rojo si pierdes */
+.rb2{display:inline-grid;grid-template-columns:auto;gap:8px;align-items:center}
+.rb2>span{text-align:right}
+.rb2 i{display:none;height:4px}
+#t-pos.con-rb .rb2{grid-template-columns:auto 44px} #t-pos.con-rb .rb2 i{display:block}   /* la barra solo cuando la tabla tiene sitio (zfPosAnchos pone con-rb); si no, la cifra sola, como antes */
+.rb2 b{display:block;height:100%;min-width:3px;border-radius:var(--r-2);opacity:.75}
+.rb2 b.p{background:var(--pos)} .rb2 b.n{background:var(--neg)}
 @media (max-width:1200.98px){ #t-pos .hide-m{display:none} }
 @media (max-width:1000.98px){ #t-pos .hide-t{display:none} }
 #t-pos th[data-k="years"],#t-pos td[data-l="Años"]{padding-left:12px}
@@ -3862,7 +3869,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v824";   // la versión publicada, en el pie
+const VER="v825";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -3926,7 +3933,7 @@ function renderPositions(){
   DATA.pos.forEach(p=>{ p.todayEur=!p.atCost&&isNum(p.today)?p.value*p.today/(1+p.today):null; });
   const sk=sortK, sd=sortDir;
   const ps=[...DATA.pos].sort((a,b)=>{ const x=a[sk],y=b[sk]; if(typeof x==="string") return sd*x.localeCompare(y,"es"); return sd*((x??-1e18)-(y??-1e18)); });
-  const maxW=Math.max(...ps.map(p=>p.weight||0));
+  const maxW=Math.max(...ps.map(p=>p.weight||0)), maxR=Math.max(1,...ps.filter(p=>!p.isOption&&!p.atCost&&isNum(p.totalEur)).map(p=>Math.abs(p.totalEur)));
   document.querySelectorAll("#t-pos th").forEach(th=>{ th.removeAttribute("aria-sort"); if(th.dataset.k===sk) th.setAttribute("aria-sort",sd>0?"ascending":"descending"); });
   const rowOf=p=>{ const open=!!sheet&&sheet.k==="pos"&&sheet.t===p.ticker;
     return `<tr class="pr${open?" open":""}" data-t="${esc(p.ticker)}" tabindex="0" aria-haspopup="dialog">
@@ -3939,7 +3946,7 @@ function renderPositions(){
       <td class="num r-amt" data-l="Valor">${eur(p.value)}</td>
       <td class="num" data-l="Peso"><span class="wb2"><span>${pct(p.weight)}</span><i><b style="width:${((p.weight||0)/maxW*100).toFixed(1)}%"></b></i></span></td>
       <td class="num r-sub" data-l="Rentab.">${p.isOption?`<span class="mute sdg">—</span>`:p.atCost||!isNum(p.totalPct)?"":`<span class="rlv ${retLevel(p.totalPct)}">${pct(p.totalPct,1,true)}</span>`}</td>
-      <td class="num hide-n" data-l="Resultado">${p.isOption?`<span class="mute">—</span>`:p.atCost?"":seur(p.totalEur)}</td>
+      <td class="num hide-n" data-l="Resultado">${p.isOption?`<span class="mute">—</span>`:p.atCost?"":!isNum(p.totalEur)?seur(p.totalEur):`<span class="rb2"><span>${seur(p.totalEur)}</span><i><b class="${p.totalEur>=0?"p":"n"}" style="width:${(Math.abs(p.totalEur)/maxR*100).toFixed(1)}%"></b></i></span>`}</td>
       <td class="num" data-l="TIR" title="${p.years<0.5?"Menos de 6 meses en cartera: no se anualiza":"TIR anualizada de la posición"}">${p.isOption?`<span class="mute">—</span>`:!isNum(p.irr)?`<span class="mute">—</span>`:pct(p.irr,1)}</td>
       <td class="num hide-t" data-l="Años">${p.isOption?`<span class="mute">—</span>`:!isNum(p.years)?"":nf(1).format(Math.max(0.1,Math.floor(p.years*10)/10))}</td>
       <td class="num" data-l="Dividendo">${p.isOption?`<span class="mute">—</span>`:p.yov?pct(p.yov,2):`<span class="mute">—</span>`}</td></tr>`; };
@@ -5879,8 +5886,9 @@ function zfPosOrden(){ const t=$("t-pos"); if(!t) return; const ord=ZF_POS_PC;
    que pide su título centrado con la flecha de ordenar (antes el título se apretaba a su celda y quedaba descentrado: Sesión €, Acciones, Precio medio, Años).
    Los datos, alineados a la derecha; lo que sobra, para Empresa */
 const ZF_POS_K2L=Object.fromEntries(Object.entries(ZF_POS_L).map(([l,k])=>[k,l]));
-function zfPosAnchos(){ const T=$("t-pos"), st=$("pos-anchos-css")||document.head.appendChild(Object.assign(document.createElement("style"),{id:"pos-anchos-css"}));
-  const quita=()=>{ st.textContent=""; T&&T.querySelector(":scope > colgroup.zpa")?.remove(); if(T) T.style.tableLayout=""; };
+function zfPosAnchos(sinBarra){ const T=$("t-pos"), st=$("pos-anchos-css")||document.head.appendChild(Object.assign(document.createElement("style"),{id:"pos-anchos-css"}));
+  const quita=()=>{ st.textContent=""; T&&T.querySelector(":scope > colgroup.zpa")?.remove(); if(T){ T.style.tableLayout=""; T.classList.remove("con-rb"); } };
+  if(T) T.classList.toggle("con-rb",!sinBarra);   /* v825: se mide con la barra de Resultado; si así no cabe, se vuelve a medir sin ella */
   if(!T||document.documentElement.classList.contains("m-app")||innerWidth<1201||!T.getClientRects().length){ quita(); return; }
   const ths=[...T.querySelectorAll("thead th")].filter(th=>th.getClientRects().length), filas=[...T.querySelectorAll("tbody tr.pr")];
   if(ths.length<2||!filas.length||ths[0].dataset.k!=="name") { quita(); return; }
@@ -5893,7 +5901,7 @@ function zfPosAnchos(){ const T=$("t-pos"), st=$("pos-anchos-css")||document.hea
   const reparte=G=>{ nums.forEach(c=>{ c.pr=c.mpr; c.s=c.ms; }); nums.forEach((c,j)=>{ const d=nums[j+1]; if(!d) return; const D=G+(divs.has(d.k)?DIV:0);
       if(divs.has(d.k)){ c.pr=Math.max(c.mpr,12,Math.floor(D/2)); d.s=Math.max(d.ms,12,D-c.pr); } else d.s=Math.max(d.ms,D-c.pr); });
     return nm.need+nums.reduce((x,c)=>x+c.s+c.v+c.pr,0); };
-  const tw=Math.floor(T.getBoundingClientRect().width); let G=40; while(G>10&&reparte(G)>tw) G--; if(reparte(G)>tw){ quita(); return; }
+  const tw=Math.floor(T.getBoundingClientRect().width); let G=40; while(G>10&&reparte(G)>tw) G--; if(reparte(G)>tw){ if(!sinBarra){ zfPosAnchos(true); return; } quita(); return; }
   const wN=tw-nums.reduce((x,c)=>x+c.s+c.v+c.pr,0);
   let g=T.querySelector(":scope > colgroup.zpa"); if(!g){ g=document.createElement("colgroup"); g.className="zpa"; T.prepend(g); }
   g.innerHTML=[wN,...nums.map(c=>c.s+c.v+c.pr)].map(w=>`<col style="width:${w}px">`).join(""); T.style.tableLayout="fixed";
