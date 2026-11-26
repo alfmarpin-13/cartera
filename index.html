@@ -2,24 +2,24 @@
 <html lang="es">
 <meta charset="utf-8">
 <style>/* v729 · en el móvil, el fondo verde de la cabecera desde el primer byte, antes del bloque grande de estilos: en el vídeo de las 14:23, al abrir, la pantalla se aclaraba dos fotogramas (1,18–1,20 s), como si se viera el blanco de serie antes de que la página pintara */@media (max-width:520px){html{background:#18211C}@media (prefers-color-scheme:dark){html{background:#2B2B29}}}</style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-5FPkHb8uV3rCn70yz41d9qAUuUmCfMG/KE9ZoIxeXZI=' 'sha256-78BjjCXmCpTLBTJeqZh5Yih/K+RUUby0bAxsSX4T/CM=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-5FPkHb8uV3rCn70yz41d9qAUuUmCfMG/KE9ZoIxeXZI=' 'sha256-ExJpLEcrzzMyGwtDtkw9N/cWua/b1FpuKzyZ9u8ifqY=' 'self'; worker-src blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cartera">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="manifest" href="manifest.webmanifest?v826">
+<link rel="manifest" href="manifest.webmanifest?v827">
 <meta name="viewport" id="m-vp" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18211C" media="(max-device-width: 520px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#2B2B29" media="(max-device-width: 520px) and (prefers-color-scheme: dark)">
 <meta name="theme-color" content="#E4E2DC" media="(min-device-width: 521px) and (prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(min-device-width: 521px) and (prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v826">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v826">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v826">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v826">
-<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v826">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v827">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v827">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v827">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="arranque-claro-1206x2622.png?v827">
+<link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="arranque-oscuro-1206x2622.png?v827">
 <title>Cartera</title>
 <script>document.documentElement.lang="es"; if(Math.min(screen.width,screen.height)<=520){ const R=document.documentElement, m=document.getElementById("m-vp"); m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"; R.classList.add("m-tel","m-bar-on"); R.style.setProperty("--m-sw",Math.min(screen.width,screen.height)); { R.classList.add("m-app","m-splash"); try{ const s=localStorage.getItem("cartera-snap"); if(s) window.MA_PRE=[...new Set(s.match(/logos\/[\w.-]+\.webp/g)||[])].slice(0,60).map(u=>{ const i=new Image(); i.decoding="async"; i.src=u; return i; }); }catch{} requestAnimationFrame(()=>{ window.MA_SP0=performance.now(); }); let t=null; try{ t=localStorage.getItem("theme"); }catch{} const osc=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches; document.querySelectorAll("meta[name=theme-color]").forEach(x=>{ x.dataset.o=x.content; x.content=osc?"#2B2B29":"#18211C"; }); } } try{ const t=localStorage.getItem("theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch{}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -3897,7 +3897,7 @@ function trayProj(s){ const T=DATA.tray, h=DATA.horizon, cur=DATA.curYear, until
     const p=out[i-1], ini=p&&isNum(p.val)?p.val:0, g=r.y<=until&&isNum(r.divs)?r.divs:ini*s.dy, k=tax(g), re=s.stop===0||r.y<s.stop, val=ini*(1+s.growth)+s.saving+(re?g*(1-k):0);
     out.push({y:r.y, age:r.age, acc:(p&&isNum(p.acc)?p.acc:0)+s.saving, val, divs:g, net:g/12*(1-k), ti:ini?(val-s.saving)/ini-1:null, re}); });
   return out; }
-const VER="v826";   // la versión publicada, en el pie
+const VER="v827";   // la versión publicada, en el pie
 // supuestos de Trayectoria: empiezan en los de tu hoja; moverlos solo cambia lo que ves aquí, nunca tu hoja
 let traySup=null, traySup0=null, trayRaf=0, trayArrastre=false, trayPendiente=false;
 // COD-14: mientras arrastras un deslizador, la recarga no lo sustituye; al soltarlo, se pone al día
@@ -4221,7 +4221,8 @@ const mvTiempo=(a,b)=>{ const d=Math.round((day(b)-day(a))/DIA_MS); if(d<45) ret
   $("sheet-b").addEventListener("click",e=>{ const b=e.target.closest("[data-mvficha]"); if(!b) return; const t=b.dataset.mvficha; openSheet(DATA.pos.some(x=>x.ticker===t)?"pos":"pre",t,[t]); }); }
 
 // v475 · SI-06: la hora de los datos en el pie, la misma que dice el estado de arriba
-function footHora(){ const f=$("f-h"), s=$("stat"); if(!f||!s) return; const m=s.textContent.match(/\d{1,2}:\d{2}(?!.*\d:\d\d)/); f.textContent=m&&!/busy|err/.test($("dot").className)?` · leídos a las ${m[0]}`:""; }
+function footHora(){ const f=$("f-h"), s=$("stat"); if(!f||!s) return; const m=s.textContent.match(/\d{1,2}:\d{2}(?!.*\d:\d\d)/), d=statT(), c=d?cuandoT(d):"", hh=c.match(/\d{1,2}:\d{2}$/);
+  f.textContent=m&&!/busy|err/.test($("dot").className)?(hh&&c!==hh[0]?` · leídos ${/^ayer/.test(c)?"ayer":"el "+c.slice(0,-hh[0].length-1)} a las ${hh[0]}`:` · leídos a las ${hh?hh[0]:m[0]}`):""; }   /* v827: con su día si no es de hoy */
 new MutationObserver(footHora).observe($("stat"),{childList:true,characterData:true,subtree:true});
 new MutationObserver(footHora).observe($("dot"),{attributes:true,attributeFilter:["class"]});
 /* ---------- universo ---------- */
@@ -4509,13 +4510,14 @@ document.addEventListener("click",e=>{ if(e.target.id==="act-allow") loadAct(tru
   const fit=()=>{ if(document.documentElement.classList.contains("m-app")||!st.offsetWidth) return; st.removeAttribute("data-s"); st.removeAttribute("title");
     { const full=st.textContent.trim(), k=$("dot").className, hm=(full.match(/\d{1,2}:\d{2}(?!.*\d:\d\d)/)||[])[0];   // v461: en la cabecera, solo la hora
       if(/busy/.test(k)){ st.title=full; st.dataset.s="Actualizando…"; return; }
-      if(!/err/.test(k)&&hm){ st.title=full; st.dataset.s=hm; return; } }
+      if(!/err/.test(k)&&hm){ st.title=full; st.dataset.s=statT()?cuandoT(statT()):hm; return; } }   /* v827: con su día si no es de hoy */
     if(one()) return;
     const full=st.textContent.trim(); st.title=full;   // al pasar el ratón, el texto entero
     for(const c of steps(full)){ st.dataset.s=c; if(one()) return; } };
   let q=0; const later=()=>{ if(!q) q=requestAnimationFrame(()=>{ q=0; fit(); }); };
   new MutationObserver(later).observe(st,{childList:true,characterData:true,subtree:true}); addEventListener("resize",later);
-  if(document.fonts) document.fonts.ready.then(later); later(); }
+  if(document.fonts) document.fonts.ready.then(later); later();
+  setInterval(()=>{ if(st.dataset.t&&document.visibilityState==="visible") later(); },60000); }   /* v827: al cambiar de día con la web abierta, «14:04» pasa a «ayer 14:04» */
 
 
 /* ---------- F · búsqueda rápida (⌘K, Ctrl+K en Windows) ---------- */
@@ -6130,12 +6132,13 @@ function maSplashFin(ya){ const R=document.documentElement; if(!R.classList.cont
 setTimeout(()=>{ if(!window.maRecarga) maSplashFin(true); },MA_SPMAX);
 function maHora(){ const s=$("stat"), d=$("dot"); if(!s||!$("m-hora")) return;
   const lee=!!(d&&/\bbusy\b/.test(d.className)), t=s.textContent.match(/\d{1,2}:\d{2}/g);
-  const h=$("m-hora"), nh=lee?(t?t[t.length-1]:h.textContent):t?t[t.length-1]:s.textContent.trim();   /* v720: mientras lee, se queda la hora de antes (sin «Actualizando…»); al acabar, la nueva. v725: al abrir la app, la de la copia guardada si la hay, y si no, nada (venía escrito «Actualizando…» de serie y se veía hasta que llegaban los datos) */ if(nh&&h.textContent!==nh) h.textContent=nh;   /* v660: sin hora (por ejemplo «Sin acceso»), el estado tal cual; antes se quedaba en «Actualizando…» */   // v651: mientras lee, «Actualizando…» y el punto naranja, como en el PC; al acabar, la hora
+  const tt=statT()?cuandoT(statT()):"", h=$("m-hora"), nh=lee?(tt||(t?t[t.length-1]:h.textContent)):tt||(t?t[t.length-1]:s.textContent.trim());   /* v827: con su día si no es de hoy */   /* v720: mientras lee, se queda la hora de antes (sin «Actualizando…»); al acabar, la nueva. v725: al abrir la app, la de la copia guardada si la hay, y si no, nada (venía escrito «Actualizando…» de serie y se veía hasta que llegaban los datos) */ if(nh&&h.textContent!==nh) h.textContent=nh;   /* v660: sin hora (por ejemplo «Sin acceso»), el estado tal cual; antes se quedaba en «Actualizando…» */   // v651: mientras lee, «Actualizando…» y el punto naranja, como en el PC; al acabar, la hora
   { const md=$("m-dot"), c="m-dot"+(d&&/\bbusy\b/.test(d.className)?" busy":"")+(d&&/\berr/.test(d.className)?" err":""); if(md.className!==c) md.className=c; } maLate(!!(d&&/\bbusy\b/.test(d.className))); }
 /* v648 · mientras se actualiza, late el punto verde del logotipo «Cartera.» en todas las pestañas (la espera de la marca, como en el PC); al menos 0,9 s */
 function maLate(b){ const c=document.querySelector("#ma .m-lt .m-pt"); if(!c) return; clearTimeout(MA.lateTo);
   if(b){ if(!c.classList.contains("late")){ MA.lateT=Date.now(); c.classList.add("late"); } }
   else if(c.classList.contains("late")) MA.lateTo=setTimeout(()=>c.classList.remove("late"),Math.max(0,900-(Date.now()-(MA.lateT||0)))); }
+if(MA.tel) setInterval(()=>{ if(document.visibilityState==="visible") maHora(); },60000);   /* v827: al cambiar de día con la app abierta, la hora pasa a llevar su día */
 /* v694 · una línea de la columna derecha de la zona negra (etiqueta y cifra). Movimientos, Análisis y Universo la escriben entera, con la cifra
    ya dentro, como Calendario: si se rellenaba una casilla que ya existía vacía, Safari del iPhone no la volvía a medir y la cifra salía por la derecha */
 function maPar(l,v){ return `<span class="m-lab">${maEsc(l)}</span><span class="m-v">${maEsc(v)}</span>`; }
@@ -7089,7 +7092,12 @@ function lastSession(now=new Date()){ const d=new Date(now), wd=d.getDay(), back
     else if(b.id==="mm-key"&&confirm("¿Quitar de este dispositivo el ID, la clave y la copia de tus datos? Para volver a verlos tendrás que pegar el ID y la clave otra vez.")){ try{ ["cartera-d","cartera-k"].forEach(k=>localStorage.removeItem(k)); }catch{} olvidaDatos(); location.replace(location.pathname+location.search); } });
   document.addEventListener("click",e=>{ if(!M.hidden&&!e.target.closest("#more-m,#more")){ e.preventDefault(); e.stopPropagation(); close(); } },true);   // tocar fuera solo cierra el menú
   document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!M.hidden) close(); }); }
-function setStatus(kind,text){ const d=$("dot"), s=$("stat"), c="dot "+kind, b=String(kind==="busy"); if(d.className!==c) d.className=c; if(s.getAttribute("aria-busy")!==b) s.setAttribute("aria-busy",b); if(s.textContent!==text) s.textContent=text; $("refresh").classList.toggle("spin",kind==="busy"); }
+/* v827 · la hora de la última lectura, con su día cuando no es de hoy: «14:04», «ayer 14:04», «lun 14:04» o «24 nov 14:04» (antes, solo la hora:
+   con datos de hace dos días parecía que era de hace un rato) */
+const cuandoT=d=>{ if(!(d instanceof Date)||isNaN(d)) return ""; const hh=d.toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"}), h0=new Date(), n=Math.round((new Date(h0.getFullYear(),h0.getMonth(),h0.getDate())-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/864e5);
+  return n<=0?hh:n===1?`ayer ${hh}`:n<7?`${["dom","lun","mar","mié","jue","vie","sáb"][d.getDay()]} ${hh}`:`${d.getDate()} ${MES[d.getMonth()].toLowerCase()} ${hh}`; };
+const statT=()=>{ const v=+(($("stat")||{}).dataset||{}).t; return v?new Date(v):null; };
+function setStatus(kind,text,cuando){ const d=$("dot"), s=$("stat"), c="dot "+kind, b=String(kind==="busy"), tv=cuando?String(+cuando):""; if(s.dataset.t!==tv) s.dataset.t=tv; if(d.className!==c) d.className=c; if(s.getAttribute("aria-busy")!==b) s.setAttribute("aria-busy",b); if(s.textContent!==text) s.textContent=text; $("refresh").classList.toggle("spin",kind==="busy"); }
 // el aviso: etiqueta, título y texto; el hueco del enlace y los botones van en su propia columna
 const actz=may=>may?"Pulsa Actualizar":"pulsa Actualizar";
 function notice(html,k){ try{ return notice0(html,k); } finally{ if(typeof maAviso==="function") maAviso(); } }
@@ -7180,7 +7188,7 @@ let cacheAt=null;   // hora de la copia que se está viendo, hasta que llega la 
 const cacheLbl=()=>{ const d=cacheAt, hh=d.toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"}); return d.toDateString()===new Date().toDateString()?`Copia de las ${hh}`:`Copia del ${d.toLocaleDateString("es-ES",{weekday:"short"}).replace(".","")} ${d.getDate()} ${MES[d.getMonth()].toLowerCase()} · ${hh}`; };
 const CACHE_V="1";   // súbelo solo si cambia lo que guarda parse(): así, al abrir tras una versión nueva, se ve la última copia al instante
 async function fromCache(){ const c=await cacheGet(); if(!c||c.cv!==CACHE_V||!c.pd||DATA) return;
-  try{ const fp=JSON.stringify(c.pd), dd=model(c.pd); lastFp=fp; fpGuardada=fp; modelDay=new Date().toDateString(); render(dd); cacheAt=new Date(c.at); setStatus("busy",cacheLbl()+" · actualizando…");
+  try{ const fp=JSON.stringify(c.pd), dd=model(c.pd); lastFp=fp; fpGuardada=fp; modelDay=new Date().toDateString(); render(dd); cacheAt=new Date(c.at); setStatus("busy",cacheLbl()+" · actualizando…",cacheAt);
     $("asof").textContent="Datos de tu hoja «Inversiones» · "+cacheAt.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}).replace(",",""); }catch(e){ console.warn("Cartera · no he podido pintar la copia guardada:",e); lastFp=""; cacheAt=null; } }
 let fpGuardada="", archivoLocal=false, pending=false, lastSig=null, sigAt=null, lastFp="", lastLoadAt=0, modelDay="";
 // v649: deja pasar un fotograma (o, con la página oculta, como mucho 50 ms) antes de seguir
@@ -7209,7 +7217,7 @@ async function load(fresh){
     if(dd!==DATA){ const ant=DATA&&porTi?mvFoto():null, sy0=DATA?scrollY:null, anM=DATA&&document.documentElement.classList.contains("m-app")?maAncla():null; if(porTi) MA.cuentaHasta=Date.now()+3000; try{ render(dd); }catch(err){ if(err&&typeof err==="object") err.pinta=1; throw err; } if(ant) mvCuenta(ant); if(anM) maSostiene(anM); }   /* v728: en el móvil, la fila quieta (en el PC lo hace el ancla de la v724) */   /* MV-01 */ notice(""); retried=false; loadAct(false); cacheAt=null; if(pd0&&fp!==fpGuardada){ cachePut({ver:VER,cv:CACHE_V,at:Date.now(),pd:pd0}); fpGuardada=fp; }   // la copia para la próxima vez
     if(REM) try{ localStorage.setItem("cartera-ok",REM.d); }catch{}   // este ID ya ha funcionado en este dispositivo
     const ss=sesion();
-    if(ss.closed) setStatus("","Mercado cerrado · leído a las "+hhmm); else setStatus("live", same ? `Cotizaciones de las ${hm(sigAt)}` : "En vivo · "+when.toLocaleDateString("es-ES",{weekday:"short"}).replace(".","")+" "+when.getDate()+" "+MES[when.getMonth()].toLowerCase()+" · "+hhmm);
+    if(ss.closed) setStatus("","Mercado cerrado · leído a las "+hhmm,when); else setStatus("live", same ? `Cotizaciones de las ${hm(sigAt)}` : "En vivo · "+when.toLocaleDateString("es-ES",{weekday:"short"}).replace(".","")+" "+when.getDate()+" "+MES[when.getMonth()].toLowerCase()+" · "+hhmm, same?sigAt:when);
     $("asof").textContent = "Datos de tu hoja «Inversiones» · "+when.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}).replace(",","");
   }catch(e){
     console.error("Cartera · lectura de la hoja:",e); lastFp="";   // COD-04/11: la siguiente lectura vuelve a calcular y pintar
@@ -7281,13 +7289,13 @@ const MA_FOTO_IDS=["m-val","m-liq","m-i1","m-p1","m-i2","m-p2","m-mapa-t","m-map
 function maMapa(){ const T=$("m-mapa"); if(!T||!DATA) return; const W=Math.round(T.clientWidth); if(W<200) return;
   try{ mapaHoy(T,W,300,$("m-mapa-l")); const h=$("m-mapa-t"); if(h){ const n=sesion().closed?"Última sesión":"Hoy"; if(h.textContent!==n) h.textContent=n; } }catch(e){ console.warn("Cartera · mosaico del móvil:",e); } }
 function maFotoGuarda(){ clearTimeout(MA.fotoT); MA.fotoT=setTimeout(()=>{ try{ const l=$("m-l1"); if(!DATA||!l||!l.children.length) return;
-    const p={v:VER,at:Date.now(),hora:($("m-hora")||{}).textContent||"",lab:($("m-i1").closest(".m-pila").querySelector(".m-lab")||{}).textContent||"",e:{}};
+    const p={v:VER,at:Date.now(),hora:($("m-hora")||{}).textContent||"",ht:+(($("stat")||{}).dataset||{}).t||0,lab:($("m-i1").closest(".m-pila").querySelector(".m-lab")||{}).textContent||"",e:{}};
     MA_FOTO_IDS.forEach(id=>{ const e=$(id); if(e) p.e[id]=[e.className,e.innerHTML]; }); const s=JSON.stringify(p); if(s.length<600000) localStorage.setItem("cartera-snap",s); }catch{} },2500); }
 { const R=document.documentElement;
   if(R.classList.contains("m-app")&&R.classList.contains("m-splash")&&(REM||GAS)&&!/^#?(analisis|movimientos|calendario|universo)\b/.test(location.hash)){
     try{ const f=JSON.parse(localStorage.getItem("cartera-snap")||"null");
       if(f&&f.v===VER&&f.e&&f.e["m-l1"]&&f.e["m-l1"][1]){ MA_FOTO_IDS.forEach(id=>{ const e=$(id), x=f.e[id]; if(e&&x){ e.className=x[0]; e.innerHTML=x[1]; } });
-        if(f.hora&&$("m-hora")) $("m-hora").textContent=f.hora; if(f.lab){ const lb=$("m-i1").closest(".m-pila").querySelector(".m-lab"); if(lb) lb.textContent=f.lab; }
+        if(f.hora&&$("m-hora")) $("m-hora").textContent=f.ht?cuandoT(new Date(f.ht)):f.hora;   /* v827: la de la foto, con su día si no es de hoy */ if(f.lab){ const lb=$("m-i1").closest(".m-pila").querySelector(".m-lab"); if(lb) lb.textContent=f.lab; }
         MA.foto=true; maSplashLogos(); } }catch(e){ console.warn("Cartera · foto de Resumen:",e); } } }
 (async()=>{
   /* v811 · con la foto de Resumen puesta, el trabajo pesado del arranque (repintar con la copia guardada, medir logos, el lector de la hoja) espera a que
